@@ -2,7 +2,7 @@
   "ticketId": "AFM-012",
   "title": "Reconcile lint, types, tests and package boundaries",
   "status": "in_progress",
-  "commit": "a20df8226515b291254c63b8825e23007bda8f24",
+  "commit": "5899c634a67dea13f85685d6c8f8d401c8b7792b",
   "date": "2026-09-11",
   "environment": {
     "execution": "docker compose run --rm workspace",
