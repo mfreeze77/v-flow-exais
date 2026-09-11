@@ -6,18 +6,18 @@ and the next dependency-ready work. Resume from this file and the per-ticket
 receipts — never by guessing that a generated file proves success.
 
 **Last updated:** 2026-09-10
-**Head commit:** `42a02c1` — AFM-004: license records, asset provenance and the modification ledger
+**Head commit:** `7d02e0d` — AFM-009, AFM-011 receipts
 **Gate status:** G0 in progress (AFM-129 gates it)
 
 ## Counts
 
 | State | Count | Tickets |
 |---|---|---|
-| verified | 6 | AFM-001, AFM-002, AFM-003, AFM-004, AFM-005, AFM-006 |
+| verified | 8 | AFM-001–006, AFM-009, AFM-011 |
 | in_progress | 0 | — |
 | implemented_unverified | 0 | — |
 | blocked | 0 | — |
-| untouched | 128 | AFM-007, AFM-008 … AFM-134 |
+| untouched | 126 | AFM-007, AFM-008, AFM-010, AFM-012 … AFM-134 |
 
 ## Verified
 
@@ -29,12 +29,31 @@ receipts — never by guessing that a generated file proves success.
 | AFM-004 | `42a02c1` | `evidence/tickets/AFM-004/` | 16 tests; 4/4 license records, 0 font binaries in evidence, 4 explained modifications |
 | AFM-005 | `4bc67ba` | `evidence/tickets/AFM-005/` | 13 tests; automation audit 0 blocked, hooks neutralized |
 | AFM-006 | `4bc67ba` | `evidence/tickets/AFM-006/` | 21 tests; all 7786 target paths cross-platform safe, no raw-checkout reach-back |
+| AFM-009 | `dab0132` | `evidence/tickets/AFM-009/` | 18 packages register, 0 workspace problems, nested npm root removed |
+| AFM-011 | `dab0132` | `evidence/tickets/AFM-011/` | all five diagram families render from an unrelated directory |
 
-Acceptance suite total: **124 passing across 6 files.**
+Acceptance suite total: **153 passing across 8 files.**
 
-## Open finding blocking the render path
+## Render path status
 
-**AFM-011-F1 — the engine/viewer split breaks Archify's asset resolution.**
+All five diagram families compile to standalone HTML from the owned monorepo:
+
+| Family | Bytes | Example |
+|---|---|---|
+| architecture | 821,349 | brand-aware-delivery |
+| workflow | 817,897 | agent-tool-call |
+| sequence | 812,111 | async-job-roundtrip |
+| dataflow | 819,318 | event-stream |
+| lifecycle | 808,440 | agent-run |
+
+**The animation half is not wired.** Nothing in the diagram path calls the
+HyperFrames composition/producer stack yet. That connection —
+`compileDiagram -> scene -> motion -> composition -> MP4` — is E04/E05/E06 and
+is what AFM-130 / G1 gates.
+
+## Resolved: the render-path blocker
+
+**AFM-011-F1 — fixed in `dab0132`.**
 
 `packages/diagram-engine/renderers/shared/cli.mjs` resolves its template as
 `path.resolve(rendererDir, '../..') + '/assets/template.html'`, but the import
@@ -87,6 +106,9 @@ upstream Git history.
 | AFM-003-F1 | resolved | Unanchored `.gitignore` rules silently dropped 48 imported files, including 16 Studio source files. Rules anchored; reconciliation now asserted. |
 | AFM-003-F2 | resolved | Windows git dropped all 28 executable bits and refused the symlink. Both now driven from the ledger, not the filesystem. |
 | AFM-003-F3 | resolved | `lefthook`'s own postinstall installed git hooks despite the `prepare` script being removed. `core.hooksPath` redirected. |
+| AFM-011-F1 | resolved | The engine/viewer split broke Archify asset resolution; every renderer failed with ENOENT. Replaced with `src/resolveAssets.mjs`, resolving from `import.meta.url` and package exports. |
+| AFM-011-F2 | resolved | Inherited bin was named `archify`, colliding with a globally installed upstream CLI. Renamed `archframe-diagram`. |
+| AFM-009-F1 | resolved | `packages/diagram-engine/package-lock.json` was a second package-manager root inside a bun workspace member. Relocated to `docs/upstream/archify/`. |
 
 ## Standing constraints
 
@@ -102,7 +124,17 @@ upstream Git history.
 (AFM-103–112) and 77 off-path tickets are deferred; work is ordered by the
 54-ticket dependency path to AFM-130 / G1.
 
+## Remote
+
+`origin` = https://github.com/mfreeze77/v-flow-exais (public). Branch `main`.
+Push authorized by the owner; see the note in the session transcript about
+vendored font binaries becoming public on first push.
+
 ## Next dependency-ready work
 
-AFM-007, AFM-008 complete E01. Then **E02 (AFM-009–016)**, which is where
-AFM-011-F1 is resolved and where a full `bun run build` becomes possible.
+AFM-010 and AFM-012 (then AFM-013–016) close E02. AFM-007 and AFM-008 close E01
+and are required for gate AFM-129 / G0, but are off the render critical path.
+
+After E02, the G1 path runs through E03 (project model, AFM-017+), E04
+(callable engine, AFM-027+), E05 (motion, AFM-039+), E06 (render jobs) and
+E07 (Studio).
