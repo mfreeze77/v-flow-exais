@@ -193,8 +193,28 @@ export async function assemble(
       // concat demuxer escapes single quotes via `'\''`; we replicate that
       // here so chunk paths containing quotes don't break the parser.
       const concatListPath = join(workDir, "concat-list.txt");
+      // Each entry declares a frame-derived `duration`. Without it the concat
+      // demuxer positions the next input using the container's *rounded*
+      // duration: a 5-frame 30fps chunk reports format duration 0.167000 rather
+      // than 0.166667, so chunk 2 starts 5 ticks late at time_base 1/15360 and
+      // the resulting irregular gap makes ffmpeg derive r_frame_rate
+      // 30000/1001 instead of 30/1 (24000/1001 degrades further, to 287/12).
+      //
+      // The input-side `-r` below does not prevent this. Measured on
+      // ffmpeg 5.1.9: an `-r`-only variant still produced 30000/1001, while
+      // frame-derived durations produced exact 30/1 and 24000/1001. `-r`
+      // during stream copy neither drops nor duplicates frames, so it can
+      // disagree with the packet timestamps it is meant to describe.
       const concatBody = chunkPaths
-        .map((path) => `file '${path.replace(/'/g, "'\\''")}'`)
+        .map((path, index) => {
+          const escaped = path.replace(/'/g, "'\\''");
+          const slice = chunks[index];
+          if (!slice) return `file '${escaped}'`;
+          // Exact rational seconds: frames * fpsDen / fpsNum, full precision.
+          const frames = slice.endFrame - slice.startFrame;
+          const seconds = (frames * plan.dimensions.fpsDen) / plan.dimensions.fpsNum;
+          return `file '${escaped}'\nduration ${seconds.toFixed(9)}`;
+        })
         .join("\n");
       writeFileSync(concatListPath, `${concatBody}\n`, "utf-8");
 
