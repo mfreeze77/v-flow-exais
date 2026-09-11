@@ -1,6 +1,15 @@
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
-import { cpSync, existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, symlinkSync, writeFileSync } from "node:fs";
+import {
+  cpSync,
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  rmSync,
+  symlinkSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { describe, it } from "node:test";
@@ -42,7 +51,12 @@ function dispatch(argv, results = []) {
 
 describe("producer lane arguments", () => {
   it("keeps the no-selector unit/integration interface", () => {
-    assert.deepEqual(parseLaneArgs(["unit"]), { lane: "unit", runner: undefined, list: false, selectors: [] });
+    assert.deepEqual(parseLaneArgs(["unit"]), {
+      lane: "unit",
+      runner: undefined,
+      list: false,
+      selectors: [],
+    });
     assert.equal(parseLaneArgs(["integration", "bun"]).runner, "bun");
   });
   it("parses file selection without requiring a runner", () => {
@@ -50,10 +64,20 @@ describe("producer lane arguments", () => {
   });
   it("accepts a separator and list-only planning", () => {
     assert.deepEqual(parseLaneArgs(["unit", "vitest", "--list", "--", target]), {
-      lane: "unit", runner: "vitest", list: true, selectors: [target],
+      lane: "unit",
+      runner: "vitest",
+      list: true,
+      selectors: [target],
     });
   });
-  for (const argv of [[], ["browser"], ["unit", "--watch"], ["unit", "vitest", "--"], ["unit", ""], ["unit", "--", "--list"]]) {
+  for (const argv of [
+    [],
+    ["browser"],
+    ["unit", "--watch"],
+    ["unit", "vitest", "--"],
+    ["unit", ""],
+    ["unit", "--", "--list"],
+  ]) {
     it(`rejects malformed arguments ${JSON.stringify(argv)}`, () => {
       assert.throws(() => parseLaneArgs(argv), /Usage:/);
     });
@@ -70,14 +94,27 @@ describe("classified file selection", () => {
     assert.deepEqual(files(select("integration")), ["src/services/fileServer.test.ts"]);
   });
   it("intersects directory selection with the selected lane and runner", () => {
-    assert.deepEqual(files(select("unit", "src/services")), [inventory[1].file, target, inventory[3].file]);
+    assert.deepEqual(files(select("unit", "src/services")), [
+      inventory[1].file,
+      target,
+      inventory[3].file,
+    ]);
     assert.deepEqual(files(select("unit", "vitest", "src/services/")), [target]);
   });
   it("deduplicates overlapping selectors without changing inventory order", () => {
-    assert.deepEqual(files(select("unit", "vitest", target, "src/logger.test.ts", target, "src/services")), ["src/logger.test.ts", target]);
+    assert.deepEqual(
+      files(select("unit", "vitest", target, "src/logger.test.ts", target, "src/services")),
+      ["src/logger.test.ts", target],
+    );
   });
   it("accepts package-relative, repository-relative, absolute and backslash paths", () => {
-    for (const selector of [`./${target}`, `packages/producer/${target}`, `./packages/producer/${target}`, target.replaceAll("/", "\\"), resolve(root, target)])
+    for (const selector of [
+      `./${target}`,
+      `packages/producer/${target}`,
+      `./packages/producer/${target}`,
+      target.replaceAll("/", "\\"),
+      resolve(root, target),
+    ])
       assert.deepEqual(files(select("unit", "vitest", selector)), [target]);
   });
   it("accepts paths containing spaces as one argument", () => {
@@ -88,7 +125,10 @@ describe("classified file selection", () => {
       assert.throws(() => select("unit", selector), /No classified test matches/);
   });
   it("rejects one invalid selector even if another selector matches", () => {
-    assert.throws(() => select("unit", target, "src/missing.test.ts"), /No classified test matches/);
+    assert.throws(
+      () => select("unit", target, "src/missing.test.ts"),
+      /No classified test matches/,
+    );
   });
   it("rejects wrong-lane and wrong-runner files", () => {
     assert.throws(() => select("unit", "src/services/fileServer.test.ts"), /no tests in unit/);
@@ -112,12 +152,24 @@ describe("classified file selection", () => {
 describe("runner invocation contract", () => {
   it("uses absolute Vitest filters and prohibits automatic dependency installation", () => {
     const [command] = laneInvocations(inventory, [inventory[2]], root);
-    assert.deepEqual(command.args, ["x", "--no-install", "vitest", "run", resolve(root, target).replaceAll("\\", "/")]);
+    assert.deepEqual(command.args, [
+      "x",
+      "--no-install",
+      "vitest",
+      "run",
+      resolve(root, target).replaceAll("\\", "/"),
+    ]);
   });
   it("preserves a fresh Bun process and explicit ./ file path for each file", () => {
     const { calls, code } = dispatch(["unit", "bun", "src/services"]);
     assert.equal(code, 0);
-    assert.deepEqual(calls.map((call) => call[1]), [["test", `./${inventory[1].file}`], ["test", `./${inventory[3].file}`]]);
+    assert.deepEqual(
+      calls.map((call) => call[1]),
+      [
+        ["test", `./${inventory[1].file}`],
+        ["test", `./${inventory[3].file}`],
+      ],
+    );
   });
   it("refuses a Vitest substring collision with any unselected classified file", () => {
     for (const collision of [`${target}.extra.test.ts`, target.toUpperCase()]) {
@@ -162,22 +214,33 @@ describe("runner invocation contract", () => {
   it("propagates spawn errors and does not claim the failed launch executed files", () => {
     const error = new Error("spawn bun ENOENT");
     const logs = [];
-    assert.throws(() => runTestLane(["unit"], {
-      discover: () => inventory,
-      producerRoot: root,
-      spawn: () => ({ error, status: null }),
-      log: (line) => logs.push(line),
-    }), (thrown) => thrown === error);
+    assert.throws(
+      () =>
+        runTestLane(["unit"], {
+          discover: () => inventory,
+          producerRoot: root,
+          spawn: () => ({ error, status: null }),
+          log: (line) => logs.push(line),
+        }),
+      (thrown) => thrown === error,
+    );
     assert.match(logs.at(-1), /5 selected files not launched/);
   });
   it("validates every selector before spawning even one child", () => {
     let spawned = false;
-    assert.throws(() => runTestLane(["unit", target, "src/missing.test.ts"], {
-      discover: () => inventory,
-      producerRoot: root,
-      spawn: () => { spawned = true; return { status: 0 }; },
-      log: () => {},
-    }), /No classified test matches/);
+    assert.throws(
+      () =>
+        runTestLane(["unit", target, "src/missing.test.ts"], {
+          discover: () => inventory,
+          producerRoot: root,
+          spawn: () => {
+            spawned = true;
+            return { status: 0 };
+          },
+          log: () => {},
+        }),
+      /No classified test matches/,
+    );
     assert.equal(spawned, false);
   });
 });
@@ -193,13 +256,18 @@ function cliFixture(argv, status = 0, symlink = false) {
     mkdirSync(directory, { recursive: true });
     for (const file of ["run-test-lane.mjs", "test-lane-selection.mjs"])
       cpSync(join(scripts, file), join(directory, file));
-    writeFileSync(join(directory, "test-classification.mjs"), `
+    writeFileSync(
+      join(directory, "test-classification.mjs"),
+      `
       export const PRODUCER_ROOT = ${JSON.stringify(producer)};
       export const discoverProducerTests = () => ${JSON.stringify(inventory)};
-    `);
+    `,
+    );
     const record = join(fixture, "children.jsonl");
     const preload = join(fixture, "record-children.mjs");
-    writeFileSync(preload, `
+    writeFileSync(
+      preload,
+      `
       import childProcess from "node:child_process";
       import { appendFileSync } from "node:fs";
       import { syncBuiltinESMExports } from "node:module";
@@ -208,7 +276,8 @@ function cliFixture(argv, status = 0, symlink = false) {
         return { status: ${status} };
       };
       syncBuiltinESMExports();
-    `);
+    `,
+    );
     let entry = join(directory, "run-test-lane.mjs");
     if (symlink) {
       const alias = join(fixture, "lane entry.mjs");
@@ -216,10 +285,14 @@ function cliFixture(argv, status = 0, symlink = false) {
       entry = alias;
     }
     const result = spawnSync(process.execPath, ["--import", preload, entry, ...argv], {
-      cwd: fixture, encoding: "utf8", timeout: 15_000,
+      cwd: fixture,
+      encoding: "utf8",
+      timeout: 15_000,
     });
     if (result.error) throw result.error;
-    const calls = existsSync(record) ? readFileSync(record, "utf8").trim().split("\n").map(JSON.parse) : [];
+    const calls = existsSync(record)
+      ? readFileSync(record, "utf8").trim().split("\n").map(JSON.parse)
+      : [];
     return { ...result, calls, producer };
   } finally {
     rmSync(fixture, { recursive: true, force: true });
@@ -231,7 +304,13 @@ describe("CLI process wiring", () => {
     const result = cliFixture(["unit", "vitest", target]);
     assert.equal(result.status, 0, result.stderr);
     assert.equal(result.calls.length, 1);
-    assert.deepEqual(result.calls[0].args, ["x", "--no-install", "vitest", "run", resolve(result.producer, target).replaceAll("\\", "/")]);
+    assert.deepEqual(result.calls[0].args, [
+      "x",
+      "--no-install",
+      "vitest",
+      "run",
+      resolve(result.producer, target).replaceAll("\\", "/"),
+    ]);
     assert.equal(result.calls[0].cwd, result.producer);
   });
   it("executes a symlinked entry rather than exiting successfully without tests", () => {
@@ -261,5 +340,8 @@ describe("CLI process wiring", () => {
 
 it("runs the new regressions from the existing classification script", () => {
   const manifest = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
-  assert.match(manifest.scripts["test:classification"], /node --test scripts\/test-classification\.test\.mjs scripts\/run-test-lane\.test\.mjs && node scripts\/check-test-classification\.mjs/);
+  assert.match(
+    manifest.scripts["test:classification"],
+    /node --test scripts\/test-classification\.test\.mjs scripts\/run-test-lane\.test\.mjs && node scripts\/check-test-classification\.mjs/,
+  );
 });

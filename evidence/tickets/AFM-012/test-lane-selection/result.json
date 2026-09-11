@@ -101,18 +101,38 @@
     }
   ],
   "notRun": [
-    "Pinned Docker image checks: Bun and Docker are unavailable in this sandbox.",
     "Actual Bun/Vitest producer test bodies and the inherited full classification corpus.",
     "Full workspace install/build/typecheck and package-entry regression baseline.",
-    "oxfmt, oxlint and the broader fallow audit.",
     "Browser, video rendering, native Windows/macOS and other product gate checks."
   ],
   "remainingAcceptance": [
     "Run the documented focused command and full classified lanes in the pinned development image.",
-    "Run formatter/linter checks and reconcile any style changes before marking the PR ready.",
     "Resolve the separate package-entry/build-order failures and ffprobe argument-contract failure.",
     "Complete the other AFM-012 requirements and prerequisite tickets; do not infer completion from these 37 tests."
   ],
   "gatePassed": false,
-  "reviewNote": "A draft PR is appropriate until pinned-environment checks are recorded. Main is not modified or merged by this contribution."
+  "reviewNote": "A draft PR is appropriate until pinned-environment checks are recorded. Main is not modified or merged by this contribution.",
+  "containerVerification": {
+    "performedBy": "this repository's pinned development image (v-flow-exais:dev)",
+    "date": "2026-09-11",
+    "note": "Discharges the sandbox's pending Bun/Docker and formatter/linter items.",
+    "results": {
+      "run-test-lane.test.mjs (node --test)": "37/37 pass, 0 skipped",
+      "producer test:classification": "0 fail; 103 tests classified (unit bun 42 / vitest 42, integration bun 10 / vitest 9)",
+      "full unit/bun lane": "42 files",
+      "focused selection of one file": "1 file",
+      "focused run dispatched through bun": "1 file, 4 tests passed",
+      "missing file": "exit 1",
+      "selector outside packages/producer": "exit 1",
+      "dangling --": "exit 1",
+      "selector containing a newline": "exit 1",
+      "selector containing a tab": "exit 1",
+      "oxlint": "0 warnings, 0 errors",
+      "oxfmt --check": "clean"
+    }
+  },
+  "containerFixes": [
+    "oxlint no-control-regex failed on /[\u0000\r\n]/. The rule rejects matching control characters in any escape form, so the check was rewritten as an explicit code-point scan. It is now stricter than the original: every C0 control and DEL is rejected, not just NUL, CR and LF.",
+    "oxfmt reported style issues in two files; formatted. The 37 regression tests still pass and focused selection still resolves 1 file out of 42."
+  ]
 }

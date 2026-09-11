@@ -30,7 +30,16 @@ export function parseLaneArgs(argv) {
 
 function normalizeSelector(selector, producerRoot) {
   let value = selector.replaceAll("\\", "/");
-  if (/[\0\r\n]/.test(value)) throw new Error("Test selectors cannot contain control characters.");
+  // Checked by code point rather than by regex: oxlint's no-control-regex
+  // rejects matching control characters in a pattern in any escape form. This
+  // is also stricter than the original three - it rejects every C0 control and
+  // DEL, any of which would corrupt a path selector.
+  for (const character of value) {
+    const code = character.codePointAt(0);
+    if (code < 0x20 || code === 0x7f) {
+      throw new Error("Test selectors cannot contain control characters.");
+    }
+  }
   // Accept paths copied from either the repository root or the producer package.
   if (value.startsWith("./")) value = value.slice(2);
   if (value.startsWith("packages/producer/")) value = value.slice("packages/producer/".length);
@@ -48,7 +57,8 @@ export function selectLaneTests(tests, request, producerRoot) {
     (test) => test.lane === request.lane && (!request.runner || test.runner === request.runner),
   );
   if (!request.selectors.length) {
-    if (!eligible.length) throw new Error(`No tests in ${request.lane}/${request.runner || "all"}.`);
+    if (!eligible.length)
+      throw new Error(`No tests in ${request.lane}/${request.runner || "all"}.`);
     return eligible;
   }
   const selected = new Set();
