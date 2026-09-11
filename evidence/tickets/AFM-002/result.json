@@ -1,0 +1,130 @@
+{
+  "ticketId": "AFM-002",
+  "title": "Create a complete source disposition and import ledger",
+  "status": "verified",
+  "commit": "b18a3dd8a4a2ce25387d3b0fd2c2729947b5ef1e",
+  "date": "2026-09-10",
+  "environment": {
+    "execution": "docker compose run --rm workspace",
+    "image": "v-flow-exais:dev",
+    "bun": "1.3.13",
+    "node": "v22.23.2"
+  },
+  "sourceSnapshotHashes": {
+    "archify": {
+      "treeContentSha256": "f2b43966847330b4e7790b23212317a04017de0d7de1520a2190d7f686d21bcb",
+      "fileEntries": 483
+    },
+    "hyperframes": {
+      "treeContentSha256": "78d8162e089054271d2d86aa9965660b9a79177d32e522815dc0f325eda7c2c9",
+      "fileEntries": 7303
+    }
+  },
+  "commands": [
+    {
+      "invocation": "bun run tools/import/plan-cli.ts --out provenance/import-map.json",
+      "cwd": "/workspace",
+      "runtime": "bun 1.3.13",
+      "exitCode": 0,
+      "result": "PASS — 7786 entries, 0 ledger problems",
+      "logPath": "evidence/tickets/AFM-002/test.log"
+    },
+    {
+      "invocation": "bun run test:acceptance",
+      "cwd": "/workspace",
+      "runtime": "bun 1.3.13 / vitest 4.1.11",
+      "exitCode": 0,
+      "result": "53 passed, 0 failed across 2 files (AFM-001 31, AFM-002 22)",
+      "logPath": "evidence/tickets/AFM-002/test.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "provenance/import-map.json",
+      "sha256": "3430d3a54d22d4fe3978b3758464bdf39b8057d94e3b6ed2ecfc86b3bce14cca",
+      "type": "import-ledger"
+    },
+    {
+      "path": "tools/import/plan.ts",
+      "sha256": "b662204c6e453d4174d512310efaf01d8b209818b9a9cf3aa4d05126d16b22f4",
+      "type": "source"
+    },
+    {
+      "path": "tools/import/plan-cli.ts",
+      "sha256": "740060b3834609595112bf8daf1c2f88938296f1722dc0c83a8c80540fd53cb4",
+      "type": "source"
+    },
+    { "path": "evidence/tickets/AFM-002/test.log", "type": "test-log" }
+  ],
+  "ledgerSummary": {
+    "total": 7786,
+    "byRepository": { "archify": 483, "hyperframes": 7303 },
+    "byDisposition": {
+      "retain-relocate-refactor-as-owned": 5844,
+      "retain-reference-docs": 1094,
+      "rights-review-media": 473,
+      "retain-historical-reference": 205,
+      "rights-review-font-no-binary-in-ticket-pack": 102,
+      "review-agent-configuration": 33,
+      "quarantine-automation": 22,
+      "quarantine-generated-not-authority": 9,
+      "preserve-license": 3,
+      "review-symlink-do-not-follow": 1
+    },
+    "executable": 29,
+    "symlinks": 1,
+    "nonAuthoritative": 236,
+    "duplicateTargets": 0
+  },
+  "acceptanceResults": [
+    {
+      "criterion": "No source file is silently dropped or overwritten.",
+      "met": true,
+      "evidence": "Ledger entry count equals the inventory count and the sum of both snapshot file_entries (483 + 7303 = 7786). Reconciliation is bidirectional: an archive entry with no inventory record raises unclassified-entry, an inventory record with no archive entry raises unaccounted-inventory. Both directions are asserted with synthetic fixtures. All 7786 targets are unique."
+    },
+    {
+      "criterion": "Runtime symlinks and fixture symlinks are distinguished and never followed outside authorized roots.",
+      "met": true,
+      "evidence": "The single upstream symlink is carried as kind=symlink with disposition review-symlink-do-not-follow, hashed by its target string rather than by the directory it points at. A symlink bearing any other disposition raises symlink-escapes-root."
+    },
+    {
+      "criterion": "Generated distributions and nested archify.zip are not treated as additional authoritative source trees.",
+      "met": true,
+      "evidence": "archify/archify.zip carries quarantine-generated-not-authority, is marked nonAuthoritative and targets provenance/upstream-generated/, not packages/. 236 entries are non-authoritative overall; none target a product package directory. The 22 quarantine-automation entries are verified not to land in .github/workflows/, so upstream CI is not inherited live."
+    }
+  ],
+  "requirementResults": [
+    {
+      "requirement": "Assign every archive entry a retained, relocated, quarantined-generated, external-asset-review, or retired-with-reason disposition.",
+      "met": true,
+      "note": "Ten dispositions defined as a closed union; an entry matching none is a hard failure rather than a skip. All ten are exercised by the real data."
+    },
+    {
+      "requirement": "Map Archify runtime code to diagram-engine/viewer and HyperFrames packages to their existing package directories; account for root scripts, docs, fixtures and hidden agent configuration.",
+      "met": true,
+      "note": "199 Archify entries target packages/diagram-engine and packages/diagram-viewer (renderers, schemas, bin, delta to engine; template.html and assets to viewer). HyperFrames packages retain their existing packages/* paths. Root scripts, docs, registry, skills, themes and hidden agent configuration all carry explicit targets; 33 agent-configuration entries are routed to docs/upstream for review rather than being adopted silently."
+    },
+    {
+      "requirement": "Record old path, target path, original hash, file mode and ticket owner; fail on duplicate destinations.",
+      "met": true,
+      "note": "Every entry carries sourcePath, targetPath, sha256, mode, executable and implementationOwners. Duplicate destinations raise duplicate-target and are asserted with a fixture."
+    }
+  ],
+  "designNotes": [
+    {
+      "topic": "Modes are read from the ZIP, not the extracted folder.",
+      "detail": "Only 29 of 7786 entries carry an executable bit. A Windows checkout and a Docker bind mount both fail to preserve unix permission bits, so the archive central directory is the sole authoritative source for them. Reading modes from the extracted tree would have silently flattened all 29 to non-executable."
+    },
+    {
+      "topic": "Archive bytes win on identity; the inventory wins on destination.",
+      "detail": "buildImportMap cross-checks hash, kind and mode against the archive and raises a mismatch rather than trusting the planning inventory, so a future inventory edit cannot silently redefine what a file is."
+    }
+  ],
+  "skippedTests": [],
+  "blockers": [],
+  "notPerformed": [
+    "No file was copied, moved, written or deleted. This ticket records intent only; the copies belong to AFM-003 onward.",
+    "Rights decisions for the 473 media and 102 font entries are recorded as pending review, not resolved."
+  ],
+  "review": null
+}
