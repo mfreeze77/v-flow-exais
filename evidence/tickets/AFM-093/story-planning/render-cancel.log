@@ -1,0 +1,21 @@
+ Container v-flow-exais-workspace-run-1dcb40612c38 Creating 
+ Container v-flow-exais-workspace-run-1dcb40612c38 Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-054.compile-cancel.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+stderr | tests/acceptance/AFM-054.compile-cancel.test.ts > cancels the actual local render orchestration while a font request is pending
+[INFO] [Render] Pipeline started {"renderJobId":"81df2b1b-695e-4b0f-bdc6-a6423100ba4f","platform":"linux","arch":"x64","nodeVersion":"v22.23.2","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
+[INFO] [Render:trace] {"renderJobId":"81df2b1b-695e-4b0f-bdc6-a6423100ba4f","phase":"pipeline","status":"checkpoint","elapsedMs":3,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":1}
+[INFO] [Render:trace] {"renderJobId":"81df2b1b-695e-4b0f-bdc6-a6423100ba4f","phase":"compile","status":"start","elapsedMs":3,"needsAlpha":false}
+
+stderr | tests/acceptance/AFM-054.compile-cancel.test.ts > cancels the actual local render orchestration while a font request is pending
+[INFO] [Render:trace] {"renderJobId":"81df2b1b-695e-4b0f-bdc6-a6423100ba4f","phase":"compile","status":"error","elapsedMs":15,"durationMs":11,"message":"cancel pending compile","needsAlpha":false}
+
+ [32m✓[39m tests/acceptance/AFM-054.compile-cancel.test.ts[2m > [22mcancels the actual local render orchestration while a font request is pending[32m 18[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 07:22:29
+[2m   Duration [22m 7.45s[2m (transform 6.84s, setup 0ms, import 7.33s, tests 19ms, environment 0ms)[22m
+

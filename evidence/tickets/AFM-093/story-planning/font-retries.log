@@ -1,0 +1,53 @@
+ Container v-flow-exais-workspace-run-3313d1f91d9c Creating 
+ Container v-flow-exais-workspace-run-3313d1f91d9c Created 
+bun test v1.3.13 (bf2e2cec)
+
+packages/producer/src/services/deterministicFonts-retries.test.ts:
+(pass) deterministic Google Fonts retries > retries HTTP 408 exactly once, then reports temporary unavailability [13.70ms]
+(pass) deterministic Google Fonts retries > retries HTTP 425 exactly once, then reports temporary unavailability [1.39ms]
+(pass) deterministic Google Fonts retries > retries HTTP 429 exactly once, then reports temporary unavailability [1.38ms]
+(pass) deterministic Google Fonts retries > retries HTTP 500 exactly once, then reports temporary unavailability [0.77ms]
+(pass) deterministic Google Fonts retries > retries HTTP 502 exactly once, then reports temporary unavailability [0.67ms]
+(pass) deterministic Google Fonts retries > retries HTTP 503 exactly once, then reports temporary unavailability [0.85ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "RetryTestFont77" from Google Fonts (cached to /tmp/hf-font-retries-ibriTe/retrytestfont77)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) deterministic Google Fonts retries > recovers when the Google Fonts CSS retry succeeds [3.63ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "RetryTestFont78" from Google Fonts (cached to /tmp/hf-font-retries-ibriTe/retrytestfont78)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) deterministic Google Fonts retries > does not wait for a stalled retryable response-body cancellation [1.76ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "RetryTestFont79" from Google Fonts (cached to /tmp/hf-font-retries-ibriTe/retrytestfont79)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) deterministic Google Fonts retries > recovers when a woff2 retry succeeds [2.14ms]
+(pass) deterministic Google Fonts retries > reports temporary unavailability when woff2 retries are exhausted [1.20ms]
+(pass) deterministic Google Fonts retries > retries transport exceptions and preserves the final cause [1.10ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "RetryTestFont712" from Google Fonts (cached to /tmp/hf-font-retries-ibriTe/retrytestfont712)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) deterministic Google Fonts retries > retries a response-body transport failure [2.31ms]
+(pass) deterministic Google Fonts retries > times out each hung attempt and reports temporary unavailability [10.96ms]
+(pass) deterministic Google Fonts retries > does not exceed the shared budget to honor a long Retry-After [1.57ms]
+(pass) deterministic Google Fonts retries > shares one elapsed-time budget across multiple font resources [101.83ms]
+(pass) deterministic Google Fonts retries > does not retry an ordinary 4xx and retains deterministic failure classification [1.56ms]
+(pass) deterministic Google Fonts retries > propagates caller cancellation without wrapping or retrying it [1.04ms]
+[WARN] [Compiler] No deterministic font mapping for: RetryTestFont718
+  Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
+  To fix, pick one:
+    1. Use a mapped font name instead (see list above)
+    2. Add a @font-face block in your HTML with a local or hosted font file
+    3. Install the font locally on the render machine (Docker: add to Dockerfile)
+    4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
+  Docs: https://hyperframes.heygen.com/docs/fonts
+(pass) deterministic Google Fonts retries > keeps fail-open mode at one attempt with no typed failure [1.00ms]
+[WARN] [Compiler] No deterministic font mapping for: RetryTestFont719
+  Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
+  To fix, pick one:
+    1. Use a mapped font name instead (see list above)
+    2. Add a @font-face block in your HTML with a local or hosted font file
+    3. Install the font locally on the render machine (Docker: add to Dockerfile)
+    4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
+  Docs: https://hyperframes.heygen.com/docs/fonts
+(pass) deterministic Google Fonts retries > bounds a hung local font request and retains the existing fallback policy [20.75ms]
+
+ 19 pass
+ 0 fail
+ 46 expect() calls
+Ran 19 tests across 1 file. [539.00ms]

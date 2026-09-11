@@ -1,0 +1,15 @@
+{"event":"story-review-passed","titles":["What connectionCandidate delegates / source walkthrough","Read the StoryPlan contract","What createRepositoryIntake delegates"],"families":["architecture","data-model","architecture"],"projectIds":["video-b9c02402-ac41-40fc-9b09-7017cacd5d33","video-846b6729-d586-4f67-99eb-66bb634cf733","video-870fe391-4dc0-4016-a59f-3e6d6c161380"]}
+{"event":"batch-started","id":"batch-c006cc5a-8254-4e2f-b76d-1dc55295b749"}
+running:20,queued:0,queued:0
+running:40,queued:0,queued:0
+running:60,queued:0,queued:0
+running:80,queued:0,queued:0
+complete:100,running:20,queued:0
+complete:100,running:40,queued:0
+complete:100,running:60,queued:0
+complete:100,complete:100,running:0
+complete:100,complete:100,running:20
+complete:100,complete:100,running:40
+complete:100,complete:100,running:60
+complete:100,complete:100,complete:100
+{"event":"render-proof-complete","id":"batch-c006cc5a-8254-4e2f-b76d-1dc55295b749","videos":[{"path":"out/story-planning/story-0.mp4","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":25,"frames":750,"bytes":1147702}},{"path":"out/story-planning/story-1.mp4","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":25,"frames":750,"bytes":859059}},{"path":"out/story-planning/story-2.mp4","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":25,"frames":750,"bytes":1160785}}]}

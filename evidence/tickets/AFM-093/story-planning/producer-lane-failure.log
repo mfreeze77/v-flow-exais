@@ -1,0 +1,422 @@
+ Container v-flow-exais-workspace-run-b9ac07a3f8f6 Creating 
+ Container v-flow-exais-workspace-run-b9ac07a3f8f6 Created 
+$ node scripts/run-test-lane.mjs unit vitest src/services/renderOrchestrator.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/packages/producer[39m
+
+ [31m❯[39m src/services/htmlCompiler.parity.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/compileStage.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/renderRequest.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/shaderTransitionWorkerPool.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/renderOrchestrator.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/windowsFrameStaging.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/renderEventPublisher.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/perfSummary-dedup.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/videoFrameCoverage.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/audioPadTrim.integration.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/extractVideosStage.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/extractVideosStage.timelineBound.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/captureHdrResources.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [32m✓[39m src/logger.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/utils/paths.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/services/render/capturePlan.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [31m❯[39m src/server.extractionFailureMetadata.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [32m✓[39m src/services/hyperframeRuntimeLoader.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 1795[2mms[22m[39m
+     [33m[2m✓[22m[39m returns env var when PRODUCER_HYPERFRAME_MANIFEST_PATH is set [33m 1777[2mms[22m[39m
+ [31m❯[39m src/services/render/hdrMode.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/audioStage.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/captureHdrFrameShared.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/fallbackCaptureProfile.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [32m✓[39m src/services/render/stages/assembleStage.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [31m❯[39m src/services/render/renderExecutionContext.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/artifactTransaction.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [32m✓[39m src/utils/errorMessage.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [31m❯[39m src/server.errorCode.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/server.notMediaErrorCode.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/htmlCompiler.fontEmbed.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/mediaProbeConcurrency.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/observability.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/perfSummary.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/captureHdrFrameShared.dom-mask.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/captureCost.heapAdvisory.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/server.outputDynamicRange.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/renderFileLogger.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [32m✓[39m src/services/render/cleanup.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/services/render/captureBeyondViewport.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 2[2mms[22m[39m
+ [31m❯[39m src/services/hdrCompositor.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/distributed/planAudioCompat.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/services/render/stages/captureStage.test.ts [2m([22m[2m0 test[22m[2m)[22m
+ [31m❯[39m src/utils/ffprobeArgvContract.test.ts [2m([22m[2m73 tests[22m[2m | [22m[31m1 failed[39m[2m)[22m[32m 163[2mms[22m[39m
+     [32m✓[39m finds the shell callers[32m 1[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/render-and-composite.sh passes -- on every ffprobe command line[32m 4[2mms[22m[39m
+     [32m✓[39m still discovers every caller in the manifest[32m 0[2mms[22m[39m
+     [32m✓[39m classifies every file that spawns ffprobe[32m 0[2mms[22m[39m
+     [32m✓[39m packages/cli/src/commands/init.ts terminates options immediately before the input[32m 3[2mms[22m[39m
+     [32m✓[39m packages/cli/src/utils/webmAlphaCheck.ts terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/cli/src/whisper/transcribe.ts terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/core/src/mediaGradeAnalyzer.ts terminates options immediately before the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/engine/src/utils/ffprobe.ts terminates options immediately before the input[32m 4[2mms[22m[39m
+     [32m✓[39m packages/engine/src/utils/renderProvenance.test.ts terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/lint/src/hevcPreviewLint.ts terminates options immediately before the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/producer/src/plan-parity-analysis.ts terminates options immediately before the input[32m 3[2mms[22m[39m
+     [32m✓[39m packages/producer/src/services/distributed/assemble.test.ts terminates options immediately before the input[32m 8[2mms[22m[39m
+     [32m✓[39m packages/producer/src/services/render/audioPadTrim.integration.test.ts terminates options immediately before the input[32m 5[2mms[22m[39m
+     [32m✓[39m packages/producer/src/services/render/audioPadTrim.ts terminates options immediately before the input[32m 3[2mms[22m[39m
+     [32m✓[39m packages/producer/src/utils/audioRegression.ts terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/producer/tests/distributed/_smoke/webm-concat-copy.test.ts terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/producer/tests/playback-rate-av-parity/playback-rate-av-parity.test.ts terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/studio-server/src/helpers/mediaMetadata.ts terminates options immediately before the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/studio-server/src/helpers/mediaValidation.ts terminates options immediately before the input[32m 1[2mms[22m[39m
+[31m     [31m×[31m packages/studio-server/src/project/projectBatch.ts terminates options immediately before the input[39m[32m 5[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/make-cinematic.cjs terminates options immediately before the input[32m 3[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/make-composition.cjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/make-theme.cjs terminates options immediately before the input[32m 8[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/matte.cjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/faceless-explainer/scripts/assemble-index.mjs terminates options immediately before the input[32m 3[2mms[22m[39m
+     [32m✓[39m skills/figma/scripts/verify-motion.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/audio/scripts/lib/tts.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/dither.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/dither.test.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/lib/grade-analyzer.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/lib/probe.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/lib/tts-local-provider.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/transcript-cut.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/motion-graphics/grounding/locate.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/pr-to-video/scripts/assemble-index.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/product-launch-video/scripts/assemble-index.mjs terminates options immediately before the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/remotion-to-hyperframes/scripts/frame_strip.sh terminates options immediately before the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/cli/src/commands/init.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/cli/src/utils/webmAlphaCheck.ts never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/cli/src/whisper/transcribe.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/core/src/mediaGradeAnalyzer.ts never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/engine/src/utils/ffprobe.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/engine/src/utils/renderProvenance.test.ts never places the terminator after the input[32m 3[2mms[22m[39m
+     [32m✓[39m packages/lint/src/hevcPreviewLint.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/producer/src/plan-parity-analysis.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/producer/src/services/distributed/assemble.test.ts never places the terminator after the input[32m 3[2mms[22m[39m
+     [32m✓[39m packages/producer/src/services/render/audioPadTrim.integration.test.ts never places the terminator after the input[32m 4[2mms[22m[39m
+     [32m✓[39m packages/producer/src/services/render/audioPadTrim.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/producer/src/utils/audioRegression.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/producer/tests/distributed/_smoke/webm-concat-copy.test.ts never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m packages/producer/tests/playback-rate-av-parity/playback-rate-av-parity.test.ts never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/studio-server/src/helpers/mediaMetadata.ts never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/studio-server/src/helpers/mediaValidation.ts never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m packages/studio-server/src/project/projectBatch.ts never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/make-cinematic.cjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/make-composition.cjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/make-theme.cjs never places the terminator after the input[32m 7[2mms[22m[39m
+     [32m✓[39m skills/embedded-captions/scripts/matte.cjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/faceless-explainer/scripts/assemble-index.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/figma/scripts/verify-motion.mjs never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m skills/media-use/audio/scripts/lib/tts.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/dither.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/dither.test.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/lib/grade-analyzer.mjs never places the terminator after the input[32m 3[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/lib/probe.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/lib/tts-local-provider.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/media-use/scripts/transcript-cut.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/motion-graphics/grounding/locate.mjs never places the terminator after the input[32m 4[2mms[22m[39m
+     [32m✓[39m skills/pr-to-video/scripts/assemble-index.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/product-launch-video/scripts/assemble-index.mjs never places the terminator after the input[32m 2[2mms[22m[39m
+     [32m✓[39m skills/remotion-to-hyperframes/scripts/frame_strip.sh never places the terminator after the input[32m 1[2mms[22m[39m
+     [32m✓[39m audioPadTrim's pre-built argv puts the terminator immediately before the input[32m 2[2mms[22m[39m
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 33 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/renderRequest.test.ts [ src/renderRequest.test.ts ]
+ FAIL  src/server.notMediaErrorCode.test.ts [ src/server.notMediaErrorCode.test.ts ]
+ FAIL  src/services/hdrCompositor.test.ts [ src/services/hdrCompositor.test.ts ]
+ FAIL  src/services/shaderTransitionWorkerPool.test.ts [ src/services/shaderTransitionWorkerPool.test.ts ]
+ FAIL  src/services/distributed/planAudioCompat.test.ts [ src/services/distributed/planAudioCompat.test.ts ]
+ FAIL  src/services/render/artifactTransaction.test.ts [ src/services/render/artifactTransaction.test.ts ]
+ FAIL  src/services/render/audioPadTrim.integration.test.ts [ src/services/render/audioPadTrim.integration.test.ts ]
+ FAIL  src/services/render/hdrMode.test.ts [ src/services/render/hdrMode.test.ts ]
+ FAIL  src/services/render/observability.test.ts [ src/services/render/observability.test.ts ]
+ FAIL  src/services/render/renderExecutionContext.test.ts [ src/services/render/renderExecutionContext.test.ts ]
+ FAIL  src/services/render/stages/captureHdrFrameShared.test.ts [ src/services/render/stages/captureHdrFrameShared.test.ts ]
+ FAIL  src/services/render/stages/captureHdrResources.test.ts [ src/services/render/stages/captureHdrResources.test.ts ]
+ FAIL  src/services/render/stages/captureStage.test.ts [ src/services/render/stages/captureStage.test.ts ]
+ FAIL  src/services/render/stages/extractVideosStage.test.ts [ src/services/render/stages/extractVideosStage.test.ts ]
+Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/engine/src/index.ts:270:67
+  145|    createFileServer
+  146|  } from "./services/fileServer.js";
+  147|  export { quantizeTimeToFrame, MEDIA_VISUAL_STYLE_PROPERTIES } from "@hyperframes/core";
+     |                                                                      ^
+  148|  export {
+  149|    assertSwiftShader,
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/34]⎯
+
+ FAIL  src/server.errorCode.test.ts [ src/server.errorCode.test.ts ]
+ FAIL  src/server.extractionFailureMetadata.test.ts [ src/server.extractionFailureMetadata.test.ts ]
+ FAIL  src/server.outputDynamicRange.test.ts [ src/server.outputDynamicRange.test.ts ]
+Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/producer/src/server.ts:51:7
+  31 |    normalizeResolutionFlag,
+  32 |    isAspectAgnosticResolutionAlias
+  33 |  } from "@hyperframes/core";
+     |          ^
+  34 |  import { createRenderRequest, renderConfigFromRequest } from "./renderRequest.js";
+  35 |  const DEFAULT_SERVER_FPS = { num: 30, den: 1 };
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/34]⎯
+
+ FAIL  src/services/htmlCompiler.fontEmbed.test.ts [ src/services/htmlCompiler.fontEmbed.test.ts ]
+ FAIL  src/services/mediaProbeConcurrency.test.ts [ src/services/mediaProbeConcurrency.test.ts ]
+Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/producer/src/services/htmlCompiler.ts:34:7
+  18 |    rewriteCssAssetUrls,
+  19 |    rewriteInlineStyleAssetUrls
+  20 |  } from "@hyperframes/core";
+     |          ^
+  21 |  import { MAX_AUDIO_GAIN } from "@hyperframes/core/audio-gain";
+  22 |  import {
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/34]⎯
+
+ FAIL  src/services/htmlCompiler.parity.test.ts [ src/services/htmlCompiler.parity.test.ts ]
+Error: Failed to resolve import "@hyperframes/core/compiler" from "src/services/htmlCompiler.parity.test.ts". Does the file exist?
+  Plugin: vite:import-analysis
+  File: /workspace/packages/producer/src/services/htmlCompiler.parity.test.ts:10:7
+  7  |    extractCompiledHtmlParityContract,
+  8  |    injectScriptsIntoHtml
+  9  |  } from "@hyperframes/core/compiler";
+     |          ^
+  10 |  import { loadExternalCompositions } from "../../../core/src/runtime/compositionLoader.js";
+  11 |  import { compileForRender } from "./htmlCompiler.js";
+ ❯ TransformPluginContext._formatLog ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42553:41
+ ❯ TransformPluginContext.error ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42550:16
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40529:23
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+ ❯ TransformPluginContext.transform ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40575:7
+ ❯ EnvironmentPluginContainer.transform ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42348:18
+ ❯ loadAndTransform ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:35740:27
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/34]⎯
+
+ FAIL  src/services/renderOrchestrator.test.ts [ src/services/renderOrchestrator.test.ts ]
+Error: [vitest] There was an error when mocking a module. If you are using "vi.mock" factory, make sure there are no top level variables inside, since this call is hoisted to top of the file. Read more: https://vitest.dev/api/vi.html#vi-mock
+ ❯ src/services/renderOrchestrator.test.ts:6:1
+      4| import { tmpdir } from "node:os";
+      5| import type { CaptureOptions, EngineConfig, ExtractedFrames } from "@h…
+      6| import { DEFAULT_CONFIG, executeParallelCapture, mergeWorkerFrames } f…
+       | ^
+      7| import type { CompiledComposition } from "./htmlCompiler.js";
+      8|
+
+Caused by: Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/engine/src/index.ts:270:67
+  145|    createFileServer
+  146|  } from "./services/fileServer.js";
+  147|  export { quantizeTimeToFrame, MEDIA_VISUAL_STYLE_PROPERTIES } from "@hyperframes/core";
+     |                                                                      ^
+  148|  export {
+  149|    assertSwiftShader,
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/34]⎯
+
+ FAIL  src/services/windowsFrameStaging.test.ts [ src/services/windowsFrameStaging.test.ts ]
+ FAIL  src/services/render/renderEventPublisher.test.ts [ src/services/render/renderEventPublisher.test.ts ]
+ FAIL  src/services/render/renderFileLogger.test.ts [ src/services/render/renderFileLogger.test.ts ]
+Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/producer/src/services/renderOrchestrator.ts:55:7
+  17 |    redactTelemetryString,
+  18 |    toFps
+  19 |  } from "@hyperframes/core";
+     |          ^
+  20 |  import {
+  21 |    resolveConfig,
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/34]⎯
+
+ FAIL  src/services/render/captureCost.heapAdvisory.test.ts [ src/services/render/captureCost.heapAdvisory.test.ts ]
+ FAIL  src/services/render/fallbackCaptureProfile.test.ts [ src/services/render/fallbackCaptureProfile.test.ts ]
+ FAIL  src/services/render/perfSummary-dedup.test.ts [ src/services/render/perfSummary-dedup.test.ts ]
+ FAIL  src/services/render/perfSummary.test.ts [ src/services/render/perfSummary.test.ts ]
+ FAIL  src/services/render/videoFrameCoverage.test.ts [ src/services/render/videoFrameCoverage.test.ts ]
+ FAIL  src/services/render/stages/compileStage.test.ts [ src/services/render/stages/compileStage.test.ts ]
+Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/producer/src/services/render/captureCost.ts:13:28
+  1  |  import { join } from "node:path";
+  2  |  import { fpsToNumber } from "@hyperframes/core";
+     |                               ^
+  3  |  import {
+  4  |    calculateOptimalWorkers,
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/34]⎯
+
+ FAIL  src/services/render/stages/audioStage.test.ts [ src/services/render/stages/audioStage.test.ts ]
+Error: [vitest] There was an error when mocking a module. If you are using "vi.mock" factory, make sure there are no top level variables inside, since this call is hoisted to top of the file. Read more: https://vitest.dev/api/vi.html#vi-mock
+ ❯ src/services/render/stages/audioStage.ts:21:1
+     19|
+     20| import { join } from "node:path";
+     21| import {
+       | ^
+     22|   MIXED_AUDIO_FILENAME,
+     23|   processCompositionAudio,
+
+Caused by: Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/engine/src/index.ts:270:67
+  145|    createFileServer
+  146|  } from "./services/fileServer.js";
+  147|  export { quantizeTimeToFrame, MEDIA_VISUAL_STYLE_PROPERTIES } from "@hyperframes/core";
+     |                                                                      ^
+  148|  export {
+  149|    assertSwiftShader,
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/34]⎯
+
+ FAIL  src/services/render/stages/captureHdrFrameShared.dom-mask.test.ts [ src/services/render/stages/captureHdrFrameShared.dom-mask.test.ts ]
+Error: [vitest] There was an error when mocking a module. If you are using "vi.mock" factory, make sure there are no top level variables inside, since this call is hoisted to top of the file. Read more: https://vitest.dev/api/vi.html#vi-mock
+ ❯ src/services/render/stages/captureHdrFrameShared.dom-mask.test.ts:3:1
+      1| import { beforeEach, describe, expect, it, vi } from "vitest";
+      2| import type { ElementStackingInfo } from "@hyperframes/engine";
+      3| import {
+       | ^
+      4|   applyDomLayerMask,
+      5|   blitRgba8OverRgb48le,
+
+Caused by: Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/engine/src/index.ts:270:67
+  145|    createFileServer
+  146|  } from "./services/fileServer.js";
+  147|  export { quantizeTimeToFrame, MEDIA_VISUAL_STYLE_PROPERTIES } from "@hyperframes/core";
+     |                                                                      ^
+  148|  export {
+  149|    assertSwiftShader,
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/34]⎯
+
+ FAIL  src/services/render/stages/extractVideosStage.timelineBound.test.ts [ src/services/render/stages/extractVideosStage.timelineBound.test.ts ]
+Error: [vitest] There was an error when mocking a module. If you are using "vi.mock" factory, make sure there are no top level variables inside, since this call is hoisted to top of the file. Read more: https://vitest.dev/api/vi.html#vi-mock
+ ❯ src/services/render/stages/extractVideosStage.timelineBound.test.ts:1:1
+      1| import {
+       | ^
+      2|   resolveConfig,
+      3|   safeDownloadUrlIdentity,
+
+Caused by: Error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/engine/src/index.ts:270:67
+  145|    createFileServer
+  146|  } from "./services/fileServer.js";
+  147|  export { quantizeTimeToFrame, MEDIA_VISUAL_STYLE_PROPERTIES } from "@hyperframes/core";
+     |                                                                      ^
+  148|  export {
+  149|    assertSwiftShader,
+ ❯ packageEntryFailure ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:15
+ ❯ resolvePackageEntry ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3
+ ❯ tryNodeResolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18
+ ❯ ResolveIdContext.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19
+ ❯ EnvironmentPluginContainer.resolveId ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17
+ ❯ TransformPluginContext.resolve ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:15
+ ❯ normalizeUrl ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40517:26
+ ❯ ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:40648:37
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/34]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/utils/ffprobeArgvContract.test.ts > ffprobe argv contract > packages/studio-server/src/project/projectBatch.ts terminates options immediately before the input
+AssertionError: packages/studio-server/src/project/projectBatch.ts: "--" must be immediately before the input: expected [ Array(1) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "\"json\" , path  in  [\"-v\", \"error\", \"-count_frames\", \"-show_streams\", \"-show_format\", \"-of\", \"json\", path]",
++ ]
+
+ ❯ src/utils/ffprobeArgvContract.test.ts:293:80
+    291|       .map(({ snippet, tail }) => `${tail.join(" , ")}  in  ${snippet}…
+    292|
+    293|     expect(offenders, `${relPath}: "--" must be immediately before the…
+       |                                                                                ^
+    294|   });
+    295|
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/34]⎯
+
+
+[2m Test Files [22m [1m[31m34 failed[39m[22m[2m | [22m[1m[32m8 passed[39m[22m[90m (42)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m154 passed[39m[22m[90m (155)[39m
+[2m   Start at [22m 07:21:02
+[2m   Duration [22m 20.58s[2m (transform 45.97s, setup 0ms, import 31.01s, tests 2.00s, environment 329ms)[22m
+
+error: script "test:unit:vitest" exited with code 1
+

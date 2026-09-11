@@ -1,0 +1,8 @@
+complete:100,running:40,queued:0
+complete:100,running:60,queued:0
+complete:100,complete:100,running:0
+complete:100,complete:100,running:20
+complete:100,complete:100,running:40
+complete:100,complete:100,running:60
+complete:100,complete:100,complete:100
+{"id":"batch-fb1c53a5-f145-4191-b542-078ac9570f22","videos":[{"path":"out/story-planning/story-0.mp4","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":25,"frames":750,"bytes":1014577}},{"path":"out/story-planning/story-1.mp4","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":25,"frames":750,"bytes":1013052}},{"path":"out/story-planning/story-2.mp4","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":25,"frames":750,"bytes":1011280}}]}

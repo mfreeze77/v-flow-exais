@@ -1,0 +1,10 @@
+{
+  "batchId": "batch-75881c79-5a05-47a1-a843-acaad3129f2c",
+  "projectId": "video-b48327ef-2a76-4f4f-a60b-6bca0035dd14",
+  "cancelAtProgress": 5,
+  "elapsedMs": 726,
+  "batchStatus": "cancelled",
+  "noOutput": true,
+  "sourceUnchanged": true,
+  "at": "2026-09-11T07:27:09.325Z"
+}

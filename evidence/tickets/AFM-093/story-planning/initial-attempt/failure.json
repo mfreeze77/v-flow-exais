@@ -1,0 +1,5 @@
+{
+  "error": "Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()",
+  "errors": [],
+  "text": "V\nV-FLOW\nEXAIS\nLOCAL STUDIO\nFROM SOURCE TO SCREEN\nOne project.\nMore than one story.\n\nTurn a repository or local project into a set of editable videos. Review the source, shape each story, then render the whole batch.\n\n01\nChoose your source\nLocal project\nGitHub repository\nMounted source\nMounted workspace\nFolder within source\nShape the stories\nAudience\nDevelopers\nNew users\nMaintainers\nPurpose\nExplain how it works\nHelp someone get started\nReview the source\nTarget seconds per video\nVideo count\n\nSource inspection reads files and declarations. Repository scripts stay inactive.\n\nInspect source →\nYour video projects\nExport all 3 videos\nImport diagram JSON\n01\nWhat createRepositoryIntake delegates\nRevision 0 · Open in Studio ↗\n02\nRead the StoryPlan contract\nRevision 0 · Open in Studio ↗\n03\nWhat ProjectProposalService.get delegates / source walkthrough\nRevision 0 · Open in Studio ↗"
+}

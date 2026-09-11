@@ -1,0 +1,20 @@
+$ bun run build:owned-runtimes && bun run --filter @hyperframes/studio dev:container
+@hyperframes/core build:hyperframes-runtime: {"event":"hyperframe_runtime_artifacts_generated","buildId":"dev","distDir":"/workspace/packages/core/dist","iifePath":"/workspace/packages/core/dist/hyperframe.runtime.iife.js","esmPath":"/workspace/packages/core/dist/hyperframe.runtime.mjs","manifestPath":"/workspace/packages/core/dist/hyperframe.manifest.json","inlineModulePath":"/workspace/packages/core/src/generated/runtime-inline.ts","sourceBytes":401731,"esmBytes":401707,"sha256":"3056a243b7ed69e68d5ade51e49dbc3df6e342c89ecf9554e8743bf4533b21e3"}
+@hyperframes/core build:hyperframes-runtime: Exited with code 0
+{"event":"position_edits_render_generated","outPath":"/workspace/packages/core/src/generated/position-edits-render-inline.ts","bytes":3817}
+{"event":"audio_fx_runtime_generated","outPath":"/workspace/packages/core/src/generated/audio-fx-runtime-inline.ts","bytes":38675}
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   VITE v6.4.2  ready in 632 ms
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   ➜  Local:   http://localhost:5190/
+@hyperframes/studio dev:container:   ➜  Network: http://192.168.112.3:5190/
+@hyperframes/studio dev:container: [INFO] [Render] Pipeline started {"renderJobId":"233b6987-cf93-49b8-a551-ad4652a3cfbe","platform":"linux","arch":"x64","nodeVersion":"v24.3.0","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
+$ bun run build:hyperframes-runtime && bun run --cwd packages/core build:position-edits-render && bun run --cwd packages/core build:audio-fx-runtime
+$ bun run --filter @hyperframes/core build:hyperframes-runtime
+$ tsx scripts/build-position-edits-render.ts
+$ tsx scripts/build-audio-fx-runtime.ts
+@hyperframes/studio dev:container: [INFO] [Render:trace] {"renderJobId":"233b6987-cf93-49b8-a551-ad4652a3cfbe","phase":"pipeline","status":"checkpoint","elapsedMs":5,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":1}
+@hyperframes/studio dev:container: [INFO] [Render:trace] {"renderJobId":"233b6987-cf93-49b8-a551-ad4652a3cfbe","phase":"compile","status":"start","elapsedMs":6,"needsAlpha":false}
+@hyperframes/studio dev:container: [INFO] [Render:trace] {"renderJobId":"233b6987-cf93-49b8-a551-ad4652a3cfbe","phase":"compile","status":"checkpoint","elapsedMs":30007,"message":"stage still running","needsAlpha":false,"heartbeatIndex":1,"stageElapsedMs":30001}
+@hyperframes/studio dev:container: [INFO] [Render:trace] {"renderJobId":"233b6987-cf93-49b8-a551-ad4652a3cfbe","phase":"compile","status":"checkpoint","elapsedMs":60007,"message":"stage still running","needsAlpha":false,"heartbeatIndex":2,"stageElapsedMs":60001}
+@hyperframes/studio dev:container: [INFO] [Render:trace] {"renderJobId":"233b6987-cf93-49b8-a551-ad4652a3cfbe","phase":"compile","status":"checkpoint","elapsedMs":120007,"message":"stage still running","needsAlpha":false,"heartbeatIndex":3,"stageElapsedMs":120001}

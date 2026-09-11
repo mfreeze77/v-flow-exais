@@ -1,99 +1,32 @@
 {
-  "implemented": "Adds real source context, typed proposal submission/list/review/revise/reject/accept commands to the existing CLI and fixes large piped JSON output draining.",
-  "artifacts": [
-    {
-      "bytes": 25822,
-      "path": "evidence/tickets/AFM-098/result.json",
-      "sha256": "8ef2c3d0a8acf11ffbf5133e05ea20b1260d7d953135021a6054f14162883235"
-    }
-  ],
-  "handoff": "docs/designs/proposal-review.md",
-  "remainingAcceptance": [
-    "Remaining command families, compatibility, help/doctor and clean distribution command acceptance remain open.",
-    "The recorded CLI edit is source-backed and accepted/undone in Studio; no finished useful story/video or live configured-model call is claimed."
-  ],
+  "ticketId": "AFM-095",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "8756a982bcd0df4e93190573eecab861811307c7",
+  "implemented": "CLI story settings, replan/revise/reviewed accept commands sharing Studio validation; recorded seven-command workflow.",
+  "previousReceipt": "evidence/tickets/AFM-095/pre-story-result.json",
   "commands": [
     {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-098.test.ts tests/acceptance/AFM-099.source.test.ts",
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{parsers,studio-server,studio,cli}' typecheck",
       "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-098/proposal-review/acceptance.log"
+      "logPath": "evidence/tickets/AFM-093/story-planning/typecheck.log"
     },
     {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{studio-server,studio,cli}' typecheck",
+      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-cli.ts",
       "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-098/proposal-review/typecheck.log"
-    },
-    {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxlint packages/cli/src/commands/project.ts packages/cli/src/commands/projectProposal.ts packages/studio-server/src/createStudioApi.ts packages/studio-server/src/index.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/project/projectApiError.ts packages/studio-server/src/project/projectProposals.ts packages/studio-server/src/project/proposalGrounding.ts packages/studio-server/src/project/proposalPreview.ts packages/studio-server/src/project/proposalSchema.ts packages/studio-server/src/project/proposalStore.ts packages/studio-server/src/project/proposalTypes.ts packages/studio-server/src/routes/projectProposals.ts packages/studio-server/src/routes/projectCommands.ts packages/studio/src/project/ProjectWorkspace.tsx packages/studio/src/project/api.ts packages/studio/src/project/ProposalReview.tsx packages/studio/src/project/ProjectAgentTools.tsx",
-      "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-098/proposal-review/lint.log"
-    },
-    {
-      "invocation": "docker exec v-flow-exais-proposal-review bun tools/vflow/verify-proposal-review.ts",
-      "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-098/proposal-review/browser.log"
-    },
-    {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxfmt --check packages/cli/src/commands/project.ts packages/cli/src/commands/projectProposal.ts packages/studio-server/src/createStudioApi.ts packages/studio-server/src/index.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/project/projectApiError.ts packages/studio-server/src/project/projectProposals.ts packages/studio-server/src/project/proposalGrounding.ts packages/studio-server/src/project/proposalPreview.ts packages/studio-server/src/project/proposalSchema.ts packages/studio-server/src/project/proposalStore.ts packages/studio-server/src/project/proposalTypes.ts packages/studio-server/src/routes/projectProposals.ts packages/studio-server/src/routes/projectCommands.ts packages/studio/src/project/ProjectWorkspace.tsx packages/studio/src/project/api.ts packages/studio/src/project/ProposalReview.tsx packages/studio/src/project/ProposalReview.css packages/studio/src/project/ProjectAgentTools.tsx tests/acceptance/AFM-098.test.ts tools/vflow/verify-proposal-review.ts",
-      "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-098/proposal-review/format.log"
-    },
-    {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install fallow audit --base origin/main --fail-on-issues",
-      "exitCode": 1,
-      "logPath": "evidence/tickets/AFM-098/proposal-review/fallow.log"
+      "logPath": "evidence/tickets/AFM-093/story-planning/cli.log"
     }
   ],
-  "recordedCliCommands": [
-    {
-      "args": [
-        "bun",
-        "run",
-        "vflow",
-        "proposal-context",
-        "--id",
-        "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
-        "--intake",
-        "intake-771ce4a9-2057-4859-80ab-c7e6d29f7ceb",
-        "--home",
-        "/tmp/vflow-proposal-review"
-      ],
-      "exitCode": 0
-    },
-    {
-      "args": [
-        "bun",
-        "run",
-        "vflow",
-        "propose",
-        "--file",
-        "/workspace/evidence/tickets/AFM-098/browser/agent-proposal.json",
-        "--home",
-        "/tmp/vflow-proposal-review"
-      ],
-      "exitCode": 0
-    },
-    {
-      "args": [
-        "bun",
-        "run",
-        "vflow",
-        "review-proposal",
-        "--id",
-        "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
-        "--proposal",
-        "proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969",
-        "--home",
-        "/tmp/vflow-proposal-review"
-      ],
-      "exitCode": 0
-    }
+  "remainingAcceptance": [
+    "Full command/compatibility/doctor coverage, clean distribution and recorded useful agent-to-video acceptance remain open."
   ],
-  "date": "2026-09-11",
-  "title": "AFM-095 - Expose one product CLI with native and diagram commands",
-  "status": "in_progress",
-  "commit": "11eccf055c3a9cb374c2cc1434da5a14ccbf0ba9",
-  "gatePassed": false,
-  "previousReceipt": "evidence/tickets/AFM-095/initial-cli-result.json",
-  "ticketId": "AFM-095"
+  "handoff": "docs/designs/story-planning.md",
+  "relatedReceipt": "evidence/tickets/AFM-093/result.json",
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-093/result.json",
+      "bytes": 39123,
+      "sha256": "942c3c21ba054f49bb54296427955a1c28cb54f925d363be1ff45a4a3ff05533"
+    }
+  ]
 }

@@ -1,0 +1,372 @@
+[
+  {
+    "projectId": "video-d118e690-2a3c-4dcf-9906-114abd25762d",
+    "buildHash": "bed76da74d8a2d50e297906347bee9d1ce2901ee36fb4b3e677bab1c17c64a64",
+    "seams": [
+      {
+        "id": "beat-0→beat-1",
+        "cut": 3,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-1→beat-2",
+        "cut": 7.533333333333333,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-2→beat-3",
+        "cut": 13.966666666666667,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-3→beat-4",
+        "cut": 20.4,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "video-5383c250-a138-49c5-a58d-d9dfda7cc02d",
+    "buildHash": "dd4efdbf4494c3dd74c5d0a9b7d9db48bc45a73055e016006e4d13a816e71ea9",
+    "seams": [
+      {
+        "id": "beat-0→beat-1",
+        "cut": 4.066666666666666,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-1→beat-2",
+        "cut": 10.166666666666666,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-2→beat-3",
+        "cut": 18.833333333333332,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "video-b3d0526c-4632-4e33-8a9c-37d4c8956a93",
+    "buildHash": "37b8b7bc9c562e3bcc5bc7d4e4786f163ab6297711ba4aff4fdd0805492ba0d5",
+    "seams": [
+      {
+        "id": "beat-0→beat-1",
+        "cut": 3,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-1→beat-2",
+        "cut": 7.533333333333333,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-2→beat-3",
+        "cut": 13.966666666666667,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-3→beat-4",
+        "cut": 20.4,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  }
+]

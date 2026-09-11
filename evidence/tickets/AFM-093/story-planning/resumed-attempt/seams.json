@@ -1,0 +1,404 @@
+[
+  {
+    "projectId": "video-4d1f0da5-6203-4020-898c-3085a56bc459",
+    "buildHash": "5124c9f6532b2f945d2109074e1e11ed99159232132889443e3763018c7a40e3",
+    "seams": [
+      {
+        "id": "beat-0→beat-1",
+        "cut": 3,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-1→beat-2",
+        "cut": 7.533333333333333,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-2→beat-3",
+        "cut": 13.966666666666667,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-3→beat-4",
+        "cut": 20.4,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "video-7235fd1e-5d75-4265-ba12-822a3d8459c9",
+    "buildHash": "be42f51c323fda7e08f54b5bf1f0ba0bff09ad2d79140d5fc94a28b8d56ed3b7",
+    "seams": [
+      {
+        "id": "beat-0→beat-1",
+        "cut": 3,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-1→beat-2",
+        "cut": 7.533333333333333,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-2→beat-3",
+        "cut": 13.966666666666667,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-3→beat-4",
+        "cut": 20.4,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "video-18a868d8-976e-42dd-b84c-4ef186b9db0e",
+    "buildHash": "139be30c442c528f2e8cbb0d32c63e22be6d4a000bf00a82bbc24189eb9dc9fc",
+    "seams": [
+      {
+        "id": "beat-0→beat-1",
+        "cut": 3,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-1→beat-2",
+        "cut": 7.533333333333333,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-2→beat-3",
+        "cut": 13.966666666666667,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "beat-3→beat-4",
+        "cut": 20.4,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  }
+]

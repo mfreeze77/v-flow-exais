@@ -1,0 +1,24 @@
+ Container v-flow-exais-workspace-run-d014736747d5 Creating 
+ Container v-flow-exais-workspace-run-d014736747d5 Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-093.stories.test.ts" "tests/acceptance/AFM-093.understanding.test.ts" "tests/acceptance/AFM-098.test.ts" "tests/acceptance/AFM-099.source.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mpreviews a sourced edit, rejects without changing the project, revises with optimistic review versions, accepts atomically and undoes[33m 871[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mretains partial invalid batches for repair and rejects invented factual wording and connections[32m 231[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mlabels free interpretation, requires explicit acknowledgement and detects stale revision or changed evidence[33m 446[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22muses the same HTTP review service, reports unavailable providers and recovers commit-before-receipt interruption[33m 436[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22maccepts a real source-supported connection while rejecting reversed and misidentified endpoints[33m 491[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mvalidates configured-provider output and reports provider failures without committing (adapter contract only)[32m 172[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-099.source.test.ts[2m > [22minspects a local project, reviews three plans, imports idempotently and builds real mixed compositions[33m 1975[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mplans distinct implementation stories with authored scripts, exact integer timing and captured relationships[33m 1016[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mreplans for audience/count, refuses invented evidence, repairs scripts and protects reviewed or existing project versions[33m 348[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mdoes not pad a manifest-only repository into multiple films[32m 10[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mcaptures implementation, APIs, models and workflow call evidence from actual files with exact immutable line citations[32m 41[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mresolves same-named exports by source module, preserves repeated call sites, and withholds shadowed/ambiguous relationships[32m 7[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m12 passed[39m[22m[90m (12)[39m
+[2m   Start at [22m 06:52:36
+[2m   Duration [22m 12.12s[2m (transform 3.24s, setup 0ms, import 5.58s, tests 6.05s, environment 0ms)[22m
+

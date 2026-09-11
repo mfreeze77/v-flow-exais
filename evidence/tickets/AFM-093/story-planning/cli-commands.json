@@ -1,0 +1,114 @@
+[
+  {
+    "command": [
+      "bun",
+      "packages/cli/src/cli.ts",
+      "project",
+      "plan",
+      "--home",
+      "/tmp/vflow-story-cli-7l9m2G",
+      "--source",
+      "packages/studio-server/src/project",
+      "--count",
+      "3",
+      "--seconds",
+      "25",
+      "--audience",
+      "maintainers"
+    ],
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "command": [
+      "bun",
+      "packages/cli/src/cli.ts",
+      "project",
+      "plan-stories",
+      "--home",
+      "/tmp/vflow-story-cli-7l9m2G",
+      "--intake",
+      "intake-b2606e08-4218-41fd-93d1-4cefaa24e1d4",
+      "--file",
+      "/tmp/vflow-story-cli-7l9m2G/options.json"
+    ],
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "command": [
+      "bun",
+      "packages/cli/src/cli.ts",
+      "project",
+      "revise-story",
+      "--home",
+      "/tmp/vflow-story-cli-7l9m2G",
+      "--intake",
+      "intake-b2606e08-4218-41fd-93d1-4cefaa24e1d4",
+      "--proposal",
+      "story-d7e108fd64fe6a5a4ae2",
+      "--file",
+      "/tmp/vflow-story-cli-7l9m2G/revision.json"
+    ],
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "command": [
+      "bun",
+      "packages/cli/src/cli.ts",
+      "project",
+      "accept-stories",
+      "--home",
+      "/tmp/vflow-story-cli-7l9m2G",
+      "--intake",
+      "intake-b2606e08-4218-41fd-93d1-4cefaa24e1d4",
+      "--file",
+      "/tmp/vflow-story-cli-7l9m2G/stale.json"
+    ],
+    "exitCode": 1,
+    "stderr": ""
+  },
+  {
+    "command": [
+      "bun",
+      "packages/cli/src/cli.ts",
+      "project",
+      "list",
+      "--home",
+      "/tmp/vflow-story-cli-7l9m2G"
+    ],
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "command": [
+      "bun",
+      "packages/cli/src/cli.ts",
+      "project",
+      "accept-stories",
+      "--home",
+      "/tmp/vflow-story-cli-7l9m2G",
+      "--intake",
+      "intake-b2606e08-4218-41fd-93d1-4cefaa24e1d4",
+      "--file",
+      "/tmp/vflow-story-cli-7l9m2G/accept.json"
+    ],
+    "exitCode": 0,
+    "stderr": ""
+  },
+  {
+    "command": [
+      "bun",
+      "packages/cli/src/cli.ts",
+      "project",
+      "build",
+      "--home",
+      "/tmp/vflow-story-cli-7l9m2G",
+      "--id",
+      "video-84ac4253-2f81-4de4-aef5-f2f0cd8323e4"
+    ],
+    "exitCode": 0,
+    "stderr": ""
+  }
+]

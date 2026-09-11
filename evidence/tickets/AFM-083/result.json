@@ -1,10 +1,9 @@
 {
-  "ticketId": "AFM-054",
+  "ticketId": "AFM-083",
   "date": "2026-09-11",
   "status": "in_progress",
   "commit": "8756a982bcd0df4e93190573eecab861811307c7",
-  "implemented": "Repaired compile cancellation wiring, bounded local font fetch stalls, and verified a fresh Studio mixed-project batch plus live compile cancellation.",
-  "previousReceipt": "evidence/tickets/AFM-054/pre-story-result.json",
+  "implemented": "Editable mixed source-reading, data-contract, title, takeaway and diagram story scenes with local timeline motion.",
   "commands": [
     {
       "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-planning.ts",
@@ -12,23 +11,13 @@
       "logPath": "evidence/tickets/AFM-093/story-planning/browser.log"
     },
     {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-054.compile-cancel.test.ts",
-      "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-093/story-planning/render-cancel.log"
-    },
-    {
       "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-seams.ts",
       "exitCode": 0,
       "logPath": "evidence/tickets/AFM-093/story-planning/seams.log"
-    },
-    {
-      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-cancellation.ts",
-      "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-093/story-planning/cancellation.log"
     }
   ],
   "remainingAcceptance": [
-    "Remaining compile/capture/encode crash matrix, immutable assets and retention/concurrency acceptance remain open."
+    "Template registry, broader mixed content, variables, all output formats, neutral diagram styling and human film-quality acceptance remain open."
   ],
   "handoff": "docs/designs/story-planning.md",
   "relatedReceipt": "evidence/tickets/AFM-093/result.json",

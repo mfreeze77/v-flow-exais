@@ -1,0 +1,11 @@
+{
+  "initial-attempt": "Initial UI proof passed but batch-start connection closed; the persisted batch completed and was collected without creating a replacement batch. Frames exposed long-source clipping and late citation reveals.",
+  "stale-runtime-attempt": "Server modules remained cached after edits; outputs did not prove the revised backend emitter. Preserved as an invalid verification attempt for those edits.",
+  "resumed-attempt": "The batch from the first fresh-runtime font stall was resumed after preserving its home and restarting the isolated server with tracing. Three films completed; these predate family diversity and call-column framing fixes.",
+  "compile-stall.log": "Initial fresh server remained in compile; direct isolated compilation of the same pinned input took about one second. Cancellation was requested but did not terminate compilation before the saved server was stopped.",
+  "second-compile-stall.log": "Reproduced the fresh Studio font stall. Browser verifier was intentionally terminated with its saved container; exit 137.",
+  "traced-font-stall.log": "Checkpoints reached normalized-fonts and stopped before resolved-fonts. Browser verifier was intentionally terminated with its saved container; exit 137.",
+  "resolution": "Local font requests lacked a timeout; executeRenderJob omitted the abort signal passed to runCompileStage. Both were fixed. The final browser run completed without restart, and a real subsequent Studio batch cancelled during compile in 726 ms.",
+  "font-retries-path-error.log": "The first Bun test filter lacked ./ and also matched the frozen source tree. It failed resolution there; the explicit owned file invocation then passed. No frozen file was changed.",
+  "failure.json": "Historical browser failure diagnostic; it does not describe the final successful browser run."
+}

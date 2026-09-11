@@ -1,0 +1,536 @@
+{
+  "intakeId": "intake-f63959a9-3c83-4124-af12-9722c359a580",
+  "snapshotHash": "96d44d98b8399edc18ff2721483e002e91dbb57eff76817bfa54c61fe0efd62b",
+  "options": {
+    "audience": "maintainers",
+    "purpose": "explain",
+    "durationSeconds": 25,
+    "count": 3
+  },
+  "plans": [
+    {
+      "id": "story-d7e108fd64fe6a5a4ae2",
+      "planHash": "0aa567d6ad81773fec96f1f33baee7147a328b5fd0cbd255bb0f3eaf857d820c",
+      "title": "What createRepositoryIntake delegates / source walkthrough",
+      "family": "architecture",
+      "beats": [
+        {
+          "role": "opening",
+          "visual": "title",
+          "heading": "Which parts does createRepositoryIntake rely on?",
+          "script": "Which parts does createRepositoryIntake rely on? We will use repositoryIntake.ts to answer it.",
+          "sourceIds": [
+            "source-105fa3dd896da95347cc4218"
+          ],
+          "relationshipIds": [],
+          "id": "beat-0",
+          "durationFrames": 90
+        },
+        {
+          "role": "context",
+          "visual": "diagram",
+          "heading": "What createRepositoryIntake delegates",
+          "script": "createRepositoryIntake contains a call to contained; this is not an execution trace. createRepositoryIntake contains a call to inspectRepository; this is not an execution trace. createRepositoryIntake contains a call to planRepositoryStories; this is not an execution trace.",
+          "sourceIds": [
+            "source-105fa3dd896da95347cc4218",
+            "source-03ad6bb3ebe91cd3d75aa811",
+            "source-9ffa3f79d1e103ec2191bf4a",
+            "source-492fede980f6520ad885efa7"
+          ],
+          "relationshipIds": [
+            "source-8d682406b463d96fcaa3466f",
+            "source-162d2748ea81ea472fa1ca0f",
+            "source-fad1c18fc94405a6231132fd"
+          ],
+          "id": "beat-1",
+          "durationFrames": 136
+        },
+        {
+          "role": "mechanism",
+          "visual": "source",
+          "heading": "The reference to contained",
+          "script": "createRepositoryIntake contains a call to contained; this is not an execution trace.",
+          "sourceIds": [
+            "source-105fa3dd896da95347cc4218",
+            "source-03ad6bb3ebe91cd3d75aa811"
+          ],
+          "relationshipIds": [
+            "source-8d682406b463d96fcaa3466f"
+          ],
+          "id": "beat-2",
+          "durationFrames": 193
+        },
+        {
+          "role": "mechanism",
+          "visual": "source",
+          "heading": "The reference to inspectRepository",
+          "script": "createRepositoryIntake contains a call to inspectRepository; this is not an execution trace.",
+          "sourceIds": [
+            "source-105fa3dd896da95347cc4218",
+            "source-9ffa3f79d1e103ec2191bf4a"
+          ],
+          "relationshipIds": [
+            "source-162d2748ea81ea472fa1ca0f"
+          ],
+          "id": "beat-3",
+          "durationFrames": 193
+        },
+        {
+          "role": "payoff",
+          "visual": "takeaway",
+          "heading": "Your next step",
+          "script": "Use these captured connections to navigate outward from createRepositoryIntake. Confirm runtime behavior separately before relying on it.",
+          "sourceIds": [
+            "source-105fa3dd896da95347cc4218"
+          ],
+          "relationshipIds": [
+            "source-8d682406b463d96fcaa3466f",
+            "source-162d2748ea81ea472fa1ca0f",
+            "source-fad1c18fc94405a6231132fd"
+          ],
+          "id": "beat-4",
+          "durationFrames": 138
+        }
+      ]
+    },
+    {
+      "id": "story-7cde233b2bd5b49525a7",
+      "planHash": "7b8768bb13e684fb0c585d25ce2a0fd88146aca35f4ade1e98403a875ad3f722",
+      "title": "What understandRepository delegates / reviewed",
+      "family": "architecture",
+      "beats": [
+        {
+          "role": "opening",
+          "visual": "title",
+          "heading": "Which parts does understandRepository rely on?",
+          "script": "Which parts does understandRepository rely on? We will use repositoryUnderstanding.ts to answer it.",
+          "sourceIds": [
+            "source-774abb70c4f4436b2f6d887b"
+          ],
+          "relationshipIds": [],
+          "id": "beat-0",
+          "durationFrames": 90
+        },
+        {
+          "role": "context",
+          "visual": "diagram",
+          "heading": "What understandRepository delegates",
+          "script": "understandRepository contains a call to sourceExcerpt; this is not an execution trace. understandRepository contains a call to identity; this is not an execution trace. understandRepository contains a call to sourceExcerpt; this is not an execution trace.",
+          "sourceIds": [
+            "source-774abb70c4f4436b2f6d887b",
+            "source-18ab345ffde0e02623a6fbe2",
+            "source-6a1b6d91969236ca0a565a22"
+          ],
+          "relationshipIds": [
+            "source-df8699fbab0a8c64e7663d22",
+            "source-9a2d76674ef87b74dbfadee2",
+            "source-943c49d391156d48f382e327"
+          ],
+          "id": "beat-1",
+          "durationFrames": 136
+        },
+        {
+          "role": "mechanism",
+          "visual": "source",
+          "heading": "The reference to sourceExcerpt",
+          "script": "understandRepository contains a call to sourceExcerpt; this is not an execution trace.",
+          "sourceIds": [
+            "source-774abb70c4f4436b2f6d887b",
+            "source-18ab345ffde0e02623a6fbe2"
+          ],
+          "relationshipIds": [
+            "source-df8699fbab0a8c64e7663d22"
+          ],
+          "id": "beat-2",
+          "durationFrames": 193
+        },
+        {
+          "role": "mechanism",
+          "visual": "source",
+          "heading": "The reference to identity",
+          "script": "understandRepository contains a call to identity; this is not an execution trace.",
+          "sourceIds": [
+            "source-774abb70c4f4436b2f6d887b",
+            "source-6a1b6d91969236ca0a565a22"
+          ],
+          "relationshipIds": [
+            "source-9a2d76674ef87b74dbfadee2"
+          ],
+          "id": "beat-3",
+          "durationFrames": 193
+        },
+        {
+          "role": "payoff",
+          "visual": "takeaway",
+          "heading": "Your next step",
+          "script": "Use these captured connections to navigate outward from understandRepository. Confirm runtime behavior separately before relying on it.",
+          "sourceIds": [
+            "source-774abb70c4f4436b2f6d887b"
+          ],
+          "relationshipIds": [
+            "source-df8699fbab0a8c64e7663d22",
+            "source-9a2d76674ef87b74dbfadee2",
+            "source-943c49d391156d48f382e327"
+          ],
+          "id": "beat-4",
+          "durationFrames": 138
+        }
+      ]
+    },
+    {
+      "id": "story-fa78d036205d25d34dec",
+      "planHash": "e90682c4eb81f1017750c555c0238369a57e387505abfd39b22bacd17552fda5",
+      "title": "What storySceneHtml delegates",
+      "family": "architecture",
+      "beats": [
+        {
+          "role": "opening",
+          "visual": "title",
+          "heading": "Which parts does storySceneHtml rely on?",
+          "script": "Which parts does storySceneHtml rely on? We will use storySceneHtml.ts to answer it.",
+          "sourceIds": [
+            "source-a83836f4f3b80d4347ece5b2"
+          ],
+          "relationshipIds": [],
+          "id": "beat-0",
+          "durationFrames": 90
+        },
+        {
+          "role": "context",
+          "visual": "diagram",
+          "heading": "What storySceneHtml delegates",
+          "script": "storySceneHtml contains a call to sceneBody; this is not an execution trace. storySceneHtml contains a call to esc; this is not an execution trace. storySceneHtml contains a call to esc; this is not an execution trace.",
+          "sourceIds": [
+            "source-a83836f4f3b80d4347ece5b2",
+            "source-ef5c59aab772e1e0e03bc596",
+            "source-e4c02058ccbb3a1f75c452c0"
+          ],
+          "relationshipIds": [
+            "source-6c2f64971c3eed6eb4144391",
+            "source-29deca6819c2552fb63b6b4d",
+            "source-91c5c9471516b57a93bb2a93"
+          ],
+          "id": "beat-1",
+          "durationFrames": 136
+        },
+        {
+          "role": "mechanism",
+          "visual": "source",
+          "heading": "The reference to sceneBody",
+          "script": "storySceneHtml contains a call to sceneBody; this is not an execution trace.",
+          "sourceIds": [
+            "source-a83836f4f3b80d4347ece5b2",
+            "source-ef5c59aab772e1e0e03bc596"
+          ],
+          "relationshipIds": [
+            "source-6c2f64971c3eed6eb4144391"
+          ],
+          "id": "beat-2",
+          "durationFrames": 193
+        },
+        {
+          "role": "mechanism",
+          "visual": "source",
+          "heading": "The reference to esc",
+          "script": "storySceneHtml contains a call to esc; this is not an execution trace.",
+          "sourceIds": [
+            "source-a83836f4f3b80d4347ece5b2",
+            "source-e4c02058ccbb3a1f75c452c0"
+          ],
+          "relationshipIds": [
+            "source-29deca6819c2552fb63b6b4d"
+          ],
+          "id": "beat-3",
+          "durationFrames": 193
+        },
+        {
+          "role": "payoff",
+          "visual": "takeaway",
+          "heading": "Your next step",
+          "script": "Use these captured connections to navigate outward from storySceneHtml. Confirm runtime behavior separately before relying on it.",
+          "sourceIds": [
+            "source-a83836f4f3b80d4347ece5b2"
+          ],
+          "relationshipIds": [
+            "source-6c2f64971c3eed6eb4144391",
+            "source-29deca6819c2552fb63b6b4d",
+            "source-91c5c9471516b57a93bb2a93"
+          ],
+          "id": "beat-4",
+          "durationFrames": 138
+        }
+      ]
+    }
+  ],
+  "batch": {
+    "schemaVersion": 1,
+    "id": "batch-fb1c53a5-f145-4191-b542-078ac9570f22",
+    "createdAt": "2026-09-11T06:58:13.187Z",
+    "status": "complete",
+    "items": [
+      {
+        "projectId": "video-4d1f0da5-6203-4020-898c-3085a56bc459",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "5124c9f6532b2f945d2109074e1e11ed99159232132889443e3763018c7a40e3",
+          "dir": "/tmp/vflow-story-review/projects/video-4d1f0da5-6203-4020-898c-3085a56bc459/.vflow/builds/5124c9f6532b2f945d2109074e1e11ed99159232132889443e3763018c7a40e3",
+          "revision": 0,
+          "projectId": "video-4d1f0da5-6203-4020-898c-3085a56bc459",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "video-4d1f0da5-6203-4020-898c-3085a56bc459",
+            "revision": 0,
+            "durationFrames": 750,
+            "output": {
+              "fps": {
+                "denominator": 1,
+                "numerator": 30
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "story-1": {
+                "sourceHash": "be566b3284fa2290ba0cacd7b99629104519e7fca50a9ccce64efbe0f5d21fe2",
+                "artifactHash": "60b483ffe0f687ce031c8d10d2f862e1da02633688bbc539ada8f8049ef33222"
+              }
+            },
+            "sceneIds": [
+              "beat-0",
+              "beat-1",
+              "beat-2",
+              "beat-3",
+              "beat-4"
+            ],
+            "authoringHash": "03090d5424939a4a10d4fee7f7b87226aac842bf9f2cee060f39a32f726adfe3",
+            "files": {
+              "scene-0-beat-0.html": "5f0826261fc6282b97f50dd3d30e577b4e3d535485e10d97b6c0f5a7111823e0",
+              "scene-1-beat-1.html": "fe28a33db448fac24b22b7243ee80162c2aabffdf1911cb1166dd49d2234ebab",
+              "scene-2-beat-2.html": "094ccd2e20bcc49f5d9af5385d7d05c5720cb2353c96c6a8b13f401dc0673e54",
+              "scene-3-beat-3.html": "87e3e46047e4ec95b31fd3b2c6e03d249a572b0db98ed9ae14290d2b8c5987fd",
+              "scene-4-beat-4.html": "a25393d1d28d5edbc61e83e48b4d524884faadf79b7d93374ae86a3069aabe32",
+              "index.html": "5aa20b799bf4fe2556997a4555d29df53b097c1e4bc5159a08e85df919ea4c54",
+              "ledger.json": "63575fa0ac3d7bf23051e7e7098b6a3cc39ea879c8305f1fb7ebcc7dbc086ee9",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "5124c9f6532b2f945d2109074e1e11ed99159232132889443e3763018c7a40e3"
+          }
+        },
+        "attemptId": "942ace02-c6f8-40cf-a919-bae15c68f7a6",
+        "outputPath": "/tmp/vflow-story-review/projects/video-4d1f0da5-6203-4020-898c-3085a56bc459/.vflow/renders/5124c9f6532b2f945d2109074e1e11ed99159232132889443e3763018c7a40e3/942ace02-c6f8-40cf-a919-bae15c68f7a6.mp4",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration": 25,
+          "frames": 750,
+          "bytes": 1014577
+        },
+        "sha256": "c21b2a89d43419e8f6cad97b17fd68d5c1a0e84683ab68fa2e3a6c963c8e861c",
+        "frames": [
+          {
+            "at": 2.25,
+            "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-0.png"
+          },
+          {
+            "at": 6.4,
+            "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-1.png"
+          },
+          {
+            "at": 12.358333333333333,
+            "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-2.png"
+          },
+          {
+            "at": 18.791666666666668,
+            "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-3.png"
+          },
+          {
+            "at": 23.85,
+            "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-4.png"
+          }
+        ],
+        "retainedVideo": "out/story-planning/story-0.mp4"
+      },
+      {
+        "projectId": "video-7235fd1e-5d75-4265-ba12-822a3d8459c9",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "be42f51c323fda7e08f54b5bf1f0ba0bff09ad2d79140d5fc94a28b8d56ed3b7",
+          "dir": "/tmp/vflow-story-review/projects/video-7235fd1e-5d75-4265-ba12-822a3d8459c9/.vflow/builds/be42f51c323fda7e08f54b5bf1f0ba0bff09ad2d79140d5fc94a28b8d56ed3b7",
+          "revision": 0,
+          "projectId": "video-7235fd1e-5d75-4265-ba12-822a3d8459c9",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "video-7235fd1e-5d75-4265-ba12-822a3d8459c9",
+            "revision": 0,
+            "durationFrames": 750,
+            "output": {
+              "fps": {
+                "denominator": 1,
+                "numerator": 30
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "story-1": {
+                "sourceHash": "8d5268e0fbb8939e47ab26a19b73f8436057973c865b384623d9ebd1554fbc90",
+                "artifactHash": "821e8e0b45343c4aa9008d3bcfa333e7546b2b4c8941204a940be1ba1b58a764"
+              }
+            },
+            "sceneIds": [
+              "beat-0",
+              "beat-1",
+              "beat-2",
+              "beat-3",
+              "beat-4"
+            ],
+            "authoringHash": "bd1070898bb14b007c7b508174776f8204a551c0338bdfb168ef35db8d24d150",
+            "files": {
+              "scene-0-beat-0.html": "0998df8cc0305d80757523e9434821126c5aabea2f3c917621fb27ff4e5c15c6",
+              "scene-1-beat-1.html": "2cf5b5fbd657aab8a138ce78bec9698e83d4c855bcfa4c57ee9a8b324230ce17",
+              "scene-2-beat-2.html": "563a39e07f9c8b9a1fd6eb8588d06b2a0a16928166b30f7e61ea15d3c79531f0",
+              "scene-3-beat-3.html": "2ffde076d23d0ad6d96a56605b05261c691365e269890fb43a5371399b3ea1cb",
+              "scene-4-beat-4.html": "c18327b9a578d658c5c923a5e90b2fdc311474ef1cb25e4787a96c552b4f629d",
+              "index.html": "babd1c87ad0bd3f3d278d2e103879c5c459b71fe84ea309a729c6702f1a885d5",
+              "ledger.json": "63575fa0ac3d7bf23051e7e7098b6a3cc39ea879c8305f1fb7ebcc7dbc086ee9",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "be42f51c323fda7e08f54b5bf1f0ba0bff09ad2d79140d5fc94a28b8d56ed3b7"
+          }
+        },
+        "attemptId": "dfb9ae4e-b342-4c0c-b42d-d49a7a18806d",
+        "outputPath": "/tmp/vflow-story-review/projects/video-7235fd1e-5d75-4265-ba12-822a3d8459c9/.vflow/renders/be42f51c323fda7e08f54b5bf1f0ba0bff09ad2d79140d5fc94a28b8d56ed3b7/dfb9ae4e-b342-4c0c-b42d-d49a7a18806d.mp4",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration": 25,
+          "frames": 750,
+          "bytes": 1013052
+        },
+        "sha256": "7103fc0486a370b0ebc4dea15ad6b6885719b13a125b614ee0010dca0f6b1f8e",
+        "frames": [
+          {
+            "at": 2.25,
+            "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-0.png"
+          },
+          {
+            "at": 6.4,
+            "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-1.png"
+          },
+          {
+            "at": 12.358333333333333,
+            "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-2.png"
+          },
+          {
+            "at": 18.791666666666668,
+            "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-3.png"
+          },
+          {
+            "at": 23.85,
+            "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-4.png"
+          }
+        ],
+        "retainedVideo": "out/story-planning/story-1.mp4"
+      },
+      {
+        "projectId": "video-18a868d8-976e-42dd-b84c-4ef186b9db0e",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "139be30c442c528f2e8cbb0d32c63e22be6d4a000bf00a82bbc24189eb9dc9fc",
+          "dir": "/tmp/vflow-story-review/projects/video-18a868d8-976e-42dd-b84c-4ef186b9db0e/.vflow/builds/139be30c442c528f2e8cbb0d32c63e22be6d4a000bf00a82bbc24189eb9dc9fc",
+          "revision": 0,
+          "projectId": "video-18a868d8-976e-42dd-b84c-4ef186b9db0e",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "video-18a868d8-976e-42dd-b84c-4ef186b9db0e",
+            "revision": 0,
+            "durationFrames": 750,
+            "output": {
+              "fps": {
+                "denominator": 1,
+                "numerator": 30
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "story-1": {
+                "sourceHash": "f824340034b97716d4e422d67ffbaa8db23d2872ac9eb3945b8336782602a18a",
+                "artifactHash": "16f3b576db7eafac740072ae004d60865b0933384183180ba8646b0145eceae7"
+              }
+            },
+            "sceneIds": [
+              "beat-0",
+              "beat-1",
+              "beat-2",
+              "beat-3",
+              "beat-4"
+            ],
+            "authoringHash": "95a8d40a84f5f773c0e2e29b9169138d3bdb4aa2de23459dd9f9657636b8e67d",
+            "files": {
+              "scene-0-beat-0.html": "e71f440cb82d56e44c5e05d7a50ed52280573675241c0940b8e1024a613b7ed2",
+              "scene-1-beat-1.html": "09250f21b04168f1446f5cc290221c8bebd954a6e4a8b7152a0d0a4f5d738463",
+              "scene-2-beat-2.html": "e52e25f24927b9be9d5b370d10f747febd53fdb6beac4d8a4c1ef72be3de17f9",
+              "scene-3-beat-3.html": "b77fe6edcba17a4bfd780da72f3d7ea77e052c90ec06214f93a0bac01141bbcf",
+              "scene-4-beat-4.html": "3175b7c0e81fe7f8a8e247a5d551acad7ed6f252558462c3d0ab975e922ec88b",
+              "index.html": "5f12c31e31dad1b06b41c90aad69e556c189bf6840479d1f866d2fcda402eda9",
+              "ledger.json": "63575fa0ac3d7bf23051e7e7098b6a3cc39ea879c8305f1fb7ebcc7dbc086ee9",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "139be30c442c528f2e8cbb0d32c63e22be6d4a000bf00a82bbc24189eb9dc9fc"
+          }
+        },
+        "attemptId": "01fb45a4-8ac6-46d1-9737-dba4e66ebb6a",
+        "outputPath": "/tmp/vflow-story-review/projects/video-18a868d8-976e-42dd-b84c-4ef186b9db0e/.vflow/renders/139be30c442c528f2e8cbb0d32c63e22be6d4a000bf00a82bbc24189eb9dc9fc/01fb45a4-8ac6-46d1-9737-dba4e66ebb6a.mp4",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration": 25,
+          "frames": 750,
+          "bytes": 1011280
+        },
+        "sha256": "3b1507fa1d89938a63e427ef33e488d43b11e29a6888e0103814a3d817e11fdb",
+        "frames": [
+          {
+            "at": 2.25,
+            "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-0.png"
+          },
+          {
+            "at": 6.4,
+            "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-1.png"
+          },
+          {
+            "at": 12.358333333333333,
+            "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-2.png"
+          },
+          {
+            "at": 18.791666666666668,
+            "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-3.png"
+          },
+          {
+            "at": 23.85,
+            "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-4.png"
+          }
+        ],
+        "retainedVideo": "out/story-planning/story-2.mp4"
+      }
+    ]
+  },
+  "providerEvidence": "Offline evidence-driven draft planning and Studio script revision. No model call or human film acceptance is claimed.",
+  "recovery": "Collected the same persisted batch after its initial HTTP connection closed; did not repeat the batch POST."
+}

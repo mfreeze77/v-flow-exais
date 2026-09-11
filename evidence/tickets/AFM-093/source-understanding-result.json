@@ -1,0 +1,187 @@
+{
+  "ticketId": "AFM-093",
+  "title": "AFM-093 — Integrate repository/PR evidence into review workflows",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "47ed783b411979a28ae315c485d4eb8aba736817",
+  "implemented": "Captured implementation and documentation evidence; JS/TS syntax observations, source-local calls/imports, API registration sites, model fields, declared entries; searchable Studio source review with line excerpts and uncertainty.",
+  "previousReceipt": "evidence/tickets/AFM-093/initial-source-intake-result.json",
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/parsers test src/repositorySyntax.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/source-understanding/parser.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-093.understanding.test.ts tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/source-understanding/acceptance.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{parsers,studio-server,studio}' typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/source-understanding/typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxlint packages/parsers/src/repositorySyntax.ts packages/studio-server/src/project/repositoryUnderstanding.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio/src/project/SourceReview.tsx packages/studio/src/project/ProjectLauncher.tsx",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/source-understanding/lint.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-source-review bun tools/vflow/verify-source-understanding.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/source-understanding/browser.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install fallow audit --base origin/main --fail-on-issues",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-093/source-understanding/fallow.log"
+    }
+  ],
+  "testSummary": {
+    "parser": 8,
+    "lint": "0 warnings and 0 errors",
+    "acceptance": 3,
+    "typecheckedPackages": [
+      "parsers",
+      "studio-server",
+      "studio"
+    ],
+    "browser": "Actual pinned Chromium, desktop 1440x1100 and mobile 390x844; source filtering, selection and matching route excerpt; no page errors or mobile overflow."
+  },
+  "browserEvidence": {
+    "source": "packages/studio-server",
+    "snapshotHash": "7cefffd1e0cc40a9d8e2a397f438d55b399186766b1b6a21fee9aea53c728070",
+    "elapsedMs": 15770,
+    "coverage": {
+      "capturedFiles": 61,
+      "parsedFiles": 58,
+      "documentedFiles": 0,
+      "unsupportedFiles": []
+    },
+    "observationCount": 568,
+    "relationships": {
+      "imports": 168,
+      "calls": 348,
+      "registers-handler": 0
+    },
+    "uncertaintyCount": 1692,
+    "reviewedApi": {
+      "id": "source-170a9dd12d510c2678f0234e",
+      "kind": "api",
+      "name": "POST /vflow/intakes",
+      "summary": "hono registration POST /vflow/intakes on api. Mount prefixes and deployment availability are unverified.",
+      "basis": "syntax",
+      "evidence": {
+        "path": "src/routes/projectCommands.ts",
+        "sha256": "5758263ecb882e656131ae999e20d2e59b0f9f79acb13bb2ced3b799f24e9712",
+        "bytes": 5169,
+        "startLine": 50,
+        "endLine": 54,
+        "text": "  api.post(\"/vflow/intakes\", async (c) => c.json(await service.intake(await c.req.json())));\n  api.get(\"/vflow/intakes/:id\", (c) => c.json(service.readIntake(c.req.param(\"id\"))));\n  api.post(\"/vflow/intakes/:id/accept\", async (c) => {\n    const body = await c.req.json();\n    return c.json({ projects: await service.acceptIntake(c.req.param(\"id\"), body.selected) });"
+      }
+    },
+    "excerpt": "50  api.post(\"/vflow/intakes\", async (c) => c.json(await service.intake(await c.req.json())));\n51  api.get(\"/vflow/intakes/:id\", (c) => c.json(service.readIntake(c.req.param(\"id\"))));\n52  api.post(\"/vflow/intakes/:id/accept\", async (c) => {\n53    const body = await c.req.json();\n54    return c.json({ projects: await service.acceptIntake(c.req.param(\"id\"), body.selected) });\n",
+    "mobileOverflow": false,
+    "errors": [],
+    "intakeArtifact": {
+      "path": "out/source-understanding/intake.json",
+      "sha256": "e3d900ccfbd47c7aed1f908b91a0d52517525397b844325a47256c7da12ee937"
+    }
+  },
+  "visualInspection": {
+    "inspected": true,
+    "artifacts": [
+      "source-understanding/desktop.png",
+      "source-understanding/mobile.png"
+    ],
+    "findings": "Readable source review and selected route excerpts at both widths. Long code lines scroll inside the excerpt; page does not overflow."
+  },
+  "broaderAudit": {
+    "inheritedFindingsExcluded": 131,
+    "deadCodeIssues": 37,
+    "cloneGroups": 28,
+    "changedFiles": 363,
+    "note": "Full audit is not passed. Internal unused sourceExcerpt export removed after audit; complexity remains.",
+    "complexityFindings": 206,
+    "status": "failed",
+    "newFindings": [
+      "repositorySyntax inspectRepositorySyntax and visitRoutes complexity",
+      "repositoryUnderstanding understandRepository and resolveCall complexity",
+      "SourceReview complexity"
+    ]
+  },
+  "remainingAcceptance": [
+    "Exact before/head revision pinning, PR input and removed-object-preserving architecture deltas.",
+    "Configured-agent factual proposal review, contradictory narration rejection and accepted command transaction.",
+    "Source/delta/build review bundle and finished useful change-review video.",
+    "Source understanding remains partial: other semantic languages, workspace aliases, re-export call targets, dynamic dispatch, inline API handlers and factual product-level synthesis.",
+    "Manifest video templates remain; source-based audience/purpose/count/length/storyboard planning and reviewed finished storytelling remain open.",
+    "Split and simplify the newly introduced analysis collectors; broader branch audit remains failed.",
+    "Full 28-area non-security product contract remains active; no product gate is newly passed."
+  ],
+  "artifacts": [
+    {
+      "bytes": 1422,
+      "path": "evidence/tickets/AFM-093/source-understanding/acceptance.log",
+      "sha256": "2ffa4e970e0bf1b4fd20ee61951c30f10fb6b0f047441d9d8c0901ecb7c55527"
+    },
+    {
+      "bytes": 1914,
+      "path": "evidence/tickets/AFM-093/source-understanding/browser-result.json",
+      "sha256": "5222865af54408de5dac8786fd355c0c3f611cdd6783ab8dadce492c8a370b3f"
+    },
+    {
+      "bytes": 1680,
+      "path": "evidence/tickets/AFM-093/source-understanding/browser.log",
+      "sha256": "71dd4d9a7db25eea8c16e6814503c24e5d3347db1cbcc3a89b30d243a0b0054d"
+    },
+    {
+      "bytes": 167858,
+      "path": "evidence/tickets/AFM-093/source-understanding/desktop.png",
+      "sha256": "1948f01c64f5c0d7bcf15f6ba83a5024f3003247842d8691c9348b7e41004a8e"
+    },
+    {
+      "bytes": 13305,
+      "path": "evidence/tickets/AFM-093/source-understanding/fallow-first.log",
+      "sha256": "9d069aa320a41ef4225f392a2e6e41f946689e1ec7103e073fb5d32fc9cc68a1"
+    },
+    {
+      "bytes": 41951,
+      "path": "evidence/tickets/AFM-093/source-understanding/fallow.log",
+      "sha256": "200de9b7c889b697c5dd1dfa826f5c135f7cfe6fd73e59b2d0621fede056cb91"
+    },
+    {
+      "bytes": 559,
+      "path": "evidence/tickets/AFM-093/source-understanding/lint.log",
+      "sha256": "f29a61dfefd3472841a7d9268c29b4277773bcaa7e12a69096dcfff62927fccf"
+    },
+    {
+      "bytes": 1602,
+      "path": "evidence/tickets/AFM-093/source-understanding/lintFailed.log",
+      "sha256": "36b20b6f4f725957a89cc9dec19bce6415aea0f4c2f2427f696fcfb93c64511d"
+    },
+    {
+      "bytes": 61275,
+      "path": "evidence/tickets/AFM-093/source-understanding/mobile.png",
+      "sha256": "fdba6ef4ba16026422693519e4390c644c2fdcee17b0404741045aee5fa78095"
+    },
+    {
+      "bytes": 768,
+      "path": "evidence/tickets/AFM-093/source-understanding/parser.log",
+      "sha256": "9ac6ee4a7b0cadccc810f6197946a8e8405b8a6da4fea658eed452ae18bb2c48"
+    },
+    {
+      "bytes": 423,
+      "path": "evidence/tickets/AFM-093/source-understanding/typecheck.log",
+      "sha256": "007a287f6ac6fc666e504ca23cb2d2d8d170d24f574472296826ed7ef10ceb38"
+    },
+    {
+      "bytes": 1257060,
+      "path": "out/source-understanding/intake.json",
+      "sha256": "e3d900ccfbd47c7aed1f908b91a0d52517525397b844325a47256c7da12ee937"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/source-understanding.md"
+}
