@@ -1,0 +1,9 @@
+Command: docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{parsers,studio-server,studio}' typecheck
+Exit code: 0
+
+ Container v-flow-exais-workspace-run-f1dc43621e39 Creating 
+ Container v-flow-exais-workspace-run-f1dc43621e39 Created 
+@hyperframes/parsers typecheck: Exited with code 0
+@hyperframes/studio-server typecheck: Exited with code 0
+@hyperframes/studio typecheck: Exited with code 0
+

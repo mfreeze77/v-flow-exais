@@ -1,0 +1,30 @@
+Command: docker-compose run --rm --no-deps -T workspace bunx --no-install oxlint packages/parsers/src/repositorySyntax.ts packages/studio-server/src/project/repositoryUnderstanding.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio/src/project/SourceReview.tsx packages/studio/src/project/ProjectLauncher.tsx
+Exit code: 1
+
+ Container v-flow-exais-workspace-run-9a89b7f59b52 Creating 
+ Container v-flow-exais-workspace-run-9a89b7f59b52 Created 
+
+  x eslint(no-control-regex): Unexpected control character
+     ,-[packages/studio-server/src/project/repositoryIntake.ts:293:19]
+ 292 |         .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
+ 293 |         .replace(/\u0001/g, ".*")
+     :                   ^^^|^^
+     :                      `-- 'U+0001' is a control character.
+ 294 |         .replace(/\u0002/g, "[^/]+");
+     `----
+  help: Avoid matching control characters in regular expressions. If intentional, consider using a Unicode escape instead.
+
+  x eslint(no-control-regex): Unexpected control character
+     ,-[packages/studio-server/src/project/repositoryIntake.ts:294:19]
+ 293 |         .replace(/\u0001/g, ".*")
+ 294 |         .replace(/\u0002/g, "[^/]+");
+     :                   ^^^|^^
+     :                      `-- 'U+0002' is a control character.
+ 295 |       return new RegExp(`^${expression.replace(/\/$/, "")}$`).test(dirname(path));
+     `----
+  help: Avoid matching control characters in regular expressions. If intentional, consider using a Unicode escape instead.
+
+Found 0 warnings and 2 errors.
+Finished in 142ms on 5 files with 88 rules using 28 threads.
+
+

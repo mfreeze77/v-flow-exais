@@ -1,0 +1,39 @@
+{
+  "ticketId": "AFM-093",
+  "title": "AFM-093 — Integrate repository/PR evidence into review workflows",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Local/public GitHub source snapshot intake with declared relationships, revision context and hashed citations.",
+  "remainingAcceptance": [
+    "Before/head and PR-delta review is not implemented."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/source-test.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run vflow plan --source https://github.com/mfreeze77/v-flow-exais",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/github-intake.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/source-test.log",
+      "type": "evidence",
+      "bytes": 768,
+      "sha256": "64754f1dc41b9cb5aa4dc38c3a721a6c54999b4d09ad307c60c9d461dbbb972f"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/github-intake.log",
+      "type": "evidence",
+      "bytes": 67615,
+      "sha256": "c864dfa46a15cf041ae14eb91642a884ce4d5020117756ed26463e096dcba76c"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}

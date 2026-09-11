@@ -1,0 +1,19 @@
+Command: docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-093.understanding.test.ts tests/acceptance/AFM-099.source.test.ts
+Exit code: 0
+
+ Container v-flow-exais-workspace-run-55388bf8fe4c Creating 
+ Container v-flow-exais-workspace-run-55388bf8fe4c Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-093.understanding.test.ts" "tests/acceptance/AFM-099.source.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-099.source.test.ts[2m > [22minspects a local project, reviews three plans, imports idempotently and builds real mixed compositions[33m 1670[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mcaptures implementation, APIs, models and workflow call evidence from actual files with exact immutable line citations[32m 25[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mresolves same-named exports by source module, preserves repeated call sites, and withholds shadowed/ambiguous relationships[32m 4[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m3 passed[39m[22m[90m (3)[39m
+[2m   Start at [22m 05:44:36
+[2m   Duration [22m 5.19s[2m (transform 2.40s, setup 0ms, import 3.27s, tests 1.70s, environment 0ms)[22m
+
+

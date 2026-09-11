@@ -1,0 +1,8 @@
+Command: docker-compose run --rm --no-deps -T workspace bunx --no-install oxlint packages/parsers/src/repositorySyntax.ts packages/studio-server/src/project/repositoryUnderstanding.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio/src/project/SourceReview.tsx packages/studio/src/project/ProjectLauncher.tsx
+Exit code: 0
+
+ Container v-flow-exais-workspace-run-be52c4dba398 Creating 
+ Container v-flow-exais-workspace-run-be52c4dba398 Created 
+Found 0 warnings and 0 errors.
+Finished in 84ms on 5 files with 88 rules using 28 threads.
+

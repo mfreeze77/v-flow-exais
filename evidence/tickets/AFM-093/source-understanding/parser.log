@@ -1,0 +1,17 @@
+Command: docker-compose run --rm --no-deps -T workspace bun run --cwd packages/parsers test src/repositorySyntax.test.ts
+Exit code: 0
+
+ Container v-flow-exais-workspace-run-6e2d11a440ae Creating 
+ Container v-flow-exais-workspace-run-6e2d11a440ae Created 
+$ vitest run src/repositorySyntax.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/packages/parsers[39m
+
+ [32m✓[39m src/repositorySyntax.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m8 passed[39m[22m[90m (8)[39m
+[2m   Start at [22m 05:44:36
+[2m   Duration [22m 1.35s[2m (transform 81ms, setup 0ms, import 129ms, tests 27ms, environment 1.07s)[22m
+
+

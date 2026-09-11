@@ -1,0 +1,244 @@
+Command: docker-compose run --rm --no-deps -T workspace bunx --no-install fallow audit --base origin/main --fail-on-issues
+Exit code: 1
+Capture note: tool output was truncated; this is the received output, not a complete audit log.
+
+ Container v-flow-exais-workspace-run-d68e8ad2694b Creating 
+ Container v-flow-exais-workspace-run-d68e8ad2694b Created 
+loaded config: /workspace/.fallowrc.jsonc
+Warning: truncated output (original token count: 11240)
+Total output lines: 975
+
+loaded config: /workspace/.fallowrc.jsonc
+[2m 118.437034550s[0m [33m WARN[0m 1 directory with package.json is not declared as a workspace: _sources/hyperframes-main. Add that path to package.json workspaces or pnpm-workspace.yaml if it should be analyzed as a workspace.
+[2m 120.161448735s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 120.329412492s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 120.329477101s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 120.392335697s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 120.398368428s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 120.428249964s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unresolved-imports"
+[2m 120.463087769s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unresolved-imports"
+[2m 120.540679591s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 120.608137473s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.608161848s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.608164171s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.608165170s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.608166001s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.608166812s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.608167631s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.673169153s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 120.735276117s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 120.738644978s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 120.751838284s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 120.756205438s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 120.756307032s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 120.787760932s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.787786228s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.787789105s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.787790605s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.787791914s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.787793264s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.787794740s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 120.833642860s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 120.964005058s[0m [33m WARN[0m Skipped 10 package.json entry points outside project root or containing parent directory traversal: ../docs, ../docs/guide.html, ../docs/start.html, ../examples, ../scripts/build-gallery.mjs (and 5 more)
+[2m 121.766687278s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 121.876485787s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 121.891975992s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 121.891999632s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 121.892002232s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 121.892003566s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 121.892004839s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 121.892006208s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 121.892007775s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unused-exports"
+[2m 121.961470264s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unresolved-imports"
+[2m 122.013743068s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 122.085245395s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 122.126696017s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 122.126814543s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 122.371282015s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"dead-code"
+[2m 124.912051854s[0m [33m WARN[0m Skipped 10 package.json entry points outside project root or containing parent directory traversal: ../docs, ../docs/guide.html, ../docs/start.html, ../examples, ../scripts/build-gallery.mjs (and 5 more)
+loaded config: /workspace/.fallowrc.jsonc
+loaded config: /workspace/.fallowrc.jsonc
+[2m 130.199542931s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 130.199605262s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_kind[0m[2m=[0m"unit-size"
+[2m 130.577129685s[0m [33m WARN[0m unknown fallow suppression issue kind [3missue_…8040 tokens truncated…
+    :305 renderParticipant
+           6 cyclomatic    5 cognitive   22 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/shared/render-cli.mjs
+    :6 runRenderer
+           6 cyclomatic    4 cognitive   24 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/shared/semantics.mjs
+    :52 validateGuidedViews
+           6 cyclomatic    4 cognitive   30 lines
+          42.0 CRAP
+    :84 svgRootAttrs
+           6 cyclomatic    5 cognitive   11 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :596 buildLayoutReport
+           6 cyclomatic    5 cognitive   32 lines
+          42.0 CRAP
+    :643 routeClearsEndpointComponents
+           6 cyclomatic    7 cognitive    9 lines
+          42.0 CRAP
+    :915 pathFor
+           6 cyclomatic    3 cognitive   23 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :410 captureBrandReference
+           6 cyclomatic    5 cognitive   15 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :402 bandTitles
+           6 cyclomatic    3 cognitive   11 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :114 authoredNodeHeight
+           5 cyclomatic    2 cognitive    4 lines
+          30.0 CRAP
+    :152 verticalIntervalsOverlap
+           5 cyclomatic    2 cognitive    6 lines
+          30.0 CRAP
+    :607 nodes
+           5 cyclomatic    3 cognitive    5 lines
+          30.0 CRAP
+    :941 measureNode
+           5 cyclomatic    4 cognitive   19 lines
+          30.0 CRAP
+    :973 workflowCompositionFrames
+           5 cyclomatic    6 cognitive   28 lines
+          30.0 CRAP
+    :1071 verifiedLegacyAlternative
+           5 cyclomatic    7 cognitive   17 lines
+          30.0 CRAP
+    :1158 labelsFit
+           5 cyclomatic    3 cognitive    5 lines
+          30.0 CRAP
+    :1283 verifiedPinRemovalAlternatives
+           5 cyclomatic    5 cognitive   22 lines
+          30.0 CRAP
+    :1330 refs
+           5 cyclomatic    3 cognitive    7 lines
+          30.0 CRAP
+    :1784 validateReadableRouteControls
+           5 cyclomatic    4 cognitive   18 lines
+          30.0 CRAP
+    :1838 corridorTopologyMatches
+           5 cyclomatic    3 cognitive   18 lines
+          30.0 CRAP
+    :2751 routeClearsUnrelatedNodes
+           5 cyclomatic    8 cognitive   12 lines
+          30.0 CRAP
+    :2941 <arrow>
+           5 cyclomatic    3 cognitive    8 lines
+          30.0 CRAP
+    :3168 automaticForwardReversePx
+           5 cyclomatic    2 cognitive    8 lines
+          30.0 CRAP
+    :4012 includePoint
+           5 cyclomatic    4 cognitive   18 lines
+          30.0 CRAP
+    :4215 renderEdgePath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+    :4308 labels
+           5 cyclomatic    3 cognitive    5 lines
+          30.0 CRAP
+  tests/acceptance/AFM-099.source.test.ts
+    :10 <arrow>
+           5 cyclomatic    4 cognitive  163 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :21 rectsOverlap
+           5 cyclomatic    2 cognitive   16 lines
+          30.0 CRAP
+    :873 <arrow>
+           5 cyclomatic    4 cognitive   27 lines
+          30.0 CRAP
+    :1122 anchor
+           5 cyclomatic    1 cognitive   10 lines
+          30.0 CRAP
+    :1304 roundedPath
+           5 cyclomatic    5 cognitive   26 lines
+          30.0 CRAP
+  tests/acceptance/AFM-093.understanding.test.ts
+    :73 <arrow>
+           5 cyclomatic    0 cognitive   28 lines
+          30.0 CRAP
+  packages/diagram-engine/src/compile.mjs
+    :80 diagnostics
+           5 cyclomatic    1 cognitive    1 lines
+          30.0 CRAP
+  packages/studio/src/project/SourceReview.tsx
+    :31 SourceReview
+           5 cyclomatic    4 cognitive  168 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/sequence/compile-sequence.mjs
+    :73 messageGeometry
+           5 cyclomatic    3 cognitive    9 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/semantics.mjs
+    :33 <arrow>
+           5 cyclomatic    3 cognitive    7 lines
+          30.0 CRAP
+  packages/studio/src/project/ProjectLauncher.tsx
+    :31 <arrow>
+           5 cyclomatic    3 cognitive    7 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :270 resolveBoundaryTitles
+           5 cyclomatic    5 cognitive   34 lines
+          30.0 CRAP
+    :630 routeClearsComponents
+           5 cyclomatic    8 cognitive   12 lines
+          30.0 CRAP
+    :954 renderConnectionPath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :151 resolveRequestTarget
+           5 cyclomatic    4 cognitive   12 lines
+          30.0 CRAP
+    :272 attribute
+           5 cyclomatic    2 cognitive    4 lines
+          30.0 CRAP
+    :494 <arrow>
+           5 cyclomatic    7 cognitive   12 lines
+          30.0 CRAP
+  packages/studio/src/project/BatchPanel.tsx
+    :11 refresh
+           5 cyclomatic    6 cognitive   11 lines
+          30.0 CRAP
+    :62 <arrow>
+           5 cyclomatic    4 cognitive   28 lines
+          30.0 CRAP
+    :5 BatchPanel
+           5 cyclomatic    4 cognitive   88 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :457 renderTransitionPath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+    :464 renderTransitionLabel
+           5 cyclomatic    4 cognitive   15 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/cli.mjs
+    :58 writeDiagram
+           5 cyclomatic    4 cognitive   18 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :391 renderFlowPath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+✗ 206 above threshold · 1515 analyzed (5.36s)
+    :422 renderLegend
+           5 cyclomatic    2 cognitive   20 lines
+          30.0 CRAP
+  Functions exceeding cyclomatic, cognitive, or CRAP thresholds (https://docs.fallow.tools/explanations/health#complexity-metrics)
+  To suppress: // fallow-ignore-next-line complexity
+
+✗ dead code: 37 issues · complexity: 206 findings · duplication: 28 clone groups · 354 changed files (152.84s)
+  audit gate excluded 131 inherited findings (run with --gate all to enforce)
+
+

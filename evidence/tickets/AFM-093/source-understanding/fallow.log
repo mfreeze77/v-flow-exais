@@ -1,0 +1,964 @@
+ Container v-flow-exais-workspace-run-37e7701c4ab8 Creating 
+ Container v-flow-exais-workspace-run-37e7701c4ab8 Created 
+loaded config: /workspace/.fallowrc.jsonc
+loaded config: /workspace/.fallowrc.jsonc
+  10.992310888s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  10.992380057s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  11.073740192s  WARN 1 directory with package.json is not declared as a workspace: _sources/hyperframes-main. Add that path to package.json workspaces or pnpm-workspace.yaml if it should be analyzed as a workspace.
+  11.077576717s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  11.278985669s  WARN unknown fallow suppression issue kind issue_kind="unresolved-imports"
+  11.365879934s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  11.398237890s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  11.455873008s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  11.465233862s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.465256127s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.465258919s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.465260402s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.465261839s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.465263285s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.465264739s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.467975077s  WARN unknown fallow suppression issue kind issue_kind="unresolved-imports"
+  11.468415200s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  11.509063683s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  11.551181815s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.551205670s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.551208537s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.551209724s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.551210705s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.551211728s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.551212694s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  11.652649879s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  11.760197206s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  11.760353732s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  11.784807923s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  11.811661853s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  12.032897924s  WARN Skipped 10 package.json entry points outside project root or containing parent directory traversal: ../docs, ../docs/guide.html, ../docs/start.html, ../examples, ../scripts/build-gallery.mjs (and 5 more)
+  14.901839575s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  17.905693204s  WARN Skipped 10 package.json entry points outside project root or containing parent directory traversal: ../docs, ../docs/guide.html, ../docs/start.html, ../examples, ../scripts/build-gallery.mjs (and 5 more)
+loaded config: /workspace/.fallowrc.jsonc
+loaded config: /workspace/.fallowrc.jsonc
+  23.853813623s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  23.853876424s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  24.231371247s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  24.336281228s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  24.336311229s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  24.336314578s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  24.336316493s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  24.336318248s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  24.336320053s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  24.336321817s  WARN unknown fallow suppression issue kind issue_kind="unused-exports"
+  24.345000102s  WARN unknown fallow suppression issue kind issue_kind="unresolved-imports"
+  24.545942350s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+  24.773901355s  WARN unknown fallow suppression issue kind issue_kind="unit-size"
+  24.972076007s  WARN unknown fallow suppression issue kind issue_kind="dead-code"
+loaded config: /workspace/.fallowrc.jsonc
+
+Audit scope: 363 changed files vs origin/main (291ef03..HEAD)
+
+── Dead Code ──────────────────────────────────────
+
+✗ 21 files · 4 exports · 2 unused dependencies · 3 class members · 1 circular dependency (18.64s)
+  37 issues · 29 suppressed · 0 stale suppressions
+
+── Duplication ────────────────────────────────────
+
+✗ 741 lines (0.1%) duplicated across 10 files (17.72s)
+
+── Complexity ─────────────────────────────────────
+
+── Unused Code ─────────────────────────────────────
+
+● Unused files (21)
+  packages/diagram-engine/renderers/architecture/render-architecture.mjs
+  packages/diagram-engine/renderers/dataflow/render-dataflow.mjs
+  packages/diagram-engine/renderers/lifecycle/render-lifecycle.mjs
+  packages/diagram-engine/renderers/sequence/render-sequence.mjs
+  packages/diagram-engine/renderers/shared/cli.mjs
+  packages/diagram-engine/renderers/shared/render-cli.mjs
+  packages/diagram-engine/renderers/workflow/render-workflow.mjs
+  packages/project-model/src/project.test.ts
+  packages/project-model/src/storage/revisions.test.ts
+  packages/project-model/src/test-fixture.ts
+  ... and 11 more (--format json for full list)
+  Files not reachable from any entry point — https://docs.fallow.tools/explanations/dead-code#unused-files
+  To suppress: // fallow-ignore-next-line unused-files
+
+● Unused exports (4)
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :61 findBrandMark
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :1386 formatRect
+  packages/studio-server/src/project/repositoryIntake.ts
+    :63 digest
+  packages/studio-server/src/project/repositoryUnderstanding.ts
+    :49 sourceExcerpt
+  Exported symbols with no known consumers — https://docs.fallow.tools/explanations/dead-code#unused-exports
+  To auto-fix: fallow fix --dry-run
+  To suppress: // fallow-ignore-next-line unused-exports
+  (6 more in files already reported as unused)
+
+● Unused class members (3)
+  packages/project-model/src/commands.ts
+    :107 RevisionConflict.code
+  packages/project-model/src/diagnostics.ts
+    :12 ProjectValidationError.code
+  packages/studio-server/src/project/projectService.ts
+    :42 UnifiedProjectService.roots
+  Class methods or properties never referenced outside their class — https://docs.fallow.tools/explanations/dead-code#unused-class-members
+  To suppress: // fallow-ignore-next-line unused-class-members
+
+── Dependencies ─────────────────────────────────────
+
+● Unused dependencies (2)
+  @hyperframes/diagram-viewer (packages/diagram-engine/package.json)
+  @hyperframes/diagram-engine (packages/studio-server/package.json; imported in packages/diagram-motion)
+  Listed in dependencies but never imported — https://docs.fallow.tools/explanations/dead-code#unused-dependencies
+
+── Structure ─────────────────────────────────────
+
+● Circular dependencies (1)
+  packages/project-model/src/storage/commit.ts
+    → worker.mjs → commit.ts
+
+  Import cycles that can cause initialization failures and prevent tree-shaking — https://docs.fallow.tools/explanations/dead-code#circular-dependencies
+
+● Duplicates (28 clone groups)
+
+    122 lines  2 instances
+    tools/vflow/verify-batch-browser.ts:11-115
+    tools/vflow/verify-edit-render.ts:74-195
+
+     28 lines  2 instances
+    packages/diagram-engine/renderers/shared/geometry.mjs:1071-1091
+    packages/diagram-engine/scripts/check-render-output.mjs:746-773
+
+     20 lines  2 instances
+    packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs:6-25
+    packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs:6-25
+
+     18 lines  2 instances
+    packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs:250-267
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:2449-2466
+
+     17 lines  2 instances
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:400-413
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:422-438
+
+     15 lines  2 instances
+    packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs:137-151
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:2263-2275
+
+     15 lines  2 instances
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:2998-3012
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:3026-3040
+
+     13 lines  2 instances
+    packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs:255-267
+    packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs:294-306
+
+     13 lines  2 instances
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:2100-2110
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:2111-2123
+
+     12 lines  2 instances
+    packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs:385-396
+    packages/diagram-engine/renderers/workflow/workflow-compiler.mjs:4209-4220
+
+  ... and 18 more clone groups
+  Identical code blocks detected via suffix-array analysis — https://docs.fallow.tools/explanations/duplication#clone-groups
+
+● Clone families (5 with multiple groups)
+
+  8 groups, 81 lines across packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    → Extract 8 shared clone groups (81 lines) from workflow-compiler.mjs into packages/diagram-engine/renderers/workflow
+
+  4 groups, 55 lines across packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs, packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    → Extract 4 shared clone groups (55 lines) from compile-dataflow.mjs, workflow-compiler.mjs into a shared directory
+
+  4 groups, 47 lines across packages/diagram-engine/renderers/shared/geometry.mjs, packages/diagram-engine/scripts/check-render-output.mjs
+    → Extract shared function (6 lines) from geometry.mjs, check-render-output.mjs
+    → Extract shared function (28 lines) from geometry.mjs, check-render-output.mjs
+    → Extract shared function (7 lines) from geometry.mjs, check-render-output.mjs
+    → Extract shared function (6 lines) from geometry.mjs, check-render-output.mjs
+
+  3 groups, 39 lines across packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs, packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    → Extract shared function (6 lines) from compile-dataflow.mjs, compile-lifecycle.mjs
+    → Extract shared function (20 lines) from compile-dataflow.mjs, compile-lifecycle.mjs
+    → Extract shared function (13 lines) from compile-dataflow.mjs, compile-lifecycle.mjs
+
+  4 groups, 29 lines across packages/diagram-engine/renderers/shared/geometry.mjs
+    → Extract shared function (6 lines) from geometry.mjs, geometry.mjs
+    → Extract shared function (9 lines) from geometry.mjs, geometry.mjs
+    → Extract shared function (8 lines) from geometry.mjs, geometry.mjs
+    → Extract shared function (6 lines) from geometry.mjs, geometry.mjs
+
+  Groups of related clones across the same files — https://docs.fallow.tools/explanations/duplication#clone-families
+
+■ Metrics: 18,428 LOC · dead files 26.9% · dead exports 3.6% · avg cyclomatic 3.4 · p90 cyclomatic 7 · maintainability 82.4 (moderate) · 1 circular dep · 2 unused deps
+
+  Function size: 82% low · 9% medium · 5% high · 4% very high  (1-15 / 16-30 / 31-60 / >60 LOC)
+  Parameters:    93% low · 5% medium · 1% high · 0% very high  (0-2 / 3-4 / 5-6 / >=7 params)
+
+● Large functions (10 shown, 59 total)
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :755 compileWorkflowInternal  3567 lines
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :50 compileArchitecture  1008 lines
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :40 compileLifecycle  509 lines
+  packages/diagram-engine/renderers/sequence/compile-sequence.mjs
+    :15 compileSequence  437 lines
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :42 compileDataflow  429 lines
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :159 createReadableLayout  409 lines
+  packages/studio/src/project/ProjectWorkspace.tsx
+    :75 ProjectWorkspace  381 lines
+  packages/studio/vite.adapter.ts
+    :99 createViteAdapter  361 lines
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :2190 validateWorkflow  301 lines
+  packages/studio/src/project/ProjectLauncher.tsx
+    :7 ProjectLauncher  279 lines
+  Functions exceeding 60 lines of code (very high risk): https://docs.fallow.tools/explanations/health#unit-size
+  use --top 59 to see all
+
+● High complexity functions (206)
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :159 createReadableLayout CRITICAL
+         142 cyclomatic  200 cognitive  409 lines
+         20306.0 CRAP
+    :2190 validateWorkflow CRITICAL
+          96 cyclomatic  143 cognitive  301 lines
+         9312.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :327 validateArchitecture CRITICAL
+          80 cyclomatic  125 cognitive  268 lines
+         6480.0 CRAP
+  packages/parsers/src/repositorySyntax.ts
+    :61 inspectRepositorySyntax CRITICAL
+          67 cyclomatic   94 cognitive  270 lines
+          82.2 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1914 validateReadablePinnedGeometry CRITICAL
+          62 cyclomatic  137 cognitive  275 lines
+         3906.0 CRAP
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :111 validateDataflow CRITICAL
+          52 cyclomatic   80 cognitive  177 lines
+         2756.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :134 validateLifecycle CRITICAL
+          52 cyclomatic   75 cognitive  187 lines
+         2756.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :3287 readableAutomaticVia CRITICAL
+          45 cyclomatic   89 cognitive  176 lines
+         2070.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :801 routeVia CRITICAL
+          43 cyclomatic   53 cognitive   96 lines
+         1892.0 CRAP
+  packages/studio-server/src/project/repositoryUnderstanding.ts
+    :65 understandRepository CRITICAL
+          42 cyclomatic  106 cognitive  263 lines
+          48.0 CRAP
+  packages/diagram-engine/renderers/sequence/compile-sequence.mjs
+    :141 validateSequence CRITICAL
+          41 cyclomatic   58 cognitive  163 lines
+         1722.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :3664 readableAutomaticRoute CRITICAL
+          41 cyclomatic   48 cognitive  143 lines
+         1722.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :740 alignFacingPorts CRITICAL
+          37 cyclomatic   29 cognitive   60 lines
+         1406.0 CRAP
+  packages/cli/src/commands/project.ts
+    :48 run CRITICAL
+          36 cyclomatic   50 cognitive  144 lines
+         315.9 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :755 compileWorkflowInternal CRITICAL
+          36 cyclomatic   27 cognitive  3567 lines
+         1332.0 CRAP
+  packages/parsers/src/repositorySyntax.ts
+    :268 visitRoutes CRITICAL
+          33 cyclomatic   44 cognitive   60 lines
+         268.2 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :80 ipv4Private CRITICAL
+          32 cyclomatic   14 cognitive   15 lines
+         1056.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :2835 readableAutomaticSides CRITICAL
+          32 cyclomatic   35 cognitive   86 lines
+         1056.0 CRAP
+  packages/studio-server/src/project/repositoryIntake.ts
+    :176 inspectRepository CRITICAL
+          31 cyclomatic   40 cognitive  144 lines
+         238.6 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :266 cleanEndpointSideProblems CRITICAL
+          30 cyclomatic   49 cognitive   69 lines
+         930.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :3545 routeVia CRITICAL
+          30 cyclomatic   28 cognitive   60 lines
+         930.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :307 imageData CRITICAL
+          29 cyclomatic   14 cognitive   42 lines
+         870.0 CRAP
+  packages/project-model/src/storage/commit.ts
+    :74 commitWhileLocked HIGH
+          29 cyclomatic   27 cognitive   83 lines
+          31.8 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :3817 readableControlledRoute CRITICAL
+          28 cyclomatic   30 cognitive  113 lines
+         812.0 CRAP
+    :4001 measuredContentBounds CRITICAL
+          28 cyclomatic   28 cognitive   86 lines
+         812.0 CRAP
+  packages/studio/src/project/ProjectWorkspace.tsx
+    :75 ProjectWorkspace CRITICAL
+          28 cyclomatic   27 cognitive  381 lines
+         812.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :2492 validateReadableInputsBeforeRouting CRITICAL
+          26 cyclomatic   42 cognitive  214 lines
+         702.0 CRAP
+  packages/project-model/src/commands.ts
+    :37 assertOperation CRITICAL
+          26 cyclomatic   24 cognitive   42 lines
+         172.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :108 collectLabelRouteClearance CRITICAL
+          25 cyclomatic   33 cognitive   62 lines
+         650.0 CRAP
+  packages/diagram-engine/src/compile.mjs
+    :26 <arrow> CRITICAL
+          25 cyclomatic   24 cognitive   59 lines
+         650.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :322 routeVia CRITICAL
+          24 cyclomatic   22 cognitive   42 lines
+         600.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1638 validateReadablePairwisePinConflicts CRITICAL
+          24 cyclomatic   44 cognitive  132 lines
+         600.0 CRAP
+  packages/studio-server/src/project/projectBatch.ts
+    :173 <arrow> CRITICAL
+          24 cyclomatic   36 cognitive  107 lines
+         148.4 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :1215 automaticPortSpread CRITICAL
+          23 cyclomatic   28 cognitive   59 lines
+         552.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1817 endpointSideIsHonored CRITICAL
+          23 cyclomatic   25 cognitive   20 lines
+         552.0 CRAP
+    :638 semanticContractDiagnostics CRITICAL
+          21 cyclomatic   30 cognitive  116 lines
+         462.0 CRAP
+    :4344 compileWorkflowWithFeedback CRITICAL
+          21 cyclomatic   26 cognitive   55 lines
+         462.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :341 cleanFlowProblems CRITICAL
+          19 cyclomatic   34 cognitive   60 lines
+         380.0 CRAP
+  packages/project-model/src/project.ts
+    :85 documentProblems HIGH
+          19 cyclomatic   36 cognitive   92 lines
+          97.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1175 enforceLegacyColumnCapacity CRITICAL
+          18 cyclomatic   22 cognitive   54 lines
+         342.0 CRAP
+  packages/project-model/src/commands.ts
+    :118 applyProjectCommand CRITICAL
+          18 cyclomatic   47 cognitive   58 lines
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1002 workflowSceneLabelObstacles CRITICAL
+          18 cyclomatic   13 cognitive   45 lines
+         342.0 CRAP
+    :3931 pathFor CRITICAL
+          18 cyclomatic   12 cognitive   52 lines
+         342.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :1144 automaticPortRhythmBridge CRITICAL
+          17 cyclomatic   13 cognitive   67 lines
+         306.0 CRAP
+    :76 segmentRectIntersectionLength CRITICAL
+          16 cyclomatic   19 cognitive   31 lines
+         272.0 CRAP
+    :759 routeBudgetMetrics CRITICAL
+          16 cyclomatic   39 cognitive   63 lines
+         272.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1313 authoredRouteAssertionFields CRITICAL
+          16 cyclomatic    9 cognitive   10 lines
+         272.0 CRAP
+    :2813 legacyAutomaticOneBendSides CRITICAL
+          16 cyclomatic   13 cognitive   21 lines
+         272.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :232 readLimited CRITICAL
+          15 cyclomatic   17 cognitive   39 lines
+         240.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1857 routeMatchesPresetFamily CRITICAL
+          15 cyclomatic   19 cognitive   42 lines
+         240.0 CRAP
+    :123 readableGroupBounds CRITICAL
+          15 cyclomatic    8 cognitive   28 lines
+         240.0 CRAP
+    :3464 readablePresetVia CRITICAL
+          15 cyclomatic   11 cognitive   80 lines
+         240.0 CRAP
+  packages/studio-server/src/project/localApiPolicy.ts
+    :5 <arrow> HIGH
+          15 cyclomatic   13 cognitive   35 lines
+          63.6 CRAP
+  packages/studio-server/src/project/projectBatch.ts
+    :32 probeVideo HIGH
+          14 cyclomatic    7 cognitive   38 lines
+          56.3 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :96 ipv6Private CRITICAL
+          14 cyclomatic    9 cognitive   22 lines
+         210.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :100 measureState CRITICAL
+          13 cyclomatic   16 cognitive   22 lines
+         182.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :460 <arrow> CRITICAL
+          13 cyclomatic   19 cognitive   33 lines
+         182.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :672 collectBorderRuns CRITICAL
+          13 cyclomatic   26 cognitive   43 lines
+         182.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :3019 routeClearsPlacedLabels CRITICAL
+          13 cyclomatic   24 cognitive   27 lines
+         182.0 CRAP
+  packages/diagram-motion/src/compiler.ts
+    :103 compileProject HIGH
+          13 cyclomatic   26 cognitive   97 lines
+  packages/studio-server/src/routes/projectCommands.ts
+    :29 <arrow>
+          13 cyclomatic    7 cognitive   19 lines
+          49.5 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :495 groupLaneReserves CRITICAL
+          13 cyclomatic   13 cognitive   29 lines
+         182.0 CRAP
+    :1095 <arrow> CRITICAL
+          13 cyclomatic    8 cognitive   49 lines
+         182.0 CRAP
+    :3606 workflowEdgeLabelPoint CRITICAL
+          13 cyclomatic   12 cognitive   34 lines
+         182.0 CRAP
+  packages/diagram-engine/renderers/shared/diagnostics.mjs
+    :16 normalizedDiagnostic CRITICAL
+          13 cyclomatic    5 cognitive   16 lines
+         182.0 CRAP
+    :82 fallbackDiagnostic CRITICAL
+          13 cyclomatic    6 cognitive   31 lines
+         182.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :729 <arrow> CRITICAL
+          13 cyclomatic    4 cognitive   28 lines
+         182.0 CRAP
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :289 routeVia CRITICAL
+          13 cyclomatic   10 cognitive   25 lines
+         182.0 CRAP
+  packages/project-model/src/project.ts
+    :178 sceneProblems
+          12 cyclomatic   21 cognitive   62 lines
+          43.1 CRAP
+  packages/studio-server/src/project/repositoryUnderstanding.ts
+    :203 resolveCall
+          12 cyclomatic   11 cognitive   20 lines
+          43.1 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1486 properOrthogonalIntersection CRITICAL
+          12 cyclomatic   10 cognitive   18 lines
+         156.0 CRAP
+    :1531 throwReadableLabelRoutePinConflict CRITICAL
+          12 cyclomatic    7 cognitive   36 lines
+         156.0 CRAP
+    :3095 readableCandidateIsFeasible CRITICAL
+          12 cyclomatic    1 cognitive   14 lines
+         156.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :1045 collinearAxisOverlap CRITICAL
+          12 cyclomatic    9 cognitive   20 lines
+         156.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :124 validateUrlShape CRITICAL
+          12 cyclomatic    9 cognitive   13 lines
+         156.0 CRAP
+    :350 captureRemoteBrand CRITICAL
+          12 cyclomatic   10 cognitive   59 lines
+         156.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :425 renderState CRITICAL
+          12 cyclomatic   12 cognitive   31 lines
+         156.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :571 collectAmbiguousCorridors CRITICAL
+          11 cyclomatic   28 cognitive   51 lines
+         132.0 CRAP
+    :823 collectRouteRhythmIssues CRITICAL
+          11 cyclomatic   22 cognitive   35 lines
+         132.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :2764 firstRouteNodeCollision CRITICAL
+          11 cyclomatic   22 cognitive   26 lines
+         132.0 CRAP
+    :4088 finalizeReadableViewBox CRITICAL
+          11 cyclomatic   10 cognitive   66 lines
+         132.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :55 segmentRectClearance CRITICAL
+          11 cyclomatic    8 cognitive   20 lines
+         132.0 CRAP
+    :1002 frameBorderSegments CRITICAL
+          11 cyclomatic   10 cognitive   20 lines
+         132.0 CRAP
+  packages/studio/src/project/ProjectLauncher.tsx
+    :7 ProjectLauncher CRITICAL
+          11 cyclomatic    9 cognitive  279 lines
+         132.0 CRAP
+  packages/parsers/src/repositorySyntax.ts
+    :41 nameOf
+          11 cyclomatic    7 cognitive    9 lines
+          37.1 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :380 pathFor CRITICAL
+          11 cyclomatic    6 cognitive   21 lines
+         132.0 CRAP
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :330 pathFor CRITICAL
+          11 cyclomatic    8 cognitive   27 lines
+         132.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :485 cleanCrossingProblems CRITICAL
+          10 cyclomatic   26 cognitive   80 lines
+         110.0 CRAP
+  packages/diagram-motion/src/namespaceSvg.ts
+    :33 <arrow>
+          10 cyclomatic   16 cognitive   22 lines
+          31.6 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1436 throwExplicitPinConflict CRITICAL
+          10 cyclomatic    5 cognitive   24 lines
+         110.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :110 routeCandidates CRITICAL
+          10 cyclomatic    5 cognitive   10 lines
+         110.0 CRAP
+    :177 sameRelationship CRITICAL
+          10 cyclomatic    6 cognitive    6 lines
+         110.0 CRAP
+    :226 endpointSideIssue CRITICAL
+          10 cyclomatic    9 cognitive   24 lines
+         110.0 CRAP
+    :1093 segmentsIntersect CRITICAL
+          10 cyclomatic    9 cognitive   13 lines
+         110.0 CRAP
+    :1247 <arrow> CRITICAL
+          10 cyclomatic   10 cognitive    8 lines
+         110.0 CRAP
+  packages/diagram-engine/renderers/sequence/compile-sequence.mjs
+    :15 compileSequence CRITICAL
+          10 cyclomatic    7 cognitive  437 lines
+         110.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :50 compileArchitecture CRITICAL
+          10 cyclomatic    9 cognitive  1008 lines
+         110.0 CRAP
+  packages/parsers/src/repositorySyntax.ts
+    :30 walk
+          10 cyclomatic   10 cognitive   10 lines
+          31.6 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1590 classifyFailedAutomaticCandidatePins HIGH
+           9 cyclomatic   14 cognitive   47 lines
+          90.0 CRAP
+    :2791 oneBendCrossLaneVia HIGH
+           9 cyclomatic    8 cognitive   18 lines
+          90.0 CRAP
+    :4190 renderNode HIGH
+           9 cyclomatic    8 cognitive   24 lines
+          90.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :497 routed HIGH
+           9 cyclomatic    6 cognitive   14 lines
+          90.0 CRAP
+    :916 <arrow> HIGH
+           9 cyclomatic    2 cognitive   29 lines
+          90.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :673 sideAwareBridgeCandidates HIGH
+           9 cyclomatic    8 cognitive   51 lines
+          90.0 CRAP
+    :971 renderComponent HIGH
+           9 cyclomatic    8 cognitive   23 lines
+          90.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :277 iconCandidates HIGH
+           9 cyclomatic   14 cognitive   29 lines
+          90.0 CRAP
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :365 renderNode HIGH
+           9 cyclomatic    8 cognitive   25 lines
+          90.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :2991 labelRouteClearanceDeficit HIGH
+           8 cyclomatic   19 cognitive   27 lines
+          72.0 CRAP
+    :1146 verifiedReducedWidths HIGH
+           8 cyclomatic    7 cognitive   28 lines
+          72.0 CRAP
+    :3122 axisOverlapLength HIGH
+           8 cyclomatic    5 cognitive   12 lines
+          72.0 CRAP
+    :3641 edgeSides HIGH
+           8 cyclomatic    5 cognitive   18 lines
+          72.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :575 routed HIGH
+           8 cyclomatic    4 cognitive   11 lines
+          72.0 CRAP
+    :679 <arrow> HIGH
+           8 cyclomatic    1 cognitive    4 lines
+          72.0 CRAP
+    :954 <arrow> HIGH
+           8 cyclomatic    5 cognitive    5 lines
+          72.0 CRAP
+    :967 normalizeRoutePoints HIGH
+           8 cyclomatic    8 cognitive   14 lines
+          72.0 CRAP
+    :1333 labelPoint HIGH
+           8 cyclomatic    7 cognitive   13 lines
+          72.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :40 compileLifecycle HIGH
+           8 cyclomatic    9 cognitive  509 lines
+          72.0 CRAP
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :42 compileDataflow HIGH
+           8 cyclomatic    9 cognitive  429 lines
+          72.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :1328 verifiedPinReferenceAlternatives HIGH
+           7 cyclomatic   13 cognitive   62 lines
+          56.0 CRAP
+    :1467 presentRouteGeometryFields HIGH
+           7 cyclomatic    3 cognitive    7 lines
+          56.0 CRAP
+    :3047 routeClearsLegend HIGH
+           7 cyclomatic   10 cognitive   12 lines
+          56.0 CRAP
+    :3135 properAxisCrossing HIGH
+           7 cyclomatic    4 cognitive   13 lines
+          56.0 CRAP
+    :3223 compareCost HIGH
+           7 cyclomatic    7 cognitive    8 lines
+          56.0 CRAP
+  packages/diagram-engine/renderers/shared/diagnostics.mjs
+    :33 recordDiagnostic HIGH
+           7 cyclomatic    8 cognitive   14 lines
+          56.0 CRAP
+    :113 rendererFailure HIGH
+           7 cyclomatic    5 cognitive   13 lines
+          56.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :171 relationshipIdentity HIGH
+           7 cyclomatic    4 cognitive    5 lines
+          56.0 CRAP
+    :184 relationshipSubject HIGH
+           7 cyclomatic    3 cognitive   10 lines
+          56.0 CRAP
+    :449 segmentsContinueForward HIGH
+           7 cyclomatic    6 cognitive   17 lines
+          56.0 CRAP
+    :467 pointLiesOnSegment HIGH
+           7 cyclomatic    4 cognitive   13 lines
+          56.0 CRAP
+    :917 describe HIGH
+           7 cyclomatic    2 cognitive    5 lines
+          56.0 CRAP
+  packages/diagram-engine/renderers/sequence/compile-sequence.mjs
+    :353 messageLabel HIGH
+           7 cyclomatic    8 cognitive   17 lines
+          56.0 CRAP
+    :371 renderMessage HIGH
+           7 cyclomatic    5 cognitive   13 lines
+          56.0 CRAP
+  packages/diagram-engine/renderers/shared/semantics.mjs
+    :146 focusEdgeAttrs HIGH
+           7 cyclomatic    5 cognitive    8 lines
+          56.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :728 portHasCornerClearance HIGH
+           7 cyclomatic    6 cognitive   11 lines
+          56.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :210 checkedFetch HIGH
+           7 cyclomatic   11 cognitive   21 lines
+          56.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :313 orderedConstraints
+           6 cyclomatic    1 cognitive    5 lines
+          42.0 CRAP
+    :612 edges
+           6 cyclomatic    1 cognitive    8 lines
+          42.0 CRAP
+    :624 groups
+           6 cyclomatic    3 cognitive    5 lines
+          42.0 CRAP
+    :604 canonicalReadableWorkflow
+           6 cyclomatic    5 cognitive   33 lines
+          42.0 CRAP
+    :726 reachable
+           6 cyclomatic    9 cognitive   14 lines
+          42.0 CRAP
+    :1399 verifiedLabelRoutePinAlternatives
+           6 cyclomatic    3 cognitive   17 lines
+          42.0 CRAP
+    :1461 hasAbsoluteRoutePins
+           6 cyclomatic    1 cognitive    5 lines
+          42.0 CRAP
+    :1901 <arrow>
+           6 cyclomatic    3 cognitive   11 lines
+          42.0 CRAP
+    :2951 routeClearsEndpointNodes
+           6 cyclomatic    7 cognitive    9 lines
+          42.0 CRAP
+    :3060 routeClearsSceneLabelObstacles
+           6 cyclomatic    9 cognitive   12 lines
+          42.0 CRAP
+    :3149 routeInteractionMetrics
+           6 cyclomatic   12 cognitive   18 lines
+          42.0 CRAP
+    :3765 <arrow>
+           6 cyclomatic    3 cognitive    5 lines
+          42.0 CRAP
+    :3808 isReadableControlledRoute
+           6 cyclomatic    3 cognitive    8 lines
+          42.0 CRAP
+    :3834 sidePairs
+           6 cyclomatic    5 cognitive    8 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :38 segmentIntersectsRect
+           6 cyclomatic    3 cognitive   16 lines
+          42.0 CRAP
+    :409 forwardCollinearAnalysisSegments
+           6 cyclomatic    8 cognitive   23 lines
+          42.0 CRAP
+    :433 sourceSegmentIndexAtPoint
+           6 cyclomatic    1 cognitive    6 lines
+          42.0 CRAP
+    :1023 mergeBorderOverlaps
+           6 cyclomatic    7 cognitive   21 lines
+          42.0 CRAP
+  packages/diagram-engine/src/compile.mjs
+    :43 resolveAsset
+           6 cyclomatic    5 cognitive    7 lines
+          42.0 CRAP
+    :65 relationships
+           6 cyclomatic    5 cognitive    6 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/sequence/compile-sequence.mjs
+    :305 renderParticipant
+           6 cyclomatic    5 cognitive   22 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/shared/render-cli.mjs
+    :6 runRenderer
+           6 cyclomatic    4 cognitive   24 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/shared/semantics.mjs
+    :52 validateGuidedViews
+           6 cyclomatic    4 cognitive   30 lines
+          42.0 CRAP
+    :84 svgRootAttrs
+           6 cyclomatic    5 cognitive   11 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :596 buildLayoutReport
+           6 cyclomatic    5 cognitive   32 lines
+          42.0 CRAP
+    :643 routeClearsEndpointComponents
+           6 cyclomatic    7 cognitive    9 lines
+          42.0 CRAP
+    :915 pathFor
+           6 cyclomatic    3 cognitive   23 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :410 captureBrandReference
+           6 cyclomatic    5 cognitive   15 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :402 bandTitles
+           6 cyclomatic    3 cognitive   11 lines
+          42.0 CRAP
+  packages/diagram-engine/renderers/workflow/workflow-compiler.mjs
+    :114 authoredNodeHeight
+           5 cyclomatic    2 cognitive    4 lines
+          30.0 CRAP
+    :152 verticalIntervalsOverlap
+           5 cyclomatic    2 cognitive    6 lines
+          30.0 CRAP
+    :607 nodes
+           5 cyclomatic    3 cognitive    5 lines
+          30.0 CRAP
+    :941 measureNode
+           5 cyclomatic    4 cognitive   19 lines
+          30.0 CRAP
+    :973 workflowCompositionFrames
+           5 cyclomatic    6 cognitive   28 lines
+          30.0 CRAP
+    :1071 verifiedLegacyAlternative
+           5 cyclomatic    7 cognitive   17 lines
+          30.0 CRAP
+    :1158 labelsFit
+           5 cyclomatic    3 cognitive    5 lines
+          30.0 CRAP
+    :1283 verifiedPinRemovalAlternatives
+           5 cyclomatic    5 cognitive   22 lines
+          30.0 CRAP
+    :1330 refs
+           5 cyclomatic    3 cognitive    7 lines
+          30.0 CRAP
+    :1784 validateReadableRouteControls
+           5 cyclomatic    4 cognitive   18 lines
+          30.0 CRAP
+    :1838 corridorTopologyMatches
+           5 cyclomatic    3 cognitive   18 lines
+          30.0 CRAP
+    :2751 routeClearsUnrelatedNodes
+           5 cyclomatic    8 cognitive   12 lines
+          30.0 CRAP
+    :2941 <arrow>
+           5 cyclomatic    3 cognitive    8 lines
+          30.0 CRAP
+    :3168 automaticForwardReversePx
+           5 cyclomatic    2 cognitive    8 lines
+          30.0 CRAP
+    :4012 includePoint
+✗ 206 above threshold · 1515 analyzed (5.03s)
+✗ dead code: 37 issues · complexity: 206 findings · duplication: 28 clone groups · 363 changed files (46.56s)
+  audit gate excluded 131 inherited findings (run with --gate all to enforce)
+           5 cyclomatic    4 cognitive   18 lines
+          30.0 CRAP
+    :4215 renderEdgePath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+    :4308 labels
+           5 cyclomatic    3 cognitive    5 lines
+          30.0 CRAP
+  tests/acceptance/AFM-099.source.test.ts
+    :10 <arrow>
+           5 cyclomatic    4 cognitive  163 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/geometry.mjs
+    :21 rectsOverlap
+           5 cyclomatic    2 cognitive   16 lines
+          30.0 CRAP
+    :873 <arrow>
+           5 cyclomatic    4 cognitive   27 lines
+          30.0 CRAP
+    :1122 anchor
+           5 cyclomatic    1 cognitive   10 lines
+          30.0 CRAP
+    :1304 roundedPath
+           5 cyclomatic    5 cognitive   26 lines
+          30.0 CRAP
+  tests/acceptance/AFM-093.understanding.test.ts
+    :73 <arrow>
+           5 cyclomatic    0 cognitive   28 lines
+          30.0 CRAP
+  packages/diagram-engine/src/compile.mjs
+    :80 diagnostics
+           5 cyclomatic    1 cognitive    1 lines
+          30.0 CRAP
+  packages/studio/src/project/SourceReview.tsx
+    :31 SourceReview
+           5 cyclomatic    4 cognitive  168 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/sequence/compile-sequence.mjs
+    :73 messageGeometry
+           5 cyclomatic    3 cognitive    9 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/semantics.mjs
+    :33 <arrow>
+           5 cyclomatic    3 cognitive    7 lines
+          30.0 CRAP
+  packages/studio/src/project/ProjectLauncher.tsx
+    :31 <arrow>
+           5 cyclomatic    3 cognitive    7 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/architecture/compile-architecture.mjs
+    :270 resolveBoundaryTitles
+           5 cyclomatic    5 cognitive   34 lines
+          30.0 CRAP
+    :630 routeClearsComponents
+           5 cyclomatic    8 cognitive   12 lines
+          30.0 CRAP
+    :954 renderConnectionPath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/brand-marks.mjs
+    :151 resolveRequestTarget
+           5 cyclomatic    4 cognitive   12 lines
+          30.0 CRAP
+    :272 attribute
+           5 cyclomatic    2 cognitive    4 lines
+          30.0 CRAP
+    :494 <arrow>
+           5 cyclomatic    7 cognitive   12 lines
+          30.0 CRAP
+  packages/studio/src/project/BatchPanel.tsx
+    :11 refresh
+           5 cyclomatic    6 cognitive   11 lines
+          30.0 CRAP
+    :62 <arrow>
+           5 cyclomatic    4 cognitive   28 lines
+          30.0 CRAP
+    :5 BatchPanel
+           5 cyclomatic    4 cognitive   88 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/lifecycle/compile-lifecycle.mjs
+    :457 renderTransitionPath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+    :464 renderTransitionLabel
+           5 cyclomatic    4 cognitive   15 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/shared/cli.mjs
+    :58 writeDiagram
+           5 cyclomatic    4 cognitive   18 lines
+          30.0 CRAP
+  packages/diagram-engine/renderers/dataflow/compile-dataflow.mjs
+    :391 renderFlowPath
+           5 cyclomatic    3 cognitive    6 lines
+          30.0 CRAP
+    :422 renderLegend
+           5 cyclomatic    2 cognitive   20 lines
+          30.0 CRAP
+  Functions exceeding cyclomatic, cognitive, or CRAP thresholds (https://docs.fallow.tools/explanations/health#complexity-metrics)
+  To suppress: // fallow-ignore-next-line complexity
+
+

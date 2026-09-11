@@ -9,6 +9,20 @@ receipts — never by guessing that a generated file proves success.
 **Review baseline:** `37e2d0a28f282c40340723f65b156aab72f754ea`
 **Gate status:** G0 in progress (AFM-129 gates it)
 
+## Active full-product continuation
+
+The owner requires all 28 non-security product areas in
+`docs/designs/product-completion.md`. No area is fully accepted yet.
+The latest AFM-093 checkpoint adds captured implementation analysis and a
+searchable Studio source review with exact excerpts and uncertainty. It does
+not complete repository understanding, replace the manifest video templates,
+implement PR deltas or close a gate. The current code SHA, checks and screenshot
+hashes are in `evidence/tickets/AFM-093/result.json`.
+
+Continue with source-backed story planning and configured-agent proposal review,
+using the actual AFM-098/096/037/093 ticket bodies and
+`docs/designs/source-understanding.md`. Keep the entire owner checklist active.
+
 ## Counts
 
 | State | Count | Tickets |
