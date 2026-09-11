@@ -2,7 +2,7 @@
   "ticketId": "AFM-002",
   "title": "Create a complete source disposition and import ledger",
   "status": "verified",
-  "commit": "b18a3dd8a4a2ce25387d3b0fd2c2729947b5ef1e",
+  "commit": "25d8bf80cba829fda6dddfe2892e912ea7f19df4",
   "date": "2026-09-10",
   "environment": {
     "execution": "docker compose run --rm workspace",
@@ -26,7 +26,7 @@
       "cwd": "/workspace",
       "runtime": "bun 1.3.13",
       "exitCode": 0,
-      "result": "PASS — 7786 entries, 0 ledger problems",
+      "result": "PASS \u00e2\u20ac\u201d 7786 entries, 0 ledger problems",
       "logPath": "evidence/tickets/AFM-002/test.log"
     },
     {
@@ -54,11 +54,17 @@
       "sha256": "740060b3834609595112bf8daf1c2f88938296f1722dc0c83a8c80540fd53cb4",
       "type": "source"
     },
-    { "path": "evidence/tickets/AFM-002/test.log", "type": "test-log" }
+    {
+      "path": "evidence/tickets/AFM-002/test.log",
+      "type": "test-log"
+    }
   ],
   "ledgerSummary": {
     "total": 7786,
-    "byRepository": { "archify": 483, "hyperframes": 7303 },
+    "byRepository": {
+      "archify": 483,
+      "hyperframes": 7303
+    },
     "byDisposition": {
       "retain-relocate-refactor-as-owned": 5844,
       "retain-reference-docs": 1094,
