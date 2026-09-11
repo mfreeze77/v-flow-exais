@@ -1,6 +1,6 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import { StudioApp } from "./App";
+import { ProjectRouter as StudioApp } from "./project/ProjectRouter";
 import { StudioErrorBoundary } from "./components/StudioErrorBoundary";
 import { trackStudioEvent } from "./utils/studioTelemetry";
 import "./styles/studio.css";

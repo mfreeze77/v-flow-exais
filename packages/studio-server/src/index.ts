@@ -39,3 +39,5 @@ export {
   createStudioMotionRenderBodyScript,
   type StudioMotionRenderScriptOptions,
 } from "./helpers/studioMotionRenderScript.js";
+export { UnifiedProjectService } from './project/projectService';
+export { ProjectBatchService, probeVideo } from './project/projectBatch';

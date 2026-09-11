@@ -1,0 +1,20 @@
+test_current_package_valid (test_planning_tools.PackageTests.test_current_package_valid) ... ok
+test_dependency_corruption_fails (test_planning_tools.PackageTests.test_dependency_corruption_fails) ... ok
+test_admin_folders_reported_not_traversed (test_planning_tools.PreflightTests.test_admin_folders_reported_not_traversed) ... ok
+test_ambiguous_source_root (test_planning_tools.PreflightTests.test_ambiguous_source_root) ... ok
+test_case_collision (test_planning_tools.PreflightTests.test_case_collision) ... ok
+test_content_change_is_drift (test_planning_tools.PreflightTests.test_content_change_is_drift) ... ok
+test_duplicate_archive_names (test_planning_tools.PreflightTests.test_duplicate_archive_names) ... ok
+test_folder_and_zip_match (test_planning_tools.PreflightTests.test_folder_and_zip_match) ... ok
+test_folder_symlink_is_not_followed (test_planning_tools.PreflightTests.test_folder_symlink_is_not_followed) ... ok
+test_missing_and_extra (test_planning_tools.PreflightTests.test_missing_and_extra) ... ok
+test_renamed_wrapped_folder_discovery (test_planning_tools.PreflightTests.test_renamed_wrapped_folder_discovery) ... ok
+test_report_inside_source_guard (test_planning_tools.PreflightTests.test_report_inside_source_guard) ... ok
+test_symlink_type_is_distinct (test_planning_tools.PreflightTests.test_symlink_type_is_distinct) ... ok
+test_unsafe_paths (test_planning_tools.PreflightTests.test_unsafe_paths) ... ok
+test_unwrapped_zip (test_planning_tools.PreflightTests.test_unwrapped_zip) ... ok
+
+----------------------------------------------------------------------
+Ran 15 tests in 0.270s
+
+OK

@@ -31,3 +31,7 @@ export type MotionIntent =
   | { kind: "reveal-authored-edge"; relationshipIds: readonly string[] }
   | { kind: "authored-route-signal"; relationshipIds: readonly string[] }
   | { kind: "presentation-callout"; text: string };
+
+export { compileProject, MOTION_VERSION, type CompositionBuild } from "./compiler";
+export { namespaceSvg } from "./namespaceSvg";
+export { frameDiagram } from "./camera";

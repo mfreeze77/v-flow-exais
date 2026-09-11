@@ -1,0 +1,37 @@
+{
+  "status": "PASS",
+  "scope": "Read-only source identity check; not an application build or safety certification",
+  "inputs_mutated": false,
+  "upstream_commit_verification": "not_performed",
+  "repositories": {
+    "archify": {
+      "input": "/mnt/data/archify-main.zip",
+      "input_type": "zip",
+      "resolved_root": "archify-main",
+      "excluded_admin_entries": [],
+      "archive_comment_revision_candidate": "18911058008f17dc065af23a2cdc9bfeff6d3f7a",
+      "matches_baseline": true,
+      "files_checked": 483,
+      "missing": [],
+      "extra": [],
+      "changed": [],
+      "case_collisions": [],
+      "tree_content_sha256": "f2b43966847330b4e7790b23212317a04017de0d7de1520a2190d7f686d21bcb"
+    },
+    "hyperframes": {
+      "input": "/mnt/data/hyperframes-main.zip",
+      "input_type": "zip",
+      "resolved_root": "hyperframes-main",
+      "excluded_admin_entries": [],
+      "archive_comment_revision_candidate": "8820a01090692020ef6c5d4fb70fdc06b4b3bd81",
+      "matches_baseline": true,
+      "files_checked": 7303,
+      "missing": [],
+      "extra": [],
+      "changed": [],
+      "case_collisions": [],
+      "tree_content_sha256": "78d8162e089054271d2d86aa9965660b9a79177d32e522815dc0f325eda7c2c9"
+    }
+  },
+  "errors": []
+}

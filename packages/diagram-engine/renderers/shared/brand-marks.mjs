@@ -451,7 +451,7 @@ async function mapConcurrent(values, limit, visit) {
   await Promise.all(workers);
 }
 
-export async function prepareDiagramBrandMarks(diagramType, diagram) {
+export async function prepareDiagramBrandMarks(diagramType, diagram, options = {}) {
   const collection = COLLECTIONS[diagramType];
   const nodes = collection && Array.isArray(diagram[collection]) ? diagram[collection] : [];
   const unknown = [];
@@ -461,7 +461,9 @@ export async function prepareDiagramBrandMarks(diagramType, diagram) {
     if (!node.brand) return;
     if (typeof node.brand === 'object') {
       const url = asUrl(node.brand.url);
-      const resolved = url ? await remoteBrand(url.href, remoteByUrl, deadline) : null;
+      const resolved = url ? (options.offline
+        ? (options.resolveAsset ? await options.resolveAsset(node.brand) : null)
+        : await remoteBrand(url.href, remoteByUrl, deadline)) : null;
       if (!resolved || resolved.status !== 'captured') {
         unknown.push(`/${collection}/${index}/brand could not reproduce the pinned capture: ${resolved?.reason || 'invalid URL'}`);
         return;

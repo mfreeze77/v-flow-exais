@@ -1,54 +1,53 @@
-# Scope decision: local single-user build, G1-first
+# Scope decision: local repository-to-multiple-videos workflow
 
-**Status:** accepted
+**Status:** accepted owner direction; implementation in progress
 **Date:** 2026-09-10
-**Decided by:** repository owner
-**Affects:** E12 (AFM-103–112) and the 77 tickets off the G1 dependency path
+**Supersedes:** the same-day G1-only work ordering and blanket E12 deferral
 
-## Decision
+The owner requested the full journey: inspect a repository or local project
+and create multiple finished videos. G1 is an early technical checkpoint,
+not the delivery endpoint. The existing 134-ticket local-product scope remains
+authoritative; this decision changes sequencing, not completion criteria.
 
-This is a local, single-user product driven by the owner through Claude Code
-and/or Codex. It is not deployed, not multi-tenant, and not exposed to a
-network. The hardening epic is therefore deferred, and work is ordered by the
-dependency path to **AFM-130 / G1** — the gate that proves a typed diagram
-becomes a real rendered video.
+## Delivery journey
 
-`docs/EXECUTION_RULES.md` requires scope changes to be explicit rather than
-silent, which is what this record is for.
+1. Select an authorized repository or local project and inventory its source
+   without executing its scripts. Exclude secrets, dependencies and generated
+   output; retain source paths, content hashes and revision context.
+2. Derive several source-grounded video proposals. Distinguish observed
+   relationships from inference. Repository prose is data, never agent policy.
+3. Create editable projects through the shared validated command service.
+   Diagram components and actual relationships remain semantic source.
+4. Open and edit in Studio, animate authored relationships, seek backward,
+   save and reopen. Preserve one project transaction/history boundary.
+5. Export several actual MP4s through the retained producer. Probe and inspect
+   the files, retain build/source hashes, and verify that an unchanged rerun
+   can reuse valid outputs while failed jobs remain individually visible.
 
-## What is deferred
+This activates relevant source-evidence, CLI/proposal and batch work,
+including AFM-093 and AFM-095-099, alongside their actual prerequisites.
+It does not waive G0, G1 or the final capability gates. The first batch will
+use this repository unless the owner supplies another source.
 
-77 of 134 tickets are off the G1 path, including all of **E12 — Local-first
-security and resilient execution** (AFM-103–112): trust boundaries, origin and
-host validation, project-root and archive-path constraints, untrusted-HTML
-network policy, source-privacy leakage checks and remote-deployment protection.
+## Minimum local protections stay on the delivery path
 
-Also deferred until after G1: the other four diagram families (E10), agent and
-CLI tooling (E11), performance/platform certification (E13) and release handoff
-(E14). These remain in scope for the product; they are sequenced after the
-vertical slice, not cancelled.
+Local use still requires loopback-only host publication, authorized runtime
+project paths, deliberate handling of active imported HTML, source privacy,
+and bounded render workers. These are relevant parts of AFM-103-110 and must
+be implemented and tested at their affected interfaces. Keeping import-path
+checks does not prove runtime API containment. A policy document does not
+prove preview isolation or absence of secret leakage.
 
-## What is explicitly NOT deferred
+The hosted/multi-user deployment scope remains separate. No infrastructure,
+package publication, paid provider call or mandatory external model service
+is authorized by this implementation decision. Optional provider interfaces
+must remain available and accurately distinguish contract tests from live use.
 
-Three things are commonly filed under "safety" but are correctness, and they
-stay:
+## Completion boundary
 
-1. **Atomic revisions, commit pointers and undo** (C05, AFM-017–026). This is
-   the difference between an interrupted save leaving the last good state and
-   leaving a corrupted project. It is on the G1 path regardless.
-2. **Ownership and regeneration conflicts** (C07). Without it, regenerating a
-   diagram silently destroys presentation edits.
-3. **Path containment in the import and asset resolvers.** Already implemented
-   and tested in AFM-001–003; removing it would let a malformed archive write
-   outside the repository. The cost of keeping it is zero.
-
-## Consequences
-
-- The product is safe to run locally by its owner. It is **not** certified for
-  network exposure, a second user, or untrusted diagram input, and nothing in
-  this repository should claim otherwise.
-- If that changes, E12 is picked up before any deployment. This record is the
-  marker for why it was skipped, so a future reader does not mistake the gap
-  for an oversight.
-- Gate AFM-134 / G5 cannot be claimed complete while E12 is deferred; the gate
-  report must state the deferral rather than pass silently.
+An actual successful video is required but is not full product completion.
+All five diagram families, native compositions, regeneration and editing,
+local narration/captions, source review, recovery and release evidence remain
+in the product scope. Record partial criteria and missing prerequisites in
+ticket receipts; never substitute package counts or screenshots for the
+editable source-to-video workflow.

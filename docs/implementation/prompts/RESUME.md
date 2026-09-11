@@ -1,0 +1,3 @@
+# Resume prompt
+
+Resume the ArchFrame Studio unified implementation from the new output repo and its actual progress/evidence ledger. Do not reimport or overwrite source. Read the authoritative v2 ticket package, last committed revision, outstanding defects and next dependency-ready ticket bodies. Verify prior completion from actual code/tests/artifacts, not chat summaries. Preserve one product, all five diagram types, native-video compatibility, source ownership, atomic history and deterministic rendering. Continue toward AFM-134/G5, reporting exact blockers and remaining scope without marking skipped work complete.

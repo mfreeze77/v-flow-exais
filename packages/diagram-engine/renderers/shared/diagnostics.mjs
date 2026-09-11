@@ -1,5 +1,6 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import { compilationContext } from './compilation-context.mjs';
 
 const DIAGNOSTIC_MODE = process.env.ARCHIFY_DIAGNOSTIC_FORMAT === 'json';
 const recorded = [];
@@ -30,6 +31,13 @@ function normalizedDiagnostic(diagnostic) {
 }
 
 export function recordDiagnostic(diagnostic) {
+  const context = compilationContext();
+  if (context) {
+    if (context.suppressed) return;
+    const normalized = normalizedDiagnostic(diagnostic);
+    if (!context.diagnostics.some((entry) => entry.message === normalized.message)) context.diagnostics.push(normalized);
+    return;
+  }
   if (!DIAGNOSTIC_MODE || recordingSuppressionDepth > 0) return;
   const normalized = normalizedDiagnostic(diagnostic);
   if (recordedMessages.has(normalized.message)) return;
@@ -38,6 +46,11 @@ export function recordDiagnostic(diagnostic) {
 }
 
 export function withDiagnosticRecordingSuppressed(callback) {
+  const context = compilationContext();
+  if (context) {
+    context.suppressed = (context.suppressed || 0) + 1;
+    try { return callback(); } finally { context.suppressed -= 1; }
+  }
   recordingSuppressionDepth += 1;
   try {
     return callback();

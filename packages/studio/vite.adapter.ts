@@ -19,6 +19,7 @@ import {
   type StudioApiAdapter,
   type BackgroundRemovalRender,
   createBackgroundRemovalJob,
+  UnifiedProjectService,
   createProjectSignature,
   affectsProjectSignature,
 } from "@hyperframes/studio-server";
@@ -109,7 +110,8 @@ export function createViteAdapter(
   let _producerModuleLoader:
     | (() => Promise<{
         createRenderJob: (config: {
-          fps: 24 | 30 | 60;
+          fps: import("@hyperframes/core").Fps;
+          workers?: number;
           quality: "draft" | "standard" | "high";
           format: string;
           renderBodyScripts?: string[];
@@ -138,10 +140,12 @@ export function createViteAdapter(
     return _bundler;
   };
 
+  const projectService = new UnifiedProjectService({ home: process.env.VFLOW_DATA_HOME || resolve(dataDir, "../vflow"), sourceRoots: [{ id: "workspace", label: "Mounted workspace", path: process.env.VFLOW_SOURCE_ROOT || resolve(dataDir, "../../../..") }] });
+
   const getProducerModule = async () => {
     if (!_producerModuleLoader) {
       _producerModuleLoader = createRetryingModuleLoader(async () => {
-        const { built } = ensureProducerDist({
+        const { built } = process.versions.bun ? { built: false } : ensureProducerDist({
           studioDir: __dirname,
           env: process.env,
         });
@@ -161,6 +165,7 @@ export function createViteAdapter(
     // The CLI resolves --proxy/--no-proxy against hyperframes.json before it
     // launches Vite. Direct `bun run dev` keeps the historical default-on
     // behavior when the child environment is absent.
+    projectService,
     autoProxy: resolveViteAutoProxy(process.env.HYPERFRAMES_AUTO_PROXY),
 
     // fallow-ignore-next-line complexity
@@ -246,8 +251,9 @@ export function createViteAdapter(
       return html;
     },
 
-    async transformPreviewHtml({ html }) {
+    async transformPreviewHtml({ html, project }) {
       const producer = await import("../producer/src/services/deterministicFonts.js");
+      if (projectService.has(project.id)) html = producer.normalizeSystemFontPrimaryFamilies(html);
       return producer.injectDeterministicFontFaces(html);
     },
 
@@ -306,6 +312,7 @@ export function createViteAdapter(
           const renderBodyScripts = createStudioDevRenderBodyScripts(opts.project.dir);
           const job = createRenderJob({
             fps: opts.fps,
+            workers: opts.workers,
             quality: opts.quality as "draft" | "standard" | "high",
             format: opts.format,
             ...(renderBodyScripts.length > 0 ? { renderBodyScripts } : {}),

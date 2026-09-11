@@ -1,0 +1,28 @@
+{
+  "archify": {
+    "archive": "archify-main.zip",
+    "archive_sha256": "690a01ccf2da15826cd74d67f3be12fd41b91f29c149500ee36972e518c1a1b2",
+    "archive_comment_revision_candidate": "18911058008f17dc065af23a2cdc9bfeff6d3f7a",
+    "independently_verified_commit": null,
+    "git_history_included": false,
+    "file_entries": 483,
+    "tree_content_sha256": "f2b43966847330b4e7790b23212317a04017de0d7de1520a2190d7f686d21bcb",
+    "tree_digest_algorithm": "sha256(concat sorted path + NUL + kind + NUL + raw_file_sha256 + LF)",
+    "bytes_uncompressed_files": 43660254,
+    "symlinks": []
+  },
+  "hyperframes": {
+    "archive": "hyperframes-main.zip",
+    "archive_sha256": "9f2597068c07f5fe9988da0c4df1d632068ec27420a2ea29a9a3a754584e33e4",
+    "archive_comment_revision_candidate": "8820a01090692020ef6c5d4fb70fdc06b4b3bd81",
+    "independently_verified_commit": null,
+    "git_history_included": false,
+    "file_entries": 7303,
+    "tree_content_sha256": "78d8162e089054271d2d86aa9965660b9a79177d32e522815dc0f325eda7c2c9",
+    "tree_digest_algorithm": "sha256(concat sorted path + NUL + kind + NUL + raw_file_sha256 + LF)",
+    "bytes_uncompressed_files": 199075279,
+    "symlinks": [
+      "packages/producer/tests/render-symlinked-assets/src/shared"
+    ]
+  }
+}

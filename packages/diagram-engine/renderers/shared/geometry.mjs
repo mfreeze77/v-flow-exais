@@ -1,3 +1,4 @@
+import { requestedQualityProfile } from './compilation-context.mjs';
 // Geometry helpers shared by all typed renderers. Every function here is
 // pure; renderers own their layout tables and pass measured rects
 // ({x, y, width, height, cx, cy}) in.
@@ -946,7 +947,7 @@ export function cleanLabelRouteClearanceProblems({
 function qualityProfileForGate(profile, profileIsAuthoritative) {
   return profileIsAuthoritative
     ? profile
-    : process.env.ARCHIFY_QUALITY_PROFILE || profile;
+    : requestedQualityProfile(profile);
 }
 
 function collectEligibleRoutedRelations({ relations, endpointIds, pathFor }) {

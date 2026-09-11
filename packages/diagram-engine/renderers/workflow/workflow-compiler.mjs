@@ -1,5 +1,5 @@
 import { esc, renderDefinitions, renderSemanticSigil, textUnits } from '../shared/utils.mjs';
-import { animateAttr, focusEdgeAttrs, focusNodeAttrs, focusNodeTitle, svgAccessibleText, svgRootAttrs } from '../shared/cli.mjs';
+import { animateAttr, focusEdgeAttrs, focusNodeAttrs, focusNodeTitle, svgAccessibleText, svgRootAttrs } from '../shared/semantics.mjs';
 import {
   throwDiagnosticError,
   throwDiagnosticProblems,
@@ -4299,6 +4299,8 @@ ${renderLegend()}
       })),
       edges: workflow.edges.map((edge) => ({
         id: edge.id ?? null,
+        label: edge.label ?? null,
+        d: pathFor(edge).d,
         from: edge.from,
         to: edge.to,
         points: pathFor(edge).points.map((point) => [...point]),

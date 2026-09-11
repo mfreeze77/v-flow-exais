@@ -8,14 +8,20 @@
   "types": "./src/index.ts",
   "exports": {
     ".": "./src/index.ts",
+    "./storage": "./src/storage/commit.ts",
+    "./revisions": "./src/storage/revisions.ts",
     "./package.json": "./package.json"
   },
   "files": [
-    "src"
+    "src",
+    "schemas"
   ],
+  "dependencies": {
+    "ajv": "^8.17.1"
+  },
   "scripts": {
-    "build": "echo \"no build step yet (AFM-017)\" && exit 0",
-    "test": "echo \"no tests yet (AFM-017)\" && exit 0",
+    "build": "tsc --noEmit",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   }
 }

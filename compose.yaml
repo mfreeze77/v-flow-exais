@@ -3,7 +3,7 @@
 #   docker compose build
 #   docker compose run --rm workspace bun run test:unit
 #   docker compose run --rm workspace bash
-#   docker compose up studio        # Studio dev server on http://localhost:5173
+#   docker compose run --rm --service-ports studio  # http://127.0.0.1:5190
 #
 # node_modules lives in a named volume rather than the bind mount. On Windows a
 # bind-mounted node_modules is punishingly slow and mixes Linux-resolved
@@ -23,10 +23,16 @@ services:
       - ./_sources:/workspace/_sources:ro
       - workspace-node-modules:/workspace/node_modules
       - bun-cache:/root/.bun/install/cache
+      # Immutable revisions require Linux filesystem rename/fsync semantics.
+      - project-data:/var/lib/vflow
+      - ${VFLOW_SOURCE_DIR:-.}:/input:ro
     environment:
       - CONTAINER=true
+      - VFLOW_DATA_HOME=/var/lib/vflow
+      - VFLOW_SOURCE_ROOT=/input
       - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
       - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+      - PRODUCER_HEADLESS_SHELL_PATH=/root/.cache/puppeteer/chrome-headless-shell/linux-148.0.7778.167/chrome-headless-shell-linux64/chrome-headless-shell
     # Chromium needs more than the default 64MB of shared memory or it will
     # crash mid-capture on larger frames.
     shm_size: 1gb
@@ -37,11 +43,11 @@ services:
   studio:
     extends:
       service: workspace
-    command: bun run studio
+    command: bun run studio:container
     ports:
-      - "5173:5173"
-      - "3000:3000"
+      - "127.0.0.1:5190:5190"
 
 volumes:
   workspace-node-modules:
   bun-cache:
+  project-data:

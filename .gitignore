@@ -47,3 +47,9 @@ evidence/**/*.mp4
 evidence/**/*.webm
 evidence/**/*.png
 evidence/**/frames/
+
+# Local unified projects and immutable render/cache artifacts.
+.vflow/
+packages/studio/data/
+packages/core/src/generated/
+packages/producer/.debug/

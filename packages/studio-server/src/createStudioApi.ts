@@ -1,4 +1,6 @@
 import { Hono } from "hono";
+import { registerProjectCommandRoutes } from './routes/projectCommands';
+import { installLocalApiPolicy } from './project/localApiPolicy';
 import type { StudioApiAdapter } from "./types.js";
 import { registerProjectRoutes } from "./routes/projects.js";
 import { registerStoryboardRoutes } from "./routes/storyboard.js";
@@ -22,6 +24,13 @@ import { registerGlobalAssetRoutes } from "./routes/globalAssets.js";
  */
 export function createStudioApi(adapter: StudioApiAdapter): Hono {
   const api = new Hono();
+  api.onError((error: any, c) => {
+    if (!c.req.path.includes('/vflow/')) return c.json({ error: 'Internal server error' }, 500);
+    const conflict = error?.code === 'project/revision-conflict' || error?.message?.includes('idempotency-conflict');
+    return c.json({ error: error.message || 'Studio operation failed.', code: error.code || 'project/invalid', diagnostics: error.diagnostics || [], expected: error.expected, actual: error.actual }, conflict ? 409 : 400);
+  });
+  installLocalApiPolicy(api, adapter);
+  registerProjectCommandRoutes(api, adapter);
 
   registerProjectRoutes(api, adapter);
   registerStoryboardRoutes(api, adapter);

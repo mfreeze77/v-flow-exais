@@ -9,7 +9,8 @@
     "dev": "bun run studio",
     "build": "bun run --filter '@hyperframes/{project-model,parsers,lint,studio-server}' build && bun run --filter @hyperframes/core build && bun run --filter @hyperframes/diagram-engine build && bun run --filter '@hyperframes/{engine,producer,player,studio,shader-transitions,aws-lambda,gcp-cloud-run,sdk,diagram-viewer,diagram-motion}' build && bun run --filter @hyperframes/cli build && bun run --filter @hyperframes/sdk-playground build",
     "build:producer": "bun run --filter @hyperframes/producer build",
-    "studio": "bun run --filter @hyperframes/studio dev",
+    "studio": "bun run build:owned-runtimes && bun run --filter @hyperframes/studio dev",
+    "studio:container": "bun run build:owned-runtimes && bun run --filter @hyperframes/studio dev:container",
     "build:hyperframes-runtime": "bun run --filter @hyperframes/core build:hyperframes-runtime",
     "build:hyperframes-runtime:modular": "bun run --filter @hyperframes/core build:hyperframes-runtime:modular",
     "verify:packed-manifests": "node scripts/verify-packed-manifests.mjs",
@@ -59,7 +60,9 @@
     "import:apply": "bun run tools/import/apply-cli.ts",
     "audit:automation": "bun run tools/import/audit-automation-cli.ts",
     "audit:assets": "bun run tools/legal/asset-audit-cli.ts",
-    "check:workspace": "bun run tools/build/workspace-cli.ts"
+    "check:workspace": "bun run tools/build/workspace-cli.ts",
+    "build:owned-runtimes": "bun run build:hyperframes-runtime && bun run --cwd packages/core build:position-edits-render && bun run --cwd packages/core build:audio-fx-runtime",
+    "vflow": "bun run packages/cli/src/cli.ts project"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",

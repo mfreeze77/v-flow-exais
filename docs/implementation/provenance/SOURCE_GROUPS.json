@@ -1,0 +1,634 @@
+{
+  "A-PKG": {
+    "id": "A-PKG",
+    "repository": "archify",
+    "purpose": "Package, CLI, release identity",
+    "paths": [
+      "archify/package.json",
+      "archify/package-lock.json",
+      "archify/bin/archify.mjs",
+      "archify/skill-release.json"
+    ]
+  },
+  "A-LICENSE": {
+    "id": "A-LICENSE",
+    "repository": "archify",
+    "purpose": "Attribution and third-party asset constraints",
+    "paths": [
+      "LICENSE",
+      "THIRD_PARTY_NOTICES.md",
+      "archify/THIRD_PARTY_NOTICES.md"
+    ]
+  },
+  "A-ROOT": {
+    "id": "A-ROOT",
+    "repository": "archify",
+    "purpose": "Root build and test scripts with relative-path assumptions",
+    "paths": [
+      "scripts/run-tests.mjs",
+      "scripts/check-release-identity.mjs",
+      "scripts/stage-clean-skill.mjs",
+      "scripts/write-deterministic-zip.mjs",
+      "scripts/package-smoke.mjs"
+    ]
+  },
+  "A-SHARED": {
+    "id": "A-SHARED",
+    "repository": "archify",
+    "purpose": "Current IO boundary and semantic hooks",
+    "paths": [
+      "archify/renderers/shared/cli.mjs",
+      "archify/renderers/shared/output-path.mjs",
+      "archify/renderers/shared/diagnostics.mjs"
+    ]
+  },
+  "A-SCHEMA": {
+    "id": "A-SCHEMA",
+    "repository": "archify",
+    "purpose": "Typed diagram schemas and generated validators",
+    "paths": [
+      "archify/schemas/common.schema.json",
+      "archify/renderers/shared/validator.mjs",
+      "archify/renderers/shared/generated-validators.mjs",
+      "archify/scripts/generate-validators.mjs"
+    ]
+  },
+  "A-ARCH": {
+    "id": "A-ARCH",
+    "repository": "archify",
+    "purpose": "Architecture layout, source schema and example",
+    "paths": [
+      "archify/renderers/architecture/render-architecture.mjs",
+      "archify/renderers/architecture/grid.mjs",
+      "archify/schemas/architecture.schema.json",
+      "archify/examples/production-deployment.architecture.json"
+    ]
+  },
+  "A-WORK": {
+    "id": "A-WORK",
+    "repository": "archify",
+    "purpose": "Workflow compile, migrate, and branch semantics",
+    "paths": [
+      "archify/renderers/workflow/render-workflow.mjs",
+      "archify/renderers/workflow/workflow-compiler.mjs",
+      "archify/migrations/workflow-v2.mjs",
+      "archify/schemas/workflow.schema.json",
+      "archify/examples/agent-tool-call.workflow.json"
+    ]
+  },
+  "A-SEQ": {
+    "id": "A-SEQ",
+    "repository": "archify",
+    "purpose": "Ordered messages and participants",
+    "paths": [
+      "archify/renderers/sequence/render-sequence.mjs",
+      "archify/schemas/sequence.schema.json",
+      "archify/examples/cache-miss-request.sequence.json",
+      "archify/test/sequence-column-fit.test.mjs"
+    ]
+  },
+  "A-DATA": {
+    "id": "A-DATA",
+    "repository": "archify",
+    "purpose": "Dataflow renderer, schema and examples",
+    "paths": [
+      "archify/renderers/dataflow/render-dataflow.mjs",
+      "archify/schemas/dataflow.schema.json",
+      "archify/examples/product-analytics.dataflow.json",
+      "archify/examples/event-stream.dataflow.json"
+    ]
+  },
+  "A-LIFE": {
+    "id": "A-LIFE",
+    "repository": "archify",
+    "purpose": "Lifecycle states and transitions",
+    "paths": [
+      "archify/renderers/lifecycle/render-lifecycle.mjs",
+      "archify/schemas/lifecycle.schema.json",
+      "archify/examples/agent-run.lifecycle.json",
+      "archify/examples/deployment-release.lifecycle.json"
+    ]
+  },
+  "A-GEOM": {
+    "id": "A-GEOM",
+    "repository": "archify",
+    "purpose": "Geometry, text fit, layout diagnostics",
+    "paths": [
+      "archify/renderers/shared/geometry.mjs",
+      "archify/renderers/shared/text-fit.mjs",
+      "archify/renderers/shared/desktop-readability.mjs",
+      "archify/renderers/shared/layout-report.mjs",
+      "archify/test/geometry.test.mjs"
+    ]
+  },
+  "A-EVID": {
+    "id": "A-EVID",
+    "repository": "archify",
+    "purpose": "Source references and engineering metadata",
+    "paths": [
+      "archify/renderers/shared/repository-evidence.mjs",
+      "archify/renderers/shared/repository-location.mjs",
+      "archify/renderers/shared/engineering-profiles.mjs",
+      "archify/test/repository-evidence.test.mjs"
+    ]
+  },
+  "A-VIEW": {
+    "id": "A-VIEW",
+    "repository": "archify",
+    "purpose": "Standalone artifact and guided presentation",
+    "paths": [
+      "archify/assets/template.html",
+      "archify/test/guided-views.test.mjs",
+      "archify/test/story-follow-camera.test.mjs",
+      "archify/test/semantic-camera.test.mjs"
+    ]
+  },
+  "A-REACH": {
+    "id": "A-REACH",
+    "repository": "archify",
+    "purpose": "Authored graph inspection and sharing",
+    "paths": [
+      "archify/test/authored-reachability.test.mjs",
+      "archify/test/route-probe.test.mjs",
+      "archify/test/relationship-direct-explorer.test.mjs",
+      "archify/test/relationship-permalink.test.mjs",
+      "archify/test/reach-share-card.test.mjs"
+    ]
+  },
+  "A-DELTA": {
+    "id": "A-DELTA",
+    "repository": "archify",
+    "purpose": "Before/after receipts and geometry",
+    "paths": [
+      "archify/delta/architecture-delta.mjs",
+      "archify/test/architecture-delta.test.mjs",
+      "archify/examples/checkout-platform.base.architecture.json",
+      "archify/examples/checkout-platform.head.architecture.json"
+    ]
+  },
+  "A-THEME": {
+    "id": "A-THEME",
+    "repository": "archify",
+    "purpose": "Brand registry, locale and presets",
+    "paths": [
+      "archify/renderers/shared/brand-marks.mjs",
+      "archify/renderers/shared/generated-brand-marks.mjs",
+      "archify/renderers/shared/i18n.mjs",
+      "archify/test/preset-tryon.test.mjs",
+      "archify/test/i18n.test.mjs"
+    ]
+  },
+  "A-EXPORT": {
+    "id": "A-EXPORT",
+    "repository": "archify",
+    "purpose": "Artifact and visual validation / export behavior",
+    "paths": [
+      "archify/scripts/check-render-output.mjs",
+      "archify/bin/visual-check.mjs",
+      "archify/test/share-card-export.test.mjs",
+      "archify/test/webm-artifact.smoke.mjs",
+      "archify/test/golden.mjs"
+    ]
+  },
+  "A-SKILL": {
+    "id": "A-SKILL",
+    "repository": "archify",
+    "purpose": "Agent guidance and recipes",
+    "paths": [
+      "archify/SKILL.md",
+      "archify/recipes/scenarios.mjs",
+      "archify/scripts/check-update.mjs",
+      "archify/scripts/update-contract.mjs"
+    ]
+  },
+  "H-PKG": {
+    "id": "H-PKG",
+    "repository": "hyperframes",
+    "purpose": "Workspace, runtime and build baseline",
+    "paths": [
+      "package.json",
+      "bun.lock",
+      "packages/cli/package.json",
+      "packages/producer/package.json",
+      "packages/sdk-playground/package.json"
+    ]
+  },
+  "H-CI": {
+    "id": "H-CI",
+    "repository": "hyperframes",
+    "purpose": "Existing build/release workflows and checks",
+    "paths": [
+      ".github/workflows/ci.yml",
+      ".github/workflows/publish.yml",
+      ".github/workflows/windows-render.yml",
+      "scripts/check-workspace-contracts.mjs",
+      "scripts/check-package-cycles.mjs"
+    ]
+  },
+  "H-LICENSE": {
+    "id": "H-LICENSE",
+    "repository": "hyperframes",
+    "purpose": "License, contribution and security records",
+    "paths": [
+      "LICENSE",
+      "CREDITS.md",
+      "SECURITY.md",
+      "CONTRIBUTING.md"
+    ]
+  },
+  "H-CORE": {
+    "id": "H-CORE",
+    "repository": "hyperframes",
+    "purpose": "Composition compiler and standard composition contracts",
+    "paths": [
+      "packages/core/src/compiler/compositionScoping.ts",
+      "packages/parsers/src/compositionContract.ts",
+      "packages/parsers/src/composition.ts",
+      "packages/parsers/src/subCompositionValidity.ts"
+    ]
+  },
+  "H-TIME": {
+    "id": "H-TIME",
+    "repository": "hyperframes",
+    "purpose": "Seek adapter and playback time",
+    "paths": [
+      "packages/core/src/adapters/gsap.ts",
+      "packages/core/src/adapters/types.ts",
+      "packages/player/src/direct-timeline-clock.ts",
+      "packages/player/src/timeline-adapters.ts"
+    ]
+  },
+  "H-PARSER": {
+    "id": "H-PARSER",
+    "repository": "hyperframes",
+    "purpose": "DOM identities, GSAP and roundtrip editing",
+    "paths": [
+      "packages/parsers/src/hfIds.ts",
+      "packages/parsers/src/hfIdAssignment.ts",
+      "packages/parsers/src/gsapParser.ts",
+      "packages/parsers/src/gsapSerialize.ts",
+      "packages/parsers/src/htmlParser.ts"
+    ]
+  },
+  "H-SDK": {
+    "id": "H-SDK",
+    "repository": "hyperframes",
+    "purpose": "Headless edits, capability checks and patch history",
+    "paths": [
+      "packages/sdk/src/session.ts",
+      "packages/sdk/src/history.ts",
+      "packages/sdk/src/engine/apply-patches.ts",
+      "packages/sdk/src/editing/affordances.ts",
+      "packages/sdk/src/types.ts"
+    ]
+  },
+  "H-PERSIST": {
+    "id": "H-PERSIST",
+    "repository": "hyperframes",
+    "purpose": "SDK persistence and project file writes",
+    "paths": [
+      "packages/sdk/src/persist-queue.ts",
+      "packages/sdk/src/adapters/fs.ts",
+      "packages/studio-server/src/helpers/backupJournal.ts",
+      "packages/studio-server/src/helpers/fileVersion.ts"
+    ]
+  },
+  "H-SERVER": {
+    "id": "H-SERVER",
+    "repository": "hyperframes",
+    "purpose": "Existing API host and project resolution",
+    "paths": [
+      "packages/studio-server/src/createStudioApi.ts",
+      "packages/studio-server/src/types.ts",
+      "packages/studio-server/src/routes/projects.ts",
+      "packages/cli/src/server/studioServer.ts"
+    ]
+  },
+  "H-FILES": {
+    "id": "H-FILES",
+    "repository": "hyperframes",
+    "purpose": "File edit ingress and safe path resolution",
+    "paths": [
+      "packages/studio-server/src/routes/files.ts",
+      "packages/studio-server/src/helpers/safePath.ts",
+      "packages/studio-server/src/helpers/sourceMutation.ts",
+      "packages/cli/src/server/fileWatcher.ts"
+    ]
+  },
+  "H-ROUTES": {
+    "id": "H-ROUTES",
+    "repository": "hyperframes",
+    "purpose": "Storyboard, preview, lint and selection endpoints",
+    "paths": [
+      "packages/studio-server/src/routes/storyboard.ts",
+      "packages/studio-server/src/routes/preview.ts",
+      "packages/studio-server/src/routes/lint.ts",
+      "packages/studio-server/src/routes/selection.ts"
+    ]
+  },
+  "H-JOBS": {
+    "id": "H-JOBS",
+    "repository": "hyperframes",
+    "purpose": "Render and thumbnail operations",
+    "paths": [
+      "packages/studio-server/src/routes/render.ts",
+      "packages/studio-server/src/routes/thumbnail.ts",
+      "packages/studio-server/src/routes/thumbnailGenerationCoordinator.ts"
+    ]
+  },
+  "H-SHELL": {
+    "id": "H-SHELL",
+    "repository": "hyperframes",
+    "purpose": "Application shell, project browser and panels",
+    "paths": [
+      "packages/studio/src/App.tsx",
+      "packages/studio/src/components/EditorShell.tsx",
+      "packages/studio/src/components/StudioLeftSidebar.tsx",
+      "packages/studio/src/components/StudioRightPanel.tsx",
+      "packages/studio/src/components/StudioHeader.tsx"
+    ]
+  },
+  "H-INSPECT": {
+    "id": "H-INSPECT",
+    "repository": "hyperframes",
+    "purpose": "Inspector and source editing UI",
+    "paths": [
+      "packages/studio/src/components/editor/PropertyPanel.tsx",
+      "packages/studio/src/components/editor/SourceEditor.tsx",
+      "packages/studio/src/components/editor/LayersPanel.tsx",
+      "packages/studio/src/components/editor/FileTree.tsx"
+    ]
+  },
+  "H-TIMELINE": {
+    "id": "H-TIMELINE",
+    "repository": "hyperframes",
+    "purpose": "Timeline controls and selection store",
+    "paths": [
+      "packages/studio/src/player/components/Timeline.tsx",
+      "packages/studio/src/player/store/playerStore.ts",
+      "packages/studio/src/components/TimelineToolbar.tsx"
+    ]
+  },
+  "H-HISTORY": {
+    "id": "H-HISTORY",
+    "repository": "hyperframes",
+    "purpose": "Studio history and SDK session glue",
+    "paths": [
+      "packages/studio/src/hooks/useStudioSdkSessions.ts",
+      "packages/studio/src/hooks/usePersistentEditHistory.ts",
+      "packages/studio/src/utils/studioFileMutationCoordinator.ts",
+      "packages/studio/src/components/ExternalFileConflictBanner.tsx",
+      "packages/studio/src/components/SaveQueuePausedBanner.tsx"
+    ]
+  },
+  "H-GESTURE": {
+    "id": "H-GESTURE",
+    "repository": "hyperframes",
+    "purpose": "Canvas transforms, hit-testing and DOM mutation",
+    "paths": [
+      "packages/studio/src/components/editor/DomEditOverlay.tsx",
+      "packages/studio/src/components/editor/domEditing.ts",
+      "packages/studio/src/components/editor/groupDragMove.ts",
+      "packages/sdk/src/adapters/iframe.ts"
+    ]
+  },
+  "H-ANIMUI": {
+    "id": "H-ANIMUI",
+    "repository": "hyperframes",
+    "purpose": "Animation, paths, easing and keyframe controls",
+    "paths": [
+      "packages/studio/src/components/editor/GsapAnimationSection.tsx",
+      "packages/studio/src/components/editor/MotionPathOverlay.tsx",
+      "packages/studio/src/components/editor/EaseCurveSection.tsx",
+      "packages/studio/src/components/editor/KeyframeNavigation.tsx"
+    ]
+  },
+  "H-CAPTIONS": {
+    "id": "H-CAPTIONS",
+    "repository": "hyperframes",
+    "purpose": "Caption parse, display and timeline",
+    "paths": [
+      "packages/studio/src/captions/parser.ts",
+      "packages/studio/src/captions/generator.ts",
+      "packages/studio/src/captions/components/CaptionTimeline.tsx",
+      "packages/studio/src/captions/hooks/useCaptionSync.ts"
+    ]
+  },
+  "H-ASSETS": {
+    "id": "H-ASSETS",
+    "repository": "hyperframes",
+    "purpose": "Media validation, probing and asset resolution",
+    "paths": [
+      "packages/studio-server/src/routes/media.ts",
+      "packages/studio-server/src/helpers/mediaMetadata.ts",
+      "packages/studio-server/src/helpers/mediaValidation.ts",
+      "packages/parsers/src/assetResolution.ts",
+      "packages/parsers/src/assetPaths.ts"
+    ]
+  },
+  "H-FONTS": {
+    "id": "H-FONTS",
+    "repository": "hyperframes",
+    "purpose": "Font readiness and localization code (not binary redistribution)",
+    "paths": [
+      "packages/producer/src/services/deterministicFonts.ts",
+      "packages/cli/src/fontLocalize.ts",
+      "packages/studio-server/src/routes/fonts.ts",
+      "packages/cli/src/capture/captureFontValidation.ts"
+    ]
+  },
+  "H-PRODUCER": {
+    "id": "H-PRODUCER",
+    "repository": "hyperframes",
+    "purpose": "Retained render pipeline",
+    "paths": [
+      "packages/producer/src/index.ts",
+      "packages/producer/src/renderRequest.ts",
+      "packages/producer/src/services/renderOrchestrator.ts",
+      "packages/producer/src/services/compilationRunner.ts"
+    ]
+  },
+  "H-CAPTURE": {
+    "id": "H-CAPTURE",
+    "repository": "hyperframes",
+    "purpose": "Frame capture and encoding",
+    "paths": [
+      "packages/engine/src/services/frameCapture.ts",
+      "packages/engine/src/services/chunkEncoder.ts",
+      "packages/engine/src/services/streamingEncoder.ts",
+      "packages/engine/src/utils/renderProvenance.ts"
+    ]
+  },
+  "H-AUDIO": {
+    "id": "H-AUDIO",
+    "repository": "hyperframes",
+    "purpose": "Audio mixer, timing and effects",
+    "paths": [
+      "packages/producer/src/services/audioMixer.ts",
+      "packages/engine/src/services/audioMixer.ts",
+      "packages/core/src/audioFx.ts",
+      "packages/engine/src/services/audioVolumeEnvelope.ts"
+    ]
+  },
+  "H-PARITY": {
+    "id": "H-PARITY",
+    "repository": "hyperframes",
+    "purpose": "Existing producer conformance and regressions",
+    "paths": [
+      "packages/producer/src/runtime-conformance.ts",
+      "packages/producer/src/parity-harness.ts",
+      "packages/producer/src/regression-harness.ts",
+      "packages/producer/src/perf-gate.ts"
+    ]
+  },
+  "H-PROCESS": {
+    "id": "H-PROCESS",
+    "repository": "hyperframes",
+    "purpose": "Worker lifecycle, resource and process tracking",
+    "paths": [
+      "packages/engine/src/utils/managedChildProcess.ts",
+      "packages/engine/src/utils/processTracker.ts",
+      "packages/engine/src/services/browserManager.ts",
+      "packages/engine/src/services/systemMemory.ts"
+    ]
+  },
+  "H-CLI": {
+    "id": "H-CLI",
+    "repository": "hyperframes",
+    "purpose": "Main CLI, init, preview and doctor",
+    "paths": [
+      "packages/cli/src/cli.ts",
+      "packages/cli/src/commands/init.ts",
+      "packages/cli/src/commands/preview.ts",
+      "packages/cli/src/commands/doctor.ts",
+      "packages/cli/src/help.ts"
+    ]
+  },
+  "H-TOOLS": {
+    "id": "H-TOOLS",
+    "repository": "hyperframes",
+    "purpose": "Studio agent tool registration and write coordination",
+    "paths": [
+      "packages/studio/src/webmcp/StudioAgentTools.tsx",
+      "packages/studio/src/webmcp/registrar.ts",
+      "packages/studio/src/webmcp/writeCoordinator.ts",
+      "packages/studio/src/webmcp/tools/contentTools.ts"
+    ]
+  },
+  "H-SKILL": {
+    "id": "H-SKILL",
+    "repository": "hyperframes",
+    "purpose": "Coding agent instructions and bundled skills",
+    "paths": [
+      "AGENTS.md",
+      "CLAUDE.md",
+      "skills/pr-to-video/SKILL.md",
+      "skills-manifest.json",
+      "scripts/check-skill-mirror.mjs"
+    ]
+  },
+  "H-PROVIDERS": {
+    "id": "H-PROVIDERS",
+    "repository": "hyperframes",
+    "purpose": "Optional speech, transcription and local model adapters",
+    "paths": [
+      "packages/cli/src/audio/providers.ts",
+      "packages/cli/src/commands/tts.ts",
+      "packages/cli/src/commands/transcribe.ts",
+      "packages/cli/src/tts/synthesize.ts",
+      "packages/cli/src/whisper/transcribe.ts"
+    ]
+  },
+  "H-NET": {
+    "id": "H-NET",
+    "repository": "hyperframes",
+    "purpose": "Update, telemetry and outbound network controls",
+    "paths": [
+      "packages/cli/src/telemetry/policy.ts",
+      "packages/cli/src/telemetry/transport.ts",
+      "packages/cli/src/utils/autoUpdate.ts",
+      "packages/cli/src/utils/updateCheck.ts",
+      "packages/engine/src/utils/urlDownloader.ts"
+    ]
+  },
+  "H-AUTH": {
+    "id": "H-AUTH",
+    "repository": "hyperframes",
+    "purpose": "Optional hosted authentication and secret scrubbing",
+    "paths": [
+      "packages/cli/src/auth/resolver.ts",
+      "packages/cli/src/auth/store.ts",
+      "packages/cli/src/auth/scrub.ts",
+      "packages/cli/src/cloud/auth.ts"
+    ]
+  },
+  "H-CATALOG": {
+    "id": "H-CATALOG",
+    "repository": "hyperframes",
+    "purpose": "Registry install, local resolution and template access",
+    "paths": [
+      "packages/cli/src/registry/installer.ts",
+      "packages/cli/src/registry/remote.ts",
+      "packages/cli/src/registry/resolver.ts",
+      "packages/studio-server/src/routes/registry.ts",
+      "packages/cli/src/templates/remote.ts"
+    ]
+  },
+  "H-EXTERNAL": {
+    "id": "H-EXTERNAL",
+    "repository": "hyperframes",
+    "purpose": "Existing optional capture, Figma and publishing commands",
+    "paths": [
+      "packages/cli/src/commands/capture.ts",
+      "packages/cli/src/commands/figma.ts",
+      "packages/cli/src/commands/publish.ts",
+      "packages/cli/src/commands/remove-background.ts"
+    ]
+  },
+  "H-CLOUD": {
+    "id": "H-CLOUD",
+    "repository": "hyperframes",
+    "purpose": "Optional deployment adapters and container packaging",
+    "paths": [
+      "packages/aws-lambda/src/index.ts",
+      "packages/gcp-cloud-run/package.json",
+      "packages/cli/src/docker/Dockerfile.render",
+      "packages/cli/src/commands/cloudrun.ts",
+      "packages/cli/src/commands/lambda.ts"
+    ]
+  },
+  "H-PLAYER": {
+    "id": "H-PLAYER",
+    "repository": "hyperframes",
+    "purpose": "Player and slideshow compatibility",
+    "paths": [
+      "packages/player/src/hyperframes-player.ts",
+      "packages/player/src/slideshow/hyperframes-slideshow.ts",
+      "packages/player/src/runtime-message-handler.ts",
+      "packages/player/src/media-element-guards.ts"
+    ]
+  },
+  "H-STYLE": {
+    "id": "H-STYLE",
+    "repository": "hyperframes",
+    "purpose": "Existing themes and native animated graph reference",
+    "paths": [
+      "themes/CONTRACT.md",
+      "themes/editorial.css",
+      "registry/blocks/flowchart/flowchart.html",
+      "registry/blocks/flowchart-vertical/flowchart-vertical.html"
+    ]
+  },
+  "H-PACK": {
+    "id": "H-PACK",
+    "repository": "hyperframes",
+    "purpose": "Release preparation and packed package verification",
+    "paths": [
+      "scripts/release-prepare.ts",
+      "scripts/set-version.ts",
+      "scripts/verify-packed-manifests.mjs",
+      "scripts/studio-runtime-smoke.mjs",
+      "scripts/package-subpaths.mjs"
+    ]
+  }
+}

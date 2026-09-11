@@ -23,19 +23,25 @@
     "build:readme-showcase": "node ../scripts/build-readme-showcase.mjs",
     "test:webm": "node test/webm-artifact.smoke.mjs && node --test test/site-language-integration.mjs",
     "test": "npm run check:brand-marks && npm run check:validators && npm run check:release-identity && node test/golden.mjs && node ../scripts/run-tests.mjs",
-    "render:examples": "node scripts/render-examples.mjs ../examples"
+    "render:examples": "node scripts/render-examples.mjs ../examples",
+    "generate:artifact-styles": "node scripts/generate-artifact-styles.mjs",
+    "check:artifact-styles": "node scripts/generate-artifact-styles.mjs --check"
   },
   "overrides": {
     "fast-uri": "3.1.5"
   },
   "dependencies": {
+    "@hyperframes/diagram-viewer": "workspace:*",
     "ajv": "^8.17.1",
     "parse5": "7.3.0",
     "saxes": "6.0.0",
     "simple-icons": "16.28.0"
   },
   "exports": {
-    ".": "./src/index.mjs",
+    ".": {
+      "types": "./src/contracts.d.ts",
+      "import": "./src/index.mjs"
+    },
     "./assets": "./src/resolveAssets.mjs",
     "./package.json": "./package.json"
   },

@@ -1,0 +1,36 @@
+{
+  "status": "PASS",
+  "scope": "Planning package structural validation ONLY; no application tickets implemented or product tests run",
+  "ticket_count": 134,
+  "epic_count": 15,
+  "capability_count": 70,
+  "source_anchor_count": 240,
+  "source_inventory_count": 7786,
+  "dependency_layer_count": 39,
+  "checks": [
+    "134 unique contiguous ticket IDs",
+    "240 source anchors resolve in 7786-entry inventory",
+    "All issue bodies, requirements, tests, targets and planned statuses validated",
+    "Acyclic dependency graph with 39 layers and full final-gate coverage",
+    "70 capabilities and all 24 prior-ticket crosswalk entries resolve",
+    "134 issue-import records parse correctly",
+    "Local planning-document links resolve",
+    "No font binaries or dependency directories bundled"
+  ],
+  "application_implementation": "not_performed",
+  "planning_tool_test_results": {
+    "tests": 15,
+    "passed": 15,
+    "failed": 0,
+    "skipped": 0,
+    "log": "provenance/PLANNING_TOOL_TESTS.log"
+  },
+  "source_identity_checks": {
+    "uploaded_zip_inputs": "PASS",
+    "extracted_raw_folder_inputs": "PASS",
+    "reports": [
+      "provenance/UPLOADED_SOURCE_CHECK.json",
+      "provenance/FOLDER_SOURCE_CHECK.json"
+    ]
+  }
+}

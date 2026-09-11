@@ -14,11 +14,14 @@
     "src"
   ],
   "dependencies": {
-    "@hyperframes/project-model": "workspace:*"
+    "@hyperframes/project-model": "workspace:*",
+    "@hyperframes/diagram-engine": "workspace:*",
+    "@hyperframes/core": "workspace:*",
+    "saxes": "6.0.0"
   },
   "scripts": {
-    "build": "echo \"no build step yet (AFM-039)\" && exit 0",
-    "test": "echo \"no tests yet (AFM-039)\" && exit 0",
+    "build": "tsc --noEmit",
+    "test": "vitest run",
     "typecheck": "tsc --noEmit"
   }
 }

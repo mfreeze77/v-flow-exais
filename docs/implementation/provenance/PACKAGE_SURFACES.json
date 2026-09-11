@@ -1,0 +1,1086 @@
+{
+  "note": "Snapshot package metadata, not proof every declared command works. Inspect and baseline before modification.",
+  "packages": [
+    {
+      "repository": "archify",
+      "path": "archify/package.json",
+      "name": "archify",
+      "version": "2.17.0-dev.1",
+      "engines": {
+        "node": ">=18"
+      },
+      "scripts": {
+        "generate:brand-marks": "node scripts/generate-brand-marks.mjs",
+        "check:brand-marks": "node scripts/generate-brand-marks.mjs --check",
+        "generate:validators": "node scripts/generate-validators.mjs",
+        "check:validators": "node scripts/generate-validators.mjs --check",
+        "check:release-identity": "node ../scripts/check-release-identity.mjs",
+        "build:gallery": "node ../scripts/build-gallery.mjs ../docs",
+        "build:guide": "node ../scripts/build-guide.mjs ../docs/guide.html",
+        "build:start": "node ../scripts/build-start.mjs ../docs/start.html",
+        "build:readme-showcase": "node ../scripts/build-readme-showcase.mjs",
+        "test:webm": "node test/webm-artifact.smoke.mjs && node --test test/site-language-integration.mjs",
+        "test": "npm run check:brand-marks && npm run check:validators && npm run check:release-identity && node test/golden.mjs && node ../scripts/run-tests.mjs",
+        "render:examples": "node scripts/render-examples.mjs ../examples"
+      },
+      "exports": null,
+      "bin": {
+        "archify": "./bin/archify.mjs"
+      },
+      "license": "MIT"
+    },
+    {
+      "repository": "hyperframes",
+      "path": "package.json",
+      "name": "hyperframes-monorepo",
+      "version": null,
+      "engines": null,
+      "scripts": {
+        "dev": "bun run studio",
+        "build": "bun run --filter '@hyperframes/{parsers,lint,studio-server}' build && bun run --filter @hyperframes/core build && bun run --filter '@hyperframes/{engine,producer,player,studio,shader-transitions,aws-lambda,gcp-cloud-run,sdk}' build && bun run --filter @hyperframes/cli build && bun run --filter @hyperframes/sdk-playground build",
+        "build:producer": "bun run --filter @hyperframes/producer build",
+        "studio": "bun run --filter @hyperframes/studio dev",
+        "build:hyperframes-runtime": "bun run --filter @hyperframes/core build:hyperframes-runtime",
+        "build:hyperframes-runtime:modular": "bun run --filter @hyperframes/core build:hyperframes-runtime:modular",
+        "verify:packed-manifests": "node scripts/verify-packed-manifests.mjs",
+        "validate:release-channel": "node scripts/validate-release-channel.mjs",
+        "set-version": "tsx scripts/set-version.ts",
+        "release:prepare": "tsx scripts/release-prepare.ts",
+        "changelog:draft": "tsx scripts/draft-changelog.ts",
+        "changelog:weekly": "tsx scripts/changelog-weekly.ts",
+        "sync-schemas": "tsx scripts/sync-schemas.ts",
+        "sync-schemas:check": "tsx scripts/sync-schemas.ts --check",
+        "sync:package-subpaths": "node scripts/package-subpaths.mjs --write",
+        "check:package-subpaths": "node scripts/package-subpaths.mjs",
+        "lint": "bun run check:docs-snippet-motion && bun run check:tracked-artifacts && bun run check:workspace-contracts && bun run check:gcp-cloud-run-dockerfile && bun run check:package-cycles && bun run check:package-subpaths && bun run check:cli-process-ownership && oxlint . && tsx scripts/lint-skills.ts && node scripts/check-skill-mirror.mjs",
+        "check:gcp-cloud-run-dockerfile": "bun run --cwd packages/gcp-cloud-run test:dockerfile-workspaces",
+        "lint:skills": "tsx scripts/lint-skills.ts",
+        "check:skill-mirror": "node scripts/check-skill-mirror.mjs",
+        "lint:fix": "oxlint --fix .",
+        "check:tracked-artifacts": "node scripts/check-tracked-artifacts.mjs",
+        "check:docs-snippet-motion": "node scripts/check-docs-snippet-motion.mjs",
+        "check:workspace-contracts": "node scripts/check-workspace-contracts.mjs",
+        "check:package-cycles": "node scripts/check-package-cycles.mjs",
+        "check:cli-process-ownership": "node scripts/check-cli-process-ownership.mjs",
+        "format": "oxfmt .",
+        "test": "bun run test:unit",
+        "test:unit": "bun run --filter '*' test",
+        "producer:test:classification": "bun run --cwd packages/producer test:classification",
+        "producer:test:unit": "bun run --cwd packages/producer test:unit",
+        "producer:test:unit:bun": "bun run --cwd packages/producer test:unit:bun",
+        "producer:test:unit:vitest": "bun run --cwd packages/producer test:unit:vitest",
+        "producer:test:integration": "bun run --cwd packages/producer test:integration",
+        "test:regression": "bun run --cwd packages/producer test:regression",
+        "player:perf": "bun run --filter @hyperframes/player perf",
+        "format:check": "oxfmt --check .",
+        "knip": "knip",
+        "test:scripts": "node --import tsx --test scripts/animejs-v4-guidance.test.mjs scripts/check-tracked-artifacts.test.mjs scripts/check-no-main-deletions.test.mjs scripts/check-docs-snippet-motion.test.mjs scripts/registry-target-paths.test.mjs scripts/check-workspace-contracts.test.mjs scripts/check-package-cycles.test.mjs scripts/check-cli-process-ownership.test.mjs scripts/check-large-files.test.mjs scripts/package-subpaths.test.mjs scripts/validate-release-channel.test.mjs scripts/publish-workflow.test.mjs scripts/install-workspace-dependencies.test.mjs scripts/draft-changelog.test.ts scripts/set-version.test.ts scripts/release-prepare.test.ts scripts/cli-options.test.ts scripts/changelog-weekly.test.ts scripts/claude-plugin-compression.test.ts scripts/catalog-payload-assets.test.ts scripts/host-registry-assets.test.ts scripts/catalog-preview-temp.test.ts scripts/catalog-hosted-files.test.ts scripts/player-cdn-pin.test.ts scripts/studio-runtime-smoke.test.mjs scripts/verify-packed-manifests.test.mjs scripts/lint-skills.test.mjs packages/gcp-cloud-run/check-dockerfile-workspaces.test.mjs packages/core/scripts/writeGeneratedFile.test.ts && vitest run scripts/catalog/",
+        "typecheck:scripts": "tsc --noEmit -p scripts/tsconfig.json",
+        "test:skills": "node --test 'skills/**/*.test.mjs'",
+        "generate:previews": "tsx scripts/generate-template-previews.ts",
+        "generate:catalog-previews": "tsx scripts/generate-catalog-previews.ts",
+        "package:codex-plugin": "node scripts/package-codex-plugin.mjs",
+        "upload:docs-images": "bash scripts/upload-docs-images.sh",
+        "host:registry-assets": "bun run scripts/host-registry-assets.ts",
+        "prepare": "test -d .git && lefthook install || true",
+        "lint:registry-items": "node scripts/lint-registry-items.mjs"
+      },
+      "exports": null,
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/aws-lambda/package.json",
+      "name": "@hyperframes/aws-lambda",
+      "version": "0.8.34",
+      "engines": {
+        "node": ">=22"
+      },
+      "scripts": {
+        "build": "node build.mjs",
+        "build:zip": "tsx scripts/build-zip.ts",
+        "probe:beginframe": "tsx scripts/probe-beginframe.ts",
+        "probe:beginframe:docker": "docker build -f scripts/probe-beginframe.dockerfile -t hyperframes-lambda-probe:local ../.. && docker run --rm hyperframes-lambda-probe:local",
+        "test": "bun test",
+        "typecheck": "tsc --noEmit",
+        "verify:zip-size": "tsx scripts/verify-zip-size.ts"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./handler": {
+          "bun": "./src/handler.ts",
+          "import": "./src/handler.ts",
+          "types": "./src/handler.ts"
+        },
+        "./sdk": {
+          "bun": "./src/sdk/index.ts",
+          "import": "./src/sdk/index.ts",
+          "types": "./src/sdk/index.ts"
+        },
+        "./cdk": {
+          "bun": "./src/cdk/index.ts",
+          "import": "./src/cdk/index.ts",
+          "types": "./src/cdk/index.ts"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/cli/package.json",
+      "name": "@hyperframes/cli",
+      "version": "0.8.34",
+      "engines": {
+        "node": ">=22"
+      },
+      "scripts": {
+        "test": "vitest run",
+        "dev": "tsx src/cli.ts",
+        "build": "bun run build:fonts && tsup && bun run build:runtime && bun run build:beat-analyzer && bun run build:copy",
+        "build:fonts": "node scripts/build-fonts.mjs",
+        "build:runtime": "tsx scripts/build-runtime.ts",
+        "build:beat-analyzer": "node scripts/build-beat-analyzer.mjs",
+        "build:copy": "node scripts/build-copy.mjs",
+        "typecheck": "tsc --noEmit",
+        "gen:skills-manifest": "tsx scripts/gen-skills-manifest.ts",
+        "gen:agent-dirs": "tsx scripts/sync-agent-dirs.ts"
+      },
+      "exports": null,
+      "bin": {
+        "hyperframes": "./bin/hyperframes.mjs",
+        "hyperframes-localize-fonts": "./bin/hyperframes-localize-fonts.mjs"
+      },
+      "license": "Apache-2.0"
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/core/package.json",
+      "name": "@hyperframes/core",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "build": "bun run build:hyperframes-runtime && bun run build:position-edits-render && bun run build:audio-fx-runtime && tsc && tsx scripts/rewrite-esm-extensions.ts",
+        "test": "bun run check:position-edits-render && bun run build:audio-fx-runtime && vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
+        "test:runtime-coverage": "vitest run --coverage src/runtime",
+        "typecheck": "tsc --noEmit && bun run typecheck:runtime",
+        "typecheck:runtime": "tsc --noEmit -p tsconfig.runtime.json",
+        "lint:runtime-preview-guards": "bun scripts/lint-runtime-preview-guards.ts",
+        "build:audio-fx-runtime": "tsx scripts/build-audio-fx-runtime.ts",
+        "build:hyperframes-runtime": "tsx scripts/build-hyperframes-runtime-artifact.ts",
+        "build:position-edits-render": "tsx scripts/build-position-edits-render.ts",
+        "check:position-edits-render": "bun run build:position-edits-render && git diff --exit-code -- src/generated/position-edits-render-inline.ts",
+        "build:hyperframes-runtime:modular": "SANDBOX_RUNTIME_VARIANT=modular tsx scripts/build-hyperframes-runtime-artifact.ts",
+        "build:hyperframe-runtime": "tsx scripts/build-hyperframes-runtime-artifact.ts",
+        "test:hyperframe-runtime-contract": "tsx scripts/test-hyperframe-runtime-contract.ts",
+        "test:hyperframe-runtime-behavior": "tsx scripts/test-hyperframe-runtime-behavior.ts",
+        "test:hyperframe-runtime-seek": "tsx scripts/test-hyperframe-runtime-seek.ts",
+        "test:hyperframe-runtime-duration-guards": "tsx scripts/test-hyperframe-runtime-duration-guards.ts",
+        "test:hyperframe-runtime-parity": "tsx scripts/test-hyperframe-runtime-parity.ts",
+        "test:hyperframe-runtime-security": "tsx scripts/test-hyperframe-runtime-security.ts",
+        "test:hyperframe-linter": "bun scripts/test-hyperframe-linter.ts",
+        "test:hyperframe-runtime-ci": "bun run typecheck:runtime && bun run lint:runtime-preview-guards && bun run build:hyperframes-runtime && bun run test:hyperframe-runtime-contract && bun run test:hyperframe-runtime-behavior && bun run test:hyperframe-runtime-seek && bun run test:hyperframe-runtime-duration-guards && bun run test:hyperframe-runtime-parity && bun run test:hyperframe-runtime-security && bun run test:runtime-coverage && bun run test:hyperframe-linter",
+        "check:hyperframe-html": "bun scripts/check-hyperframe-static.ts",
+        "debug:timeline": "tsx scripts/debug-timeline.ts",
+        "prepublishOnly": "echo skip"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "node": "./dist/index.js",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./package.json": "./package.json",
+        "./canary": {
+          "bun": "./src/canary.ts",
+          "node": "./dist/canary.js",
+          "import": "./src/canary.ts",
+          "types": "./src/canary.ts"
+        },
+        "./canary-registry": {
+          "bun": "./src/canaryRegistry.ts",
+          "node": "./dist/canaryRegistry.js",
+          "import": "./src/canaryRegistry.ts",
+          "types": "./src/canaryRegistry.ts"
+        },
+        "./beats": {
+          "bun": "./src/beats/index.ts",
+          "node": "./dist/beats/index.js",
+          "import": "./src/beats/index.ts",
+          "types": "./src/beats/index.ts"
+        },
+        "./html-attr-safety": {
+          "bun": "./src/utils/htmlAttrSafety.ts",
+          "node": "./dist/utils/htmlAttrSafety.js",
+          "import": "./src/utils/htmlAttrSafety.ts",
+          "types": "./src/utils/htmlAttrSafety.ts"
+        },
+        "./rich-text-sanitize": {
+          "bun": "./src/utils/richTextSanitize.ts",
+          "node": "./dist/utils/richTextSanitize.js",
+          "import": "./src/utils/richTextSanitize.ts",
+          "types": "./src/utils/richTextSanitize.ts"
+        },
+        "./composition-contract": {
+          "bun": "./src/compositionContract.ts",
+          "node": "./dist/compositionContract.js",
+          "import": "./src/compositionContract.ts",
+          "types": "./src/compositionContract.ts"
+        },
+        "./media-timing": {
+          "bun": "./src/mediaTiming.ts",
+          "node": "./dist/mediaTiming.js",
+          "import": "./src/mediaTiming.ts",
+          "types": "./src/mediaTiming.ts"
+        },
+        "./editing": {
+          "bun": "./src/editing/affordances.ts",
+          "node": "./dist/editing/affordances.js",
+          "import": "./src/editing/affordances.ts",
+          "types": "./src/editing/affordances.ts"
+        },
+        "./editing/draft-markers": {
+          "bun": "./src/editing/draftMarkers.ts",
+          "node": "./dist/editing/draftMarkers.js",
+          "import": "./src/editing/draftMarkers.ts",
+          "types": "./src/editing/draftMarkers.ts"
+        },
+        "./variables": {
+          "bun": "./src/variables.ts",
+          "node": "./dist/variables.js",
+          "import": "./src/variables.ts",
+          "types": "./src/variables.ts"
+        },
+        "./slideshow": {
+          "bun": "./src/slideshow/index.ts",
+          "node": "./dist/slideshow/index.js",
+          "import": "./src/slideshow/index.ts",
+          "types": "./src/slideshow/index.ts"
+        },
+        "./generators": {
+          "bun": "./src/generators/hyperframes.ts",
+          "node": "./dist/generators/hyperframes.js",
+          "import": "./src/generators/hyperframes.ts",
+          "types": "./src/generators/hyperframes.ts"
+        },
+        "./lint": {
+          "bun": "./src/lint/index.ts",
+          "node": "./dist/lint/index.js",
+          "import": "./src/lint/index.ts",
+          "types": "./src/lint/index.ts"
+        },
+        "./compiler": {
+          "bun": "./src/compiler/index.ts",
+          "node": "./dist/compiler/index.js",
+          "import": "./src/compiler/index.ts",
+          "types": "./src/compiler/index.ts"
+        },
+        "./audio-fx": {
+          "bun": "./src/audioFx.ts",
+          "node": "./dist/audioFx.js",
+          "import": "./src/audioFx.ts",
+          "types": "./src/audioFx.ts"
+        },
+        "./audio-fx-copy": {
+          "bun": "./src/audioFxCopy.ts",
+          "node": "./dist/audioFxCopy.js",
+          "import": "./src/audioFxCopy.ts",
+          "types": "./src/audioFxCopy.ts"
+        },
+        "./audio-fx-profiles": {
+          "bun": "./src/audioFxProfiles.ts",
+          "node": "./dist/audioFxProfiles.js",
+          "import": "./src/audioFxProfiles.ts",
+          "types": "./src/audioFxProfiles.ts"
+        },
+        "./audio-fx-jobs": {
+          "bun": "./src/audioFxJobs.ts",
+          "node": "./dist/audioFxJobs.js",
+          "import": "./src/audioFxJobs.ts",
+          "types": "./src/audioFxJobs.ts"
+        },
+        "./audio-fx-eq": {
+          "bun": "./src/audioFxEq.ts",
+          "node": "./dist/audioFxEq.js",
+          "import": "./src/audioFxEq.ts",
+          "types": "./src/audioFxEq.ts"
+        },
+        "./audio-leveller": {
+          "bun": "./src/audioLeveller.ts",
+          "node": "./dist/audioLeveller.js",
+          "import": "./src/audioLeveller.ts",
+          "types": "./src/audioLeveller.ts"
+        },
+        "./audio-fx-presets": {
+          "bun": "./src/audioFxPresets.ts",
+          "node": "./dist/audioFxPresets.js",
+          "import": "./src/audioFxPresets.ts",
+          "types": "./src/audioFxPresets.ts"
+        },
+        "./audio-fx-tail": {
+          "bun": "./src/audio/audioFxTail.ts",
+          "node": "./dist/audio/audioFxTail.js",
+          "import": "./src/audio/audioFxTail.ts",
+          "types": "./src/audio/audioFxTail.ts"
+        },
+        "./audio-fx-runtime": {
+          "bun": "./src/generated/audio-fx-runtime-inline.ts",
+          "node": "./dist/generated/audio-fx-runtime-inline.js",
+          "import": "./src/generated/audio-fx-runtime-inline.ts",
+          "types": "./src/generated/audio-fx-runtime-inline.ts"
+        },
+        "./audio-carve": {
+          "bun": "./src/audioCarve.ts",
+          "node": "./dist/audioCarve.js",
+          "import": "./src/audioCarve.ts",
+          "types": "./src/audioCarve.ts"
+        },
+        "./audio-groups": {
+          "bun": "./src/audioGroups.ts",
+          "node": "./dist/audioGroups.js",
+          "import": "./src/audioGroups.ts",
+          "types": "./src/audioGroups.ts"
+        },
+        "./audio-automation": {
+          "bun": "./src/audioAutomation.ts",
+          "node": "./dist/audioAutomation.js",
+          "import": "./src/audioAutomation.ts",
+          "types": "./src/audioAutomation.ts"
+        },
+        "./audio-gain": {
+          "bun": "./src/audioGain.ts",
+          "node": "./dist/audioGain.js",
+          "import": "./src/audioGain.ts",
+          "types": "./src/audioGain.ts"
+        },
+        "./color-grading": {
+          "bun": "./src/colorGrading.ts",
+          "node": "./dist/colorGrading.js",
+          "import": "./src/colorGrading.ts",
+          "types": "./src/colorGrading.ts"
+        },
+        "./color-luts": {
+          "bun": "./src/colorLuts.ts",
+          "node": "./dist/colorLuts.js",
+          "import": "./src/colorLuts.ts",
+          "types": "./src/colorLuts.ts"
+        },
+        "./media-grade-analyzer": {
+          "bun": "./src/mediaGradeAnalyzer.ts",
+          "node": "./dist/mediaGradeAnalyzer.js",
+          "import": "./src/mediaGradeAnalyzer.ts",
+          "types": "./src/mediaGradeAnalyzer.ts"
+        },
+        "./storyboard": {
+          "bun": "./src/storyboard/index.ts",
+          "node": "./dist/storyboard/index.js",
+          "import": "./src/storyboard/index.ts",
+          "types": "./src/storyboard/index.ts"
+        },
+        "./runtime": "./dist/hyperframe.runtime.iife.js",
+        "./runtime/clipTree": {
+          "bun": "./src/runtime/clipTree.ts",
+          "node": "./dist/runtime/clipTree.js",
+          "import": "./src/runtime/clipTree.ts",
+          "types": "./src/runtime/clipTree.ts"
+        },
+        "./runtime/custom-ease": {
+          "bun": "./src/runtime/customEase.ts",
+          "node": "./dist/runtime/customEase.js",
+          "import": "./src/runtime/customEase.ts",
+          "types": "./src/runtime/customEase.ts"
+        },
+        "./runtime/start-expression": {
+          "bun": "./src/runtime/startExpression.ts",
+          "node": "./dist/runtime/startExpression.js",
+          "import": "./src/runtime/startExpression.ts",
+          "types": "./src/runtime/startExpression.ts"
+        },
+        "./runtime/start-resolver": {
+          "bun": "./src/runtime/startResolver.ts",
+          "node": "./dist/runtime/startResolver.js",
+          "import": "./src/runtime/startResolver.ts",
+          "types": "./src/runtime/startResolver.ts"
+        },
+        "./runtime/protocol": {
+          "bun": "./src/runtime/protocol.ts",
+          "node": "./dist/runtime/protocol.js",
+          "import": "./src/runtime/protocol.ts",
+          "types": "./src/runtime/protocol.ts"
+        },
+        "./runtime/stacking-context": {
+          "bun": "./src/runtime/stackingContext.ts",
+          "node": "./dist/runtime/stackingContext.js",
+          "import": "./src/runtime/stackingContext.ts",
+          "types": "./src/runtime/stackingContext.ts"
+        },
+        "./runtime/web-audio-route": {
+          "bun": "./src/runtime/webAudioRoute.ts",
+          "node": "./dist/runtime/webAudioRoute.js",
+          "import": "./src/runtime/webAudioRoute.ts",
+          "types": "./src/runtime/webAudioRoute.ts"
+        },
+        "./compiler/html-document": {
+          "bun": "./src/compiler/htmlDocument.ts",
+          "node": "./dist/compiler/htmlDocument.js",
+          "import": "./src/compiler/htmlDocument.ts",
+          "types": "./src/compiler/htmlDocument.ts"
+        },
+        "./runtime/position-edits": {
+          "bun": "./src/runtime/positionEdits.ts",
+          "node": "./dist/runtime/positionEdits.js",
+          "import": "./src/runtime/positionEdits.ts",
+          "types": "./src/runtime/positionEdits.ts"
+        },
+        "./runtime/position-edits-render": {
+          "bun": "./src/generated/position-edits-render-inline.ts",
+          "node": "./dist/generated/position-edits-render-inline.js",
+          "import": "./src/generated/position-edits-render-inline.ts",
+          "types": "./src/generated/position-edits-render-inline.ts"
+        },
+        "./runtime/lottie-readiness": {
+          "bun": "./src/lottieReadiness.ts",
+          "node": "./dist/lottieReadiness.js",
+          "import": "./src/lottieReadiness.ts",
+          "types": "./src/lottieReadiness.ts"
+        },
+        "./studio-api": {
+          "bun": "./src/studio-api/index.ts",
+          "node": "./dist/studio-api/index.js",
+          "import": "./src/studio-api/index.ts",
+          "types": "./src/studio-api/index.ts"
+        },
+        "./studio-api/screenshot-clip": {
+          "bun": "./src/studio-api/helpers/screenshotClip.ts",
+          "node": "./dist/studio-api/helpers/screenshotClip.js",
+          "import": "./src/studio-api/helpers/screenshotClip.ts",
+          "types": "./src/studio-api/helpers/screenshotClip.ts"
+        },
+        "./studio-api/manual-edits-render-script": {
+          "bun": "./src/studio-api/helpers/manualEditsRenderScript.ts",
+          "node": "./dist/studio-api/helpers/manualEditsRenderScript.js",
+          "import": "./src/studio-api/helpers/manualEditsRenderScript.ts",
+          "types": "./src/studio-api/helpers/manualEditsRenderScript.ts"
+        },
+        "./studio-api/studio-motion-render-script": {
+          "bun": "./src/studio-api/helpers/studioMotionRenderScript.ts",
+          "node": "./dist/studio-api/helpers/studioMotionRenderScript.js",
+          "import": "./src/studio-api/helpers/studioMotionRenderScript.ts",
+          "types": "./src/studio-api/helpers/studioMotionRenderScript.ts"
+        },
+        "./studio-api/draft-markers": {
+          "bun": "./src/studio-api/helpers/draftMarkers.ts",
+          "node": "./dist/studio-api/helpers/draftMarkers.js",
+          "import": "./src/studio-api/helpers/draftMarkers.ts",
+          "types": "./src/studio-api/helpers/draftMarkers.ts"
+        },
+        "./studio-api/finite-mutation": {
+          "bun": "./src/studio-api/helpers/finiteMutation.ts",
+          "node": "./dist/studio-api/helpers/finiteMutation.js",
+          "import": "./src/studio-api/helpers/finiteMutation.ts",
+          "types": "./src/studio-api/helpers/finiteMutation.ts"
+        },
+        "./text": {
+          "bun": "./src/text/index.ts",
+          "node": "./dist/text/index.js",
+          "import": "./src/text/index.ts",
+          "types": "./src/text/index.ts"
+        },
+        "./registry": {
+          "bun": "./src/registry/index.ts",
+          "node": "./dist/registry/index.js",
+          "import": "./src/registry/index.ts",
+          "types": "./src/registry/index.ts"
+        },
+        "./media-volume-envelope": {
+          "bun": "./src/runtime/mediaVolumeEnvelope.ts",
+          "node": "./dist/runtime/mediaVolumeEnvelope.js",
+          "import": "./src/runtime/mediaVolumeEnvelope.ts",
+          "types": "./src/runtime/mediaVolumeEnvelope.ts"
+        },
+        "./hf-ids": {
+          "bun": "./src/parsers/hfIds.ts",
+          "node": "./dist/parsers/hfIds.js",
+          "import": "./src/parsers/hfIds.ts",
+          "types": "./src/parsers/hfIds.ts"
+        },
+        "./gsap-parser": {
+          "bun": "./src/parsers/gsapParserExports.ts",
+          "node": "./dist/parsers/gsapParserExports.js",
+          "import": "./src/parsers/gsapParserExports.ts",
+          "types": "./src/parsers/gsapParserExports.ts"
+        },
+        "./gsap-parser-acorn": {
+          "bun": "./src/parsers/gsapParserAcorn.ts",
+          "node": "./dist/parsers/gsapParserAcorn.js",
+          "import": "./src/parsers/gsapParserAcorn.ts",
+          "types": "./src/parsers/gsapParserAcorn.ts"
+        },
+        "./gsap-writer-acorn": {
+          "bun": "./src/parsers/gsapWriterAcorn.ts",
+          "node": "./dist/parsers/gsapWriterAcorn.js",
+          "import": "./src/parsers/gsapWriterAcorn.ts",
+          "types": "./src/parsers/gsapWriterAcorn.ts"
+        },
+        "./gsap-constants": {
+          "bun": "./src/parsers/gsapConstants.ts",
+          "node": "./dist/parsers/gsapConstants.js",
+          "import": "./src/parsers/gsapConstants.ts",
+          "types": "./src/parsers/gsapConstants.ts"
+        },
+        "./spring-ease": {
+          "bun": "./src/parsers/springEase.ts",
+          "node": "./dist/parsers/springEase.js",
+          "import": "./src/parsers/springEase.ts",
+          "types": "./src/parsers/springEase.ts"
+        },
+        "./wiggle-ease": {
+          "bun": "./src/runtime/wiggleEase.ts",
+          "node": "./dist/runtime/wiggleEase.js",
+          "import": "./src/runtime/wiggleEase.ts",
+          "types": "./src/runtime/wiggleEase.ts"
+        },
+        "./fonts/aliases": {
+          "bun": "./src/fonts/aliases.ts",
+          "node": "./dist/fonts/aliases.js",
+          "import": "./src/fonts/aliases.ts",
+          "types": "./src/fonts/aliases.ts"
+        },
+        "./fonts/system-locator": {
+          "bun": "./src/fonts/systemFontLocator.ts",
+          "node": "./dist/fonts/systemFontLocator.js",
+          "import": "./src/fonts/systemFontLocator.ts",
+          "types": "./src/fonts/systemFontLocator.ts"
+        },
+        "./figma": {
+          "bun": "./src/figma/index.ts",
+          "node": "./dist/figma/index.js",
+          "import": "./src/figma/index.ts",
+          "types": "./src/figma/index.ts"
+        },
+        "./schemas/registry.json": "./schemas/registry.json",
+        "./schemas/registry-item.json": "./schemas/registry-item.json"
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/engine/package.json",
+      "name": "@hyperframes/engine",
+      "version": "0.8.34",
+      "engines": {
+        "node": ">=22"
+      },
+      "scripts": {
+        "build": "tsc",
+        "test": "vitest run",
+        "typecheck": "tsc --noEmit"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./alpha-blit": {
+          "bun": "./src/utils/alphaBlit.ts",
+          "import": "./src/utils/alphaBlit.ts",
+          "types": "./src/utils/alphaBlit.ts"
+        },
+        "./shader-transitions": {
+          "bun": "./src/utils/shaderTransitions.ts",
+          "import": "./src/utils/shaderTransitions.ts",
+          "types": "./src/utils/shaderTransitions.ts"
+        },
+        "./package.json": "./package.json"
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/gcp-cloud-run/package.json",
+      "name": "@hyperframes/gcp-cloud-run",
+      "version": "0.8.34",
+      "engines": {
+        "node": ">=22"
+      },
+      "scripts": {
+        "test:dockerfile-workspaces": "node check-dockerfile-workspaces.mjs",
+        "build": "node build.mjs",
+        "start": "bun dist/server.js",
+        "test": "bun test",
+        "typecheck": "tsc --noEmit"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./server": {
+          "bun": "./src/server.ts",
+          "import": "./src/server.ts",
+          "types": "./src/server.ts"
+        },
+        "./sdk": {
+          "bun": "./src/sdk/index.ts",
+          "import": "./src/sdk/index.ts",
+          "types": "./src/sdk/index.ts"
+        },
+        "./terraform": {
+          "bun": "./src/terraform.ts",
+          "import": "./src/terraform.ts",
+          "types": "./src/terraform.ts"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/lint/package.json",
+      "name": "@hyperframes/lint",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "build": "tsup",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "prepublishOnly": "echo skip"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "node": "./dist/index.js",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./browser": {
+          "browser": "./src/browser.ts",
+          "bun": "./src/browser.ts",
+          "import": "./src/browser.ts",
+          "types": "./src/browser.ts"
+        },
+        "./package.json": "./package.json"
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/parsers/package.json",
+      "name": "@hyperframes/parsers",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "build": "tsup",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "prepublishOnly": "echo skip"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "node": "./dist/index.js",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./package.json": "./package.json",
+        "./gsap-parser": {
+          "bun": "./src/gsapParserExports.ts",
+          "node": "./dist/gsapParserExports.js",
+          "import": "./src/gsapParserExports.ts",
+          "types": "./src/gsapParserExports.ts"
+        },
+        "./gsap-parser-acorn": {
+          "bun": "./src/gsapParserAcorn.ts",
+          "node": "./dist/gsapParserAcorn.js",
+          "import": "./src/gsapParserAcorn.ts",
+          "types": "./src/gsapParserAcorn.ts"
+        },
+        "./gsap-writer-acorn": {
+          "bun": "./src/gsapWriterAcorn.ts",
+          "node": "./dist/gsapWriterAcorn.js",
+          "import": "./src/gsapWriterAcorn.ts",
+          "types": "./src/gsapWriterAcorn.ts"
+        },
+        "./gsap-constants": {
+          "bun": "./src/gsapConstants.ts",
+          "node": "./dist/gsapConstants.js",
+          "import": "./src/gsapConstants.ts",
+          "types": "./src/gsapConstants.ts"
+        },
+        "./spring-ease": {
+          "bun": "./src/springEase.ts",
+          "node": "./dist/springEase.js",
+          "import": "./src/springEase.ts",
+          "types": "./src/springEase.ts"
+        },
+        "./hf-ids": {
+          "bun": "./src/hfIds.ts",
+          "node": "./dist/hfIds.js",
+          "import": "./src/hfIds.ts",
+          "types": "./src/hfIds.ts"
+        },
+        "./gsap-parser-recast": {
+          "bun": "./src/gsapParser.ts",
+          "node": "./dist/gsapParser.js",
+          "import": "./src/gsapParser.ts",
+          "types": "./src/gsapParser.ts"
+        },
+        "./slideshow": {
+          "bun": "./src/slideshow/index.ts",
+          "node": "./dist/slideshow.js",
+          "import": "./src/slideshow/index.ts",
+          "types": "./src/slideshow/index.ts"
+        },
+        "./asset-paths": {
+          "bun": "./src/assets.ts",
+          "node": "./dist/assets.js",
+          "import": "./src/assets.ts",
+          "types": "./src/assets.ts"
+        },
+        "./composition": {
+          "bun": "./src/composition.ts",
+          "node": "./dist/composition.js",
+          "import": "./src/composition.ts",
+          "types": "./src/composition.ts"
+        },
+        "./composition-contract": {
+          "bun": "./src/compositionContract.ts",
+          "node": "./dist/compositionContract.js",
+          "import": "./src/compositionContract.ts",
+          "types": "./src/compositionContract.ts"
+        },
+        "./color-grading-contract": {
+          "bun": "./src/colorGradingContract.ts",
+          "node": "./dist/colorGradingContract.js",
+          "import": "./src/colorGradingContract.ts",
+          "types": "./src/colorGradingContract.ts"
+        },
+        "./sub-composition-validity": {
+          "bun": "./src/subCompositionValidity.ts",
+          "node": "./dist/subCompositionValidity.js",
+          "import": "./src/subCompositionValidity.ts",
+          "types": "./src/subCompositionValidity.ts"
+        },
+        "./ff-binaries": {
+          "bun": "./src/ffBinaries.ts",
+          "node": "./dist/ffBinaries.js",
+          "import": "./src/ffBinaries.ts",
+          "types": "./src/ffBinaries.ts"
+        },
+        "./asset-resolution": {
+          "bun": "./src/assetResolution.ts",
+          "node": "./dist/assetResolution.js",
+          "import": "./src/assetResolution.ts",
+          "types": "./src/assetResolution.ts"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/player/package.json",
+      "name": "@hyperframes/player",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "build": "tsup && node scripts/verify-runtime-pin.mjs",
+        "typecheck": "tsc --noEmit && tsc --noEmit -p tests/perf/tsconfig.json",
+        "test": "vitest run",
+        "test:browser-security": "bun run tests/browser/sandbox-origin.ts",
+        "perf": "bun run tests/perf/index.ts"
+      },
+      "exports": {
+        ".": {
+          "types": "./dist/hyperframes-player.d.ts",
+          "script": "./dist/hyperframes-player.global.js",
+          "import": "./dist/hyperframes-player.js",
+          "require": "./dist/hyperframes-player.cjs"
+        },
+        "./slideshow": {
+          "types": "./dist/slideshow/hyperframes-slideshow.d.ts",
+          "script": "./dist/slideshow/hyperframes-slideshow.global.js",
+          "import": "./dist/slideshow/hyperframes-slideshow.js",
+          "require": "./dist/slideshow/hyperframes-slideshow.cjs"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/producer/package.json",
+      "name": "@hyperframes/producer",
+      "version": "0.8.34",
+      "engines": {
+        "node": ">=22"
+      },
+      "scripts": {
+        "build": "bun run build:fonts && bun run build:hf-early-stub && bun run --cwd ../.. build:hyperframes-runtime:modular && node build.mjs",
+        "build:fonts": "node scripts/build-fonts.mjs",
+        "build:hf-early-stub": "bun run scripts/build-hf-early-stub.ts",
+        "typecheck": "tsc --noEmit",
+        "parity:check": "tsx src/parity-harness.ts",
+        "parity:plans": "tsx src/plan-parity-harness.ts",
+        "parity:fixtures": "tsx src/parity-fixtures.ts",
+        "parity:fixtures:ci": "tsx src/parity-fixtures.ts",
+        "parity:check:ci": "tsx src/parity-harness.ts --preview-url \"http://127.0.0.1:4173/minimal-wysiwyg.html\" --producer-url \"http://127.0.0.1:4173/minimal-wysiwyg.html?mode=producer\" --checkpoints \"0,0.5,1,1.5\" --allow-mismatch-ratio 0 --emulate-producer-swap true --artifacts-dir \".debug/parity-harness-ci\"",
+        "perf:gate": "tsx src/perf-gate.ts",
+        "check:runtime-conformance": "tsx src/runtime-conformance.ts",
+        "benchmark": "tsx src/benchmark.ts",
+        "bench:hdr": "tsx src/benchmark.ts --tags hdr",
+        "test": "bun run test:unit",
+        "test:classification": "node --test scripts/test-classification.test.mjs && node scripts/check-test-classification.mjs",
+        "test:unit": "bun run test:classification && node scripts/run-test-lane.mjs unit",
+        "test:unit:bun": "node scripts/run-test-lane.mjs unit bun",
+        "test:unit:vitest": "node scripts/run-test-lane.mjs unit vitest",
+        "test:integration": "bun run test:classification && node scripts/run-test-lane.mjs integration",
+        "test:integration:bun": "node scripts/run-test-lane.mjs integration bun",
+        "test:integration:vitest": "node scripts/run-test-lane.mjs integration vitest",
+        "test:regression": "tsx src/regression-harness.ts --exclude-tags transparency,field-signal-reproducer",
+        "test:regression:update": "tsx src/regression-harness.ts --update --exclude-tags transparency,field-signal-reproducer",
+        "test:distributed": "tsx src/regression-harness.ts --exclude-tags transparency,field-signal-reproducer --mode=distributed-simulated",
+        "test:transparency": "tsx src/transparency-test.ts",
+        "docker:build:test": "docker build -f ../../Dockerfile.test -t hyperframes-producer:test ../..",
+        "docker:test": "docker run --rm --security-opt seccomp=unconfined --shm-size=2g -v ./tests:/app/packages/producer/tests hyperframes-producer:test",
+        "docker:test:update": "docker run --rm --security-opt seccomp=unconfined --shm-size=2g -v ./tests:/app/packages/producer/tests hyperframes-producer:test --update",
+        "docker:test:distributed": "docker run --rm --security-opt seccomp=unconfined --shm-size=2g -v ./tests:/app/packages/producer/tests hyperframes-producer:test --mode=distributed-simulated",
+        "test:lambda-local": "tsx src/regression-harness.ts --exclude-tags transparency,field-signal-reproducer --mode=lambda-local",
+        "docker:test:lambda-local": "docker run --rm --security-opt seccomp=unconfined --shm-size=2g -v ./tests:/app/packages/producer/tests hyperframes-producer:test --mode=lambda-local",
+        "prepublishOnly": "echo skip"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./server": "./src/server.ts",
+        "./distributed": {
+          "bun": "./src/distributed.ts",
+          "import": "./src/distributed.ts",
+          "types": "./src/distributed.ts"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/sdk-playground/package.json",
+      "name": "@hyperframes/sdk-playground",
+      "version": "0.6.106",
+      "engines": null,
+      "scripts": {
+        "dev": "vite",
+        "build": "vite build",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest run"
+      },
+      "exports": null,
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/sdk/package.json",
+      "name": "@hyperframes/sdk",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "build": "tsc",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "typecheck:examples": "tsc --noEmit -p tsconfig.check.json"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./adapters/memory": {
+          "bun": "./src/adapters/memory.ts",
+          "import": "./src/adapters/memory.ts",
+          "types": "./src/adapters/memory.ts"
+        },
+        "./adapters/fs": {
+          "bun": "./src/adapters/fs.ts",
+          "import": "./src/adapters/fs.ts",
+          "types": "./src/adapters/fs.ts"
+        },
+        "./adapters/headless": {
+          "bun": "./src/adapters/headless.ts",
+          "import": "./src/adapters/headless.ts",
+          "types": "./src/adapters/headless.ts"
+        },
+        "./adapters/iframe": {
+          "bun": "./src/adapters/iframe.ts",
+          "import": "./src/adapters/iframe.ts",
+          "types": "./src/adapters/iframe.ts"
+        },
+        "./editing": {
+          "bun": "./src/editing/affordances.ts",
+          "import": "./src/editing/affordances.ts",
+          "types": "./src/editing/affordances.ts"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/shader-transitions/package.json",
+      "name": "@hyperframes/shader-transitions",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "build": "tsup",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest run --passWithNoTests"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts",
+          "script": "./dist/index.global.js",
+          "require": "./dist/index.cjs"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/studio-server/package.json",
+      "name": "@hyperframes/studio-server",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "build": "tsup",
+        "test": "vitest run",
+        "test:acorn-writer": "bun scripts/run-acorn-writer-tests.ts",
+        "test:watch": "vitest",
+        "typecheck": "tsc --noEmit",
+        "report:gsap-writers": "bun src/routes/gsapMutationCapabilities.report.ts",
+        "prepublishOnly": "echo skip"
+      },
+      "exports": {
+        ".": {
+          "bun": "./src/index.ts",
+          "node": "./dist/index.js",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./package.json": "./package.json",
+        "./screenshot-clip": {
+          "bun": "./src/helpers/screenshotClip.ts",
+          "node": "./dist/helpers/screenshotClip.js",
+          "import": "./src/helpers/screenshotClip.ts",
+          "types": "./src/helpers/screenshotClip.ts"
+        },
+        "./manual-edits-render-script": {
+          "bun": "./src/helpers/manualEditsRenderScript.ts",
+          "node": "./dist/helpers/manualEditsRenderScript.js",
+          "import": "./src/helpers/manualEditsRenderScript.ts",
+          "types": "./src/helpers/manualEditsRenderScript.ts"
+        },
+        "./studio-motion-render-script": {
+          "bun": "./src/helpers/studioMotionRenderScript.ts",
+          "node": "./dist/helpers/studioMotionRenderScript.js",
+          "import": "./src/helpers/studioMotionRenderScript.ts",
+          "types": "./src/helpers/studioMotionRenderScript.ts"
+        },
+        "./draft-markers": {
+          "bun": "./src/helpers/draftMarkers.ts",
+          "node": "./dist/helpers/draftMarkers.js",
+          "import": "./src/helpers/draftMarkers.ts",
+          "types": "./src/helpers/draftMarkers.ts"
+        },
+        "./finite-mutation": {
+          "bun": "./src/helpers/finiteMutation.ts",
+          "node": "./dist/helpers/finiteMutation.js",
+          "import": "./src/helpers/finiteMutation.ts",
+          "types": "./src/helpers/finiteMutation.ts"
+        },
+        "./source-mutation": {
+          "bun": "./src/helpers/sourceMutation.ts",
+          "node": "./dist/helpers/sourceMutation.js",
+          "import": "./src/helpers/sourceMutation.ts",
+          "types": "./src/helpers/sourceMutation.ts"
+        },
+        "./media-codec-map": {
+          "bun": "./src/helpers/mediaCodecMap.ts",
+          "node": "./dist/helpers/mediaCodecMap.js",
+          "import": "./src/helpers/mediaCodecMap.ts",
+          "types": "./src/helpers/mediaCodecMap.ts"
+        },
+        "./proxy-transcoder": {
+          "bun": "./src/helpers/proxyTranscoder.ts",
+          "node": "./dist/helpers/proxyTranscoder.js",
+          "import": "./src/helpers/proxyTranscoder.ts",
+          "types": "./src/helpers/proxyTranscoder.ts"
+        },
+        "./media-proxy-preview": {
+          "bun": "./src/helpers/mediaProxyPreview.ts",
+          "node": "./dist/helpers/mediaProxyPreview.js",
+          "import": "./src/helpers/mediaProxyPreview.ts",
+          "types": "./src/helpers/mediaProxyPreview.ts"
+        }
+      },
+      "bin": null,
+      "license": null
+    },
+    {
+      "repository": "hyperframes",
+      "path": "packages/studio/package.json",
+      "name": "@hyperframes/studio",
+      "version": "0.8.34",
+      "engines": null,
+      "scripts": {
+        "dev": "bun --bun ./node_modules/.bin/vite --host 127.0.0.1",
+        "build": "vite build && tsup",
+        "typecheck": "tsc --noEmit",
+        "test": "vitest run",
+        "test:webmcp-edit-loop": "node tests/e2e/webmcp-edit-loop.mjs",
+        "test:timeline-virtualization": "TIMELINE_ROW_VIRTUALIZATION=on TIMELINE_ELEMENT_COUNT=50000 node tests/e2e/timeline-virtualization.mjs",
+        "test:watch": "vitest",
+        "report:sdk-cutover": "bun src/utils/sdkCutoverPolicy.report.ts",
+        "test:timeline-default": "bun run test:timeline-virtualization"
+      },
+      "exports": {
+        ".": {
+          "browser": "./src/index.ts",
+          "bun": "./src/index.ts",
+          "import": "./src/index.ts",
+          "types": "./src/index.ts"
+        },
+        "./tailwind-preset": {
+          "bun": "./src/styles/tailwind-preset.ts",
+          "import": "./src/styles/tailwind-preset.ts",
+          "types": "./src/styles/tailwind-preset.ts"
+        },
+        "./package.json": "./package.json"
+      },
+      "bin": null,
+      "license": null
+    }
+  ]
+}

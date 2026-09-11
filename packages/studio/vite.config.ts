@@ -265,6 +265,12 @@ export default defineConfig({
     },
   },
   ssr: {
+    // Studio dev runs in Bun and consumes owned source exports. Selecting the
+    // Node distribution condition requires ignored dist files on a fresh clone.
+    resolve: {
+      conditions: ["bun", "module", "node", "development|production"],
+      externalConditions: ["bun", "node"],
+    },
     // recast / @babel/parser are CommonJS and call `require("fs")`. They are
     // reachable only server-side via the Node-only `@hyperframes/parsers/gsap-parser`
     // subpath (studio-api GSAP mutations + the linter), which the dev server loads

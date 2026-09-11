@@ -1,0 +1,1062 @@
+{
+  "note": "All status fields concern future application work. Preserved source is not integrated functionality. Newly discovered upstream capabilities must be added rather than silently removed.",
+  "capabilities": [
+    {
+      "id": "CAP-001",
+      "capability": "Single owned workspace / no sibling runtime",
+      "tickets": [
+        "AFM-001",
+        "AFM-002",
+        "AFM-003",
+        "AFM-009",
+        "AFM-010",
+        "AFM-011",
+        "AFM-016",
+        "AFM-129"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-002",
+      "capability": "Safe source import, hashes and upstream divergence",
+      "tickets": [
+        "AFM-001",
+        "AFM-002",
+        "AFM-006",
+        "AFM-007",
+        "AFM-125"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-003",
+      "capability": "Licenses, notices, asset rights and new identity",
+      "tickets": [
+        "AFM-004",
+        "AFM-111",
+        "AFM-121"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-004",
+      "capability": "No inherited publishing / executable hook surprises",
+      "tickets": [
+        "AFM-005",
+        "AFM-015",
+        "AFM-097"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-005",
+      "capability": "Full source/test/capability retention",
+      "tickets": [
+        "AFM-008",
+        "AFM-013",
+        "AFM-014",
+        "AFM-119"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-006",
+      "capability": "Versioned typed project and native HTML ownership",
+      "tickets": [
+        "AFM-017",
+        "AFM-022",
+        "AFM-085"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-007",
+      "capability": "Stable nodes, edges, messages and scene appearances",
+      "tickets": [
+        "AFM-018",
+        "AFM-040",
+        "AFM-046"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-008",
+      "capability": "One revision-aware command path",
+      "tickets": [
+        "AFM-019",
+        "AFM-051",
+        "AFM-057",
+        "AFM-095",
+        "AFM-096"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-009",
+      "capability": "Atomic saves, undo and crash recovery",
+      "tickets": [
+        "AFM-020",
+        "AFM-021",
+        "AFM-072",
+        "AFM-076",
+        "AFM-078"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-010",
+      "capability": "Asset identity, measured timing and immutable builds",
+      "tickets": [
+        "AFM-023",
+        "AFM-026",
+        "AFM-049",
+        "AFM-079"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-011",
+      "capability": "Evidence, diagnostics and public redaction",
+      "tickets": [
+        "AFM-024",
+        "AFM-037",
+        "AFM-066",
+        "AFM-107"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-012",
+      "capability": "Story / frame timing / scene overrides",
+      "tickets": [
+        "AFM-025",
+        "AFM-044",
+        "AFM-046",
+        "AFM-073"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-013",
+      "capability": "Callable engine without CLI/global side effects",
+      "tickets": [
+        "AFM-027",
+        "AFM-028",
+        "AFM-038"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-014",
+      "capability": "Architecture render, semantic editing and scene motion",
+      "tickets": [
+        "AFM-029",
+        "AFM-062",
+        "AFM-064",
+        "AFM-065",
+        "AFM-068",
+        "AFM-130"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-015",
+      "capability": "Workflow render/migration, lanes and branches",
+      "tickets": [
+        "AFM-030",
+        "AFM-087",
+        "AFM-094"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-016",
+      "capability": "Sequence render and ordered repeated messages",
+      "tickets": [
+        "AFM-031",
+        "AFM-088",
+        "AFM-094"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-017",
+      "capability": "Dataflow render, flows and boundary semantics",
+      "tickets": [
+        "AFM-032",
+        "AFM-089",
+        "AFM-094"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-018",
+      "capability": "Lifecycle render, loops and transitions",
+      "tickets": [
+        "AFM-033",
+        "AFM-090",
+        "AFM-094"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-019",
+      "capability": "Diagram themes, presets, locales and brand lookup",
+      "tickets": [
+        "AFM-034",
+        "AFM-084",
+        "AFM-091"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-020",
+      "capability": "Interactive HTML viewer, details and search",
+      "tickets": [
+        "AFM-035",
+        "AFM-060",
+        "AFM-091"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-021",
+      "capability": "Guided views, chapters and scene drafting",
+      "tickets": [
+        "AFM-035",
+        "AFM-045",
+        "AFM-063",
+        "AFM-066",
+        "AFM-091"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-022",
+      "capability": "Authored route/reach inspection and semantic links",
+      "tickets": [
+        "AFM-036",
+        "AFM-043",
+        "AFM-066",
+        "AFM-091"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-023",
+      "capability": "Pinned source evidence and exact architecture diff",
+      "tickets": [
+        "AFM-037",
+        "AFM-092",
+        "AFM-093"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-024",
+      "capability": "Schema, artifact, geometry and visual checks",
+      "tickets": [
+        "AFM-028",
+        "AFM-038",
+        "AFM-114",
+        "AFM-115"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-025",
+      "capability": "Native managed diagram composition",
+      "tickets": [
+        "AFM-039",
+        "AFM-047",
+        "AFM-054"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-026",
+      "capability": "Collision-free SVG/CSS across scene instances",
+      "tickets": [
+        "AFM-040",
+        "AFM-047",
+        "AFM-115"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-027",
+      "capability": "Readable camera framing and output safe areas",
+      "tickets": [
+        "AFM-041",
+        "AFM-068",
+        "AFM-084"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-028",
+      "capability": "Seekable motion under a single runtime clock",
+      "tickets": [
+        "AFM-042",
+        "AFM-044",
+        "AFM-050",
+        "AFM-115"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-029",
+      "capability": "No fabricated flow from focus order",
+      "tickets": [
+        "AFM-043",
+        "AFM-045",
+        "AFM-098",
+        "AFM-114"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-030",
+      "capability": "Editable semantic tracks and animation controls",
+      "tickets": [
+        "AFM-046",
+        "AFM-067",
+        "AFM-068"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-031",
+      "capability": "Regeneration without override loss",
+      "tickets": [
+        "AFM-048",
+        "AFM-073",
+        "AFM-074",
+        "AFM-078"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-032",
+      "capability": "Asset/font readiness before frame zero",
+      "tickets": [
+        "AFM-049",
+        "AFM-079",
+        "AFM-103"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-033",
+      "capability": "One API and consistent error contracts",
+      "tickets": [
+        "AFM-051",
+        "AFM-052",
+        "AFM-058"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-034",
+      "capability": "External edit detection and conflict reconciliation",
+      "tickets": [
+        "AFM-053",
+        "AFM-070",
+        "AFM-075"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-035",
+      "capability": "Real immutable video jobs, cancel/retry/recovery",
+      "tickets": [
+        "AFM-054",
+        "AFM-055",
+        "AFM-110"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-036",
+      "capability": "Revision-correct previews and thumbnails",
+      "tickets": [
+        "AFM-056",
+        "AFM-077",
+        "AFM-115"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-037",
+      "capability": "Managed mutation enforcement / explicit detach",
+      "tickets": [
+        "AFM-057",
+        "AFM-069",
+        "AFM-072"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-038",
+      "capability": "Unified project launch and import UX",
+      "tickets": [
+        "AFM-059",
+        "AFM-060",
+        "AFM-063"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-039",
+      "capability": "Shared selection / inspector / timeline context",
+      "tickets": [
+        "AFM-061",
+        "AFM-062",
+        "AFM-067"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-040",
+      "capability": "Schema-valid object CRUD and persistent layout",
+      "tickets": [
+        "AFM-064",
+        "AFM-065",
+        "AFM-074"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-041",
+      "capability": "Visible save/build/conflict/render status",
+      "tickets": [
+        "AFM-070",
+        "AFM-076"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-042",
+      "capability": "Accessible keyboard and locale-aware UI",
+      "tickets": [
+        "AFM-071",
+        "AFM-091"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-043",
+      "capability": "Shared asset browser and media ingestion",
+      "tickets": [
+        "AFM-079",
+        "AFM-083"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-044",
+      "capability": "Local narration and opt-in synthesis adapters",
+      "tickets": [
+        "AFM-080",
+        "AFM-100"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "conditional_not_verified"
+    },
+    {
+      "id": "CAP-045",
+      "capability": "Caption import/edit/sync/sidecar export",
+      "tickets": [
+        "AFM-081",
+        "AFM-086"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-046",
+      "capability": "Native media transforms, effects, variables and color",
+      "tickets": [
+        "AFM-082",
+        "AFM-085"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-047",
+      "capability": "Local templates and opt-in catalog",
+      "tickets": [
+        "AFM-083",
+        "AFM-103"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "conditional_not_verified"
+    },
+    {
+      "id": "CAP-048",
+      "capability": "Widescreen, square and portrait output",
+      "tickets": [
+        "AFM-084",
+        "AFM-115"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-049",
+      "capability": "Native-only / nested composition / player / slideshow",
+      "tickets": [
+        "AFM-085",
+        "AFM-094"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-050",
+      "capability": "Project, diagram, still, MP4 and WebM export",
+      "tickets": [
+        "AFM-086",
+        "AFM-126"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-051",
+      "capability": "All-family mixed product, not architecture-only",
+      "tickets": [
+        "AFM-094",
+        "AFM-132"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-052",
+      "capability": "One custom CLI and compatibility commands",
+      "tickets": [
+        "AFM-095",
+        "AFM-101"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-053",
+      "capability": "Semantic agent tools and combined skill",
+      "tickets": [
+        "AFM-096",
+        "AFM-097",
+        "AFM-102"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-054",
+      "capability": "AI proposals with source review and validation",
+      "tickets": [
+        "AFM-098",
+        "AFM-102"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "conditional_not_verified"
+    },
+    {
+      "id": "CAP-055",
+      "capability": "Headless batch output and resumable jobs",
+      "tickets": [
+        "AFM-099",
+        "AFM-055"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-056",
+      "capability": "Optional capture, Figma, publishing and cloud interfaces",
+      "tickets": [
+        "AFM-100",
+        "AFM-103"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "conditional_not_verified"
+    },
+    {
+      "id": "CAP-057",
+      "capability": "Doctor / setup / redacted diagnostics",
+      "tickets": [
+        "AFM-101",
+        "AFM-123"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-058",
+      "capability": "Offline runtime and outbound-network policy",
+      "tickets": [
+        "AFM-103",
+        "AFM-106",
+        "AFM-112"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-059",
+      "capability": "Path / archive / symlink / local filesystem safety",
+      "tickets": [
+        "AFM-104",
+        "AFM-112"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-060",
+      "capability": "Untrusted composition isolation and message validation",
+      "tickets": [
+        "AFM-105",
+        "AFM-108",
+        "AFM-112"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-061",
+      "capability": "No SSRF / secret leakage / API bypass",
+      "tickets": [
+        "AFM-106",
+        "AFM-107",
+        "AFM-109",
+        "AFM-112"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-062",
+      "capability": "Worker quotas / cancellation / disk resilience",
+      "tickets": [
+        "AFM-108",
+        "AFM-110",
+        "AFM-118"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-063",
+      "capability": "Local and protected single-user deployment",
+      "tickets": [
+        "AFM-109",
+        "AFM-117",
+        "AFM-122"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-064",
+      "capability": "SBOM, dependency and distribution provenance",
+      "tickets": [
+        "AFM-111",
+        "AFM-126"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-065",
+      "capability": "Seeded semantic, actual visual and parity regressions",
+      "tickets": [
+        "AFM-113",
+        "AFM-114",
+        "AFM-115"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-066",
+      "capability": "Measured performance and long-session durability",
+      "tickets": [
+        "AFM-116",
+        "AFM-118"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-067",
+      "capability": "Windows / macOS / Linux support declarations",
+      "tickets": [
+        "AFM-117",
+        "AFM-122"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-068",
+      "capability": "No-drift evidence and all-capability release gate",
+      "tickets": [
+        "AFM-119",
+        "AFM-120",
+        "AFM-127",
+        "AFM-134"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-069",
+      "capability": "Custom docs, demo source and complete repo packaging",
+      "tickets": [
+        "AFM-121",
+        "AFM-123",
+        "AFM-124",
+        "AFM-126",
+        "AFM-128"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    },
+    {
+      "id": "CAP-070",
+      "capability": "Selective upstream update tooling",
+      "tickets": [
+        "AFM-125"
+      ],
+      "source_retention": "planned",
+      "baseline_verification": "not_run",
+      "studio_integration": "not_implemented",
+      "render_integration": "not_implemented",
+      "release_evidence": "not_run",
+      "external_live_evidence": "not_applicable"
+    }
+  ]
+}

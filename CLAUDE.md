@@ -2,7 +2,7 @@
 
 One Studio for typed architecture diagrams and real video production. Bun workspace, TypeScript, Vitest. Built by merging two owned sources: Archify (five typed diagram renderers) and HyperFrames (Studio / SDK / player / producer composition stack).
 
-The authoritative spec is the implementation pack at `_sources/archframe-unified-implementation-v2.0.0/`: 134 tickets (AFM-001..AFM-134), 15 epics, six gates. Read the actual ticket body before implementing it — never work from a summary.
+The authoritative spec is the tracked implementation pack at `docs/implementation/`: 134 tickets (AFM-001..AFM-134), 15 epics, six gates. Read the actual ticket body before implementing it — never work from a summary. Resume from `evidence/LEDGER.md` and the current scope in `docs/designs/scope-local-single-user.md`; the pack's original empty-directory intake instructions describe the completed import, not a request to restart it.
 
 ## Everything runs in Docker
 

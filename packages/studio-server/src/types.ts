@@ -100,6 +100,8 @@ export interface StudioSelectionResponse {
  * provides its own implementation.
  */
 export interface StudioApiAdapter {
+  /** Optional unified project storage; the same service is used by UI and CLI. */
+  projectService?: import('./project/projectService').UnifiedProjectService;
   /** List all available projects. */
   listProjects(): Promise<ResolvedProject[]> | ResolvedProject[];
 
@@ -143,6 +145,7 @@ export interface StudioApiAdapter {
    * update the returned RenderJobState object reactively.
    */
   startRender(opts: {
+    workers?: number;
     project: ResolvedProject;
     outputPath: string;
     format: "mp4" | "webm" | "mov";

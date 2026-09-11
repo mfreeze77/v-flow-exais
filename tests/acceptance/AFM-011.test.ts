@@ -17,6 +17,7 @@ import { execFileSync } from "node:child_process";
 import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
+import { Window } from "happy-dom";
 
 import {
   assetRoots,
@@ -106,9 +107,21 @@ describe("AFM-011: the renderers run from an unrelated directory", () => {
     expect(statSync(out).size).toBeGreaterThan(10_000);
     const html = readFileSync(out, "utf8");
     expect(html).toContain("<svg");
-    // Authored topology must survive: the deployment example's gateway fans out
-    // to two APIs and must not be collapsed into a chain.
-    expect(html).toContain("gateway");
+    const source = JSON.parse(readFileSync(join(root, "packages/diagram-engine/examples/production-deployment.architecture.json"), "utf8"));
+    const window = new Window();
+    window.document.body.innerHTML = html;
+    const rendered = [...window.document.querySelectorAll("svg path[data-edge-key]")].map((edge) => ({
+      from: edge.getAttribute("data-edge-from"),
+      to: edge.getAttribute("data-edge-to"),
+      label: edge.getAttribute("data-edge-label") ?? "",
+      key: edge.getAttribute("data-edge-key"),
+    }));
+    expect(rendered).toEqual(source.connections.map((edge: { from: string; to: string; label?: string }, index: number) => ({
+      from: edge.from, to: edge.to, label: edge.label ?? "", key: String(index),
+    })));
+    expect(rendered.filter((edge) => edge.from === "gateway").map((edge) => edge.to).sort()).toEqual(["api_a", "api_b"]);
+    expect(rendered.some((edge) => edge.from === "api_a" && edge.to === "api_b")).toBe(false);
+    window.close();
   }, 120_000);
 
   it("renders all five families from that same unrelated directory", () => {
@@ -127,11 +140,9 @@ describe("AFM-011: the renderers run from an unrelated directory", () => {
     }
   }, 300_000);
 
-  it("resolves assets with the raw source snapshots unavailable", () => {
-    // The repository must build and render with _sources/ absent. Nothing the
-    // renderer touches may reach back into a raw checkout, so renaming it must
-    // change nothing. This asserts the property directly by checking no
-    // resolved asset path points into the quarantine.
+  it("reports asset paths outside the raw source quarantine", () => {
+    // This is only a path check. AFM-011.package.test.ts runs installed tarballs
+    // with filesystem permission denying the entire source checkout.
     for (const [, value] of Object.entries(assetRoots())) {
       expect(value.replace(/\\/g, "/")).not.toContain("_sources/");
     }

@@ -1,0 +1,77 @@
+{
+  "E01": {
+    "title": "Raw-source intake, ownership and import",
+    "first": 1,
+    "last": 8
+  },
+  "E02": {
+    "title": "Unified workspace and verified baselines",
+    "first": 9,
+    "last": 16
+  },
+  "E03": {
+    "title": "Shared project model and atomic authoring",
+    "first": 17,
+    "last": 26
+  },
+  "E04": {
+    "title": "Callable diagram engine and preserved viewer",
+    "first": 27,
+    "last": 38
+  },
+  "E05": {
+    "title": "Native diagram scenes and deterministic motion",
+    "first": 39,
+    "last": 50
+  },
+  "E06": {
+    "title": "One API, preview and production job system",
+    "first": 51,
+    "last": 58
+  },
+  "E07": {
+    "title": "Fully integrated Studio editing experience",
+    "first": 59,
+    "last": 71
+  },
+  "E08": {
+    "title": "Shared history, regeneration and recovery",
+    "first": 72,
+    "last": 78
+  },
+  "E09": {
+    "title": "Assets, narration, captions and native video parity",
+    "first": 79,
+    "last": 86
+  },
+  "E10": {
+    "title": "All diagram families and architecture-change reviews",
+    "first": 87,
+    "last": 94
+  },
+  "E11": {
+    "title": "Unified CLI, skills and agent tools",
+    "first": 95,
+    "last": 102
+  },
+  "E12": {
+    "title": "Local-first security and resilient execution",
+    "first": 103,
+    "last": 112
+  },
+  "E13": {
+    "title": "Regression, performance and platform certification",
+    "first": 113,
+    "last": 120
+  },
+  "E14": {
+    "title": "Custom-product release and complete repo handoff",
+    "first": 121,
+    "last": 128
+  },
+  "E15": {
+    "title": "Milestone acceptance gates",
+    "first": 129,
+    "last": 134
+  }
+}

@@ -9,6 +9,10 @@ import { defineConfig } from "vitest/config";
  * unit run that gates commits.
  */
 export default defineConfig({
+  // Acceptance runs the Bun workspace's source exports. Packed Node exports
+  // are exercised separately by the package-isolation test.
+  resolve: { conditions: ["bun", "module", "node", "development|production"] },
+  ssr: { resolve: { conditions: ["bun", "module", "node", "development|production"], externalConditions: ["bun", "node"] } },
   test: {
     include: ["tests/acceptance/**/*.test.ts"],
     // Scans of the 7,786-entry snapshots and real renders both exceed the
