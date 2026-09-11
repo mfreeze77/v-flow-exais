@@ -1,5 +1,5 @@
 COMMAND: bun run audit:assets
-STARTED: 2026-09-11T20:25:24Z
+STARTED: 2026-09-11T21:49:23Z
 
 $ bun run tools/legal/asset-audit-cli.ts
 licenses present: true
@@ -541,5 +541,5 @@ modifications vs upstream: 263
 
 PASS
 
-FINISHED: 2026-09-11T20:26:38Z
+FINISHED: 2026-09-11T21:50:42Z
 EXIT=0

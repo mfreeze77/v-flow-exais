@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="4" assertions="13" failures="0" skipped="0" time="0.063123014">
+  <testsuite name="src/plan-parity-fixture.test.ts" file="src/plan-parity-fixture.test.ts" tests="4" assertions="13" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="plan parity generated fixtures" file="src/plan-parity-fixture.test.ts" line="19" tests="4" assertions="13" failures="0" skipped="0" time="0.036" hostname="439b901e28fd">
+      <testcase name="generates a valid deterministic mono PCM WAV" classname="plan parity generated fixtures" time="0.005085" file="src/plan-parity-fixture.test.ts" line="20" assertions="6" />
+      <testcase name="generates deterministic size-pressure bytes that vary with the seed" classname="plan parity generated fixtures" time="0.007168" file="src/plan-parity-fixture.test.ts" line="32" assertions="3" />
+      <testcase name="materializes the checked-in visual/audio fixture" classname="plan parity generated fixtures" time="0.015768" file="src/plan-parity-fixture.test.ts" line="41" assertions="2" />
+      <testcase name="materializes a small compression-resistant pressure payload" classname="plan parity generated fixtures" time="0.009572" file="src/plan-parity-fixture.test.ts" line="53" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

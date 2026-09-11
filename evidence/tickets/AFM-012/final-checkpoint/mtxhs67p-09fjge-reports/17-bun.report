@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="17" assertions="49" failures="0" skipped="0" time="0.719307034">
+  <testsuite name="src/services/distributed/planProtocol.test.ts" file="src/services/distributed/planProtocol.test.ts" tests="17" assertions="49" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="readPlanProtocol()" file="src/services/distributed/planProtocol.test.ts" line="98" tests="9" assertions="33" failures="0" skipped="0" time="0.005" hostname="439b901e28fd">
+      <testcase name="keeps the v1 descriptor byte-for-byte and identity-compatible" classname="readPlanProtocol()" time="0.00022" file="src/services/distributed/planProtocol.test.ts" line="99" assertions="2" />
+      <testcase name="treats an absent descriptor as legacy v1" classname="readPlanProtocol()" time="0.005507" file="src/services/distributed/planProtocol.test.ts" line="106" assertions="1" />
+      <testcase name="enforces whether a worker accepts descriptor-less legacy v1 plans" classname="readPlanProtocol()" time="0.000239" file="src/services/distributed/planProtocol.test.ts" line="110" assertions="2" />
+      <testcase name="enforces the worker&apos;s accepted protocol set" classname="readPlanProtocol()" time="0.000083" file="src/services/distributed/planProtocol.test.ts" line="119" assertions="4" />
+      <testcase name="accepts the known v1 descriptor and ignores unknown optional fields" classname="readPlanProtocol()" time="0.000052" file="src/services/distributed/planProtocol.test.ts" line="129" assertions="1" />
+      <testcase name="accepts the explicit v2 descriptor" classname="readPlanProtocol()" time="0.000024" file="src/services/distributed/planProtocol.test.ts" line="142" assertions="1" />
+      <testcase name="rejects malformed and partial descriptors" classname="readPlanProtocol()" time="0.000131" file="src/services/distributed/planProtocol.test.ts" line="146" assertions="12" />
+      <testcase name="rejects unknown schema, layout, and hash-schema values" classname="readPlanProtocol()" time="0.000125" file="src/services/distributed/planProtocol.test.ts" line="162" assertions="6" />
+      <testcase name="keeps unsupported-protocol messages bounded and non-reflective" classname="readPlanProtocol()" time="0.000081" file="src/services/distributed/planProtocol.test.ts" line="172" assertions="4" />
+    </testsuite>
+    <testsuite name="getDistributedRenderCapabilities()" file="src/services/distributed/planProtocol.test.ts" line="185" tests="2" assertions="5" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="reports explicit v1 and v2 support for every distributed role" classname="getDistributedRenderCapabilities()" time="0.000241" file="src/services/distributed/planProtocol.test.ts" line="186" assertions="2" />
+      <testcase name="can express a v2 planner with dual-version readers" classname="getDistributedRenderCapabilities()" time="0.000096" file="src/services/distributed/planProtocol.test.ts" line="205" assertions="3" />
+    </testsuite>
+    <testsuite name="distributed plan protocol readers" file="src/services/distributed/planProtocol.test.ts" line="233" tests="6" assertions="11" failures="0" skipped="0" time="0.003" hostname="439b901e28fd">
+      <testcase name="renderChunk accepts a legacy plan without a descriptor" classname="distributed plan protocol readers" time="0.002219" file="src/services/distributed/planProtocol.test.ts" line="234" assertions="2" />
+      <testcase name="assemble accepts a legacy plan without a descriptor" classname="distributed plan protocol readers" time="0.001465" file="src/services/distributed/planProtocol.test.ts" line="248" assertions="1" />
+      <testcase name="renderChunk rejects an unknown v2 protocol before requiring v1 artifacts" classname="distributed plan protocol readers" time="0.000454" file="src/services/distributed/planProtocol.test.ts" line="257" assertions="2" />
+      <testcase name="assemble rejects an unknown v2 protocol before requiring v1 artifacts" classname="distributed plan protocol readers" time="0.000405" file="src/services/distributed/planProtocol.test.ts" line="275" assertions="2" />
+      <testcase name="legacy activities reject a recognized v2 root before v1 layout access" classname="distributed plan protocol readers" time="0.000354" file="src/services/distributed/planProtocol.test.ts" line="293" assertions="2" />
+      <testcase name="assemble rejects a partial protocol before parsing chunks" classname="distributed plan protocol readers" time="0.000462" file="src/services/distributed/planProtocol.test.ts" line="308" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

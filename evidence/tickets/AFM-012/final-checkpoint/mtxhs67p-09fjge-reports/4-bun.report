@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="18" assertions="42" failures="0" skipped="0" time="1.124292099">
+  <testsuite name="src/regression-harness-distributed.test.ts" file="src/regression-harness-distributed.test.ts" tests="18" assertions="42" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="parseHarnessModeFlag()" file="src/regression-harness-distributed.test.ts" line="12" tests="6" assertions="10" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="parses --mode=in-process" classname="parseHarnessModeFlag()" time="0.000049" file="src/regression-harness-distributed.test.ts" line="13" assertions="1" />
+      <testcase name="parses --mode=distributed-simulated" classname="parseHarnessModeFlag()" time="0.000028" file="src/regression-harness-distributed.test.ts" line="17" assertions="1" />
+      <testcase name="parses --mode=lambda-local" classname="parseHarnessModeFlag()" time="0.000032" file="src/regression-harness-distributed.test.ts" line="21" assertions="1" />
+      <testcase name="returns null for tokens that aren&apos;t --mode" classname="parseHarnessModeFlag()" time="0.000244" file="src/regression-harness-distributed.test.ts" line="25" assertions="3" />
+      <testcase name="throws on a known prefix with a bad value" classname="parseHarnessModeFlag()" time="0.000187" file="src/regression-harness-distributed.test.ts" line="31" assertions="2" />
+      <testcase name="error message lists all three accepted modes" classname="parseHarnessModeFlag()" time="0.000096" file="src/regression-harness-distributed.test.ts" line="36" assertions="2" />
+    </testsuite>
+    <testsuite name="checkDistributedSupport()" file="src/regression-harness-distributed.test.ts" line="42" tests="7" assertions="21" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="accepts mp4 SDR at 24 / 30 / 60 fps" classname="checkDistributedSupport()" time="0.000089" file="src/regression-harness-distributed.test.ts" line="43" assertions="3" />
+      <testcase name="accepts explicit format=mp4" classname="checkDistributedSupport()" time="0.000028" file="src/regression-harness-distributed.test.ts" line="50" assertions="1" />
+      <testcase name="rejects fps with non-1 denominator (NTSC)" classname="checkDistributedSupport()" time="0.000219" file="src/regression-harness-distributed.test.ts" line="55" assertions="2" />
+      <testcase name="rejects fps outside the {24,30,60} set" classname="checkDistributedSupport()" time="0.000051" file="src/regression-harness-distributed.test.ts" line="63" assertions="10" />
+      <testcase name="accepts format=webm (distributed-supported via closed-GOP concat-copy)" classname="checkDistributedSupport()" time="0.000017" file="src/regression-harness-distributed.test.ts" line="73" assertions="1" />
+      <testcase name="rejects hdr=true" classname="checkDistributedSupport()" time="0.000022" file="src/regression-harness-distributed.test.ts" line="78" assertions="2" />
+      <testcase name="accepts hdr=false (or unset)" classname="checkDistributedSupport()" time="0.000069" file="src/regression-harness-distributed.test.ts" line="86" assertions="2" />
+    </testsuite>
+    <testsuite name="resolveMinPsnrForMode()" file="src/regression-harness-distributed.test.ts" line="92" tests="5" assertions="11" failures="0" skipped="0" time="0.206" hostname="439b901e28fd">
+      <testcase name="in-process mode uses the fixture&apos;s own threshold verbatim" classname="resolveMinPsnrForMode()" time="0.000057" file="src/regression-harness-distributed.test.ts" line="93" assertions="3" />
+      <testcase name="distributed-simulated uses the fixture&apos;s own minPsnr when above the absolute floor" classname="resolveMinPsnrForMode()" time="0.000038" file="src/regression-harness-distributed.test.ts" line="99" assertions="3" />
+      <testcase name="distributed-simulated raises pathologically-low thresholds to the absolute floor" classname="resolveMinPsnrForMode()" time="0.000016" file="src/regression-harness-distributed.test.ts" line="110" assertions="2" />
+      <testcase name="lambda-local mirrors distributed-simulated&apos;s pathology floor" classname="resolveMinPsnrForMode()" time="0.000017" file="src/regression-harness-distributed.test.ts" line="122" assertions="2" />
+      <testcase name="every committed fixture authors a minPsnr above the absolute floor" classname="resolveMinPsnrForMode()" time="0.20692" file="src/regression-harness-distributed.test.ts" line="129" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="2" assertions="6" failures="0" skipped="0" time="0.615059082">
+  <testsuite name="src/services/render/stages/mutedParity.test.ts" file="src/services/render/stages/mutedParity.test.ts" tests="2" assertions="6" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="pruneMutedBrowserMedia" file="src/services/render/stages/mutedParity.test.ts" line="4" tests="2" assertions="6" failures="0" skipped="0" time="0.005" hostname="439b901e28fd">
+      <testcase name="drops muted audio from the mix and clears hasAudio on muted video" classname="pruneMutedBrowserMedia" time="0.005098" file="src/services/render/stages/mutedParity.test.ts" line="5" assertions="4" />
+      <testcase name="is a no-op when nothing is muted" classname="pruneMutedBrowserMedia" time="0.000099" file="src/services/render/stages/mutedParity.test.ts" line="29" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

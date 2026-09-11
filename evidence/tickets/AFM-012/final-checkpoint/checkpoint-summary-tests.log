@@ -1,189 +1,239 @@
 COMMAND: node --test tools/evidence/checkpoint-summary.test.mjs
-STARTED: 2026-09-11T20:27:32Z
+STARTED: 2026-09-11T21:51:49Z
 
 TAP version 13
 # Subtest: checkpoint summary — a failing run must never read as passing
     # Subtest: reports a non-zero exit as a failure
     ok 1 - reports a non-zero exit as a failure
       ---
-      duration_ms: 1.868527
+      duration_ms: 2.272096
       type: 'test'
       ...
     # Subtest: reports exit 7 from a root check as a failure
     ok 2 - reports exit 7 from a root check as a failure
       ---
-      duration_ms: 0.51697
+      duration_ms: 0.570917
       type: 'test'
       ...
     # Subtest: treats an empty log as unknown, not as a pass
     ok 3 - treats an empty log as unknown, not as a pass
       ---
-      duration_ms: 0.462674
+      duration_ms: 0.426674
       type: 'test'
       ...
     # Subtest: treats a log with no recorded exit code as unknown
     ok 4 - treats a log with no recorded exit code as unknown
       ---
-      duration_ms: 0.433741
+      duration_ms: 0.355332
       type: 'test'
       ...
     # Subtest: does not depend on matching any failure word in output
     ok 5 - does not depend on matching any failure word in output
       ---
-      duration_ms: 0.414502
+      duration_ms: 0.535332
       type: 'test'
       ...
     1..5
 ok 1 - checkpoint summary — a failing run must never read as passing
   ---
-  duration_ms: 4.332594
+  duration_ms: 4.960135
   type: 'suite'
   ...
 # Subtest: checkpoint summary — counts come from labelled lines
     # Subtest: counts a vitest failure rather than reading the last 'N passed'
     ok 1 - counts a vitest failure rather than reading the last 'N passed'
       ---
-      duration_ms: 0.31646
+      duration_ms: 0.904961
       type: 'test'
       ...
     # Subtest: reads a skip count without folding it into passes
     ok 2 - reads a skip count without folding it into passes
       ---
-      duration_ms: 0.751271
+      duration_ms: 0.203439
       type: 'test'
       ...
     # Subtest: sums bun's per-file summaries
     ok 3 - sums bun's per-file summaries
       ---
-      duration_ms: 0.477548
+      duration_ms: 0.358249
       type: 'test'
       ...
     # Subtest: strips terminal colour codes before parsing
     ok 4 - strips terminal colour codes before parsing
       ---
-      duration_ms: 0.811124
+      duration_ms: 0.205745
       type: 'test'
       ...
     # Subtest: reports unknown totals when neither runner's summary is present
     ok 5 - reports unknown totals when neither runner's summary is present
       ---
-      duration_ms: 0.173221
+      duration_ms: 0.188085
       type: 'test'
       ...
     1..5
 ok 2 - checkpoint summary — counts come from labelled lines
   ---
-  duration_ms: 2.967224
+  duration_ms: 2.068244
   type: 'suite'
   ...
 # Subtest: checkpoint summary — internal inconsistency is reported
     # Subtest: flags exit 0 alongside reported failing cases
     ok 1 - flags exit 0 alongside reported failing cases
       ---
-      duration_ms: 0.193146
+      duration_ms: 0.222728
       type: 'test'
       ...
     # Subtest: flags exit 0 alongside unlaunched files
     ok 2 - flags exit 0 alongside unlaunched files
       ---
-      duration_ms: 0.048735
+      duration_ms: 0.060793
       type: 'test'
       ...
     # Subtest: flags a non-zero exit with nothing reported failing
     ok 3 - flags a non-zero exit with nothing reported failing
       ---
-      duration_ms: 0.036625
+      duration_ms: 0.046471
       type: 'test'
       ...
     # Subtest: rejects a negative or fractional count
     ok 4 - rejects a negative or fractional count
       ---
-      duration_ms: 0.079637
+      duration_ms: 0.134787
       type: 'test'
       ...
     # Subtest: marks the whole summary untrustworthy when any problem exists
     ok 5 - marks the whole summary untrustworthy when any problem exists
       ---
-      duration_ms: 0.706578
+      duration_ms: 0.802883
       type: 'test'
       ...
     1..5
 ok 3 - checkpoint summary — internal inconsistency is reported
   ---
-  duration_ms: 1.152524
+  duration_ms: 1.370113
   type: 'suite'
   ...
 # Subtest: checkpoint summary — totals refuse to guess
     # Subtest: reports null overall when one partition's totals are unknown
     ok 1 - reports null overall when one partition's totals are unknown
       ---
-      duration_ms: 0.550526
+      duration_ms: 0.652886
       type: 'test'
       ...
     # Subtest: reads an exit code only from its own line
     ok 2 - reads an exit code only from its own line
       ---
-      duration_ms: 0.060532
+      duration_ms: 0.071688
       type: 'test'
       ...
     # Subtest: treats a missing log as unknown
     ok 3 - treats a missing log as unknown
       ---
-      duration_ms: 0.051438
+      duration_ms: 0.044726
       type: 'test'
       ...
     1..3
 ok 4 - checkpoint summary — totals refuse to guess
   ---
-  duration_ms: 0.716335
+  duration_ms: 0.831607
   type: 'suite'
   ...
 # Subtest: checkpoint summary — framework evidence outranks console text
     # Subtest: takes totals from the lane report, not from the terminal summary
     ok 1 - takes totals from the lane report, not from the terminal summary
       ---
-      duration_ms: 0.466274
+      duration_ms: 0.580265
       type: 'test'
       ...
     # Subtest: says when totals came from terminal text instead
     ok 2 - says when totals came from terminal text instead
       ---
-      duration_ms: 0.403549
+      duration_ms: 0.413172
       type: 'test'
       ...
     # Subtest: refuses a clean exit whose lane report cannot confirm execution
     ok 3 - refuses a clean exit whose lane report cannot confirm execution
       ---
-      duration_ms: 0.510326
+      duration_ms: 0.427259
       type: 'test'
       ...
     # Subtest: reports files the lane never launched even when the process exited 0
     ok 4 - reports files the lane never launched even when the process exited 0
       ---
-      duration_ms: 0.420417
+      duration_ms: 0.436196
       type: 'test'
       ...
     # Subtest: treats an unreadable lane report as a problem, not as absent
     ok 5 - treats an unreadable lane report as a problem, not as absent
       ---
-      duration_ms: 0.439504
+      duration_ms: 0.43676
       type: 'test'
       ...
     1..5
 ok 5 - checkpoint summary — framework evidence outranks console text
   ---
-  duration_ms: 2.396578
+  duration_ms: 2.445485
   type: 'suite'
   ...
-1..5
-# tests 23
-# suites 5
-# pass 23
+# Subtest: checkpoint summary — an incomplete checkpoint cannot pass overall
+    # Subtest: passes when every required check recorded a zero exit
+    ok 1 - passes when every required check recorded a zero exit
+      ---
+      duration_ms: 2.606365
+      type: 'test'
+      ...
+    # Subtest: fails when a partition log records no exit code
+    ok 2 - fails when a partition log records no exit code
+      ---
+      duration_ms: 1.222606
+      type: 'test'
+      ...
+    # Subtest: fails when a required check produced no log at all
+    ok 3 - fails when a required check produced no log at all
+      ---
+      duration_ms: 1.764405
+      type: 'test'
+      ...
+    # Subtest: fails a lane claiming completeness with no execution counts
+    ok 4 - fails a lane claiming completeness with no execution counts
+      ---
+      duration_ms: 1.808318
+      type: 'test'
+      ...
+    # Subtest: fails when a required suite produced no log
+    ok 5 - fails when a required suite produced no log
+      ---
+      duration_ms: 1.038532
+      type: 'test'
+      ...
+    1..5
+ok 6 - checkpoint summary — an incomplete checkpoint cannot pass overall
+  ---
+  duration_ms: 8.617049
+  type: 'suite'
+  ...
+# Subtest: checkpoint summary — the manifest matches what the script runs
+    # Subtest: names only checks the checkpoint script actually invokes
+    ok 1 - names only checks the checkpoint script actually invokes
+      ---
+      duration_ms: 1.43496
+      type: 'test'
+      ...
+    1..1
+ok 7 - checkpoint summary — the manifest matches what the script runs
+  ---
+  duration_ms: 1.486951
+  type: 'suite'
+  ...
+1..7
+# tests 29
+# suites 7
+# pass 29
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 79.344396
+# duration_ms 103.859181
 
-FINISHED: 2026-09-11T20:27:32Z
+FINISHED: 2026-09-11T21:51:49Z
 EXIT=0

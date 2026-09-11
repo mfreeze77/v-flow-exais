@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="4" assertions="16" failures="0" skipped="0" time="0.773716322">
+  <testsuite name="src/services/distributed/planFormatBanlist.test.ts" file="src/services/distributed/planFormatBanlist.test.ts" tests="4" assertions="16" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="rejectUnsupportedDistributedFormat (pure)" file="src/services/distributed/planFormatBanlist.test.ts" line="49" tests="3" assertions="13" failures="0" skipped="0" time="0.003" hostname="439b901e28fd">
+      <testcase name="accepts the v1-supported formats (mp4 / mov / png-sequence / webm)" classname="rejectUnsupportedDistributedFormat (pure)" time="0.003452" file="src/services/distributed/planFormatBanlist.test.ts" line="50" assertions="7" />
+      <testcase name="rejects HDR mp4 (`hdrMode === &quot;force-hdr&quot;`)" classname="rejectUnsupportedDistributedFormat (pure)" time="0.000353" file="src/services/distributed/planFormatBanlist.test.ts" line="66" assertions="4" />
+      <testcase name="rejects HDR + webm combination (HDR is the trip, not webm)" classname="rejectUnsupportedDistributedFormat (pure)" time="0.000114" file="src/services/distributed/planFormatBanlist.test.ts" line="84" assertions="2" />
+    </testsuite>
+    <testsuite name="plan() banlist (end-to-end)" file="src/services/distributed/planFormatBanlist.test.ts" line="101" tests="1" assertions="3" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="throws on HDR mp4 and does not create the planDir" classname="plan() banlist (end-to-end)" time="0.00094" file="src/services/distributed/planFormatBanlist.test.ts" line="102" assertions="3" />
+    </testsuite>
+  </testsuite>
+</testsuites>

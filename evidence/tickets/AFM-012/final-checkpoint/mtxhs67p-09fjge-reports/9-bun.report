@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="6" assertions="89" failures="0" skipped="0" time="0.412726551">
+  <testsuite name="src/services/deterministicFonts-aliasSupplement.test.ts" file="src/services/deterministicFonts-aliasSupplement.test.ts" tests="6" assertions="89" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="aliased font-family supplementation" file="src/services/deterministicFonts-aliasSupplement.test.ts" line="110" tests="6" assertions="89" failures="0" skipped="0" time="0.378" hostname="439b901e28fd">
+      <testcase name="supplements a cross-typeface alias from the canonical family" classname="aliased font-family supplementation" time="0.367803" file="src/services/deterministicFonts-aliasSupplement.test.ts" line="111" assertions="9" />
+      <testcase name="collapses a variable font&apos;s shared source into one weight-range rule" classname="aliased font-family supplementation" time="0.003325" file="src/services/deterministicFonts-aliasSupplement.test.ts" line="135" assertions="3" />
+      <testcase name="collapses shared sources when Google interleaves subsets without text=" classname="aliased font-family supplementation" time="0.003466" file="src/services/deterministicFonts-aliasSupplement.test.ts" line="172" assertions="5" />
+      <testcase name="keeps overlapping subsets in response order when collapsing" classname="aliased font-family supplementation" time="0.003193" file="src/services/deterministicFonts-aliasSupplement.test.ts" line="235" assertions="1" />
+      <testcase name="has a canonical display name for every alias target" classname="aliased font-family supplementation" time="0.000473" file="src/services/deterministicFonts-aliasSupplement.test.ts" line="285" assertions="69" />
+      <testcase name="still supplements a self-referencing alias from its own family" classname="aliased font-family supplementation" time="0.002269" file="src/services/deterministicFonts-aliasSupplement.test.ts" line="295" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

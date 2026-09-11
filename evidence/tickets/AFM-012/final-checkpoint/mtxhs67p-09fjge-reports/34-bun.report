@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="3" assertions="4" failures="0" skipped="0" time="0.412830032">
+  <testsuite name="src/services/render/shared.test.ts" file="src/services/render/shared.test.ts" tests="3" assertions="4" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="resolveBrowserMediaEnd" file="src/services/render/shared.test.ts" line="4" tests="3" assertions="4" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="prefers a runtime duration over a stale compiler-clamped end" classname="resolveBrowserMediaEnd" time="0.000039" file="src/services/render/shared.test.ts" line="5" assertions="1" />
+      <testcase name="projects a runtime duration from the browser-local start" classname="resolveBrowserMediaEnd" time="0.000013" file="src/services/render/shared.test.ts" line="9" assertions="1" />
+      <testcase name="falls back to data-end when runtime duration is unavailable" classname="resolveBrowserMediaEnd" time="0.000058" file="src/services/render/shared.test.ts" line="13" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="4" assertions="5" failures="0" skipped="0" time="0.031741176">
+  <testsuite name="src/plan-parity-analysis.test.ts" file="src/plan-parity-analysis.test.ts" tests="4" assertions="5" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="parseCanonicalFrameHashes()" file="src/plan-parity-analysis.test.ts" line="4" tests="2" assertions="3" failures="0" skipped="0" time="0.001" hostname="439b901e28fd">
+      <testcase name="returns ordered SHA-256 hashes from ffmpeg framemd5 output" classname="parseCanonicalFrameHashes()" time="0.001227" file="src/plan-parity-analysis.test.ts" line="5" assertions="1" />
+      <testcase name="refuses malformed or empty output" classname="parseCanonicalFrameHashes()" time="0.000718" file="src/plan-parity-analysis.test.ts" line="21" assertions="2" />
+    </testsuite>
+    <testsuite name="normalizeFfprobeMetadata()" file="src/plan-parity-analysis.test.ts" line="27" tests="2" assertions="2" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="normalizes relevant video, audio, and duration fields" classname="normalizeFfprobeMetadata()" time="0.000231" file="src/plan-parity-analysis.test.ts" line="28" assertions="1" />
+      <testcase name="uses stream duration and maps N/A values to null" classname="normalizeFfprobeMetadata()" time="0.000064" file="src/plan-parity-analysis.test.ts" line="78" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

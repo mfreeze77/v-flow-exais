@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="bun test" tests="2" assertions="6" failures="0" skipped="0" time="0.525244202">
-  <testsuite name="src/services/renderMediaCollector.test.ts" file="src/services/renderMediaCollector.test.ts" tests="2" assertions="6" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
-    <testsuite name="collectRenderMedia host windows" file="src/services/renderMediaCollector.test.ts" line="5" tests="2" assertions="6" failures="0" skipped="0" time="0.011" hostname="c0f3ebdcc432">
-      <testcase name="schedules nested videos at resolved host id-ref windows" classname="collectRenderMedia host windows" time="0.010935" file="src/services/renderMediaCollector.test.ts" line="6" assertions="2" />
-      <testcase name="preserves an explicitly marked legacy-global media window" classname="collectRenderMedia host windows" time="0.001264" file="src/services/renderMediaCollector.test.ts" line="20" assertions="4" />
-    </testsuite>
-  </testsuite>
-</testsuites>

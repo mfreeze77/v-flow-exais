@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="12" assertions="39" failures="0" skipped="0" time="0.840592776">
+  <testsuite name="src/services/render/stages/captureStreamingStage.test.ts" file="src/services/render/stages/captureStreamingStage.test.ts" tests="12" assertions="39" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="runCaptureStreamingStage" file="src/services/render/stages/captureStreamingStage.test.ts" line="240" tests="9" assertions="27" failures="0" skipped="0" time="0.317" hostname="439b901e28fd">
+      <testcase name="passes the resolved engine config to spawnStreamingEncoder" classname="runCaptureStreamingStage" time="0.010544" file="src/services/render/stages/captureStreamingStage.test.ts" line="241" assertions="2" />
+      <testcase name="wraps sequential capture failures with the browser console buffer" classname="runCaptureStreamingStage" time="0.001502" file="src/services/render/stages/captureStreamingStage.test.ts" line="254" assertions="4" />
+      <testcase name="trips the stall watchdog and rethrows a non-cancellation error when the parallel path makes no frame progress" classname="runCaptureStreamingStage" time="0.052345" file="src/services/render/stages/captureStreamingStage.test.ts" line="276" assertions="5" />
+      <testcase name="does not relabel a genuine parent-abort as a stall" classname="runCaptureStreamingStage" time="0.000364" file="src/services/render/stages/captureStreamingStage.test.ts" line="310" assertions="2" />
+      <testcase name="trips the stall watchdog on the single-worker worker-encode pipeline when capture makes no progress" classname="runCaptureStreamingStage" time="0.052619" file="src/services/render/stages/captureStreamingStage.test.ts" line="341" assertions="2" />
+      <testcase name="trips the stall watchdog on the single-worker plain capture loop when capture makes no progress" classname="runCaptureStreamingStage" time="0.050655" file="src/services/render/stages/captureStreamingStage.test.ts" line="366" assertions="2" />
+      <testcase name="reports the actual screenshot mode and closes a wedged low-memory session" classname="runCaptureStreamingStage" time="0.050753" file="src/services/render/stages/captureStreamingStage.test.ts" line="389" assertions="5" />
+      <testcase name="still honors the pre-rename HF_DE_PARALLEL_STALL_MS env var for one release" classname="runCaptureStreamingStage" time="0.051873" file="src/services/render/stages/captureStreamingStage.test.ts" line="427" assertions="2" />
+      <testcase name="does not relabel a genuine parent-abort as a stall on the sequential path" classname="runCaptureStreamingStage" time="0.051901" file="src/services/render/stages/captureStreamingStage.test.ts" line="454" assertions="3" />
+    </testsuite>
+    <testsuite name="runCaptureStage" file="src/services/render/stages/captureStreamingStage.test.ts" line="486" tests="2" assertions="8" failures="0" skipped="0" time="0.003" hostname="439b901e28fd">
+      <testcase name="closes a reused probe session when reuse preparation fails" classname="runCaptureStage" time="0.003508" file="src/services/render/stages/captureStreamingStage.test.ts" line="487" assertions="4" />
+      <testcase name="wraps sequential capture failures with the browser console buffer" classname="runCaptureStage" time="0.000385" file="src/services/render/stages/captureStreamingStage.test.ts" line="534" assertions="4" />
+    </testsuite>
+    <testsuite name="runCaptureHdrStage" file="src/services/render/stages/captureStreamingStage.test.ts" line="572" tests="1" assertions="4" failures="0" skipped="0" time="0.004" hostname="439b901e28fd">
+      <testcase name="wraps HDR capture failures with the browser console buffer" classname="runCaptureHdrStage" time="0.004992" file="src/services/render/stages/captureStreamingStage.test.ts" line="573" assertions="4" />
+    </testsuite>
+  </testsuite>
+</testsuites>

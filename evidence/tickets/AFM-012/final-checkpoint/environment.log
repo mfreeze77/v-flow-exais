@@ -6,7 +6,7 @@ ffmpeg:   ffmpeg version 5.1.9-0+deb12u1 Copyright (c) 2000-2026 the FFmpeg deve
 ffprobe:  ffprobe version 5.1.9-0+deb12u1 Copyright (c) 2007-2026 the FFmpeg developers
 chromium: Chromium 152.0.7977.82 built on Debian GNU/Linux 12 (bookworm)
 os:       12.15
-commit:   2290e9c94b3c1da94032e370958108704c6070d4
-dirty:    65 file(s)
+commit:   534d0761ecc50b999bd5991ed91558ce02477b4f
+dirty:    84 file(s)
 
 EXIT=0

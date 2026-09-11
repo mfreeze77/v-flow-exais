@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="46" assertions="4098" failures="0" skipped="0" time="1.163586139">
+  <testsuite name="src/services/distributed/plan.test.ts" file="src/services/distributed/plan.test.ts" tests="46" assertions="4098" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="distributed warning policy" file="src/services/distributed/plan.test.ts" line="65" tests="4" assertions="10" failures="0" skipped="0" time="0.001" hostname="439b901e28fd">
+      <testcase name="rejects distributed audio degradation in strict mode" classname="distributed warning policy" time="0.001087" file="src/services/distributed/plan.test.ts" line="76" assertions="2" />
+      <testcase name="rejects distributed audio degradation in best-effort mode" classname="distributed warning policy" time="0.000413" file="src/services/distributed/plan.test.ts" line="82" assertions="3" />
+      <testcase name="only marks a multi-cause audio failure retryable when every cause is retryable" classname="distributed warning policy" time="0.000242" file="src/services/distributed/plan.test.ts" line="106" assertions="2" />
+      <testcase name="does not invent ownership or retryability for legacy untyped failures" classname="distributed warning policy" time="0.000191" file="src/services/distributed/plan.test.ts" line="134" assertions="3" />
+    </testsuite>
+    <testsuite name="distributed synthetic render job" file="src/services/distributed/plan.test.ts" line="144" tests="2" assertions="3" failures="0" skipped="0" time="0.003" hostname="439b901e28fd">
+      <testcase name="threads render variables into the plan browser probe job" classname="distributed synthetic render job" time="0.000048" file="src/services/distributed/plan.test.ts" line="145" assertions="1" />
+      <testcase name="keeps the production software-GPU launch on BeginFrame control" classname="distributed synthetic render job" time="0.003278" file="src/services/distributed/plan.test.ts" line="162" assertions="2" />
+    </testsuite>
+    <testsuite name="resolveChunkPlan" file="src/services/distributed/plan.test.ts" line="183" tests="18" assertions="4002" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="returns 1 chunk when totalFrames fits in configChunkSize" classname="resolveChunkPlan" time="0.000104" file="src/services/distributed/plan.test.ts" line="184" assertions="2" />
+      <testcase name="caps chunkCount at maxParallelChunks for very long renders" classname="resolveChunkPlan" time="0.00002" file="src/services/distributed/plan.test.ts" line="190" assertions="2" />
+      <testcase name="naive count drives chunkCount when below cap" classname="resolveChunkPlan" time="0.000024" file="src/services/distributed/plan.test.ts" line="199" assertions="2" />
+      <testcase name="rejects non-positive totalFrames" classname="resolveChunkPlan" time="0.000066" file="src/services/distributed/plan.test.ts" line="206" assertions="3" />
+      <testcase name="rejects non-positive configChunkSize / maxParallelChunks" classname="resolveChunkPlan" time="0.000026" file="src/services/distributed/plan.test.ts" line="212" assertions="2" />
+      <testcase name="rejects non-integer inputs (would produce fractional endFrames)" classname="resolveChunkPlan" time="0.000062" file="src/services/distributed/plan.test.ts" line="217" assertions="4" />
+      <testcase name="explicit chunkSize wins: 660 frames + chunkSize=240 + maxParallelChunks=16 → 3 chunks" classname="resolveChunkPlan" time="0.000015" file="src/services/distributed/plan.test.ts" line="229" assertions="2" />
+      <testcase name="auto-sizes when chunkSize=undefined: 660 frames + maxParallelChunks=16 → 16 chunks" classname="resolveChunkPlan" time="0.000014" file="src/services/distributed/plan.test.ts" line="237" assertions="2" />
+      <testcase name="auto-size floor: tiny renders cap at MIN_CHUNK_SIZE rather than fragmenting infinitely" classname="resolveChunkPlan" time="0.000013" file="src/services/distributed/plan.test.ts" line="245" assertions="2" />
+      <testcase name="tightens chunkCount so an explicit small chunkSize leaves no empty trailing slice" classname="resolveChunkPlan" time="0.000059" file="src/services/distributed/plan.test.ts" line="255" assertions="4" />
+      <testcase name="never emits an empty or inverted slice across a grid of explicit chunk sizes" classname="resolveChunkPlan" time="0.000659" file="src/services/distributed/plan.test.ts" line="269" assertions="2798" />
+      <testcase name="targetChunkFrames omitted is a no-op: identical to the 3-arg auto-sized result" classname="resolveChunkPlan" time="0.000087" file="src/services/distributed/plan.test.ts" line="294" assertions="12" />
+      <testcase name="targetChunkFrames collapses a short video to fewer chunks than the parallelism cap" classname="resolveChunkPlan" time="0.000032" file="src/services/distributed/plan.test.ts" line="306" assertions="2" />
+      <testcase name="targetChunkFrames bounds a long video&apos;s per-chunk frames, adding chunks up to the cap" classname="resolveChunkPlan" time="0.000018" file="src/services/distributed/plan.test.ts" line="314" assertions="2" />
+      <testcase name="targetChunkFrames is clamped by maxParallelChunks: an extreme length stays at the cap (still over budget)" classname="resolveChunkPlan" time="0.000028" file="src/services/distributed/plan.test.ts" line="322" assertions="2" />
+      <testcase name="explicit chunkSize wins over targetChunkFrames (targetChunkFrames is a no-op)" classname="resolveChunkPlan" time="0.000031" file="src/services/distributed/plan.test.ts" line="330" assertions="1" />
+      <testcase name="rejects a non-positive or non-integer targetChunkFrames" classname="resolveChunkPlan" time="0.00006" file="src/services/distributed/plan.test.ts" line="336" assertions="3" />
+      <testcase name="never emits an empty or inverted slice across a grid of targetChunkFrames" classname="resolveChunkPlan" time="0.000289" file="src/services/distributed/plan.test.ts" line="342" assertions="1157" />
+    </testsuite>
+    <testsuite name="buildChunkSlices" file="src/services/distributed/plan.test.ts" line="368" tests="2" assertions="6" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="produces consecutive non-overlapping ranges covering all frames" classname="buildChunkSlices" time="0.000045" file="src/services/distributed/plan.test.ts" line="369" assertions="4" />
+      <testcase name="handles a single-chunk render" classname="buildChunkSlices" time="0.00004" file="src/services/distributed/plan.test.ts" line="378" assertions="2" />
+    </testsuite>
+    <testsuite name="plan() defaults" file="src/services/distributed/plan.test.ts" line="385" tests="1" assertions="3" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="exports the documented chunking defaults" classname="plan() defaults" time="0.000042" file="src/services/distributed/plan.test.ts" line="386" assertions="3" />
+    </testsuite>
+    <testsuite name="plan() — golden planDir + planHash determinism" file="src/services/distributed/plan.test.ts" line="393" tests="7" assertions="51" failures="0" skipped="0" time="0.342" hostname="439b901e28fd">
+      <testcase name="fails closed when an open-ended distributed video source cannot be extracted" classname="plan() — golden planDir + planHash determinism" time="0.03036" file="src/services/distributed/plan.test.ts" line="401" assertions="4" />
+      <testcase name="maps an open-ended remote video HTTP 404 to a terminal source error" classname="plan() — golden planDir + planHash determinism" time="0.008352" file="src/services/distributed/plan.test.ts" line="435" assertions="5" />
+      <testcase name="produces the documented planDir layout" classname="plan() — golden planDir + planHash determinism" time="0.049245" file="src/services/distributed/plan.test.ts" line="478" assertions="25" />
+      <testcase name="auto-sizes chunkSize end-to-end when caller omits it" classname="plan() — golden planDir + planHash determinism" time="0.005696" file="src/services/distributed/plan.test.ts" line="542" assertions="4" />
+      <testcase name="shares one byte-identical execution plan between the builder and legacy v1 wrapper" classname="plan() — golden planDir + planHash determinism" time="0.007617" file="src/services/distributed/plan.test.ts" line="573" assertions="6" />
+      <testcase name="plan.json.planHash matches recomputePlanHashFromPlanDir(planDir) on the same disk" classname="plan() — golden planDir + planHash determinism" time="0.003448" file="src/services/distributed/plan.test.ts" line="612" assertions="5" />
+      <testcase name="plan.json.planHash matches recompute on an audio-bearing composition" classname="plan() — golden planDir + planHash determinism" time="0.240269" file="src/services/distributed/plan.test.ts" line="667" assertions="2" />
+    </testsuite>
+    <testsuite name="plan() — codec knob" file="src/services/distributed/plan.test.ts" line="727" tests="4" assertions="9" failures="0" skipped="0" time="0.022" hostname="439b901e28fd">
+      <testcase name="defaults `codec` to h264 (libx264-software) for mp4" classname="plan() — codec knob" time="0.003649" file="src/services/distributed/plan.test.ts" line="731" assertions="3" />
+      <testcase name="maps `codec: &quot;h265&quot;` to libx265-software for mp4" classname="plan() — codec knob" time="0.002559" file="src/services/distributed/plan.test.ts" line="747" assertions="2" />
+      <testcase name="rejects `codec` with format other than mp4" classname="plan() — codec knob" time="0.009338" file="src/services/distributed/plan.test.ts" line="767" assertions="2" />
+      <testcase name="rejects unknown codec strings for format=mp4 (no silent fall-through to h264)" classname="plan() — codec knob" time="0.008061" file="src/services/distributed/plan.test.ts" line="785" assertions="2" />
+    </testsuite>
+    <testsuite name="plan() — variables" file="src/services/distributed/plan.test.ts" line="806" tests="5" assertions="5" failures="0" skipped="0" time="0.053" hostname="439b901e28fd">
+      <testcase name="snapshots variables into meta/encoder.json so chunk workers see the controller&apos;s set" classname="plan() — variables" time="0.006991" file="src/services/distributed/plan.test.ts" line="810" assertions="1" />
+      <testcase name="omits the variables key from canonical encoder.json when the caller passes no variables" classname="plan() — variables" time="0.011129" file="src/services/distributed/plan.test.ts" line="829" assertions="1" />
+      <testcase name="produces a DIFFERENT planHash when variables differ" classname="plan() — variables" time="0.013287" file="src/services/distributed/plan.test.ts" line="844" assertions="1" />
+      <testcase name="produces the SAME planHash for two plans with the same variables" classname="plan() — variables" time="0.019769" file="src/services/distributed/plan.test.ts" line="864" assertions="1" />
+      <testcase name="no-variables plan hashes identically to itself (backwards-compat baseline)" classname="plan() — variables" time="0.004997" file="src/services/distributed/plan.test.ts" line="892" assertions="1" />
+    </testsuite>
+    <testsuite name="plan() — webm format (distributed VP9)" file="src/services/distributed/plan.test.ts" line="911" tests="3" assertions="9" failures="0" skipped="0" time="0.005" hostname="439b901e28fd">
+      <testcase name="maps `format: &quot;webm&quot;` to libvpx-vp9-software + yuva420p" classname="plan() — webm format (distributed VP9)" time="0.002222" file="src/services/distributed/plan.test.ts" line="915" assertions="6" />
+      <testcase name="locks the resolved VP9 cpu-used value into encoder metadata" classname="plan() — webm format (distributed VP9)" time="0.002913" file="src/services/distributed/plan.test.ts" line="945" assertions="1" />
+      <testcase name="rejects `codec` with format=webm" classname="plan() — webm format (distributed VP9)" time="0.001876" file="src/services/distributed/plan.test.ts" line="969" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

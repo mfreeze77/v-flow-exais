@@ -1,8 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="bun test" tests="1" assertions="10" failures="0" skipped="0" time="0.711508248">
-  <testsuite name="src/services/htmlCompiler.animatedGif.test.ts" file="src/services/htmlCompiler.animatedGif.test.ts" tests="1" assertions="10" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
-    <testsuite name="compileForRender animated GIF inputs" file="src/services/htmlCompiler.animatedGif.test.ts" line="80" tests="1" assertions="10" failures="0" skipped="0" time="0.036" hostname="c0f3ebdcc432">
-      <testcase name="rewrites animated GIF images to prepared synced videos" classname="compileForRender animated GIF inputs" time="0.036387" file="src/services/htmlCompiler.animatedGif.test.ts" line="81" assertions="10" />
-    </testsuite>
-  </testsuite>
-</testsuites>

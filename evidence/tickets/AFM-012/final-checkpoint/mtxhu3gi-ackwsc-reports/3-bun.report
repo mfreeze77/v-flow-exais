@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="7" assertions="24" failures="0" skipped="0" time="38.031812606">
+  <testsuite name="src/services/distributed/chunkBoundary.test.ts" file="src/services/distributed/chunkBoundary.test.ts" tests="7" assertions="24" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="per-adapter chunk-boundary byte equality" file="src/services/distributed/chunkBoundary.test.ts" line="105" tests="7" assertions="24" failures="0" skipped="0" time="37.297" hostname="439b901e28fd">
+      <testcase name="gsap: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames" classname="per-adapter chunk-boundary byte equality" time="7.333222" file="src/services/distributed/chunkBoundary.test.ts" line="113" assertions="3" />
+      <testcase name="anime: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames" classname="per-adapter chunk-boundary byte equality" time="5.908786" file="src/services/distributed/chunkBoundary.test.ts" line="113" assertions="3" />
+      <testcase name="three: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames" classname="per-adapter chunk-boundary byte equality" time="6.589905" file="src/services/distributed/chunkBoundary.test.ts" line="113" assertions="3" />
+      <testcase name="lottie: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames" classname="per-adapter chunk-boundary byte equality" time="6.008751" file="src/services/distributed/chunkBoundary.test.ts" line="113" assertions="3" />
+      <testcase name="css: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames" classname="per-adapter chunk-boundary byte equality" time="5.739546" file="src/services/distributed/chunkBoundary.test.ts" line="113" assertions="3" />
+      <testcase name="waapi: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames" classname="per-adapter chunk-boundary byte equality" time="5.719633" file="src/services/distributed/chunkBoundary.test.ts" line="113" assertions="3" />
+      <testcase name="expected fixture directories exist" classname="per-adapter chunk-boundary byte equality" time="0.001245" file="src/services/distributed/chunkBoundary.test.ts" line="187" assertions="6" />
+    </testsuite>
+  </testsuite>
+</testsuites>

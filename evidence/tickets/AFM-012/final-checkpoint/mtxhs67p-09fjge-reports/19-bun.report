@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="8" assertions="72" failures="0" skipped="0" time="0.743541889">
+  <testsuite name="src/services/distributed/publicExports.test.ts" file="src/services/distributed/publicExports.test.ts" tests="8" assertions="72" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="@hyperframes/producer/distributed (subpath)" file="src/services/distributed/publicExports.test.ts" line="28" tests="5" assertions="50" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="exports the three activity functions" classname="@hyperframes/producer/distributed (subpath)" time="0.00003" file="src/services/distributed/publicExports.test.ts" line="29" assertions="3" />
+      <testcase name="exports the chunking helpers + constants" classname="@hyperframes/producer/distributed (subpath)" time="0.000058" file="src/services/distributed/publicExports.test.ts" line="35" assertions="6" />
+      <testcase name="exports the non-retryable error codes + classes" classname="@hyperframes/producer/distributed (subpath)" time="0.000098" file="src/services/distributed/publicExports.test.ts" line="44" assertions="13" />
+      <testcase name="exports the input-validation helpers" classname="@hyperframes/producer/distributed (subpath)" time="0.000042" file="src/services/distributed/publicExports.test.ts" line="67" assertions="3" />
+      <testcase name="exports the plan protocol contract" classname="@hyperframes/producer/distributed (subpath)" time="0.00011" file="src/services/distributed/publicExports.test.ts" line="73" assertions="25" />
+    </testsuite>
+    <testsuite name="@hyperframes/producer (main entry)" file="src/services/distributed/publicExports.test.ts" line="119" tests="3" assertions="22" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="re-exports the three activity functions" classname="@hyperframes/producer (main entry)" time="0.000049" file="src/services/distributed/publicExports.test.ts" line="120" assertions="3" />
+      <testcase name="re-exports the plan protocol contract" classname="@hyperframes/producer (main entry)" time="0.00006" file="src/services/distributed/publicExports.test.ts" line="126" assertions="15" />
+      <testcase name="preserves the existing in-process exports (executeRenderJob unchanged)" classname="@hyperframes/producer (main entry)" time="0.00003" file="src/services/distributed/publicExports.test.ts" line="147" assertions="4" />
+    </testsuite>
+  </testsuite>
+</testsuites>

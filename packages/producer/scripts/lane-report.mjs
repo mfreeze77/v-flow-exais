@@ -33,6 +33,14 @@ export const EVIDENCE = {
   missing: "missing",
   unparsable: "unparsable",
   stale: "stale-or-foreign",
+  /**
+   * The report is genuine and its results are kept, but it does not cover every
+   * dispatched file — a crashed or interrupted run legitimately reports less
+   * than was selected. Distinct from `present` because partial coverage must
+   * not certify the whole selection, and distinct from `missing` because the
+   * results it does carry are real.
+   */
+  incomplete: "incomplete-coverage",
 };
 
 /**

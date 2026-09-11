@@ -1,5 +1,5 @@
 COMMAND: bun run --cwd packages/producer test:unit:vitest
-STARTED: 2026-09-11T20:28:54Z
+STARTED: 2026-09-11T21:53:11Z
 
 $ node scripts/run-test-lane.mjs unit vitest
 [producer:unit/vitest] Selected 42 test files.
@@ -45,8 +45,8 @@ $ node scripts/run-test-lane.mjs unit vitest
   vitest src/utils/errorMessage.test.ts
   vitest src/utils/ffprobeArgvContract.test.ts
   vitest src/utils/paths.test.ts
-JSON report written to /workspace/evidence/tickets/AFM-012/final-checkpoint/mtxesozl-3xakah-reports/0-vitest.report
+JSON report written to /workspace/evidence/tickets/AFM-012/final-checkpoint/mtxht2t4-ud4kfb-reports/0-vitest.report
 [producer:unit/vitest] Wrote execution report to /workspace/evidence/tickets/AFM-012/final-checkpoint/unit-vitest.report.json
 
-FINISHED: 2026-09-11T20:29:45Z
+FINISHED: 2026-09-11T21:53:59Z
 EXIT=0

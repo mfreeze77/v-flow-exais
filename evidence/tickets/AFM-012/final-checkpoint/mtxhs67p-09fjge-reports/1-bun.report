@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="5" assertions="18" failures="0" skipped="0" time="0.021417355">
+  <testsuite name="src/plan-parity-contract.test.ts" file="src/plan-parity-contract.test.ts" tests="5" assertions="18" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="comparePlanParityMeasurements()" file="src/plan-parity-contract.test.ts" line="72" tests="5" assertions="18" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="accepts semantic parity while only reporting encoded and transport differences" classname="comparePlanParityMeasurements()" time="0.000985" file="src/plan-parity-contract.test.ts" line="73" assertions="3" />
+      <testcase name="fails on decoded frame, PCM, metadata, duration, or chunk drift" classname="comparePlanParityMeasurements()" time="0.000415" file="src/plan-parity-contract.test.ts" line="98" assertions="10" />
+      <testcase name="can enforce encoded equality and v2 resource ceilings" classname="comparePlanParityMeasurements()" time="0.000177" file="src/plan-parity-contract.test.ts" line="129" assertions="2" />
+      <testcase name="rejects reversed or same-protocol comparisons" classname="comparePlanParityMeasurements()" time="0.000132" file="src/plan-parity-contract.test.ts" line="152" assertions="2" />
+      <testcase name="does not expose or compare planHash" classname="comparePlanParityMeasurements()" time="0.000126" file="src/plan-parity-contract.test.ts" line="161" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

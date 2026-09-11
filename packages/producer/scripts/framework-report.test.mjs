@@ -256,3 +256,112 @@ describe("framework reporting — absent and inconsistent evidence", () => {
     assert.equal(evidence.results, null);
   });
 });
+
+describe("framework reporting — a report must describe this invocation", () => {
+  /**
+   * Supplied by external review. A unique output path stops a file being
+   * reused; it says nothing about what the file contains. Each case below was
+   * accepted as complete evidence because its arithmetic was consistent.
+   */
+
+  it("rejects a JUnit document that was truncated mid-element", () => {
+    // Declares tests="8", contains no cases and no closing tags. Reading
+    // attributes with a regular expression happily reported eight passes.
+    const outfile = join(SCRATCH, "truncated.xml");
+    writeFileSync(
+      outfile,
+      '<testsuites tests="8" failures="0" skipped="0"><testsuite file="a.test.ts">',
+    );
+    const evidence = readInvocationReport(outfile, "bun", { files: ["a.test.ts"], exitCode: 0 });
+
+    assert.notEqual(evidence.state, EVIDENCE.present);
+    assert.equal(evidence.results, null);
+  });
+
+  it("rejects declared totals that contradict the cases present", () => {
+    const outfile = join(SCRATCH, "overdeclared.xml");
+    writeFileSync(
+      outfile,
+      '<testsuites tests="8" failures="0" skipped="0"><testsuite file="a.test.ts">' +
+        '<testcase name="one"/></testsuite></testsuites>',
+    );
+    const evidence = readInvocationReport(outfile, "bun", { files: ["a.test.ts"], exitCode: 0 });
+
+    assert.notEqual(evidence.state, EVIDENCE.present);
+  });
+
+  it("accepts a complete JUnit document", () => {
+    // The control: rejecting truncation is only useful if well-formed output
+    // still passes.
+    const outfile = join(SCRATCH, "complete.xml");
+    writeFileSync(
+      outfile,
+      '<testsuites tests="1" failures="0" skipped="0"><testsuite file="a.test.ts">' +
+        '<testcase name="one"/></testsuite></testsuites>',
+    );
+    const evidence = readInvocationReport(outfile, "bun", { files: ["a.test.ts"], exitCode: 0 });
+
+    assert.equal(evidence.state, EVIDENCE.present, evidence.problems?.join("; "));
+    assert.equal(evidence.results.casesPassed, 1);
+  });
+
+  it("does not certify a selection when the report covers fewer files", () => {
+    // Two dispatched, one reported. The counts are internally consistent, so
+    // only comparing file identities catches it. The results are kept -- an
+    // interrupted run's partial results are still real -- but the lane is not
+    // marked complete.
+    const outfile = join(SCRATCH, "partial.json");
+    writeFileSync(outfile, JSON.stringify(vitestJson(["a.test.ts"])));
+    const evidence = readInvocationReport(outfile, "vitest", {
+      files: ["a.test.ts", "b.test.ts"],
+      exitCode: 0,
+    });
+
+    assert.equal(evidence.state, EVIDENCE.incomplete);
+    assert.ok(evidence.results, "partial results are retained");
+    assert.match(evidence.problems[0], /b\.test\.ts/);
+  });
+
+  it("rejects a report naming a file that was never dispatched", () => {
+    // Same case count, different file. Arithmetic alone cannot tell these apart.
+    const outfile = join(SCRATCH, "foreign.json");
+    writeFileSync(outfile, JSON.stringify(vitestJson(["unrelated.test.ts"])));
+    const evidence = readInvocationReport(outfile, "vitest", {
+      files: ["a.test.ts"],
+      exitCode: 0,
+    });
+
+    assert.equal(evidence.state, EVIDENCE.unparsable);
+    assert.equal(evidence.results, null);
+    assert.match(evidence.problems[0], /not dispatched/);
+  });
+
+  it("matches files the runner and wrapper spell differently", () => {
+    // An absolute path from the runner and a relative one from the wrapper name
+    // the same file; treating that as a mismatch would reject healthy evidence.
+    const outfile = join(SCRATCH, "absolute.json");
+    writeFileSync(outfile, JSON.stringify(vitestJson(["/workspace/packages/producer/a.test.ts"])));
+    const evidence = readInvocationReport(outfile, "vitest", {
+      files: ["a.test.ts"],
+      exitCode: 0,
+    });
+
+    assert.equal(evidence.state, EVIDENCE.present, evidence.problems?.join("; "));
+  });
+});
+
+/** Minimal Vitest JSON naming a given set of files, all passing. */
+function vitestJson(names) {
+  return {
+    numPassedTests: names.length,
+    numFailedTests: 0,
+    numPendingTests: 0,
+    numTodoTests: 0,
+    numTotalTestSuites: names.length,
+    testResults: names.map((name) => ({
+      name,
+      status: "passed",
+      assertionResults: [{ title: "one", status: "passed" }],
+    })),
+  };
+}

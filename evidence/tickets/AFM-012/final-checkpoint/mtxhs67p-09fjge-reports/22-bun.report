@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="1" assertions="3" failures="0" skipped="0" time="0.661992884">
+  <testsuite name="src/services/distributed/renderChunkVideoMetadata.test.ts" file="src/services/distributed/renderChunkVideoMetadata.test.ts" tests="1" assertions="3" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="v1 chunk video metadata boundary" file="src/services/distributed/renderChunkVideoMetadata.test.ts" line="8" tests="1" assertions="3" failures="0" skipped="0" time="0.001" hostname="439b901e28fd">
+      <testcase name="rejects legacy null timing before frame injection" classname="v1 chunk video metadata boundary" time="0.001095" file="src/services/distributed/renderChunkVideoMetadata.test.ts" line="9" assertions="3" />
+    </testsuite>
+  </testsuite>
+</testsuites>

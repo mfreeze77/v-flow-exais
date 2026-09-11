@@ -1,5 +1,5 @@
 COMMAND: node scripts/check-package-boundaries.mjs
-STARTED: 2026-09-11T20:25:06Z
+STARTED: 2026-09-11T21:49:00Z
 
   @hyperframes/project-model must not depend on: @hyperframes/studio, @hyperframes/studio-server, @hyperframes/producer, @hyperframes/player, puppeteer, puppeteer-core, playwright, playwright-core
   @hyperframes/diagram-engine must not depend on: @hyperframes/studio, @hyperframes/studio-server, puppeteer, puppeteer-core, playwright, playwright-core
@@ -7,5 +7,5 @@ STARTED: 2026-09-11T20:25:06Z
 
 PASS: package boundaries
 
-FINISHED: 2026-09-11T20:25:24Z
+FINISHED: 2026-09-11T21:49:22Z
 EXIT=0

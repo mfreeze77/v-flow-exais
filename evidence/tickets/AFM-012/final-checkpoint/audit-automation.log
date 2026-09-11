@@ -1,5 +1,5 @@
 COMMAND: bun run audit:automation
-STARTED: 2026-09-11T20:26:38Z
+STARTED: 2026-09-11T21:50:42Z
 
 $ bun run tools/import/audit-automation-cli.ts
 hooks path: .githooks
@@ -57,5 +57,5 @@ blocked: 0  review: 25
 
 PASS: provenance/automation-audit.json
 
-FINISHED: 2026-09-11T20:27:05Z
+FINISHED: 2026-09-11T21:51:11Z
 EXIT=0

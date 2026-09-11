@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="30" assertions="73" failures="0" skipped="0" time="0.599684723">
+  <testsuite name="src/services/render/planValidation.test.ts" file="src/services/render/planValidation.test.ts" tests="30" assertions="73" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="PlanValidationError" file="src/services/render/planValidation.test.ts" line="25" tests="1" assertions="4" failures="0" skipped="0" time="0.001" hostname="439b901e28fd">
+      <testcase name="preserves the typed `code` field" classname="PlanValidationError" time="0.001325" file="src/services/render/planValidation.test.ts" line="26" assertions="4" />
+    </testsuite>
+    <testsuite name="validateNoGpuEncode" file="src/services/render/planValidation.test.ts" line="35" tests="7" assertions="22" failures="0" skipped="0" time="0.003" hostname="439b901e28fd">
+      <testcase name="accepts a software-only config (no fields set)" classname="validateNoGpuEncode" time="0.000217" file="src/services/render/planValidation.test.ts" line="36" assertions="1" />
+      <testcase name="accepts useGpu=false + browserGpuMode=&apos;software&apos;" classname="validateNoGpuEncode" time="0.000152" file="src/services/render/planValidation.test.ts" line="40" assertions="1" />
+      <testcase name="accepts useGpu=undefined (in-process default) + browserGpuMode=&apos;software&apos;" classname="validateNoGpuEncode" time="0.003198" file="src/services/render/planValidation.test.ts" line="44" assertions="1" />
+      <testcase name="throws BROWSER_GPU_NOT_SOFTWARE when useGpu === true" classname="validateNoGpuEncode" time="0.000099" file="src/services/render/planValidation.test.ts" line="48" assertions="5" />
+      <testcase name="throws BROWSER_GPU_NOT_SOFTWARE when browserGpuMode === &apos;auto&apos;" classname="validateNoGpuEncode" time="0.000124" file="src/services/render/planValidation.test.ts" line="62" assertions="4" />
+      <testcase name="throws BROWSER_GPU_NOT_SOFTWARE for any non-&apos;software&apos; browserGpuMode value" classname="validateNoGpuEncode" time="0.00013" file="src/services/render/planValidation.test.ts" line="75" assertions="8" />
+      <testcase name="checks useGpu BEFORE browserGpuMode so the useGpu message wins when both trip" classname="validateNoGpuEncode" time="0.000057" file="src/services/render/planValidation.test.ts" line="88" assertions="2" />
+    </testsuite>
+    <testsuite name="validateDistributedDuration" file="src/services/render/planValidation.test.ts" line="100" tests="4" assertions="16" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="keeps the generic validator and legacy distributed API behavior aligned" classname="validateDistributedDuration" time="0.000139" file="src/services/render/planValidation.test.ts" line="101" assertions="3" />
+      <testcase name="accepts a finite duration within the distributed ceiling" classname="validateDistributedDuration" time="0.000113" file="src/services/render/planValidation.test.ts" line="113" assertions="1" />
+      <testcase name="throws DISTRIBUTED_DURATION_OUT_OF_RANGE for the engine&apos;s infinite-timeline sentinel" classname="validateDistributedDuration" time="0.00008" file="src/services/render/planValidation.test.ts" line="123" assertions="4" />
+      <testcase name="throws DISTRIBUTED_DURATION_OUT_OF_RANGE for non-finite or zero values" classname="validateDistributedDuration" time="0.000134" file="src/services/render/planValidation.test.ts" line="140" assertions="8" />
+    </testsuite>
+    <testsuite name="parseFontFamilyValue" file="src/services/render/planValidation.test.ts" line="159" tests="8" assertions="8" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="splits a comma-separated list and strips whitespace + quotes" classname="parseFontFamilyValue" time="0.000209" file="src/services/render/planValidation.test.ts" line="160" assertions="1" />
+      <testcase name="strips single quotes too" classname="parseFontFamilyValue" time="0.000067" file="src/services/render/planValidation.test.ts" line="168" assertions="1" />
+      <testcase name="keeps a comma inside a quoted family name" classname="parseFontFamilyValue" time="0.000045" file="src/services/render/planValidation.test.ts" line="172" assertions="1" />
+      <testcase name="keeps a var() fallback in a single token" classname="parseFontFamilyValue" time="0.000031" file="src/services/render/planValidation.test.ts" line="179" assertions="1" />
+      <testcase name="keeps a nested var() fallback in a single token" classname="parseFontFamilyValue" time="0.000023" file="src/services/render/planValidation.test.ts" line="186" assertions="1" />
+      <testcase name="ignores empty entries (trailing commas)" classname="parseFontFamilyValue" time="0.000018" file="src/services/render/planValidation.test.ts" line="192" assertions="1" />
+      <testcase name="handles a single value with no commas" classname="parseFontFamilyValue" time="0.000036" file="src/services/render/planValidation.test.ts" line="196" assertions="1" />
+      <testcase name="handles an all-whitespace value as empty" classname="parseFontFamilyValue" time="0.000018" file="src/services/render/planValidation.test.ts" line="200" assertions="1" />
+    </testsuite>
+    <testsuite name="validateNoSystemFonts" file="src/services/render/planValidation.test.ts" line="205" tests="10" assertions="23" failures="0" skipped="0" time="0.008" hostname="439b901e28fd">
+      <testcase name="passes a composition with deterministic web fonts as primary" classname="validateNoSystemFonts" time="0.007178" file="src/services/render/planValidation.test.ts" line="214" assertions="1" />
+      <testcase name="passes when font-family is absent entirely (plain text composition)" classname="validateNoSystemFonts" time="0.000678" file="src/services/render/planValidation.test.ts" line="218" assertions="1" />
+      <testcase name="throws SYSTEM_FONT_USED when primary family is `-apple-system`" classname="validateNoSystemFonts" time="0.000725" file="src/services/render/planValidation.test.ts" line="224" assertions="5" />
+      <testcase name="throws SYSTEM_FONT_USED when primary family is `system-ui`" classname="validateNoSystemFonts" time="0.000683" file="src/services/render/planValidation.test.ts" line="239" assertions="3" />
+      <testcase name="throws SYSTEM_FONT_USED when primary family is `sans-serif` (CSS generic alone)" classname="validateNoSystemFonts" time="0.000476" file="src/services/render/planValidation.test.ts" line="252" assertions="3" />
+      <testcase name="treats data-font-family= as a valid surface for the same check" classname="validateNoSystemFonts" time="0.000419" file="src/services/render/planValidation.test.ts" line="265" assertions="3" />
+      <testcase name="is case-insensitive (`SYSTEM-UI` is the same as `system-ui`)" classname="validateNoSystemFonts" time="0.000656" file="src/services/render/planValidation.test.ts" line="278" assertions="2" />
+      <testcase name="accepts generic families when used only as fallbacks" classname="validateNoSystemFonts" time="0.000555" file="src/services/render/planValidation.test.ts" line="290" assertions="1" />
+      <testcase name="resolves simple CSS var() primary aliases before rejecting system fonts" classname="validateNoSystemFonts" time="0.000714" file="src/services/render/planValidation.test.ts" line="297" assertions="3" />
+      <testcase name="accepts CSS var() primary aliases that resolve to deterministic fonts" classname="validateNoSystemFonts" time="0.00114" file="src/services/render/planValidation.test.ts" line="313" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

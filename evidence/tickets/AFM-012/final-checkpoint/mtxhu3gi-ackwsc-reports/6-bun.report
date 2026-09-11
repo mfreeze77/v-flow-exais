@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="15" assertions="46" failures="0" skipped="0" time="1.128932465">
+  <testsuite name="src/services/distributed/planSizeCap.test.ts" file="src/services/distributed/planSizeCap.test.ts" tests="15" assertions="46" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="measurePlanDirBytes" file="src/services/distributed/planSizeCap.test.ts" line="47" tests="3" assertions="3" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="returns 0 for an empty directory" classname="measurePlanDirBytes" time="0.000259" file="src/services/distributed/planSizeCap.test.ts" line="48" assertions="1" />
+      <testcase name="sums file sizes recursively" classname="measurePlanDirBytes" time="0.000614" file="src/services/distributed/planSizeCap.test.ts" line="53" assertions="1" />
+      <testcase name="ignores file and directory symlinks instead of traversing outside the plan" classname="measurePlanDirBytes" time="0.000336" file="src/services/distributed/planSizeCap.test.ts" line="62" assertions="1" />
+    </testsuite>
+    <testsuite name="measurePlanSizeBreakdown" file="src/services/distributed/planSizeCap.test.ts" line="78" tests="1" assertions="4" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="classifies retained plan artifacts without exposing video directory names" classname="measurePlanSizeBreakdown" time="0.000959" file="src/services/distributed/planSizeCap.test.ts" line="79" assertions="4" />
+    </testsuite>
+    <testsuite name="measurePlanSizeBreakdown path boundaries" file="src/services/distributed/planSizeCap.test.ts" line="115" tests="2" assertions="2" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="does not misclassify an authored compiled/video-frames path" classname="measurePlanSizeBreakdown path boundaries" time="0.000345" file="src/services/distributed/planSizeCap.test.ts" line="116" assertions="1" />
+      <testcase name="classifies staged extracted frames separately from compiled assets" classname="measurePlanSizeBreakdown path boundaries" time="0.000306" file="src/services/distributed/planSizeCap.test.ts" line="134" assertions="1" />
+    </testsuite>
+    <testsuite name="PLAN_DIR_SIZE_LIMIT_BYTES constant" file="src/services/distributed/planSizeCap.test.ts" line="152" tests="1" assertions="1" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="is the documented 2 GB ceiling" classname="PLAN_DIR_SIZE_LIMIT_BYTES constant" time="0.000021" file="src/services/distributed/planSizeCap.test.ts" line="153" assertions="1" />
+    </testsuite>
+    <testsuite name="PlanTooLargeError" file="src/services/distributed/planSizeCap.test.ts" line="158" tests="1" assertions="6" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="carries the typed PLAN_TOO_LARGE code" classname="PlanTooLargeError" time="0.000134" file="src/services/distributed/planSizeCap.test.ts" line="159" assertions="6" />
+    </testsuite>
+    <testsuite name="plan() PLAN_TOO_LARGE throw path" file="src/services/distributed/planSizeCap.test.ts" line="172" tests="1" assertions="7" failures="0" skipped="0" time="0.059" hostname="439b901e28fd">
+      <testcase name="throws PlanTooLargeError when planDir exceeds the configured ceiling" classname="plan() PLAN_TOO_LARGE throw path" time="0.059771" file="src/services/distributed/planSizeCap.test.ts" line="178" assertions="7" />
+    </testsuite>
+    <testsuite name="plan() under size cap" file="src/services/distributed/planSizeCap.test.ts" line="216" tests="2" assertions="8" failures="0" skipped="0" time="0.012" hostname="439b901e28fd">
+      <testcase name="succeeds when the default ceiling is well above the produced planDir size" classname="plan() under size cap" time="0.003958" file="src/services/distributed/planSizeCap.test.ts" line="220" assertions="1" />
+      <testcase name="lets planV2 complete the same render that trips the v1 transport cap" classname="plan() under size cap" time="0.009246" file="src/services/distributed/planSizeCap.test.ts" line="238" assertions="7" />
+    </testsuite>
+    <testsuite name="plan() early size budget" file="src/services/distributed/planSizeCap.test.ts" line="273" tests="1" assertions="5" failures="0" skipped="0" time="0.084" hostname="439b901e28fd">
+      <testcase name="rejects an oversized stable compiled tree before extraction and freeze" classname="plan() early size budget" time="0.08486" file="src/services/distributed/planSizeCap.test.ts" line="277" assertions="5" />
+    </testsuite>
+    <testsuite name="plan() reused directory size check" file="src/services/distributed/planSizeCap.test.ts" line="323" tests="2" assertions="5" failures="0" skipped="0" time="0.004" hostname="439b901e28fd">
+      <testcase name="clears stale compiled scratch from a failed prior attempt" classname="plan() reused directory size check" time="0.002971" file="src/services/distributed/planSizeCap.test.ts" line="324" assertions="3" />
+      <testcase name="ignores stale freeze-owned metadata that the new plan overwrites" classname="plan() reused directory size check" time="0.002277" file="src/services/distributed/planSizeCap.test.ts" line="349" assertions="2" />
+    </testsuite>
+    <testsuite name="plan() duration guard" file="src/services/distributed/planSizeCap.test.ts" line="374" tests="1" assertions="5" failures="0" skipped="0" time="0.425" hostname="439b901e28fd">
+      <testcase name="rejects probe durations that would create impossible distributed frame counts" classname="plan() duration guard" time="0.425227" file="src/services/distributed/planSizeCap.test.ts" line="378" assertions="5" />
+    </testsuite>
+  </testsuite>
+</testsuites>

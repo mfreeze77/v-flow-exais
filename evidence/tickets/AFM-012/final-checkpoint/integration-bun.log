@@ -1,5 +1,5 @@
 COMMAND: bun run --cwd packages/producer test:integration:bun
-STARTED: 2026-09-11T20:29:45Z
+STARTED: 2026-09-11T21:53:59Z
 
 $ node scripts/run-test-lane.mjs integration bun
 [producer:integration/bun] Selected 10 test files.
@@ -16,27 +16,27 @@ $ node scripts/run-test-lane.mjs integration bun
 bun test v1.3.13 (bf2e2cec)
 
 src/regression-harness-psnr.test.ts:
-(pass) psnrAtFrames() > returns exactly the frames asked for [92.66ms]
-(pass) psnrAtFrames() > matches the per-checkpoint ffmpeg method it replaced [563.56ms]
-(pass) psnrAtFrames() > pairs by frame index even when the two videos carry different timelines [549.67ms]
-(pass) psnrAtFrames() > deduplicates repeated frame indices without losing alignment [316.80ms]
-(pass) psnrAtFrames() > is insensitive to the order frame indices are supplied in [166.82ms]
-(pass) psnrAtFrames() > reports identical video as infinite PSNR, as the legacy method did [168.24ms]
-(pass) psnrAtFrames() > throws rather than mis-pairing when a frame is past the end of both videos [80.36ms]
-(pass) psnrAtFrames() > throws when only one input runs out of frames [83.54ms]
-(pass) psnrAtFrames() > still compares every requested frame when one input is merely shorter than the last index [83.91ms]
-(pass) psnrAtFrames() > returns an empty map when asked for nothing [0.08ms]
-(pass) psnrAtCheckpoint() > maps a checkpoint time to the same frame index the legacy code used [84.88ms]
-(pass) psnrAtCheckpoint() > throws when the requested frame was not among those compared [82.02ms]
+(pass) psnrAtFrames() > returns exactly the frames asked for [82.66ms]
+(pass) psnrAtFrames() > matches the per-checkpoint ffmpeg method it replaced [519.07ms]
+(pass) psnrAtFrames() > pairs by frame index even when the two videos carry different timelines [512.41ms]
+(pass) psnrAtFrames() > deduplicates repeated frame indices without losing alignment [308.65ms]
+(pass) psnrAtFrames() > is insensitive to the order frame indices are supplied in [158.65ms]
+(pass) psnrAtFrames() > reports identical video as infinite PSNR, as the legacy method did [150.24ms]
+(pass) psnrAtFrames() > throws rather than mis-pairing when a frame is past the end of both videos [77.68ms]
+(pass) psnrAtFrames() > throws when only one input runs out of frames [75.84ms]
+(pass) psnrAtFrames() > still compares every requested frame when one input is merely shorter than the last index [77.61ms]
+(pass) psnrAtFrames() > returns an empty map when asked for nothing [0.06ms]
+(pass) psnrAtCheckpoint() > maps a checkpoint time to the same frame index the legacy code used [78.36ms]
+(pass) psnrAtCheckpoint() > throws when the requested frame was not among those compared [76.81ms]
 
  12 pass
  0 fail
  40 expect() calls
-Ran 12 tests across 1 file. [3.45s]
+Ran 12 tests across 1 file. [3.23s]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/deterministicFonts-systemCapture.test.ts:
-(pass) system font capture — allowSystemFontCapture option > uses the CSS collection hint for raw TTC data URIs [0.16ms]
+(pass) system font capture — allowSystemFontCapture option > uses the CSS collection hint for raw TTC data URIs [0.14ms]
 [WARN] [Compiler] No deterministic font mapping for: NotARealFontFamilyForTest
   Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
   To fix, pick one:
@@ -45,7 +45,7 @@ src/services/deterministicFonts-systemCapture.test.ts:
     3. Install the font locally on the render machine (Docker: add to Dockerfile)
     4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
   Docs: https://hyperframes.heygen.com/docs/fonts
-(pass) system font capture — allowSystemFontCapture option > does not attempt system font capture when allowSystemFontCapture is false [13.15ms]
+(pass) system font capture — allowSystemFontCapture option > does not attempt system font capture when allowSystemFontCapture is false [12.52ms]
 [WARN] [Compiler] No deterministic font mapping for: ZZZDefinitelyNotInstalledAnywhere
   Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
   To fix, pick one:
@@ -54,42 +54,42 @@ src/services/deterministicFonts-systemCapture.test.ts:
     3. Install the font locally on the render machine (Docker: add to Dockerfile)
     4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
   Docs: https://hyperframes.heygen.com/docs/fonts
-(pass) system font capture — allowSystemFontCapture option > defaults allowSystemFontCapture to true when omitted [37.02ms]
+(pass) system font capture — allowSystemFontCapture option > defaults allowSystemFontCapture to true when omitted [32.91ms]
 Skipping: /System/Library/Fonts/Supplemental/Impact.ttf not available
-(pass) system font capture — integration (macOS only) > embeds a local system font when Google Fonts returns 400 [0.29ms]
+(pass) system font capture — integration (macOS only) > embeds a local system font when Google Fonts returns 400 [0.22ms]
 Skipping: /System/Library/Fonts/Supplemental/Impact.ttf not available
-(pass) system font capture — integration (macOS only) > skips system font capture when allowSystemFontCapture is false even if font exists locally [0.28ms]
+(pass) system font capture — integration (macOS only) > skips system font capture when allowSystemFontCapture is false even if font exists locally [0.17ms]
 [INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
-(pass) system font capture — integration (macOS only) > still resolves alias-mapped fonts via embedded bundle regardless of allowSystemFontCapture [3.72ms]
+(pass) system font capture — integration (macOS only) > still resolves alias-mapped fonts via embedded bundle regardless of allowSystemFontCapture [3.01ms]
 
  6 pass
  0 fail
  6 expect() calls
-Ran 6 tests across 1 file. [426.00ms]
+Ran 6 tests across 1 file. [433.00ms]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/distributed/assemble.test.ts:
-(pass) assemble() > concat-copies two mp4 chunks and applies faststart [266.58ms]
-(pass) assemble() > cleans private staging after a failed concat without deleting existing scratch data [44.13ms]
-(pass) assemble() > single-chunk render stamps exact r_frame_rate on the output container [196.48ms]
+(pass) assemble() > concat-copies two mp4 chunks and applies faststart [270.64ms]
+(pass) assemble() > cleans private staging after a failed concat without deleting existing scratch data [62.26ms]
+(pass) assemble() > single-chunk render stamps exact r_frame_rate on the output container [263.49ms]
 [INFO] [assemble] audio normalized for mux {"operation":"trim","targetDurationSeconds":0.4,"sourceDurationSeconds":0.9386666666666666}
-(pass) assemble() > muxes audio with frame-count-derived duration when audio.m4a is present [598.54ms]
+(pass) assemble() > muxes audio with frame-count-derived duration when audio.m4a is present [582.91ms]
 [INFO] [assemble] audio normalized for mux {"operation":"pad","targetDurationSeconds":0.4,"sourceDurationSeconds":0.23466666666666666}
-(pass) assemble() > muxes padded short audio without shifting the first video frame [595.55ms]
+(pass) assemble() > muxes padded short audio without shifting the first video frame [584.12ms]
 [INFO] [assemble] cfr re-encode applied {"format":"mp4","fpsNum":30,"fpsDen":1}
-(pass) assemble() > cfr:true re-encodes for exact avg_frame_rate matching r_frame_rate [314.64ms]
-(pass) assemble() > cfr:true rejects non-mp4 formats with a clear error [155.00ms]
-(pass) assemble() > cfr:true rejects h265 chunks with a clear error [111.13ms]
-(pass) assemble() > merges png-sequence chunk directories with continuous global numbering [1.75ms]
-(pass) assemble() > keeps render provenance on a no-audio mov render [267.82ms]
-(pass) assemble() > keeps render provenance on a no-audio webm render [294.76ms]
-(pass) assemble() > rejects when chunkPaths.length does not match chunks.json length [0.72ms]
-(pass) assemble() > rejects a planDir missing plan.json [0.28ms]
+(pass) assemble() > cfr:true re-encodes for exact avg_frame_rate matching r_frame_rate [302.41ms]
+(pass) assemble() > cfr:true rejects non-mp4 formats with a clear error [150.28ms]
+(pass) assemble() > cfr:true rejects h265 chunks with a clear error [96.51ms]
+(pass) assemble() > merges png-sequence chunk directories with continuous global numbering [1.37ms]
+(pass) assemble() > keeps render provenance on a no-audio mov render [252.99ms]
+(pass) assemble() > keeps render provenance on a no-audio webm render [293.91ms]
+(pass) assemble() > rejects when chunkPaths.length does not match chunks.json length [0.88ms]
+(pass) assemble() > rejects a planDir missing plan.json [0.34ms]
 
  13 pass
  0 fail
  66 expect() calls
-Ran 13 tests across 1 file. [3.69s]
+Ran 13 tests across 1 file. [3.66s]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/distributed/chunkBoundary.test.ts:
@@ -100,139 +100,139 @@ src/services/distributed/chunkBoundary.test.ts:
 [initSession:screenshot] page.goto start (0ms)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (152ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (172ms)
-[initSession:screenshot] GSAP proxy flush complete (178ms)
-[initSession:screenshot] page.goto complete (154ms)
 [initSession:screenshot] GSAP proxy flush complete (156ms)
-[initSession:screenshot] pollHfReady complete (259ms)
-[initSession:screenshot] pollHfReady complete (285ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (261ms)
+[initSession:screenshot] page.goto complete (127ms)
+[initSession:screenshot] GSAP proxy flush complete (131ms)
+[initSession:screenshot] pollHfReady complete (260ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (262ms)
 [initSession:screenshot] applyVideoMetadataHints complete (262ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (288ms)
-[initSession:screenshot] applyVideoMetadataHints complete (288ms)
 [initSession:screenshot] media + fonts + tailwind ready (264ms)
-[initSession:screenshot] media + fonts + tailwind ready (290ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (274ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (300ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (272ms)
+[initSession:screenshot] pollHfReady complete (232ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (235ms)
+[initSession:screenshot] applyVideoMetadataHints complete (235ms)
+[initSession:screenshot] media + fonts + tailwind ready (237ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (245ms)
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (113ms)
+[initSession:screenshot] GSAP proxy flush complete (115ms)
+[initSession:screenshot] pollHfReady complete (218ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (220ms)
+[initSession:screenshot] applyVideoMetadataHints complete (220ms)
+[initSession:screenshot] media + fonts + tailwind ready (221ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (226ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (109ms)
+[initSession:screenshot] GSAP proxy flush complete (111ms)
+[initSession:screenshot] pollHfReady complete (214ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (216ms)
+[initSession:screenshot] applyVideoMetadataHints complete (216ms)
+[initSession:screenshot] media + fonts + tailwind ready (217ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (223ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (101ms)
+[initSession:screenshot] GSAP proxy flush complete (102ms)
+[initSession:screenshot] pollHfReady complete (205ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (207ms)
+[initSession:screenshot] applyVideoMetadataHints complete (207ms)
+[initSession:screenshot] media + fonts + tailwind ready (208ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (214ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (118ms)
+[initSession:screenshot] GSAP proxy flush complete (119ms)
+[initSession:screenshot] pollHfReady complete (222ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (225ms)
+[initSession:screenshot] applyVideoMetadataHints complete (225ms)
+[initSession:screenshot] media + fonts + tailwind ready (227ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (237ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
+(pass) per-adapter chunk-boundary byte equality > gsap: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [7333.22ms]
+[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
+[INFO] [Compiler] Inlined CDN script: https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.iife.min.js
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (161ms)
+[initSession:screenshot] page.goto complete (155ms)
+[initSession:screenshot] GSAP proxy flush complete (164ms)
+[initSession:screenshot] GSAP proxy flush complete (158ms)
+[initSession:screenshot] pollHfReady complete (259ms)
+[initSession:screenshot] pollHfReady complete (267ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (261ms)
+[initSession:screenshot] applyVideoMetadataHints complete (261ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (269ms)
+[initSession:screenshot] applyVideoMetadataHints complete (269ms)
+[initSession:screenshot] media + fonts + tailwind ready (262ms)
+[initSession:screenshot] media + fonts + tailwind ready (271ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (267ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (276ms)
+[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
+[INFO] [Compiler] Inlined CDN script: https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.iife.min.js
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
 [initSession:screenshot] page.goto complete (119ms)
 [initSession:screenshot] GSAP proxy flush complete (121ms)
-[initSession:screenshot] pollHfReady complete (225ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (227ms)
-[initSession:screenshot] applyVideoMetadataHints complete (227ms)
-[initSession:screenshot] media + fonts + tailwind ready (228ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (234ms)
+[initSession:screenshot] pollHfReady complete (224ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (225ms)
+[initSession:screenshot] applyVideoMetadataHints complete (226ms)
+[initSession:screenshot] media + fonts + tailwind ready (227ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (232ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (113ms)
+[initSession:screenshot] page.goto complete (115ms)
 [initSession:screenshot] GSAP proxy flush complete (117ms)
-[initSession:screenshot] pollHfReady complete (221ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (223ms)
-[initSession:screenshot] applyVideoMetadataHints complete (223ms)
-[initSession:screenshot] media + fonts + tailwind ready (225ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (230ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (116ms)
-[initSession:screenshot] GSAP proxy flush complete (117ms)
-[initSession:screenshot] pollHfReady complete (219ms)
+[initSession:screenshot] pollHfReady complete (220ms)
 [initSession:screenshot] pollSubCompositionTimelines complete (ready) (221ms)
-[initSession:screenshot] applyVideoMetadataHints complete (222ms)
-[initSession:screenshot] media + fonts + tailwind ready (223ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (228ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (122ms)
-[initSession:screenshot] GSAP proxy flush complete (124ms)
-[initSession:screenshot] pollHfReady complete (228ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (229ms)
-[initSession:screenshot] applyVideoMetadataHints complete (229ms)
-[initSession:screenshot] media + fonts + tailwind ready (230ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (236ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
-(pass) per-adapter chunk-boundary byte equality > gsap: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6811.62ms]
-[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
-[INFO] [Compiler] Inlined CDN script: https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.iife.min.js
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (159ms)
-[initSession:screenshot] GSAP proxy flush complete (161ms)
-[initSession:screenshot] page.goto complete (170ms)
-[initSession:screenshot] GSAP proxy flush complete (172ms)
-[initSession:screenshot] pollHfReady complete (265ms)
-[initSession:screenshot] pollHfReady complete (274ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (267ms)
-[initSession:screenshot] applyVideoMetadataHints complete (267ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (276ms)
-[initSession:screenshot] applyVideoMetadataHints complete (276ms)
-[initSession:screenshot] media + fonts + tailwind ready (269ms)
-[initSession:screenshot] media + fonts + tailwind ready (277ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (276ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (285ms)
-[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
-[INFO] [Compiler] Inlined CDN script: https://cdn.jsdelivr.net/npm/animejs@4.0.2/lib/anime.iife.min.js
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (126ms)
-[initSession:screenshot] GSAP proxy flush complete (128ms)
-[initSession:screenshot] pollHfReady complete (230ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (232ms)
-[initSession:screenshot] applyVideoMetadataHints complete (232ms)
-[initSession:screenshot] media + fonts + tailwind ready (233ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (239ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (128ms)
-[initSession:screenshot] GSAP proxy flush complete (130ms)
-[initSession:screenshot] pollHfReady complete (234ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (237ms)
-[initSession:screenshot] applyVideoMetadataHints complete (237ms)
-[initSession:screenshot] media + fonts + tailwind ready (238ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (243ms)
+[initSession:screenshot] applyVideoMetadataHints complete (221ms)
+[initSession:screenshot] media + fonts + tailwind ready (222ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (227ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (123ms)
-[initSession:screenshot] GSAP proxy flush complete (124ms)
-[initSession:screenshot] pollHfReady complete (228ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (230ms)
-[initSession:screenshot] applyVideoMetadataHints complete (231ms)
-[initSession:screenshot] media + fonts + tailwind ready (232ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (237ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (1ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (122ms)
-[initSession:screenshot] GSAP proxy flush complete (124ms)
-[initSession:screenshot] pollHfReady complete (228ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (230ms)
-[initSession:screenshot] applyVideoMetadataHints complete (230ms)
-[initSession:screenshot] media + fonts + tailwind ready (231ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (238ms)
+[initSession:screenshot] page.goto complete (121ms)
+[initSession:screenshot] GSAP proxy flush complete (122ms)
+[initSession:screenshot] pollHfReady complete (224ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (226ms)
+[initSession:screenshot] applyVideoMetadataHints complete (226ms)
+[initSession:screenshot] media + fonts + tailwind ready (227ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (232ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (111ms)
+[initSession:screenshot] GSAP proxy flush complete (116ms)
+[initSession:screenshot] pollHfReady complete (224ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (235ms)
+[initSession:screenshot] applyVideoMetadataHints complete (235ms)
+[initSession:screenshot] media + fonts + tailwind ready (236ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (242ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
-(pass) per-adapter chunk-boundary byte equality > anime: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6070.97ms]
+(pass) per-adapter chunk-boundary byte equality > anime: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [5908.79ms]
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
 [INFO] [Compiler] Inlined CDN script: https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
@@ -242,30 +242,30 @@ src/services/distributed/chunkBoundary.test.ts:
 [initSession:screenshot] page.goto start (0ms)
 [Browser:WARN] Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation
 [Browser:WARN] Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation
+[HyperFrames] render runtime fps [object Object]
 [HyperFrames] render runtime fps [object Object]
 [initSession:screenshot] page.goto complete (242ms)
-[Browser:WARN] [.WebGL-0x2df400157c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] GSAP proxy flush complete (246ms)
-[Browser:WARN] [.WebGL-0x2df400157c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (244ms)
-[Browser:WARN] [.WebGL-0xd7c00135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Browser:WARN] [.WebGL-0x70400155400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] page.goto complete (261ms)
+[Browser:WARN] [.WebGL-0x304c0012bc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] GSAP proxy flush complete (266ms)
+[Browser:WARN] [.WebGL-0x304c0012bc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
 [initSession:screenshot] GSAP proxy flush complete (250ms)
-[Browser:WARN] [.WebGL-0xd7c00135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] pollHfReady complete (350ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (352ms)
-[initSession:screenshot] applyVideoMetadataHints complete (352ms)
-[initSession:screenshot] media + fonts + tailwind ready (353ms)
-[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (357ms)
-[initSession:screenshot] pollHfReady complete (352ms)
-[Browser:WARN] [.WebGL-0x2df400157c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (353ms)
-[initSession:screenshot] applyVideoMetadataHints complete (354ms)
-[initSession:screenshot] media + fonts + tailwind ready (354ms)
-[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (361ms)
-[Browser:WARN] [.WebGL-0x2df400157c00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
-[Browser:WARN] [.WebGL-0xd7c00135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Browser:WARN] [.WebGL-0xd7c00135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Browser:WARN] [.WebGL-0x70400155400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] pollHfReady complete (353ms)
+[initSession:screenshot] pollHfReady complete (371ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (355ms)
+[initSession:screenshot] applyVideoMetadataHints complete (355ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (373ms)
+[initSession:screenshot] applyVideoMetadataHints complete (373ms)
+[initSession:screenshot] media + fonts + tailwind ready (356ms)
+[initSession:screenshot] media + fonts + tailwind ready (374ms)
+[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (378ms)
+[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (362ms)
+[Browser:WARN] [.WebGL-0x304c0012bc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Browser:WARN] [.WebGL-0x70400155400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Browser:WARN] [.WebGL-0x304c0012bc00]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Browser:WARN] [.WebGL-0x70400155400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
 [INFO] [Compiler] Inlined CDN script: https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
@@ -273,67 +273,67 @@ src/services/distributed/chunkBoundary.test.ts:
 [initSession:screenshot] page.goto start (0ms)
 [Browser:WARN] Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (219ms)
-[Browser:WARN] [.WebGL-0x22ac00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] GSAP proxy flush complete (223ms)
-[Browser:WARN] [.WebGL-0x22ac00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] pollHfReady complete (328ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (329ms)
-[initSession:screenshot] applyVideoMetadataHints complete (330ms)
-[initSession:screenshot] media + fonts + tailwind ready (331ms)
-[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (336ms)
+[initSession:screenshot] page.goto complete (195ms)
+[Browser:WARN] [.WebGL-0x1c7c00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] GSAP proxy flush complete (199ms)
+[Browser:WARN] [.WebGL-0x1c7c00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] pollHfReady complete (301ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (302ms)
+[initSession:screenshot] applyVideoMetadataHints complete (302ms)
+[initSession:screenshot] media + fonts + tailwind ready (303ms)
+[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (311ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
-[Browser:WARN] [.WebGL-0x22ac00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Browser:WARN] [.WebGL-0x22ac00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Browser:WARN] [.WebGL-0x1c7c00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Browser:WARN] [.WebGL-0x1c7c00131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [Browser:WARN] Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (211ms)
-[Browser:WARN] [.WebGL-0x39d400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] GSAP proxy flush complete (217ms)
-[Browser:WARN] [.WebGL-0x39d400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] pollHfReady complete (322ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (323ms)
-[initSession:screenshot] applyVideoMetadataHints complete (323ms)
-[initSession:screenshot] media + fonts + tailwind ready (324ms)
-[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (330ms)
+[initSession:screenshot] page.goto complete (262ms)
+[Browser:WARN] [.WebGL-0xe7400135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] GSAP proxy flush complete (267ms)
+[Browser:WARN] [.WebGL-0xe7400135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] pollHfReady complete (372ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (374ms)
+[initSession:screenshot] applyVideoMetadataHints complete (374ms)
+[initSession:screenshot] media + fonts + tailwind ready (375ms)
+[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (381ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
-[Browser:WARN] [.WebGL-0x39d400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Browser:WARN] [.WebGL-0x39d400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Browser:WARN] [.WebGL-0xe7400135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Browser:WARN] [.WebGL-0xe7400135400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [Browser:WARN] Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (217ms)
-[Browser:WARN] [.WebGL-0xa9c0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] GSAP proxy flush complete (224ms)
-[Browser:WARN] [.WebGL-0xa9c0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] pollHfReady complete (329ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (331ms)
-[initSession:screenshot] applyVideoMetadataHints complete (332ms)
-[initSession:screenshot] media + fonts + tailwind ready (333ms)
-[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (338ms)
+[initSession:screenshot] page.goto complete (193ms)
+[Browser:WARN] [.WebGL-0x53400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] GSAP proxy flush complete (198ms)
+[Browser:WARN] [.WebGL-0x53400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] pollHfReady complete (300ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (301ms)
+[initSession:screenshot] applyVideoMetadataHints complete (302ms)
+[initSession:screenshot] media + fonts + tailwind ready (303ms)
+[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (309ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
-[Browser:WARN] [.WebGL-0xa9c0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Browser:WARN] [.WebGL-0xa9c0013d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+[Browser:WARN] [.WebGL-0x53400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Browser:WARN] [.WebGL-0x53400131400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [Browser:WARN] Scripts "build/three.js" and "build/three.min.js" are deprecated with r150+, and will be removed with r160. Please use ES Modules or alternatives: https://threejs.org/docs/index.html#manual/en/introduction/Installation
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (214ms)
-[Browser:WARN] [.WebGL-0x3d440012d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] GSAP proxy flush complete (218ms)
-[Browser:WARN] [.WebGL-0x3d440012d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[initSession:screenshot] pollHfReady complete (322ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (324ms)
-[initSession:screenshot] applyVideoMetadataHints complete (324ms)
-[initSession:screenshot] media + fonts + tailwind ready (325ms)
-[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (331ms)
+[initSession:screenshot] page.goto complete (202ms)
+[Browser:WARN] [.WebGL-0x3dc400125400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] GSAP proxy flush complete (207ms)
+[Browser:WARN] [.WebGL-0x3dc400125400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[initSession:screenshot] pollHfReady complete (311ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (313ms)
+[initSession:screenshot] applyVideoMetadataHints complete (313ms)
+[initSession:screenshot] media + fonts + tailwind ready (314ms)
+[initSession:screenshot] static-frame dedup: disabled (canvas/webgl) (320ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
-[Browser:WARN] [.WebGL-0x3d440012d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
-[Browser:WARN] [.WebGL-0x3d440012d400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
-(pass) per-adapter chunk-boundary byte equality > three: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6577.26ms]
+[Browser:WARN] [.WebGL-0x3dc400125400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels
+[Browser:WARN] [.WebGL-0x3dc400125400]GL Driver Message (OpenGL, Performance, GL_CLOSE_PATH_NV, High): GPU stall due to ReadPixels (this message will no longer repeat)
+(pass) per-adapter chunk-boundary byte equality > three: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6589.91ms]
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
@@ -343,212 +343,212 @@ src/services/distributed/chunkBoundary.test.ts:
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (196ms)
-[initSession:screenshot] GSAP proxy flush complete (202ms)
-[initSession:screenshot] page.goto complete (190ms)
-[initSession:screenshot] GSAP proxy flush complete (196ms)
-[initSession:screenshot] pollHfReady complete (307ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (309ms)
-[initSession:screenshot] applyVideoMetadataHints complete (309ms)
-[initSession:screenshot] pollHfReady complete (298ms)
-[initSession:screenshot] media + fonts + tailwind ready (311ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (299ms)
-[initSession:screenshot] applyVideoMetadataHints complete (300ms)
-[initSession:screenshot] media + fonts + tailwind ready (301ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (318ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (307ms)
+[initSession:screenshot] page.goto complete (176ms)
+[initSession:screenshot] GSAP proxy flush complete (183ms)
+[initSession:screenshot] page.goto complete (168ms)
+[initSession:screenshot] GSAP proxy flush complete (173ms)
+[initSession:screenshot] pollHfReady complete (287ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (292ms)
+[initSession:screenshot] applyVideoMetadataHints complete (293ms)
+[initSession:screenshot] pollHfReady complete (277ms)
+[initSession:screenshot] media + fonts + tailwind ready (295ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (279ms)
+[initSession:screenshot] applyVideoMetadataHints complete (281ms)
+[initSession:screenshot] media + fonts + tailwind ready (282ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (303ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (287ms)
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.12.2/lottie.min.js
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (135ms)
-[initSession:screenshot] GSAP proxy flush complete (141ms)
-[initSession:screenshot] pollHfReady complete (245ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (247ms)
-[initSession:screenshot] applyVideoMetadataHints complete (248ms)
-[initSession:screenshot] media + fonts + tailwind ready (249ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (254ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (142ms)
-[initSession:screenshot] GSAP proxy flush complete (149ms)
-[initSession:screenshot] pollHfReady complete (253ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (255ms)
-[initSession:screenshot] applyVideoMetadataHints complete (256ms)
-[initSession:screenshot] media + fonts + tailwind ready (257ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (263ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (140ms)
-[initSession:screenshot] GSAP proxy flush complete (146ms)
-[initSession:screenshot] pollHfReady complete (251ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (253ms)
-[initSession:screenshot] applyVideoMetadataHints complete (253ms)
-[initSession:screenshot] media + fonts + tailwind ready (254ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (260ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (145ms)
-[initSession:screenshot] GSAP proxy flush complete (153ms)
-[initSession:screenshot] pollHfReady complete (257ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (259ms)
-[initSession:screenshot] applyVideoMetadataHints complete (259ms)
-[initSession:screenshot] media + fonts + tailwind ready (260ms)
-[initSession:screenshot] static-frame dedup: disabled (eligible) (266ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
-(pass) per-adapter chunk-boundary byte equality > lottie: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6321.73ms]
-[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (1ms)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (156ms)
-[initSession:screenshot] GSAP proxy flush complete (158ms)
-[initSession:screenshot] page.goto complete (149ms)
-[initSession:screenshot] GSAP proxy flush complete (153ms)
-[initSession:screenshot] pollHfReady complete (262ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (264ms)
-[initSession:screenshot] applyVideoMetadataHints complete (264ms)
-[initSession:screenshot] media + fonts + tailwind ready (266ms)
-[initSession:screenshot] pollHfReady complete (255ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (257ms)
-[initSession:screenshot] applyVideoMetadataHints complete (257ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (272ms)
-[initSession:screenshot] media + fonts + tailwind ready (258ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (264ms)
-[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
 [initSession:screenshot] page.goto complete (125ms)
-[initSession:screenshot] GSAP proxy flush complete (127ms)
-[initSession:screenshot] pollHfReady complete (229ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (231ms)
-[initSession:screenshot] applyVideoMetadataHints complete (231ms)
-[initSession:screenshot] media + fonts + tailwind ready (232ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (238ms)
+[initSession:screenshot] GSAP proxy flush complete (133ms)
+[initSession:screenshot] pollHfReady complete (237ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (238ms)
+[initSession:screenshot] applyVideoMetadataHints complete (239ms)
+[initSession:screenshot] media + fonts + tailwind ready (240ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (244ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
 [initSession:screenshot] page.goto complete (121ms)
-[initSession:screenshot] GSAP proxy flush complete (123ms)
-[initSession:screenshot] pollHfReady complete (227ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (230ms)
-[initSession:screenshot] applyVideoMetadataHints complete (230ms)
-[initSession:screenshot] media + fonts + tailwind ready (231ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (237ms)
+[initSession:screenshot] GSAP proxy flush complete (126ms)
+[initSession:screenshot] pollHfReady complete (229ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (231ms)
+[initSession:screenshot] applyVideoMetadataHints complete (231ms)
+[initSession:screenshot] media + fonts + tailwind ready (232ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (237ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (116ms)
-[initSession:screenshot] GSAP proxy flush complete (118ms)
-[initSession:screenshot] pollHfReady complete (222ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (224ms)
-[initSession:screenshot] applyVideoMetadataHints complete (225ms)
-[initSession:screenshot] media + fonts + tailwind ready (226ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (232ms)
+[initSession:screenshot] page.goto complete (131ms)
+[initSession:screenshot] GSAP proxy flush complete (136ms)
+[initSession:screenshot] pollHfReady complete (239ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (241ms)
+[initSession:screenshot] applyVideoMetadataHints complete (241ms)
+[initSession:screenshot] media + fonts + tailwind ready (242ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (248ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (113ms)
-[initSession:screenshot] GSAP proxy flush complete (115ms)
-[initSession:screenshot] pollHfReady complete (220ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (222ms)
-[initSession:screenshot] applyVideoMetadataHints complete (222ms)
-[initSession:screenshot] media + fonts + tailwind ready (223ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (230ms)
+[initSession:screenshot] page.goto complete (130ms)
+[initSession:screenshot] GSAP proxy flush complete (135ms)
+[initSession:screenshot] pollHfReady complete (243ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (251ms)
+[initSession:screenshot] applyVideoMetadataHints complete (251ms)
+[initSession:screenshot] media + fonts + tailwind ready (254ms)
+[initSession:screenshot] static-frame dedup: disabled (eligible) (260ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
-(pass) per-adapter chunk-boundary byte equality > css: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6017.38ms]
+(pass) per-adapter chunk-boundary byte equality > lottie: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6008.75ms]
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (1ms)
+[initSession:screenshot] page.goto start (0ms)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (145ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (173ms)
-[initSession:screenshot] GSAP proxy flush complete (175ms)
-[initSession:screenshot] page.goto complete (166ms)
-[initSession:screenshot] GSAP proxy flush complete (169ms)
-[initSession:screenshot] pollHfReady complete (279ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (281ms)
-[initSession:screenshot] applyVideoMetadataHints complete (281ms)
-[initSession:screenshot] media + fonts + tailwind ready (282ms)
-[initSession:screenshot] pollHfReady complete (272ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (288ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (273ms)
-[initSession:screenshot] applyVideoMetadataHints complete (274ms)
-[initSession:screenshot] media + fonts + tailwind ready (275ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (281ms)
+[initSession:screenshot] GSAP proxy flush complete (146ms)
+[initSession:screenshot] page.goto complete (145ms)
+[initSession:screenshot] GSAP proxy flush complete (147ms)
+[initSession:screenshot] pollHfReady complete (250ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (252ms)
+[initSession:screenshot] applyVideoMetadataHints complete (252ms)
+[initSession:screenshot] media + fonts + tailwind ready (253ms)
+[initSession:screenshot] pollHfReady complete (248ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (257ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (249ms)
+[initSession:screenshot] applyVideoMetadataHints complete (249ms)
+[initSession:screenshot] media + fonts + tailwind ready (250ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (256ms)
 [INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (120ms)
-[initSession:screenshot] GSAP proxy flush complete (122ms)
-[initSession:screenshot] pollHfReady complete (227ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (229ms)
-[initSession:screenshot] applyVideoMetadataHints complete (229ms)
-[initSession:screenshot] media + fonts + tailwind ready (230ms)
+[initSession:screenshot] page.goto complete (123ms)
+[initSession:screenshot] GSAP proxy flush complete (126ms)
+[initSession:screenshot] pollHfReady complete (229ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (231ms)
+[initSession:screenshot] applyVideoMetadataHints complete (231ms)
+[initSession:screenshot] media + fonts + tailwind ready (232ms)
 [initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (237ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (123ms)
-[initSession:screenshot] GSAP proxy flush complete (125ms)
-[initSession:screenshot] pollHfReady complete (230ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (232ms)
-[initSession:screenshot] applyVideoMetadataHints complete (232ms)
-[initSession:screenshot] media + fonts + tailwind ready (234ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (241ms)
+[initSession:screenshot] page.goto complete (109ms)
+[initSession:screenshot] GSAP proxy flush complete (111ms)
+[initSession:screenshot] pollHfReady complete (215ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (216ms)
+[initSession:screenshot] applyVideoMetadataHints complete (217ms)
+[initSession:screenshot] media + fonts + tailwind ready (218ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (222ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (122ms)
-[initSession:screenshot] GSAP proxy flush complete (123ms)
-[initSession:screenshot] pollHfReady complete (227ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (229ms)
-[initSession:screenshot] applyVideoMetadataHints complete (230ms)
-[initSession:screenshot] media + fonts + tailwind ready (231ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (237ms)
+[initSession:screenshot] page.goto complete (107ms)
+[initSession:screenshot] GSAP proxy flush complete (109ms)
+[initSession:screenshot] pollHfReady complete (211ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (213ms)
+[initSession:screenshot] applyVideoMetadataHints complete (213ms)
+[initSession:screenshot] media + fonts + tailwind ready (214ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (218ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (125ms)
-[initSession:screenshot] GSAP proxy flush complete (127ms)
-[initSession:screenshot] pollHfReady complete (234ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (236ms)
-[initSession:screenshot] applyVideoMetadataHints complete (236ms)
-[initSession:screenshot] media + fonts + tailwind ready (238ms)
-[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (243ms)
+[initSession:screenshot] page.goto complete (110ms)
+[initSession:screenshot] GSAP proxy flush complete (112ms)
+[initSession:screenshot] pollHfReady complete (215ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (216ms)
+[initSession:screenshot] applyVideoMetadataHints complete (217ms)
+[initSession:screenshot] media + fonts + tailwind ready (218ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (223ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
-(pass) per-adapter chunk-boundary byte equality > waapi: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [6109.00ms]
-(pass) per-adapter chunk-boundary byte equality > expected fixture directories exist [2.17ms]
+(pass) per-adapter chunk-boundary byte equality > css: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [5739.55ms]
+[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (162ms)
+[initSession:screenshot] page.goto complete (148ms)
+[initSession:screenshot] GSAP proxy flush complete (164ms)
+[initSession:screenshot] GSAP proxy flush complete (150ms)
+[initSession:screenshot] pollHfReady complete (267ms)
+[initSession:screenshot] pollHfReady complete (254ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (269ms)
+[initSession:screenshot] applyVideoMetadataHints complete (269ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (256ms)
+[initSession:screenshot] applyVideoMetadataHints complete (256ms)
+[initSession:screenshot] media + fonts + tailwind ready (271ms)
+[initSession:screenshot] media + fonts + tailwind ready (257ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (262ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (276ms)
+[INFO] [Compiler] Inlined CDN script: https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":2,"width":320,"height":180,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (114ms)
+[initSession:screenshot] GSAP proxy flush complete (118ms)
+[initSession:screenshot] pollHfReady complete (221ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (223ms)
+[initSession:screenshot] applyVideoMetadataHints complete (223ms)
+[initSession:screenshot] media + fonts + tailwind ready (224ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (229ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (99ms)
+[initSession:screenshot] GSAP proxy flush complete (101ms)
+[initSession:screenshot] pollHfReady complete (205ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (207ms)
+[initSession:screenshot] applyVideoMetadataHints complete (207ms)
+[initSession:screenshot] media + fonts + tailwind ready (208ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (213ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (105ms)
+[initSession:screenshot] GSAP proxy flush complete (107ms)
+[initSession:screenshot] pollHfReady complete (210ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (212ms)
+[initSession:screenshot] applyVideoMetadataHints complete (212ms)
+[initSession:screenshot] media + fonts + tailwind ready (213ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (218ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":2}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (107ms)
+[initSession:screenshot] GSAP proxy flush complete (109ms)
+[initSession:screenshot] pollHfReady complete (213ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (215ms)
+[initSession:screenshot] applyVideoMetadataHints complete (216ms)
+[initSession:screenshot] media + fonts + tailwind ready (217ms)
+[initSession:screenshot] static-frame dedup: disabled (running CSS/WAAPI animation) (224ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":3}
+(pass) per-adapter chunk-boundary byte equality > waapi: chunkSize=60 (N=1) vs chunkSize=15 (N=4) produces byte-identical frames [5719.63ms]
+(pass) per-adapter chunk-boundary byte equality > expected fixture directories exist [1.24ms]
 
  7 pass
  0 fail
  24 expect() calls
-Ran 7 tests across 1 file. [38.71s]
+Ran 7 tests across 1 file. [38.03s]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/distributed/crossWorkerIdempotency.test.ts:
@@ -557,394 +557,394 @@ src/services/distributed/crossWorkerIdempotency.test.ts:
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (1ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (106ms)
-[initSession:screenshot] GSAP proxy flush complete (112ms)
-[initSession:screenshot] pollHfReady complete (216ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (219ms)
-[initSession:screenshot] applyVideoMetadataHints complete (219ms)
-[initSession:screenshot] media + fonts + tailwind ready (221ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (229ms)
+[initSession:screenshot] page.goto complete (92ms)
+[initSession:screenshot] GSAP proxy flush complete (99ms)
+[initSession:screenshot] pollHfReady complete (204ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (206ms)
+[initSession:screenshot] applyVideoMetadataHints complete (207ms)
+[initSession:screenshot] media + fonts + tailwind ready (209ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (216ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (112ms)
-[initSession:screenshot] GSAP proxy flush complete (117ms)
-[initSession:screenshot] pollHfReady complete (221ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (223ms)
-[initSession:screenshot] applyVideoMetadataHints complete (223ms)
-[initSession:screenshot] media + fonts + tailwind ready (225ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (231ms)
+[initSession:screenshot] page.goto complete (97ms)
+[initSession:screenshot] GSAP proxy flush complete (101ms)
+[initSession:screenshot] pollHfReady complete (204ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (206ms)
+[initSession:screenshot] applyVideoMetadataHints complete (206ms)
+[initSession:screenshot] media + fonts + tailwind ready (208ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (212ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
-(pass) cross-worker idempotency > png-sequence: chunk 0 is byte-identical across two distinct output dirs [1091.74ms]
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, beginframe, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:beginframe] warmup loop started (0ms)
-[initSession:beginframe] page.goto start (1ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:beginframe] page.goto complete (102ms)
-[initSession:beginframe] GSAP proxy flush complete (108ms)
-[initSession:beginframe] pollHfReady complete (212ms)
-[initSession:beginframe] pollSubCompositionTimelines complete (ready) (214ms)
-[initSession:beginframe] applyVideoMetadataHints complete (214ms)
-[initSession:beginframe] media + fonts + tailwind ready (215ms)
-[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2158ms)
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, beginframe, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:beginframe] warmup loop started (0ms)
-[initSession:beginframe] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:beginframe] page.goto complete (100ms)
-[initSession:beginframe] GSAP proxy flush complete (105ms)
-[initSession:beginframe] pollHfReady complete (209ms)
-[initSession:beginframe] pollSubCompositionTimelines complete (ready) (211ms)
-[initSession:beginframe] applyVideoMetadataHints complete (211ms)
-[initSession:beginframe] media + fonts + tailwind ready (213ms)
-[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2120ms)
-(pass) cross-worker idempotency > mp4: chunk 0 is byte-identical across two distinct output paths [4965.04ms]
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (113ms)
-[initSession:screenshot] GSAP proxy flush complete (118ms)
-[initSession:screenshot] pollHfReady complete (223ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (224ms)
-[initSession:screenshot] applyVideoMetadataHints complete (225ms)
-[initSession:screenshot] media + fonts + tailwind ready (226ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (232ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (102ms)
-[initSession:screenshot] GSAP proxy flush complete (108ms)
-[initSession:screenshot] pollHfReady complete (213ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (216ms)
-[initSession:screenshot] applyVideoMetadataHints complete (216ms)
-[initSession:screenshot] media + fonts + tailwind ready (217ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (223ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
-(pass) cross-worker idempotency > png-sequence: chunk 1 is byte-identical across two distinct output dirs [985.90ms]
+(pass) cross-worker idempotency > png-sequence: chunk 0 is byte-identical across two distinct output dirs [996.03ms]
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, beginframe, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:beginframe] warmup loop started (1ms)
 [initSession:beginframe] page.goto start (1ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:beginframe] page.goto complete (101ms)
-[initSession:beginframe] GSAP proxy flush complete (107ms)
-[initSession:beginframe] pollHfReady complete (211ms)
-[initSession:beginframe] pollSubCompositionTimelines complete (ready) (213ms)
-[initSession:beginframe] applyVideoMetadataHints complete (213ms)
-[initSession:beginframe] media + fonts + tailwind ready (215ms)
-[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2140ms)
+[initSession:beginframe] page.goto complete (85ms)
+[initSession:beginframe] GSAP proxy flush complete (88ms)
+[initSession:beginframe] pollHfReady complete (190ms)
+[initSession:beginframe] pollSubCompositionTimelines complete (ready) (191ms)
+[initSession:beginframe] applyVideoMetadataHints complete (191ms)
+[initSession:beginframe] media + fonts + tailwind ready (193ms)
+[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2071ms)
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, beginframe, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:beginframe] warmup loop started (0ms)
 [initSession:beginframe] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:beginframe] page.goto complete (88ms)
-[initSession:beginframe] GSAP proxy flush complete (92ms)
-[initSession:beginframe] pollHfReady complete (194ms)
-[initSession:beginframe] pollSubCompositionTimelines complete (ready) (195ms)
-[initSession:beginframe] applyVideoMetadataHints complete (195ms)
-[initSession:beginframe] media + fonts + tailwind ready (196ms)
-[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2106ms)
-(pass) cross-worker idempotency > mp4: chunk 1 is byte-identical across two distinct output paths [4890.23ms]
+[initSession:beginframe] page.goto complete (82ms)
+[initSession:beginframe] GSAP proxy flush complete (86ms)
+[initSession:beginframe] pollHfReady complete (189ms)
+[initSession:beginframe] pollSubCompositionTimelines complete (ready) (191ms)
+[initSession:beginframe] applyVideoMetadataHints complete (191ms)
+[initSession:beginframe] media + fonts + tailwind ready (192ms)
+[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2092ms)
+(pass) cross-worker idempotency > mp4: chunk 0 is byte-identical across two distinct output paths [4705.36ms]
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (96ms)
+[initSession:screenshot] GSAP proxy flush complete (99ms)
+[initSession:screenshot] pollHfReady complete (202ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (204ms)
+[initSession:screenshot] applyVideoMetadataHints complete (204ms)
+[initSession:screenshot] media + fonts + tailwind ready (206ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (211ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (107ms)
+[initSession:screenshot] GSAP proxy flush complete (111ms)
+[initSession:screenshot] pollHfReady complete (213ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (215ms)
+[initSession:screenshot] applyVideoMetadataHints complete (216ms)
+[initSession:screenshot] media + fonts + tailwind ready (219ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (225ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":1}
+(pass) cross-worker idempotency > png-sequence: chunk 1 is byte-identical across two distinct output dirs [923.56ms]
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, beginframe, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:beginframe] warmup loop started (0ms)
+[initSession:beginframe] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:beginframe] page.goto complete (81ms)
+[initSession:beginframe] GSAP proxy flush complete (85ms)
+[initSession:beginframe] pollHfReady complete (187ms)
+[initSession:beginframe] pollSubCompositionTimelines complete (ready) (189ms)
+[initSession:beginframe] applyVideoMetadataHints complete (189ms)
+[initSession:beginframe] media + fonts + tailwind ready (190ms)
+[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2083ms)
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, beginframe, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:beginframe] warmup loop started (0ms)
+[initSession:beginframe] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:beginframe] page.goto complete (83ms)
+[initSession:beginframe] GSAP proxy flush complete (87ms)
+[initSession:beginframe] pollHfReady complete (189ms)
+[initSession:beginframe] pollSubCompositionTimelines complete (ready) (191ms)
+[initSession:beginframe] applyVideoMetadataHints complete (191ms)
+[initSession:beginframe] media + fonts + tailwind ready (192ms)
+[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (2074ms)
+(pass) cross-worker idempotency > mp4: chunk 1 is byte-identical across two distinct output paths [4676.17ms]
 
  4 pass
  0 fail
  30 expect() calls
-Ran 4 tests across 1 file. [12.81s]
+Ran 4 tests across 1 file. [11.95s]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/distributed/plan.test.ts:
 [WARN] Render completed capture with correctness warnings {"strictness":"strict","warningCodes":["audio_processing_failed"],"warningReasons":[],"warningStages":[],"warningOwners":[]}
-(pass) distributed warning policy > rejects distributed audio degradation in strict mode [1.25ms]
+(pass) distributed warning policy > rejects distributed audio degradation in strict mode [1.09ms]
 [WARN] Render completed capture with correctness warnings {"strictness":"best-effort","warningCodes":["audio_processing_failed"],"warningReasons":["ffmpeg_unsupported"],"warningStages":["mix"],"warningOwners":["system"],"warningRetryable":false}
-(pass) distributed warning policy > rejects distributed audio degradation in best-effort mode [0.46ms]
+(pass) distributed warning policy > rejects distributed audio degradation in best-effort mode [0.41ms]
 [WARN] Render completed capture with correctness warnings {"strictness":"best-effort","warningCodes":["audio_processing_failed"],"warningReasons":["download_failed","invalid_media"],"warningStages":["download","prepare"],"warningOwners":["system"],"warningRetryable":false}
-(pass) distributed warning policy > only marks a multi-cause audio failure retryable when every cause is retryable [0.26ms]
+(pass) distributed warning policy > only marks a multi-cause audio failure retryable when every cause is retryable [0.24ms]
 [WARN] Render completed capture with correctness warnings {"strictness":"best-effort","warningCodes":["audio_processing_failed"],"warningReasons":[],"warningStages":[],"warningOwners":[]}
-(pass) distributed warning policy > does not invent ownership or retryability for legacy untyped failures [0.27ms]
-(pass) distributed synthetic render job > threads render variables into the plan browser probe job [0.06ms]
-(pass) distributed synthetic render job > keeps the production software-GPU launch on BeginFrame control [4.02ms]
-(pass) resolveChunkPlan > returns 1 chunk when totalFrames fits in configChunkSize [0.19ms]
+(pass) distributed warning policy > does not invent ownership or retryability for legacy untyped failures [0.19ms]
+(pass) distributed synthetic render job > threads render variables into the plan browser probe job [0.05ms]
+(pass) distributed synthetic render job > keeps the production software-GPU launch on BeginFrame control [3.28ms]
+(pass) resolveChunkPlan > returns 1 chunk when totalFrames fits in configChunkSize [0.10ms]
 (pass) resolveChunkPlan > caps chunkCount at maxParallelChunks for very long renders [0.02ms]
-(pass) resolveChunkPlan > naive count drives chunkCount when below cap [0.05ms]
-(pass) resolveChunkPlan > rejects non-positive totalFrames [0.14ms]
+(pass) resolveChunkPlan > naive count drives chunkCount when below cap [0.02ms]
+(pass) resolveChunkPlan > rejects non-positive totalFrames [0.07ms]
 (pass) resolveChunkPlan > rejects non-positive configChunkSize / maxParallelChunks [0.03ms]
-(pass) resolveChunkPlan > rejects non-integer inputs (would produce fractional endFrames) [0.17ms]
-(pass) resolveChunkPlan > explicit chunkSize wins: 660 frames + chunkSize=240 + maxParallelChunks=16 → 3 chunks [0.02ms]
-(pass) resolveChunkPlan > auto-sizes when chunkSize=undefined: 660 frames + maxParallelChunks=16 → 16 chunks [0.02ms]
-(pass) resolveChunkPlan > auto-size floor: tiny renders cap at MIN_CHUNK_SIZE rather than fragmenting infinitely [0.02ms]
-(pass) resolveChunkPlan > tightens chunkCount so an explicit small chunkSize leaves no empty trailing slice [0.11ms]
-(pass) resolveChunkPlan > never emits an empty or inverted slice across a grid of explicit chunk sizes [0.88ms]
-(pass) resolveChunkPlan > targetChunkFrames omitted is a no-op: identical to the 3-arg auto-sized result [0.10ms]
-(pass) resolveChunkPlan > targetChunkFrames collapses a short video to fewer chunks than the parallelism cap [0.02ms]
-(pass) resolveChunkPlan > targetChunkFrames bounds a long video's per-chunk frames, adding chunks up to the cap [0.05ms]
-(pass) resolveChunkPlan > targetChunkFrames is clamped by maxParallelChunks: an extreme length stays at the cap (still over budget) [0.20ms]
+(pass) resolveChunkPlan > rejects non-integer inputs (would produce fractional endFrames) [0.06ms]
+(pass) resolveChunkPlan > explicit chunkSize wins: 660 frames + chunkSize=240 + maxParallelChunks=16 → 3 chunks [0.01ms]
+(pass) resolveChunkPlan > auto-sizes when chunkSize=undefined: 660 frames + maxParallelChunks=16 → 16 chunks [0.01ms]
+(pass) resolveChunkPlan > auto-size floor: tiny renders cap at MIN_CHUNK_SIZE rather than fragmenting infinitely [0.01ms]
+(pass) resolveChunkPlan > tightens chunkCount so an explicit small chunkSize leaves no empty trailing slice [0.06ms]
+(pass) resolveChunkPlan > never emits an empty or inverted slice across a grid of explicit chunk sizes [0.66ms]
+(pass) resolveChunkPlan > targetChunkFrames omitted is a no-op: identical to the 3-arg auto-sized result [0.09ms]
+(pass) resolveChunkPlan > targetChunkFrames collapses a short video to fewer chunks than the parallelism cap [0.03ms]
+(pass) resolveChunkPlan > targetChunkFrames bounds a long video's per-chunk frames, adding chunks up to the cap [0.02ms]
+(pass) resolveChunkPlan > targetChunkFrames is clamped by maxParallelChunks: an extreme length stays at the cap (still over budget) [0.03ms]
 (pass) resolveChunkPlan > explicit chunkSize wins over targetChunkFrames (targetChunkFrames is a no-op) [0.03ms]
-(pass) resolveChunkPlan > rejects a non-positive or non-integer targetChunkFrames [0.18ms]
-(pass) resolveChunkPlan > never emits an empty or inverted slice across a grid of targetChunkFrames [0.39ms]
-(pass) buildChunkSlices > produces consecutive non-overlapping ranges covering all frames [0.04ms]
-(pass) buildChunkSlices > handles a single-chunk render [0.05ms]
-(pass) plan() defaults > exports the documented chunking defaults [0.02ms]
+(pass) resolveChunkPlan > rejects a non-positive or non-integer targetChunkFrames [0.06ms]
+(pass) resolveChunkPlan > never emits an empty or inverted slice across a grid of targetChunkFrames [0.29ms]
+(pass) buildChunkSlices > produces consecutive non-overlapping ranges covering all frames [0.05ms]
+(pass) buildChunkSlices > handles a single-chunk render [0.04ms]
+(pass) plan() defaults > exports the documented chunking defaults [0.04ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":1,"audioCount":1,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[hyperframes:render] WARNING: video src="missing.mp4" could not be resolved on disk (looked for /tmp/hf-plan-test-UKtCoJ/broken-video-project/missing.mp4). The rendered output will show this video's first frame for the entire clip duration. If your <video> lives inside a sub-composition, prefer project-root-relative paths (e.g. src="assets/foo.mp4") over "../assets/foo.mp4".
-(pass) plan() — golden planDir + planHash determinism > fails closed when an open-ended distributed video source cannot be extracted [34.35ms]
+[hyperframes:render] WARNING: video src="missing.mp4" could not be resolved on disk (looked for /tmp/hf-plan-test-IJRroC/broken-video-project/missing.mp4). The rendered output will show this video's first frame for the entire clip duration. If your <video> lives inside a sub-composition, prefer project-root-relative paths (e.g. src="assets/foo.mp4") over "../assets/foo.mp4".
+(pass) plan() — golden planDir + planHash determinism > fails closed when an open-ended distributed video source cannot be extracted [30.36ms]
 [INFO] [Compiler] Remote asset download integrity {"urlFingerprint":"8bb2625d831186fba839f5816a23f5ebd309e3291ac23bfa7bae9c965211697c","initialHost":"cdn.example","attempt":1,"outcome":"attempt_failed","failureKind":"http_not_found","finalHost":"cdn.example","status":404,"rangeDisposition":"none"}
 [INFO] [Compiler] Remote asset download integrity {"urlFingerprint":"8bb2625d831186fba839f5816a23f5ebd309e3291ac23bfa7bae9c965211697c","initialHost":"cdn.example","attempt":1,"outcome":"attempt_failed","failureKind":"http_not_found","finalHost":"cdn.example","status":404,"rangeDisposition":"none"}
 [WARN] [Compiler] Remote media download failed — using original URL as fallback. {"urlFingerprint":"8bb2625d831186fba839f5816a23f5ebd309e3291ac23bfa7bae9c965211697c","host":"cdn.example","error":"HTTP 404"}
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":1,"audioCount":1,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [hyperframes:download] {"urlFingerprint":"8bb2625d831186fba839f5816a23f5ebd309e3291ac23bfa7bae9c965211697c","initialHost":"cdn.example","attempt":1,"outcome":"attempt_failed","failureKind":"http_not_found","finalHost":"cdn.example","status":404,"rangeDisposition":"none"}
-(pass) plan() — golden planDir + planHash determinism > maps an open-ended remote video HTTP 404 to a terminal source error [10.86ms]
+(pass) plan() — golden planDir + planHash determinism > maps an open-ended remote video HTTP 404 to a terminal source error [8.35ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — golden planDir + planHash determinism > produces the documented planDir layout [58.05ms]
+(pass) plan() — golden planDir + planHash determinism > produces the documented planDir layout [49.25ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — golden planDir + planHash determinism > auto-sizes chunkSize end-to-end when caller omits it [5.15ms]
+(pass) plan() — golden planDir + planHash determinism > auto-sizes chunkSize end-to-end when caller omits it [5.70ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — golden planDir + planHash determinism > shares one byte-identical execution plan between the builder and legacy v1 wrapper [9.50ms]
+(pass) plan() — golden planDir + planHash determinism > shares one byte-identical execution plan between the builder and legacy v1 wrapper [7.62ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — golden planDir + planHash determinism > plan.json.planHash matches recomputePlanHashFromPlanDir(planDir) on the same disk [4.52ms]
+(pass) plan() — golden planDir + planHash determinism > plan.json.planHash matches recomputePlanHashFromPlanDir(planDir) on the same disk [3.45ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":1,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — golden planDir + planHash determinism > plan.json.planHash matches recompute on an audio-bearing composition [257.12ms]
+(pass) plan() — golden planDir + planHash determinism > plan.json.planHash matches recompute on an audio-bearing composition [240.27ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — codec knob > defaults `codec` to h264 (libx264-software) for mp4 [3.98ms]
+(pass) plan() — codec knob > defaults `codec` to h264 (libx264-software) for mp4 [3.65ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — codec knob > maps `codec: "h265"` to libx265-software for mp4 [3.45ms]
+(pass) plan() — codec knob > maps `codec: "h265"` to libx265-software for mp4 [2.56ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — codec knob > rejects `codec` with format other than mp4 [2.45ms]
+(pass) plan() — codec knob > rejects `codec` with format other than mp4 [9.34ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — codec knob > rejects unknown codec strings for format=mp4 (no silent fall-through to h264) [2.26ms]
+(pass) plan() — codec knob > rejects unknown codec strings for format=mp4 (no silent fall-through to h264) [8.06ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — variables > snapshots variables into meta/encoder.json so chunk workers see the controller's set [2.91ms]
+(pass) plan() — variables > snapshots variables into meta/encoder.json so chunk workers see the controller's set [6.99ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — variables > omits the variables key from canonical encoder.json when the caller passes no variables [4.02ms]
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — variables > produces a DIFFERENT planHash when variables differ [5.12ms]
+(pass) plan() — variables > omits the variables key from canonical encoder.json when the caller passes no variables [11.13ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — variables > produces the SAME planHash for two plans with the same variables [7.35ms]
+(pass) plan() — variables > produces a DIFFERENT planHash when variables differ [13.29ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — variables > no-variables plan hashes identically to itself (backwards-compat baseline) [5.30ms]
+(pass) plan() — variables > produces the SAME planHash for two plans with the same variables [19.77ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — webm format (distributed VP9) > maps `format: "webm"` to libvpx-vp9-software + yuva420p [2.59ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — webm format (distributed VP9) > locks the resolved VP9 cpu-used value into encoder metadata [5.39ms]
+(pass) plan() — variables > no-variables plan hashes identically to itself (backwards-compat baseline) [5.00ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() — webm format (distributed VP9) > rejects `codec` with format=webm [2.25ms]
+(pass) plan() — webm format (distributed VP9) > maps `format: "webm"` to libvpx-vp9-software + yuva420p [2.22ms]
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+(pass) plan() — webm format (distributed VP9) > locks the resolved VP9 cpu-used value into encoder metadata [2.91ms]
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+(pass) plan() — webm format (distributed VP9) > rejects `codec` with format=webm [1.88ms]
 
  46 pass
  0 fail
  4098 expect() calls
-Ran 46 tests across 1 file. [1118.00ms]
+Ran 46 tests across 1 file. [1163.00ms]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/distributed/planSizeCap.test.ts:
-(pass) measurePlanDirBytes > returns 0 for an empty directory [4.30ms]
-(pass) measurePlanDirBytes > sums file sizes recursively [0.89ms]
-(pass) measurePlanDirBytes > ignores file and directory symlinks instead of traversing outside the plan [0.39ms]
-(pass) measurePlanSizeBreakdown > classifies retained plan artifacts without exposing video directory names [1.27ms]
-(pass) measurePlanSizeBreakdown path boundaries > does not misclassify an authored compiled/video-frames path [0.49ms]
-(pass) measurePlanSizeBreakdown path boundaries > classifies staged extracted frames separately from compiled assets [0.38ms]
+(pass) measurePlanDirBytes > returns 0 for an empty directory [0.26ms]
+(pass) measurePlanDirBytes > sums file sizes recursively [0.61ms]
+(pass) measurePlanDirBytes > ignores file and directory symlinks instead of traversing outside the plan [0.34ms]
+(pass) measurePlanSizeBreakdown > classifies retained plan artifacts without exposing video directory names [0.96ms]
+(pass) measurePlanSizeBreakdown path boundaries > does not misclassify an authored compiled/video-frames path [0.34ms]
+(pass) measurePlanSizeBreakdown path boundaries > classifies staged extracted frames separately from compiled assets [0.31ms]
 (pass) PLAN_DIR_SIZE_LIMIT_BYTES constant > is the documented 2 GB ceiling [0.02ms]
-(pass) PlanTooLargeError > carries the typed PLAN_TOO_LARGE code [0.15ms]
+(pass) PlanTooLargeError > carries the typed PLAN_TOO_LARGE code [0.13ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [WARN] [plan] size budget exceeded {"observedAt":"post-freeze","sizeBytes":1597,"limitBytes":1024,"fileCount":6,"compiledBytes":139,"sourceMediaBytes":0,"videoFramesBytes":0,"videoFrameFileCount":0,"audioBytes":0,"metadataBytes":1458,"otherBytes":0,"topComponents":[{"label":"metadata","sizeBytes":1458,"fileCount":5},{"label":"compiled","sizeBytes":139,"fileCount":1}]}
-(pass) plan() PLAN_TOO_LARGE throw path > throws PlanTooLargeError when planDir exceeds the configured ceiling [72.40ms]
+(pass) plan() PLAN_TOO_LARGE throw path > throws PlanTooLargeError when planDir exceeds the configured ceiling [59.77ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() under size cap > succeeds when the default ceiling is well above the produced planDir size [4.32ms]
+(pass) plan() under size cap > succeeds when the default ceiling is well above the produced planDir size [3.96ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [WARN] [plan] size budget exceeded {"observedAt":"post-freeze","sizeBytes":1597,"limitBytes":1024,"fileCount":6,"compiledBytes":139,"sourceMediaBytes":0,"videoFramesBytes":0,"videoFrameFileCount":0,"audioBytes":0,"metadataBytes":1458,"otherBytes":0,"topComponents":[{"label":"metadata","sizeBytes":1458,"fileCount":5},{"label":"compiled","sizeBytes":139,"fileCount":1}]}
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() under size cap > lets planV2 complete the same render that trips the v1 transport cap [12.51ms]
+(pass) plan() under size cap > lets planV2 complete the same render that trips the v1 transport cap [9.25ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":1,"audioCount":1,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [WARN] [plan] size budget exceeded {"observedAt":"pre-extract","sizeBytes":2293,"limitBytes":1024,"fileCount":2,"compiledBytes":2293,"sourceMediaBytes":2048,"videoFramesBytes":0,"videoFrameFileCount":0,"audioBytes":0,"metadataBytes":0,"otherBytes":0,"topComponents":[{"label":"compiled","sizeBytes":2293,"fileCount":2}]}
-(pass) plan() early size budget > rejects an oversized stable compiled tree before extraction and freeze [100.78ms]
+(pass) plan() early size budget > rejects an oversized stable compiled tree before extraction and freeze [84.86ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() reused directory size check > clears stale compiled scratch from a failed prior attempt [3.72ms]
+(pass) plan() reused directory size check > clears stale compiled scratch from a failed prior attempt [2.97ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":1,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-(pass) plan() reused directory size check > ignores stale freeze-owned metadata that the new plan overwrites [2.82ms]
+(pass) plan() reused directory size check > ignores stale freeze-owned metadata that the new plan overwrites [2.28ms]
 [INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":0,"width":320,"height":240,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [INFO] Launching browser for composition probe... {"reasons":["root duration unknown"]}
 [INFO] Creating capture session... {"attempt":1,"maxAttempts":2}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, beginframe, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [INFO] Waiting for composition to initialize... {"attempt":1}
-[initSession:beginframe] warmup loop started (1ms)
-[initSession:beginframe] page.goto start (1ms)
+[initSession:beginframe] warmup loop started (0ms)
+[initSession:beginframe] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:beginframe] page.goto complete (99ms)
-[initSession:beginframe] GSAP proxy flush complete (101ms)
-[initSession:beginframe] pollHfReady complete (205ms)
-[initSession:beginframe] pollSubCompositionTimelines complete (ready) (207ms)
-[initSession:beginframe] applyVideoMetadataHints complete (208ms)
-[initSession:beginframe] media + fonts + tailwind ready (210ms)
-[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (218ms)
-[INFO] Composition ready {"attempt":1,"initMs":452}
-[INFO] BeginFrame liveness probe passed {"probeMs":1}
+[initSession:beginframe] page.goto complete (92ms)
+[initSession:beginframe] GSAP proxy flush complete (94ms)
+[initSession:beginframe] pollHfReady complete (197ms)
+[initSession:beginframe] pollSubCompositionTimelines complete (ready) (199ms)
+[initSession:beginframe] applyVideoMetadataHints complete (199ms)
+[initSession:beginframe] media + fonts + tailwind ready (201ms)
+[initSession:beginframe] static-frame dedup: disabled (capture mode beginframe, not screenshot) (212ms)
+[INFO] Composition ready {"attempt":1,"initMs":405}
+[INFO] BeginFrame liveness probe passed {"probeMs":0}
 [INFO] Discovering composition duration...
 [INFO] Probed composition duration from browser {"discoveredDuration":10000000000,"staticDuration":0}
 [INFO] Discovering media assets from browser DOM...
-(pass) plan() duration guard > rejects probe durations that would create impossible distributed frame counts [479.23ms]
+(pass) plan() duration guard > rejects probe durations that would create impossible distributed frame counts [425.23ms]
 
  15 pass
  0 fail
  46 expect() calls
-Ran 15 tests across 1 file. [1446.00ms]
+Ran 15 tests across 1 file. [1128.00ms]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/distributed/renderChunk.test.ts:
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
+[initSession:screenshot] page.goto start (1ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (315ms)
-[initSession:screenshot] GSAP proxy flush complete (320ms)
-[initSession:screenshot] pollHfReady complete (426ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (428ms)
-[initSession:screenshot] applyVideoMetadataHints complete (428ms)
-[initSession:screenshot] media + fonts + tailwind ready (430ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (435ms)
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":0.16667,"width":160,"height":120,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (109ms)
-[initSession:screenshot] GSAP proxy flush complete (114ms)
-[initSession:screenshot] pollHfReady complete (220ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (222ms)
-[initSession:screenshot] applyVideoMetadataHints complete (222ms)
-[initSession:screenshot] media + fonts + tailwind ready (223ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (229ms)
-[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
-[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
-[initSession:screenshot] page.goto start (0ms)
-[HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (101ms)
-[initSession:screenshot] GSAP proxy flush complete (106ms)
-[initSession:screenshot] pollHfReady complete (209ms)
+[initSession:screenshot] page.goto complete (100ms)
+[initSession:screenshot] GSAP proxy flush complete (104ms)
+[initSession:screenshot] pollHfReady complete (210ms)
 [initSession:screenshot] pollSubCompositionTimelines complete (ready) (211ms)
 [initSession:screenshot] applyVideoMetadataHints complete (211ms)
-[initSession:screenshot] media + fonts + tailwind ready (212ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (217ms)
+[initSession:screenshot] media + fonts + tailwind ready (214ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (219ms)
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":0.16667,"width":160,"height":120,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (105ms)
+[initSession:screenshot] GSAP proxy flush complete (108ms)
+[initSession:screenshot] pollHfReady complete (211ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (212ms)
+[initSession:screenshot] applyVideoMetadataHints complete (212ms)
+[initSession:screenshot] media + fonts + tailwind ready (214ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (221ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
-(pass) renderChunk() > produces a byte-identical chunk on a second invocation (byte-identical-retry contract) [1113.06ms]
-(pass) renderChunk() > rejects an out-of-range chunkIndex with CHUNK_INDEX_OUT_OF_RANGE [0.38ms]
-(pass) renderChunk() > rejects a planDir missing plan.json with MISSING_PLAN_ARTIFACT [0.27ms]
-(pass) renderChunk() > rejects a planDir with a tampered planHash (PLAN_HASH_MISMATCH) [1.06ms]
-(pass) renderChunk() > rejects a planDir whose encoder.json is missing runtimeEnv [0.98ms]
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":0.16667,"width":160,"height":120,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
-[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":0.16667,"width":160,"height":120,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
 [initSession:screenshot] page.goto complete (103ms)
-[initSession:screenshot] GSAP proxy flush complete (104ms)
-[initSession:screenshot] pollHfReady complete (206ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (207ms)
-[initSession:screenshot] applyVideoMetadataHints complete (208ms)
-[initSession:screenshot] media + fonts + tailwind ready (209ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (214ms)
+[initSession:screenshot] GSAP proxy flush complete (107ms)
+[initSession:screenshot] pollHfReady complete (210ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (211ms)
+[initSession:screenshot] applyVideoMetadataHints complete (212ms)
+[initSession:screenshot] media + fonts + tailwind ready (213ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (217ms)
+[WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
+(pass) renderChunk() > produces a byte-identical chunk on a second invocation (byte-identical-retry contract) [1073.68ms]
+(pass) renderChunk() > rejects an out-of-range chunkIndex with CHUNK_INDEX_OUT_OF_RANGE [0.33ms]
+(pass) renderChunk() > rejects a planDir missing plan.json with MISSING_PLAN_ARTIFACT [0.24ms]
+(pass) renderChunk() > rejects a planDir with a tampered planHash (PLAN_HASH_MISMATCH) [0.91ms]
+(pass) renderChunk() > rejects a planDir whose encoder.json is missing runtimeEnv [0.79ms]
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":0.16667,"width":160,"height":120,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[INFO] Compiled composition metadata {"entryFile":"index.html","staticDuration":0.16667,"width":160,"height":120,"videoCount":0,"audioCount":0,"renderModeHints":{"recommendScreenshot":false,"reasons":[]}}
+[BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
+[initSession:screenshot] page.goto start (0ms)
+[HyperFrames] render runtime fps [object Object]
+[initSession:screenshot] page.goto complete (95ms)
+[initSession:screenshot] GSAP proxy flush complete (97ms)
+[initSession:screenshot] pollHfReady complete (200ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (201ms)
+[initSession:screenshot] applyVideoMetadataHints complete (201ms)
+[initSession:screenshot] media + fonts + tailwind ready (202ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (207ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
 [BrowserManager] Browser launched (HeadlessChrome/148.0.7778.167, screenshot, gl=--use-gl=angle --use-angle=swiftshader, headlessShell=true, platform=linux)
 [initSession:screenshot] page.goto start (0ms)
 [HyperFrames] render runtime fps [object Object]
-[initSession:screenshot] page.goto complete (104ms)
-[initSession:screenshot] GSAP proxy flush complete (106ms)
-[initSession:screenshot] pollHfReady complete (209ms)
-[initSession:screenshot] pollSubCompositionTimelines complete (ready) (211ms)
-[initSession:screenshot] applyVideoMetadataHints complete (211ms)
-[initSession:screenshot] media + fonts + tailwind ready (212ms)
-[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (217ms)
+[initSession:screenshot] page.goto complete (102ms)
+[initSession:screenshot] GSAP proxy flush complete (104ms)
+[initSession:screenshot] pollHfReady complete (207ms)
+[initSession:screenshot] pollSubCompositionTimelines complete (ready) (208ms)
+[initSession:screenshot] applyVideoMetadataHints complete (208ms)
+[initSession:screenshot] media + fonts + tailwind ready (210ms)
+[initSession:screenshot] static-frame dedup: disabled (no GSAP tweens (non-GSAP animation)) (214ms)
 [WARN] [renderChunk] Browser capability probe selected screenshot capture for the entire chunk {"chunkIndex":0}
-(pass) renderChunk() — variables threading > chunks rendered with different variables produce different output fingerprints [1127.91ms]
+(pass) renderChunk() — variables threading > chunks rendered with different variables produce different output fingerprints [1060.49ms]
 (pass) resolvePresetForLockedEncoder > flips codec from h264 to h265 when encoder is libx265-software [0.14ms]
 (pass) resolvePresetForLockedEncoder > leaves the preset unchanged for libx264-software [0.06ms]
-(pass) resolvePresetForLockedEncoder > leaves the preset unchanged for prores-software [0.04ms]
-(pass) resolvePresetForLockedEncoder > leaves the preset unchanged for png-sequence [0.02ms]
+(pass) resolvePresetForLockedEncoder > leaves the preset unchanged for prores-software [0.05ms]
+(pass) resolvePresetForLockedEncoder > leaves the preset unchanged for png-sequence [0.04ms]
 (pass) resolveLockedVp9CpuUsed > uses the locked value for new VP9 planDirs [0.02ms]
 (pass) resolveLockedVp9CpuUsed > preserves legacy distributed VP9 replay behavior when the field is absent [0.03ms]
-(pass) resolveLockedVp9CpuUsed > returns undefined for non-VP9 planDirs [0.05ms]
+(pass) resolveLockedVp9CpuUsed > returns undefined for non-VP9 planDirs [0.02ms]
 
  13 pass
  0 fail
  43 expect() calls
-Ran 13 tests across 1 file. [3.72s]
+Ran 13 tests across 1 file. [3.29s]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/fileServer.test.ts:
-(pass) closeFileServerSafely > swallows and logs a throwing close instead of propagating [0.20ms]
-(pass) closeFileServerSafely > closes once and stays quiet on the happy path [0.07ms]
-(pass) injectScriptsIntoHtml > injects the virtual time shim into head content before authored scripts [0.18ms]
-(pass) injectScriptsIntoHtml > supports iframe html by injecting pre-head scripts without body scripts [0.09ms]
+(pass) closeFileServerSafely > swallows and logs a throwing close instead of propagating [0.15ms]
+(pass) closeFileServerSafely > closes once and stays quiet on the happy path [0.04ms]
+(pass) injectScriptsIntoHtml > injects the virtual time shim into head content before authored scripts [0.14ms]
+(pass) injectScriptsIntoHtml > supports iframe html by injecting pre-head scripts without body scripts [0.06ms]
 (pass) injectScriptsIntoHtml > propagates virtual time seeks into same-origin iframe documents [0.04ms]
-(pass) isPathInside > returns true when the child equals the parent [0.10ms]
+(pass) isPathInside > returns true when the child equals the parent [0.06ms]
 (pass) isPathInside > returns true for direct children [0.02ms]
-(pass) isPathInside > returns true for deeply nested descendants [0.01ms]
-(pass) isPathInside > rejects siblings with a shared name prefix [0.02ms]
+(pass) isPathInside > returns true for deeply nested descendants [0.03ms]
+(pass) isPathInside > rejects siblings with a shared name prefix [0.03ms]
 (pass) isPathInside > rejects paths outside the parent entirely [0.02ms]
 (pass) isPathInside > rejects path-traversal attempts that escape the parent [0.02ms]
 (pass) isPathInside > accepts traversal that resolves back inside the parent [0.01ms]
 (pass) isPathInside > treats parents with and without trailing slashes the same [0.02ms]
 (pass) isPathInside > resolves relative paths against the current working directory [0.02ms]
-(pass) isPathInside > rejects symlink escapes when realpath enforcement is enabled [0.53ms]
+(pass) isPathInside > rejects symlink escapes when realpath enforcement is enabled [0.51ms]
 (pass) isPathInside > with path.win32 (cross-platform pinning tests) > returns true when the child equals the parent [0.03ms]
-(pass) isPathInside > with path.win32 (cross-platform pinning tests) > returns true for direct children [0.04ms]
-(pass) isPathInside > with path.win32 (cross-platform pinning tests) > returns true for deeply nested descendants [0.03ms]
-(pass) isPathInside > with path.win32 (cross-platform pinning tests) > rejects siblings with a shared name prefix [0.02ms]
-(pass) isPathInside > with path.win32 (cross-platform pinning tests) > rejects path-traversal attempts that escape the parent [0.01ms]
-(pass) isPathInside > with path.win32 (cross-platform pinning tests) > treats parents with and without trailing backslashes the same [0.01ms]
-(pass) isPathInside > with path.win32 (cross-platform pinning tests) > rejects paths on a different drive letter [0.01ms]
-(pass) parseRangeHeader > returns absent when there is no Range header [0.24ms]
-(pass) parseRangeHeader > parses a closed range bytes=START-END [0.17ms]
-(pass) parseRangeHeader > parses an open-ended range bytes=START- as start..EOF [0.04ms]
-(pass) parseRangeHeader > parses a suffix range bytes=-N as the last N bytes [0.03ms]
-(pass) parseRangeHeader > clamps the end of a closed range to the last valid byte [0.06ms]
-(pass) parseRangeHeader > returns unsatisfiable when start >= size [0.03ms]
+(pass) isPathInside > with path.win32 (cross-platform pinning tests) > returns true for direct children [0.03ms]
+(pass) isPathInside > with path.win32 (cross-platform pinning tests) > returns true for deeply nested descendants [0.02ms]
+(pass) isPathInside > with path.win32 (cross-platform pinning tests) > rejects siblings with a shared name prefix [0.03ms]
+(pass) isPathInside > with path.win32 (cross-platform pinning tests) > rejects path-traversal attempts that escape the parent [0.02ms]
+(pass) isPathInside > with path.win32 (cross-platform pinning tests) > treats parents with and without trailing backslashes the same [0.02ms]
+(pass) isPathInside > with path.win32 (cross-platform pinning tests) > rejects paths on a different drive letter [0.02ms]
+(pass) parseRangeHeader > returns absent when there is no Range header [0.09ms]
+(pass) parseRangeHeader > parses a closed range bytes=START-END [0.07ms]
+(pass) parseRangeHeader > parses an open-ended range bytes=START- as start..EOF [0.03ms]
+(pass) parseRangeHeader > parses a suffix range bytes=-N as the last N bytes [0.11ms]
+(pass) parseRangeHeader > clamps the end of a closed range to the last valid byte [0.05ms]
+(pass) parseRangeHeader > returns unsatisfiable when start >= size [0.04ms]
 (pass) parseRangeHeader > returns unsatisfiable when end < start in a closed range [0.02ms]
 (pass) parseRangeHeader > returns unsatisfiable for a suffix request on a zero-byte file [0.01ms]
 (pass) parseRangeHeader > returns absent for non-bytes units, multi-range, and malformed inputs [0.03ms]
-(pass) parseRangeHeader > tolerates surrounding whitespace and case [0.26ms]
-(pass) createFileServer > serves .avif media with its content type for full and range requests [17.66ms]
-(pass) createFileServer > serves .flac media with its content type for full and range requests [6.81ms]
-(pass) createFileServer > serves .M4A media with its content type for full and range requests [4.33ms]
-(pass) createFileServer > serves .mov media with its content type for full and range requests [4.69ms]
-(pass) createFileServer > serves .ico media with its content type for full and range requests [5.95ms]
-(pass) createFileServer > marks producer pages as render capture before the runtime loads [5.62ms]
-(pass) createFileServer > serves ES modules with a JavaScript MIME type [4.63ms]
-(pass) createFileServer > injects the requested render fps into the page render config [4.26ms]
-(pass) createFileServer > injects fractional render fps without rounding [3.69ms]
-(pass) createFileServer > marks missing render fps as an explicit 30fps default [4.24ms]
-(pass) createFileServer > marks invalid render fps as an explicit 30fps default [4.05ms]
-(pass) createFileServer > serves asset files through project-root symlinked directories [6.57ms]
-(pass) createFileServer > streams binary file content without buffering through readFileSync [53.50ms]
-(pass) createFileServer > serves Range requests with 206 Partial Content + Accept-Ranges [8.21ms]
-(pass) createFileServer > decodes percent-encoded reserved characters in URL path segments [9.99ms]
-(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > preserves __hf.transitions written by page scripts through bridge upgrade [0.48ms]
-(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > forwards suppressEvents from __hf.seek to renderSeek [0.19ms]
-(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > keeps render-time timeline seeks synchronous during large renders [1.57ms]
-(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > flushes queued construction calls before forwarding timeline children [0.36ms]
+(pass) parseRangeHeader > tolerates surrounding whitespace and case [0.04ms]
+(pass) createFileServer > serves .avif media with its content type for full and range requests [15.45ms]
+(pass) createFileServer > serves .flac media with its content type for full and range requests [5.62ms]
+(pass) createFileServer > serves .M4A media with its content type for full and range requests [4.45ms]
+(pass) createFileServer > serves .mov media with its content type for full and range requests [4.20ms]
+(pass) createFileServer > serves .ico media with its content type for full and range requests [4.51ms]
+(pass) createFileServer > marks producer pages as render capture before the runtime loads [5.61ms]
+(pass) createFileServer > serves ES modules with a JavaScript MIME type [3.95ms]
+(pass) createFileServer > injects the requested render fps into the page render config [3.68ms]
+(pass) createFileServer > injects fractional render fps without rounding [3.46ms]
+(pass) createFileServer > marks missing render fps as an explicit 30fps default [4.59ms]
+(pass) createFileServer > marks invalid render fps as an explicit 30fps default [3.25ms]
+(pass) createFileServer > serves asset files through project-root symlinked directories [4.16ms]
+(pass) createFileServer > streams binary file content without buffering through readFileSync [47.34ms]
+(pass) createFileServer > serves Range requests with 206 Partial Content + Accept-Ranges [6.58ms]
+(pass) createFileServer > decodes percent-encoded reserved characters in URL path segments [6.37ms]
+(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > preserves __hf.transitions written by page scripts through bridge upgrade [0.41ms]
+(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > forwards suppressEvents from __hf.seek to renderSeek [0.12ms]
+(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > keeps render-time timeline seeks synchronous during large renders [1.40ms]
+(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > flushes queued construction calls before forwarding timeline children [0.34ms]
 (pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > proxy is non-thenable — Promise.resolve(proxy) resolves immediately [0.20ms]
-(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > keeps bridge duration at zero until the runtime publishes render readiness [0.16ms]
+(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > keeps bridge duration at zero until the runtime publishes render readiness [0.15ms]
 [HF Bridge] No root data-duration; derived 13s from sub-compositions
-(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > derives duration from sub-composition data-start + data-duration when root has none [0.25ms]
+(pass) HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration > derives duration from sub-composition data-start + data-duration when root has none [0.22ms]
 
  54 pass
  0 fail
  204 expect() calls
-Ran 54 tests across 1 file. [610.00ms]
+Ran 54 tests across 1 file. [532.00ms]
 bun test v1.3.13 (bf2e2cec)
 
 src/services/htmlCompiler.naturalDuration.test.ts:
-(pass) compileForRender natural media duration parity > uses shared playback-rate parsing for duration-less video and audio [81.35ms]
-(pass) compileForRender natural media duration parity > marks only variable-bound media whose natural duration was inferred [9.49ms]
-(pass) compileForRender natural media duration parity > uses shared playback-start precedence and fallback semantics [12.21ms]
-(pass) compileForRender natural media duration parity > injects a known zero span at and past EOF so video and audio are inactive [23.22ms]
-(pass) compileForRender natural media duration parity > keeps explicit data-duration authoritative [2.63ms]
+(pass) compileForRender natural media duration parity > uses shared playback-rate parsing for duration-less video and audio [63.77ms]
+(pass) compileForRender natural media duration parity > marks only variable-bound media whose natural duration was inferred [6.57ms]
+(pass) compileForRender natural media duration parity > uses shared playback-start precedence and fallback semantics [7.88ms]
+(pass) compileForRender natural media duration parity > injects a known zero span at and past EOF so video and audio are inactive [23.50ms]
+(pass) compileForRender natural media duration parity > keeps explicit data-duration authoritative [2.02ms]
 
  5 pass
  0 fail
  33 expect() calls
-Ran 5 tests across 1 file. [938.00ms]
+Ran 5 tests across 1 file. [771.00ms]
 [producer:integration/bun] Wrote execution report to /workspace/evidence/tickets/AFM-012/final-checkpoint/integration-bun.report.json
 
-FINISHED: 2026-09-11T20:30:58Z
+FINISHED: 2026-09-11T21:55:09Z
 EXIT=0

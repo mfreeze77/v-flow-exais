@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="6" assertions="22" failures="0" skipped="0" time="0.038677038">
+  <testsuite name="src/plan-parity-harness.test.ts" file="src/plan-parity-harness.test.ts" tests="6" assertions="22" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="parsePlanParityArgs()" file="src/plan-parity-harness.test.ts" line="44" tests="4" assertions="16" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="defaults both explicit protocol runs to lambda-local" classname="parsePlanParityArgs()" time="0.000268" file="src/plan-parity-harness.test.ts" line="45" assertions="4" />
+      <testcase name="parses resource gates and a low v1 size cap" classname="parsePlanParityArgs()" time="0.000124" file="src/plan-parity-harness.test.ts" line="58" assertions="6" />
+      <testcase name="reserves an explicit deployed-AWS target grammar" classname="parsePlanParityArgs()" time="0.00007" file="src/plan-parity-harness.test.ts" line="80" assertions="2" />
+      <testcase name="rejects bad targets and numeric flags" classname="parsePlanParityArgs()" time="0.000199" file="src/plan-parity-harness.test.ts" line="93" assertions="4" />
+    </testsuite>
+    <testsuite name="runPlanV2SizePressure()" file="src/plan-parity-harness.test.ts" line="109" tests="2" assertions="6" failures="0" skipped="0" time="0.001" hostname="439b901e28fd">
+      <testcase name="records typed v1 PLAN_TOO_LARGE and still completes explicit v2" classname="runPlanV2SizePressure()" time="0.001948" file="src/plan-parity-harness.test.ts" line="110" assertions="5" />
+      <testcase name="distinguishes non-PLAN_TOO_LARGE failures" classname="runPlanV2SizePressure()" time="0.000065" file="src/plan-parity-harness.test.ts" line="179" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

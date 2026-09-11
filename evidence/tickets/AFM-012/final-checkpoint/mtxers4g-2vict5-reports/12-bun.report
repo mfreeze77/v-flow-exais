@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuites name="bun test" tests="2" assertions="6" failures="0" skipped="0" time="0.417989682">
-  <testsuite name="src/services/deterministicFonts-googleSubsets.test.ts" file="src/services/deterministicFonts-googleSubsets.test.ts" tests="2" assertions="6" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
-    <testsuite name="Google Fonts multi-subset embedding" file="src/services/deterministicFonts-googleSubsets.test.ts" line="86" tests="2" assertions="6" failures="0" skipped="0" time="0.383" hostname="c0f3ebdcc432">
-      <testcase name="downloads and embeds EACH subset distinctly (no cache collision)" classname="Google Fonts multi-subset embedding" time="0.381925" file="src/services/deterministicFonts-googleSubsets.test.ts" line="87" assertions="2" />
-      <testcase name="preserves each face&apos;s unicode-range so the browser picks the right subset per codepoint" classname="Google Fonts multi-subset embedding" time="0.002645" file="src/services/deterministicFonts-googleSubsets.test.ts" line="98" assertions="4" />
-    </testsuite>
-  </testsuite>
-</testsuites>

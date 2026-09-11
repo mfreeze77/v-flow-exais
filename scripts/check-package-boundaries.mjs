@@ -7,17 +7,20 @@
  * sees declared scripts. A dependency can violate a boundary without creating a
  * cycle, and a source import can exist without ever being declared.
  *
- * An earlier version of this file checked only direct imports inside the
- * protected package. External review demonstrated six ways to cross the same
- * boundary without tripping it, and one false positive. Each is now covered:
+ * Syntax and module resolution come from TypeScript rather than from a private
+ * scanner. Two earlier versions of this file hand-rolled both, and external
+ * review walked through each one: first with six ways to cross a boundary
+ * undetected, then — after those were patched individually — with four more.
+ * The pattern was the problem, not the individual gaps. A specifier written
+ * `./capture.js` whose source is `capture.ts`, a `paths` alias in a package's
+ * own tsconfig, real code inside a template interpolation, and a package whose
+ * root conditional `exports` overrides its `main` are all ordinary in this
+ * repository, and every one of them was certified clean.
  *
- *   - a configured tsconfig `paths` alias pointing at forbidden code
- *   - a chain through another first-party package
- *   - production code importing a test-scope helper that re-exports it
- *   - a template-literal dynamic import
- *   - a `.cts` / `.mts` production file
- *   - a direct third-party browser-capture dependency
- *   - import-shaped text inside an ordinary string, reported as a violation
+ * So imports are read from a real AST, and specifiers are resolved by
+ * `ts.resolveModuleName` under the compiler options that actually govern the
+ * importing file. What stays local is policy: which packages are protected,
+ * what they may not reach, and the walk that follows first-party edges.
  *
  * Where an import inside protected production code cannot be resolved, that is
  * reported. Silence would certify a boundary that was never checked.
@@ -25,6 +28,8 @@
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
 import { dirname, join, relative, resolve, sep } from "node:path";
+
+import ts from "typescript";
 
 const ROOT = join(import.meta.dirname, "..");
 
@@ -84,7 +89,6 @@ export const BOUNDARY_RULES = [
  */
 const TEST_SCOPE = /(^|\/)(tests?|__tests__|fixtures?)(\/|$)|\.(test|spec|fixture)\.[cm]?[jt]sx?$/;
 
-/** Includes .cts/.mts — omitting them left a whole production file class unchecked. */
 const SOURCE_EXT = /\.([cm]?[jt]sx?)$/;
 const SKIP_DIRS = new Set(["node_modules", "dist", "build", "coverage", ".git"]);
 
@@ -93,145 +97,82 @@ export function isTestScope(relativePath) {
 }
 
 /**
- * Removes comments and string literals before scanning, so prose and ordinary
- * strings cannot be read as imports.
- *
- * Newlines are preserved so reported line numbers stay accurate. Quoted strings
- * are blanked too: an earlier version stripped only template literals, so
- * `const s = "await import('@hyperframes/studio')"` was reported as a violation.
+ * Bundler resolution honours `exports` and the source-extension substitution
+ * that makes `./capture.js` resolve to `capture.ts`, which is how this
+ * repository's TypeScript is written.
  */
-export function stripNonCode(source) {
-  let out = "";
-  let i = 0;
-  const n = source.length;
-  const blank = (text) => text.replace(/[^\n]/g, " ");
+const DEFAULT_OPTIONS = {
+  allowJs: true,
+  target: ts.ScriptTarget.Latest,
+  module: ts.ModuleKind.ESNext,
+  moduleResolution: ts.ModuleResolutionKind.Bundler,
+  resolveJsonModule: true,
+};
 
-  while (i < n) {
-    const two = source.slice(i, i + 2);
-    if (two === "/*") {
-      const end = source.indexOf("*/", i + 2);
-      const stop = end === -1 ? n : end + 2;
-      out += blank(source.slice(i, stop));
-      i = stop;
-      continue;
-    }
-    if (two === "//") {
-      const end = source.indexOf("\n", i);
-      const stop = end === -1 ? n : end;
-      out += blank(source.slice(i, stop));
-      i = stop;
-      continue;
-    }
-    const ch = source[i];
-    if (ch === '"' || ch === "'" || ch === "`") {
-      // Keep the delimiters so an import's specifier position is still findable
-      // when it IS an import; blank only the contents.
-      let j = i + 1;
-      while (j < n) {
-        if (source[j] === "\\") {
-          j += 2;
-          continue;
-        }
-        if (source[j] === ch) break;
-        j += 1;
-      }
-      const stop = Math.min(j + 1, n);
-      out += ch + blank(source.slice(i + 1, stop - 1)) + (source[stop - 1] === ch ? ch : "");
-      i = stop;
-      continue;
-    }
-    out += ch;
-    i += 1;
-  }
-  return out;
+function scriptKindFor(file) {
+  if (/\.tsx$/.test(file)) return ts.ScriptKind.TSX;
+  if (/\.jsx$/.test(file)) return ts.ScriptKind.JSX;
+  if (/\.[cm]?js$/.test(file)) return ts.ScriptKind.JS;
+  return ts.ScriptKind.TS;
 }
 
 /**
- * Extracts import specifiers with line numbers.
+ * Extracts import specifiers with line numbers, from a real AST.
  *
- * Specifiers are read from the ORIGINAL source at the offsets located in the
- * stripped copy, so blanked string contents do not erase the specifier itself.
- * Template-literal dynamic imports are included: changing the quote style must
- * not bypass the rule.
+ * Every module-referencing form the language has is a distinct node type, so
+ * they are matched as nodes rather than by shape: static import and export,
+ * `import x = require(...)`, dynamic `import()`, and `require()`. Because the
+ * whole tree is walked, code nested inside a template interpolation is found
+ * like any other code — the previous version blanked entire template literals
+ * and lost the executable expressions inside them.
+ *
+ * A string that merely looks like an import is a StringLiteral, not a call, so
+ * it is never collected. That falls out of reading syntax, rather than being a
+ * special case bolted on.
  */
-export function extractImports(source) {
-  const stripped = stripNonCode(source);
-  const patterns = [
-    /(?:^|[\s;})])(?:import|export)\s[^;]*?from\s*(["'`])/g,
-    /(?:^|[\s;})])import\s*(["'`])/g,
-    /\bimport\s*\(\s*(["'`])/g,
-    /\brequire\s*\(\s*(["'`])/g,
-  ];
+export function extractImports(source, fileName = "input.ts") {
+  const sourceFile = ts.createSourceFile(
+    fileName,
+    source,
+    ts.ScriptTarget.Latest,
+    true,
+    scriptKindFor(fileName),
+  );
 
-  const found = new Map();
-  for (const pattern of patterns) {
-    let match;
-    while ((match = pattern.exec(stripped)) !== null) {
-      // The quote position in the stripped copy maps 1:1 onto the original.
-      const quoteAt = match.index + match[0].length - 1;
-      const quote = match[1];
-      const close = source.indexOf(quote, quoteAt + 1);
-      if (close === -1) continue;
-      const specifier = source.slice(quoteAt + 1, close);
-      // A template literal with an interpolation is not a static specifier.
-      if (specifier.includes("${")) continue;
-      const leading = match[0].length - match[0].replace(/^\s+/, "").length;
-      const line = stripped.slice(0, match.index + leading).split("\n").length;
-      found.set(`${line}:${specifier}`, { specifier, line });
+  const found = [];
+  const add = (node) => {
+    // A template literal carrying substitutions is not a static specifier.
+    if (!ts.isStringLiteralLike(node)) return;
+    const { line } = sourceFile.getLineAndCharacterOfPosition(node.getStart(sourceFile));
+    found.push({ specifier: node.text, line: line + 1 });
+  };
+
+  const visit = (node) => {
+    if (ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) {
+      if (node.moduleSpecifier) add(node.moduleSpecifier);
+    } else if (
+      ts.isImportEqualsDeclaration(node) &&
+      ts.isExternalModuleReference(node.moduleReference)
+    ) {
+      add(node.moduleReference.expression);
+    } else if (ts.isCallExpression(node)) {
+      const isDynamicImport = node.expression.kind === ts.SyntaxKind.ImportKeyword;
+      const isRequire = ts.isIdentifier(node.expression) && node.expression.text === "require";
+      if ((isDynamicImport || isRequire) && node.arguments.length > 0) {
+        add(node.arguments[0]);
+      }
     }
-  }
-  return [...found.values()].sort(
+    ts.forEachChild(node, visit);
+  };
+  visit(sourceFile);
+
+  const unique = new Map(found.map((entry) => [`${entry.line}:${entry.specifier}`, entry]));
+  return [...unique.values()].sort(
     (a, b) => a.line - b.line || a.specifier.localeCompare(b.specifier),
   );
 }
 
-/** Workspace directory to declared package name. */
-/**
- * Resolves a workspace package subpath to a source file through its manifest.
- *
- * Walking to `<dir>/src/index` by convention is wrong twice over: a subpath
- * import such as `@hyperframes/studio-server/finite-mutation` would be followed
- * into the package's index instead of the module actually imported, and a
- * package whose entry is declared elsewhere would not be followed at all — the
- * walk would stop silently and report the boundary clean.
- *
- * Source conditions are preferred over built ones so the check reads the code
- * in the repository rather than a stale artifact in dist/.
- */
-export function resolvePackageSubpath(manifest, subpath) {
-  const exports = manifest?.exports;
-  const pick = (value) => {
-    if (typeof value === "string") return value;
-    if (!value || typeof value !== "object") return null;
-    for (const condition of ["bun", "import", "module", "default", "browser", "node", "types"]) {
-      if (condition in value) {
-        const resolved = pick(value[condition]);
-        if (resolved) return resolved;
-      }
-    }
-    return null;
-  };
-
-  if (typeof exports === "string" && subpath === ".") return exports;
-  if (exports && typeof exports === "object") {
-    if (subpath in exports) return pick(exports[subpath]);
-    // Wildcard subpaths, e.g. "./helpers/*": "./src/helpers/*.ts".
-    for (const [pattern, value] of Object.entries(exports)) {
-      if (!pattern.includes("*")) continue;
-      const [head, tail] = pattern.split("*");
-      if (subpath.startsWith(head) && subpath.endsWith(tail)) {
-        const star = subpath.slice(head.length, subpath.length - tail.length);
-        const target = pick(value);
-        if (target) return target.replace("*", star);
-      }
-    }
-    // An exports map that does not list the subpath does not serve it.
-    if (subpath !== ".") return null;
-  }
-  if (subpath === ".") return manifest?.main ?? "src/index";
-  return null;
-}
-
+/** Workspace directory to declared package name, plus the manifests themselves. */
 export function readWorkspacePackages(root, manifests = new Map()) {
   const packagesDir = join(root, "packages");
   const byDir = new Map();
@@ -243,8 +184,6 @@ export function readWorkspacePackages(root, manifests = new Map()) {
       const parsed = JSON.parse(readFileSync(manifest, "utf8"));
       if (parsed.name) {
         byDir.set(`packages/${entry}`, parsed.name);
-        // Kept alongside the name so the walk can follow a bare or subpath
-        // import to the file the package actually serves for it.
         manifests.set(parsed.name, { directory: `packages/${entry}`, manifest: parsed });
       }
     } catch {
@@ -255,92 +194,160 @@ export function readWorkspacePackages(root, manifests = new Map()) {
 }
 
 /**
- * Reads tsconfig `paths` so a configured alias cannot hide a forbidden target.
- * TypeScript remaps these, so treating every unfamiliar bare specifier as an
- * ordinary external package cannot establish the boundary.
+ * Resolves a workspace package subpath through its manifest.
+ *
+ * Workspace packages resolve from manifests rather than through node_modules so
+ * the check does not depend on install state. The precedence rule is Node's:
+ * `exports` wins over `main` wherever it applies. An earlier version treated a
+ * root conditions object — `{"import": "./src/unsafe.mjs"}`, with no "." key —
+ * as not covering ".", fell through to `main`, and followed a file the package
+ * does not actually serve.
  */
-export function readPathAliases(root) {
-  const aliases = [];
-  for (const name of ["tsconfig.json", "tsconfig.base.json"]) {
-    const file = join(root, name);
-    if (!existsSync(file)) continue;
-    try {
-      // Tolerate comments: tsconfig permits them, JSON.parse does not.
-      const text = readFileSync(file, "utf8")
-        .replace(/\/\*[\s\S]*?\*\//g, "")
-        .replace(/(^|[^:])\/\/[^\n]*/g, "$1");
-      const config = JSON.parse(text);
-      const paths = config?.compilerOptions?.paths ?? {};
-      const baseUrl = config?.compilerOptions?.baseUrl ?? ".";
-      for (const [pattern, targets] of Object.entries(paths)) {
-        for (const target of targets) {
-          aliases.push({ pattern, target, baseUrl });
-        }
+export function resolvePackageSubpath(manifest, subpath) {
+  const exports = manifest?.exports;
+  const pick = (value) => {
+    if (typeof value === "string") return value;
+    if (!value || typeof value !== "object") return null;
+    for (const condition of ["bun", "import", "module", "default", "browser", "node", "require"]) {
+      if (condition in value) {
+        const resolved = pick(value[condition]);
+        if (resolved) return resolved;
       }
-    } catch {
-      // An unreadable tsconfig is reported as unresolved at use sites.
     }
+    return null;
+  };
+
+  if (typeof exports === "string") return subpath === "." ? exports : null;
+
+  if (exports && typeof exports === "object") {
+    const keys = Object.keys(exports);
+    // Node's rule: a map whose keys are all subpaths is a subpath map; anything
+    // else is a conditions object, and it applies to "." alone.
+    const isSubpathMap = keys.length > 0 && keys.every((key) => key.startsWith("."));
+    if (!isSubpathMap) return subpath === "." ? pick(exports) : null;
+
+    if (subpath in exports) return pick(exports[subpath]);
+    for (const [pattern, value] of Object.entries(exports)) {
+      if (!pattern.includes("*")) continue;
+      const [head, tail] = pattern.split("*");
+      if (subpath.startsWith(head) && subpath.endsWith(tail)) {
+        const star = subpath.slice(head.length, subpath.length - tail.length);
+        const target = pick(value);
+        if (target) return target.replace("*", star);
+      }
+    }
+    // An exports map that does not list the subpath does not serve it, and
+    // `main` does not reinstate it.
+    return null;
   }
-  return aliases;
+
+  if (subpath === ".") return manifest?.main ?? "src/index";
+  return null;
 }
 
-function matchAlias(specifier, aliases) {
-  for (const { pattern, target, baseUrl } of aliases) {
-    if (pattern.endsWith("/*")) {
-      const prefix = pattern.slice(0, -1);
-      if (specifier.startsWith(prefix)) {
-        return join(baseUrl, target.slice(0, -1) + specifier.slice(prefix.length));
-      }
-    } else if (specifier === pattern) {
-      return join(baseUrl, target);
+/**
+ * Compiler options governing a file, from the nearest tsconfig.
+ *
+ * "Nearest" matters: a protected package can carry its own tsconfig whose
+ * `paths` map an alias straight at forbidden code, and reading only the two
+ * root configuration files misses that entirely.
+ */
+export function compilerOptionsFor(file, root, cache = new Map()) {
+  const stop = resolve(root);
+  let dir = dirname(resolve(root, file));
+  const visited = [];
+
+  for (;;) {
+    if (cache.has(dir)) {
+      const hit = cache.get(dir);
+      for (const seen of visited) cache.set(seen, hit);
+      return hit;
+    }
+    visited.push(dir);
+
+    const candidate = join(dir, "tsconfig.json");
+    if (existsSync(candidate)) {
+      const read = ts.readConfigFile(candidate, ts.sys.readFile);
+      const parsed = ts.parseJsonConfigFileContent(read.config ?? {}, ts.sys, dir);
+      const options = { ...DEFAULT_OPTIONS, ...parsed.options };
+      for (const seen of visited) cache.set(seen, options);
+      return options;
+    }
+
+    if (dir === stop) break;
+    const parent = dirname(dir);
+    if (parent === dir) break;
+    dir = parent;
+  }
+
+  for (const seen of visited) cache.set(seen, DEFAULT_OPTIONS);
+  return DEFAULT_OPTIONS;
+}
+
+function repoRelative(absolute, root) {
+  return relative(root, absolute).split(sep).join("/");
+}
+
+/** The workspace package owning a repo-relative path, if any. */
+function ownerOf(relativePath, packagesByDir) {
+  for (const [dir, name] of packagesByDir) {
+    if (relativePath === dir || relativePath.startsWith(`${dir}/`)) {
+      return { package: name, path: relativePath };
     }
   }
   return null;
 }
 
-/** Resolves an import to the workspace package that owns it. */
-export function resolveImportTarget(specifier, importingFile, root, packagesByDir, aliases = []) {
-  const byDirectory = (rel) => {
-    for (const [dir, name] of packagesByDir) {
-      if (rel === dir || rel.startsWith(`${dir}/`))
-        return { kind: "package", package: name, path: rel };
-    }
-    return null;
-  };
+/** The package a bare specifier belongs to: "puppeteer/lib/x" -> "puppeteer". */
+function barePackageName(specifier) {
+  const parts = specifier.split("/");
+  return specifier.startsWith("@") ? parts.slice(0, 2).join("/") : parts[0];
+}
 
-  if (!specifier.startsWith(".")) {
-    for (const name of packagesByDir.values()) {
-      if (specifier === name || specifier.startsWith(`${name}/`)) {
-        // The subpath is carried through so the walk follows the module the
-        // package actually serves, not whatever happens to sit at its index.
-        const rest = specifier.slice(name.length);
-        return { kind: "package", package: name, path: null, subpath: rest ? `.${rest}` : "." };
-      }
+/**
+ * Resolves an import to the workspace package that owns it.
+ *
+ * Workspace names are matched first so policy does not depend on install state;
+ * everything else goes through the compiler's own resolver.
+ */
+export function resolveImportTarget(specifier, importingFile, root, packagesByDir, context = {}) {
+  for (const name of packagesByDir.values()) {
+    if (specifier === name || specifier.startsWith(`${name}/`)) {
+      const rest = specifier.slice(name.length);
+      return { kind: "package", package: name, path: null, subpath: rest ? `.${rest}` : "." };
     }
-    const aliased = matchAlias(specifier, aliases);
-    if (aliased) {
-      const rel = relative(root, resolve(root, aliased)).split(sep).join("/");
-      const owned = byDirectory(rel);
-      if (owned) return owned;
-      return {
-        kind: "unresolved",
-        package: null,
-        detail: `alias ${specifier} resolves to ${rel}, outside any package`,
-      };
-    }
-    // Third-party or node builtin. Named third-party packages are matched by
-    // the rule's forbidden list directly.
-    return { kind: "external", package: specifier, path: null };
   }
 
-  const absolute = resolve(dirname(join(root, importingFile)), specifier);
-  const rel = relative(root, absolute).split(sep).join("/");
-  if (rel.startsWith("..")) {
-    return { kind: "unresolved", package: null, detail: "resolves outside the repository" };
+  const options = compilerOptionsFor(importingFile, root, context.optionsCache);
+  const resolved = ts.resolveModuleName(
+    specifier,
+    resolve(root, importingFile),
+    options,
+    ts.sys,
+    context.moduleCache,
+  );
+
+  const file = resolved.resolvedModule?.resolvedFileName;
+  if (file) {
+    const rel = repoRelative(resolve(file), root);
+    if (rel.startsWith("..") || rel.includes("node_modules/")) {
+      return { kind: "external", package: barePackageName(specifier), path: null };
+    }
+    const owned = ownerOf(rel, packagesByDir);
+    if (owned) return { kind: "package", package: owned.package, path: owned.path };
+    return { kind: "unresolved", package: null, detail: `resolves to ${rel}, outside any package` };
   }
-  const owned = byDirectory(rel);
-  if (owned) return owned;
-  return { kind: "unresolved", package: null, detail: `resolves to ${rel}, outside any package` };
+
+  if (specifier.startsWith(".")) {
+    return {
+      kind: "unresolved",
+      package: null,
+      detail: `relative specifier ${specifier} does not resolve to a file`,
+    };
+  }
+  // A bare specifier the compiler cannot resolve is third-party and not
+  // installed here. Its name still decides the policy question.
+  return { kind: "external", package: barePackageName(specifier), path: null };
 }
 
 function listSources(root, directory) {
@@ -358,7 +365,7 @@ function listSources(root, directory) {
         continue;
       }
       if (stats.isDirectory()) recurse(abs);
-      else if (SOURCE_EXT.test(entry)) files.push(relative(root, abs).split(sep).join("/"));
+      else if (SOURCE_EXT.test(entry)) files.push(repoRelative(abs, root));
     }
   };
   recurse(base);
@@ -386,10 +393,14 @@ function resolveFile(root, rel) {
  * helper that production code imports, crosses exactly the same line — so the
  * chain is walked and the path reported.
  */
-export function checkRule(rule, root, packagesByDir, aliases = [], manifests = new Map()) {
+export function checkRule(rule, root, packagesByDir, manifests = new Map(), context = {}) {
   const violations = [];
   const unresolved = [];
   const seen = new Set();
+  const ctx = {
+    optionsCache: context.optionsCache ?? new Map(),
+    moduleCache: context.moduleCache ?? ts.createModuleResolutionCache(root, (x) => x),
+  };
 
   const walk = (file, chain, originScope) => {
     if (seen.has(file)) return;
@@ -402,8 +413,16 @@ export function checkRule(rule, root, packagesByDir, aliases = [], manifests = n
       return;
     }
 
-    for (const { specifier, line } of extractImports(source)) {
-      const target = resolveImportTarget(specifier, file, root, packagesByDir, aliases);
+    // Only production origins are reported: a harness may legitimately reach
+    // code this check cannot resolve, but production reaching it means the
+    // boundary went unverified.
+    const note = (line, specifier, detail) => {
+      if (originScope !== "production") return;
+      unresolved.push({ rule: rule.package, file, line, specifier, detail });
+    };
+
+    for (const { specifier, line } of extractImports(source, file)) {
+      const target = resolveImportTarget(specifier, file, root, packagesByDir, ctx);
 
       if (rule.forbidden.includes(target.package)) {
         violations.push({
@@ -421,41 +440,38 @@ export function checkRule(rule, root, packagesByDir, aliases = [], manifests = n
 
       if (target.kind === "external") continue;
 
-      // Follow first-party destinations, inside this package or another.
+      if (target.kind === "unresolved") {
+        note(line, specifier, target.detail);
+        continue;
+      }
+
+      // A path inside the repository: follow the file itself.
       if (target.path) {
         const resolved = resolveFile(root, target.path);
         if (resolved) {
           walk(resolved, [...chain, `${file}:${line}`], originScope);
-          continue;
-        }
-      }
-      if (target.kind === "package" && !target.path) {
-        // A workspace import: follow the file the package's manifest serves for
-        // this exact subpath.
-        const owner = manifests.get(target.package);
-        const served = owner ? resolvePackageSubpath(owner.manifest, target.subpath ?? ".") : null;
-        const entry = served
-          ? resolveFile(root, `${owner.directory}/${served.replace(/^\.\//, "")}`)
-          : null;
-        if (entry) {
-          walk(entry, [...chain, `${file}:${line}`], originScope);
-        } else if (originScope === "production") {
-          // Not following it silently: an unresolved first-party entry means
-          // the chain beyond this point was never checked.
-          unresolved.push({
-            rule: rule.package,
-            file,
-            line,
-            specifier,
-            detail: owner
-              ? `${target.package} serves no resolvable file for ${target.subpath ?? "."}`
-              : `${target.package} is not a known workspace package`,
-          });
+        } else {
+          note(line, specifier, `resolved to ${target.path}, which is not a readable file`);
         }
         continue;
       }
-      if (target.kind === "unresolved" && originScope === "production") {
-        unresolved.push({ rule: rule.package, file, line, specifier, detail: target.detail });
+
+      // A workspace import: follow whatever the package's manifest serves.
+      const owner = manifests.get(target.package);
+      const served = owner ? resolvePackageSubpath(owner.manifest, target.subpath ?? ".") : null;
+      const entry = served
+        ? resolveFile(root, `${owner.directory}/${served.replace(/^\.\//, "")}`)
+        : null;
+      if (entry) {
+        walk(entry, [...chain, `${file}:${line}`], originScope);
+      } else {
+        note(
+          line,
+          specifier,
+          owner
+            ? `${target.package} serves no resolvable file for ${target.subpath ?? "."}`
+            : `${target.package} is not a known workspace package`,
+        );
       }
     }
   };
@@ -471,11 +487,14 @@ export function checkRule(rule, root, packagesByDir, aliases = [], manifests = n
 export function checkBoundaries(root = ROOT, rules = BOUNDARY_RULES) {
   const manifests = new Map();
   const packagesByDir = readWorkspacePackages(root, manifests);
-  const aliases = readPathAliases(root);
+  const context = {
+    optionsCache: new Map(),
+    moduleCache: ts.createModuleResolutionCache(root, (x) => x),
+  };
   const violations = [];
   const unresolved = [];
   for (const rule of rules) {
-    const result = checkRule(rule, root, packagesByDir, aliases, manifests);
+    const result = checkRule(rule, root, packagesByDir, manifests, context);
     violations.push(...result.violations);
     unresolved.push(...result.unresolved);
   }

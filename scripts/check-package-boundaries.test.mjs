@@ -10,7 +10,7 @@ import {
   checkRule,
   extractImports,
   isTestScope,
-  readPathAliases,
+  compilerOptionsFor,
   readWorkspacePackages,
   resolveImportTarget,
 } from "./check-package-boundaries.mjs";
@@ -44,7 +44,7 @@ const RULE = BOUNDARY_RULES.find((r) => r.package === "@hyperframes/project-mode
 function checkTempWorkspace(root, rule = RULE) {
   const manifests = new Map();
   const packages = readWorkspacePackages(root, manifests);
-  return checkRule(rule, root, packages, readPathAliases(root), manifests);
+  return checkRule(rule, root, packages, manifests);
 }
 
 function runRule(root) {
@@ -101,6 +101,7 @@ describe("package boundaries — deliberately introduced violations", () => {
     // Re-spelling the dependency must not bypass the rule.
     const root = workspace({
       ...MANIFESTS,
+      "packages/studio/src/App.ts": "export const App = 1;\n",
       "packages/project-model/src/index.ts": 'import { App } from "../../studio/src/App";\n',
     });
     const { violations } = runRule(root);
@@ -272,13 +273,41 @@ describe("package boundaries — resolution", () => {
   });
 
   it("maps a relative path back to the package that owns the destination", () => {
+    // Resolution is the compiler's, so the destination has to exist on disk;
+    // a synthetic root proves nothing about what the checker will really do.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/studio/src/App.ts": "export const App = 1;\n",
+      "packages/project-model/src/a.ts": 'import { App } from "../../studio/src/App";\n',
+    });
     const target = resolveImportTarget(
       "../../studio/src/App",
       "packages/project-model/src/a.ts",
-      "/repo",
-      packagesByDir,
+      root,
+      readWorkspacePackages(root),
     );
+    rmSync(root, { recursive: true, force: true });
+
     assert.equal(target.package, "@hyperframes/studio");
+  });
+
+  it("reports a relative specifier that resolves to nothing", () => {
+    // The old resolver did textual path arithmetic and attributed an import
+    // to a package whether or not any file was there. Reporting it keeps the
+    // checker from certifying an edge it never actually followed.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/project-model/src/a.ts": 'import { App } from "../../studio/src/Missing";\n',
+    });
+    const target = resolveImportTarget(
+      "../../studio/src/Missing",
+      "packages/project-model/src/a.ts",
+      root,
+      readWorkspacePackages(root),
+    );
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(target.kind, "unresolved");
   });
 });
 
@@ -402,29 +431,47 @@ describe("package boundaries — crossings that a direct-import check misses", (
   });
 });
 
-describe("package boundaries — alias configuration", () => {
-  it("reads baseUrl-relative path mappings", () => {
+describe("package boundaries — compiler options come from the nearest tsconfig", () => {
+  it("prefers a package's own tsconfig over the repository root", () => {
+    // The reason this matters: a package-local `paths` entry can point at
+    // forbidden code, and reading only root configs never sees it.
+    const root = workspace({
+      "tsconfig.json": JSON.stringify({ compilerOptions: { paths: { "@ui/*": ["nowhere/*"] } } }),
+      "packages/project-model/tsconfig.json": JSON.stringify({
+        compilerOptions: { baseUrl: ".", paths: { "@editor": ["../studio/src/index.ts"] } },
+      }),
+      "packages/project-model/src/a.ts": "export const x = 1;\n",
+    });
+    const options = compilerOptionsFor("packages/project-model/src/a.ts", root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.ok(options.paths["@editor"], "the package's own alias is in effect");
+    assert.equal(options.paths["@ui/*"], undefined, "the root alias does not leak in");
+  });
+
+  it("falls back to the repository root config when a package has none", () => {
     const root = workspace({
       "tsconfig.json": JSON.stringify({
         compilerOptions: { baseUrl: ".", paths: { "@ui/*": ["packages/studio/src/*"] } },
       }),
+      "packages/project-model/src/a.ts": "export const x = 1;\n",
     });
-    const aliases = readPathAliases(root);
+    const options = compilerOptionsFor("packages/project-model/src/a.ts", root);
     rmSync(root, { recursive: true, force: true });
 
-    assert.equal(aliases.length, 1);
-    assert.equal(aliases[0].pattern, "@ui/*");
+    assert.ok(options.paths["@ui/*"]);
   });
 
   it("tolerates comments in tsconfig, which JSON.parse does not", () => {
     const root = workspace({
       "tsconfig.json":
         '{\n  // the editor writes these\n  "compilerOptions": { "paths": { "@x": ["packages/studio/src/x"] } }\n}\n',
+      "packages/project-model/src/a.ts": "export const x = 1;\n",
     });
-    const aliases = readPathAliases(root);
+    const options = compilerOptionsFor("packages/project-model/src/a.ts", root);
     rmSync(root, { recursive: true, force: true });
 
-    assert.equal(aliases.length, 1);
+    assert.ok(options.paths["@x"]);
   });
 });
 
@@ -506,5 +553,108 @@ describe("package boundaries — following a package to what it actually serves"
     // reported, because the checker did not verify anything about it.
     assert.equal(report.violations.length, 0);
     assert.equal(report.unresolved.length, 1);
+  });
+});
+
+describe("package boundaries — ordinary TypeScript and Node resolution", () => {
+  /**
+   * Supplied by external review after the hand-rolled scanner was patched once.
+   * Each is a normal arrangement in this repository, and each was certified
+   * clean by a checker that read syntax with regular expressions and resolved
+   * modules with its own rules. They are pinned here against the compiler's
+   * parser and resolver, which is what now backs the check.
+   */
+
+  it("follows a .js specifier whose source file is .ts", () => {
+    // TypeScript's documented output-extension import: the specifier names the
+    // emitted file, the source is capture.ts. The old resolver tried
+    // "capture.js.ts", found nothing, and stopped without reporting anything.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/utils/package.json":
+        '{"name":"@hyperframes/utils","type":"module","exports":"./src/index.ts"}',
+      "packages/utils/src/index.ts": 'import "./capture.js";\n',
+      "packages/utils/src/capture.ts": 'import "@hyperframes/studio";\n',
+      "packages/studio/src/index.ts": "export const ui = 1;\n",
+      "packages/project-model/src/index.ts": 'import "@hyperframes/utils";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "@hyperframes/studio");
+  });
+
+  it("reads a paths alias from the protected package's own tsconfig", () => {
+    // Only two root config filenames were consulted, so a package-local alias
+    // pointed straight at Studio and was never seen.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/project-model/tsconfig.json": JSON.stringify({
+        compilerOptions: { baseUrl: ".", paths: { "@editor": ["../studio/src/index.ts"] } },
+      }),
+      "packages/studio/src/index.ts": "export const ui = 1;\n",
+      "packages/project-model/src/index.ts": 'import "@editor";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "@hyperframes/studio");
+  });
+
+  it("finds an import inside a template interpolation", () => {
+    // The old stripper blanked whole template literals to avoid matching text,
+    // and blanked the executable code inside them along with it.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/studio/src/index.ts": "export const ui = 1;\n",
+      "packages/project-model/src/index.ts":
+        'export const result = `${await import("@hyperframes/studio")}`;\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "@hyperframes/studio");
+  });
+
+  it("honours a root conditional exports object over main", () => {
+    // `exports` takes precedence over `main` in Node resolution. Treating a
+    // conditions object as not covering "." meant following the safe-looking
+    // main file instead of the one the package actually serves.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/utils/package.json": JSON.stringify({
+        name: "@hyperframes/utils",
+        type: "module",
+        main: "./src/safe.mjs",
+        exports: { import: "./src/unsafe.mjs" },
+      }),
+      "packages/utils/src/safe.mjs": "export const value = 1;\n",
+      "packages/utils/src/unsafe.mjs": 'import "@hyperframes/studio";\n',
+      "packages/studio/src/index.ts": "export const ui = 1;\n",
+      "packages/project-model/src/index.ts": 'import "@hyperframes/utils";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "@hyperframes/studio");
+  });
+
+  it("still ignores import-shaped text in an ordinary string", () => {
+    // The control that must keep passing: rejecting the four cases above is
+    // only useful if it does not come from matching everything.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/project-model/src/index.ts":
+        "export const example = \"await import('@hyperframes/studio')\";\n",
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.deepEqual(report.violations, []);
+    assert.deepEqual(report.unresolved, []);
   });
 });

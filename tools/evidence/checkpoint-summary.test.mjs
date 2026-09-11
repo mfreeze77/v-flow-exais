@@ -1,10 +1,13 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 
 import {
+  CHECKPOINT_PARTITIONS,
+  CHECKPOINT_SUITES,
+  REQUIRED_CHECKS,
   consistencyProblems,
   parseTotals,
   readExitCode,
@@ -311,5 +314,120 @@ describe("checkpoint summary — framework evidence outranks console text", () =
 
     assert.equal(summary.trustworthy, false);
     assert.ok(summary.problems.some((p) => p.includes("not valid JSON")));
+  });
+});
+
+describe("checkpoint summary — an incomplete checkpoint cannot pass overall", () => {
+  /**
+   * Supplied by external review. `verdictFor` already identified each of these
+   * correctly in isolation; the overall checkpoint then ignored it and printed
+   * PASS. A per-check rule is only worth as much as the summary that honours it.
+   */
+
+  const lane = (name) => ({
+    status: "complete",
+    runner: name.endsWith("bun") ? "bun" : "vitest",
+    evidenceComplete: true,
+    execution: {
+      collectedFiles: 1,
+      casesPassed: 1,
+      casesFailed: 0,
+      casesSkipped: 0,
+      collectionErrors: 0,
+    },
+    dispatch: { undispatchedFiles: [] },
+  });
+
+  /** A checkpoint directory that is complete unless `mutate` breaks it. */
+  function checkpoint(mutate = () => {}) {
+    const dir = mkdtempSync(join(tmpdir(), "checkpoint-complete-"));
+    for (const name of CHECKPOINT_PARTITIONS) {
+      writeFileSync(join(dir, `${name}.log`), "COMMAND: fixture\nEXIT=0\n");
+      writeFileSync(join(dir, `${name}.report.json`), JSON.stringify(lane(name)));
+    }
+    for (const name of REQUIRED_CHECKS) {
+      writeFileSync(join(dir, `${name}.log`), "COMMAND: fixture\nEXIT=0\n");
+    }
+    for (const name of CHECKPOINT_SUITES) {
+      writeFileSync(join(dir, `${name}.log`), "Tests 1 passed (1)\nEXIT=0\n");
+    }
+    mutate(dir);
+    const summary = summarise(dir, {
+      partitions: CHECKPOINT_PARTITIONS,
+      suites: CHECKPOINT_SUITES,
+      required: REQUIRED_CHECKS,
+    });
+    rmSync(dir, { recursive: true, force: true });
+    return summary;
+  }
+
+  it("passes when every required check recorded a zero exit", () => {
+    // The control. Without it, the rejections below could come from a summary
+    // that never passes anything.
+    const summary = checkpoint();
+    assert.deepEqual(summary.problems, []);
+    assert.equal(summary.trustworthy, true);
+  });
+
+  it("fails when a partition log records no exit code", () => {
+    const summary = checkpoint((dir) => {
+      writeFileSync(join(dir, "unit-bun.log"), "COMMAND: run\nSTARTED: fixture\nNo completion marker\n");
+    });
+
+    assert.equal(summary.partitions["unit-bun"].status, "unknown");
+    assert.equal(summary.trustworthy, false, "an unknown partition must not pass overall");
+  });
+
+  it("fails when a required check produced no log at all", () => {
+    // Discovery by directory listing cannot see absence: deleting the log
+    // removed the only trace that lint was ever meant to run.
+    const summary = checkpoint((dir) => rmSync(join(dir, "lint.log")));
+
+    assert.equal(summary.rootChecks.lint.status, "unknown");
+    assert.equal(summary.trustworthy, false);
+    assert.ok(summary.problems.some((p) => p.startsWith("lint:")));
+  });
+
+  it("fails a lane claiming completeness with no execution counts", () => {
+    // `evidenceComplete: true` is the record's claim about itself.
+    const summary = checkpoint((dir) => {
+      writeFileSync(
+        join(dir, "unit-bun.report.json"),
+        JSON.stringify({
+          status: "complete",
+          evidenceComplete: true,
+          runner: "bun",
+          dispatch: { undispatchedFiles: [] },
+        }),
+      );
+    });
+
+    assert.equal(summary.trustworthy, false);
+    assert.ok(summary.problems.some((p) => p.includes("claims completeness")));
+  });
+
+  it("fails when a required suite produced no log", () => {
+    const summary = checkpoint((dir) => rmSync(join(dir, "acceptance.log")));
+    assert.equal(summary.trustworthy, false);
+  });
+});
+
+describe("checkpoint summary — the manifest matches what the script runs", () => {
+  it("names only checks the checkpoint script actually invokes", () => {
+    // A required list that drifts from the runner either demands logs nobody
+    // writes or silently stops requiring one that matters.
+    const script = readFileSync(
+      new URL("./run-checkpoint.sh", import.meta.url),
+      "utf8",
+    );
+    const invoked = new Set(
+      [...script.matchAll(/^record(?:_lane)?\s+(\S+)/gm)].map((m) => m[1]),
+    );
+    // environment.log is written directly rather than through `record`.
+    invoked.add("environment");
+
+    for (const name of [...REQUIRED_CHECKS, ...CHECKPOINT_PARTITIONS, ...CHECKPOINT_SUITES]) {
+      assert.ok(invoked.has(name), `${name} is required but never run by run-checkpoint.sh`);
+    }
   });
 });

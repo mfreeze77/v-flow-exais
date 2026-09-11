@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="19" assertions="71" failures="0" skipped="0" time="0.560538836">
+  <testsuite name="src/services/deterministicFonts.test.ts" file="src/services/deterministicFonts.test.ts" tests="19" assertions="71" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="existing font-face recognition" file="src/services/deterministicFonts.test.ts" line="8" tests="12" assertions="21" failures="0" skipped="0" time="0.175" hostname="439b901e28fd">
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family: \&quot;Existing Font\&quot;; src: url(font.woff2); }&quot;" classname="existing font-face recognition" time="0.011241" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@FONT-FACE\n{ FONT-FAMILY : &apos;EXISTING FONT&apos;; }&quot;" classname="existing font-face recognition" time="0.001313" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family: \&quot;Existing Font\&quot;; }&quot;" classname="existing font-face recognition" time="0.001009" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family:; font-family: \&quot;Existing Font\&quot;; }&quot;" classname="existing font-face recognition" time="0.000949" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family: \&quot;Other Font\&quot;; } @font-face { font-family: \&quot;Existing Font\&quot;; }&quot;" classname="existing font-face recognition" time="0.000837" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family: \&quot;Existing Font\&quot; }&quot;" classname="existing font-face recognition" time="0.002817" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family: \&quot;Existing Font\&quot;;&quot;" classname="existing font-face recognition" time="0.001628" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family: \&quot;Other Font\&quot;; font-family: \&quot;Existing Font\&quot;; }&quot;" classname="existing font-face recognition" time="0.001066" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="preserves authored font and fallback decisions for &quot;@font-face { font-family:   ; font-family: \&quot;Existing Font\&quot;; }&quot;" classname="existing font-face recognition" time="0.00143" file="src/services/deterministicFonts.test.ts" line="22" assertions="2" />
+      <testcase name="handles a long incomplete font-face suffix" classname="existing font-face recognition" time="0.148377" file="src/services/deterministicFonts.test.ts" line="42" assertions="1" />
+      <testcase name="handles a long incomplete font-face suffix" classname="existing font-face recognition" time="0.001345" file="src/services/deterministicFonts.test.ts" line="42" assertions="1" />
+      <testcase name="handles a long incomplete font-face suffix" classname="existing font-face recognition" time="0.008729" file="src/services/deterministicFonts.test.ts" line="42" assertions="1" />
+    </testsuite>
+    <testsuite name="FONT_ALIASES cross-platform coverage" file="src/services/deterministicFonts.test.ts" line="48" tests="7" assertions="50" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+      <testcase name="maps macOS sans-serif system fonts to inter" classname="FONT_ALIASES cross-platform coverage" time="0.000115" file="src/services/deterministicFonts.test.ts" line="49" assertions="9" />
+      <testcase name="maps Windows sans-serif system fonts to inter" classname="FONT_ALIASES cross-platform coverage" time="0.000062" file="src/services/deterministicFonts.test.ts" line="61" assertions="8" />
+      <testcase name="maps Linux sans-serif system fonts to inter" classname="FONT_ALIASES cross-platform coverage" time="0.000021" file="src/services/deterministicFonts.test.ts" line="72" assertions="3" />
+      <testcase name="maps monospace system fonts to jetbrains-mono" classname="FONT_ALIASES cross-platform coverage" time="0.00003" file="src/services/deterministicFonts.test.ts" line="78" assertions="9" />
+      <testcase name="maps serif system fonts to eb-garamond" classname="FONT_ALIASES cross-platform coverage" time="0.000052" file="src/services/deterministicFonts.test.ts" line="90" assertions="9" />
+      <testcase name="preserves all existing aliases" classname="FONT_ALIASES cross-platform coverage" time="0.000025" file="src/services/deterministicFonts.test.ts" line="102" assertions="6" />
+      <testcase name="exports FONT_ALIAS_KEYS containing all alias entries" classname="FONT_ALIASES cross-platform coverage" time="0.000059" file="src/services/deterministicFonts.test.ts" line="111" assertions="6" />
+    </testsuite>
+  </testsuite>
+</testsuites>

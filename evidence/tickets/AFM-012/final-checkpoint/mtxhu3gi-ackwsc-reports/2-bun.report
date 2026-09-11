@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="13" assertions="66" failures="0" skipped="0" time="3.656872836">
+  <testsuite name="src/services/distributed/assemble.test.ts" file="src/services/distributed/assemble.test.ts" tests="13" assertions="66" failures="0" skipped="0" time="0" hostname="439b901e28fd">
+    <testsuite name="assemble()" file="src/services/distributed/assemble.test.ts" line="232" tests="13" assertions="66" failures="0" skipped="0" time="2.855" hostname="439b901e28fd">
+      <testcase name="concat-copies two mp4 chunks and applies faststart" classname="assemble()" time="0.270644" file="src/services/distributed/assemble.test.ts" line="236" assertions="14" />
+      <testcase name="cleans private staging after a failed concat without deleting existing scratch data" classname="assemble()" time="0.062264" file="src/services/distributed/assemble.test.ts" line="330" assertions="4" />
+      <testcase name="single-chunk render stamps exact r_frame_rate on the output container" classname="assemble()" time="0.263489" file="src/services/distributed/assemble.test.ts" line="358" assertions="7" />
+      <testcase name="muxes audio with frame-count-derived duration when audio.m4a is present" classname="assemble()" time="0.582912" file="src/services/distributed/assemble.test.ts" line="401" assertions="8" />
+      <testcase name="muxes padded short audio without shifting the first video frame" classname="assemble()" time="0.584117" file="src/services/distributed/assemble.test.ts" line="446" assertions="8" />
+      <testcase name="cfr:true re-encodes for exact avg_frame_rate matching r_frame_rate" classname="assemble()" time="0.302415" file="src/services/distributed/assemble.test.ts" line="488" assertions="8" />
+      <testcase name="cfr:true rejects non-mp4 formats with a clear error" classname="assemble()" time="0.150281" file="src/services/distributed/assemble.test.ts" line="554" assertions="2" />
+      <testcase name="cfr:true rejects h265 chunks with a clear error" classname="assemble()" time="0.096508" file="src/services/distributed/assemble.test.ts" line="630" assertions="2" />
+      <testcase name="merges png-sequence chunk directories with continuous global numbering" classname="assemble()" time="0.001372" file="src/services/distributed/assemble.test.ts" line="663" assertions="3" />
+      <testcase name="keeps render provenance on a no-audio mov render" classname="assemble()" time="0.252992" file="src/services/distributed/assemble.test.ts" line="729" assertions="3" />
+      <testcase name="keeps render provenance on a no-audio webm render" classname="assemble()" time="0.293914" file="src/services/distributed/assemble.test.ts" line="729" assertions="3" />
+      <testcase name="rejects when chunkPaths.length does not match chunks.json length" classname="assemble()" time="0.00088" file="src/services/distributed/assemble.test.ts" line="762" assertions="2" />
+      <testcase name="rejects a planDir missing plan.json" classname="assemble()" time="0.000342" file="src/services/distributed/assemble.test.ts" line="778" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

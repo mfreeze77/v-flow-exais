@@ -20,6 +20,38 @@
 import { existsSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
 import { basename, join } from "node:path";
 
+/**
+ * What a complete checkpoint must contain.
+ *
+ * Declared here rather than inferred from whichever logs happen to exist, so
+ * that a check which never ran is a reported absence instead of a silent one.
+ * Keep in step with tools/evidence/run-checkpoint.sh; the tests assert that
+ * every name in this manifest is actually invoked there.
+ */
+export const CHECKPOINT_PARTITIONS = [
+  "unit-bun",
+  "unit-vitest",
+  "integration-bun",
+  "integration-vitest",
+];
+
+export const CHECKPOINT_SUITES = ["acceptance"];
+
+export const REQUIRED_CHECKS = [
+  "environment",
+  "lint",
+  "format",
+  "check-package-boundaries",
+  "check-workspace",
+  "doctor",
+  "audit-assets",
+  "audit-automation",
+  "boundaries-tests",
+  "checkpoint-summary-tests",
+  "scripts-tests",
+  "classification",
+];
+
 /** Terminal colour codes break numeric parsing; strip before reading anything. */
 export function stripAnsi(text) {
   return text.replace(/\[[0-9;]*m/g, "");
@@ -151,6 +183,16 @@ export function readLaneReport(directory, name) {
   if (parsed?.evidenceComplete !== true) {
     problems.push("lane report does not confirm execution (evidenceComplete is not true)");
   }
+  // `evidenceComplete: true` is the record's claim about itself. A record can
+  // carry that flag and no execution block at all, which then reads as a
+  // confirmed lane with unknown totals -- confirmation of nothing. The counts
+  // that back the claim have to actually be there.
+  for (const field of ["collectedFiles", "casesPassed", "casesFailed", "casesSkipped"]) {
+    const value = execution[field];
+    if (typeof value !== "number" || !Number.isInteger(value) || value < 0) {
+      problems.push(`lane report claims completeness but ${field} is ${JSON.stringify(value)}`);
+    }
+  }
   if (parsed?.status && parsed.status !== "complete") {
     problems.push(`lane report status is ${parsed.status}`);
   }
@@ -170,7 +212,7 @@ export function readLaneReport(directory, name) {
   };
 }
 
-export function summarise(directory, { partitions = [], suites = [] } = {}) {
+export function summarise(directory, { partitions = [], suites = [], required = [] } = {}) {
   const read = (name) => {
     const path = join(directory, `${name}.log`);
     return existsSync(path) ? readFileSync(path, "utf8") : null;
@@ -192,6 +234,12 @@ export function summarise(directory, { partitions = [], suites = [] } = {}) {
     const unlaunched = lane ? lane.unlaunched : raw ? parseUnlaunched(raw) : 0;
 
     const problems = raw ? consistencyProblems(verdict, totals, unlaunched) : ["log missing"];
+    // A partition whose verdict is neither pass nor fail has no recorded exit
+    // status. `verdictFor` said so correctly; the overall checkpoint then
+    // ignored it and still printed PASS.
+    if (verdict.status !== "pass") {
+      problems.push(`verdict is ${verdict.status}${verdict.reason ? ` (${verdict.reason})` : ""}`);
+    }
     if (lane?.problems) problems.push(...lane.problems);
     if (!lane) {
       // Every partition is a lane, and the lane runner is told where to write
@@ -215,14 +263,40 @@ export function summarise(directory, { partitions = [], suites = [] } = {}) {
     if (verdict.status !== "pass") result.problems.push(`${name}: ${verdict.status} (${verdict.reason ?? verdict.exitCode})`);
   }
 
+  // Root checks are discovered from the directory AND required by name.
+  //
+  // Discovery alone cannot notice absence: deleting lint.log removed the only
+  // trace that lint was ever supposed to run, and the checkpoint passed. A
+  // check that produced no log is indistinguishable from a check nobody asked
+  // for, unless the required set is declared independently of what is present.
   const known = new Set([...partitions, ...suites].map((n) => `${n}.log`));
-  for (const file of readdirSync(directory).filter((f) => f.endsWith(".log"))) {
+  const discovered = readdirSync(directory).filter((f) => f.endsWith(".log"));
+  const seen = new Set();
+
+  for (const file of discovered) {
     if (known.has(file)) continue;
     const name = basename(file, ".log");
+    seen.add(name);
     const verdict = verdictFor(readFileSync(join(directory, file), "utf8"));
     result.rootChecks[name] = verdict;
     if (verdict.status !== "pass") {
       result.problems.push(`${name}: ${verdict.status}${verdict.reason ? ` (${verdict.reason})` : ` (exit ${verdict.exitCode})`}`);
+    }
+  }
+
+  for (const name of required) {
+    if (seen.has(name)) continue;
+    result.rootChecks[name] = { status: "unknown", reason: "required check produced no log" };
+    result.problems.push(`${name}: required check produced no log`);
+  }
+  for (const name of partitions) {
+    if (!existsSync(join(directory, `${name}.log`))) {
+      result.problems.push(`${name}: required partition produced no log`);
+    }
+  }
+  for (const name of suites) {
+    if (!existsSync(join(directory, `${name}.log`))) {
+      result.problems.push(`${name}: required suite produced no log`);
     }
   }
 
@@ -245,8 +319,9 @@ if (process.argv[1] && process.argv[1].endsWith("checkpoint-summary.mjs")) {
     process.exitCode = 2;
   } else {
     const summary = summarise(directory, {
-      partitions: ["unit-bun", "unit-vitest", "integration-bun", "integration-vitest"],
-      suites: ["acceptance"],
+      partitions: CHECKPOINT_PARTITIONS,
+      suites: CHECKPOINT_SUITES,
+      required: REQUIRED_CHECKS,
     });
     writeFileSync(join(directory, "summary.json"), `${JSON.stringify(summary, null, 2)}\n`, "utf8");
     for (const [name, p] of Object.entries(summary.partitions)) {

@@ -1,5 +1,5 @@
 COMMAND: bun run --cwd packages/producer test:integration:vitest
-STARTED: 2026-09-11T20:30:58Z
+STARTED: 2026-09-11T21:55:09Z
 
 $ node scripts/run-test-lane.mjs integration vitest
 [producer:integration/vitest] Selected 9 test files.
@@ -12,8 +12,8 @@ $ node scripts/run-test-lane.mjs integration vitest
   vitest src/services/render/stages/compileStage.mediaType.test.ts
   vitest src/utils/audioRegression.test.ts
   vitest src/utils/streamDurationParity.test.ts
-JSON report written to /workspace/evidence/tickets/AFM-012/final-checkpoint/mtxevcnf-fy2ro6-reports/0-vitest.report
+JSON report written to /workspace/evidence/tickets/AFM-012/final-checkpoint/mtxhvm5y-0m3u7i-reports/0-vitest.report
 [producer:integration/vitest] Wrote execution report to /workspace/evidence/tickets/AFM-012/final-checkpoint/integration-vitest.report.json
 
-FINISHED: 2026-09-11T20:31:15Z
+FINISHED: 2026-09-11T21:55:22Z
 EXIT=0

@@ -1,19 +1,19 @@
 COMMAND: bun run test:acceptance
-STARTED: 2026-09-11T20:31:15Z
+STARTED: 2026-09-11T21:55:22Z
 
 $ vitest run --config vitest.acceptance.config.ts
 
 [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
 
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22marchify folder scan reproduces the baseline tree digest[33m 3809[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mhyperframes folder scan reproduces the baseline tree digest[33m 96933[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mpreserves the HyperFrames symlink as a link, not as its target's content[33m 63941[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mreports PASS for both unmodified inputs and mutates nothing[33m 63218[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22marchify folder scan reproduces the baseline tree digest[33m 2041[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mhyperframes folder scan reproduces the baseline tree digest[33m 44080[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mpreserves the HyperFrames symlink as a link, not as its target's content[33m 39823[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mreports PASS for both unmodified inputs and mutates nothing[33m 39827[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22maccepts a renamed folder, and folders with spaces and Unicode[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mdescends one level into a download wrapper directory[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mrefuses a folder with no sentinel[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mdescends one level into a download wrapper directory[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mrefuses a folder with no sentinel[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mrefuses an ambiguous input holding two candidate roots[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mresolves a Windows-style path[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mresolves a Windows-style path[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mflags a changed lockfile as drift and refuses to pass[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mreports added and removed files separately[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mtreats a file replacing a symlink as drift[32m 0[2mms[22m[39m
@@ -21,25 +21,25 @@ $ vitest run --config vitest.acceptance.config.ts
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mexcludes size from the tree digest but not from change detection[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22morders the tree digest by path, not by discovery order[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mrefuses a source input nested inside the destination without a quarantine[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22maccepts it only from the explicitly declared quarantine[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22maccepts it only from the explicitly declared quarantine[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mnever exempts an output repository nested inside a source input[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mrefuses to write its report inside a source input[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mreports a missing input rather than throwing[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrecords the archive comment as an unverified revision candidate[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mreads the real Archify archive to the same digest as the folder[33m 3330[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mclassifies a symlink entry by its unix mode[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mreads the real Archify archive to the same digest as the folder[33m 1948[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mclassifies a symlink entry by its unix mode[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mexcludes admin entries from identity comparison[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects a malformed archive[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects a truncated central directory[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects an encrypted entry instead of hashing ciphertext[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects archive entries that would escape the extraction root[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrefuses an archive with no identifiable source root[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: inspection performs no side effects[2m > [22mdoes not shell out, clone, install or reach the network[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: inspection performs no side effects[2m > [22mdoes not shell out, clone, install or reach the network[32m 4[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: inspection performs no side effects[2m > [22mopens no write handle on a source input during a scan[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22mhas no path problem across all 7786 targets[33m 69208[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22mresolves no runtime asset from a raw checkout[33m 33749[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22mhas no symlink escaping the repository[33m 26021[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22msupports the producer symlink fixture rather than skipping it[33m 60869[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22mhas no path problem across all 7786 targets[33m 40533[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22mresolves no runtime asset from a raw checkout[33m 23835[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22mhas no symlink escaping the repository[33m 18189[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22msupports the producer symlink fixture rather than skipping it[33m 41330[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: the real imported tree is cross-platform safe[2m > [22mnormalises line endings through .gitattributes, not by rewriting bytes[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: unsafe paths are detected with remediation[2m > [22mdetects a case collision[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: unsafe paths are detected with remediation[2m > [22mdetects every reserved Windows device name, with or without extension[32m 1[2mms[22m[39m
@@ -57,137 +57,142 @@ $ vitest run --config vitest.acceptance.config.ts
  [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: raw-checkout reach-back is detected[2m > [22mflags code reading from the quarantined snapshot[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: raw-checkout reach-back is detected[2m > [22mpermits the import tooling itself to name the snapshots[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-006.test.ts[2m > [22mAFM-006: raw-checkout reach-back is detected[2m > [22mdoes not flag prose that merely mentions the snapshots[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: licence records are reported, never required[2m > [22mreports what is present without failing on a missing document[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: licence records are reported, never required[2m > [22mreports no problem[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mcounts fonts and media separately from source[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mclassifies imported assets as rights-review in the ledger[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mrecords an explicit rights decision rather than assuming code licenses cover media[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mdoes not depend on a commercial font for rendering[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: no font binary reaches an evidence bundle[2m > [22mhas zero font binaries under evidence/[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: no font binary reaches an evidence bundle[2m > [22mdetects a font binary if one is planted in evidence[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: no font binary reaches an evidence bundle[2m > [22mrecognises every font extension[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mrecords every file that differs from the bytes it was imported from[32m 12[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mincludes the early reconciliations with their specific reasons[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mrecords a ledger target that no longer exists[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mpasses with no problems even though many files diverge[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mreports nothing blocked[33m 43424[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mreports nothing blocked[33m 17910[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mhas no workflow that could run on push or tag[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mhas no installed git hook[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mredirects core.hooksPath away from .git/hooks[32m 6[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mcarries no inherited install-time lifecycle script[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22massumes no upstream credential[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mdocuments every retained review item[33m 41451[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mhas no installed git hook[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mredirects core.hooksPath away from .git/hooks[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mcarries no inherited install-time lifecycle script[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22massumes no upstream credential[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: this repository has no live automation[2m > [22mdocuments every retained review item[33m 17189[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mblocks on a live workflow[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mblocks on an install-time lifecycle script[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mdoes not flag a provably inert lifecycle script[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mreports an installed git hook[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mignores quarantined upstream material under docs/upstream[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mreports an installed git hook[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mignores quarantined upstream material under docs/upstream[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-005.test.ts[2m > [22mAFM-005: the audit actually detects live automation[2m > [22mflags public publish access on a non-private package[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mwrites all planned entries into an empty destination[32m 10[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mrecreates a symlink instead of materializing its target[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mapplies the executable bit from the ledger[32m 7[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mleaves no staging directory behind[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mwrites a receipt that records no Git activity[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the import is resumable[2m > [22mskips entries a matching receipt already recorded[32m 5[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the import is resumable[2m > [22mrefuses to resume against a receipt from a different ledger[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: licence records are reported, never required[2m > [22mreports what is present without failing on a missing document[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: licence records are reported, never required[2m > [22mreports no problem[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mcounts fonts and media separately from source[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mclassifies imported assets as rights-review in the ledger[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mrecords an explicit rights decision rather than assuming code licenses cover media[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: assets are decided separately from code[2m > [22mdoes not depend on a commercial font for rendering[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: no font binary reaches an evidence bundle[2m > [22mhas zero font binaries under evidence/[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: no font binary reaches an evidence bundle[2m > [22mdetects a font binary if one is planted in evidence[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: no font binary reaches an evidence bundle[2m > [22mrecognises every font extension[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mrecords every file that differs from the bytes it was imported from[32m 7[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mincludes the early reconciliations with their specific reasons[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mrecords a ledger target that no longer exists[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-004.test.ts[2m > [22mAFM-004: divergence from upstream is recorded, not gated[2m > [22mpasses with no problems even though many files diverge[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mwrites all planned entries into an empty destination[32m 5[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mrecreates a symlink instead of materializing its target[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mapplies the executable bit from the ledger[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mleaves no staging directory behind[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a clean import writes and verifies every entry[2m > [22mwrites a receipt that records no Git activity[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the import is resumable[2m > [22mskips entries a matching receipt already recorded[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the import is resumable[2m > [22mrefuses to resume against a receipt from a different ledger[32m 2[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the import is resumable[2m > [22mchanges the ledger digest when the plan changes[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the import is resumable[2m > [22mpersists a receipt that can be reloaded[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22mrefuses to overwrite an unrelated file and changes nothing[32m 6[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22moverwrites only paths explicitly reconciled[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22msupersedes a path while preserving the upstream copy[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22mskips an identical existing file without reporting a conflict[32m 5[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: corruption and escape are refused[2m > [22mreports a hash mismatch rather than writing bad bytes[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: corruption and escape are refused[2m > [22mrefuses a target that escapes the destination[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: corruption and escape are refused[2m > [22mdry run writes nothing at all[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mcontains no nested repository[33m 48444[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mcarries the expected workspace packages[32m 5[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mdid not inherit upstream CI workflows[32m 80[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mclaims no upstream repository ancestry in the root manifest[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mrecords the real import as complete with zero conflicts[32m 16[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mimports with forbidden argv, filesystem adapters, network and process handlers[33m 557[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles architecture concurrently without mutation, leaking options or invoking IO[32m 49[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles workflow concurrently without mutation, leaking options or invoking IO[33m 587[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles sequence concurrently without mutation, leaking options or invoking IO[32m 20[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles dataflow concurrently without mutation, leaking options or invoking IO[32m 23[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles lifecycle concurrently without mutation, leaking options or invoking IO[32m 22[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same architecture SVG to the compatibility CLI[33m 880[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same workflow SVG to the compatibility CLI[33m 1219[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same sequence SVG to the compatibility CLI[33m 880[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same dataflow SVG to the compatibility CLI[33m 869[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same lifecycle SVG to the compatibility CLI[33m 817[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mpreserves deployment branches and explicit parallel relationship identities[32m 19[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns structured failure and leaves the host usable[32m 14[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the import is resumable[2m > [22mpersists a receipt that can be reloaded[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22mrefuses to overwrite an unrelated file and changes nothing[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22moverwrites only paths explicitly reconciled[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22msupersedes a path while preserving the upstream copy[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: a populated destination fails non-destructively[2m > [22mskips an identical existing file without reporting a conflict[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: corruption and escape are refused[2m > [22mreports a hash mismatch rather than writing bad bytes[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: corruption and escape are refused[2m > [22mrefuses a target that escapes the destination[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: corruption and escape are refused[2m > [22mdry run writes nothing at all[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mcontains no nested repository[33m 20005[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mcarries the expected workspace packages[32m 4[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mdid not inherit upstream CI workflows[32m 51[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mclaims no upstream repository ancestry in the root manifest[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-003.test.ts[2m > [22mAFM-003: the real imported tree[2m > [22mrecords the real import as complete with zero conflicts[32m 9[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the packed project-model ships what it resolves at runtime[2m > [22mpacks and installs[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the packed project-model ships what it resolves at runtime[2m > [22mships the commit worker the built entry resolves[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the packed project-model ships what it resolves at runtime[2m > [22mships the schemas the worker reads at runtime[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the packed project-model ships what it resolves at runtime[2m > [22mexposes a Node condition that actually exists[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the installed package performs a worker-backed commit[2m > [22minitializes a project through the Node storage entry[33m 319[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the installed package performs a worker-backed commit[2m > [22mreopens the committed project and reads it back[33m 351[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpins exact commits, preserves removed source bytes and compares complete trees independently of dirty files[32m 161[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mrefuses stale refs, missing objects and subdirectory selections[32m 96[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpersists exact diagram comparison receipts and detects altered capture bytes[32m 162[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mverifies separately authored source citations and rejects wrong revisions and origins[32m 152[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22muses the actual API and CLI review ingress with conflict diagnostics[33m 5366[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mresolves the viewer template through the package export[32m 78[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mdoes not keep a duplicate template inside the engine[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mresolves a schema and an example for every diagram family[32m 18[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mexposes every asset root it owns[32m 22[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mderives the package root from the module, never from cwd[32m 4[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mno longer resolves assets through an assumed skill root[32m 6[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mrenders architecture from a directory whose name contains spaces[33m 822[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mrenders all five families from that same unrelated directory[33m 3668[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mreports asset paths outside the raw source quarantine[32m 7[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mexports the engine entry point and its asset resolver[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mexports the viewer template as a resolvable subpath[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mincludes runtime-only asset directories in the packed file list[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mgives the engine a non-conflicting binary name[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the installed package performs a worker-backed commit[2m > [22minitializes a project through the Node storage entry[32m 193[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.project-model-package.test.ts[2m > [22mAFM-011: the installed package performs a worker-backed commit[2m > [22mreopens the committed project and reads it back[32m 196[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mimports with forbidden argv, filesystem adapters, network and process handlers[32m 232[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles architecture concurrently without mutation, leaking options or invoking IO[32m 23[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles workflow concurrently without mutation, leaking options or invoking IO[33m 317[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles sequence concurrently without mutation, leaking options or invoking IO[32m 12[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles dataflow concurrently without mutation, leaking options or invoking IO[32m 11[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles lifecycle concurrently without mutation, leaking options or invoking IO[32m 9[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same architecture SVG to the compatibility CLI[33m 357[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same workflow SVG to the compatibility CLI[33m 630[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same sequence SVG to the compatibility CLI[33m 382[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same dataflow SVG to the compatibility CLI[33m 379[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same lifecycle SVG to the compatibility CLI[33m 322[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mpreserves deployment branches and explicit parallel relationship identities[32m 6[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns structured failure and leaves the host usable[32m 9[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpins exact commits, preserves removed source bytes and compares complete trees independently of dirty files[32m 96[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mrefuses stale refs, missing objects and subdirectory selections[32m 44[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpersists exact diagram comparison receipts and detects altered capture bytes[32m 80[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mverifies separately authored source citations and rejects wrong revisions and origins[32m 78[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22muses the actual API and CLI review ingress with conflict diagnostics[33m 2716[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mresolves the viewer template through the package export[32m 28[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mdoes not keep a duplicate template inside the engine[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mresolves a schema and an example for every diagram family[32m 4[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mexposes every asset root it owns[32m 10[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mderives the package root from the module, never from cwd[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mno longer resolves assets through an assumed skill root[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mrenders architecture from a directory whose name contains spaces[33m 558[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mrenders all five families from that same unrelated directory[33m 1824[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mreports asset paths outside the raw source quarantine[32m 10[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mexports the engine entry point and its asset resolver[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mexports the viewer template as a resolvable subpath[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mincludes runtime-only asset directories in the packed file list[32m 4[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mgives the engine a non-conflicting binary name[32m 2[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mnames the engine under the workspace scope[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mpreviews a sourced edit, rejects without changing the project, revises with optimistic review versions, accepts atomically and undoes[33m 898[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mretains partial invalid batches for repair and rejects invented factual wording and connections[32m 251[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mlabels free interpretation, requires explicit acknowledgement and detects stale revision or changed evidence[33m 539[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22muses the same HTTP review service, reports unavailable providers and recovers commit-before-receipt interruption[33m 583[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22maccepts a real source-supported connection while rejecting reversed and misidentified endpoints[33m 557[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mvalidates configured-provider output and reports provider failures without committing (adapter contract only)[32m 254[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mbuilds a ledger with no problems[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mmatches the inventory entry count exactly[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22massigns every entry a known disposition[32m 169[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mrecords source path, target, hash, mode and owning tickets for every entry[33m 332[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mroundtrips through JSON without loss[32m 60[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22magrees with the archive bytes on hash and kind[32m 273[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: destinations never collide[2m > [22massigns a unique target to every entry[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: destinations never collide[2m > [22mreports a collision when two sources claim one target[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: destinations never collide[2m > [22mrefuses a target that escapes the repository root[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mbuilds a ledger with no problems[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mmatches the inventory entry count exactly[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22massigns every entry a known disposition[32m 100[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mrecords source path, target, hash, mode and owning tickets for every entry[32m 197[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22mroundtrips through JSON without loss[32m 35[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: every source entry is accounted for[2m > [22magrees with the archive bytes on hash and kind[32m 158[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: destinations never collide[2m > [22massigns a unique target to every entry[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: destinations never collide[2m > [22mreports a collision when two sources claim one target[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: destinations never collide[2m > [22mrefuses a target that escapes the repository root[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: destinations never collide[2m > [22mkeeps every target inside an authorized root[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: executable mode survives the ledger[2m > [22mreads modes from the archive, where Windows checkouts cannot lose them[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: executable mode survives the ledger[2m > [22mreads modes from the archive, where Windows checkouts cannot lose them[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: executable mode survives the ledger[2m > [22mclassifies modes correctly[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: executable mode survives the ledger[2m > [22mpreserves a 0o755 entry read straight from an archive[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: symlinks are recorded, never followed[2m > [22mcarries the one upstream symlink as a link with its own disposition[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: executable mode survives the ledger[2m > [22mpreserves a 0o755 entry read straight from an archive[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: symlinks are recorded, never followed[2m > [22mcarries the one upstream symlink as a link with its own disposition[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: symlinks are recorded, never followed[2m > [22mflags a symlink that was given a following disposition[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: generated output is never authoritative source[2m > [22mquarantines the nested archify.zip away from product packages[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: generated output is never authoritative source[2m > [22mmarks every quarantined and historical entry non-authoritative[32m 82[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: generated output is never authoritative source[2m > [22mkeeps no non-authoritative entry inside a product package directory[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: generated output is never authoritative source[2m > [22mmarks every quarantined and historical entry non-authoritative[32m 40[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: generated output is never authoritative source[2m > [22mkeeps no non-authoritative entry inside a product package directory[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: generated output is never authoritative source[2m > [22mreports a generated entry aimed at a product package[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: generated output is never authoritative source[2m > [22mquarantines upstream CI automation rather than inheriting it[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: unclassified and missing entries fail loudly[2m > [22mreports an archive entry with no inventory record[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: unclassified and missing entries fail loudly[2m > [22mreports an archive entry with no inventory record[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-002.test.ts[2m > [22mAFM-002: unclassified and missing entries fail loudly[2m > [22mreports an inventory record with no archive entry[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mdenies reads of the owned checkout and frozen raw inputs[32m 58[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mrenders all five families using only installed package contents[33m 890[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mpreserves explicit relationship identities, endpoints and arrow direction[32m 206[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mfails when the packed viewer template is missing instead of reaching into the checkout[32m 100[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-099.source.test.ts[2m > [22minspects a local project, reviews three plans, imports idempotently and builds real mixed compositions[33m 2267[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the runtime contract is declared, not assumed[2m > [22mrequires Node 22 across the workspace[32m 9[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the runtime contract is declared, not assumed[2m > [22mmakes no Node >=18 claim anywhere in the workspace[32m 4[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mpreviews a sourced edit, rejects without changing the project, revises with optimistic review versions, accepts atomically and undoes[33m 659[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mretains partial invalid batches for repair and rejects invented factual wording and connections[32m 197[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mlabels free interpretation, requires explicit acknowledgement and detects stale revision or changed evidence[33m 384[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22muses the same HTTP review service, reports unavailable providers and recovers commit-before-receipt interruption[33m 350[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22maccepts a real source-supported connection while rejecting reversed and misidentified endpoints[33m 382[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-098.test.ts[2m > [22mvalidates configured-provider output and reports provider failures without committing (adapter contract only)[32m 154[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mdenies reads of the owned checkout and frozen raw inputs[32m 38[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mrenders all five families using only installed package contents[33m 541[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mpreserves explicit relationship identities, endpoints and arrow direction[32m 131[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mfails when the packed viewer template is missing instead of reaching into the checkout[32m 65[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-099.source.test.ts[2m > [22minspects a local project, reviews three plans, imports idempotently and builds real mixed compositions[33m 1790[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mplans distinct implementation stories with authored scripts, exact integer timing and captured relationships[33m 691[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mreplans for audience/count, refuses invented evidence, repairs scripts and protects reviewed or existing project versions[32m 217[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mdoes not pad a manifest-only repository into multiple films[32m 6[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mkeeps concurrent edits to different stories and diversifies maintainer plans[32m 56[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mframes a call beyond a long source-line prefix without changing the captured evidence[32m 7[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the runtime contract is declared, not assumed[2m > [22mrequires Node 22 across the workspace[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the runtime contract is declared, not assumed[2m > [22mmakes no Node >=18 claim anywhere in the workspace[32m 1[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the runtime contract is declared, not assumed[2m > [22mpins the headless shell version used for deterministic capture[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the runtime contract is declared, not assumed[2m > [22mcompares versions correctly[32m 1[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: this environment satisfies the contract[2m > [22mreports a usable build and render environment[32m 205[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: this environment satisfies the contract[2m > [22mrecords an executed version for every dependency, not just a path[32m 159[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: this environment satisfies the contract[2m > [22mconfirms the running headless shell is the pinned build[32m 13[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the runtime contract is declared, not assumed[2m > [22mcompares versions correctly[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: this environment satisfies the contract[2m > [22mreports a usable build and render environment[32m 89[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: this environment satisfies the contract[2m > [22mrecords an executed version for every dependency, not just a path[32m 83[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: this environment satisfies the contract[2m > [22mconfirms the running headless shell is the pinned build[32m 8[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mfails when the version probe exits non-zero[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mfails when the version probe times out[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mreports missing separately from broken[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mnever reports ok without a successful execution[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mnever reports ok without a successful execution[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mfails a probe that exits zero but prints nothing[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mbounds a real probe with a timeout[33m 1002[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: a located-but-broken binary fails[2m > [22mbounds a real probe with a timeout[33m 1001[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the headless shell is verified, not merely located[2m > [22mfails when the path does not exist[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the headless shell is verified, not merely located[2m > [22mfails when the path is a directory rather than a binary[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the headless shell is verified, not merely located[2m > [22mfails when the binary cannot be executed[32m 0[2mms[22m[39m
@@ -200,48 +205,43 @@ $ vitest run --config vitest.acceptance.config.ts
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: the headless shell is verified, not merely located[2m > [22maccepts the pinned version when it actually runs[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: unsupported runtimes are rejected[2m > [22mrejects Node below the tested floor[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: unsupported runtimes are rejected[2m > [22maccepts Node at or above the floor[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: unsupported runtimes are rejected[2m > [22mprobes the real node binary rather than process.version[32m 8[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: unsupported runtimes are rejected[2m > [22mprobes the real node binary rather than process.version[32m 5[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: unsupported runtimes are rejected[2m > [22mfails when the node binary cannot be executed[32m 0[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-010.test.ts[2m > [22mAFM-010: unsupported runtimes are rejected[2m > [22mmarks a required failure as unable to build[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mplans distinct implementation stories with authored scripts, exact integer timing and captured relationships[33m 1143[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mreplans for audience/count, refuses invented evidence, repairs scripts and protects reviewed or existing project versions[33m 378[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mdoes not pad a manifest-only repository into multiple films[32m 9[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mkeeps concurrent edits to different stories and diversifies maintainer plans[32m 97[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mframes a call beyond a long source-line prefix without changing the captured evidence[32m 10[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mvalidates with no problems[32m 205[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mregisters all 18 packages, including the four owned additions[32m 197[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mkeeps every inherited HyperFrames package available[32m 184[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mkeeps packages introduced here private[32m 237[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mhas no nested package-manager root[32m 100[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mresolves every workspace dependency locally[32m 155[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mtranslates Archify's dependencies and its fast-uri override[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mkeeps the React constraints from the workspace root[32m 2[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22mfails a duplicate package name[32m 5[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mvalidates with no problems[32m 229[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mregisters all 18 packages, including the four owned additions[32m 100[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mkeeps every inherited HyperFrames package available[32m 104[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mkeeps packages introduced here private[32m 95[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mhas no nested package-manager root[32m 45[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mresolves every workspace dependency locally[32m 74[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mtranslates Archify's dependencies and its fast-uri override[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: the workspace is internally consistent[2m > [22mkeeps the React constraints from the workspace root[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22mfails a duplicate package name[32m 2[2mms[22m[39m
  [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22mfails a missing package name[32m 0[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22mfails an internal dependency pinned to a registry range[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22maccepts an internal dependency declared as workspace:*[32m 3[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22mfails an owned package that is not private[32m 6[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mcompares exact authored snapshots, retains removed objects and distinct SVG namespaces[32m 39[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mmatches parallel edges by IDs across reordering and label changes[32m 19[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mdistinguishes moves, reroutes and unchanged snapshots without semantic claims[32m 29[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mrejects missing/duplicate relationship IDs, malformed inputs and invalid diagrams[32m 32[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mcaptures implementation, APIs, models and workflow call evidence from actual files with exact immutable line citations[32m 30[2mms[22m[39m
- [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mresolves same-named exports by source module, preserves repeated call sites, and withholds shadowed/ambiguous relationships[32m 6[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22mfails an internal dependency pinned to a registry range[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22maccepts an internal dependency declared as workspace:*[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-009.test.ts[2m > [22mAFM-009: validation catches the failures it is supposed to[2m > [22mfails an owned package that is not private[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mcompares exact authored snapshots, retains removed objects and distinct SVG namespaces[32m 26[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mmatches parallel edges by IDs across reordering and label changes[32m 10[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mdistinguishes moves, reroutes and unchanged snapshots without semantic claims[32m 19[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mrejects missing/duplicate relationship IDs, malformed inputs and invalid diagrams[32m 15[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mcaptures implementation, APIs, models and workflow call evidence from actual files with exact immutable line citations[32m 20[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mresolves same-named exports by source module, preserves repeated call sites, and withholds shadowed/ambiguous relationships[32m 4[2mms[22m[39m
 [90mstderr[2m | tests/acceptance/AFM-054.compile-cancel.test.ts[2m > [22m[2mcancels the actual local render orchestration while a font request is pending
-[22m[39m[INFO] [Render] Pipeline started {"renderJobId":"7554f319-c7c2-4a34-a059-6f0a249a45a4","platform":"linux","arch":"x64","nodeVersion":"v22.23.2","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
-[INFO] [Render:trace] {"renderJobId":"7554f319-c7c2-4a34-a059-6f0a249a45a4","phase":"pipeline","status":"checkpoint","elapsedMs":5,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":1}
-[INFO] [Render:trace] {"renderJobId":"7554f319-c7c2-4a34-a059-6f0a249a45a4","phase":"compile","status":"start","elapsedMs":8,"needsAlpha":false}
+[22m[39m[INFO] [Render] Pipeline started {"renderJobId":"d220d580-a413-4a1f-8b8b-498d07607ded","platform":"linux","arch":"x64","nodeVersion":"v22.23.2","fps":{"num":30,"den":1},"format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeout":300000,"browserTimeout":120000,"pageNavigationTimeout":60000,"playerReadyTimeout":45000}
+[INFO] [Render:trace] {"renderJobId":"d220d580-a413-4a1f-8b8b-498d07607ded","phase":"pipeline","status":"checkpoint","elapsedMs":3,"message":"started","format":"mp4","quality":"standard","browserGpuMode":"software","forceScreenshot":true,"protocolTimeoutMs":300000,"pageNavigationTimeoutMs":60000,"playerReadyTimeoutMs":45000,"requestedWorkers":1}
+[INFO] [Render:trace] {"renderJobId":"d220d580-a413-4a1f-8b8b-498d07607ded","phase":"compile","status":"start","elapsedMs":4,"needsAlpha":false}
 
 [90mstderr[2m | tests/acceptance/AFM-054.compile-cancel.test.ts[2m > [22m[2mcancels the actual local render orchestration while a font request is pending
-[22m[39m[INFO] [Render:trace] {"renderJobId":"7554f319-c7c2-4a34-a059-6f0a249a45a4","phase":"compile","status":"error","elapsedMs":29,"durationMs":20,"message":"cancel pending compile","needsAlpha":false}
+[22m[39m[INFO] [Render:trace] {"renderJobId":"d220d580-a413-4a1f-8b8b-498d07607ded","phase":"compile","status":"error","elapsedMs":16,"durationMs":12,"message":"cancel pending compile","needsAlpha":false}
 
- [32m✓[39m tests/acceptance/AFM-054.compile-cancel.test.ts[2m > [22mcancels the actual local render orchestration while a font request is pending[32m 33[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-054.compile-cancel.test.ts[2m > [22mcancels the actual local render orchestration while a font request is pending[32m 19[2mms[22m[39m
 
 [2m Test Files [22m [1m[32m19 passed[39m[22m[90m (19)[39m
 [2m      Tests [22m [1m[32m223 passed[39m[22m[90m (223)[39m
-[2m   Start at [22m 20:31:15
-[2m   Duration [22m 702.11s[2m (transform 16.22s, setup 0ms, import 21.98s, tests 677.74s, environment 2ms)[22m
+[2m   Start at [22m 21:55:23
+[2m   Duration [22m 390.42s[2m (transform 7.80s, setup 0ms, import 11.41s, tests 377.49s, environment 1ms)[22m
 
 
-FINISHED: 2026-09-11T20:42:57Z
+FINISHED: 2026-09-11T22:01:53Z
 EXIT=0
