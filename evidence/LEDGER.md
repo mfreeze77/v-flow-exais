@@ -193,13 +193,21 @@ retained. The complete specification and tickets ship in `docs/implementation/`.
 Push authorized by the owner; see the note in the session transcript about
 vendored font binaries becoming public on first push.
 The initial 15 commits were pushed, and remote `main` was verified at the review
-baseline SHA above. Current implementation work is on `feat/repo-to-video`.
+baseline SHA above.
+
+All work is on `main`; there are no other branches. PRs #1, #2 and #3 are merged
+and their branches deleted. `feat/repo-to-video` is gone too — it held nothing
+`main` did not already have, and a stale pointer to it here was worse than no
+pointer at all.
 
 ## Next dependency-ready work
 
-AFM-010, the remaining AFM-011 criteria, and AFM-012 (then AFM-013–016) close E02.
-AFM-007 and AFM-008 close E01
-and are required for gate AFM-129 / G0, but are off the render critical path.
+AFM-012 is complete: `evidence/tickets/AFM-012/result.json`, checkpoint PASS at
+commit `ee23fca`, whose tree `5bb5071` is the exact source that was tested.
+
+AFM-010, the remaining AFM-011 criteria, and AFM-013–016 close E02. AFM-007 and
+AFM-008 close E01 and are required for gate AFM-129 / G0, but are off the render
+critical path.
 
 The owner-requested end-to-end slice has exercised E03–E07 and source/batch
 integration ahead of complete epic closure. Continue from
