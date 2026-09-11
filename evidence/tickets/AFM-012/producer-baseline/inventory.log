@@ -1,0 +1,5 @@
+{"event":"producer_tests_classified","total":103,"unit":{"bun":42,"vitest":42},"integration":{"bun":10,"vitest":9}}
+  unit/bun selected: 42
+  unit/vitest selected: 42
+  integration/bun selected: 10
+  integration/vitest selected: 9

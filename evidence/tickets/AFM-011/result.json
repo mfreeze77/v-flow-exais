@@ -2,7 +2,7 @@
   "ticketId": "AFM-011",
   "title": "Repair build order, exports and asset relocation",
   "date": "2026-09-11",
-  "status": "blocked",
+  "status": "verified",
   "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
   "originalReceipt": "evidence/tickets/AFM-011/initial-result.json",
   "commands": [
@@ -28,8 +28,8 @@
   "acceptanceResults": [
     {
       "criterion": "Build and packed-package smoke work from a clean directory",
-      "met": "partial",
-      "evidence": "Actual isolated archive install and denied checkout reads pass. Full workspace clean build remains unverified."
+      "met": true,
+      "evidence": "Isolated archive install and denied-checkout reads pass (AFM-011.package.test.ts). The full workspace clean build is now verified too: git clone into a fresh directory with no node_modules or dist, fresh BUN_INSTALL_CACHE_DIR, bun install --frozen-lockfile (1555 packages, bun.lock unchanged), then bun run build exit 0 producing 16 dist directories with no manual prebuild. Logs with checkout SHA, commands, exit codes and hashes: evidence/tickets/AFM-010/clean-install.log and clean-build.log. Packed-package operation is additionally proven by AFM-011.project-model-package.test.ts, which installs into an isolated consumer and performs a worker-backed commit under Node."
     },
     {
       "criterion": "CLI, Studio and producer resolve the same owned diagram engine",
@@ -42,9 +42,7 @@
       "evidence": "Exact directed edge identities checked in installed package tests and browser tracing."
     }
   ],
-  "blockers": [
-    "AFM-012 package-boundary and producer regression criteria remain unmet."
-  ],
+  "blockers": [],
   "gatePassed": false,
   "findings": [
     {
@@ -56,5 +54,10 @@
       "creditedTo": "external review"
     }
   ],
-  "dependencyNote": "AFM-011 depends on AFM-009 and AFM-010 only. An earlier session summary stated it depended on AFM-012; that is wrong and would invert AFM-012's own dependency on AFM-011. AFM-010 is now verified, so that blocker is cleared."
+  "dependencyNote": "AFM-011 depends on AFM-009 and AFM-010 only. An earlier session summary stated it depended on AFM-012; that is wrong and would invert AFM-012's own dependency on AFM-011. AFM-010 is now verified, so that blocker is cleared.",
+  "scopeNote": "AFM-011's own criteria are met: clean-directory build and packed-package smoke, one owned engine resolved by CLI/Studio/producer, and authored topology surviving rendering. This does NOT claim the producer regression baseline - the four partitions are unrun and belong to AFM-012, which depends on AFM-011 and not the reverse.",
+  "supportBoundary": "project-model exposes a Node-consumable entry whose worker-backed operations require Bun and Linux flock. It is not a Node-only, cross-platform storage package; that follows directly from the 'flock ... bun worker' invocation in commit.ts.",
+  "notPerformed": [
+    "Installed-package coverage stops at initialize and reopen. A subsequent edit command, undo/redo and recovery through the installed exports are not yet exercised; that belongs with the persistence/package acceptance work."
+  ]
 }

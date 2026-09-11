@@ -1,0 +1,370 @@
+# producer partition: unit / bun
+# commit: 81ae028adfdce3a56f78cfa53e9833c08308f0d4
+# command: bun run test:unit:bun
+# date: 2026-09-11T16:41:25Z
+
+$ node scripts/run-test-lane.mjs unit bun
+[producer:unit/bun] Selected 42 test files.
+  bun src/plan-parity-analysis.test.ts
+  bun src/plan-parity-contract.test.ts
+  bun src/plan-parity-fixture.test.ts
+  bun src/plan-parity-harness.test.ts
+  bun src/regression-harness-distributed.test.ts
+  bun src/regression-harness-parse.test.ts
+  bun src/regression-shard-plan.test.ts
+  bun src/server.test.ts
+  bun src/services/animatedGifPrep.test.ts
+  bun src/services/deterministicFonts-aliasSupplement.test.ts
+  bun src/services/deterministicFonts-bundledSubset.test.ts
+  bun src/services/deterministicFonts-failClosed.test.ts
+  bun src/services/deterministicFonts-googleSubsets.test.ts
+  bun src/services/deterministicFonts-retries.test.ts
+  bun src/services/deterministicFonts-textSubset.test.ts
+  bun src/services/deterministicFonts.test.ts
+  bun src/services/distributed/planFormatBanlist.test.ts
+  bun src/services/distributed/planProtocol.test.ts
+  bun src/services/distributed/planV2.test.ts
+  bun src/services/distributed/publicExports.test.ts
+  bun src/services/distributed/rebuildExtractedFrames.test.ts
+  bun src/services/distributed/renderChunkFallback.test.ts
+  bun src/services/distributed/renderChunkVideoMetadata.test.ts
+  bun src/services/distributed/videoMetadata.test.ts
+  bun src/services/fileServer-seededRandom.test.ts
+  bun src/services/fontCompression.test.ts
+  bun src/services/frameDirCache.test.ts
+  bun src/services/hdrImageTransferCache.test.ts
+  bun src/services/htmlCompiler.animatedGif.test.ts
+  bun src/services/htmlCompiler.test.ts
+  bun src/services/render/audioPadTrim.test.ts
+  bun src/services/render/planValidation.test.ts
+  bun src/services/render/renderFormat.test.ts
+  bun src/services/render/runtimeEnvSnapshot.test.ts
+  bun src/services/render/shared.test.ts
+  bun src/services/render/stages/captureStreamingStage.test.ts
+  bun src/services/render/stages/encodeStage.test.ts
+  bun src/services/render/stages/mutedParity.test.ts
+  bun src/services/render/stages/planHash.test.ts
+  bun src/services/render/stages/probeFailures.test.ts
+  bun src/services/render/stages/probeStage.test.ts
+  bun src/services/renderMediaCollector.test.ts
+bun test v1.3.13 (bf2e2cec)
+
+src/plan-parity-analysis.test.ts:
+(pass) parseCanonicalFrameHashes() > returns ordered SHA-256 hashes from ffmpeg framemd5 output [5.41ms]
+(pass) parseCanonicalFrameHashes() > refuses malformed or empty output [1.67ms]
+(pass) normalizeFfprobeMetadata() > normalizes relevant video, audio, and duration fields [0.42ms]
+(pass) normalizeFfprobeMetadata() > uses stream duration and maps N/A values to null [0.17ms]
+
+ 4 pass
+ 0 fail
+ 5 expect() calls
+Ran 4 tests across 1 file. [131.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/plan-parity-contract.test.ts:
+(pass) comparePlanParityMeasurements() > accepts semantic parity while only reporting encoded and transport differences [1.67ms]
+(pass) comparePlanParityMeasurements() > fails on decoded frame, PCM, metadata, duration, or chunk drift [0.39ms]
+(pass) comparePlanParityMeasurements() > can enforce encoded equality and v2 resource ceilings [0.17ms]
+(pass) comparePlanParityMeasurements() > rejects reversed or same-protocol comparisons [0.15ms]
+(pass) comparePlanParityMeasurements() > does not expose or compare planHash [0.08ms]
+
+ 5 pass
+ 0 fail
+ 18 expect() calls
+Ran 5 tests across 1 file. [24.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/plan-parity-fixture.test.ts:
+(pass) plan parity generated fixtures > generates a valid deterministic mono PCM WAV [7.99ms]
+(pass) plan parity generated fixtures > generates deterministic size-pressure bytes that vary with the seed [9.27ms]
+(pass) plan parity generated fixtures > materializes the checked-in visual/audio fixture [21.34ms]
+(pass) plan parity generated fixtures > materializes a small compression-resistant pressure payload [10.56ms]
+
+ 4 pass
+ 0 fail
+ 13 expect() calls
+Ran 4 tests across 1 file. [77.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/plan-parity-harness.test.ts:
+(pass) parsePlanParityArgs() > defaults both explicit protocol runs to lambda-local [0.30ms]
+(pass) parsePlanParityArgs() > parses resource gates and a low v1 size cap [0.15ms]
+(pass) parsePlanParityArgs() > reserves an explicit deployed-AWS target grammar [0.07ms]
+(pass) parsePlanParityArgs() > rejects bad targets and numeric flags [0.23ms]
+(pass) runPlanV2SizePressure() > records typed v1 PLAN_TOO_LARGE and still completes explicit v2 [1.96ms]
+(pass) runPlanV2SizePressure() > distinguishes non-PLAN_TOO_LARGE failures [0.06ms]
+
+ 6 pass
+ 0 fail
+ 22 expect() calls
+Ran 6 tests across 1 file. [40.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/regression-harness-distributed.test.ts:
+(pass) parseHarnessModeFlag() > parses --mode=in-process [0.09ms]
+(pass) parseHarnessModeFlag() > parses --mode=distributed-simulated [0.04ms]
+(pass) parseHarnessModeFlag() > parses --mode=lambda-local [0.06ms]
+(pass) parseHarnessModeFlag() > returns null for tokens that aren't --mode [4.38ms]
+(pass) parseHarnessModeFlag() > throws on a known prefix with a bad value [0.32ms]
+(pass) parseHarnessModeFlag() > error message lists all three accepted modes [0.12ms]
+(pass) checkDistributedSupport() > accepts mp4 SDR at 24 / 30 / 60 fps [0.19ms]
+(pass) checkDistributedSupport() > accepts explicit format=mp4 [0.12ms]
+(pass) checkDistributedSupport() > rejects fps with non-1 denominator (NTSC) [0.40ms]
+(pass) checkDistributedSupport() > rejects fps outside the {24,30,60} set [0.09ms]
+(pass) checkDistributedSupport() > accepts format=webm (distributed-supported via closed-GOP concat-copy) [0.02ms]
+(pass) checkDistributedSupport() > rejects hdr=true [0.05ms]
+(pass) checkDistributedSupport() > accepts hdr=false (or unset) [0.05ms]
+(pass) resolveMinPsnrForMode() > in-process mode uses the fixture's own threshold verbatim [0.04ms]
+(pass) resolveMinPsnrForMode() > distributed-simulated uses the fixture's own minPsnr when above the absolute floor [0.02ms]
+(pass) resolveMinPsnrForMode() > distributed-simulated raises pathologically-low thresholds to the absolute floor [0.03ms]
+(pass) resolveMinPsnrForMode() > lambda-local mirrors distributed-simulated's pathology floor [0.03ms]
+(pass) resolveMinPsnrForMode() > every committed fixture authors a minPsnr above the absolute floor [245.37ms]
+
+ 18 pass
+ 0 fail
+ 42 expect() calls
+Ran 18 tests across 1 file. [1214.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/regression-harness-parse.test.ts:
+(pass) parseArgs() — --exclude-tags > splits a single --exclude-tags argument on commas [0.89ms]
+(pass) parseArgs() — --exclude-tags > accepts a single tag with no comma [0.06ms]
+(pass) parseArgs() — --exclude-tags > supports repeated --exclude-tags flags (accumulating) [0.10ms]
+(pass) parseArgs() — --exclude-tags > matches the values baked into Dockerfile.test ENTRYPOINT and package.json scripts [0.45ms]
+(pass) parseArgs() — --exclude-tags > defaults excludeTags to an empty array when the flag is absent [0.13ms]
+(pass) regression temporary roots > isolates repeated suite runs and preserves the old predictable directory [4.32ms]
+
+ 6 pass
+ 0 fail
+ 14 expect() calls
+Ran 6 tests across 1 file. [798.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/regression-shard-plan.test.ts:
+⚠️  Skipping css-import-scoping: invalid meta.json - meta.json: 'maxAudioLagWindows' must be >= 1
+⚠️  Skipping anime-boundary: missing meta.json
+⚠️  Skipping css-boundary: missing meta.json
+⚠️  Skipping css-var-fonts: invalid meta.json - meta.json: 'minAudioCorrelation' must be between 0 and 1
+⚠️  Skipping gsap-boundary: missing meta.json
+⚠️  Skipping lottie-boundary: missing meta.json
+⚠️  Skipping waapi-boundary: missing meta.json
+⚠️  Skipping _smoke: missing src/ directory
+⚠️  Skipping fast-capture-3d: missing meta.json
+⚠️  Skipping parity: missing src/ directory
+⚠️  Skipping perf: missing src/ directory
+⚠️  Skipping playback-rate-av-parity: missing src/ directory
+⚠️  Skipping transparency-regression: invalid meta.json - meta.json: 'minPsnr' must be a non-negative number
+⚠️  Skipping wysiwyg-subcomp-css: invalid meta.json - meta.json: 'maxAudioLagWindows' must be >= 1
+(pass) shard planner fixture discovery > sees every fixture the harness can actually run [1051.60ms]
+⚠️  Skipping css-import-scoping: invalid meta.json - meta.json: 'maxAudioLagWindows' must be >= 1
+⚠️  Skipping anime-boundary: missing meta.json
+⚠️  Skipping css-boundary: missing meta.json
+⚠️  Skipping css-var-fonts: invalid meta.json - meta.json: 'minAudioCorrelation' must be between 0 and 1
+⚠️  Skipping gsap-boundary: missing meta.json
+⚠️  Skipping lottie-boundary: missing meta.json
+⚠️  Skipping waapi-boundary: missing meta.json
+⚠️  Skipping _smoke: missing src/ directory
+⚠️  Skipping fast-capture-3d: missing meta.json
+⚠️  Skipping parity: missing src/ directory
+⚠️  Skipping perf: missing src/ directory
+⚠️  Skipping playback-rate-av-parity: missing src/ directory
+⚠️  Skipping transparency-regression: invalid meta.json - meta.json: 'minPsnr' must be a non-negative number
+⚠️  Skipping wysiwyg-subcomp-css: invalid meta.json - meta.json: 'maxAudioLagWindows' must be >= 1
+(pass) shard planner fixture discovery > schedules exactly the fixtures the harness can run, minus explicit exclusions [1086.70ms]
+(pass) shard planner fixture discovery > rejects a fixture listed in both timings and excluded [288.11ms]
+(pass) shard planner fixture discovery > never mixes harness modes within a shard [235.99ms]
+(pass) shard planner fixture discovery > gives every shard a mode the harness accepts [241.04ms]
+(pass) shard planner fixture discovery > rejects a distributed fixture that is not scheduled [234.87ms]
+⚠️  Skipping css-import-scoping: invalid meta.json - meta.json: 'maxAudioLagWindows' must be >= 1
+⚠️  Skipping anime-boundary: missing meta.json
+⚠️  Skipping css-boundary: missing meta.json
+⚠️  Skipping css-var-fonts: invalid meta.json - meta.json: 'minAudioCorrelation' must be between 0 and 1
+⚠️  Skipping gsap-boundary: missing meta.json
+⚠️  Skipping lottie-boundary: missing meta.json
+⚠️  Skipping waapi-boundary: missing meta.json
+⚠️  Skipping _smoke: missing src/ directory
+⚠️  Skipping fast-capture-3d: missing meta.json
+⚠️  Skipping parity: missing src/ directory
+⚠️  Skipping perf: missing src/ directory
+⚠️  Skipping playback-rate-av-parity: missing src/ directory
+⚠️  Skipping transparency-regression: invalid meta.json - meta.json: 'minPsnr' must be a non-negative number
+⚠️  Skipping wysiwyg-subcomp-css: invalid meta.json - meta.json: 'maxAudioLagWindows' must be >= 1
+(pass) shard planner fixture discovery > only assigns distributed mode to fixtures the harness can actually run that way [852.03ms]
+(pass) shard planner fixture discovery > would reject a distributed fixture the harness refuses to run chunked [0.12ms]
+(pass) shard planner fixture discovery > gives every distributed fixture a written reason [1.94ms]
+(pass) shard planner fixture discovery > gives every excluded fixture a written reason [1.90ms]
+(pass) shard planner fixture discovery > finds fixtures nested under tests/distributed/ [247.03ms]
+(pass) packShards() > spreads work so the heaviest shard is no worse than longest-item-plus-average [0.60ms]
+(pass) packShards() > keeps a single indivisible fixture as the floor [0.19ms]
+(pass) packShards() > assumes untimed fixtures are expensive rather than free [0.27ms]
+(pass) packShards() > emits no empty shards when fixtures are fewer than the shard count [0.07ms]
+(pass) planShards() > schedules or explicitly excludes every fixture on disk [222.79ms]
+(pass) planShards() > produces a matrix the workflow can consume [213.65ms]
+(pass) planShards() > runs every fixture that is not explicitly excluded [456.42ms]
+
+ 18 pass
+ 0 fail
+ 208 expect() calls
+Ran 18 tests across 1 file. [5.89s]
+bun test v1.3.13 (bf2e2cec)
+
+src/server.test.ts:
+(pass) parseRenderOptions — variables > forwards a plain JSON object [5.62ms]
+(pass) parseRenderOptions — variables > drops non-object variables to undefined [0.16ms]
+(pass) parseRenderOptions — outputResolution > normalizes canonical presets and aliases [0.26ms]
+(pass) parseRenderOptions — outputResolution > drops unknown / non-string resolutions to undefined [0.08ms]
+(pass) parseRenderOptions — render strictness > preserves best-effort compatibility and requires an explicit strict opt-in [0.05ms]
+(pass) parseRenderOptions — outputDynamicRange > forwards auto [0.02ms]
+(pass) parseRenderOptions — outputDynamicRange > forwards hdr [0.01ms]
+(pass) parseRenderOptions — outputDynamicRange > forwards sdr
+(pass) parseRenderOptions — outputDynamicRange > drops invalid values from the lenient parser [0.03ms]
+(pass) parseRenderOptions — outputDynamicRange > maps legacy hdrMode auto to auto [0.05ms]
+(pass) parseRenderOptions — outputDynamicRange > maps legacy hdrMode force-hdr to hdr
+(pass) parseRenderOptions — outputDynamicRange > maps legacy hdrMode force-sdr to sdr
+(pass) parseRenderOptions — outputDynamicRange > prefers the canonical field when both equivalent fields are present [0.03ms]
+(pass) prepareRenderBody — validation > treats an empty projectDir as absent and uses inline HTML [0.79ms]
+(pass) prepareRenderBody — validation > treats an empty projectDir as absent and uses inline HTML [0.18ms]
+(pass) prepareRenderBody — validation > rejects an explicitly-supplied non-object variables [0.10ms]
+(pass) prepareRenderBody — validation > rejects an explicitly-supplied invalid outputDynamicRange [0.06ms]
+(pass) prepareRenderBody — validation > rejects conflicting canonical and legacy policies [0.10ms]
+(pass) prepareRenderBody — validation > rejects an explicitly-supplied invalid outputResolution [0.07ms]
+(pass) prepareRenderBody — validation > rejects a non-string outputResolution instead of silently dropping it [0.04ms]
+(pass) prepareRenderBody — validation > rejects outputResolution combined with an alpha format (webm/mov) [0.12ms]
+(pass) prepareRenderBody — validation > threads variables + outputResolution into the prepared render input [0.31ms]
+
+ 22 pass
+ 0 fail
+ 45 expect() calls
+Ran 22 tests across 1 file. [791.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/animatedGifPrep.test.ts:
+(pass) buildAnimatedGifTranscodeArgs > builds VP9 WebM args with alpha and finite-loop expansion [0.20ms]
+(pass) buildAnimatedGifTranscodeArgs > clone-pads the tail when the clip window outlives the looped source [2.46ms]
+(pass) prepareAnimatedGifInputs > rewrites animated GIF images to muted looped videos [7.74ms]
+(pass) prepareAnimatedGifInputs > leaves single-frame GIF images unchanged [0.64ms]
+(pass) prepareAnimatedGifInputs > lets data-loop override infinite GIF metadata [1.32ms]
+(pass) prepareAnimatedGifInputs > expands finite loop metadata into the transcoded source [0.90ms]
+(pass) prepareAnimatedGifInputs > uses source asset mappings for remote GIF URLs [1.22ms]
+(pass) prepareAnimatedGifInputs > propagates actionable transcode failure messages [0.82ms]
+
+ 8 pass
+ 0 fail
+ 30 expect() calls
+Ran 8 tests across 1 file. [609.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/deterministicFonts-aliasSupplement.test.ts:
+[INFO] [Compiler] Fetched 2 font face(s) for "Inter" from Google Fonts (cached to /tmp/hf-font-alias-puM4kX/inter)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) aliased font-family supplementation > supplements a cross-typeface alias from the canonical family [371.77ms]
+[INFO] [Compiler] Fetched 4 font face(s) for "Inter" from Google Fonts (cached to /tmp/hf-font-alias-puM4kX/inter)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) aliased font-family supplementation > collapses a variable font's shared source into one weight-range rule [4.26ms]
+[INFO] [Compiler] Fetched 8 font face(s) for "Inter" from Google Fonts (cached to /tmp/hf-font-alias-puM4kX/inter)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) aliased font-family supplementation > collapses shared sources when Google interleaves subsets without text= [5.90ms]
+[INFO] [Compiler] Fetched 6 font face(s) for "Inter" from Google Fonts (cached to /tmp/hf-font-alias-puM4kX/inter)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) aliased font-family supplementation > keeps overlapping subsets in response order when collapsing [3.93ms]
+(pass) aliased font-family supplementation > has a canonical display name for every alias target [0.61ms]
+[INFO] [Compiler] Fetched 2 font face(s) for "Montserrat" from Google Fonts (cached to /tmp/hf-font-alias-puM4kX/montserrat)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) aliased font-family supplementation > still supplements a self-referencing alias from its own family [3.08ms]
+
+ 6 pass
+ 0 fail
+ 89 expect() calls
+Ran 6 tests across 1 file. [422.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/deterministicFonts-bundledSubset.test.ts:
+[INFO] [Compiler] Fetched 2 font face(s) for "Noto Sans JP" from Google Fonts (cached to /tmp/hf-font-subset-jHGC5X/noto-sans-jp)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) bundled subset coverage > declares the bundle's subset and keeps the subsets it omits [484.87ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "Inter" from Google Fonts (cached to /tmp/hf-font-subset-jHGC5X/inter)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) bundled Latin precedence > retains text subsets and places bundled Latin after overlapping fetched faces [4.06ms]
+
+ 2 pass
+ 0 fail
+ 13 expect() calls
+Ran 2 tests across 1 file. [538.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/deterministicFonts-failClosed.test.ts:
+[WARN] [Compiler] No deterministic font mapping for: NotARealFontFamilyForTest
+  Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
+  To fix, pick one:
+    1. Use a mapped font name instead (see list above)
+    2. Add a @font-face block in your HTML with a local or hosted font file
+    3. Install the font locally on the render machine (Docker: add to Dockerfile)
+    4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
+  Docs: https://hyperframes.heygen.com/docs/fonts
+(pass) injectDeterministicFontFaces — failClosedFontFetch: false (default) > swallows a network failure and returns the original HTML (no throw) [12.24ms]
+[WARN] [Compiler] No deterministic font mapping for: NotARealFontFamilyForTest
+  Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
+  To fix, pick one:
+    1. Use a mapped font name instead (see list above)
+    2. Add a @font-face block in your HTML with a local or hosted font file
+    3. Install the font locally on the render machine (Docker: add to Dockerfile)
+    4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
+  Docs: https://hyperframes.heygen.com/docs/fonts
+(pass) injectDeterministicFontFaces — failClosedFontFetch: false (default) > swallows a 404 response and returns the original HTML (no throw) [1.70ms]
+[WARN] [Compiler] No deterministic font mapping for: NotARealFontFamilyForTest
+  Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
+  To fix, pick one:
+    1. Use a mapped font name instead (see list above)
+    2. Add a @font-face block in your HTML with a local or hosted font file
+    3. Install the font locally on the render machine (Docker: add to Dockerfile)
+    4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
+  Docs: https://hyperframes.heygen.com/docs/fonts
+(pass) injectDeterministicFontFaces — failClosedFontFetch: false (default) > swallows a 5xx response and returns the original HTML (no throw) [1.46ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: false (default) > preserves legacy behavior when no options object is supplied at all [0.05ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "DM+Mono" from Google Fonts (cached to /root/.cache/hyperframes/fonts/dm-mono)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > resolves URL-style family DM+Mono through Google Fonts [5.12ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "IBM+Plex+Mono" from Google Fonts (cached to /root/.cache/hyperframes/fonts/ibm-plex-mono)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > resolves URL-style family IBM+Plex+Mono through Google Fonts [1.62ms]
+[INFO] [Compiler] Fetched 1 font face(s) for "Spline+Sans+Mono" from Google Fonts (cached to /root/.cache/hyperframes/fonts/spline-sans-mono)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > resolves URL-style family Spline+Sans+Mono through Google Fonts [1.56ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > throws FontFetchUnavailableError after retrying a network failure [1.32ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > throws on a 4xx response when font is completely unresolvable [0.86ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > throws on a 404 response when font is completely unresolvable [0.98ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > fails closed when a secondary family in the authored cascade is unresolved [1.12ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > throws FontFetchUnavailableError on an exhausted 5xx response [1.93ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > includes the requested URL in 5xx errors [0.79ms]
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > does NOT throw when bundled-font Google Fonts supplement returns no extra faces [2.14ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > does NOT throw when font-family uses unresolved CSS var() references [0.55ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > does NOT throw when font-family uses a CSS var() reference with a fallback [1.04ms]
+[INFO] [Compiler] Injected deterministic @font-face rules for 2 requested font families
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > resolves simple CSS var() font aliases when injecting deterministic fonts [2.27ms]
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > still resolves concrete fonts alongside var() in mixed declarations [1.80ms]
+(pass) injectDeterministicFontFaces — failClosedFontFetch: true > does NOT throw when the HTML requests no fonts at all [0.29ms]
+(pass) FontFetchError > exposes the FONT_FETCH_FAILED typed-failure code [0.18ms]
+
+ 20 pass
+ 0 fail
+ 50 expect() calls
+Ran 20 tests across 1 file. [393.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/deterministicFonts-googleSubsets.test.ts:
+[INFO] [Compiler] Fetched 2 font face(s) for "TestFam" from Google Fonts (cached to /tmp/hf-font-cache-fAqnkK/testfam)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) Google Fonts multi-subset embedding > downloads and embeds EACH subset distinctly (no cache collision) [357.84ms]
+[INFO] [Compiler] Fetched 2 font face(s) for "TestFam" from Google Fonts (cached to /tmp/hf-font-cache-fAqnkK/testfam)
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) Google Fonts multi-subset embedding > preserves each face's unicode-range so the browser picks the right subset per codepoint [2.67ms]
+
+ 2 pass
+ 0 fail
+ 6 expect() calls
+Ran 2 tests across 1 file. [393.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/deterministicFonts-retries.test.ts:
