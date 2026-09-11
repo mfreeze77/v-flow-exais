@@ -56,7 +56,7 @@
     "benchmark": "tsx src/benchmark.ts",
     "bench:hdr": "tsx src/benchmark.ts --tags hdr",
     "test": "bun run test:unit",
-    "test:classification": "node --test scripts/test-classification.test.mjs && node scripts/check-test-classification.mjs",
+    "test:classification": "node --test scripts/test-classification.test.mjs scripts/run-test-lane.test.mjs && node scripts/check-test-classification.mjs",
     "test:unit": "bun run test:classification && node scripts/run-test-lane.mjs unit",
     "test:unit:bun": "node scripts/run-test-lane.mjs unit bun",
     "test:unit:vitest": "node scripts/run-test-lane.mjs unit vitest",
