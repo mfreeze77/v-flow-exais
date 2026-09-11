@@ -77,6 +77,13 @@
 
 Conditional network/provider interfaces retain their code and local contract tests. Real hosted or model evidence is separate and must not be inferred from mock results. The full local workflow stays release-required.
 
+2026-09-11 revision checkpoint: CAP-023 and CAP-052 have a shared local
+before/head Git capture and authored diagram comparison service, API and CLI.
+Removed objects retain their before snapshot; source, diagram and delta receipts
+are hashed. Sixteen focused tests and 42 inherited tests pass. Studio review UI,
+PR intake, editable change films and complete command coverage remain open.
+See `evidence/tickets/AFM-037/result.json` and `docs/designs/revision-review.md`.
+
 2026-09-11 checkpoint: CAP-053/054 are partially implemented. Managed projects
 have typed source-backed proposal submission, claim/diff review, revision,
 rejection, atomic acceptance and undo. CLI and pinned-browser evidence is in

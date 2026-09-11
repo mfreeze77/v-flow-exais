@@ -10,6 +10,7 @@ import {
 } from "@hyperframes/studio-server";
 import { setCommandExitCode } from "../utils/commandResult";
 import { proposalActions, runProjectProposal } from "./projectProposal";
+import { reviewActions, runProjectReview } from "./projectReview";
 
 /** The CLI shares the Studio command validator, immutable store and batch service. */
 export default defineCommand({
@@ -23,7 +24,7 @@ export default defineCommand({
       type: "positional",
       default: "list",
       description:
-        "list | plan | plan-stories | revise-story | accept-stories | from-source | import | get | command | build | export | resume | batch-status | download | proposal-context | propose | proposals | review-proposal | revise-proposal | accept-proposal | reject-proposal",
+        "list | plan | plan-stories | revise-story | accept-stories | from-source | compare-revisions | get-review | compare-diagrams | import | get | command | build | export | resume | batch-status | download | proposal-context | propose | proposals | review-proposal | revise-proposal | accept-proposal | reject-proposal",
     },
     source: {
       type: "string",
@@ -34,6 +35,8 @@ export default defineCommand({
       description: "Unified project data directory; defaults to VFLOW_DATA_HOME.",
     },
     id: { type: "string", description: "Project or batch ID." },
+    before: { type: "string", description: "Local Git revision for the before snapshot." },
+    head: { type: "string", description: "Local Git revision for the head snapshot." },
     audience: {
       type: "string",
       default: "developers",
@@ -128,6 +131,7 @@ export default defineCommand({
     try {
       let result: any;
       if (proposalActions.has(args.action)) result = await runProjectProposal(service, args);
+      else if (reviewActions.has(args.action)) result = await runProjectReview(service, args);
       else if (args.action === "list") result = { projects: service.list() };
       else if (args.action === "plan" || args.action === "from-source") {
         const story = {

@@ -23,6 +23,12 @@ import { nativeTitle } from "./videoProposals";
 import { ProjectProposalService } from "./projectProposals";
 import type { ProposalProvider } from "./proposalTypes";
 import { assertStoryReview } from "./storyIntake";
+import {
+  createRevisionReview,
+  readRevisionReview,
+  type RevisionReviewRequest,
+} from "./revisionReview";
+import { compareReviewDiagrams, type DiagramReviewRequest } from "./diagramReview";
 
 const validId = (id: string) => /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,127}$/.test(id);
 export interface ProjectServiceOptions {
@@ -35,12 +41,14 @@ export class UnifiedProjectService {
   readonly projectsDir: string;
   readonly intakesDir: string;
   readonly batchesDir: string;
+  readonly reviewsDir: string;
   readonly proposals: ProjectProposalService;
   constructor(readonly options: ProjectServiceOptions) {
     this.projectsDir = join(options.home, "projects");
     this.intakesDir = join(options.home, "intakes");
     this.batchesDir = join(options.home, "batches");
-    for (const dir of [this.projectsDir, this.intakesDir, this.batchesDir])
+    this.reviewsDir = join(options.home, "reviews");
+    for (const dir of [this.projectsDir, this.intakesDir, this.batchesDir, this.reviewsDir])
       mkdirSync(dir, { recursive: true });
     this.proposals = new ProjectProposalService(this, options.proposalProvider);
   }
@@ -112,6 +120,15 @@ export class UnifiedProjectService {
   }
   async intake(request: SourceRequest) {
     return createRepositoryIntake(this.intakesDir, this.options.sourceRoots, request);
+  }
+  async reviewRevisions(request: RevisionReviewRequest) {
+    return createRevisionReview(this.reviewsDir, this.options.sourceRoots, request);
+  }
+  readReview(id: string) {
+    return readRevisionReview(this.reviewsDir, id);
+  }
+  async compareReview(id: string, request: DiagramReviewRequest) {
+    return compareReviewDiagrams(this.reviewsDir, id, request);
   }
   readIntake(id: string): RepositoryIntake {
     if (!/^intake-[0-9a-f-]{36}$/.test(id)) throw new Error("Invalid intake ID.");

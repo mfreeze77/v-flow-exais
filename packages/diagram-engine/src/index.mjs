@@ -1,5 +1,6 @@
 /** Owned, side-effect-free typed diagram compilation and explicit asset utilities. */
 export { compileDiagram, ENGINE_VERSION } from "./compile.mjs";
+export { compareDiagrams, repositoryIdentity } from "./compare.mjs";
 export {
   assetRoots,
   brandMarksPath,

@@ -40,6 +40,14 @@ export function registerProjectCommandRoutes(api: Hono, adapter: StudioApiAdapte
   registerProjectProposalRoutes(api, service);
   api.get("/vflow/sources", (c) => c.json({ roots: service.roots() }));
   api.get("/vflow/projects", (c) => c.json({ projects: service.list() }));
+  api.post("/vflow/reviews", async (c) =>
+    c.json(await service.reviewRevisions(await c.req.json())),
+  );
+  api.get("/vflow/reviews/:id", (c) => c.json(service.readReview(c.req.param("id"))));
+  api.post("/vflow/reviews/:id/diagrams", async (c) => {
+    const result = await service.compareReview(c.req.param("id"), await c.req.json());
+    return c.json(result, result.ok ? 200 : 400);
+  });
   api.post("/vflow/intakes", async (c) => c.json(await service.intake(await c.req.json())));
   api.get("/vflow/intakes/:id", (c) => c.json(service.readIntake(c.req.param("id"))));
   api.post("/vflow/intakes/:id/plan", async (c) =>

@@ -18,8 +18,8 @@ const skillRoot = path.resolve(__dirname, '..');
 const cli = path.join(skillRoot, 'bin/archify.mjs');
 const baseFixture = path.join(skillRoot, 'examples/checkout-platform.base.architecture.json');
 const headFixture = path.join(skillRoot, 'examples/checkout-platform.head.architecture.json');
-const checkedArtifact = path.resolve(skillRoot, '../examples/checkout-platform-delta.html');
-const checkedReceipt = path.resolve(skillRoot, '../examples/checkout-platform-delta.receipt.json');
+const checkedArtifact = path.resolve(skillRoot, '../../examples/upstream-archify/checkout-platform-delta.html');
+const checkedReceipt = path.resolve(skillRoot, '../../examples/upstream-archify/checkout-platform-delta.receipt.json');
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'archify-delta-'));
 
 const read = (file) => JSON.parse(fs.readFileSync(file, 'utf8'));

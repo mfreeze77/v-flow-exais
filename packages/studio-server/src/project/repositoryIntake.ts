@@ -87,7 +87,7 @@ const skipped = new Set([
   "__tests__",
   "out",
 ]);
-const safeFile = (name: string) =>
+export const safeSourceFile = (name: string) =>
   !name.split("/").some((part) => part.startsWith(".") || skipped.has(part)) &&
   !/^(docs\/(upstream|implementation)|tools\/upstream-archify)\//.test(name) &&
   !/(^|\/)(?:credentials|secrets?|id_rsa|id_ed25519|config\.local)(\.|\/|$)/i.test(name) &&
@@ -155,7 +155,7 @@ function inventory(root: string): string[] {
       if (depth > 8 || files.length > 10_000) return;
       for (const entry of readdirSync(join(root, dir), { withFileTypes: true })) {
         const name = dir ? `${dir}/${entry.name}` : entry.name;
-        if (!safeFile(name) || entry.isSymbolicLink()) continue;
+        if (!safeSourceFile(name) || entry.isSymbolicLink()) continue;
         if (entry.isDirectory()) visit(name, depth + 1);
         else if (entry.isFile()) files.push(name);
       }
@@ -177,8 +177,15 @@ function readSource(root: string, name: string): Buffer | null {
   }
 }
 
-export function inspectRepository(root: string, snapshotDir: string): RepositoryFacts {
-  const names = [...new Set(inventory(root))].filter(safeFile).sort().slice(0, 10_000);
+export function inspectRepository(
+  root: string,
+  snapshotDir: string,
+  pinned?: { revision: string; files: Map<string, Buffer> },
+): RepositoryFacts {
+  const names = [...new Set(pinned ? pinned.files.keys() : inventory(root))]
+    .filter(safeSourceFile)
+    .sort()
+    .slice(0, 10_000);
   const counts: Record<string, number> = {};
   const packages: SourcePackage[] = [];
   const files: SourceFile[] = [];
@@ -204,7 +211,7 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
       continue;
     let bytes: Buffer | null;
     try {
-      bytes = readSource(root, name);
+      bytes = pinned ? pinned.files.get(name) || null : readSource(root, name);
     } catch {
       omissions.push({
         code: "source-unreadable",
@@ -282,8 +289,8 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
         ["--no-optional-locks", "-c", `safe.directory=${root}`, "-C", root, ...args],
         { encoding: "utf8", timeout: 15_000, stdio: ["ignore", "pipe", "pipe"] },
       ).trim();
-    revision = git(["rev-parse", "HEAD"]);
-    dirty = git(["status", "--porcelain", "--untracked-files=no"]).length > 0;
+    revision = pinned?.revision || git(["rev-parse", "HEAD"]);
+    dirty = pinned ? false : git(["status", "--porcelain", "--untracked-files=no"]).length > 0;
   } catch {
     /* Local non-Git folders remain supported and explicitly unversioned. */
   }
@@ -317,7 +324,9 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
     limitations: [
       "Static implementation analysis, documentation excerpts and declared manifests. Runtime, execution order, deployed architecture and documentation truth are not inferred.",
       "Dependency, generated, hidden, test and secret-bearing inputs are excluded. Capture is bounded to 10,000 paths, 512 KB per file and 32 MB total; omissions and unsupported language analysis are reported.",
-      "Local working-tree files are captured individually with content hashes; this does not assert an atomic Git tree when files are changing during intake.",
+      pinned
+        ? "Source bytes were read from the pinned Git commit. Working-tree edits are not included. Excluded or uncaptured files remain outside analysis."
+        : "Local working-tree files are captured individually with content hashes; this does not assert an atomic Git tree when files are changing during intake.",
     ],
   };
 }

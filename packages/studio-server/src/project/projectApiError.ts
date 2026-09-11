@@ -1,8 +1,11 @@
 export function projectApiError(error: any) {
   const conflict =
-    ["project/revision-conflict", "proposal/review-conflict", "proposal/busy"].includes(
-      error?.code,
-    ) || error?.message?.includes("idempotency-conflict");
+    [
+      "project/revision-conflict",
+      "proposal/review-conflict",
+      "proposal/busy",
+      "review/revision-conflict",
+    ].includes(error?.code) || error?.message?.includes("idempotency-conflict");
   const status: 400 | 409 | 503 = conflict
     ? 409
     : error?.code === "proposal/provider-unavailable"
