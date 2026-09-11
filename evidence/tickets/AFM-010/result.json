@@ -2,7 +2,7 @@
   "ticketId": "AFM-010",
   "title": "Pin runtime, lockfile and installation prerequisites",
   "status": "verified",
-  "commit": "PENDING",
+  "commit": "44b8dd464cd9ca0b812d53d44e5c17e38065fd62",
   "date": "2026-09-11",
   "environment": {
     "execution": "docker compose run --rm workspace",
@@ -44,6 +44,12 @@
       "invocation": "bun run doctor",
       "exitCode": 0,
       "result": "canBuild true, canRender true"
+    },
+    {
+      "invocation": "bun run test:acceptance",
+      "exitCode": 0,
+      "result": "213 passed across 18 files",
+      "logPath": "evidence/tickets/AFM-010/test.log"
     }
   ],
   "artifacts": [
