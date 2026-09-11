@@ -1,93 +1,111 @@
 /**
  * AFM-010 — installation contract and runtime diagnostics.
  *
- * Reports missing runtimes and native dependencies *before* a render is
- * attempted. A render that dies halfway through because ffprobe is absent
- * wastes the expensive part and reports a confusing error; this reports the
- * real problem up front, names the exact requirement, and says how to fix it.
+ * Reports missing or broken runtimes and native dependencies *before* a render
+ * is attempted, so an expensive capture does not die halfway through with a
+ * confusing error.
  *
- * Deliberately does not "helpfully" install anything. Initial downloads are an
- * approved setup step, not something a diagnostic performs behind the user.
+ * Two false-positive paths were found in review and are closed here, because
+ * both turned "probably fine" into a green result:
+ *
+ *   1. The browser check only tested for file existence. A wrong-version or
+ *      non-executable file passed as the pinned shell, and an invalid explicit
+ *      override was concealed by silently validating the fallback instead.
+ *   2. `which` succeeding was treated as "executable". When a binary was found
+ *      but its version probe failed, the path was substituted and the check
+ *      reported ok.
+ *
+ * Discovery and successful execution are now recorded separately, every probe
+ * is bounded by a timeout, and an explicit override is never replaced by a
+ * fallback. Diagnostics stay read-only: nothing here installs anything.
  */
 
 import { execFileSync } from "node:child_process";
-import { existsSync } from "node:fs";
+import { statSync } from "node:fs";
 
 /**
  * The tested runtime contract.
  *
- * Node 22 is not a preference. Every HyperFrames package that declares an
- * engine requires >=22, and the container image is built on node:22-bookworm.
- * Archify declared >=18, which was true of Archify alone and false of the
- * combined product — AFM-010 exists partly to stop that claim being inherited.
+ * Node 22 is the tested floor: every inherited package that declares an engine
+ * requires >=22 and the image is built on node:22-bookworm-slim. Note that a
+ * package's own engine field describes that package, not the workspace — the
+ * binding statement for the combined product is this contract, together with
+ * the recorded image identity in provenance/runtime-contract.json.
  *
  * chrome-headless-shell is pinned because each Chrome stable bump shifts pixel
  * output enough to fail PSNR against the golden baselines.
  */
 export const RUNTIME_CONTRACT = {
-  node: { minimumMajor: 22, testedMajor: 22 },
-  bun: { minimum: "1.3.13", tested: "1.3.13" },
+  node: { minimumMajor: 22 },
+  bun: { minimum: "1.3.13" },
   chromeHeadlessShell: { pinned: "148.0.7778.167" },
 } as const;
 
-export type CheckSeverity = "required" | "render-only" | "optional";
-export type CheckState = "ok" | "missing" | "unsupported" | "unknown";
+/** Probes must not hang a diagnostic run. */
+export const PROBE_TIMEOUT_MS = 10_000;
+
+export type CheckSeverity = "required" | "render-only";
+export type CheckState = "ok" | "missing" | "not-executable" | "probe-failed" | "unsupported";
 
 export interface RuntimeCheck {
   name: string;
   severity: CheckSeverity;
   state: CheckState;
-  /** What was actually found, or null when absent. */
-  found: string | null;
-  /** What is required. */
+  /** Where the binary was found. Discovery only — never proof it runs. */
+  discoveredAt: string | null;
+  /** Version string from a *successful* execution, or null. */
+  executedVersion: string | null;
   expected: string;
-  /** Concrete next step when not ok. */
   remediation?: string;
 }
 
 export interface RuntimeReport {
   scope: string;
   checks: RuntimeCheck[];
-  /** True when everything required to build and run is present. */
   canBuild: boolean;
-  /** True when everything required to produce a video is present. */
   canRender: boolean;
 }
 
-function which(command: string): string | null {
+export interface ProbeResult {
+  ok: boolean;
+  stdout: string;
+  reason?: "not-found" | "nonzero-exit" | "timeout" | "spawn-error";
+}
+
+/**
+ * Runs a bounded version probe. Distinguishes every failure mode rather than
+ * collapsing them to null, so the caller can report an actionable reason.
+ */
+export function probe(
+  command: string,
+  args: string[],
+  timeoutMs = PROBE_TIMEOUT_MS,
+): ProbeResult {
   try {
-    const out = execFileSync(process.platform === "win32" ? "where" : "which", [command], {
+    const stdout = execFileSync(command, args, {
       stdio: ["ignore", "pipe", "ignore"],
       encoding: "utf8",
+      timeout: timeoutMs,
+      killSignal: "SIGKILL",
     });
-    const first = out.split(/\r?\n/).find((line) => line.trim().length > 0);
-    return first ? first.trim() : null;
-  } catch {
-    return null;
+    return { ok: true, stdout: stdout.trim() };
+  } catch (error) {
+    const err = error as NodeJS.ErrnoException & { status?: number; signal?: string };
+    if (err.code === "ENOENT") return { ok: false, stdout: "", reason: "not-found" };
+    if (err.code === "ETIMEDOUT" || err.signal === "SIGKILL")
+      return { ok: false, stdout: "", reason: "timeout" };
+    if (typeof err.status === "number" && err.status !== 0)
+      return { ok: false, stdout: "", reason: "nonzero-exit" };
+    return { ok: false, stdout: "", reason: "spawn-error" };
   }
 }
 
-function version(command: string, args: string[]): string | null {
-  try {
-    return execFileSync(command, args, {
-      stdio: ["ignore", "pipe", "ignore"],
-      encoding: "utf8",
-    })
-      .split(/\r?\n/)[0]!
-      .trim();
-  } catch {
-    return null;
-  }
-}
-
-/** Extracts the leading integer of a version string, e.g. "v22.23.2" -> 22. */
 export function majorVersion(text: string | null): number | null {
   if (!text) return null;
   const match = /(\d+)/.exec(text);
   return match ? Number.parseInt(match[1]!, 10) : null;
 }
 
-/** Compares dotted versions. Returns true when `actual` >= `minimum`. */
 export function meetsMinimum(actual: string | null, minimum: string): boolean {
   if (!actual) return false;
   const parse = (v: string) =>
@@ -105,111 +123,195 @@ export function meetsMinimum(actual: string | null, minimum: string): boolean {
 export function checkNode(actual: string | null = process.version): RuntimeCheck {
   const major = majorVersion(actual);
   const required = RUNTIME_CONTRACT.node.minimumMajor;
+  const ok = major !== null && major >= required;
   return {
     name: "node",
     severity: "required",
-    state: major === null ? "unknown" : major >= required ? "ok" : "unsupported",
-    found: actual,
+    state: ok ? "ok" : "unsupported",
+    discoveredAt: process.execPath,
+    executedVersion: actual,
     expected: `>=${required}`,
-    remediation:
-      major !== null && major < required
-        ? `Node ${major} is below the tested floor. Every package that declares an engine requires >=${required}; run inside the container (docker compose run --rm workspace) or install Node ${required}.`
-        : undefined,
-  };
-}
-
-export function checkBun(actual: string | null): RuntimeCheck {
-  const ok = meetsMinimum(actual, RUNTIME_CONTRACT.bun.minimum);
-  return {
-    name: "bun",
-    severity: "required",
-    state: actual === null ? "missing" : ok ? "ok" : "unsupported",
-    found: actual,
-    expected: `>=${RUNTIME_CONTRACT.bun.minimum}`,
     remediation: ok
       ? undefined
-      : `Bun ${RUNTIME_CONTRACT.bun.tested} is the tested version and the one the lockfile was produced with. Run inside the container rather than installing on the host.`,
-  };
-}
-
-function binaryCheck(
-  name: string,
-  args: string[],
-  severity: CheckSeverity,
-  remediation: string,
-): RuntimeCheck {
-  const path = which(name);
-  const found = path ? (version(name, args) ?? path) : null;
-  return {
-    name,
-    severity,
-    state: found ? "ok" : "missing",
-    found,
-    expected: "present on PATH",
-    remediation: found ? undefined : remediation,
+      : `Node ${major ?? "unknown"} is below the tested floor of ${required}. Run inside the container (docker compose run --rm workspace).`,
   };
 }
 
 /**
- * Locates the pinned headless shell. Checked separately from `chromium`
- * because the two are not interchangeable: deterministic BeginFrame capture
- * requires the pinned shell, and silently falling back to system Chromium is
- * how golden baselines drift.
+ * Checks a binary by running it, not by locating it. `which` succeeding proves
+ * a path exists; it does not prove the file is executable or functional.
  */
-export function checkHeadlessShell(envPath = process.env.PRODUCER_HEADLESS_SHELL_PATH): RuntimeCheck {
-  const candidates = [
-    envPath,
-    `/root/.cache/puppeteer/chrome-headless-shell/linux-${RUNTIME_CONTRACT.chromeHeadlessShell.pinned}/chrome-headless-shell-linux64/chrome-headless-shell`,
-  ].filter((c): c is string => typeof c === "string" && c.length > 0);
+export function checkExecutable(
+  name: string,
+  args: string[],
+  severity: CheckSeverity,
+  remediation: string,
+  runner: (command: string, args: string[]) => ProbeResult = probe,
+): RuntimeCheck {
+  const result = runner(name, args);
+  if (result.ok) {
+    return {
+      name,
+      severity,
+      state: "ok",
+      discoveredAt: name,
+      executedVersion: result.stdout.split("\n")[0]!.trim() || null,
+      expected: "present and executable",
+    };
+  }
 
-  const found = candidates.find((c) => existsSync(c)) ?? null;
+  const state: CheckState = result.reason === "not-found" ? "missing" : "probe-failed";
+  const because =
+    result.reason === "not-found"
+      ? "not found on PATH"
+      : result.reason === "timeout"
+        ? `version probe exceeded ${PROBE_TIMEOUT_MS}ms`
+        : result.reason === "nonzero-exit"
+          ? "version probe exited non-zero"
+          : "could not be executed";
+
   return {
-    name: "chrome-headless-shell",
-    severity: "render-only",
-    state: found ? "ok" : "missing",
-    found,
-    expected: `pinned ${RUNTIME_CONTRACT.chromeHeadlessShell.pinned}`,
-    remediation: found
-      ? undefined
-      : "Deterministic frame capture needs the pinned headless shell; the container image installs it. Do not substitute system Chromium: a different build shifts pixel output enough to fail the golden baselines.",
+    name,
+    severity,
+    state,
+    discoveredAt: null,
+    executedVersion: null,
+    expected: "present and executable",
+    remediation: `${name} ${because}. ${remediation}`,
   };
 }
 
-export function runtimeReport(): RuntimeReport {
+/**
+ * Verifies the pinned headless shell by executing it and comparing versions.
+ *
+ * An explicitly configured path is authoritative: if it is set and invalid, the
+ * check fails rather than quietly validating a different binary. Substituting a
+ * fallback would report the renderer is fine while it is configured to use
+ * something that is not.
+ */
+export function checkHeadlessShell(
+  envPath: string | undefined = process.env.PRODUCER_HEADLESS_SHELL_PATH,
+  runner: (command: string, args: string[]) => ProbeResult = probe,
+): RuntimeCheck {
+  const pinned = RUNTIME_CONTRACT.chromeHeadlessShell.pinned;
+  const base = {
+    name: "chrome-headless-shell",
+    severity: "render-only" as const,
+    expected: `pinned ${pinned}, executable`,
+  };
+
+  const fallback = `/root/.cache/puppeteer/chrome-headless-shell/linux-${pinned}/chrome-headless-shell-linux64/chrome-headless-shell`;
+  const explicit = typeof envPath === "string" && envPath.length > 0;
+  const candidate = explicit ? envPath : fallback;
+
+  let stats;
+  try {
+    stats = statSync(candidate);
+  } catch {
+    return {
+      ...base,
+      state: "missing",
+      discoveredAt: null,
+      executedVersion: null,
+      remediation: explicit
+        ? `PRODUCER_HEADLESS_SHELL_PATH points at ${candidate}, which does not exist. An explicit override is never replaced by a fallback: fix the path or unset it.`
+        : `No headless shell at ${candidate}. The container image installs the pinned build; do not substitute system Chromium, whose different build shifts pixel output enough to fail the golden baselines.`,
+    };
+  }
+
+  if (!stats.isFile()) {
+    return {
+      ...base,
+      state: "not-executable",
+      discoveredAt: candidate,
+      executedVersion: null,
+      remediation: `${candidate} is not a regular file. Expected the chrome-headless-shell binary.`,
+    };
+  }
+
+  const result = runner(candidate, ["--version"]);
+  if (!result.ok) {
+    return {
+      ...base,
+      state: result.reason === "timeout" ? "probe-failed" : "not-executable",
+      discoveredAt: candidate,
+      executedVersion: null,
+      remediation:
+        result.reason === "timeout"
+          ? `${candidate} did not respond to --version within ${PROBE_TIMEOUT_MS}ms.`
+          : `${candidate} exists but could not be executed (${result.reason}).`,
+    };
+  }
+
+  const reported = result.stdout.split("\n")[0]!.trim();
+  if (!reported.includes(pinned)) {
+    return {
+      ...base,
+      state: "unsupported",
+      discoveredAt: candidate,
+      executedVersion: reported,
+      remediation: `Expected pinned ${pinned} but the binary reports "${reported}". Golden baselines are version-specific: a different build fails PSNR. Bump the pin and regenerate baselines in one commit, or restore the pinned build.`,
+    };
+  }
+
+  return { ...base, state: "ok", discoveredAt: candidate, executedVersion: reported };
+}
+
+export function runtimeReport(
+  runner: (command: string, args: string[]) => ProbeResult = probe,
+): RuntimeReport {
+  const bunProbe = runner("bun", ["--version"]);
+  const bunVersion = bunProbe.ok ? bunProbe.stdout.split("\n")[0]!.trim() : null;
+  const bunOk = bunProbe.ok && meetsMinimum(bunVersion, RUNTIME_CONTRACT.bun.minimum);
+
   const checks: RuntimeCheck[] = [
     checkNode(),
-    checkBun(version("bun", ["--version"])),
-    binaryCheck(
+    {
+      name: "bun",
+      severity: "required",
+      state: !bunProbe.ok ? (bunProbe.reason === "not-found" ? "missing" : "probe-failed") : bunOk ? "ok" : "unsupported",
+      discoveredAt: bunProbe.ok ? "bun" : null,
+      executedVersion: bunVersion,
+      expected: `>=${RUNTIME_CONTRACT.bun.minimum}`,
+      remediation: bunOk
+        ? undefined
+        : `Bun ${RUNTIME_CONTRACT.bun.minimum} is the tested version and produced the lockfile. Run inside the container.`,
+    },
+    checkExecutable(
       "ffmpeg",
       ["-version"],
       "render-only",
-      "ffmpeg encodes the rendered frames. The container image provides it; on a host, install ffmpeg and ensure it is on PATH.",
+      "It encodes the rendered frames; the container image provides it.",
+      runner,
     ),
-    binaryCheck(
+    checkExecutable(
       "ffprobe",
       ["-version"],
       "render-only",
-      "ffprobe verifies the produced file's streams, dimensions and frame rate. Without it a render cannot be checked, only assumed.",
+      "It verifies a produced file's streams, dimensions and frame rate. Without it a render can only be assumed, not checked.",
+      runner,
     ),
-    checkHeadlessShell(),
+    checkHeadlessShell(undefined, runner),
   ];
 
   const bad = (c: RuntimeCheck) => c.state !== "ok";
   return {
     scope:
-      "Runtime and native dependency diagnostics (AFM-010). Reports what is missing; installs nothing.",
+      "Runtime and native dependency diagnostics (AFM-010). Executes each dependency to verify it works; installs nothing.",
     checks,
     canBuild: !checks.filter((c) => c.severity === "required").some(bad),
-    canRender: !checks.filter((c) => c.severity !== "optional").some(bad),
+    canRender: !checks.some(bad),
   };
 }
 
-/** Formats a report for a terminal, newest problems first. */
 export function formatReport(report: RuntimeReport): string {
   const lines: string[] = [];
   for (const check of report.checks) {
-    const mark = check.state === "ok" ? "ok  " : check.state === "missing" ? "MISS" : "BAD ";
-    lines.push(`  [${mark}] ${check.name.padEnd(22)} ${check.found ?? "(not found)"}`);
+    const mark = check.state === "ok" ? "ok  " : "FAIL";
+    lines.push(
+      `  [${mark}] ${check.name.padEnd(22)} ${check.executedVersion ?? check.discoveredAt ?? "(not found)"}`,
+    );
+    if (check.state !== "ok") lines.push(`         state: ${check.state}`);
     if (check.remediation) lines.push(`         ${check.remediation}`);
   }
   lines.push("");

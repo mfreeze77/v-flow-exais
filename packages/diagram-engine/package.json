@@ -9,7 +9,7 @@
     "archframe-diagram": "./bin/archify.mjs"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=22"
   },
   "scripts": {
     "generate:brand-marks": "node scripts/generate-brand-marks.mjs",
@@ -25,7 +25,8 @@
     "test": "npm run check:brand-marks && npm run check:validators && npm run check:release-identity && node test/golden.mjs && node ../scripts/run-tests.mjs",
     "render:examples": "node scripts/render-examples.mjs ../examples",
     "generate:artifact-styles": "node scripts/generate-artifact-styles.mjs",
-    "check:artifact-styles": "node scripts/generate-artifact-styles.mjs --check"
+    "check:artifact-styles": "node scripts/generate-artifact-styles.mjs --check",
+    "build": "node scripts/verify-assets.mjs"
   },
   "overrides": {
     "fast-uri": "3.1.5"
@@ -57,6 +58,7 @@
     "recipes",
     "references",
     "LICENSE",
-    "THIRD_PARTY_NOTICES.md"
+    "THIRD_PARTY_NOTICES.md",
+    "scripts"
   ]
 }

@@ -62,7 +62,8 @@
     "audit:assets": "bun run tools/legal/asset-audit-cli.ts",
     "check:workspace": "bun run tools/build/workspace-cli.ts",
     "build:owned-runtimes": "bun run build:hyperframes-runtime && bun run --cwd packages/core build:position-edits-render && bun run --cwd packages/core build:audio-fx-runtime",
-    "vflow": "bun run packages/cli/src/cli.ts project"
+    "vflow": "bun run packages/cli/src/cli.ts project",
+    "doctor": "bun run tools/doctor/runtime-cli.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
@@ -93,5 +94,9 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "description": "V-Flow EXAIS - one Studio for typed architecture diagrams and real video production. Built from owned Archify and HyperFrames sources."
+  "description": "V-Flow EXAIS - one Studio for typed architecture diagrams and real video production. Built from owned Archify and HyperFrames sources.",
+  "engines": {
+    "node": ">=22",
+    "bun": ">=1.3.13"
+  }
 }

@@ -7,10 +7,16 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
-    ".": "./src/index.ts",
+    ".": {
+      "bun": "./src/index.ts",
+      "node": "./dist/index.js",
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
+    "dist",
     "src"
   ],
   "dependencies": {
@@ -20,8 +26,11 @@
     "saxes": "6.0.0"
   },
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "tsup",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0"
   }
 }

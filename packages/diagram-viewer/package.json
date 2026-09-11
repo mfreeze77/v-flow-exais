@@ -12,9 +12,11 @@
   },
   "files": [
     "src",
-    "assets"
+    "assets",
+    "scripts"
   ],
   "scripts": {
-    "test": "echo \"no tests yet (AFM-030)\" && exit 0"
+    "test": "echo \"no tests yet (AFM-030)\" && exit 0",
+    "build": "node scripts/verify-assets.mjs"
   }
 }

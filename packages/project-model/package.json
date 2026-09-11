@@ -7,21 +7,39 @@
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "exports": {
-    ".": "./src/index.ts",
-    "./storage": "./src/storage/commit.ts",
-    "./revisions": "./src/storage/revisions.ts",
+    ".": {
+      "bun": "./src/index.ts",
+      "node": "./dist/index.js",
+      "import": "./src/index.ts",
+      "types": "./src/index.ts"
+    },
+    "./storage": {
+      "bun": "./src/storage/commit.ts",
+      "node": "./dist/storage.js",
+      "import": "./src/storage/commit.ts",
+      "types": "./src/storage/commit.ts"
+    },
+    "./revisions": {
+      "bun": "./src/storage/revisions.ts",
+      "node": "./dist/revisions.js",
+      "import": "./src/storage/revisions.ts",
+      "types": "./src/storage/revisions.ts"
+    },
     "./package.json": "./package.json"
   },
   "files": [
-    "src",
-    "schemas"
+    "dist",
+    "src"
   ],
   "dependencies": {
     "ajv": "^8.17.1"
   },
   "scripts": {
-    "build": "tsc --noEmit",
+    "build": "tsup",
     "test": "vitest run",
     "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.0.0"
   }
 }
