@@ -92,7 +92,7 @@ describe("AFM-006: unsafe paths are detected with remediation", () => {
   });
 
   it("detects characters Windows rejects", () => {
-    for (const path of ['packages/x/a:b', "packages/x/a?b", 'packages/x/a"b', "packages/x/a|b"]) {
+    for (const path of ["packages/x/a:b", "packages/x/a?b", 'packages/x/a"b', "packages/x/a|b"]) {
       expect(checkPaths([path]).some((p) => p.code === "invalid-windows-character")).toBe(true);
     }
   });

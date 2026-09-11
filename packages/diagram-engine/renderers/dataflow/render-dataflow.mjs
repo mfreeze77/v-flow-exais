@@ -1,3 +1,3 @@
 // Compatibility CLI: all geometry comes from the shared compilation API.
-import { runRenderer } from '../shared/render-cli.mjs';
-await runRenderer('dataflow', 'product-analytics.dataflow.json');
+import { runRenderer } from "../shared/render-cli.mjs";
+await runRenderer("dataflow", "product-analytics.dataflow.json");

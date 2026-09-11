@@ -172,7 +172,13 @@ export function auditAutomation(root: string): AutomationAudit {
   });
 
   // 4. Auto-update and agent hook configuration.
-  for (const candidate of ["lefthook.yml", "lefthook.yaml", ".husky", "renovate.json", ".github/renovate.json"]) {
+  for (const candidate of [
+    "lefthook.yml",
+    "lefthook.yaml",
+    ".husky",
+    "renovate.json",
+    ".github/renovate.json",
+  ]) {
     const abs = join(root, candidate);
     if (!existsSync(abs)) continue;
     findings.push({

@@ -14,7 +14,7 @@
 
 import { describe, expect, it, beforeAll, afterAll } from "vitest";
 import { execFileSync } from "node:child_process";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, rmSync, statSync } from "node:fs";
+import { existsSync, mkdtempSync, readFileSync, rmSync, statSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 import { Window } from "happy-dom";
@@ -72,9 +72,7 @@ describe("AFM-011: assets resolve from package-owned paths", () => {
     expect(source).toContain("import.meta.url");
     // Strip comments before asserting: the file documents that it never reads
     // process.cwd(), and a substring check would match that sentence.
-    const code = source
-      .replace(/\/\*[\s\S]*?\*\//g, "")
-      .replace(/(^|[^:])\/\/.*$/gm, "$1");
+    const code = source.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
     expect(code).not.toContain("process.cwd()");
   });
 
@@ -107,19 +105,38 @@ describe("AFM-011: the renderers run from an unrelated directory", () => {
     expect(statSync(out).size).toBeGreaterThan(10_000);
     const html = readFileSync(out, "utf8");
     expect(html).toContain("<svg");
-    const source = JSON.parse(readFileSync(join(root, "packages/diagram-engine/examples/production-deployment.architecture.json"), "utf8"));
+    const source = JSON.parse(
+      readFileSync(
+        join(root, "packages/diagram-engine/examples/production-deployment.architecture.json"),
+        "utf8",
+      ),
+    );
     const window = new Window();
     window.document.body.innerHTML = html;
-    const rendered = [...window.document.querySelectorAll("svg path[data-edge-key]")].map((edge) => ({
-      from: edge.getAttribute("data-edge-from"),
-      to: edge.getAttribute("data-edge-to"),
-      label: edge.getAttribute("data-edge-label") ?? "",
-      key: edge.getAttribute("data-edge-key"),
-    }));
-    expect(rendered).toEqual(source.connections.map((edge: { from: string; to: string; label?: string }, index: number) => ({
-      from: edge.from, to: edge.to, label: edge.label ?? "", key: String(index),
-    })));
-    expect(rendered.filter((edge) => edge.from === "gateway").map((edge) => edge.to).sort()).toEqual(["api_a", "api_b"]);
+    const rendered = [...window.document.querySelectorAll("svg path[data-edge-key]")].map(
+      (edge) => ({
+        from: edge.getAttribute("data-edge-from"),
+        to: edge.getAttribute("data-edge-to"),
+        label: edge.getAttribute("data-edge-label") ?? "",
+        key: edge.getAttribute("data-edge-key"),
+      }),
+    );
+    expect(rendered).toEqual(
+      source.connections.map(
+        (edge: { from: string; to: string; label?: string }, index: number) => ({
+          from: edge.from,
+          to: edge.to,
+          label: edge.label ?? "",
+          key: String(index),
+        }),
+      ),
+    );
+    expect(
+      rendered
+        .filter((edge) => edge.from === "gateway")
+        .map((edge) => edge.to)
+        .sort(),
+    ).toEqual(["api_a", "api_b"]);
     expect(rendered.some((edge) => edge.from === "api_a" && edge.to === "api_b")).toBe(false);
     window.close();
   }, 120_000);

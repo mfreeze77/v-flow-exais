@@ -71,6 +71,7 @@
     "@hyperframes/core": "workspace:*",
     "@hyperframes/parsers": "workspace:*",
     "@hyperframes/player": "workspace:*",
+    "@hyperframes/project-model": "workspace:*",
     "@hyperframes/sdk": "workspace:*",
     "@hyperframes/studio-server": "workspace:*",
     "@mcp-b/global": "^5.0.1",
@@ -80,8 +81,7 @@
     "dompurify": "^3.2.4",
     "gsap": "^3.13.0",
     "marked": "^14.1.4",
-    "mediabunny": "^1.45.3",
-    "@hyperframes/project-model": "workspace:*"
+    "mediabunny": "^1.45.3"
   },
   "devDependencies": {
     "@hyperframes/producer": "workspace:*",

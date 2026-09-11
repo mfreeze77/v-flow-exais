@@ -48,9 +48,7 @@
         "id": "cache",
         "baseLabel": "Session Cache",
         "status": "removed",
-        "classifications": [
-          "semantic"
-        ],
+        "classifications": ["semantic"],
         "changedFields": []
       },
       {
@@ -58,20 +56,14 @@
         "baseLabel": "Checkout API",
         "headLabel": "Checkout API",
         "status": "changed",
-        "classifications": [
-          "semantic"
-        ],
-        "changedFields": [
-          "/sublabel"
-        ]
+        "classifications": ["semantic"],
+        "changedFields": ["/sublabel"]
       },
       {
         "id": "fraud",
         "headLabel": "Fraud Gate",
         "status": "added",
-        "classifications": [
-          "semantic"
-        ],
+        "classifications": ["semantic"],
         "changedFields": []
       },
       {
@@ -79,12 +71,8 @@
         "baseLabel": "Order Events",
         "headLabel": "Order Events",
         "status": "moved",
-        "classifications": [
-          "geometry"
-        ],
-        "changedFields": [
-          "/pos"
-        ]
+        "classifications": ["geometry"],
+        "changedFields": ["/pos"]
       }
     ],
     "connections": [
@@ -101,16 +89,8 @@
           "label": "authorize"
         },
         "status": "changed",
-        "classifications": [
-          "geometry",
-          "topology"
-        ],
-        "changedFields": [
-          "/from",
-          "/fromSide",
-          "/toSide",
-          "/via"
-        ]
+        "classifications": ["geometry", "topology"],
+        "changedFields": ["/from", "/fromSide", "/toSide", "/via"]
       },
       {
         "id": "fraud-check",
@@ -120,9 +100,7 @@
           "label": "screen"
         },
         "status": "added",
-        "classifications": [
-          "topology"
-        ],
+        "classifications": ["topology"],
         "changedFields": []
       },
       {
@@ -138,12 +116,8 @@
           "label": "SQL tx"
         },
         "status": "changed",
-        "classifications": [
-          "semantic"
-        ],
-        "changedFields": [
-          "/label"
-        ]
+        "classifications": ["semantic"],
+        "changedFields": ["/label"]
       },
       {
         "id": "publish-order",
@@ -158,12 +132,8 @@
           "label": "accepted"
         },
         "status": "rerouted",
-        "classifications": [
-          "geometry"
-        ],
-        "changedFields": [
-          "/labelDy"
-        ]
+        "classifications": ["geometry"],
+        "changedFields": ["/labelDy"]
       },
       {
         "id": "session-read",
@@ -173,9 +143,7 @@
           "label": "session"
         },
         "status": "removed",
-        "classifications": [
-          "topology"
-        ],
+        "classifications": ["topology"],
         "changedFields": []
       }
     ],
@@ -185,24 +153,16 @@
         "kind": "region",
         "label": "Production region",
         "status": "changed",
-        "classifications": [
-          "scope"
-        ],
-        "changedFields": [
-          "/wraps"
-        ]
+        "classifications": ["scope"],
+        "changedFields": ["/wraps"]
       },
       {
         "key": "security-group:Checkout trust zone",
         "kind": "security-group",
         "label": "Checkout trust zone",
         "status": "changed",
-        "classifications": [
-          "scope"
-        ],
-        "changedFields": [
-          "/wraps"
-        ]
+        "classifications": ["scope"],
+        "changedFields": ["/wraps"]
       }
     ]
   },

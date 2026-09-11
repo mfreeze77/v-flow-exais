@@ -135,15 +135,15 @@
   },
   "dependencies": {
     "@hyperframes/core": "workspace:*",
+    "@hyperframes/diagram-engine": "workspace:*",
+    "@hyperframes/diagram-motion": "workspace:*",
     "@hyperframes/parsers": "workspace:*",
+    "@hyperframes/project-model": "workspace:*",
+    "gsap": "^3.14.2",
     "hono": "^4.0.0",
     "linkedom": "^0.18.12",
     "postcss": "^8.5.8",
-    "postcss-selector-parser": "^7.1.2",
-    "@hyperframes/project-model": "workspace:*",
-    "@hyperframes/diagram-motion": "workspace:*",
-    "@hyperframes/diagram-engine": "workspace:*",
-    "gsap": "^3.14.2"
+    "postcss-selector-parser": "^7.1.2"
   },
   "devDependencies": {
     "@types/node": "^25.0.10",

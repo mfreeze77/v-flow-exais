@@ -11,7 +11,15 @@
  */
 
 import { describe, expect, it, beforeAll, afterAll } from "vitest";
-import { existsSync, mkdirSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
+import {
+  existsSync,
+  mkdirSync,
+  mkdtempSync,
+  readFileSync,
+  readdirSync,
+  rmSync,
+  writeFileSync,
+} from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve } from "node:path";
 
@@ -102,9 +110,9 @@ describe("AFM-005: the audit actually detects live automation", () => {
     });
     const result = auditAutomation(root);
     expect(result.quarantined).toBe(false);
-    expect(result.findings.some((f) => f.code === "live-workflow" && f.severity === "blocked")).toBe(
-      true,
-    );
+    expect(
+      result.findings.some((f) => f.code === "live-workflow" && f.severity === "blocked"),
+    ).toBe(true);
   });
 
   it("blocks on an install-time lifecycle script", () => {

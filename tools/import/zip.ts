@@ -65,7 +65,10 @@ function findEocd(buf: Buffer): number {
  * but a silently truncated central directory would produce a wrong inventory
  * rather than an error, so handle it explicitly.
  */
-function readCentralDirectoryLocation(buf: Buffer, eocd: number): { offset: number; count: number } {
+function readCentralDirectoryLocation(
+  buf: Buffer,
+  eocd: number,
+): { offset: number; count: number } {
   let count = buf.readUInt16LE(eocd + 10);
   let offset = buf.readUInt32LE(eocd + 16);
 

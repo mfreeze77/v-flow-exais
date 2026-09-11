@@ -3,29 +3,46 @@
   "$id": "https://v-flow.local/schemas/project-v1.json",
   "type": "object",
   "additionalProperties": false,
-  "required": ["schemaVersion", "id", "title", "revision", "documents", "scenes", "output", "policy"],
+  "required": [
+    "schemaVersion",
+    "id",
+    "title",
+    "revision",
+    "documents",
+    "scenes",
+    "output",
+    "policy"
+  ],
   "properties": {
     "schemaVersion": { "const": 1 },
     "id": { "$ref": "#/$defs/id" },
     "title": { "type": "string", "minLength": 1, "maxLength": 240 },
     "revision": { "type": "integer", "minimum": 0 },
     "documents": {
-      "type": "array", "minItems": 1, "maxItems": 100,
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
       "items": {
-        "type": "object", "additionalProperties": false,
+        "type": "object",
+        "additionalProperties": false,
         "required": ["id", "kind", "path", "authoritative"],
         "properties": {
           "id": { "$ref": "#/$defs/id" },
-          "kind": { "enum": ["architecture", "workflow", "sequence", "dataflow", "lifecycle", "native"] },
+          "kind": {
+            "enum": ["architecture", "workflow", "sequence", "dataflow", "lifecycle", "native"]
+          },
           "path": { "type": "string", "minLength": 1, "maxLength": 500 },
           "authoritative": { "const": true }
         }
       }
     },
     "scenes": {
-      "type": "array", "minItems": 1, "maxItems": 100,
+      "type": "array",
+      "minItems": 1,
+      "maxItems": 100,
       "items": {
-        "type": "object", "additionalProperties": false,
+        "type": "object",
+        "additionalProperties": false,
         "required": ["id", "kind", "documentId", "startFrame", "durationFrames", "presentation"],
         "properties": {
           "id": { "$ref": "#/$defs/id" },
@@ -34,26 +51,39 @@
           "startFrame": { "type": "integer", "minimum": 0 },
           "durationFrames": { "type": "integer", "minimum": 1, "maximum": 216000 },
           "presentation": {
-            "type": "object", "additionalProperties": false,
+            "type": "object",
+            "additionalProperties": false,
             "required": ["title", "focusObjectIds", "relationshipIds"],
             "properties": {
               "title": { "type": "string", "maxLength": 240 },
               "subtitle": { "type": "string", "maxLength": 600 },
-              "focusObjectIds": { "type": "array", "maxItems": 100, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } },
-              "relationshipIds": { "type": "array", "maxItems": 200, "uniqueItems": true, "items": { "$ref": "#/$defs/id" } }
+              "focusObjectIds": {
+                "type": "array",
+                "maxItems": 100,
+                "uniqueItems": true,
+                "items": { "$ref": "#/$defs/id" }
+              },
+              "relationshipIds": {
+                "type": "array",
+                "maxItems": 200,
+                "uniqueItems": true,
+                "items": { "$ref": "#/$defs/id" }
+              }
             }
           }
         }
       }
     },
     "output": {
-      "type": "object", "additionalProperties": false,
+      "type": "object",
+      "additionalProperties": false,
       "required": ["width", "height", "fps"],
       "properties": {
         "width": { "type": "integer", "minimum": 240, "maximum": 7680, "multipleOf": 2 },
         "height": { "type": "integer", "minimum": 240, "maximum": 7680, "multipleOf": 2 },
         "fps": {
-          "type": "object", "additionalProperties": false,
+          "type": "object",
+          "additionalProperties": false,
           "required": ["numerator", "denominator"],
           "properties": {
             "numerator": { "type": "integer", "minimum": 1, "maximum": 240000 },
@@ -63,7 +93,8 @@
       }
     },
     "policy": {
-      "type": "object", "additionalProperties": false,
+      "type": "object",
+      "additionalProperties": false,
       "required": ["sourceSharing", "htmlTrust"],
       "properties": {
         "sourceSharing": { "enum": ["private", "approved-public"] },

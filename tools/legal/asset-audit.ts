@@ -21,10 +21,25 @@ import type { ImportMap } from "../import/plan.ts";
 
 export const FONT_EXTENSIONS = new Set([".woff", ".woff2", ".ttf", ".otf", ".eot", ".ttc"]);
 export const MEDIA_EXTENSIONS = new Set([
-  ".png", ".jpg", ".jpeg", ".gif", ".webp", ".svg", ".ico", ".bmp",
-  ".mp4", ".webm", ".mov", ".mkv",
-  ".mp3", ".wav", ".aac", ".flac", ".ogg",
-  ".glb", ".gltf",
+  ".png",
+  ".jpg",
+  ".jpeg",
+  ".gif",
+  ".webp",
+  ".svg",
+  ".ico",
+  ".bmp",
+  ".mp4",
+  ".webm",
+  ".mov",
+  ".mkv",
+  ".mp3",
+  ".wav",
+  ".aac",
+  ".flac",
+  ".ogg",
+  ".glb",
+  ".gltf",
 ]);
 
 export interface AssetRecord {
@@ -80,7 +95,13 @@ export interface LegalAudit {
 }
 
 const SKIP_DIRS = new Set([
-  "node_modules", ".git", "_sources", "dist", "build", "coverage", ".import-staging",
+  "node_modules",
+  ".git",
+  "_sources",
+  "dist",
+  "build",
+  "coverage",
+  ".import-staging",
 ]);
 
 function walk(root: string, onFile: (abs: string, rel: string) => void): void {

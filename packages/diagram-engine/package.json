@@ -2,14 +2,34 @@
   "name": "@hyperframes/diagram-engine",
   "version": "2.17.0-dev.1",
   "private": true,
-  "type": "module",
   "description": "Owned diagram compilation engine: typed JSON-IR renderers for architecture, workflow, sequence, dataflow and lifecycle diagrams.",
   "license": "MIT",
   "bin": {
     "archframe-diagram": "./bin/archify.mjs"
   },
-  "engines": {
-    "node": ">=22"
+  "files": [
+    "bin",
+    "src",
+    "renderers",
+    "schemas",
+    "examples",
+    "brand-marks",
+    "delta",
+    "migrations",
+    "recipes",
+    "references",
+    "LICENSE",
+    "THIRD_PARTY_NOTICES.md",
+    "scripts"
+  ],
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./src/contracts.d.ts",
+      "import": "./src/index.mjs"
+    },
+    "./assets": "./src/resolveAssets.mjs",
+    "./package.json": "./package.json"
   },
   "scripts": {
     "generate:brand-marks": "node scripts/generate-brand-marks.mjs",
@@ -28,9 +48,6 @@
     "check:artifact-styles": "node scripts/generate-artifact-styles.mjs --check",
     "build": "node scripts/verify-assets.mjs"
   },
-  "overrides": {
-    "fast-uri": "3.1.5"
-  },
   "dependencies": {
     "@hyperframes/diagram-viewer": "workspace:*",
     "ajv": "^8.17.1",
@@ -38,27 +55,10 @@
     "saxes": "6.0.0",
     "simple-icons": "16.28.0"
   },
-  "exports": {
-    ".": {
-      "types": "./src/contracts.d.ts",
-      "import": "./src/index.mjs"
-    },
-    "./assets": "./src/resolveAssets.mjs",
-    "./package.json": "./package.json"
+  "overrides": {
+    "fast-uri": "3.1.5"
   },
-  "files": [
-    "bin",
-    "src",
-    "renderers",
-    "schemas",
-    "examples",
-    "brand-marks",
-    "delta",
-    "migrations",
-    "recipes",
-    "references",
-    "LICENSE",
-    "THIRD_PARTY_NOTICES.md",
-    "scripts"
-  ]
+  "engines": {
+    "node": ">=22"
+  }
 }

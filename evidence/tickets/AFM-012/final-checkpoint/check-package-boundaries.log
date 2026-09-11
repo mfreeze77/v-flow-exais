@@ -1,0 +1,6 @@
+$ node scripts/check-package-boundaries.mjs
+  @hyperframes/project-model must not import: @hyperframes/studio, @hyperframes/studio-server, @hyperframes/producer, @hyperframes/player
+  @hyperframes/diagram-engine must not import: @hyperframes/studio, @hyperframes/studio-server
+  @hyperframes/diagram-motion must not import: @hyperframes/studio, @hyperframes/studio-server
+
+PASS: package boundaries

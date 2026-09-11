@@ -64,9 +64,7 @@ async function makeFixture(): Promise<Fixture> {
     "archify/renderers/architecture/render-architecture.mjs": "export const render = () => {};",
     "archify/bin/archify.mjs": "#!/usr/bin/env node\n",
   };
-  const archify = makeZip([
-    ...Object.entries(files).map(([name, content]) => ({ name, content })),
-  ]);
+  const archify = makeZip([...Object.entries(files).map(([name, content]) => ({ name, content }))]);
   const hyperframes = makeZip([
     { name: "package.json", content: '{"name":"hyperframes-monorepo"}' },
     { name: "packages/producer/package.json", content: "{}" },
@@ -96,7 +94,12 @@ async function makeFixture(): Promise<Fixture> {
   });
 
   const entries: ImportMapEntry[] = [
-    await entry("archify", "archify/package.json", "packages/diagram-engine/package.json", files["archify/package.json"]),
+    await entry(
+      "archify",
+      "archify/package.json",
+      "packages/diagram-engine/package.json",
+      files["archify/package.json"],
+    ),
     await entry(
       "archify",
       "archify/schemas/architecture.schema.json",
@@ -129,12 +132,18 @@ async function makeFixture(): Promise<Fixture> {
       "packages/studio/src/App.tsx",
       "export default null;",
     ),
-    await entry("hyperframes", "packages/producer/tests/link", "packages/producer/tests/link", "../shared", {
-      kind: "symlink",
-      mode: "0o777",
-      executable: true,
-      disposition: "review-symlink-do-not-follow",
-    }),
+    await entry(
+      "hyperframes",
+      "packages/producer/tests/link",
+      "packages/producer/tests/link",
+      "../shared",
+      {
+        kind: "symlink",
+        mode: "0o777",
+        executable: true,
+        disposition: "review-symlink-do-not-follow",
+      },
+    ),
   ];
 
   return {
@@ -359,9 +368,7 @@ describe("AFM-003: corruption and escape are refused", () => {
     mkdirSync(dest, { recursive: true });
     const corrupted: ImportMap = {
       ...fixture.map,
-      entries: fixture.map.entries.map((e, i) =>
-        i === 0 ? { ...e, sha256: "f".repeat(64) } : e,
-      ),
+      entries: fixture.map.entries.map((e, i) => (i === 0 ? { ...e, sha256: "f".repeat(64) } : e)),
     };
 
     const receipt = applyImport({ ...fixture, map: corrupted, destination: dest });

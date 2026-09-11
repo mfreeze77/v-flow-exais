@@ -37,7 +37,7 @@ images and build cache behind fills the disk.
 - **Adding a workspace package means updating every Dockerfile.** The `COPY packages/<name>/package.json` lists are explicit; `bun install --frozen-lockfile` fails on any member missing from the build context. `bun run check:dockerfile-workspaces` catches it.
 - **Keep the `@hyperframes/*` scope for now.** Per contract C11 a scope rename must update code, lockfile, exports, build scripts, skills and distribution tests atomically — it is its own ticket, not a drive-by.
 - **Never animate a relationship that isn't in the authored model.** Guided-view focus order is not graph connectivity. `gateway -> api_a` and `gateway -> api_b` must not become `api_a -> api_b`.
-- **One command/history boundary.** The project owns the write transaction; disable the SDK's autonomous history *and* its persist queue when it does. Two competing autosave systems is a defect, not a config.
+- **One command/history boundary.** The project owns the write transaction; disable the SDK's autonomous history _and_ its persist queue when it does. Two competing autosave systems is a defect, not a config.
 - **Compiler-owned vs presentation-owned.** Diagram geometry, endpoints, direction and labels belong to the compiler; framing, timing, emphasis, callouts and narration belong to presentation. Overrides persist against semantic identity + scene instance + base revision, never DOM paths.
 - **Integer frames, rational fps.** Store `startFrame` / `durationFrames` as integers and fps as numerator/denominator. Convert to seconds only at the emitter.
 

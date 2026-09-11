@@ -58,6 +58,78 @@
     {
       "code": "publish-config",
       "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/docs/upstream/archify/integrations/deepseek-harness/package.json",
+      "detail": "publishConfig.access=public for @tt-a1i/archify-dsh; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/aws-lambda/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/aws-lambda; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/core/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/core; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/engine/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/engine; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/gcp-cloud-run/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/gcp-cloud-run; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/lint/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/lint; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/parsers/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/parsers; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/producer/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/producer; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/sdk/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/sdk; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/shader-transitions/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/shader-transitions; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/studio/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/studio; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/data/vflow/intakes/intake-ed1d195b-2aa8-4856-ad9f-c3f67dcf5322/snapshot/packages/studio-server/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/studio-server; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
       "path": "packages/studio/package.json",
       "detail": "publishConfig.access=public for @hyperframes/studio; publication requires explicit authorization"
     },
@@ -82,7 +154,7 @@
   ],
   "summary": {
     "blocked": 0,
-    "review": 13,
+    "review": 25,
     "ok": 0
   },
   "quarantined": true,

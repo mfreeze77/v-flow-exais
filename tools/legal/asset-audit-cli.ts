@@ -8,7 +8,9 @@ import { auditLegal } from "./asset-audit.ts";
 import type { ImportMap } from "../import/plan.ts";
 
 const root = resolve(process.argv[2] ?? ".");
-const map = JSON.parse(readFileSync(resolve(root, "provenance/import-map.json"), "utf8")) as ImportMap;
+const map = JSON.parse(
+  readFileSync(resolve(root, "provenance/import-map.json"), "utf8"),
+) as ImportMap;
 const audit = auditLegal(root, map);
 
 console.log("licenses present:", audit.licenses.allPresent);

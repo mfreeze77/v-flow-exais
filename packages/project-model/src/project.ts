@@ -60,6 +60,7 @@ const isRecord = (value: unknown): value is Record<string, unknown> =>
 /** Portable authoring reference, not a host filesystem path or generated file. */
 export function isAuthoringPath(value: string): boolean {
   return (
+    // oxlint-disable-next-line no-control-regex -- matches control characters deliberately
     !/[\\:\x00-\x1f]/.test(value) &&
     !value.startsWith("/") &&
     value

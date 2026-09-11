@@ -1,12 +1,12 @@
-import { compileWorkflow } from '../renderers/workflow/workflow-compiler.mjs';
+import { compileWorkflow } from "../renderers/workflow/workflow-compiler.mjs";
 import {
   createMappedWorkflowCandidate,
   intrinsicWorkflow,
   planningWorkflow,
-} from '../renderers/workflow/workflow-migration-geometry.mjs';
-import { validateSchema } from '../renderers/shared/validator.mjs';
+} from "../renderers/workflow/workflow-migration-geometry.mjs";
+import { validateSchema } from "../renderers/shared/validator.mjs";
 
-export { createHorizontalRankMapper } from '../renderers/workflow/workflow-migration-geometry.mjs';
+export { createHorizontalRankMapper } from "../renderers/workflow/workflow-migration-geometry.mjs";
 
 const TARGET_SCHEMA_VERSION = 2;
 
@@ -17,7 +17,7 @@ function clone(value) {
 function diagnostic({ code, message, subject = {}, evidence = {}, supportedFixes = [] }) {
   return {
     code,
-    severity: 'error',
+    severity: "error",
     message,
     subject,
     evidence,
@@ -27,7 +27,7 @@ function diagnostic({ code, message, subject = {}, evidence = {}, supportedFixes
 
 function schemaDiagnostics(workflow) {
   try {
-    validateSchema('workflow', workflow);
+    validateSchema("workflow", workflow);
     return [];
   } catch (error) {
     if (Array.isArray(error?.archifyDiagnostics)) {
@@ -43,20 +43,22 @@ function legacyLayoutProbe(workflow, qualityProfile) {
   // which can measure and monotonically expand the real migrated document.
   const probe = {
     schema_version: 1,
-    diagram_type: 'workflow',
+    diagram_type: "workflow",
     meta: {
       title: workflow.meta.title,
       ...(workflow.meta.locale ? { locale: workflow.meta.locale } : {}),
-      legend: { mode: 'hidden' },
+      legend: { mode: "hidden" },
     },
     lanes: clone(workflow.lanes),
-    nodes: [{
-      id: 'migration_probe',
-      lane: workflow.lanes[0].id,
-      col: 0,
-      type: 'backend',
-      label: 'Probe',
-    }],
+    nodes: [
+      {
+        id: "migration_probe",
+        lane: workflow.lanes[0].id,
+        col: 0,
+        type: "backend",
+        label: "Probe",
+      },
+    ],
     edges: [],
   };
   return compileWorkflow({ workflow: probe, qualityProfile });
@@ -83,7 +85,7 @@ function requiredViewBoxFrom(result) {
 
 function expandableViewBox(result) {
   if (result.ok || !result.diagnostics?.length) return null;
-  if (!result.diagnostics.every((entry) => entry.code === 'workflow/viewbox-capacity')) return null;
+  if (!result.diagnostics.every((entry) => entry.code === "workflow/viewbox-capacity")) return null;
   return requiredViewBoxFrom(result);
 }
 
@@ -113,19 +115,21 @@ function result({
 }
 
 export function migrateWorkflowDocument(inputWorkflow) {
-  if (!inputWorkflow || typeof inputWorkflow !== 'object' || Array.isArray(inputWorkflow)) {
+  if (!inputWorkflow || typeof inputWorkflow !== "object" || Array.isArray(inputWorkflow)) {
     return result({
       ok: false,
-      migrationDiagnostics: [diagnostic({
-        code: 'migration/source-document',
-        message: 'Workflow migration requires one parsed JSON object.',
-        supportedFixes: ['provide one workflow schema v1 JSON document'],
-      })],
+      migrationDiagnostics: [
+        diagnostic({
+          code: "migration/source-document",
+          message: "Workflow migration requires one parsed JSON object.",
+          supportedFixes: ["provide one workflow schema v1 JSON document"],
+        }),
+      ],
     });
   }
   // Migration has no quality override: the authored policy (or effective
   // standard default) must validate the document after it leaves this process.
-  const qualityProfile = inputWorkflow.meta?.quality_profile || 'standard';
+  const qualityProfile = inputWorkflow.meta?.quality_profile || "standard";
 
   const workflow = clone(inputWorkflow);
   const preExistingDiagnostics = schemaDiagnostics(workflow);
@@ -160,13 +164,17 @@ export function migrateWorkflowDocument(inputWorkflow) {
     return result({
       ok: false,
       fromSchemaVersion: workflow.schema_version,
-      migrationDiagnostics: [diagnostic({
-        code: 'migration/source-schema-version',
-        message: 'Workflow migration to schema v2 requires a schema v1 or v2 source.',
-        subject: { path: '/schema_version' },
-        evidence: { actual: workflow.schema_version, expected: [1, 2] },
-        supportedFixes: ['use an unchanged schema v1 workflow or an already migrated schema v2 workflow as the source'],
-      })],
+      migrationDiagnostics: [
+        diagnostic({
+          code: "migration/source-schema-version",
+          message: "Workflow migration to schema v2 requires a schema v1 or v2 source.",
+          subject: { path: "/schema_version" },
+          evidence: { actual: workflow.schema_version, expected: [1, 2] },
+          supportedFixes: [
+            "use an unchanged schema v1 workflow or an already migrated schema v2 workflow as the source",
+          ],
+        }),
+      ],
     });
   }
 
@@ -180,9 +188,10 @@ export function migrateWorkflowDocument(inputWorkflow) {
     });
   }
   const legacyRequirement = legacyRequirementProbe(workflow, qualityProfile);
-  const oldRequiredViewBox = requiredViewBoxFrom(legacyRequirement)
-    || requiredViewBoxFrom(legacyProbe)
-    || requiredViewBoxFrom(legacy);
+  const oldRequiredViewBox =
+    requiredViewBoxFrom(legacyRequirement) ||
+    requiredViewBoxFrom(legacyProbe) ||
+    requiredViewBoxFrom(legacy);
   const preExistingLayoutDiagnostics = legacy.ok ? [] : legacy.diagnostics;
 
   let planned = compileWorkflow({ workflow: intrinsicWorkflow(workflow), qualityProfile });
@@ -213,12 +222,14 @@ export function migrateWorkflowDocument(inputWorkflow) {
     return result({
       ok: false,
       preExistingDiagnostics: preExistingLayoutDiagnostics,
-      migrationDiagnostics: [diagnostic({
-        code: 'migration/rank-mapping',
-        message: 'Could not construct a stable horizontal rank mapping.',
-        evidence: { reason: error.message },
-        supportedFixes: ['report the workflow and compiler receipts to the Archify maintainers'],
-      })],
+      migrationDiagnostics: [
+        diagnostic({
+          code: "migration/rank-mapping",
+          message: "Could not construct a stable horizontal rank mapping.",
+          evidence: { reason: error.message },
+          supportedFixes: ["report the workflow and compiler receipts to the Archify maintainers"],
+        }),
+      ],
       oldRequiredViewBox,
       newRequiredViewBox: requiredViewBoxFrom(planned),
     });

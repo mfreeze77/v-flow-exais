@@ -15,7 +15,7 @@
 import { describe, expect, it, beforeAll, afterAll } from "vitest";
 import { chmodSync, mkdirSync, mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
-import { join, resolve } from "node:path";
+import { join } from "node:path";
 import { readFileSync } from "node:fs";
 
 import {

@@ -125,7 +125,10 @@ describe("AFM-002: destinations never collide", () => {
       implementationOwners: ["AFM-002"],
       nonAuthoritative: false,
     };
-    const found = validateTargets([base, { ...base, repository: "hyperframes", sourcePath: "b.txt" }]);
+    const found = validateTargets([
+      base,
+      { ...base, repository: "hyperframes", sourcePath: "b.txt" },
+    ]);
     expect(found).toHaveLength(1);
     expect(found[0]!.code).toBe("duplicate-target");
     expect(found[0]!.detail).toMatch(/both target it/);
@@ -236,7 +239,10 @@ describe("AFM-002: generated output is never authoritative source", () => {
 
   it("keeps no non-authoritative entry inside a product package directory", () => {
     const leaked = map.entries.filter(
-      (e) => e.nonAuthoritative && e.targetPath.startsWith("packages/") && !e.targetPath.includes("upstream"),
+      (e) =>
+        e.nonAuthoritative &&
+        e.targetPath.startsWith("packages/") &&
+        !e.targetPath.includes("upstream"),
     );
     expect(leaked).toEqual([]);
   });
@@ -308,9 +314,7 @@ describe("AFM-002: unclassified and missing entries fail loudly", () => {
     });
     // The hidden file must appear as unclassified rather than being skipped.
     expect(
-      found.some(
-        (p) => p.code === "unclassified-entry" && p.path.includes(".hidden-unclassified"),
-      ),
+      found.some((p) => p.code === "unclassified-entry" && p.path.includes(".hidden-unclassified")),
     ).toBe(true);
   });
 

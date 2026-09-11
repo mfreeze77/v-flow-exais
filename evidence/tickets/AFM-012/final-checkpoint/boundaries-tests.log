@@ -1,0 +1,153 @@
+TAP version 13
+# Subtest: package boundaries — the real repository
+    # Subtest: passes the declared policy
+    ok 1 - passes the declared policy
+      ---
+      duration_ms: 897.559715
+      type: 'test'
+      ...
+    # Subtest: reports no unresolvable import inside protected production code
+    ok 2 - reports no unresolvable import inside protected production code
+      ---
+      duration_ms: 886.959755
+      type: 'test'
+      ...
+    # Subtest: actually protects the packages the ticket names
+    ok 3 - actually protects the packages the ticket names
+      ---
+      duration_ms: 0.274438
+      type: 'test'
+      ...
+    1..3
+ok 1 - package boundaries — the real repository
+  ---
+  duration_ms: 1785.335663
+  type: 'suite'
+  ...
+# Subtest: package boundaries — deliberately introduced violations
+    # Subtest: fails a direct forbidden package import, naming file, line, target and rule
+    ok 1 - fails a direct forbidden package import, naming file, line, target and rule
+      ---
+      duration_ms: 2.002917
+      type: 'test'
+      ...
+    # Subtest: fails a relative path into the same forbidden package
+    ok 2 - fails a relative path into the same forbidden package
+      ---
+      duration_ms: 1.212265
+      type: 'test'
+      ...
+    # Subtest: fails a re-export that leads to forbidden code
+    ok 3 - fails a re-export that leads to forbidden code
+      ---
+      duration_ms: 1.21725
+      type: 'test'
+      ...
+    # Subtest: fails a literal dynamic import and a CommonJS require consistently
+    ok 4 - fails a literal dynamic import and a CommonJS require consistently
+      ---
+      duration_ms: 1.342737
+      type: 'test'
+      ...
+    # Subtest: does NOT report forbidden-looking text in comments or ordinary strings
+    ok 5 - does NOT report forbidden-looking text in comments or ordinary strings
+      ---
+      duration_ms: 1.095841
+      type: 'test'
+      ...
+    # Subtest: reports an unresolvable import in production rather than certifying the boundary
+    ok 6 - reports an unresolvable import in production rather than certifying the boundary
+      ---
+      duration_ms: 1.171319
+      type: 'test'
+      ...
+    1..6
+ok 2 - package boundaries — deliberately introduced violations
+  ---
+  duration_ms: 8.430223
+  type: 'suite'
+  ...
+# Subtest: package boundaries — production and test scope are distinct
+    # Subtest: allows a forbidden import in test scope but still lists it
+    ok 1 - allows a forbidden import in test scope but still lists it
+      ---
+      duration_ms: 0.910895
+      type: 'test'
+      ...
+    # Subtest: does not let a production violation escape by moving into a helper
+    ok 2 - does not let a production violation escape by moving into a helper
+      ---
+      duration_ms: 1.143082
+      type: 'test'
+      ...
+    # Subtest: classifies scope by location and filename, never by the import
+    ok 3 - classifies scope by location and filename, never by the import
+      ---
+      duration_ms: 0.072468
+      type: 'test'
+      ...
+    1..3
+ok 3 - package boundaries — production and test scope are distinct
+  ---
+  duration_ms: 2.217519
+  type: 'suite'
+  ...
+# Subtest: package boundaries — import extraction
+    # Subtest: finds every supported import form with accurate line numbers
+    ok 1 - finds every supported import form with accurate line numbers
+      ---
+      duration_ms: 0.102627
+      type: 'test'
+      ...
+    # Subtest: keeps line numbers accurate after stripping a block comment
+    ok 2 - keeps line numbers accurate after stripping a block comment
+      ---
+      duration_ms: 0.044205
+      type: 'test'
+      ...
+    # Subtest: ignores specifiers inside template literals
+    ok 3 - ignores specifiers inside template literals
+      ---
+      duration_ms: 0.036188
+      type: 'test'
+      ...
+    1..3
+ok 4 - package boundaries — import extraction
+  ---
+  duration_ms: 0.227998
+  type: 'suite'
+  ...
+# Subtest: package boundaries — resolution
+    # Subtest: maps a bare specifier and its subpaths to the owning package
+    ok 1 - maps a bare specifier and its subpaths to the owning package
+      ---
+      duration_ms: 0.057216
+      type: 'test'
+      ...
+    # Subtest: treats node builtins and third-party packages as outside the policy
+    ok 2 - treats node builtins and third-party packages as outside the policy
+      ---
+      duration_ms: 0.068486
+      type: 'test'
+      ...
+    # Subtest: maps a relative path back to the package that owns the destination
+    ok 3 - maps a relative path back to the package that owns the destination
+      ---
+      duration_ms: 0.059968
+      type: 'test'
+      ...
+    1..3
+ok 5 - package boundaries — resolution
+  ---
+  duration_ms: 0.278089
+  type: 'suite'
+  ...
+1..5
+# tests 18
+# suites 5
+# pass 18
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 1862.709014

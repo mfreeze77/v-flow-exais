@@ -4,14 +4,7 @@
   "title": "Archify Data Flow Diagram",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schema_version",
-    "diagram_type",
-    "meta",
-    "stages",
-    "nodes",
-    "flows"
-  ],
+  "required": ["schema_version", "diagram_type", "meta", "stages", "nodes", "flows"],
   "properties": {
     "schema_version": {
       "const": 1
@@ -22,9 +15,7 @@
     "meta": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "title"
-      ],
+      "required": ["title"],
       "properties": {
         "title": {
           "type": "string",
@@ -94,9 +85,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "label"
-        ],
+        "required": ["label"],
         "properties": {
           "label": {
             "type": "string",
@@ -111,13 +100,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "id",
-          "type",
-          "label",
-          "stage",
-          "row"
-        ],
+        "required": ["id", "type", "label", "stage", "row"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -165,11 +148,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "from",
-          "to",
-          "label"
-        ],
+        "required": ["from", "to", "label"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -191,13 +170,7 @@
             "$ref": "common.schema.json#/$defs/variant"
           },
           "route": {
-            "enum": [
-              "auto",
-              "straight",
-              "vertical-channel",
-              "bottom-channel",
-              "top-channel"
-            ]
+            "enum": ["auto", "straight", "vertical-channel", "bottom-channel", "top-channel"]
           },
           "fromSide": {
             "$ref": "common.schema.json#/$defs/side"

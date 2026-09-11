@@ -1,9 +1,9 @@
-import { parse, parseFragment } from 'parse5';
-import { SaxesParser } from 'saxes';
+import { parse, parseFragment } from "parse5";
+import { SaxesParser } from "saxes";
 
 function visit(node, callback, insideSvg = false) {
   callback(node, insideSvg);
-  const childInsideSvg = insideSvg || node.tagName === 'svg';
+  const childInsideSvg = insideSvg || node.tagName === "svg";
   for (const child of node.childNodes || []) visit(child, callback, childInsideSvg);
   if (node.content) visit(node.content, callback, childInsideSvg);
 }
@@ -20,10 +20,12 @@ export function extractSvgs(markup, fragment = false) {
   const srcdocs = [];
 
   visit(document, (node, insideSvg) => {
-    if (node.tagName === 'svg' && !insideSvg && node.sourceCodeLocation) {
-      direct.push(markup.slice(node.sourceCodeLocation.startOffset, node.sourceCodeLocation.endOffset));
+    if (node.tagName === "svg" && !insideSvg && node.sourceCodeLocation) {
+      direct.push(
+        markup.slice(node.sourceCodeLocation.startOffset, node.sourceCodeLocation.endOffset),
+      );
     }
-    const srcdoc = node.attrs?.find((attribute) => attribute.name === 'srcdoc');
+    const srcdoc = node.attrs?.find((attribute) => attribute.name === "srcdoc");
     if (srcdoc) srcdocs.push(srcdoc.value);
   });
 

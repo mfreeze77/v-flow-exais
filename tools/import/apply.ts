@@ -37,7 +37,7 @@ import { dirname, join, relative, resolve, sep } from "node:path";
 
 import { openZip, type ZipEntry } from "./zip.ts";
 import { safeName, type RepositoryName } from "./preflight.ts";
-import type { ImportMap, ImportMapEntry } from "./plan.ts";
+import type { ImportMap } from "./plan.ts";
 
 export interface ApplyOptions {
   map: ImportMap;
@@ -305,9 +305,10 @@ export function applyImport(options: ApplyOptions): ImportReceipt {
     }
 
     // Read back from staging and verify before finalizing.
-    const readBack = entry.kind === "symlink"
-      ? Buffer.from(readlinkSync(stagedPath), "utf8")
-      : readFileSync(stagedPath);
+    const readBack =
+      entry.kind === "symlink"
+        ? Buffer.from(readlinkSync(stagedPath), "utf8")
+        : readFileSync(stagedPath);
     if (sha256(readBack) !== entry.sha256) {
       receipt.conflicts.push({
         targetPath: entry.targetPath,

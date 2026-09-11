@@ -4,14 +4,7 @@
   "title": "Archify Lifecycle Diagram",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schema_version",
-    "diagram_type",
-    "meta",
-    "lanes",
-    "states",
-    "transitions"
-  ],
+  "required": ["schema_version", "diagram_type", "meta", "lanes", "states", "transitions"],
   "properties": {
     "schema_version": {
       "const": 1
@@ -22,9 +15,7 @@
     "meta": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "title"
-      ],
+      "required": ["title"],
       "properties": {
         "title": {
           "type": "string",
@@ -97,10 +88,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "id",
-          "label"
-        ],
+        "required": ["id", "label"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -118,13 +106,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "id",
-          "type",
-          "label",
-          "lane",
-          "col"
-        ],
+        "required": ["id", "type", "label", "lane", "col"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -184,10 +166,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "from",
-          "to"
-        ],
+        "required": ["from", "to"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"

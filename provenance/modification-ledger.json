@@ -3,19 +3,283 @@
   "generatedBy": "tools/legal/asset-audit.ts",
   "modifications": [
     {
+      "path": "licenses/archify-THIRD_PARTY_NOTICES.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "THIRD_PARTY_NOTICES.md",
+      "upstreamSha256": "0b7fb59365dc21c93b0f62526d74ee913aeec9ae532c112bc76afa7edcd56e14",
+      "currentSha256": "1fd6ac5976307d41fb59b48c1b580be6bda0a2bfc3e4179eb5195522e7bff464",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/SKILL.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/SKILL.md",
+      "upstreamSha256": "10094272d6d1b4ad0f2c2e0880cb646fe4991454a2dc3d854aecb27e7407ee1f",
+      "currentSha256": "92ed385d621c7db54cece313f6fb733321fe9a3f1c6186922078a7bb787fdd0e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/THIRD_PARTY_NOTICES.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/THIRD_PARTY_NOTICES.md",
+      "upstreamSha256": "0b7fb59365dc21c93b0f62526d74ee913aeec9ae532c112bc76afa7edcd56e14",
+      "currentSha256": "1fd6ac5976307d41fb59b48c1b580be6bda0a2bfc3e4179eb5195522e7bff464",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-viewer/assets/template.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/assets/template.html",
+      "upstreamSha256": "b3583470b9ec789418207963405252141c710b1b8a5c08a6cfd03156712f3f7d",
+      "currentSha256": "a8a2e81f839fa1e62390ab63df4e3545570ff46185f820b7801c7cb9e51c7cec",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/bin/archify.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/bin/archify.mjs",
+      "upstreamSha256": "cb00a6a60cff395f1728722ce6c41b7721b484c5349ae82111ee16719a672721",
+      "currentSha256": "c512e06f0a8a35c40b44ad9f3653a15593dea292f8d26eba6f25bfd4a0eb35be",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/bin/open-artifact.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/bin/open-artifact.mjs",
+      "upstreamSha256": "add1722186683c12770c575585bbb8774919c15b87361e10d2fe834623223159",
+      "currentSha256": "6c892dcb18e37581734bfe663e1d41f961bca2a50253c7cb061f9399593f0cd2",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/bin/preview.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/bin/preview.mjs",
+      "upstreamSha256": "6d41e491d42070c05b5e278548714da1fcef6e6adfd84a0391ab2bf12f47373c",
+      "currentSha256": "616b52be45f86a89e474bcd71dde27dfdf3dac6c0c0f709bcf1cde3fa01898ff",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/bin/visual-check.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/bin/visual-check.mjs",
+      "upstreamSha256": "8fa8c6f233f3598f4f22e58c48a4de6f45b3b072ad8e7aee4731c49b4bfbdc52",
+      "currentSha256": "663cf20b37854c1da873d15a7dfebe13506299f14faa4863cd38aed666195de5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/brand-marks/catalog.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/brand-marks/catalog.json",
+      "upstreamSha256": "e1a6c555cbf8ea36fb8100a4a25824e7ab87bebe9871e450ba05b6dea3b036d6",
+      "currentSha256": "8c89aaa06aee5599f0b4de3df0aa8af9bba6a7006f2ce8b0821b375046b077e0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/delta/architecture-delta.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/delta/architecture-delta.mjs",
+      "upstreamSha256": "ccff0af2cf5dbaaca90fe761fc28fd885fd4e4b2811d6314c74a6e0960f79046",
+      "currentSha256": "f0993894088e3157703bc623414f3f42b71ed79f98d75e45b57d2f3c3eb56ac1",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/agent-run.lifecycle.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/agent-run.lifecycle.json",
+      "upstreamSha256": "7c0ad72ee7affbd6c6e4758b7520d61ddd4508c917acf36beabcad3ee7ca3ba7",
+      "currentSha256": "0b4989bcc3a6ad1425dec141eb79f4993d1dc69906d2f5c30ca11457ed8eb8bd",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/agent-tool-call.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/agent-tool-call.workflow.json",
+      "upstreamSha256": "4d3f6c23de2ca7d306e05d0041a9506833bb5a164a2bddc2d1984cf4da3ee90c",
+      "currentSha256": "193be13ef4e996966c85334ecf3314e649728aa812003e9c2a3cce4f07fd04ca",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/async-job-roundtrip.sequence.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/async-job-roundtrip.sequence.json",
+      "upstreamSha256": "545f20920c89b69c2bb1f15508d5543fddbeb15cffba61e102206e04bd5a5cd9",
+      "currentSha256": "0945d78eb2d6b85703fb5e4c01b896ceec670220a207eae09b715d95562c2c8d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/brand-aware-delivery.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/brand-aware-delivery.architecture.json",
+      "upstreamSha256": "d4f0df8114b3524756ffa49529c015e00757b0594a357183490c1edeb341e3c6",
+      "currentSha256": "08025c40f3496a60473465a39e2f3ca662a69e0ea09cebbf54c66e8f84025500",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/cache-miss-request.sequence.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/cache-miss-request.sequence.json",
+      "upstreamSha256": "9a799a3661c16cd6ab4f6373ff6a04da95a9ab70d93b0a349b668466f4912fd7",
+      "currentSha256": "62515510fb9da60ae5eddd603e9bb273547ba6fc103a61651699732378714f13",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/checkout-platform.base.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/checkout-platform.base.architecture.json",
+      "upstreamSha256": "c112195e7285e3e4aedaeab3e1f85f5891d30fccc2c260aebe4e1da12c80cf84",
+      "currentSha256": "5d072c043c5451e576abe33d4f793573aa84a3368684df7d26fb6d61911e9c8c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/checkout-platform.head.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/checkout-platform.head.architecture.json",
+      "upstreamSha256": "e3aaf47f77afeadafc81c6ce853dc1df68cc1e6932dec972cf478f4008fdda99",
+      "currentSha256": "6e9059e8c236b512e62e8bdfd81dd35ff4749f005002193fd78bba56def58c3b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/dataflow-product-analytics.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/dataflow-product-analytics.html",
+      "upstreamSha256": "c75c04344269b16e25c72551101e706d05004ee93d298e8d0c4c5bd93d4050e9",
+      "currentSha256": "02c5e2bd84e66efa1641d90dbd7ab2ac2890f57bfacd8029b987f1b2824077be",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/deployment-release.lifecycle.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/deployment-release.lifecycle.json",
+      "upstreamSha256": "735c2c5819266e6ea2a71775b6eefce98b53030ce90cb721dc8e1d022ce5be71",
+      "currentSha256": "d20f3fcc1efec070a981edcf097d6e01831812204a7d1f0386ea8db3d50fb7d7",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/event-stream.dataflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/event-stream.dataflow.json",
+      "upstreamSha256": "a92d6597ddbe164f395da32a7d4b33cfae08edd7d9600a6fb45a2058e5bbb43e",
+      "currentSha256": "07d10a49db5ccf59c86879589ef0d7dfbf320465fabacaadc7e3aadf9642a2cf",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/incident-response.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/incident-response.workflow.json",
+      "upstreamSha256": "5c760c82eee545dfb7da38a4e628059d7891af4cfbfc13c8a7009ea64f69aa1b",
+      "currentSha256": "e0c4ad7cd9f13ff466e727b5e39fd60210724de96787ae560f5530e79b3e966c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/lifecycle-agent-run.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/lifecycle-agent-run.html",
+      "upstreamSha256": "87b43a172dd3c9292fbc12fb37bcdadc9580171473cec33cffcd5d81b2deea25",
+      "currentSha256": "86a5ab5b950744c2598a0eee34f7d6fe60eb37a3ac42867f3693e09d0fd21d05",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/product-analytics.dataflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/product-analytics.dataflow.json",
+      "upstreamSha256": "91411404fb4828a3b7ea358f3a7b9877781c9e9dc9c04b42b6eb4a757281b59f",
+      "currentSha256": "97ee930723c676156173d6bf139535d86b533476be9710a2dd379b8652d0e971",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/production-deployment.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/production-deployment.architecture.json",
+      "upstreamSha256": "ec484aa8576664fdb207b543fa49486b23273faccb7a5071e1a0becfb48c22eb",
+      "currentSha256": "9c7df62ed4b03509cd98ace363842a48649ff6a5bb383118aee5c7e7fade8c02",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/release-delivery.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/release-delivery.workflow.json",
+      "upstreamSha256": "e5c880417eac1623923c3dd5461e0c78acd762e1621a28bd53fc14a84cad6a91",
+      "currentSha256": "da519eb2c92ea70f905c164f844d76050e026fc1c7717e88775eef593646b5ab",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/sequence-cache-miss-request.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/sequence-cache-miss-request.html",
+      "upstreamSha256": "7c5c8f5c39c10dc8148591f654cd79a05ff49bb70166a4c45607414ca02cbe3a",
+      "currentSha256": "5cf042509452eafcddedd2d24f65bfe8f0c6876d64aaaabcd761c3fa7ec22e87",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/web-app-rendered.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/web-app-rendered.html",
+      "upstreamSha256": "acfb4794ff836ca93ed4139345cce763cdf62514a10133e4a8a32ef1a69066d1",
+      "currentSha256": "279cfdd9eb211f475b7cb0d358c20974eeee89c380b655a5197e5ec20eb48039",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/web-app.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/web-app.architecture.json",
+      "upstreamSha256": "483350f5297df682aba4e4a0fa491307ce3d3abd725ae4df07fab177490752cf",
+      "currentSha256": "f0ebeee7668162dea7ee53781b39841b9f1b7045a5b012a7a054da8f60977b83",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/examples/workflow-agent-tool-call-rendered.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/examples/workflow-agent-tool-call-rendered.html",
+      "upstreamSha256": "fc7643fa7f3b0c85250f781f9927a905f518a5b4a8c28ec08afd6f3889f435e4",
+      "currentSha256": "b7360e63607ac2dbd2ee423ac4008ff1b8382d823c2485768b87bcdb43d6c3b4",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/migrations/workflow-v2.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/migrations/workflow-v2.mjs",
+      "upstreamSha256": "77aadc38460e5e778344901f492cc00f16f74e8fe1def14b01e6d6d346b9f4c7",
+      "currentSha256": "583939bb8e2f8dc49560912fa73dbcd5e472dd8c029262a805e95f976847fbcb",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
       "path": "packages/diagram-engine/package.json",
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/package.json",
       "upstreamSha256": "7fe2a96f0d6730b2d35811d7d4f5e7e969c166a47a0c87543cdf667a221815be",
-      "currentSha256": "d3793f12662187de4c4228b0960755b04232aff476b4f1fda02e1d49d1c9c25d",
+      "currentSha256": "95639fba7ec40508406d281fbe5b32e998b4fd91dabc4afc47f35e07f03af041",
       "reason": "Rewritten during AFM-009: renamed from the upstream 'archify' to @hyperframes/diagram-engine, marked private, runtime imports (ajv, parse5, saxes, simple-icons) moved from devDependencies to dependencies, the fast-uri 3.1.5 override preserved, exports and packed files declared, and the bin renamed to archframe-diagram so it cannot collide with a globally installed upstream CLI."
+    },
+    {
+      "path": "packages/diagram-engine/recipes/scenarios.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/recipes/scenarios.mjs",
+      "upstreamSha256": "e77d31d5b65b921799f4f560287fbac24feb3cd683bee8cabe49ed1ddde1a8ac",
+      "currentSha256": "dd90db5c0bd3008ee438965363c7c8908eece21b130a673327338473c83db403",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/architecture/grid.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/architecture/grid.mjs",
+      "upstreamSha256": "f6de99c32436feed3378b0ddef516bb4732ff27a89c543b50635d4d14a15a55a",
+      "currentSha256": "0f922874745b985fc8a95021d505183641633fed6d04a18c1279db84efea9cc9",
+      "reason": "owned change (no specific note recorded)"
     },
     {
       "path": "packages/diagram-engine/renderers/architecture/render-architecture.mjs",
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/architecture/render-architecture.mjs",
       "upstreamSha256": "f57077cb9fa64a8412ab0af705cb31e2e7a920114b31852882c04a76840365dc",
-      "currentSha256": "5507ed0997a126d3f9d3f646bbc791efad32d2a44b85c4e7c96cd036f1b4b275",
+      "currentSha256": "a2d9033a74e3cc1cc179326029a1038cb459b4be9d32d87e724277f79a16aa25",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/dataflow/README.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/dataflow/README.md",
+      "upstreamSha256": "18c4f86ba62fcee371d9fe38094625b3a68cc76231c36ab8c8124acb4c1ffa42",
+      "currentSha256": "b14b0b4fc39782d7c6b424d8188e9a30ca4a31b0b920f997d3ec58115177837a",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -23,7 +287,15 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/dataflow/render-dataflow.mjs",
       "upstreamSha256": "5a5da505e5c68041990de92847f53a38215efb9212bc36fc911774e8829335c9",
-      "currentSha256": "9ceb28b37495b9f80b2a0c8905246edb52349ebb39c99fdeaf6b753b136e46cb",
+      "currentSha256": "42909e64a8822880669d6664fb93d7e6979ddb8fa9ff462a24b00ce909b72b7b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/lifecycle/README.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/lifecycle/README.md",
+      "upstreamSha256": "f8ef88dc859189bb18bad7bb2e27d997cbc9d30936cf20f8bf401bae7f57deec",
+      "currentSha256": "2c3323551834fd43cc3a1231c6f95afbce21bdc4bc428be4960584064bbf0eed",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -31,7 +303,15 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/lifecycle/render-lifecycle.mjs",
       "upstreamSha256": "23720729a14495b4085839653ec0622f2465be3b1e8c9eb556b602ab3f4a8cda",
-      "currentSha256": "bbd063cd0614419e0b1ec12845a7d195a7fda314b85d1dc41107ee5d6b1737cb",
+      "currentSha256": "1c006366851c8c595574e506ba56a07020ae92d5e4272e31c477f1229e5a878c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/sequence/README.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/sequence/README.md",
+      "upstreamSha256": "a442335dcf44b1587d3ad88809e31b001a4fafdf7a134040e8b1927455af4206",
+      "currentSha256": "4515323d1f2e015f9f266f8049bf30b3fdda3e20dff5b8d5767be5ac00668608",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -39,7 +319,7 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/sequence/render-sequence.mjs",
       "upstreamSha256": "230c0fb79775badb4beb6fd74f45ed1ffbb70e932c3641a24bedcc61f912bddf",
-      "currentSha256": "866491941bc74d6329728ef76dfa9c7ed480c4709d5aadd1983912aa444debba",
+      "currentSha256": "6f015da252944efcff84361d28b99887175f8f860b408860a44a3ce2e0b0fcfe",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -47,7 +327,7 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/shared/brand-marks.mjs",
       "upstreamSha256": "4557b7f3eec25a3dba66a0f5da1c5dca6ec607e2a68e9be51cd697cefe9e6425",
-      "currentSha256": "4a082c4750d8b7264cfa16905907ce4a835b3354414fcc49a9f3b744c9544381",
+      "currentSha256": "7537c749c6fd2366a6c18c131fbd0af698502908a31727c465f54e0c574a8627",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -55,15 +335,47 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/shared/cli.mjs",
       "upstreamSha256": "2a6b8fa11234451627a70bca71985d80362a4c52401a90a21840d6e2ae3012d9",
-      "currentSha256": "692817c84827e47f4a159bbae8742f6a5c39148d8209b376a62144037de7ee93",
+      "currentSha256": "7e4720f8b837294b46d57db9b5368e9fb3853f2972cfe957746e919c98bf941f",
       "reason": "Modified during AFM-011: asset lookup remapped to package-owned resolvers. The upstream code resolved its template relative to an assumed skill root, which broke when the import routed the viewer template into @hyperframes/diagram-viewer (finding AFM-011-F1)."
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/desktop-readability.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/desktop-readability.mjs",
+      "upstreamSha256": "b36203a11df348706e541f309266a0f9b914dac6a7eb8ba804e3abe8f8d6c710",
+      "currentSha256": "2e97e3ccfc0d42cb5a90f3c1a9aa257e38820663afbb311fab7daca701746402",
+      "reason": "owned change (no specific note recorded)"
     },
     {
       "path": "packages/diagram-engine/renderers/shared/diagnostics.mjs",
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/shared/diagnostics.mjs",
       "upstreamSha256": "855fea15daf2beb5be7fad0d54b72a63a4af8595f227facf845ba1852b3b365a",
-      "currentSha256": "20cb18398ccbf415e56d254579a495217bc05c6d846fe734a71b98740da53f7a",
+      "currentSha256": "68b75f9fde74fd5c8ea8dd8de7ef2f85e055883df9adf613daa0a7ffc78bbe9d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/engineering-profiles.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/engineering-profiles.mjs",
+      "upstreamSha256": "7e99f9d5423f66cc9ab6224da56dc2d5aa6c6faec29178034794e9db6b5b2889",
+      "currentSha256": "d7676276cf4daabb31b9378ef91314859337b1976abe9a98b4cd6019eeaecf8a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/generated-brand-marks.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/generated-brand-marks.mjs",
+      "upstreamSha256": "0f157d229c12df6f53763a3b88684baa5803a52484c49c4d34ec40b8743beea2",
+      "currentSha256": "0a6b27e51c2b5d3c7f61be6299a43466db5aaff290cd5604c5cade6166c712d1",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/generated-validators.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/generated-validators.mjs",
+      "upstreamSha256": "a1843e5612916e7ff71511d8577cdbea9a1355eee0ed1379de0ffd668992387f",
+      "currentSha256": "fdd0875f9352e52237d8c68db13ac1c1b1ffb4d4dd59733d195796d17f50c18c",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -71,7 +383,87 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/shared/geometry.mjs",
       "upstreamSha256": "161785af32241fc96df051c9be4f2bb9c3b897418d708f4a051b63f1c44952cf",
-      "currentSha256": "b042d071bc888fabd75c26f20b5a495cb246668eb35a8765669d1ab2841e3408",
+      "currentSha256": "7f6b95c02f81f75388c0946c477fffc0665fc98e2c5e368410e97e8275444d40",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/i18n.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/i18n.mjs",
+      "upstreamSha256": "0d9e839c3e5346160b0028d07fcf78c86671189e0714ea069dc99913e859fcdb",
+      "currentSha256": "c16e19e086bf6757728cad0c82f34b2b46eac615aded078038edf63dc8188fd0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/layout-report.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/layout-report.mjs",
+      "upstreamSha256": "44c2f74a20e483dd37dae6791ede39284ce3bac1a2a13872d2912999e8504df5",
+      "currentSha256": "eed7d72a8bf0cc9a2b479b783c72d16d2617f8c4fe2d5ffa1c8feffb368ed74c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/legend.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/legend.mjs",
+      "upstreamSha256": "4c8b37f10fb5c783a28bff6aa35bc3966155213ee32f64a8252eab5b9e64a747",
+      "currentSha256": "f282d2f08f42f1856bf6c2dc39d320fd7851ade3e12eeebb79a09508d6146545",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/output-path.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/output-path.mjs",
+      "upstreamSha256": "44a5f63239703a0a56623711bb9565272488c540650cb8c3f0a3aac57928d1cf",
+      "currentSha256": "7ede750f683f5f29960257b7bce1650a4b7d0333b94f3da3faeed602085f6f9f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/repository-evidence.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/repository-evidence.mjs",
+      "upstreamSha256": "ce3c358093aee12790d5567de6c887ce7b9ce7961bfc742d2cf9f36eab2d4dd5",
+      "currentSha256": "feb488bc370e71a6da25ac3571091fc7de9bef001a0fa0e663188fa6033987be",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/repository-location.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/repository-location.mjs",
+      "upstreamSha256": "e82fa68ab46e71566eb7aefdb48f6df67b34fd27ce36489e7787410dbfba05ce",
+      "currentSha256": "1dcfae90c9f769714bf8223b53e2b53beb079834fb3e497be198aa5175638707",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/text-fit.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/text-fit.mjs",
+      "upstreamSha256": "35b6ef2c64d88c1ea4e5aab2af7c4e8a2c2e1be62db71263787d39a9797e7dea",
+      "currentSha256": "1d319d9bea8933af3742b9868d112561648dd3c2de852bba243a782032f9528e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/utils.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/utils.mjs",
+      "upstreamSha256": "20124265300eb286db184a053561005cc32b6128dc1bc1b3f9520ffa8d43a241",
+      "currentSha256": "46ebe020a55d186682ca89640de19ff012f4545ffe8326ba07bdb608e5c60549",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/validator.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/validator.mjs",
+      "upstreamSha256": "7460d7fcbcdf710649256c5e96142ae26d807a655d3296ee8caf7f5e158622cc",
+      "currentSha256": "6590c1ef6a249c0cfedaa106208bb1d6e7074e0a1776bc654a1bd65fd6be83d3",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/workflow/README.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/workflow/README.md",
+      "upstreamSha256": "7e1bd65cc5cc38206304ae2f61f4f0f493da98d71a111a61d0754c9da362c5c9",
+      "currentSha256": "d0599b9b72fc4feb558c6cf2f20e8b560a3fd0557e8e39ec263b6cb47617a049",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -79,7 +471,7 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/workflow/render-workflow.mjs",
       "upstreamSha256": "83be05d1efd1816c527fccdf3ebbd4a0f1454c6cb0c9f7554c6702eb40d9c540",
-      "currentSha256": "7890c2612dc65cf770919b21506f8cc4f68f6310c63a787597f5b31e995627c3",
+      "currentSha256": "8c342d30c2c77ac09374dc850c53c4e74f94d4abb44139634e69295f6507b04f",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -87,7 +479,127 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/workflow/workflow-compiler.mjs",
       "upstreamSha256": "06dc97f67041037d71fd8731934d4833ece95ac1a4278e3ef875b0e51e516104",
-      "currentSha256": "06324f403c676e59283505d5e6a07065d965e580a30e6d040b7a1cb49339a450",
+      "currentSha256": "5d59d38bc51b70562f8807c6053b8981a0d65aca44e233aa1a4443de4c1d5f33",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/workflow/workflow-migration-geometry.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/workflow/workflow-migration-geometry.mjs",
+      "upstreamSha256": "ebfc5085dd008ae63802f500402fb7bf8ca0ae28460997d867f45e5493b8fbe6",
+      "currentSha256": "6be75dd0900b178ed53af169c5da8846e3c26468dd5b481564857edbd28f438e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/schemas/README.md",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/schemas/README.md",
+      "upstreamSha256": "f4ca94ec18cf60ad02211f2c5bb64e9c26a87467a22215e06db34dbfc5d6145f",
+      "currentSha256": "54d4fee582c77a76fffadcf5afdf20e9ed9e4b856e750e0083ed45682036e1a9",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/schemas/common.schema.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/schemas/common.schema.json",
+      "upstreamSha256": "2630c958314eeebb92e0f6f6330475f1a2bc48f8c1b53201ba3b58889b319c80",
+      "currentSha256": "812fd2cb0ac49815026a471750ef9f57cd94ce726daf5081e96b5b66430e4eaf",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/schemas/dataflow.schema.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/schemas/dataflow.schema.json",
+      "upstreamSha256": "09d238a6a18f2e074ec69c8f905f58a44d3a0b68fc6a925b8346c484a912af90",
+      "currentSha256": "d7f0c8d44df185996c3fe14c6dff550874039df3286ede8bdd0f8e3124987446",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/schemas/lifecycle.schema.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/schemas/lifecycle.schema.json",
+      "upstreamSha256": "05b46c0db95ee7ed44305b61496a96bb4f69342b20f9903d6534d952ebc65083",
+      "currentSha256": "c837483759c4a14ed184a9aeab60480df2588e1291b90c6c8307bf37690d803a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/schemas/sequence.schema.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/schemas/sequence.schema.json",
+      "upstreamSha256": "c9fec3fad087f14d55c0bb2d34446246e3405f0238c292c1cb6bef28d1120fcb",
+      "currentSha256": "69d95e18f9b2e06641ae1764e028bdc917b6e2bfd59a8bf98bca5ff0831f585e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/schemas/workflow.schema.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/schemas/workflow.schema.json",
+      "upstreamSha256": "2128e82afd2b971fcb7d80ada86fa836bb4a5035b504053b87d3aeefec380e3c",
+      "currentSha256": "e2320d426cb7de839ebaeb39a096d6256797ee5cec01e16cd3e2820994760f10",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/scripts/check-render-output.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/scripts/check-render-output.mjs",
+      "upstreamSha256": "cd70eeb43b07b6a669e10e35f06e4e2e4ce1f7e7a6afcfcf349d75d00e0721a5",
+      "currentSha256": "3b143001733cbc27abde920ebc293c8eab72a442ed93db2f1af3fc056b901dfb",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/scripts/check-update.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/scripts/check-update.mjs",
+      "upstreamSha256": "7c7f47b35a55754fd85468c5e1cfc467bb2e1b9dd5c683dd60172844882b1970",
+      "currentSha256": "a548e17ee8b085a285ab1e92536316ba61b1e74daab0ce104072c4defdacce35",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/scripts/generate-brand-marks.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/scripts/generate-brand-marks.mjs",
+      "upstreamSha256": "0434c31903b831382a91e85a329bcbcb39b32f29c656273a273f896b3b0a42e7",
+      "currentSha256": "38347497729e6f690d0787ff2d716416f1c3eb3a7b558f8b027b876879365df6",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/scripts/generate-validators.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/scripts/generate-validators.mjs",
+      "upstreamSha256": "a5f5f67d3cd4675b16fa620043a5463f3c15aad89afb1b0c7cf42cf35e883f9a",
+      "currentSha256": "bb3976f70c055f2dc0f004d3f062d829c3d1b0fd48641facc0cae540ae2fddd0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/scripts/render-examples.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/scripts/render-examples.mjs",
+      "upstreamSha256": "a173a053fb26c0ac3cd72eb9b4e50411e67ca8c50bec57f05d4ca8ba79db2c0b",
+      "currentSha256": "360cba8f46dcf5e491196017b739a69da3f3b84b4af4865678ca1e186df4ba67",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/scripts/update-contract.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/scripts/update-contract.mjs",
+      "upstreamSha256": "7c5d34c5fa2e08fcd0b42e33a0f3b4685fcecf3ac88f1ed820528df8fdc46cbc",
+      "currentSha256": "2b41e0ae4c68d84caf31aa69c57426dac1cf6cc2b51a538bf92ddd0cd26c5fd3",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/adaptive-reader-layout.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/adaptive-reader-layout.test.mjs",
+      "upstreamSha256": "80ba934f6c8398b321387e55b0aa858a928ea66c0a4125e7ad72b6f58a1669c5",
+      "currentSha256": "ecf5766ebfea14d837ae790442069bea8e282b53d53aa1e5fe17d0fd3cc7b5c7",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/animation.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/animation.test.mjs",
+      "upstreamSha256": "f53265be97ca6e59a6902c68a4cd2690a7ed931ab89cb83ad071030d80e17398",
+      "currentSha256": "4dda2ee0c81c5151fb06ef593e71d2322fc13b577f12f5a182ae1455b5709f1e",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -95,7 +607,1175 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/test/architecture-delta.test.mjs",
       "upstreamSha256": "635816a7b89f7b6e0de92c79bb0226313249962f2bdf4bc42165f925ce2e78fc",
-      "currentSha256": "b3c351dbac453a06cf262f07f424ab54fb8c6cc295efd7daea616eccd4997666",
+      "currentSha256": "73d966b51707160c6d5587222a6b95cd6a34e42dddd2f49b863e52abb15b6933",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/artifact-receipt-flush.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/artifact-receipt-flush.test.mjs",
+      "upstreamSha256": "666118920612f0b2c479c0521e86bcc1a4be1e46f0972fbf53f9bac77c80dce7",
+      "currentSha256": "6800ee5ba85a78267b35ed4371f3ee386605009f788f913e329d5bae31905fc0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/authored-reachability.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/authored-reachability.test.mjs",
+      "upstreamSha256": "b243c1568c8470a28cfbebc6b9db4dfe0302e7f37f5c451ccffec53de23fd01b",
+      "currentSha256": "8ba7ee57a0ae48ff79feebe1adbecd3855a5645fcb2094b5221a079da8fc976a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/authoring-safety-contract.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/authoring-safety-contract.test.mjs",
+      "upstreamSha256": "1454a57493576d4afa9fd3f8640e064c86e5cdcaac2de1890fcedce84d0fce24",
+      "currentSha256": "dd4e53b56913e8a9fce85237e582ebd76e207ef070fcc474474fb86ca5757097",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/automatic-port-spread.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/automatic-port-spread.test.mjs",
+      "upstreamSha256": "138508bc4ca7b28b003400897caba5484fb6e2c28ff4a7be9d0bcbdef7391aab",
+      "currentSha256": "84c1db5375882a5c251c8a57e01ef16fe32b7ce9ff1ea5a04ec8fb69f8bd3961",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/base-input-compatibility.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/base-input-compatibility.test.mjs",
+      "upstreamSha256": "0cc0ec480aa23620adfb493b0c102a744c72c8799e3e837ef4c31f26980551d5",
+      "currentSha256": "a74606d43d8fbbe74da13887bff535a17a67bc4ec85f4740272fd0fcbe528d14",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/brand-marks.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/brand-marks.test.mjs",
+      "upstreamSha256": "00730eb26b9a126a45c529bbb7101b13e3e6f14258c53c4633eb2b290ce30226",
+      "currentSha256": "2c26cae86754cb018f92733b38229315b13589dc04243cf96daafcef03617121",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/chapter-delta-preview.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/chapter-delta-preview.test.mjs",
+      "upstreamSha256": "834fab9360c66e333e028879d12c751e540e26618ee39cdcb6def1699376dbe3",
+      "currentSha256": "b7af1612c7b32aac0fc2508b5ca8e91950eb13570edf63c8c260f99835aa32aa",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/chapter-handoff.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/chapter-handoff.test.mjs",
+      "upstreamSha256": "384683b85c8181b9be6a54f24dc00e739d5347b86b1a878d2d9a865a650b4f3e",
+      "currentSha256": "3ecbe0a5f065bb0b2e98275f4ddd9f58acc95b7dcbe142008972fff80a7f298f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/chapter-rail.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/chapter-rail.test.mjs",
+      "upstreamSha256": "a95d33c9d19e400954aa93e8585788828dba40698b7a9ada9648430872da8f9c",
+      "currentSha256": "cb982c0add4cb10bd60be814e5b1b1606ed0f19e8e80489a3e2d563708c679bb",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/checkout-line-endings.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/checkout-line-endings.test.mjs",
+      "upstreamSha256": "fe0c70cdf0088cbf63460c9df3aee998ecba96bf778333bd17e101ea805d2888",
+      "currentSha256": "a0714cf266868de7682e7ff640d8a0afe65b5b9c1f4bbd08e83682e406711545",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/clean-skill-staging.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/clean-skill-staging.test.mjs",
+      "upstreamSha256": "bb74344a259e5e14364c0b601fcad58f5d10450e6ad488d0a44e4115e479e47d",
+      "currentSha256": "d351f8db384706be8d55570d32c98cfa8da4e992376d2306892234e295653ec6",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/cli-output-types.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/cli-output-types.test.mjs",
+      "upstreamSha256": "a2f601413cee7c5312663c137742c196a2c7182affe20d108b5007d3d1f6802a",
+      "currentSha256": "4d42a4d5fbb546f0f825157a4a277b5c4140671aec6802c8574988dc6ff84908",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/cli.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/cli.test.mjs",
+      "upstreamSha256": "990e62cb9b84e8fe2320e52558513cfbfac31319f0f5733e40d9fe0777c2b336",
+      "currentSha256": "0739c1a59f3331912f135f5e77f0cd6577db54636b44d1434585b757935e9ea7",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/community-proof-intake.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/community-proof-intake.test.mjs",
+      "upstreamSha256": "90cdf0600a87a67b65ab02a90830dadd63de8bc28183fac6784ad3d5c35e4d4e",
+      "currentSha256": "9055e2c2ed79be9dacbde9fca146412ea7d2022079f5eb17a533765b506b5e02",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/cursor-onboarding.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/cursor-onboarding.test.mjs",
+      "upstreamSha256": "eda54bcffd77ffc238f1c45cf8094a203697a44a7bb4587196ee2c8cb59124b6",
+      "currentSha256": "dd6e0fd7efb5358b01b181328d71ab1324dd857342c117e81ef8ec854f401614",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/degraded.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/degraded.test.mjs",
+      "upstreamSha256": "b7cdbd22d594c627a4d8b0b6403e403a0599df9229c561c9bb435ce200ce1344",
+      "currentSha256": "8784df490778d21c72a1a456c1f804072f71ae19bba103300dd50bbc073dc5c7",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/delivery-contract.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/delivery-contract.test.mjs",
+      "upstreamSha256": "b3e0f39ed7ca788d7e40b05a53eef68f9696acdea9f2d0b2ea24e2740d00ee61",
+      "currentSha256": "b0063fe2d0639d52dadf3215dd2c1d8addda0d3b1cf2cbf3783deb1cfaf4520a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/desktop-reader-browser.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/desktop-reader-browser.test.mjs",
+      "upstreamSha256": "142d118ffeb61adf9be7f86dbb903ff75ae048cd5e73ef7c2ade2679b8aab879",
+      "currentSha256": "080666c1011b287b375651f2d510f4bb5408373949e506393b04f0430629279f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/diagram-guide.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/diagram-guide.test.mjs",
+      "upstreamSha256": "52c057417736299482f3ca270992d87a4eae4807062b78c760d85cce5ef8aa3e",
+      "currentSha256": "f7d8f5be721bfaa4cd2bb585d6d362d802507286f08c66baf3ca2a7b7b9f1140",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/engineering-profile.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/engineering-profile.test.mjs",
+      "upstreamSha256": "d5419dc45da1927a2cac1b998fdd5d1bbdbc68369ccb17cffaf4d98a90e0e242",
+      "currentSha256": "292a2ff2715e7170a7315e5b14a17115cf385a2b2bf05361cca4fd463cf2e418",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/finder.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/finder.test.mjs",
+      "upstreamSha256": "10683c42d6d9e3d20e2c7b48006e0f4c0bb16094f8aa5c76ebaa105be531585c",
+      "currentSha256": "cf715ed44058b8400cbedf359a45b8259bf2259c03a5ab504e83abdbffa06574",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/fail-migration-cleanup.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/fail-migration-cleanup.mjs",
+      "upstreamSha256": "ffd6eb76aa7efa70778704176c55c327f288d9e60607a89d5077b916ebb93fdd",
+      "currentSha256": "170a762de10778cd6bb4297e984f9c758060b959cecbb9e307ac400097b252f5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/issue-126/custom-widths.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/issue-126/custom-widths.workflow.json",
+      "upstreamSha256": "7701a2f6271b9d02d9477d5fb02d52e70738ff14be824956cf77ff466c1c1013",
+      "currentSha256": "4196f7516047c342c4efd8b013c2808db7066025c4ae383762f67b7235f394a5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/issue-126/explicit-viewbox.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/issue-126/explicit-viewbox.workflow.json",
+      "upstreamSha256": "520071d14b748aa184589bac22fc548e501c78fb9cf2c8bdceba4bf715620c3f",
+      "currentSha256": "a0986eaced857d2a04b3097379ba2940e5c4784db468e7b42e6c828bcf307294",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/issue-126/labels.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/issue-126/labels.workflow.json",
+      "upstreamSha256": "496ea86f39914458688f0c3b4277c03c3dedc8eedf1ba35a11e8c99a4a323d08",
+      "currentSha256": "aea63b0a27c67a8f576450de09ea667dcb4a7d1a90464c1687e72521eccd93ce",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/v1-baseline/agent-run.lifecycle.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/v1-baseline/agent-run.lifecycle.json",
+      "upstreamSha256": "b2264f4b2eff23e69b3dc79922062e942fc64ed0bec4f939fa53dda3cacd82d6",
+      "currentSha256": "381abd0c7ca7ac095978f37c26389fb028393944c98ffe3506b5329acd451369",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/v1-baseline/agent-tool-call.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/v1-baseline/agent-tool-call.workflow.json",
+      "upstreamSha256": "4903056b3634e02cce9fd7c71b61fb27e6db455480c8d776a7005346b3afc564",
+      "currentSha256": "0e857708cdf2fecf659fbe494e656459557695aa849a8647318fd7951773c5d9",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/v1-baseline/cache-miss-request.sequence.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/v1-baseline/cache-miss-request.sequence.json",
+      "upstreamSha256": "047914c4dc4ed753b6b9f100ebaf6e7f15f9b72af0913e3a8e7a223bdef39aaa",
+      "currentSha256": "95996a1613b74d125e295666ca11cf4d06e04a0da648f24a8f2f097eadc360c2",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/v1-baseline/event-stream.dataflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/v1-baseline/event-stream.dataflow.json",
+      "upstreamSha256": "a92d6597ddbe164f395da32a7d4b33cfae08edd7d9600a6fb45a2058e5bbb43e",
+      "currentSha256": "07d10a49db5ccf59c86879589ef0d7dfbf320465fabacaadc7e3aadf9642a2cf",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/v1-baseline/product-analytics.dataflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/v1-baseline/product-analytics.dataflow.json",
+      "upstreamSha256": "6da9959f729d81c4cdf8895fb6611080ff0368c3cde48b00b0081495a006140d",
+      "currentSha256": "5baccb947164ad3f7752a32b22166b8a1725f0b400919412edf718050a16759c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/v1-baseline/production-deployment.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/v1-baseline/production-deployment.architecture.json",
+      "upstreamSha256": "738e9c7f22e4e6e88f5aafc087dc58409105927daa9a79aaf240c8393654494f",
+      "currentSha256": "6803ca2248b02d14bd2a7164109ba127f4c51c9fa1a34559a383069917afb2e0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/fixtures/v1-baseline/web-app.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/fixtures/v1-baseline/web-app.architecture.json",
+      "upstreamSha256": "5fb15d0e0f7e5ed3a1a3f2e7ee406fb50aae126818c58db24f77236b07dd63f6",
+      "currentSha256": "3b93729459fba33c6e15b77ce61db4bda1f60ae2db8544589aab0b37b2124fb7",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/gallery.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/gallery.test.mjs",
+      "upstreamSha256": "f30d8e759e16b793c0c7755779718cb0680b95be14bf7a8b5827105cfad7f4b5",
+      "currentSha256": "c3d9c13e333bae50ba50e20d458dddff5aaa9a8c72cc234813011f5376184b2a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/generate-validators.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/generate-validators.test.mjs",
+      "upstreamSha256": "df9b0bb98f564eb0fcc358a7f2fc7fb8136387bd1d6ab1981cd7335e0ca69136",
+      "currentSha256": "fa664953c8adc6a2b032abb3301d37f45b2b9baec91d806da485fda5b93fa76b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/generated-artifact-xml.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/generated-artifact-xml.test.mjs",
+      "upstreamSha256": "e44204d5e48ae6806f96e62627c72ca086ef3b543a7e4227bc6ba02116e2a201",
+      "currentSha256": "c5ae31588acb118b9432e967f0aa197e05797d72d39155552850487dcd0f8a4d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/geometry.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/geometry.test.mjs",
+      "upstreamSha256": "8a341c048bf86dda21e19337729f7709ea3645b6f311a3eb3b795ef10fef7131",
+      "currentSha256": "bc487afe047ee5ed1a6f9b81d11b5f7d431107829dc2fe6f9fc81f48611b8609",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/golden.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/golden.mjs",
+      "upstreamSha256": "ad0a1e34a43d4ab07a97fbca5c2d2358162a240fabda3a69d419bce6631ea6b7",
+      "currentSha256": "3ba3f43c186db6c2461f33c78f1a5aaa6a63033953e3e9b84281b80cae42cf4d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/grid.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/grid.test.mjs",
+      "upstreamSha256": "ebf1cd47535148c43b578eb10df0260f0f55cb6811d06c01375fbb408bf2cf6b",
+      "currentSha256": "db0b459ad8570e9f9ff7684918b954c5363b67c70d805e47a0b4f9ba7949c4ea",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/guide-page.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/guide-page.test.mjs",
+      "upstreamSha256": "f8aae11961f7b91fe9bd05eccf4b46e6924d43ade3994f393551cedc8c518e8b",
+      "currentSha256": "f9f44e3304d1d5bd71ee8ccc5f3450be3e5336decce82b5a1cf2002538bcd2b2",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/guide.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/guide.test.mjs",
+      "upstreamSha256": "8c0d8db6ba3a79d902fdb89d77c75518b232a52153794ec70e28056d3d2e2b68",
+      "currentSha256": "fbda01e7bebbabb55bd0d495b8946f3af8982211eca6cd3c3be95afa39c0102e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/guided-views.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/guided-views.test.mjs",
+      "upstreamSha256": "fbed156af01082f3bbde7b0c0b6675664613c47644e14a33fad3fbd1b8dc062e",
+      "currentSha256": "509c7372b4c2bb1cbdbd1ce1f66fae3c34d610f6d088143d074d190fbf66d9cb",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/helpers/offline-fonts.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/helpers/offline-fonts.mjs",
+      "upstreamSha256": "dde831f79dc0e6145283a8970336cd7060f4df900f3625ef90f6f08b7f6b6ec0",
+      "currentSha256": "90dd172d5ec744d0417c1f2e65a8a42972aa4f50fff53092d4a2160e6f1ee11a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/helpers/xml.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/helpers/xml.mjs",
+      "upstreamSha256": "21c8c86df4feaf0f3e9411ccf4f53574714d27c85fa9750fe794aadaccdba813",
+      "currentSha256": "53482cfc5dc0828ee8500199ead4fd2d79cb2823215ad40706f00151a695f618",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/i18n.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/i18n.test.mjs",
+      "upstreamSha256": "12a6b17fcde1fddbf496f46e15bfd76db931e4f0c9c832e772a12a0ee0d02b17",
+      "currentSha256": "32ccdcd7449f031027bd942e1e017d471e9c1e1154d69a5ddacc741087c6491e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/intent-trace.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/intent-trace.test.mjs",
+      "upstreamSha256": "055a23bed7698ba3273dddc602bc76d8b0bc01298ed2ac9c91600991334bf7f6",
+      "currentSha256": "396585372bfaa7787b105f094b85ebcf7c9b7faac285d766d3db73dde1f7109f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/landing.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/landing.test.mjs",
+      "upstreamSha256": "b8bdaf3f2494394c1ae4d300567ecef03a834ea1186ab6b93419d15c8b14979e",
+      "currentSha256": "51b1b51634703a6706a24c0176015fba806152e6507fa43ad462d022503aa322",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/layout-rules.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/layout-rules.test.mjs",
+      "upstreamSha256": "ad5831146f900e237ea3a41f99a5f4baa15082e26d937b6aa6066ea41b1bb5c1",
+      "currentSha256": "c1b05454c467fdb9b32f895ca36ffb1ec73055ad6dc51ed174f6d4948d01bd18",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/legend-contract.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/legend-contract.test.mjs",
+      "upstreamSha256": "99abc8fb61a3b8fa1971378ba0107205554b16ca5bbe3f068a6a8900f9e26197",
+      "currentSha256": "5590a19b90082fe925c3c4762de6926dafc1445d0479ea87be3357acca8c2e64",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/motion-governor.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/motion-governor.test.mjs",
+      "upstreamSha256": "02609189ef79e6b44f9b5b6c1a5c1716886201714fb16212eeb038ab12785b8c",
+      "currentSha256": "3a40e910e4d067913447a9991d9e743fd93c93d223007e8f3da7834bf2205dff",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/offline-font-browser.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/offline-font-browser.test.mjs",
+      "upstreamSha256": "331e49e54538ad36102bf4c0e507327721c06b8fe74981f56c7ee929489025d6",
+      "currentSha256": "448bef78e454c1a2acc906b3996de24c832c711f0796521584b7daf6932c48da",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/offline-self-containment.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/offline-self-containment.test.mjs",
+      "upstreamSha256": "1d21a47d50c6178f8412c13af48912e12694159cd51c66dcd709df16e6fbc500",
+      "currentSha256": "f6f125f689d71857ad07cd999c4d16456649faa211ce3fc0940d6b1a282410fa",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/open-artifact.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/open-artifact.test.mjs",
+      "upstreamSha256": "fab9d65f5ed0844182b0ee62ced9412e364179960ef65fee020b0d23d977eb55",
+      "currentSha256": "53b6fb14450240b41b929b0fe9d0e3a5c738c9075e59f7ee32aeeee9ccd246d0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/ordinary-model-floor.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/ordinary-model-floor.test.mjs",
+      "upstreamSha256": "4927b007f21a926b638ce33704450c0b3515f649c137bddfa6fdbd938fe158e6",
+      "currentSha256": "f758a67d077804623e0717852e449185d02cb4ef206d26003b8581e7260ba982",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/output-path.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/output-path.test.mjs",
+      "upstreamSha256": "d20122bdc38c0b097f65d95aef866dd43af43759ff622e6fcc6d921b6080279e",
+      "currentSha256": "ab9acdeea17076623cfb0b5abb39d822445c0f680a10d41687f0677a12573fcf",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/presentation.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/presentation.test.mjs",
+      "upstreamSha256": "9c0fd988a3123762218093ddb8b8189998272318695347ed6fb924cec490280a",
+      "currentSha256": "5a14d10b75f867f240470bf1dd2ff4a493e1ea4c69ac994f0060df0246165b37",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/preset-tryon.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/preset-tryon.test.mjs",
+      "upstreamSha256": "92c45df6deac7ccefcb8c1c38ad0f0ba7f42ddd737e5ef0baa9d15aa57ef1719",
+      "currentSha256": "301ef467e53d2b8243c5f6e8416f5a37a581a83518814a5d9f4241f097423a45",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/preview-contract.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/preview-contract.test.mjs",
+      "upstreamSha256": "fab520b1c709e23b6393684f57db76fcf1aff5425bef838652efa355e63cccd3",
+      "currentSha256": "1a21943213ac2642ee36a22ec772b13835970ab4ff03d7a74f103824ba887b4e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/preview.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/preview.test.mjs",
+      "upstreamSha256": "c7a8a5f4ac26082ca362e75fc3f7e183c2219612f47754f94aec1d0e669958a4",
+      "currentSha256": "bc4006209292d292a61c0a38e2751466fdd8567f058ecae3a011570b9cc87e14",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/proof-aperture.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/proof-aperture.test.mjs",
+      "upstreamSha256": "f393b9935bb9d915e301a1bf974b67faa72161a2717d6b65077e1060280e9af2",
+      "currentSha256": "caafadb02680bd75d600d28bf58fc56cdc0a113a6a0dde8b85239b9c4402742c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/reach-share-card.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/reach-share-card.test.mjs",
+      "upstreamSha256": "b94cc337cacc3e412ff08d00e88078d975e1fa2c32ad7d72a37fcffe151a8832",
+      "currentSha256": "7e95008e74d46b8f3c8d5ef4354d3c7bd4dcdda1288f374a698b9738fdd2516f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/readme-showcase.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/readme-showcase.test.mjs",
+      "upstreamSha256": "e4eae9219429148c3bc45c818f0aa43906127bc355601e178ee9657c63614b34",
+      "currentSha256": "f933a15b3546bdad8220536356d317f4b4f2aab8901e92a65ac94160059b09d4",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/real-repository-proof.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/real-repository-proof.test.mjs",
+      "upstreamSha256": "6ce5dc9a9ad0e1109ec40480e959e077a0a21ff931758ab072bfa5cbee7c24ed",
+      "currentSha256": "9a825c048be3771d050a756f2a70750d3362b372e789c9ce677a896dce65ee7f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/relationship-direct-explorer.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/relationship-direct-explorer.test.mjs",
+      "upstreamSha256": "1411a6540f608a99f328c0bdbdc542795fb6f296e80be3af1bf0740d55dae7b2",
+      "currentSha256": "f057c2b48758387923d1b8f3625eb61a287d14afd51f113eb3ec60b84efa880d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/relationship-lens.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/relationship-lens.test.mjs",
+      "upstreamSha256": "f344bd3cfe7329715b2c422afa9158e8668b7798b9fc8251e69f3b9cdc02f857",
+      "currentSha256": "0324d8113ccb4e0714bb8af16d11c3cff004a9a0ca6fcae3649c4e638eb1372b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/relationship-permalink.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/relationship-permalink.test.mjs",
+      "upstreamSha256": "c2425e42a1b78b8a9714b675a2330352c78cc59880ab5d3ac7628c794490e3c6",
+      "currentSha256": "472e8074eeba5806d215bf0353b49a55776a7c1798489d4db79275fc110baedf",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/relationship-pulse.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/relationship-pulse.test.mjs",
+      "upstreamSha256": "c15ac8f463ca7978dd48c18698b8700ae408ae05a9eebfd334425d74fad96c18",
+      "currentSha256": "4b96bb4780c1803f2532e5f81345f2b34dbd0aace0b89ec017521faab854530e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/release-identity.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/release-identity.test.mjs",
+      "upstreamSha256": "5a55ab3abc7e5da7764a7fdb414f8cb8db21c1d83688a1aa68c69ab3423979f1",
+      "currentSha256": "71b1cdcdbd254015719a1835f5db68ed656e6bb6e6f631dac2c9548827a89f23",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/release-package-gates.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/release-package-gates.test.mjs",
+      "upstreamSha256": "f8c91f00b381d1f8a4c786b9d917c47c5e7f69dfec533dc57057fe940092c7bb",
+      "currentSha256": "78d882ddd11be743ebef6d4cc795c71e447966a6805f60de987db0492d3fda15",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/render-output-checks.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/render-output-checks.test.mjs",
+      "upstreamSha256": "637757de7c46ddf00739db371cb84ff9236691ae31fd308cb034ea7053b8744d",
+      "currentSha256": "d7cb1b5c8f05e1bb820d28d2194b24b111863f31920044258a4f4228153dca88",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/repair-receipt.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/repair-receipt.test.mjs",
+      "upstreamSha256": "f0618c73c372d11dc68e9706e6995cc0d5cfde2a13614a12c8f5ff4e9ae0a522",
+      "currentSha256": "247e21ea781537bef5752d11429602f0d978d5bab185521e8fcf85382fc9eb3f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/repository-evidence.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/repository-evidence.test.mjs",
+      "upstreamSha256": "a078539c8b61f26f3694c44dced2e83eb58d3f5ad16556d23d6bcf3ea594fd0b",
+      "currentSha256": "3e1ba7a38fe491070ce2e947e899d249f726f5c35e3a193a2bafe32ee412456b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/repository-language-metadata.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/repository-language-metadata.test.mjs",
+      "upstreamSha256": "91e3e8c298031a1e117ee8974d41681402701c16a872acd57ae9fa341e8ead7c",
+      "currentSha256": "f2fe7d6bc8047d0acf76a2dbeaaf25f878baf4e9ab9423633b30f15f891735f5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/route-journey.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/route-journey.test.mjs",
+      "upstreamSha256": "b00d943fc8762dc062b5bc0981b0fb612233b948ca590eee50070c898bfac264",
+      "currentSha256": "0c04d7ee145cc5ddd543e05d2c4b7f7c99295d9aceaec903c12eed0a5c793c63",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/route-probe.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/route-probe.test.mjs",
+      "upstreamSha256": "3bc76e9426254f5589466e1fa3d10c826b4e5e883f6b7f67bc371061c3405f25",
+      "currentSha256": "3dd28d7cc0761ac0834397eaded7037c7285d8145f9f1aea970240e8ec240a09",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/route-share-card.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/route-share-card.test.mjs",
+      "upstreamSha256": "da8a73f42167d6fa47041f818aa6e8bde4fe6b614ad3441a9a7ac30c15db1709",
+      "currentSha256": "e73facb9173f09627d0fc6f09675b071bd1ae28fce06a54a42f5ee7bda1b8203",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/semantic-camera.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/semantic-camera.test.mjs",
+      "upstreamSha256": "2f547c8eee6519371ebe72343428ee1bf0f94f7a072b8c1eae02a7c73fde327e",
+      "currentSha256": "4c9938f55e5adcde3f01d6c9e7b021f9f9e24815b980ab3d1203886c81c57780",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/semantic-flow.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/semantic-flow.test.mjs",
+      "upstreamSha256": "305dad25e06dc01825f01cb6889411cc7a6db36ceaac624f7bc6c6136ce53a76",
+      "currentSha256": "e53a2d4609534a4714213a7a11aa7e4b095fc6882cf23514054b08e1a1162102",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/semantic-legend-gateway.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/semantic-legend-gateway.test.mjs",
+      "upstreamSha256": "a2aaf49464f2d5a48612dc3dcb60bb557de85da5c11ca9f6fea3373c011fd820",
+      "currentSha256": "9e3956133d258f52c192fba8b061039c10a69cb8af662a10a020b19d1a00431b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/semantic-lens.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/semantic-lens.test.mjs",
+      "upstreamSha256": "d7a5532c3df8fa2e95d5b5d7b3648a8e95b6974ab379846a6e15e12b89c8795b",
+      "currentSha256": "71470dc7a6078e8c442dd2ba39a358ab43ac51c77b7ae51c04f97ed2e3733c6e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/semantic-passport.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/semantic-passport.test.mjs",
+      "upstreamSha256": "4d1b5e2c4d30c05ebdb8093f7577b63e855a1651620e81da1570a25bc2a95029",
+      "currentSha256": "a15022d0e0826c6263baebc67ef64f2bfe94d4e3126ab9cf89af674692a22e24",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/semantic-radar.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/semantic-radar.test.mjs",
+      "upstreamSha256": "0b5e17d85af6fbc5e84c95b0187ec635191b1909020e537e1d1beb6c839963ba",
+      "currentSha256": "4f376d230cc57940d771393976408d21db44901a488faf4eb79df506696b150b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/semantic-zoom.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/semantic-zoom.test.mjs",
+      "upstreamSha256": "c92a4e0e480ceac71bccad78fafe2fac9a4f74b72213ea3824ff53e8646e216a",
+      "currentSha256": "be8d9db022cf84dcb073aa96c857a09db004559342269a1e9270c57d5950c0a9",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/sequence-column-fit.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/sequence-column-fit.test.mjs",
+      "upstreamSha256": "e3de2b0837390d31481c2d0533aed467de0263439b494843eff992060e5b0dd6",
+      "currentSha256": "3bc9572ef04f547ac20215d49bd1e613417b3d8120110fd87983230bcbf5f973",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/settled-flow.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/settled-flow.test.mjs",
+      "upstreamSha256": "e079d492252d77612439fc055a6d79ef545829b12539aefac496f796ac90165e",
+      "currentSha256": "a4fe5440afc669b9392e2cd6ea3e8c0957a4e00edd55e941352d73fc9d49c069",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/share-card-export.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/share-card-export.test.mjs",
+      "upstreamSha256": "635ebf918753136fd8dad6f40e01676fd993b64a5869d7a40620253959c8ec2e",
+      "currentSha256": "4a772e80435793d4eadf2478972d1dbdedabc7ac53c6259686d60ee98b65cfc7",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/site-language-continuity.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/site-language-continuity.test.mjs",
+      "upstreamSha256": "9a9bc4ce25a5573b64534aa9d9ccc37b6b4c2874886f072790c450d70dff1c9c",
+      "currentSha256": "8930450a2012da9117f17488d299e13b9a3a16d1c98cbb747f49a7a9c0b42216",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/site-language-integration.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/site-language-integration.mjs",
+      "upstreamSha256": "fa1ea2ceeecfb4c675e07e07fe614d6c1a1aa0d28fd9cef3d3df978b694580d7",
+      "currentSha256": "5636d1b3a4fb409e5817af208e8b4a3ad40e4c401a7c5c3abc6465aa19aed122",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/skill-metadata.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/skill-metadata.test.mjs",
+      "upstreamSha256": "fbb258131c5b5eb7450d7c4abcedad4fc2724dc1a899093222971198ed5f41eb",
+      "currentSha256": "e59812e687fc73d43ece101049f887d8e5557a9502a59490116674bec9f8eabc",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/stable-update-manifest.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/stable-update-manifest.test.mjs",
+      "upstreamSha256": "15e15dfb5bd45852fb1f00acde4270695c99eefbbc14db75b465028fa5134ef5",
+      "currentSha256": "4e3b287620de486379301061cd4f8f4847309b6f2b237db0b9eaaef4b682d96b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/start-page.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/start-page.test.mjs",
+      "upstreamSha256": "ecd6628cd8336068782a9f67ee72d415d06e494cb953d029ea4320ebbfa7d7c6",
+      "currentSha256": "d3c2d9259e6ba602d9d616df45740324cc5a554f054074b2b7fdeb8fd7e9ba8e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-beat-navigator.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-beat-navigator.test.mjs",
+      "upstreamSha256": "6b6c0ab5b396e8a608d337cd8e351d4118a75678a5d90620943249b1bc53d7b0",
+      "currentSha256": "7069dd9ca7e7083ab714fcf0e57aa62fc2776512f440e12d36d4dcb461796c3f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-carrier.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-carrier.test.mjs",
+      "upstreamSha256": "05143cd9c5f28ac5041fcb46daddf830ac171c0bf72335a8f9623a14916bf8bc",
+      "currentSha256": "39d4868e5f9a4a6e3f2ad48807b69f2ebe0dcd20feb2f8d8b8da446509b4ab9d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-director-strip.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-director-strip.test.mjs",
+      "upstreamSha256": "8ab2e1ff83cb63384ef9d2b459f7d86b2e7de767a30173b845009a02d26a7cce",
+      "currentSha256": "fc8975ace6bf502b6d0d58deba09aab5883bfc8e2c2eab985f0379a0ccf24e4d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-follow-camera.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-follow-camera.test.mjs",
+      "upstreamSha256": "edc511d606a6eb18e41d8110a6fb9c9c0958c5638dce109ffb7968151cc709d7",
+      "currentSha256": "581b9dddd8034a05830ad2b24e6ec9bcfbb48397ce65ec32fbbb8c706be1e0c3",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-horizon.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-horizon.test.mjs",
+      "upstreamSha256": "4136e9b4e296048e422f44d64e3d10f9d81884d1a6f099d5eb0c33c4c1e5d8dd",
+      "currentSha256": "13a5d9bc12c2f3f49672364c9e8e4f381b0a776ce2d9bd1c715f548f0c212ec9",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-moment-link.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-moment-link.test.mjs",
+      "upstreamSha256": "acd13d838b3af58058a68dca90b7f4aad81a4d2fea7e6a89afd3a21345aa2207",
+      "currentSha256": "47d747e34e6a232c3c68e9603a50eea03d75e3b644c5e71e23a367cdfc74b5b6",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-shelf.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-shelf.test.mjs",
+      "upstreamSha256": "b734d038ca09136f46b5b514d1f19b8ca8bfa3377839d27cbcc338179c7da210",
+      "currentSha256": "9a779b3dd32f1ecbd9ca8bdce9c67ea5005647dcd1b9c2387cb58e14dd6b160e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/story-trail.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/story-trail.test.mjs",
+      "upstreamSha256": "9ec4a06fcd365cc7a4ecc31927a004d98a62bab0eb6f3dd9feefa4e9f7ae009b",
+      "currentSha256": "3dc5368326551caa9b9f120895aa9f5763eb3cb45d92a361aa6f7fb52e9542a6",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/toolbar-polish.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/toolbar-polish.test.mjs",
+      "upstreamSha256": "09903e134954fa7dccfafc164e25cd2f3680b7323d5b92c6e06abf8f6b572bb2",
+      "currentSha256": "72f21571a791a8203e3155592629b9f0769a2dcd3f2f9ba583bb65a6f1c8edc6",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/update-contract.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/update-contract.test.mjs",
+      "upstreamSha256": "b4b98e73569308570f2a7f598d1e251487007739aeee761010884bc352b2dd13",
+      "currentSha256": "626174a4a7d370eeb23b1c95e77a090b0d288b540fd026570b92d8926ecc08ad",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/update-notifier.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/update-notifier.test.mjs",
+      "upstreamSha256": "af92b7847bc4212958b8f5a2cda22a1cb88d0597f4755387071b725e0a935313",
+      "currentSha256": "dc14b9645ac7b2b0ca3f859ae67a968f5aafe8150e4d644a4a6b088ddd87e383",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/v1-compatibility.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/v1-compatibility.test.mjs",
+      "upstreamSha256": "5c8e25a164419fb1b959b29dbc6870be37872baad99a6cbdc2f5beb0b7c45bf7",
+      "currentSha256": "d87be859eb33487b5b35af746658a137a96c1690f055df375c09fcded97a88b5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/vertical-edge.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/vertical-edge.test.mjs",
+      "upstreamSha256": "0fe432c075babf181f1a80253882cd96234f22fc408f8109f90ffde3e8c9b436",
+      "currentSha256": "428124e5c031b31b3c172a58bbb3566764154bc0a69e2d2c4348783994965929",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/viewer-chrome-layout.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/viewer-chrome-layout.test.mjs",
+      "upstreamSha256": "5ad88141fb74fea23c8a960be5502f42b08dd63ccd9b40dbdc9bc163d9d77ed0",
+      "currentSha256": "baa1457647db2d9cc3d0e5724e23db0965efec9e8d0a3a1c46431989dc4e8880",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/visual-check.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/visual-check.test.mjs",
+      "upstreamSha256": "ea7a694b966cb661d694f86b9cce17c3be9ac4199d461e5bb30da1fbade07607",
+      "currentSha256": "5da4722868c64b4180eed439b151ba0eb9b6c0688c29dcdb41cb60ef3c853422",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/webm-artifact.smoke.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/webm-artifact.smoke.mjs",
+      "upstreamSha256": "99444dd6a61ec307c8bb3d18378233bf67cd9ee4e025e2f46007c69c0115a502",
+      "currentSha256": "262cf5de1b69fa113f66afa2764a0a71fa2de50821f65f2a6b313917e7cdffb5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/workflow-compiler-hard-contract.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/workflow-compiler-hard-contract.test.mjs",
+      "upstreamSha256": "e5c114a7ab2e3e5db07c82c6a08c6ec16b7cd4a6e371c49ae98fc7b6ca94cc2f",
+      "currentSha256": "cff155d1b0fc9b005296a98351fab8b85477a5af64275de09a30c5584e9013a5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/workflow-compiler.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/workflow-compiler.test.mjs",
+      "upstreamSha256": "41c052e70a1cce95f220e5c2a472d9d8f5d9cf39febb050a057d48fdff4ba2bf",
+      "currentSha256": "fada1140b8d1fccb7a3b621b3d51f41d08bbd127249f536a8b34c73c4b70194b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/workflow-migration.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/workflow-migration.test.mjs",
+      "upstreamSha256": "cb41f629c99b35384d93f94cd9984da2cfc83225c058cb65938633dd1c67d1fb",
+      "currentSha256": "9321fb9a835a1d15ec5cd481b5bde105247007b4712c615b2b9a4acc852c20c1",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/workflow-semantic-contract.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/workflow-semantic-contract.test.mjs",
+      "upstreamSha256": "ea3ee45fcc037045c2d8b0ff1776a6ea1afb01c73858af64e7c39bb1bd16ae1e",
+      "currentSha256": "b0eb83efe63dc97850e67401bc2d90ff1dfba096619edb66029c9abd7041ff8a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/archify-repo-grid.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/archify-repo-grid.architecture.json",
+      "upstreamSha256": "2c96a6bef97ac8c2e5e12e48e89d361aee922763a56084e5c6f89dee47eac8a3",
+      "currentSha256": "7b2bb67ddd9dc2c82b851d10d32da99c014b8da66b3701c8d8484ca29f9e9409",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/archify-repo-grid.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/archify-repo-grid.html",
+      "upstreamSha256": "139fda0a935c6578b7bb6b9ae7fa0be9f77f90ffb9772b4ddfa67c284aa896b3",
+      "currentSha256": "74e979c18a55009711eb30e237b7a9681fbc2dbbe16d30f59b244df16f6ac9ca",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/archify-repo.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/archify-repo.html",
+      "upstreamSha256": "53197a9a10c71ce9ae6b665b917dd47e8bcfc007f80f3368afb02603095c5eda",
+      "currentSha256": "cdac519e5c3ccb360a921b06febded9fd42a4e374aea3ea07009a3ff03dcd7be",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/checkout-platform-delta.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/checkout-platform-delta.html",
+      "upstreamSha256": "4dfa76443ff644609ff0a4f7e6117a4a5d977a57db63258417d192f9f8072293",
+      "currentSha256": "ef3b18c67489cd5ec276d5f408bdd5a3a8429d02660644f4003b5fd705e187e9",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/checkout-platform-delta.receipt.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/checkout-platform-delta.receipt.json",
+      "upstreamSha256": "ca8b8eb227c5fbb6478403c77d0995c539d87369a0a427dbbfafdeed7ea998ab",
+      "currentSha256": "e8530dbe2fa3280aae65efaf660e551a8fc03ef15b99789a1fb8121acfc7a9f8",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/dataflow-product-analytics.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/dataflow-product-analytics.html",
+      "upstreamSha256": "c75c04344269b16e25c72551101e706d05004ee93d298e8d0c4c5bd93d4050e9",
+      "currentSha256": "02c5e2bd84e66efa1641d90dbd7ab2ac2890f57bfacd8029b987f1b2824077be",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/lifecycle-agent-run.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/lifecycle-agent-run.html",
+      "upstreamSha256": "87b43a172dd3c9292fbc12fb37bcdadc9580171473cec33cffcd5d81b2deea25",
+      "currentSha256": "86a5ab5b950744c2598a0eee34f7d6fe60eb37a3ac42867f3693e09d0fd21d05",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/maka-architecture.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/maka-architecture.architecture.json",
+      "upstreamSha256": "26d430096a2de84afd064487bc1f1c52160b32dbacd702786a0a60d0b26d65fc",
+      "currentSha256": "12fdbd03bb548aa15b2994988c3523828e69965e31c7ffe367a89d36785292c9",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/maka-architecture.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/maka-architecture.html",
+      "upstreamSha256": "a7754dc6e411c452bad9b19be13101b840832df44e90a9f1fdd278879d8aeda2",
+      "currentSha256": "5f09e3e1d378a6ba9f2f6d0672c3dec7831524c2b4257cab1abf3dbad4085607",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/rag-pipeline.architecture.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/rag-pipeline.architecture.json",
+      "upstreamSha256": "6859af5460f07a736133e98eb4e98753d6d1767db73b1915a41a248a89301705",
+      "currentSha256": "0e46d5ed091d9fd16858a9fce7da19547629d7d6ffebf58ffefce497fee94fae",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/rag-pipeline.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/rag-pipeline.html",
+      "upstreamSha256": "dd846e1d8bebe2a807738bc17f193c6981e4f2be056326f38d2a85e9bc3d76bc",
+      "currentSha256": "f2d5ec2e5169d17fa519a69f4a694d7658e9b2ef0730e18cbe41709d7fa40dbf",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/sequence-cache-miss-request.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/sequence-cache-miss-request.html",
+      "upstreamSha256": "7c5c8f5c39c10dc8148591f654cd79a05ff49bb70166a4c45607414ca02cbe3a",
+      "currentSha256": "5cf042509452eafcddedd2d24f65bfe8f0c6876d64aaaabcd761c3fa7ec22e87",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/sequence-cache-miss.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/sequence-cache-miss.html",
+      "upstreamSha256": "8b99dd22f4783d3fc9b2eea83e8a0b160f1d31352207ef289d8d7f44db995e93",
+      "currentSha256": "a411aee045659580c226a04a15ee1868b0efc5f6436d6be148a75081cd75e8d0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/web-app-rendered.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/web-app-rendered.html",
+      "upstreamSha256": "acfb4794ff836ca93ed4139345cce763cdf62514a10133e4a8a32ef1a69066d1",
+      "currentSha256": "279cfdd9eb211f475b7cb0d358c20974eeee89c380b655a5197e5ec20eb48039",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/web-app.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/web-app.html",
+      "upstreamSha256": "acfb4794ff836ca93ed4139345cce763cdf62514a10133e4a8a32ef1a69066d1",
+      "currentSha256": "279cfdd9eb211f475b7cb0d358c20974eeee89c380b655a5197e5ec20eb48039",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/workflow-agent-tool-call-rendered.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/workflow-agent-tool-call-rendered.html",
+      "upstreamSha256": "fc7643fa7f3b0c85250f781f9927a905f518a5b4a8c28ec08afd6f3889f435e4",
+      "currentSha256": "b7360e63607ac2dbd2ee423ac4008ff1b8382d823c2485768b87bcdb43d6c3b4",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "examples/upstream-archify/workflow-agent-tool-call.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "examples/workflow-agent-tool-call.html",
+      "upstreamSha256": "1b55528f8ca5e7f8a43a67735cda5d6a55f3f255087fd5d2a113fc217dceb3e4",
+      "currentSha256": "dcfd428b9f19c9a5a4a303d6fdadab62dabe3dfbf64161ff56654f2d378279b4",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "provenance/upstream-generated/archify/generated/maka-regenerated.workflow.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "generated/maka-regenerated.workflow.html",
+      "upstreamSha256": "b27863e495828b0a8f328e18dbe019c96a0ac48db2e126d63ae59fe67d53fa47",
+      "currentSha256": "48a79f73e930a6f3a08478a0bf2228d57bbcd1fceebb4d99df5a421d5b328256",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "provenance/upstream-generated/archify/generated/maka-regenerated.workflow.json",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "generated/maka-regenerated.workflow.json",
+      "upstreamSha256": "c6015e40ce6e59a7956f6bed9900eb029e4665dcc68a8021b5921ee97bb01176",
+      "currentSha256": "9b524925cd5ca36008a9e404c370c01ff7813ece6729842ca9f503c916536900",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "provenance/upstream-generated/archify/generated/maka-regenerated.workflow.visual-check.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "generated/maka-regenerated.workflow.visual-check.html",
+      "upstreamSha256": "8bfe2b0662cda5acc1ee3869845bb5dfd991c1c200700df0a064f26dbe7105a0",
+      "currentSha256": "da17e01a208a54da9eef1c440e7719741a662d124fda7e2c859aa8c43bb74ca5",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/build-gallery.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/build-gallery.mjs",
+      "upstreamSha256": "821f5b69ec3036d76de79c76dde2c28956d0fd1a4e381c1f8559e77b8f622920",
+      "currentSha256": "7e143b8f1fa9ae877bcf2c96dc5f186e4fbdbf6162896ab841cd24e24ecc60e8",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/build-guide.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/build-guide.mjs",
+      "upstreamSha256": "8c4d36b209fb0970cda3c5dc27e334af1b310269256515426cb52d11fd675670",
+      "currentSha256": "4d3c0945948c2196ab12d5dbb2755479445ecf582e8ed866737cfbca0ec1233f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/build-readme-showcase.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/build-readme-showcase.mjs",
+      "upstreamSha256": "7255be081cd6985f65654d7f0d42537d8f7870b2b548d268cc3ccd6bb30babe0",
+      "currentSha256": "4296fdde92a2592a3821a5408a58c9c3f769497fa0ac86d949cb92f9c9d53d98",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/build-start.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/build-start.mjs",
+      "upstreamSha256": "709722a5a4ce6a0fcade45023868ec1f921ade5131cb6f438740b130cf5aec21",
+      "currentSha256": "a96edef4b0e1016ba6f9f6dd11ead0d6f87beb9ffd5c5063a2ea13ee2811ff64",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/check-release-identity.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/check-release-identity.mjs",
+      "upstreamSha256": "5783d3cc72971a4733159971460348c6a694f09780012f3b58f9dce21eb46d24",
+      "currentSha256": "ae27dc17d3d41a85582f93c5b2c9fbaf150a96bf09ef5deca46a76e1f2320ebd",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/check-stable-update-manifest.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/check-stable-update-manifest.mjs",
+      "upstreamSha256": "7e815b4c657dc6b112e74bd219286574c9877202fd21db8c4c2a848b26a90a6f",
+      "currentSha256": "3cfe72ef5979a1d288272fbed261e4df583749b8329376a082f5df16a0641a8b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/copy-site-assets.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/copy-site-assets.mjs",
+      "upstreamSha256": "493ed71ff4b8460dd8fba696bea97cb348b3e8cb2c460e862cc052a97b6991bb",
+      "currentSha256": "4c4c4678f50a3fcddeba293e59099142a27024a29b17edb72200f6a3b962c66d",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/gallery-template.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/gallery-template.html",
+      "upstreamSha256": "b7583eaa67511af3db8ce33cae242210d53d2d078e02523f69fd7e25f793cf26",
+      "currentSha256": "99e3b4f84dc58d8725d51b0cbd9e921e0bd725b4206efe9fbd735071943b725e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/guide-template.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/guide-template.html",
+      "upstreamSha256": "cf54e3c68e95afca9a306fd0fa1430b014f2f2ec7772453ccc54a75b0a22094b",
+      "currentSha256": "58654277a0a5acbe681c0abaf4caf5bd9164e2aa814032078b818de9ff644408",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/package-smoke.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/package-smoke.mjs",
+      "upstreamSha256": "1dd307460fade6479109c3521f9e6c9c1e2789a466ad9481aff5775599f6dde9",
+      "currentSha256": "d69666f32aec95610696e574074e8a62fb05f3e3c9f89ff68242c5d0973baa32",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/run-tests.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/run-tests.mjs",
+      "upstreamSha256": "de6be62e88fd32bdb8fb5b5d67527f351de9f62ce75d9608b5a0321ef1c24750",
+      "currentSha256": "02dab1d26336f0612273ebeb9247c100c822f7a38ec771037c664582ae2deaf0",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/site-copy.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/site-copy.mjs",
+      "upstreamSha256": "fca3f01a9d64aaa36eda548d6cbc5763ce2139f36d01b0008dd78231106e311f",
+      "currentSha256": "c2ab5388e5f79cc7738c46a5684d82f9347b168505016959052d0f76bd898129",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/stage-clean-skill.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/stage-clean-skill.mjs",
+      "upstreamSha256": "8a2a4ec980ab7667c09d4f2fc3bd3c80139d86227c4598a3f4350e84aac4ac27",
+      "currentSha256": "efd2d4dd26dbe3d49ec1c5c771a617bb5e59498986b9e85b9b7eecafcd6681a1",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/start-template.html",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/start-template.html",
+      "upstreamSha256": "4b65755351eb0d5c685b7e01401db0c202366cc1b0c3b8942556d09d9a870b3d",
+      "currentSha256": "43d30df5c2efc9a7893d0097f8730a3737c392c351001003a9cf3821b96ad31c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/third-party-notices-contract.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/third-party-notices-contract.mjs",
+      "upstreamSha256": "70ae515ee29370f529b4ff95d0f3901eaeb769cc211ae7b5d2ce49afe867e573",
+      "currentSha256": "ab308ae1ad234bf29876ec051ea5a80d469a8670cd11b6282cf2b1bb55654276",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "tools/upstream-archify/write-deterministic-zip.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "scripts/write-deterministic-zip.mjs",
+      "upstreamSha256": "1cbfec5b5dce2f94515d1a4805d78121b8fa0d3ca5dfa1603759c40dec637618",
+      "currentSha256": "b877980c52e9619eee57b1ca4514161798bf96f7a5cce4b3bd06f9bbdd0ed485",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -111,15 +1791,31 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": ".gitignore",
       "upstreamSha256": "01d6ec77705a86795dcdb4628ce09425f5e9aee56fe3a258d0955525dcf5bcee",
-      "currentSha256": "da662701148ebb133bacd0d32be38162b0f9c29cda56739938e8d15b9a9ba784",
+      "currentSha256": "8769c80226cdaf18b9bc2eeb874e4ec203d8627c4589e221f70fb30a8c2b512c",
       "reason": "Superseded during AFM-003: repository-owned policy. Upstream copy preserved at docs/upstream/hyperframes/.gitignore."
+    },
+    {
+      "path": ".oxlintrc.json",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": ".oxlintrc.json",
+      "upstreamSha256": "082a32567efe257cc76ff9d5a9e6bd960af9950db512f8159b7996cc2a86272b",
+      "currentSha256": "9a7391fcbd1debeb4c10d3b58796e0e6eb5516449d9f7ab2599f886fe951b988",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": ".prettierignore",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": ".prettierignore",
+      "upstreamSha256": "f3777f97a863f60fc1b2d200ad082fe8e646f580b224408b28cfb1682f8ba7bd",
+      "currentSha256": "76c92649885a7c2eac7e762eaf70d67e90eb538989dc1022f07908daedcee60f",
+      "reason": "owned change (no specific note recorded)"
     },
     {
       "path": "bun.lock",
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "bun.lock",
       "upstreamSha256": "1214990c9b1a33c5d4c88fb4c7f9ce6d62f72c9f956b02b68ee8f130945fdf12",
-      "currentSha256": "b6ea0c47caaf847e3dd2da8d98e5254edd1f76375744ab3735415fe4a6447966",
+      "currentSha256": "b4ef84449b8912568724a5c410d563d4c01e5f22baf6ff66107af335b8b7baeb",
       "reason": "Regenerated by bun install after the root manifest was renamed to v-flow-exais. The lockfile records the workspace root name, so it necessarily diverges from upstream once the rename lands. Dependency versions are unchanged; the divergence is the root package identity only."
     },
     {
@@ -127,7 +1823,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "package.json",
       "upstreamSha256": "656e53de03966a18b6b6626cbd2b0b6f918f1ac260d794cee3ed41e8dfff1ff2",
-      "currentSha256": "7f27b850b652b6282f2adc2f338dbb68457aa5816d51318ac890bdfb3958f629",
+      "currentSha256": "227242adc4dd058f3025a8baa6989e2f3c36fa0506a5cf33153e4d491d319452",
       "reason": "Reconciled during AFM-003: renamed to v-flow-exais, upstream repository URL removed so this repo claims no ancestry it does not have, inherited prepare/lefthook lifecycle hook removed (AFM-005), new packages registered in the build order."
     },
     {
@@ -135,7 +1831,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/cli/src/cli.ts",
       "upstreamSha256": "3901a610a932d1e9152c628e4501e45f7baa73205dac92dc5cba6b810b284a5d",
-      "currentSha256": "bfacff0c63cdfbca484c86e73227edfe1e5c6c4ab7e46cbf68a4a851a967aa5c",
+      "currentSha256": "e14c0fe2b2c8c3db5e47ba963f5e69c0d14881fc95cb34e2b9d8da9c670d9624",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -144,6 +1840,22 @@
       "upstreamSourcePath": "packages/parsers/src/index.ts",
       "upstreamSha256": "bf8751149211ff6c16b469a9ff5334b5d7659bacbb00f40d2697c2ac3e89daad",
       "currentSha256": "e1ebe0df9bed2f27728e097ba17b40354ddd3d4aa651e1478813fbb28a66824c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/package.json",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/package.json",
+      "upstreamSha256": "0cb0c56d3bf19008d3aa32c1dd86c77759a324ff3abfebb8f2c7278a6375cd9f",
+      "currentSha256": "e5f669a70fc0899f56175f76b27fa35c38a1695fb9f548a4208c0c3e7411403c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/scripts/run-test-lane.mjs",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/scripts/run-test-lane.mjs",
+      "upstreamSha256": "bff02680f19eebcce0df72cdeedbbc05edfdcede3f3f60658fc0cb18ed8c59f6",
+      "currentSha256": "1116ffdb7e13d232aa5a2aeb756a53995e7397aca0eaf49a4aa3abd7106ae775",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -163,11 +1875,43 @@
       "reason": "owned change (no specific note recorded)"
     },
     {
+      "path": "packages/producer/src/services/distributed/assemble.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/distributed/assemble.ts",
+      "upstreamSha256": "0b2ad0a1d4fc76d1ca970cce42972831fd16e8f7c6f83bd017f724bb22af6192",
+      "currentSha256": "72b4fa10f739ec1744f15f49ef3382d3cf19a123132a0a47e976f1d09d0fe7ed",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
       "path": "packages/producer/src/services/htmlCompiler.ts",
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/producer/src/services/htmlCompiler.ts",
       "upstreamSha256": "9ce7e881c5787fefa4b1206c17e6748c278ad265bdc03ff60340b1e32d4ade7f",
       "currentSha256": "5cf3d5f58b1002c46d8393671ed466a92563b697b381c0b222ef69372019860e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/src/services/render/audioPadTrim.integration.test.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/render/audioPadTrim.integration.test.ts",
+      "upstreamSha256": "dff8b498110fe07d9c860fb1206639a90a11e861b4e9a1d34355cccbb3f848a9",
+      "currentSha256": "f3b937b6b68ec8dc55b9a34dd8ad1c7fdafcdfbb9fbd5ec73980dca933d3a266",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/src/services/render/audioPadTrim.test.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/render/audioPadTrim.test.ts",
+      "upstreamSha256": "faabd302d28c9717f211ec87a367d80fcb4b7de0966c55a7cc564f3e045c7b4e",
+      "currentSha256": "92736d87d3fc48beac11da26bffa943eb77fb1900d1b1d06175afd27900e9011",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/src/services/render/audioPadTrim.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/render/audioPadTrim.ts",
+      "upstreamSha256": "95bf002ca7c8c1521c63c16462c8fda839a6485f8af7bce0ccd76db193b137b3",
+      "currentSha256": "2e9b7070a977e4a9ae43044fd44e8b6de173a524d041574e449b22d26365a968",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -183,7 +1927,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/studio-server/package.json",
       "upstreamSha256": "583d6a914fb6ce2fba26f7a6001f7d2b38d270d6d8a46e691874e2a7dfdaee2e",
-      "currentSha256": "7076c7051a1728f1d5bf489ab8ccdcdf071c161c2e908a9fb01473534460643f",
+      "currentSha256": "1ad65f3e4104ebb85f03b51c84f8c51ccc4c229391d1f33268dc34064033e3a2",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -207,7 +1951,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/studio-server/src/types.ts",
       "upstreamSha256": "00110a3d3ef0a571e23e929734da8f3fe431169467df45e2e71f40b904a914b5",
-      "currentSha256": "1d28b0bb269f00f67065ed4569d5e8bc4040973d5e935ea28da8448ac703cd67",
+      "currentSha256": "092acfe32800ea53fce03d8e31ce80b9898c1e2300a78dee565e08285b4844c7",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -215,7 +1959,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/studio/package.json",
       "upstreamSha256": "66ea3195f0264a1ab03d402c2ded2fcb8737a888331d35f38b285787cd19aa3e",
-      "currentSha256": "efc4baed4c12f4faca41c5be8d75ddcabd3a42eb4934f3f317b6210f042e6e56",
+      "currentSha256": "ba8d273d30e1ec890fe253107570ad7ab670e9d2b1dd6f5e20ebf50b820858d8",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -231,7 +1975,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/studio/vite.adapter.ts",
       "upstreamSha256": "fd4abf1921a12ea5b674923d41a1fdd32a0154392937929d8aa3db569c7e587d",
-      "currentSha256": "5d7e70a6284977f3293db124a6f55f23826a766418a843d57fdc9702180aa493",
+      "currentSha256": "f9cfa7ec1c99a225000ab8b3294da44ea7de48ea2b2b1e3cf91c7287147fe0c9",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -240,6 +1984,14 @@
       "upstreamSourcePath": "packages/studio/vite.config.ts",
       "upstreamSha256": "7a3bc82818569b1b72fb2de2c39cb9cb50d4d1d6d4d9137f29d6d70a59d5431c",
       "currentSha256": "4326518e36b96468d140da10c3bfead3ba6e78b1740f847fd0a5cf54d8cec983",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "registry/examples/kinetic-type/compositions/main-graphics.html",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "registry/examples/kinetic-type/compositions/main-graphics.html",
+      "upstreamSha256": "150e9f173117f39562862b05b5b6bafb888c8a1bdaea308a23837d77811b9148",
+      "currentSha256": "8deafc91c775192d1a021eb8757108648372fc05d27b22f91d800be598211254",
       "reason": "owned change (no specific note recorded)"
     }
   ]

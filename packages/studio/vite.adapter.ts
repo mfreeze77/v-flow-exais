@@ -140,15 +140,26 @@ export function createViteAdapter(
     return _bundler;
   };
 
-  const projectService = new UnifiedProjectService({ home: process.env.VFLOW_DATA_HOME || resolve(dataDir, "../vflow"), sourceRoots: [{ id: "workspace", label: "Mounted workspace", path: process.env.VFLOW_SOURCE_ROOT || resolve(dataDir, "../../../..") }] });
+  const projectService = new UnifiedProjectService({
+    home: process.env.VFLOW_DATA_HOME || resolve(dataDir, "../vflow"),
+    sourceRoots: [
+      {
+        id: "workspace",
+        label: "Mounted workspace",
+        path: process.env.VFLOW_SOURCE_ROOT || resolve(dataDir, "../../../.."),
+      },
+    ],
+  });
 
   const getProducerModule = async () => {
     if (!_producerModuleLoader) {
       _producerModuleLoader = createRetryingModuleLoader(async () => {
-        const { built } = process.versions.bun ? { built: false } : ensureProducerDist({
-          studioDir: __dirname,
-          env: process.env,
-        });
+        const { built } = process.versions.bun
+          ? { built: false }
+          : ensureProducerDist({
+              studioDir: __dirname,
+              env: process.env,
+            });
         if (built) {
           console.warn(
             "[Studio] @hyperframes/producer dist missing; building producer package for local renders...",

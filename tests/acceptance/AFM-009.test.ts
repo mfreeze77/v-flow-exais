@@ -44,9 +44,20 @@ describe("AFM-009: the workspace is internally consistent", () => {
     // No package is dropped merely because the diagram slice does not use it.
     const names = new Set(checkWorkspace(root).packages.map((p) => p.name));
     for (const pkg of [
-      "aws-lambda", "cli", "core", "engine", "gcp-cloud-run", "lint", "parsers",
-      "player", "producer", "sdk", "sdk-playground", "shader-transitions",
-      "studio", "studio-server",
+      "aws-lambda",
+      "cli",
+      "core",
+      "engine",
+      "gcp-cloud-run",
+      "lint",
+      "parsers",
+      "player",
+      "producer",
+      "sdk",
+      "sdk-playground",
+      "shader-transitions",
+      "studio",
+      "studio-server",
     ]) {
       expect(names.has(`@hyperframes/${pkg}`)).toBe(true);
     }

@@ -28,7 +28,13 @@
     { "from": "auth", "to": "api", "y": 305, "label": "claims ok", "variant": "return" },
     { "from": "api", "to": "redis", "y": 354, "label": "read cache", "variant": "default" },
     { "from": "redis", "to": "api", "y": 391, "label": "miss", "variant": "return" },
-    { "from": "api", "to": "db", "y": 443, "label": "query profile + metrics", "variant": "emphasis" },
+    {
+      "from": "api",
+      "to": "db",
+      "y": 443,
+      "label": "query profile + metrics",
+      "variant": "emphasis"
+    },
     { "from": "db", "to": "api", "y": 489, "label": "rows", "variant": "return" },
     { "from": "api", "to": "redis", "y": 536, "label": "set cache", "variant": "dashed" },
     { "from": "api", "to": "trace", "y": 580, "label": "emit trace", "variant": "dashed" },

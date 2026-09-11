@@ -13,7 +13,9 @@
     "packages/producer/tests/**/src/vendor/**",
     "docs/public/catalog/",
     "registry/blocks/**/lib/*.iife.js",
-    "chrome/"
+    "chrome/",
+    "packages/diagram-engine/renderers/shared/generated-validators.mjs",
+    "docs/upstream/"
   ],
   "overrides": [
     {

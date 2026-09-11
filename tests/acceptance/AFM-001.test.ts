@@ -9,7 +9,7 @@
  */
 
 import { describe, expect, it, beforeAll, afterAll } from "vitest";
-import { mkdtempSync, mkdirSync, writeFileSync, rmSync, symlinkSync, readFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, writeFileSync, rmSync, readFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join, resolve, sep } from "node:path";
 
@@ -46,7 +46,10 @@ afterAll(() => {
 function makeSourceTree(root: string, repository: "archify" | "hyperframes"): string {
   const files =
     repository === "archify"
-      ? { "archify/package.json": '{"name":"archify"}', "archify/schemas/architecture.schema.json": "{}" }
+      ? {
+          "archify/package.json": '{"name":"archify"}',
+          "archify/schemas/architecture.schema.json": "{}",
+        }
       : {
           "package.json": '{"name":"hyperframes-monorepo"}',
           "packages/producer/package.json": "{}",
@@ -144,9 +147,7 @@ describe("AFM-001: root resolution by sentinel, not by name", () => {
 
 describe("AFM-001: drift is reported, never absorbed", () => {
   it("flags a changed lockfile as drift and refuses to pass", () => {
-    const actual = [
-      { path: "bun.lock", kind: "file" as const, sha256: "a".repeat(64), size: 10 },
-    ];
+    const actual = [{ path: "bun.lock", kind: "file" as const, sha256: "a".repeat(64), size: 10 }];
     const expected = [
       { path: "bun.lock", kind: "file" as const, sha256: "b".repeat(64), size: 12 },
     ];
@@ -163,10 +164,14 @@ describe("AFM-001: drift is reported, never absorbed", () => {
 
   it("reports added and removed files separately", () => {
     const result = compareInventory(
-      [{ path: "kept", kind: "file", sha256: "c".repeat(64), size: 1 },
-       { path: "added", kind: "file", sha256: "d".repeat(64), size: 1 }],
-      [{ path: "kept", kind: "file", sha256: "c".repeat(64), size: 1 },
-       { path: "removed", kind: "file", sha256: "e".repeat(64), size: 1 }],
+      [
+        { path: "kept", kind: "file", sha256: "c".repeat(64), size: 1 },
+        { path: "added", kind: "file", sha256: "d".repeat(64), size: 1 },
+      ],
+      [
+        { path: "kept", kind: "file", sha256: "c".repeat(64), size: 1 },
+        { path: "removed", kind: "file", sha256: "e".repeat(64), size: 1 },
+      ],
     );
     expect(result.extra).toEqual(["added"]);
     expect(result.missing).toEqual(["removed"]);
@@ -184,10 +189,14 @@ describe("AFM-001: drift is reported, never absorbed", () => {
 
   it("flags case collisions even where the filesystem allows them", () => {
     const result = compareInventory(
-      [{ path: "README.md", kind: "file", sha256: "1".repeat(64), size: 1 },
-       { path: "readme.md", kind: "file", sha256: "2".repeat(64), size: 1 }],
-      [{ path: "README.md", kind: "file", sha256: "1".repeat(64), size: 1 },
-       { path: "readme.md", kind: "file", sha256: "2".repeat(64), size: 1 }],
+      [
+        { path: "README.md", kind: "file", sha256: "1".repeat(64), size: 1 },
+        { path: "readme.md", kind: "file", sha256: "2".repeat(64), size: 1 },
+      ],
+      [
+        { path: "README.md", kind: "file", sha256: "1".repeat(64), size: 1 },
+        { path: "readme.md", kind: "file", sha256: "2".repeat(64), size: 1 },
+      ],
     );
     expect(result.caseCollisions).toEqual([["README.md", "readme.md"]]);
     expect(result.matchesBaseline).toBe(false);
@@ -299,9 +308,7 @@ describe("AFM-001: archive handling", () => {
 
   it("records the archive comment as an unverified revision candidate", () => {
     const scan = scanZip(archifyZip(), "archify");
-    expect(scan.archiveCommentRevisionCandidate).toBe(
-      "18911058008f17dc065af23a2cdc9bfeff6d3f7a",
-    );
+    expect(scan.archiveCommentRevisionCandidate).toBe("18911058008f17dc065af23a2cdc9bfeff6d3f7a");
     expect(scan.resolvedRoot).toBe("archify-main");
     // The pack itself never promoted these to verified commits.
     expect(SNAPSHOTS.archify.independently_verified_commit).toBeNull();

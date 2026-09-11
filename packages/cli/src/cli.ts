@@ -123,7 +123,7 @@ const isHelp = process.argv.includes("--help") || process.argv.includes("-h");
 // ---------------------------------------------------------------------------
 
 const commandLoaders = {
-  project: () => import('./commands/project.js').then((m) => m.default),
+  project: () => import("./commands/project.js").then((m) => m.default),
   init: () => import("./commands/init.js").then((m) => m.default),
   add: () => import("./commands/add.js").then((m) => m.default),
   catalog: () => import("./commands/catalog.js").then((m) => m.default),

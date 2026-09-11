@@ -1,6 +1,7 @@
 {
   "name": "v-flow-exais",
   "private": true,
+  "description": "V-Flow EXAIS - one Studio for typed architecture diagrams and real video production. Built from owned Archify and HyperFrames sources.",
   "workspaces": [
     "packages/*"
   ],
@@ -95,9 +96,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
-  "description": "V-Flow EXAIS - one Studio for typed architecture diagrams and real video production. Built from owned Archify and HyperFrames sources.",
   "engines": {
-    "node": ">=22",
-    "bun": ">=1.3.13"
+    "bun": ">=1.3.13",
+    "node": ">=22"
   }
 }

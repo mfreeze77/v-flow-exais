@@ -29,3 +29,15 @@ registry/examples/startup-pitch/index.html
 registry/examples/startup-pitch/demo.html
 registry/examples/slideshow-demo/index.html
 registry/examples/warm-grain/compositions/captions.html
+
+# Ticket receipts and gate evidence. These are records, not source: their
+# bytes are referenced by sha256 values recorded inside the receipts
+# themselves, so reformatting them would invalidate the evidence it is meant
+# to preserve. Never reformat.
+evidence/
+
+# Generated standalone diagram output. These are rendered artifacts, not
+# source: the engine produces them and a build regenerates them, so
+# reformatting a 2MB generated HTML file creates a large meaningless diff and
+# makes the next regeneration look like a change. Same treatment as goldens.
+examples/upstream-archify/*.html

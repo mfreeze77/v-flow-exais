@@ -115,7 +115,8 @@ export function validateWorkspace(root: string, packages: WorkspacePackage[]): W
       problems.push({
         code: "new-package-not-private",
         package: name,
-        detail: "Packages introduced by this repository stay private until a publishing policy exists",
+        detail:
+          "Packages introduced by this repository stay private until a publishing policy exists",
       });
     }
   }

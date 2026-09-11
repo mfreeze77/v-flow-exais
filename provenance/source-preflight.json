@@ -33,9 +33,6 @@
       "treeContentSha256": "78d8162e089054271d2d86aa9965660b9a79177d32e522815dc0f325eda7c2c9"
     }
   },
-  "quarantinedInputs": [
-    "/workspace/_sources/archify-main",
-    "/workspace/_sources/hyperframes-main"
-  ],
+  "quarantinedInputs": ["/workspace/_sources/archify-main", "/workspace/_sources/hyperframes-main"],
   "errors": []
 }

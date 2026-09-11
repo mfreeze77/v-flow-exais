@@ -101,7 +101,7 @@ export interface StudioSelectionResponse {
  */
 export interface StudioApiAdapter {
   /** Optional unified project storage; the same service is used by UI and CLI. */
-  projectService?: import('./project/projectService').UnifiedProjectService;
+  projectService?: import("./project/projectService").UnifiedProjectService;
   /** List all available projects. */
   listProjects(): Promise<ResolvedProject[]> | ResolvedProject[];
 

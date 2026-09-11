@@ -1,0 +1,64 @@
+{
+  "generatedBy": "evidence/tickets/AFM-012/final-checkpoint/generate-receipt.mjs",
+  "note": "Totals parsed from the committed logs, not hand-entered.",
+  "partitions": {
+    "unit-bun": {
+      "exitCode": 0,
+      "files": 42,
+      "casesPassed": 660,
+      "casesFailed": 0,
+      "casesSkipped": 0,
+      "unlaunched": 0
+    },
+    "unit-vitest": {
+      "exitCode": 0,
+      "files": 42,
+      "casesPassed": 672,
+      "casesFailed": 0,
+      "casesSkipped": 1,
+      "unlaunched": 0
+    },
+    "integration-bun": {
+      "exitCode": 0,
+      "files": 10,
+      "casesPassed": 175,
+      "casesFailed": 0,
+      "casesSkipped": 0,
+      "unlaunched": 0
+    },
+    "integration-vitest": {
+      "exitCode": 0,
+      "files": 9,
+      "casesPassed": 77,
+      "casesFailed": 0,
+      "casesSkipped": 0,
+      "unlaunched": 0
+    }
+  },
+  "totals": {
+    "casesPassed": 1584,
+    "casesFailed": 0,
+    "casesSkipped": 1,
+    "unlaunched": 0
+  },
+  "acceptanceSuite": {
+    "exitCode": 0,
+    "files": 19,
+    "casesPassed": 223
+  },
+  "rootChecks": {
+    "assets": "pass",
+    "audit-assets": "pass",
+    "audit-automation": "pass",
+    "automation": "pass",
+    "boundaries-tests": "pass",
+    "boundaries": "pass",
+    "check-package-boundaries": "pass",
+    "check-workspace": "pass",
+    "classification": "pass",
+    "doctor": "pass",
+    "format": "pass",
+    "lint": "pass",
+    "workspace": "pass"
+  }
+}

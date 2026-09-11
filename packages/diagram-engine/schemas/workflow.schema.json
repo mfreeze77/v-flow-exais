@@ -4,20 +4,10 @@
   "title": "Archify Workflow Diagram",
   "type": "object",
   "additionalProperties": false,
-  "required": [
-    "schema_version",
-    "diagram_type",
-    "meta",
-    "lanes",
-    "nodes",
-    "edges"
-  ],
+  "required": ["schema_version", "diagram_type", "meta", "lanes", "nodes", "edges"],
   "properties": {
     "schema_version": {
-      "enum": [
-        1,
-        2
-      ]
+      "enum": [1, 2]
     },
     "diagram_type": {
       "const": "workflow"
@@ -25,9 +15,7 @@
     "meta": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "title"
-      ],
+      "required": ["title"],
       "properties": {
         "title": {
           "type": "string",
@@ -43,24 +31,13 @@
           "type": "string"
         },
         "animation": {
-          "enum": [
-            "trace",
-            "none"
-          ]
+          "enum": ["trace", "none"]
         },
         "visual_preset": {
-          "enum": [
-            "classic",
-            "signal-flow",
-            "blueprint",
-            "editorial"
-          ]
+          "enum": ["classic", "signal-flow", "blueprint", "editorial"]
         },
         "quality_profile": {
-          "enum": [
-            "standard",
-            "showcase"
-          ]
+          "enum": ["standard", "showcase"]
         },
         "views": {
           "$ref": "common.schema.json#/$defs/guidedViews"
@@ -109,10 +86,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "id",
-          "label"
-        ],
+        "required": ["id", "label"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -122,10 +96,7 @@
             "minLength": 1
           },
           "variant": {
-            "enum": [
-              "normal",
-              "exception"
-            ]
+            "enum": ["normal", "exception"]
           }
         }
       }
@@ -135,12 +106,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "id",
-          "label",
-          "fromCol",
-          "toCol"
-        ],
+        "required": ["id", "label", "fromCol", "toCol"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -160,12 +126,7 @@
             "maximum": 5
           },
           "variant": {
-            "enum": [
-              "default",
-              "emphasis",
-              "security",
-              "dashed"
-            ]
+            "enum": ["default", "emphasis", "security", "dashed"]
           }
         }
       }
@@ -175,13 +136,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "id",
-          "label",
-          "lane",
-          "fromCol",
-          "toCol"
-        ],
+        "required": ["id", "label", "lane", "fromCol", "toCol"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -204,12 +159,7 @@
             "maximum": 5
           },
           "variant": {
-            "enum": [
-              "default",
-              "emphasis",
-              "security",
-              "dashed"
-            ]
+            "enum": ["default", "emphasis", "security", "dashed"]
           }
         }
       }
@@ -258,13 +208,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "id",
-          "lane",
-          "col",
-          "type",
-          "label"
-        ],
+        "required": ["id", "lane", "col", "type", "label"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -312,10 +256,7 @@
       "items": {
         "type": "object",
         "additionalProperties": false,
-        "required": [
-          "from",
-          "to"
-        ],
+        "required": ["from", "to"],
         "properties": {
           "id": {
             "$ref": "common.schema.json#/$defs/id"
@@ -333,13 +274,7 @@
             "$ref": "common.schema.json#/$defs/variant"
           },
           "role": {
-            "enum": [
-              "main",
-              "branch",
-              "async",
-              "return",
-              "error"
-            ]
+            "enum": ["main", "branch", "async", "return", "error"]
           },
           "fromSide": {
             "$ref": "#/$defs/side"
@@ -403,10 +338,7 @@
     "semanticRelation": {
       "type": "object",
       "additionalProperties": false,
-      "required": [
-        "from",
-        "to"
-      ],
+      "required": ["from", "to"],
       "properties": {
         "from": {
           "$ref": "common.schema.json#/$defs/id"
@@ -417,12 +349,7 @@
       }
     },
     "side": {
-      "enum": [
-        "left",
-        "right",
-        "top",
-        "bottom"
-      ]
+      "enum": ["left", "right", "top", "bottom"]
     }
   }
 }

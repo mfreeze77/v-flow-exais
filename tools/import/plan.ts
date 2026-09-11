@@ -168,7 +168,9 @@ export function scanArchiveWithModes(buf: Buffer, repository: RepositoryName): A
   const names = files.map((e) => safeName(e.name));
 
   // Mirror preflight's root resolution so both tools agree on relative paths.
-  const sentinelRoots = new Set(names.filter((n) => n.includes("/")).map((n) => n.split("/", 1)[0]!));
+  const sentinelRoots = new Set(
+    names.filter((n) => n.includes("/")).map((n) => n.split("/", 1)[0]!),
+  );
   const nameSet = new Set(names);
   const sentinels =
     repository === "archify"
@@ -217,7 +219,10 @@ export interface BuildOptions {
  * disposition and target assignment. Archive bytes win on hash/kind/mode; the
  * inventory is authoritative only for where an entry goes and who owns it.
  */
-export function buildImportMap(options: BuildOptions): { map: ImportMap; problems: LedgerProblem[] } {
+export function buildImportMap(options: BuildOptions): {
+  map: ImportMap;
+  problems: LedgerProblem[];
+} {
   const problems: LedgerProblem[] = [];
   const entries: ImportMapEntry[] = [];
 

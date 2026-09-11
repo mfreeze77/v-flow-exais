@@ -79,13 +79,19 @@ function main(argv: string[]): number {
       for (const p of paths.slice(0, 25)) console.error(`      ${p}`);
       if (paths.length > 25) console.error(`      ... and ${paths.length - 25} more`);
     }
-    console.error("\nFAIL: nothing was overwritten. Re-run with --reconcile for deliberate overwrites.");
+    console.error(
+      "\nFAIL: nothing was overwritten. Re-run with --reconcile for deliberate overwrites.",
+    );
     return 2;
   }
 
   if (!dryRun) {
     // A vendored .git would turn part of the tree into an untracked island.
-    const nested = findNestedRepositories(resolve(destination), ["_sources", "node_modules", ".git"]);
+    const nested = findNestedRepositories(resolve(destination), [
+      "_sources",
+      "node_modules",
+      ".git",
+    ]);
     if (nested.length > 0) {
       console.error(`\nFAIL: nested repositories present: ${nested.join(", ")}`);
       return 2;
