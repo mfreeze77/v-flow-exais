@@ -6,18 +6,18 @@ and the next dependency-ready work. Resume from this file and the per-ticket
 receipts — never by guessing that a generated file proves success.
 
 **Last updated:** 2026-09-10
-**Head commit:** `2f1997c` — AFM-003: acceptance tests, receipt and docker hygiene rule
+**Head commit:** `42a02c1` — AFM-004: license records, asset provenance and the modification ledger
 **Gate status:** G0 in progress (AFM-129 gates it)
 
 ## Counts
 
 | State | Count | Tickets |
 |---|---|---|
-| verified | 3 | AFM-001, AFM-002, AFM-003 |
-| in_progress | 1 | AFM-005 (hooks neutralized; audit tool and docs outstanding) |
+| verified | 6 | AFM-001, AFM-002, AFM-003, AFM-004, AFM-005, AFM-006 |
+| in_progress | 0 | — |
 | implemented_unverified | 0 | — |
 | blocked | 0 | — |
-| untouched | 130 | AFM-004, AFM-006 … AFM-134 |
+| untouched | 128 | AFM-007, AFM-008 … AFM-134 |
 
 ## Verified
 
@@ -26,8 +26,34 @@ receipts — never by guessing that a generated file proves success.
 | AFM-001 | `a3feeb1` | `evidence/tickets/AFM-001/` | 31 tests; both sources reproduce the pinned baseline tree digests |
 | AFM-002 | `25d8bf8` | `evidence/tickets/AFM-002/` | 22 tests; 7786 entries, 0 ledger problems, 0 duplicate targets |
 | AFM-003 | `8bae64a` | `evidence/tickets/AFM-003/` | 21 tests; 7784 files imported and hash-verified, 0 conflicts |
+| AFM-004 | `42a02c1` | `evidence/tickets/AFM-004/` | 16 tests; 4/4 license records, 0 font binaries in evidence, 4 explained modifications |
+| AFM-005 | `4bc67ba` | `evidence/tickets/AFM-005/` | 13 tests; automation audit 0 blocked, hooks neutralized |
+| AFM-006 | `4bc67ba` | `evidence/tickets/AFM-006/` | 21 tests; all 7786 target paths cross-platform safe, no raw-checkout reach-back |
 
-Acceptance suite total: **74 passing across 3 files.**
+Acceptance suite total: **124 passing across 6 files.**
+
+## Open finding blocking the render path
+
+**AFM-011-F1 — the engine/viewer split breaks Archify's asset resolution.**
+
+`packages/diagram-engine/renderers/shared/cli.mjs` resolves its template as
+`path.resolve(rendererDir, '../..') + '/assets/template.html'`, but the import
+ledger routed `archify/assets/template.html` to
+`packages/diagram-viewer/assets/template.html`. Running the architecture
+renderer fails with ENOENT on
+`/workspace/packages/diagram-engine/assets/template.html`.
+
+Compounding it: `packages/diagram-viewer/` contains only two asset files and
+**no `package.json`**, so it is not a workspace member at all, and
+`packages/diagram-engine` is still registered under the upstream name
+`archify` rather than a `@hyperframes/*` scope.
+
+This is AFM-011's work (map Archify runtime code to diagram-engine/viewer) and
+it is the first hard blocker on the path to rendering a diagram. The proper
+resolution is the C02 boundary: the engine compiles to an artifact (SVG,
+styles, semantic objects) and the viewer owns the HTML template, rather than
+the engine reading a template at all. Interim path-patching would contradict
+AFM-027, so it is fixed as real ticket work.
 
 ## Repository state
 
@@ -70,7 +96,13 @@ upstream Git history.
   never `docker volume prune` (other projects' data lives on this host).
 - Local only: no remote push, no package publication, no paid provider calls.
 
+## Scope
+
+`docs/designs/scope-local-single-user.md`: local single-user build. E12
+(AFM-103–112) and 77 off-path tickets are deferred; work is ordered by the
+54-ticket dependency path to AFM-130 / G1.
+
 ## Next dependency-ready work
 
-Layer 3 (all depend on AFM-002): **AFM-004**, AFM-005 (finish), AFM-007,
-AFM-008. Then AFM-006 and AFM-009.
+AFM-007, AFM-008 complete E01. Then **E02 (AFM-009–016)**, which is where
+AFM-011-F1 is resolved and where a full `bun run build` becomes possible.
