@@ -19,7 +19,17 @@ export interface TimingOptions {
 }
 
 function run(ffmpeg: string, args: string[]): Buffer {
-  return execFileSync(ffmpeg, ["-nostdin", "-hide_banner", "-v", "error", ...args], {
+  // Built by push rather than as a spread inside an argv literal. The ffprobe
+  // argv contract discovers callers by argv *shape*, deliberately over-including
+  // so a dependency-injected runner cannot hide from it. A literal ending in a
+  // spread reads to that matcher as a positional input needing a "--"
+  // terminator — which is an ffprobe idiom and wrong for ffmpeg, whose inputs
+  // arrive via -i and whose trailing positional is the output. Keeping the
+  // literal's last element a string constant states the shape accurately
+  // instead of weakening the contract or adding a meaningless terminator.
+  const argv = ["-nostdin", "-hide_banner", "-v", "error"];
+  argv.push(...args);
+  return execFileSync(ffmpeg, argv, {
     timeout: 30_000,
     maxBuffer: 8 * 1024 * 1024,
     stdio: ["ignore", "pipe", "pipe"],
@@ -29,7 +39,11 @@ function run(ffmpeg: string, args: string[]): Buffer {
 function fixture(options: TimingOptions) {
   const { directory, sampleRate, channels } = options;
   const frames = sampleRate;
-  const positions = [Math.round(sampleRate * 0.02), Math.round(sampleRate * 0.1), frames - Math.round(sampleRate * 0.002)];
+  const positions = [
+    Math.round(sampleRate * 0.02),
+    Math.round(sampleRate * 0.1),
+    frames - Math.round(sampleRate * 0.002),
+  ];
   const input = Buffer.alloc(frames * channels * 4);
   for (const [index, position] of positions.entries()) {
     for (let channel = 0; channel < channels; channel++) {
@@ -52,10 +66,23 @@ export function checkPcmLimiterTiming(builder: CorrectionArgs, options: TimingOp
   const output = join(directory, "filtered.f32");
   const args = builder(source.path, output, 1, 20 * Math.log10(0.5));
   const filter = args[args.indexOf("-af") + 1];
-  assert.ok(filter?.startsWith("alimiter="), "Expected the actual production limiter filter");
+  // An explicit throw rather than assert.ok: the latter does not narrow
+  // `string | undefined` for TypeScript, and `filter` is passed to ffmpeg below.
+  if (!filter || !filter.startsWith("alimiter=")) {
+    throw new Error("Expected the actual production limiter filter");
+  }
   run(ffmpeg, [
-    ...rawInput(source.path, sampleRate, channels), "-af", filter,
-    "-t", "1.000000", "-c:a", "pcm_f32le", "-f", "f32le", "-y", output,
+    ...rawInput(source.path, sampleRate, channels),
+    "-af",
+    filter,
+    "-t",
+    "1.000000",
+    "-c:a",
+    "pcm_f32le",
+    "-f",
+    "f32le",
+    "-y",
+    output,
   ]);
   const decoded = readFileSync(output);
   assert.equal(decoded.length, source.input.length, "Limiter changed the PCM frame count");
@@ -63,16 +90,29 @@ export function checkPcmLimiterTiming(builder: CorrectionArgs, options: TimingOp
   for (let channel = 0; channel < channels; channel++) {
     const positions: number[] = [];
     for (let frame = 0; frame < source.frames; frame++) {
-      if (Math.abs(decoded.readFloatLE((frame * channels + channel) * 4)) > 0.01) positions.push(frame);
+      if (Math.abs(decoded.readFloatLE((frame * channels + channel) * 4)) > 0.01)
+        positions.push(frame);
     }
     actualPositions.push(positions);
-    assert.deepEqual(positions, source.positions, "Look-ahead shifted markers or discarded the tail");
+    assert.deepEqual(
+      positions,
+      source.positions,
+      "Look-ahead shifted markers or discarded the tail",
+    );
     for (const frame of source.positions.slice(1)) {
-      assert.ok(Math.abs(decoded.readFloatLE((frame * channels + channel) * 4) - 0.25) < 1e-6,
-        "A quiet timing marker changed amplitude");
+      assert.ok(
+        Math.abs(decoded.readFloatLE((frame * channels + channel) * 4) - 0.25) < 1e-6,
+        "A quiet timing marker changed amplitude",
+      );
     }
   }
-  return { sampleRate, channels, frames: source.frames, expectedPositions: source.positions, actualPositions };
+  return {
+    sampleRate,
+    channels,
+    frames: source.frames,
+    expectedPositions: source.positions,
+    actualPositions,
+  };
 }
 
 function localPeak(bytes: Buffer, channels: number, channel: number, start: number, end: number) {
@@ -81,7 +121,10 @@ function localPeak(bytes: Buffer, channels: number, channel: number, start: numb
   const frames = bytes.length / (channels * 4);
   for (let index = Math.max(0, start); index < Math.min(frames, end); index++) {
     const value = Math.abs(bytes.readFloatLE((index * channels + channel) * 4));
-    if (value > magnitude) { magnitude = value; frame = index; }
+    if (value > magnitude) {
+      magnitude = value;
+      frame = index;
+    }
   }
   return { frame, magnitude };
 }
@@ -96,7 +139,8 @@ export function checkAacLimiterTiming(builder: CorrectionArgs, options: TimingOp
   run(ffmpeg, [...rawInput(source.path, sampleRate, channels), "-c:a", "pcm_f32le", "-y", wav]);
   run(ffmpeg, ["-i", wav, "-t", "1.000000", "-c:a", "aac", "-b:a", "192k", "-y", control]);
   run(ffmpeg, builder(wav, corrected, 1, 20 * Math.log10(0.5)));
-  const decode = (path: string) => run(ffmpeg, ["-i", path, "-map", "0:a:0", "-c:a", "pcm_f32le", "-f", "f32le", "-"]);
+  const decode = (path: string) =>
+    run(ffmpeg, ["-i", path, "-map", "0:a:0", "-c:a", "pcm_f32le", "-f", "f32le", "-"]);
   const expected = decode(control);
   const actual = decode(corrected);
   assert.equal(actual.length, expected.length, "Correction changed the decoded AAC sample count");
@@ -109,8 +153,16 @@ export function checkAacLimiterTiming(builder: CorrectionArgs, options: TimingOp
       const after = localPeak(actual, channels, channel, start, end);
       assert.ok(before.magnitude > 0.05, "AAC control must retain its timing marker");
       assert.ok(after.magnitude >= before.magnitude * 0.5, "Correction lost a quiet AAC marker");
-      assert.ok(Math.abs(after.frame - before.frame) <= 2, "Correction added audio delay relative to AAC control");
-      markers.push({ channel, expected: before, actual: after, shiftSamples: after.frame - before.frame });
+      assert.ok(
+        Math.abs(after.frame - before.frame) <= 2,
+        "Correction added audio delay relative to AAC control",
+      );
+      markers.push({
+        channel,
+        expected: before,
+        actual: after,
+        shiftSamples: after.frame - before.frame,
+      });
     }
   }
   return { sampleRate, channels, decodedFrames: actual.length / (channels * 4), markers };

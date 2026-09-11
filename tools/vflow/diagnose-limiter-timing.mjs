@@ -26,7 +26,9 @@ for (let index = 0; index < argv.length; index += 2) {
   const key = argv[index]?.slice(2);
   const value = argv[index + 1];
   if (!argv[index]?.startsWith("--") || !Object.hasOwn(options, key) || !value) {
-    throw new Error("Usage: node --experimental-strip-types tools/vflow/diagnose-limiter-timing.mjs --output NEW_DIR [--source FILE] [--ffmpeg BINARY]");
+    throw new Error(
+      "Usage: node --experimental-strip-types tools/vflow/diagnose-limiter-timing.mjs --output NEW_DIR [--source FILE] [--ffmpeg BINARY]",
+    );
   }
   options[key] = value;
 }
@@ -52,14 +54,16 @@ const { buildAacTruePeakCorrectionArgs } = await import(
 );
 const bytes = Buffer.from(source);
 const report = {
-  scope: "Real-media timing checks of the isolated production argument builder; not the complete producer or its Vitest suite.",
+  scope:
+    "Real-media timing checks of the isolated production argument builder; not the complete producer or its Vitest suite.",
   sourcePath,
   sourceBlob: createHash("sha1").update(`blob ${bytes.length}\0`).update(bytes).digest("hex"),
   sourceSha256: createHash("sha256").update(bytes).digest("hex"),
   environment: {
     node: process.version,
     ffmpeg: execFileSync(options.ffmpeg, ["-version"], {
-      encoding: "utf8", timeout: 10_000,
+      encoding: "utf8",
+      timeout: 10_000,
     }).split("\n")[0],
   },
   cases: [],
@@ -73,7 +77,10 @@ for (const kind of ["pcm", "aac"]) {
       try {
         const check = kind === "pcm" ? checkPcmLimiterTiming : checkAacLimiterTiming;
         entry.measurements = check(buildAacTruePeakCorrectionArgs, {
-          directory, ffmpeg: options.ffmpeg, sampleRate, channels,
+          directory,
+          ffmpeg: options.ffmpeg,
+          sampleRate,
+          channels,
         });
         entry.passed = true;
       } catch (error) {

@@ -1,0 +1,45 @@
+# complete partition after PR #2 and its two follow-up fixes
+# command: bun run test:integration:vitest
+
+$ node scripts/run-test-lane.mjs integration vitest
+[producer:integration/vitest] Selected 9 test files.
+  vitest src/services/assetMediaType.test.ts
+  vitest src/services/coreRuntimeBrowser.test.ts
+  vitest src/services/fileServer.file-race.test.ts
+  vitest src/services/healthWorker.test.ts
+  vitest src/services/htmlCompiler.mediaType.test.ts
+  vitest src/services/hyperframeLint.file-race.test.ts
+  vitest src/services/render/stages/compileStage.mediaType.test.ts
+  vitest src/utils/audioRegression.test.ts
+  vitest src/utils/streamDurationParity.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/packages/producer[39m
+
+ [32m✓[39m src/services/hyperframeLint.file-race.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 34[2mms[22m[39m
+ [32m✓[39m src/services/healthWorker.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1009[2mms[22m[39m
+     [33m[2m✓[22m[39m stays responsive while the main thread is blocked on a sync task [33m 615[2mms[22m[39m
+ [32m✓[39m src/utils/audioRegression.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 809[2mms[22m[39m
+ [32m✓[39m src/services/coreRuntimeBrowser.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 2205[2mms[22m[39m
+[90mstderr[2m | src/services/fileServer.file-race.test.ts[2m > [22m[2mproducer file server checked reads[2m > [22m[2mkeeps missing files and directories at 404
+[22m[39m[FileServer] 404 Not Found: /missing
+
+[90mstderr[2m | src/services/fileServer.file-race.test.ts[2m > [22m[2mproducer file server checked reads[2m > [22m[2mkeeps missing files and directories at 404
+[22m[39m[FileServer] 404 Not Found: /folder
+
+[90mstderr[2m | src/services/fileServer.file-race.test.ts[2m > [22m[2mproducer file server checked reads[2m > [22m[2mkeeps missing files and directories at 404
+[22m[39m[FileServer] 404 Not Found: /missing/child
+
+ [32m✓[39m src/services/fileServer.file-race.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 713[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/compileStage.mediaType.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 161[2mms[22m[39m
+ [32m✓[39m src/services/assetMediaType.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 714[2mms[22m[39m
+ [32m✓[39m src/services/htmlCompiler.mediaType.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 383[2mms[22m[39m
+ [32m✓[39m src/utils/streamDurationParity.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 803[2mms[22m[39m
+     [33m[2m✓[22m[39m passes when video and audio durations match [33m 342[2mms[22m[39m
+     [33m[2m✓[22m[39m fails when video is truncated relative to audio (regression #1648) [33m 353[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m      Tests [22m [1m[32m77 passed[39m[22m[90m (77)[39m
+[2m   Start at [22m 18:15:12
+[2m   Duration [22m 8.92s[2m (transform 27.96s, setup 0ms, import 33.39s, tests 6.83s, environment 1ms)[22m
+
+EXIT=0

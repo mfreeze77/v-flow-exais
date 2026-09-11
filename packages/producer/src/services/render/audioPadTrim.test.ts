@@ -331,7 +331,7 @@ describe("padOrTrimAudioToVideoFrameCount", () => {
     // -4 dBFS limit, i.e. 0.630957 linear. The gain-cut form this replaced
     // lowered the whole signal and moved integrated loudness by 5.9 LU.
     expect(correctionArgs[correctionArgs.indexOf("-af") + 1]).toBe(
-      "alimiter=limit=0.630957:level=disabled",
+      "alimiter=limit=0.630957:level=disabled:latency=1",
     );
     expect(correctionArgs[correctionArgs.indexOf("-t") + 1]).toBe("3.000000");
   });
