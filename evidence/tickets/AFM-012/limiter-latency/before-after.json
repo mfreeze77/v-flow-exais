@@ -1,0 +1,88 @@
+{
+  "baseCommit": "f961568a53ab3f64954cc4e630875feecacde747",
+  "codeCommit": "73432674f9efa022001c4dfcb0d49d45aaffa7be",
+  "scope": "Real-media timing checks of the isolated production argument builder; not the complete producer or its Vitest suite.",
+  "environment": {
+    "node": "v22.16.0",
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers"
+  },
+  "before": {
+    "exitCode": 1,
+    "passed": 0,
+    "failed": 6,
+    "sourceBlob": "c21c75a61fac241fc2d3266b83be09de5e74ca01"
+  },
+  "after": {
+    "exitCode": 0,
+    "passed": 6,
+    "failed": 0,
+    "sourceBlob": "5c5baad6ff117203ce4e3a747c03ec2644e2f460"
+  },
+  "cases": [
+    {
+      "kind": "pcm",
+      "sampleRate": 44100,
+      "channels": 1,
+      "beforePassed": false,
+      "afterPassed": true
+    },
+    {
+      "kind": "pcm",
+      "sampleRate": 44100,
+      "channels": 2,
+      "beforePassed": false,
+      "afterPassed": true
+    },
+    {
+      "kind": "pcm",
+      "sampleRate": 48000,
+      "channels": 1,
+      "beforePassed": false,
+      "afterPassed": true
+    },
+    {
+      "kind": "pcm",
+      "sampleRate": 48000,
+      "channels": 2,
+      "beforePassed": false,
+      "afterPassed": true
+    },
+    {
+      "kind": "aac",
+      "sampleRate": 44100,
+      "channels": 2,
+      "beforePassed": false,
+      "afterPassed": true
+    },
+    {
+      "kind": "aac",
+      "sampleRate": 48000,
+      "channels": 2,
+      "beforePassed": false,
+      "afterPassed": true
+    }
+  ],
+  "pcm": {
+    "44100": {
+      "beforeShiftSamples": 219,
+      "afterShiftSamples": 0
+    },
+    "48000": {
+      "beforeShiftSamples": 239,
+      "afterShiftSamples": 0
+    },
+    "quietTailBefore": "lost",
+    "quietTailAfter": "retained"
+  },
+  "aac": {
+    "44100": {
+      "decodedFrames": 45056,
+      "markerShiftRelativeToControlAfter": 0
+    },
+    "48000": {
+      "decodedFrames": 48128,
+      "markerShiftRelativeToControlAfter": 0
+    }
+  },
+  "detail": "test.log records the actual diagnostic output. AAC decoded frame counts include codec padding; timing is compared to an identically encoded control."
+}

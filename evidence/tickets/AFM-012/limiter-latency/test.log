@@ -1,0 +1,25 @@
+# Before: actual production builder from f961568a; expected reproduction exit 1
+{"kind":"pcm","sampleRate":44100,"channels":1,"passed":false,"error":"Look-ahead shifted markers or discarded the tail\n+ actual - expected\n\n  [\n+   1101,\n+   4629\n-   882,\n-   4410,\n-   44012\n  ]\n"}
+{"kind":"pcm","sampleRate":44100,"channels":2,"passed":false,"error":"Look-ahead shifted markers or discarded the tail\n+ actual - expected\n\n  [\n+   1101,\n+   4629\n-   882,\n-   4410,\n-   44012\n  ]\n"}
+{"kind":"pcm","sampleRate":48000,"channels":1,"passed":false,"error":"Look-ahead shifted markers or discarded the tail\n+ actual - expected\n\n  [\n+   1199,\n+   5039\n-   960,\n-   4800,\n-   47904\n  ]\n"}
+{"kind":"pcm","sampleRate":48000,"channels":2,"passed":false,"error":"Look-ahead shifted markers or discarded the tail\n+ actual - expected\n\n  [\n+   1199,\n+   5039\n-   960,\n-   4800,\n-   47904\n  ]\n"}
+{"kind":"aac","sampleRate":44100,"channels":2,"passed":false,"error":"Correction added audio delay relative to AAC control"}
+{"kind":"aac","sampleRate":48000,"channels":2,"passed":false,"error":"Correction added audio delay relative to AAC control"}
+(node:961) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:961) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+
+EXIT=1
+
+# After: patched production builder; exit 0
+{"kind":"pcm","sampleRate":44100,"channels":1,"passed":true,"measurements":{"sampleRate":44100,"channels":1,"frames":44100,"expectedPositions":[882,4410,44012],"actualPositions":[[882,4410,44012]]}}
+{"kind":"pcm","sampleRate":44100,"channels":2,"passed":true,"measurements":{"sampleRate":44100,"channels":2,"frames":44100,"expectedPositions":[882,4410,44012],"actualPositions":[[882,4410,44012],[882,4410,44012]]}}
+{"kind":"pcm","sampleRate":48000,"channels":1,"passed":true,"measurements":{"sampleRate":48000,"channels":1,"frames":48000,"expectedPositions":[960,4800,47904],"actualPositions":[[960,4800,47904]]}}
+{"kind":"pcm","sampleRate":48000,"channels":2,"passed":true,"measurements":{"sampleRate":48000,"channels":2,"frames":48000,"expectedPositions":[960,4800,47904],"actualPositions":[[960,4800,47904],[960,4800,47904]]}}
+{"kind":"aac","sampleRate":44100,"channels":2,"passed":true,"measurements":{"sampleRate":44100,"channels":2,"decodedFrames":45056,"markers":[{"channel":0,"expected":{"frame":4410,"magnitude":0.21764546632766724},"actual":{"frame":4410,"magnitude":0.21764546632766724},"shiftSamples":0},{"channel":0,"expected":{"frame":44012,"magnitude":0.21895386278629303},"actual":{"frame":44012,"magnitude":0.21895386278629303},"shiftSamples":0},{"channel":1,"expected":{"frame":4410,"magnitude":0.21764546632766724},"actual":{"frame":4410,"magnitude":0.21764546632766724},"shiftSamples":0},{"channel":1,"expected":{"frame":44012,"magnitude":0.21895386278629303},"actual":{"frame":44012,"magnitude":0.21895386278629303},"shiftSamples":0}]}}
+{"kind":"aac","sampleRate":48000,"channels":2,"passed":true,"measurements":{"sampleRate":48000,"channels":2,"decodedFrames":48128,"markers":[{"channel":0,"expected":{"frame":4800,"magnitude":0.2177993506193161},"actual":{"frame":4800,"magnitude":0.2177993506193161},"shiftSamples":0},{"channel":0,"expected":{"frame":47904,"magnitude":0.20161764323711395},"actual":{"frame":47904,"magnitude":0.20161764323711395},"shiftSamples":0},{"channel":1,"expected":{"frame":4800,"magnitude":0.2177993506193161},"actual":{"frame":4800,"magnitude":0.2177993506193161},"shiftSamples":0},{"channel":1,"expected":{"frame":47904,"magnitude":0.20161764323711395},"actual":{"frame":47904,"magnitude":0.20161764323711395},"shiftSamples":0}]}}
+(node:1127) ExperimentalWarning: Type Stripping is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:1127) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+
+EXIT=0

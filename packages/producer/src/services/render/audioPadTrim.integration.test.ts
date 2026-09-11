@@ -4,7 +4,11 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
 import { getFfmpegBinary, muxVideoWithAudio } from "@hyperframes/engine";
-import { padOrTrimAudioToVideoFrameCount } from "./audioPadTrim.js";
+import {
+  buildAacTruePeakCorrectionArgs,
+  padOrTrimAudioToVideoFrameCount,
+} from "./audioPadTrim.js";
+import { checkAacLimiterTiming, checkPcmLimiterTiming } from "./audioLimiterTiming.fixture.js";
 
 const dirs: string[] = [];
 afterEach(() => dirs.splice(0).forEach((dir) => rmSync(dir, { recursive: true, force: true })));
@@ -178,4 +182,35 @@ describe.skipIf(!hasFfmpeg)("audio pad real-media packet contract", () => {
       Math.abs(deliveredLevel.integratedLufs - sourceLevel.integratedLufs),
     ).toBeLessThanOrEqual(3);
   });
+});
+
+// Peak and integrated-loudness assertions above do not detect a fixed filter
+// delay. Exercise the actual argument builder with markers near both ends.
+describe.skipIf(!hasFfmpeg)("AAC limiter timing contract", () => {
+  it.each([
+    [44100, 1],
+    [44100, 2],
+    [48000, 1],
+    [48000, 2],
+  ])("preserves PCM marker positions at %i Hz with %i channels", (sampleRate, channels) => {
+    const directory = mkdtempSync(join(tmpdir(), "hf-limiter-pcm-"));
+    dirs.push(directory);
+    checkPcmLimiterTiming(buildAacTruePeakCorrectionArgs, {
+      directory,
+      ffmpeg: getFfmpegBinary(),
+      sampleRate,
+      channels,
+    });
+  }, 60_000);
+
+  it.each([44100, 48000])("preserves decoded AAC timing and the tail at %i Hz", (sampleRate) => {
+    const directory = mkdtempSync(join(tmpdir(), "hf-limiter-aac-"));
+    dirs.push(directory);
+    checkAacLimiterTiming(buildAacTruePeakCorrectionArgs, {
+      directory,
+      ffmpeg: getFfmpegBinary(),
+      sampleRate,
+      channels: 2,
+    });
+  }, 120_000);
 });
