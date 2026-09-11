@@ -1,0 +1,26 @@
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-037.test.ts" "tests/acceptance/AFM-093.revisions.test.ts" "tests/acceptance/AFM-093.understanding.test.ts" "tests/acceptance/AFM-093.stories.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpins exact commits, preserves removed source bytes and compares complete trees independently of dirty files[32m 72[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mrefuses stale refs, missing objects and subdirectory selections[32m 39[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpersists exact diagram comparison receipts and detects altered capture bytes[32m 74[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mverifies separately authored source citations and rejects wrong revisions and origins[32m 73[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22muses the actual API and CLI review ingress with conflict diagnostics[33m 2459[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mplans distinct implementation stories with authored scripts, exact integer timing and captured relationships[33m 701[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mreplans for audience/count, refuses invented evidence, repairs scripts and protects reviewed or existing project versions[32m 219[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mdoes not pad a manifest-only repository into multiple films[32m 5[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mkeeps concurrent edits to different stories and diversifies maintainer plans[32m 51[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mframes a call beyond a long source-line prefix without changing the captured evidence[32m 6[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mcompares exact authored snapshots, retains removed objects and distinct SVG namespaces[32m 23[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mmatches parallel edges by IDs across reordering and label changes[32m 13[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mdistinguishes moves, reroutes and unchanged snapshots without semantic claims[32m 18[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mrejects missing/duplicate relationship IDs, malformed inputs and invalid diagrams[32m 13[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mcaptures implementation, APIs, models and workflow call evidence from actual files with exact immutable line citations[32m 20[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mresolves same-named exports by source module, preserves repeated call sites, and withholds shadowed/ambiguous relationships[32m 5[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m4 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m16 passed[39m[22m[90m (16)[39m
+[2m   Start at [22m 14:13:57
+[2m   Duration [22m 7.18s[2m (transform 1.80s, setup 0ms, import 3.07s, tests 3.79s, environment 0ms)[22m
+

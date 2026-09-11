@@ -1,0 +1,32 @@
+{
+  "ticketId": "AFM-095",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "8756a982bcd0df4e93190573eecab861811307c7",
+  "implemented": "CLI story settings, replan/revise/reviewed accept commands sharing Studio validation; recorded seven-command workflow.",
+  "previousReceipt": "evidence/tickets/AFM-095/pre-story-result.json",
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{parsers,studio-server,studio,cli}' typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/typecheck.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-cli.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/cli.log"
+    }
+  ],
+  "remainingAcceptance": [
+    "Full command/compatibility/doctor coverage, clean distribution and recorded useful agent-to-video acceptance remain open."
+  ],
+  "handoff": "docs/designs/story-planning.md",
+  "relatedReceipt": "evidence/tickets/AFM-093/result.json",
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-093/result.json",
+      "bytes": 39123,
+      "sha256": "942c3c21ba054f49bb54296427955a1c28cb54f925d363be1ff45a4a3ff05533"
+    }
+  ]
+}

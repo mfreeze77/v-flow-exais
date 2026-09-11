@@ -1,0 +1,248 @@
+{
+  "ticketId": "AFM-037",
+  "title": "Pinned local source and exact authored architecture comparison",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "375998e67d9701ca7d4c9d5c21c16fec3d92e86a",
+  "runtime": {
+    "execution": "Docker only",
+    "image": "v-flow-exais:dev",
+    "imageId": "sha256:32798034cb5a79000ad0c4520e0c8808b0e51384625c991849195880c6bddcf7",
+    "chrome": "/root/.cache/puppeteer/chrome-headless-shell/linux-148.0.7778.167/chrome-headless-shell-linux64/chrome-headless-shell"
+  },
+  "handoff": "docs/designs/revision-review.md",
+  "fullScope": "docs/designs/product-completion.md",
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run test:acceptance tests/acceptance/AFM-037.test.ts tests/acceptance/AFM-093.revisions.test.ts tests/acceptance/AFM-093.understanding.test.ts tests/acceptance/AFM-093.stories.test.ts > evidence/tickets/AFM-037/revision-review/final-acceptance.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/final-acceptance.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'ARCHIFY_CHROME=\"$PRODUCER_HEADLESS_SHELL_PATH\" node --test packages/diagram-engine/test/architecture-delta.test.mjs packages/diagram-engine/test/repository-evidence.test.mjs > evidence/tickets/AFM-037/revision-review/inherited-baselines.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/inherited-baselines.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run --cwd packages/studio-server typecheck > evidence/tickets/AFM-037/revision-review/final-server-typecheck.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/final-server-typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run --cwd packages/cli typecheck > evidence/tickets/AFM-037/revision-review/final-cli-typecheck.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/final-cli-typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bunx oxlint packages/diagram-engine/src/compare.mjs packages/studio-server/src/project/gitSnapshots.ts packages/studio-server/src/project/revisionReview.ts packages/studio-server/src/project/diagramReview.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/routes/projectCommands.ts packages/studio-server/src/project/projectApiError.ts packages/cli/src/commands/projectReview.ts packages/cli/src/commands/project.ts tools/vflow/verify-revision-review.ts > evidence/tickets/AFM-037/revision-review/lint.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/lint.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bunx oxfmt --check packages/diagram-engine/src/compare.mjs packages/diagram-engine/src/index.mjs packages/diagram-engine/src/contracts.d.ts packages/studio-server/src/project/gitSnapshots.ts packages/studio-server/src/project/revisionReview.ts packages/studio-server/src/project/diagramReview.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/routes/projectCommands.ts packages/studio-server/src/project/projectApiError.ts packages/studio-server/src/index.ts packages/cli/src/commands/projectReview.ts packages/cli/src/commands/project.ts tests/acceptance/AFM-037.test.ts tests/acceptance/AFM-093.revisions.test.ts tools/vflow/verify-revision-review.ts > evidence/tickets/AFM-037/revision-review/format-check.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/format-check.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun tools/vflow/verify-revision-review.ts /input bf826a8 8756a98 > evidence/tickets/AFM-037/revision-review/repository-proof.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/repository-proof.log"
+    }
+  ],
+  "checks": {
+    "focusedTests": 16,
+    "inheritedTests": 42,
+    "inheritedSkipped": 0,
+    "packageTypechecks": [
+      "studio-server",
+      "cli"
+    ],
+    "lint": "0 warnings, 0 errors",
+    "formatFiles": 16
+  },
+  "gateStatus": "No full-product gate passed. Predecessor tickets remain incomplete. The previously failing broad branch quality audit was not rerun for this server/CLI checkpoint.",
+  "videoEvidence": "No new film was produced. Compiler SVG comparison and inherited browser checks are not AFM-092 render acceptance.",
+  "implemented": "Immutable before/head Git capture, full tree-entry deltas, validated library comparison using owned compiler artifacts, stable relationship IDs, retained removed objects, captured source checks and hashed persisted receipts.",
+  "acceptanceResults": [
+    {
+      "criterion": "Exact supplied revisions",
+      "result": "pass",
+      "evidence": "Real Git fixtures plus bf826a8 to 8756a98 repository capture with 38 changed paths."
+    },
+    {
+      "criterion": "Verified versus unavailable/stale evidence",
+      "result": "pass",
+      "evidence": "Origin/revision mismatch refusal, missing source classification, line checks and altered-capture rejection."
+    },
+    {
+      "criterion": "Parallel relationship identity",
+      "result": "pass",
+      "evidence": "Stable ID matching across reorder/label change; missing and duplicate IDs rejected."
+    }
+  ],
+  "remainingAcceptance": [
+    "AFM-018/024/029 prerequisite completion and complete Studio evidence integration remain open.",
+    "Downstream AFM-092 editable change films, timing/callouts and actual render acceptance are not implemented here."
+  ],
+  "retainedFailures": [
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run test:acceptance tests/acceptance/AFM-037.test.ts tests/acceptance/AFM-093.revisions.test.ts tests/acceptance/AFM-093.understanding.test.ts tests/acceptance/AFM-093.stories.test.ts > evidence/tickets/AFM-037/revision-review/acceptance-import-failure.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-037/revision-review/acceptance-import-failure.log",
+      "reason": "Root acceptance imports could not resolve package-local Hono and diagram-engine. Fixed imports to owned source/API entry points."
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run test:acceptance tests/acceptance/AFM-037.test.ts tests/acceptance/AFM-093.revisions.test.ts tests/acceptance/AFM-093.understanding.test.ts tests/acceptance/AFM-093.stories.test.ts > evidence/tickets/AFM-037/revision-review/acceptance-serialization-failure.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-037/revision-review/acceptance-serialization-failure.log",
+      "reason": "Undefined optional fields could not be canonically persisted; invalid parallel-edge test label overlapped nodes. Fixed JSON serialization and authored test label placement."
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'node --test packages/diagram-engine/test/architecture-delta.test.mjs packages/diagram-engine/test/repository-evidence.test.mjs > evidence/tickets/AFM-037/revision-review/inherited-path-failure.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-037/revision-review/inherited-path-failure.log",
+      "reason": "40 passed, 1 failed because an imported fixture path was stale, 1 browser check skipped without ARCHIFY_CHROME. Corrected the owned path and reran all 42 with pinned Chrome."
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bunx oxlint packages/diagram-engine/src/compare.mjs packages/studio-server/src/project/gitSnapshots.ts packages/studio-server/src/project/revisionReview.ts packages/studio-server/src/project/diagramReview.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/routes/projectCommands.ts packages/studio-server/src/project/projectApiError.ts packages/cli/src/commands/projectReview.ts packages/cli/src/commands/project.ts > evidence/tickets/AFM-037/revision-review/lint-initial-failure.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-037/revision-review/lint-initial-failure.log",
+      "reason": "Intentional control-character regex checks violated lint; replaced them with code-point checks."
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bun run --cwd packages/studio-server typecheck",
+      "exitCode": 1,
+      "reason": "Initial TS2345 flatMap union inference error; added the explicit GitFileChange type. Output was observed in the tool transcript; no standalone log was captured."
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/acceptance-import-failure.log",
+      "bytes": 4320,
+      "sha256": "84654bbe6873a01680c0335171e1cf74d0407a009ee2ab4eeee28e7f298d7157"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/acceptance-serialization-failure.log",
+      "bytes": 9968,
+      "sha256": "36436c89aae2475966dccb98a860c1c5a0b64f6bac3e5a197a8ae98dbe0fb25e"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/acceptance.log",
+      "bytes": 3432,
+      "sha256": "08c73ddee264396d09398f05421ee7465424b4b17e714e3f1821575425f63f81"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/cleanup-builder.log",
+      "bytes": 26,
+      "sha256": "4b482542c009c7da8169b6db7f2bd1e1c19afbab6451da0f4a8898f59ee2e6d7"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/cleanup-images.log",
+      "bytes": 26,
+      "sha256": "4b482542c009c7da8169b6db7f2bd1e1c19afbab6451da0f4a8898f59ee2e6d7"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/cli-typecheck.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/docker-df.log",
+      "bytes": 287,
+      "sha256": "fc1d2ceb828eba4c870d9c987e6a75fd9e60543bee454901fd97260e99cc76f4"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/final-acceptance.log",
+      "bytes": 3432,
+      "sha256": "6d9032fd51e691855aec20de03a98b3937d3353c2d244786dc8bf86917b7eb6b"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/final-cli-typecheck.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/final-format.log",
+      "bytes": 47,
+      "sha256": "87968eea8311b1d9451a49b91772ca0693e8a0d6bd95dbd9ec9c19b8785adfb1"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/final-server-typecheck.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/format-check.log",
+      "bytes": 114,
+      "sha256": "d7566ff82a8a35f8d038e0caa6eb5633fb9ded6347974a079825c7d29ace5dc1"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/format.log",
+      "bytes": 48,
+      "sha256": "08ddcec13be26bed88aed22e87cb898a75d0bd6aa4117b67e61e2f6eb0a5b19f"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/inherited-baselines.log",
+      "bytes": 20250,
+      "sha256": "62bb1279f619bf383762a7aa5af2eeed74953a27aeb89f25d03b9148e203b4e9"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/inherited-path-failure.log",
+      "bytes": 20577,
+      "sha256": "bc45786076f7af357537cac367cc129f2d8fd97aafd4fa91410cd396b14d661a"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/lint-initial-failure.log",
+      "bytes": 1372,
+      "sha256": "8cd5c7825325dcce3b374171b090af39ad665f5a301a5d52e6e4e1f8e79b0409"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/lint.log",
+      "bytes": 93,
+      "sha256": "0f714b0b02ced422720709ea930aeaeb1db25e0a0c7154773959067e843babbc"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/repository-proof.json",
+      "bytes": 19965,
+      "sha256": "539a70c38f35e4e6485dd0f45c4371d884e114ba24c146fde260bd62e6e87858"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/repository-proof.log",
+      "bytes": 433,
+      "sha256": "9208b5ce44aca9c92d15db19a989fff775e333a699bc9ff6db1c9666364a32e5"
+    },
+    {
+      "path": "evidence/tickets/AFM-037/revision-review/server-typecheck.log",
+      "bytes": 15,
+      "sha256": "8366207267355d3e3d5bf3bf6e8c94c5f93f6078c34f08973fa2b38cdda6cc92"
+    }
+  ],
+  "cleanup": [
+    {
+      "invocation": "docker image prune -f",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/cleanup-images.log"
+    },
+    {
+      "invocation": "docker builder prune -f",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/cleanup-builder.log"
+    },
+    {
+      "invocation": "docker system df",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/docker-df.log"
+    }
+  ]
+}

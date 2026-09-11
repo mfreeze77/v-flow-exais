@@ -31,10 +31,10 @@
     "Remaining compile/capture/encode crash matrix, immutable assets and retention/concurrency acceptance remain open."
   ],
   "handoff": "docs/designs/story-planning.md",
-  "relatedReceipt": "evidence/tickets/AFM-093/result.json",
+  "relatedReceipt": "evidence/tickets/AFM-093/story-planning-result.json",
   "artifacts": [
     {
-      "path": "evidence/tickets/AFM-093/result.json",
+      "path": "evidence/tickets/AFM-093/story-planning-result.json",
       "bytes": 39123,
       "sha256": "942c3c21ba054f49bb54296427955a1c28cb54f925d363be1ff45a4a3ff05533"
     }

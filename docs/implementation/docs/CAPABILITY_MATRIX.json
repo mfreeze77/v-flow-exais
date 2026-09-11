@@ -1,5 +1,5 @@
 {
-  "note": "All status fields concern future application work. Preserved source is not integrated functionality. Newly discovered upstream capabilities must be added rather than silently removed.",
+  "note": "Original planning fields remain for unaudited capabilities. Dated execution checkpoints are scoped evidence, not full capability or release acceptance. Current ticket truth is evidence/LEDGER.md and per-ticket receipts.",
   "capabilities": [
     {
       "id": "CAP-001",
@@ -361,11 +361,19 @@
         "AFM-093"
       ],
       "source_retention": "planned",
-      "baseline_verification": "not_run",
+      "baseline_verification": "42_inherited_tests_passed_2026-09-11",
       "studio_integration": "not_implemented",
       "render_integration": "not_implemented",
       "release_evidence": "not_run",
-      "external_live_evidence": "not_applicable"
+      "external_live_evidence": "not_applicable",
+      "execution_checkpoint": {
+        "date": "2026-09-11",
+        "commit": "375998e67d9701ca7d4c9d5c21c16fec3d92e86a",
+        "status": "partial",
+        "receipt": "evidence/tickets/AFM-037/result.json",
+        "implemented": "Shared local revision/diagram comparison service, API and CLI",
+        "remaining": "Complete Studio review, PR intake, editable change films and full CLI coverage"
+      }
     },
     {
       "id": "CAP-024",
@@ -792,7 +800,15 @@
       "studio_integration": "not_implemented",
       "render_integration": "not_implemented",
       "release_evidence": "not_run",
-      "external_live_evidence": "not_applicable"
+      "external_live_evidence": "not_applicable",
+      "execution_checkpoint": {
+        "date": "2026-09-11",
+        "commit": "375998e67d9701ca7d4c9d5c21c16fec3d92e86a",
+        "status": "partial",
+        "receipt": "evidence/tickets/AFM-037/result.json",
+        "implemented": "Shared local revision/diagram comparison service, API and CLI",
+        "remaining": "Complete Studio review, PR intake, editable change films and full CLI coverage"
+      }
     },
     {
       "id": "CAP-053",

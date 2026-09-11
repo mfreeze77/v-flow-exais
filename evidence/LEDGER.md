@@ -13,6 +13,15 @@ receipts — never by guessing that a generated file proves success.
 
 The owner requires all 28 non-security product areas in
 `docs/designs/product-completion.md`. No area is fully accepted yet.
+The latest AFM-037/093/095 checkpoint adds immutable local before/head Git
+capture, exact tree deltas, source-bound authored diagram comparison and shared
+API/CLI ingress. Sixteen focused tests, 42 inherited delta/evidence tests with
+pinned Chrome, two package typechecks and changed-file lint pass. A real
+repository comparison records 38 changed paths. This is a comparison-service
+checkpoint; Studio review, PR intake and AFM-092 editable change films remain
+open. Exact code SHA and receipts are in `evidence/tickets/AFM-037/result.json`;
+resume from `docs/designs/revision-review.md`.
+
 The latest AFM-093 checkpoint replaces the fixed manifest templates with
 source-supported story drafts, audience/purpose/count/duration controls,
 script/storyboard revision and mixed native/diagram scenes. Captured call-site
@@ -28,8 +37,9 @@ review/accept/undo journey pass. The broad branch audit fails; configured model
 calls, complete agent tooling and useful story/video acceptance remain open.
 See `evidence/tickets/AFM-098/result.json` and `docs/designs/proposal-review.md`.
 
-Continue with richer product/workflow stories and exact before/head capture,
-using the actual AFM-037/093/098 ticket bodies. The recorded font-resolution
+Continue with richer product/workflow stories and review-to-editable-scene
+integration, using the actual AFM-092/093/098 ticket bodies. Local before/head
+capture now exists; do not restart it. The recorded font-resolution
 stall now has bounded requests and a forwarded cancellation signal; complete
 font pinning and crash/cancellation coverage remain before durable or offline
 production acceptance. Keep the entire owner checklist active. Source
@@ -40,10 +50,10 @@ understanding limits are in `docs/designs/source-understanding.md`.
 | State | Count | Tickets |
 |---|---|---|
 | verified | 7 | AFM-001–006, AFM-009 |
-| in_progress | 30 | AFM-017–022, AFM-024–029, AFM-039–043, AFM-049, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-083, AFM-093, AFM-095–096, AFM-098–099 |
+| in_progress | 31 | AFM-017–022, AFM-024–029, AFM-037, AFM-039–043, AFM-049, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-083, AFM-093, AFM-095–096, AFM-098–099 |
 | implemented_unverified | 0 | — |
 | blocked | 1 | AFM-011 — package isolation and integration now pass; clean workspace build prerequisite remains |
-| untouched | 96 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
+| untouched | 95 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
 
 This checkpoint delivers a working source-to-three-videos path, not closure of
 every contributing ticket. Per-ticket receipts distinguish the verified slice

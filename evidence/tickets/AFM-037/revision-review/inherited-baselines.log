@@ -1,0 +1,472 @@
+TAP version 13
+# Subtest: architecture compare classifies authored facts separately from geometry and presentation
+ok 1 - architecture compare classifies authored facts separately from geometry and presentation
+  ---
+  duration_ms: 8.503918
+  type: 'test'
+  ...
+# Subtest: legend-only changes are presentation changes and never topology changes
+ok 2 - legend-only changes are presentation changes and never topology changes
+  ---
+  duration_ms: 5.935539
+  type: 'test'
+  ...
+# Subtest: canonical architecture ignores formatting, entity order, and set-like order
+ok 3 - canonical architecture ignores formatting, entity order, and set-like order
+  ---
+  duration_ms: 1.775118
+  type: 'test'
+  ...
+# Subtest: change navigator order is exact-ID based, complete, unique, and stable
+ok 4 - change navigator order is exact-ID based, complete, unique, and stable
+  ---
+  duration_ms: 2.698778
+  type: 'test'
+  ...
+# Subtest: exact identity fails closed instead of guessing relationships or unrelated systems
+ok 5 - exact identity fails closed instead of guessing relationships or unrelated systems
+  ---
+  duration_ms: 4.524537
+  type: 'test'
+  ...
+# Subtest: evidence-only component changes keep an enabled exact review contract
+ok 6 - evidence-only component changes keep an enabled exact review contract
+  ---
+  duration_ms: 5.446892
+  type: 'test'
+  ...
+# Subtest: mixed semantic and geometry component changes retain both exact forms
+ok 7 - mixed semantic and geometry component changes retain both exact forms
+  ---
+  duration_ms: 1105.90209
+  type: 'test'
+  ...
+# Subtest: mixed semantic and geometry relationship changes retain both exact routes
+ok 8 - mixed semantic and geometry relationship changes retain both exact routes
+  ---
+  duration_ms: 1335.427009
+  type: 'test'
+  ...
+# Subtest: baseline boundary title masks stay below current components and carry delta identity
+ok 9 - baseline boundary title masks stay below current components and carry delta identity
+  ---
+  duration_ms: 1221.86084
+  type: 'test'
+  ...
+# Subtest: same-label node id changes remain one removal plus one addition
+ok 10 - same-label node id changes remain one removal plus one addition
+  ---
+  duration_ms: 5.900808
+  type: 'test'
+  ...
+# Subtest: repository mismatch fails and verified matching revisions remain evidence-bounded
+ok 11 - repository mismatch fails and verified matching revisions remain evidence-bounded
+  ---
+  duration_ms: 6.490596
+  type: 'test'
+  ...
+# Subtest: portable compare retains link settings and uses the same repository identity rules
+ok 12 - portable compare retains link settings and uses the same repository identity rules
+  ---
+  duration_ms: 5.398171
+  type: 'test'
+  ...
+# Subtest: portable compare preserves literal SCP paths and rejects different Git locations
+ok 13 - portable compare preserves literal SCP paths and rejects different Git locations
+  ---
+  duration_ms: 5.990286
+  type: 'test'
+  ...
+# Subtest: compare CLI writes a deterministic three-state artifact and complete sidecar receipt
+ok 14 - compare CLI writes a deterministic three-state artifact and complete sidecar receipt
+  ---
+  duration_ms: 2750.919691
+  type: 'test'
+  ...
+# Subtest: checked-in Checkout compare artifact is reproducible from its authoritative inputs
+ok 15 - checked-in Checkout compare artifact is reproducible from its authoritative inputs
+  ---
+  duration_ms: 1503.915715
+  type: 'test'
+  ...
+# Subtest: artifact validation fails closed on missing, duplicate, or self-blessed review identity
+ok 16 - artifact validation fails closed on missing, duplicate, or self-blessed review identity
+  ---
+  duration_ms: 1473.156545
+  type: 'test'
+  ...
+# Subtest: formatting-only input changes raw proof but not semantic hash or artifact bytes
+ok 17 - formatting-only input changes raw proof but not semantic hash or artifact bytes
+  ---
+  duration_ms: 2490.642019
+  type: 'test'
+  ...
+# Subtest: compare failure preserves an existing trusted artifact
+ok 18 - compare failure preserves an existing trusted artifact
+  ---
+  duration_ms: 1196.031427
+  type: 'test'
+  ...
+# Subtest: compare validates raw snapshots before canonicalization can discard invalid fields
+ok 19 - compare validates raw snapshots before canonicalization can discard invalid fields
+  ---
+  duration_ms: 215.239058
+  type: 'test'
+  ...
+# Subtest: compare commit preflights both targets before replacing a trusted pair
+ok 20 - compare commit preflights both targets before replacing a trusted pair
+  ---
+  duration_ms: 1471.846032
+  type: 'test'
+  ...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# Subtest: Gitee evidence generates provider-specific revision and line links
+ok 21 - Gitee evidence generates provider-specific revision and line links
+  ---
+  duration_ms: 914.805136
+  type: 'test'
+  ...
+# Subtest: local-only evidence verifies HTTP self-hosted origins without generating links
+ok 22 - local-only evidence verifies HTTP self-hosted origins without generating links
+  ---
+  duration_ms: 339.655299
+  type: 'test'
+  ...
+# Subtest: local-only supports nested HTTPS and Git SSH identities with bounded port equivalence
+ok 23 - local-only supports nested HTTPS and Git SSH identities with bounded port equivalence
+  ---
+  duration_ms: 2646.900356
+  type: 'test'
+  ...
+# Subtest: local-only rejects relative versus absolute SSH paths before replacing a trusted artifact
+ok 24 - local-only rejects relative versus absolute SSH paths before replacing a trusted artifact
+  ---
+  duration_ms: 235.484357
+  type: 'test'
+  ...
+# Subtest: local-only rejects literal percent escapes in SCP paths before replacing a trusted artifact
+ok 25 - local-only rejects literal percent escapes in SCP paths before replacing a trusted artifact
+  ---
+  duration_ms: 328.729918
+  type: 'test'
+  ...
+# Subtest: local-only rejects different hosts, paths, path case, endpoints and guessed prefixes
+ok 26 - local-only rejects different hosts, paths, path case, endpoints and guessed prefixes
+  ---
+  duration_ms: 2769.341116
+  type: 'test'
+  ...
+# Subtest: local-only preserves root, origin, commit, blob, path and line checks
+ok 27 - local-only preserves root, origin, commit, blob, path and line checks
+  ---
+  duration_ms: 1808.962937
+  type: 'test'
+  ...
+# Subtest: unsupported web providers and invalid authored addresses fail without exposing credentials
+ok 28 - unsupported web providers and invalid authored addresses fail without exposing credentials
+  ---
+  duration_ms: 2007.900854
+  type: 'test'
+  ...
+# Subtest: portable origin failures redact HTTP credentials and query tokens
+ok 29 - portable origin failures redact HTTP credentials and query tokens
+  ---
+  duration_ms: 591.530371
+  type: 'test'
+  ...
+# Subtest: explicit providers retain GitHub links and encode Gitee source paths
+ok 30 - explicit providers retain GitHub links and encode Gitee source paths
+  ---
+  duration_ms: 563.919637
+  type: 'test'
+  ...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# Subtest: local-only preview and compare publish only revision-verified evidence
+ok 31 - local-only preview and compare publish only revision-verified evidence
+  ---
+  duration_ms: 2060.864783
+  type: 'test'
+  ...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# Subtest: browser renders local-only sources as searchable text and web sources as links
+ok 32 - browser renders local-only sources as searchable text and web sources as links
+  ---
+  duration_ms: 5297.748031
+  type: 'test'
+  ...
+# Subtest: repository evidence accepts canonical HTTPS and common SSH remotes
+ok 33 - repository evidence accepts canonical HTTPS and common SSH remotes
+  ---
+  duration_ms: 1707.656597
+  type: 'test'
+  ...
+# Subtest: repository evidence is revision-verified, receipt-backed, searchable, and export-clean
+ok 34 - repository evidence is revision-verified, receipt-backed, searchable, and export-clean
+  ---
+  duration_ms: 390.297268
+  type: 'test'
+  ...
+# Subtest: repository evidence is opt-in and never appears in ordinary artifacts
+ok 35 - repository evidence is opt-in and never appears in ordinary artifacts
+  ---
+  duration_ms: 248.892045
+  type: 'test'
+  ...
+# Subtest: origin-mismatch diagnostics redact HTTPS remote userinfo
+ok 36 - origin-mismatch diagnostics redact HTTPS remote userinfo
+  ---
+  duration_ms: 198.250944
+  type: 'test'
+  ...
+# Subtest: origin-mismatch diagnostics redact HTTP remote userinfo
+ok 37 - origin-mismatch diagnostics redact HTTP remote userinfo
+  ---
+  duration_ms: 197.544076
+  type: 'test'
+  ...
+# Subtest: validate accepts credentialed HTTPS remotes and redacts mismatch diagnostics
+ok 38 - validate accepts credentialed HTTPS remotes and redacts mismatch diagnostics
+  ---
+  duration_ms: 521.287953
+  type: 'test'
+  ...
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# hint: Using 'master' as the name for the initial branch. This default branch name
+# hint: is subject to change. To configure the initial branch name to use in all
+# hint: of your new repositories, which will suppress this warning, call:
+# hint: 
+# hint: \\tgit config --global init.defaultBranch <name>
+# hint: 
+# hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+# hint: 'development'. The just-created branch can be renamed via this command:
+# hint: 
+# hint: \\tgit branch -m <name>
+# Subtest: preview accepts credentialed HTTPS remotes and redacts mismatch diagnostics
+ok 39 - preview accepts credentialed HTTPS remotes and redacts mismatch diagnostics
+  ---
+  duration_ms: 590.844445
+  type: 'test'
+  ...
+# Subtest: evidence fails closed without a root, on wrong origin, missing blobs, or impossible lines
+ok 40 - evidence fails closed without a root, on wrong origin, missing blobs, or impossible lines
+  ---
+  duration_ms: 1429.40008
+  type: 'test'
+  ...
+# Subtest: --repo-root stays bounded to architecture and schema limits evidence shape
+ok 41 - --repo-root stays bounded to architecture and schema limits evidence shape
+  ---
+  duration_ms: 208.733507
+  type: 'test'
+  ...
+# Subtest: live preview forwards repo-root and publishes only verified evidence
+ok 42 - live preview forwards repo-root and publishes only verified evidence
+  ---
+  duration_ms: 320.691881
+  type: 'test'
+  ...
+1..42
+# tests 42
+# suites 0
+# pass 42
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 25457.754579

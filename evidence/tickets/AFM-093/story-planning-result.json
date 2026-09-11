@@ -1,0 +1,871 @@
+{
+  "ticketId": "AFM-093",
+  "title": "Source-supported story planning and editable mixed storyboards",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "8756a982bcd0df4e93190573eecab861811307c7",
+  "implemented": "Replaces fixed manifest templates with ranked source-derived story drafts; audience/purpose/duration/count controls; cited scripts and storyboards; Studio and CLI revision with stale-review protection; mixed native/diagram scene emission; accurate long call-site framing. Includes producer font timeout and cancellation wiring repairs.",
+  "previousReceipt": "evidence/tickets/AFM-093/source-understanding-result.json",
+  "handoff": "docs/designs/story-planning.md",
+  "fullScope": "docs/designs/product-completion.md",
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-093.stories.test.ts tests/acceptance/AFM-093.understanding.test.ts tests/acceptance/AFM-098.test.ts tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/acceptance.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/parsers test src/repositorySyntax.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/parser.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{parsers,studio-server,studio,cli}' typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxlint packages/cli/src/commands/project.ts packages/cli/src/commands/projectProposal.ts packages/studio-server/src/index.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio-server/src/project/videoProposals.ts packages/studio-server/src/project/projectBatch.ts packages/studio-server/src/routes/projectCommands.ts packages/studio/src/project/ProjectLauncher.tsx packages/studio-server/src/project/storyCandidates.ts packages/studio-server/src/project/storyIntake.ts packages/studio-server/src/project/storyPlanning.ts packages/studio-server/src/project/storyProject.ts packages/studio-server/src/project/storySceneHtml.ts packages/studio-server/src/project/storyTypes.ts packages/studio-server/src/project/storyValidation.ts packages/studio/src/project/StoryPlanReview.tsx packages/studio/src/project/StorySettings.tsx packages/parsers/src/repositorySyntax.ts packages/studio-server/src/project/repositoryUnderstanding.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/lint.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-cli.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/cli.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-planning.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/browser.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-054.compile-cancel.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/render-cancel.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun test ./packages/producer/src/services/deterministicFonts-retries.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/font-retries.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/producer' typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/producer-typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxlint packages/producer/src/services/htmlCompiler.ts packages/producer/src/services/deterministicFonts.ts packages/producer/src/services/renderOrchestrator.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/producer-lint.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxfmt --check packages/cli/src/commands/project.ts packages/cli/src/commands/projectProposal.ts packages/studio-server/src/index.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio-server/src/project/videoProposals.ts packages/studio-server/src/project/projectBatch.ts packages/studio-server/src/routes/projectCommands.ts packages/studio/src/project/ProjectLauncher.tsx packages/studio-server/src/project/storyCandidates.ts packages/studio-server/src/project/storyIntake.ts packages/studio-server/src/project/storyPlanning.ts packages/studio-server/src/project/storyProject.ts packages/studio-server/src/project/storySceneHtml.ts packages/studio-server/src/project/storyTypes.ts packages/studio-server/src/project/storyValidation.ts packages/studio/src/project/StoryPlanReview.tsx packages/studio/src/project/StorySettings.tsx packages/parsers/src/repositorySyntax.ts packages/studio-server/src/project/repositoryUnderstanding.ts packages/studio/src/project/StoryPlanReview.css tests/acceptance/AFM-093.stories.test.ts tests/acceptance/AFM-098.test.ts tests/acceptance/AFM-099.source.test.ts tools/vflow/verify-proposal-review.ts tools/vflow/verify-story-planning.ts tools/vflow/collect-story-renders.ts tools/vflow/verify-story-seams.ts tools/vflow/verify-story-cli.ts packages/producer/src/services/deterministicFonts.ts packages/producer/src/services/renderOrchestrator.ts packages/producer/src/services/htmlCompiler.ts packages/producer/src/services/deterministicFonts-retries.test.ts tests/acceptance/AFM-054.compile-cancel.test.ts tools/vflow/verify-story-cancellation.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/format.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-seams.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/seams.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-cancellation.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-093/story-planning/cancellation.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install fallow audit --base origin/main --fail-on-issues",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-093/story-planning/fallow-final.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/producer test:unit:vitest -- src/services/renderOrchestrator.test.ts",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-093/story-planning/producer-lane-failure.log",
+      "note": "The lane runner ignores trailing path arguments and ran its full Vitest selection. 34 files failed, 8 passed; 1 failed/154 passed tests. Packed-entry resolution and an existing ffprobe argv contract failed. This is not a passed baseline."
+    }
+  ],
+  "testSummary": {
+    "acceptance": 14,
+    "parser": 8,
+    "renderCancellation": 1,
+    "fontRetries": 19,
+    "typecheckedPackages": [
+      "parsers",
+      "studio-server",
+      "studio",
+      "cli",
+      "producer"
+    ],
+    "changedFileLint": "23 files, 0 warnings/errors",
+    "format": "35 files checked",
+    "cli": "Seven real commands, including rejected stale acceptance, then accepted project and actual build"
+  },
+  "browser": {
+    "intakeId": "intake-112683c6-4542-4cd8-8037-2a4557278191",
+    "snapshotHash": "0447e49c2dcd2f762e0bcc3ee76876c6917239a4b36a73d594d30732b5f03d67",
+    "options": {
+      "audience": "maintainers",
+      "purpose": "explain",
+      "durationSeconds": 25,
+      "count": 3
+    },
+    "titles": [
+      "What createRepositoryIntake delegates / source walkthrough",
+      "Read the StoryPlan contract / reviewed",
+      "What storySceneHtml delegates"
+    ],
+    "families": [
+      "architecture",
+      "data-model",
+      "architecture"
+    ],
+    "noPageErrors": true,
+    "mobileOverflow": false,
+    "preservedOtherDraft": true,
+    "realBatch": "batch-a60bc973-c41c-4d96-b9bf-50283243f14a"
+  },
+  "render": {
+    "videos": [
+      {
+        "path": "out/story-planning/story-0.mp4",
+        "bytes": 1037618,
+        "sha256": "dd91250dd6f0194fccd90989931f8a8d36ff8c9e77d4073a4d44fa4c3f17c543",
+        "projectId": "video-d118e690-2a3c-4dcf-9906-114abd25762d",
+        "buildHash": "bed76da74d8a2d50e297906347bee9d1ce2901ee36fb4b3e677bab1c17c64a64",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration": 25,
+          "frames": 750,
+          "bytes": 1037618
+        }
+      },
+      {
+        "path": "out/story-planning/story-1.mp4",
+        "bytes": 842475,
+        "sha256": "118d203498b400db3e74c5329fa943bfd25a2b2ae783c9cf7915aff02e21b4fa",
+        "projectId": "video-5383c250-a138-49c5-a58d-d9dfda7cc02d",
+        "buildHash": "dd4efdbf4494c3dd74c5d0a9b7d9db48bc45a73055e016006e4d13a816e71ea9",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration": 25,
+          "frames": 750,
+          "bytes": 842475
+        }
+      },
+      {
+        "path": "out/story-planning/story-2.mp4",
+        "bytes": 1012802,
+        "sha256": "69fe0a68417df99ee0aee97344406011fef45530680cca7419f68cddcb676b72",
+        "projectId": "video-b3d0526c-4632-4e33-8a9c-37d4c8956a93",
+        "buildHash": "37b8b7bc9c562e3bcc5bc7d4e4786f163ab6297711ba4aff4fdd0805492ba0d5",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30/1",
+          "duration": 25,
+          "frames": 750,
+          "bytes": 1012802
+        }
+      }
+    ],
+    "seamChecks": 55,
+    "seamsPassed": true,
+    "narration": "silent"
+  },
+  "cancellation": {
+    "batchId": "batch-75881c79-5a05-47a1-a843-acaad3129f2c",
+    "projectId": "video-b48327ef-2a76-4f4f-a60b-6bca0035dd14",
+    "cancelAtProgress": 5,
+    "elapsedMs": 726,
+    "batchStatus": "cancelled",
+    "noOutput": true,
+    "sourceUnchanged": true,
+    "at": "2026-09-11T07:27:09.325Z",
+    "stageEvidence": "final-server.log: compile error before capture for render job a3da4ed3-0904-438d-a646-1287d93b395a"
+  },
+  "visualInspection": {
+    "inspected": true,
+    "artifacts": [
+      "evidence/tickets/AFM-093/story-planning/plans-desktop.png",
+      "evidence/tickets/AFM-093/story-planning/script-desktop.png",
+      "evidence/tickets/AFM-093/story-planning/script-mobile.png",
+      "evidence/tickets/AFM-093/story-planning/film-0-beat-0.png",
+      "evidence/tickets/AFM-093/story-planning/film-0-beat-1.png",
+      "evidence/tickets/AFM-093/story-planning/film-0-beat-2.png",
+      "evidence/tickets/AFM-093/story-planning/film-0-beat-3.png",
+      "evidence/tickets/AFM-093/story-planning/film-0-beat-4.png",
+      "evidence/tickets/AFM-093/story-planning/film-1-beat-0.png",
+      "evidence/tickets/AFM-093/story-planning/film-1-beat-1.png",
+      "evidence/tickets/AFM-093/story-planning/film-1-beat-2.png",
+      "evidence/tickets/AFM-093/story-planning/film-1-beat-3.png",
+      "evidence/tickets/AFM-093/story-planning/film-2-beat-0.png",
+      "evidence/tickets/AFM-093/story-planning/film-2-beat-1.png",
+      "evidence/tickets/AFM-093/story-planning/film-2-beat-2.png",
+      "evidence/tickets/AFM-093/story-planning/film-2-beat-3.png",
+      "evidence/tickets/AFM-093/story-planning/film-2-beat-4.png"
+    ],
+    "findings": "All 14 final scene frames inspected. Source call sites and citations are readable; long esc calls remain visible after column framing; the data contract uses a separate field composition. Desktop/mobile script controls are readable. Existing diagram routes and editorial scripts still need substantive quality work.",
+    "humanUsefulnessAccepted": false
+  },
+  "broaderAudit": {
+    "status": "failed",
+    "deadCodeIssues": 56,
+    "complexityFindings": 224,
+    "cloneGroups": 39,
+    "changedFiles": 459,
+    "inheritedFindingsExcluded": 137,
+    "elapsedSeconds": 237.77,
+    "log": "evidence/tickets/AFM-093/story-planning/fallow-final.log",
+    "newFindings": [
+      "storyValidation validateBeat",
+      "storyCandidates connectionCandidate",
+      "storyPlanning composeStory",
+      "StoryPlanReview",
+      "local font-fetch branch complexity"
+    ]
+  },
+  "remainingAcceptance": [
+    "All 28 full-product areas remain active; none is fully accepted.",
+    "Richer product/workflow understanding, worthwhile story selection and explanatory scripts; current heuristics often restate call relationships.",
+    "Before/head and PR evidence, exact deltas and removed-object preservation.",
+    "Configured-model story generation and real authorized provider evidence; no model calls occurred.",
+    "Scene/subject selection in Studio, footage, narration, captions, output reframing and human factual/usefulness review.",
+    "Neutral code-structure diagram styling: existing frontend/backend component skins are used for entry/dependency shapes; they must not be accepted as deployment classifications.",
+    "Complete immutable font/asset pinning and network-disabled rendering; local font fallback behavior remains inherited.",
+    "Full compile/capture/encode fault matrix, job retention/disk/concurrency and shared editor/history acceptance.",
+    "Broad branch quality gate and inherited producer package lane remain failed."
+  ],
+  "artifactRetention": {
+    "finalProjects": "out/story-planning/final-server-data/projects",
+    "finalIntake": "out/story-planning/intake.json",
+    "previousServerHomes": [
+      "out/story-planning/initial-server-data",
+      "out/story-planning/stalled-server-data",
+      "out/story-planning/second-stalled-server-data",
+      "out/story-planning/traced-stalled-server-data",
+      "out/story-planning/resumed-server-data"
+    ],
+    "note": "Videos and server homes remain local ignored artifacts. Screenshot/JSON/log evidence is committed. Clean-destination import/render is not established."
+  },
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/acceptance.log",
+      "bytes": 3393,
+      "sha256": "6a20dc212acdb6a8a3249a37e6337cebd2708b4e2fb46bda90865441a4014b6b"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/attempt-history.json",
+      "bytes": 1844,
+      "sha256": "59656fb17ca5b86bf6384e0593658e8f36eadd6bf7704983df21f3f99a133b43"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/browser.log",
+      "bytes": 1492,
+      "sha256": "6a052621f2aa9a74fa5e47cdcf603b031c590d1709ccf9a17dd9d298e4d3cd94"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/builder-prune.log",
+      "bytes": 232,
+      "sha256": "e9812f4959953750bcf515ff2ee9fba42c4c8f3ee24c3c90e1f4a801d9ef8a00"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/cancellation.json",
+      "bytes": 280,
+      "sha256": "812c23fd3902da010d93ab2bdb18994aeaf5b9672c6a003df5a35fee30b91ace"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/cancellation.log",
+      "bytes": 248,
+      "sha256": "6c5e4d59c3683cb52bb28386093311dd602926be70528f1143d9c765931bfb81"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/cli-commands.json",
+      "bytes": 2255,
+      "sha256": "8cf06159b3e0400caf9411431fc927bdd8765fabbe9ec4910cc56b47d11a4290"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/cli.log",
+      "bytes": 270,
+      "sha256": "3b614bd543627854e79640afb2fc1cc5cf4d9fed5bb276f55196ab46fc29392d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/compile-stall.log",
+      "bytes": 4372,
+      "sha256": "92c1961be151a7f6e06f795414863e52976d395ae50e8959ce61c256d3686541"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/docker-df.log",
+      "bytes": 287,
+      "sha256": "bcf73188f41a69b338e7dc09deb8ebe917fe031ce5426c691ceb629d6d32851c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/failure.json",
+      "bytes": 1114,
+      "sha256": "628343582d77927528e91922364e211059bb3ca8e903ae1a36765f72c2091f58"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/failure.png",
+      "bytes": 235390,
+      "sha256": "2fa5bd3c6e27533c7b458b078efa2b86c395e599c254636066a45a038837bb46"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/fallow-final.log",
+      "bytes": 46047,
+      "sha256": "208e85e4b1c4c464135bf8b9d26b841ae836bd9339165578242d91f16e89cdbe"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/fallow.log",
+      "bytes": 44915,
+      "sha256": "d6f678d234cd530df1ad48fda4a97b69bb4f1099433c15056925619aa49c92df"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-0.png",
+      "bytes": 133923,
+      "sha256": "056608196f5eb7de35c3052555ac546ff801360e7b450515600d141065d01ca5"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-1.png",
+      "bytes": 215657,
+      "sha256": "9263d6fe2b9f073b49f8b955d2a180b82f801586c579e4bfae29dbb061e49948"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-2.png",
+      "bytes": 124515,
+      "sha256": "bac7ec6c6d11fbced08be67db89e19cd970d7a2b93c5277094f9512ef6f6d0bf"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-3.png",
+      "bytes": 138009,
+      "sha256": "362f459dfba1bb99d305a04529a49a02c6c290963204da8f609a8fffd222b906"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-0-beat-4.png",
+      "bytes": 171842,
+      "sha256": "c268d3343e2b3dd64248a517c4c8ba8f20948fd5c5cf13f546f0e1d16452f8d2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-0.png",
+      "bytes": 117254,
+      "sha256": "2da7ba334cee0ef55aa2ce04aa6b0ce310f8a636588c9213dab13f3e346d4aea"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-1.png",
+      "bytes": 170348,
+      "sha256": "9c7c210d40c2b279943c401739fb52d452dec578b0a45f9927a440efbb0390e2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-2.png",
+      "bytes": 170977,
+      "sha256": "46ee05668f4ce8512b4fb5d9d68ef556bb5609e4df8b1e1ccd8799f68051babd"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-1-beat-3.png",
+      "bytes": 139447,
+      "sha256": "02adf18c042206862a347d12e4d9da219469f5c745478d437685fc7656729afb"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-0.png",
+      "bytes": 121820,
+      "sha256": "7562f9cc8570c5f87a7f7c4fc4011966b7e890044f5b23945858e2e73c78b2b3"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-1.png",
+      "bytes": 188645,
+      "sha256": "72b3f6d117258cd9ac4894d69229875708e02ac516fee212658015829c6319e2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-2.png",
+      "bytes": 124555,
+      "sha256": "02f2d896b8d790c309655d55ef4ab76a94ce5988fc26b74197ec5e1943b37932"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-3.png",
+      "bytes": 191950,
+      "sha256": "a1bc935b378be0ba9767b901aa0adbca09c5b6f1495b5b55fa2bd0d0e740c99c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/film-2-beat-4.png",
+      "bytes": 151935,
+      "sha256": "5daec3641f4fe58905af3600d2cb894f06c3f3834c6e03e8c8ef995d26c5defe"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/final-server.log",
+      "bytes": 33807,
+      "sha256": "785c5c15beb7e5942026a67ac5ae9f79a75b80bd76fc2eb87b9b64a0a589f20d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/font-retries-path-error.log",
+      "bytes": 8135,
+      "sha256": "314295f7f596a1c9e26011140308ea66c16d1e495a76f304b47c655d3b27186b"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/font-retries.log",
+      "bytes": 7778,
+      "sha256": "e737a5b9588dd70c8cb57ce5e611d8a9cd0f0dfe98e0a15471c7b1429f3a5890"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/format.log",
+      "bytes": 235,
+      "sha256": "30d5b9190bbc63ba0a6e7fdeba62024c9a0f039cb6114b7aa0bdc050af9e1d04"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/image-prune.log",
+      "bytes": 26,
+      "sha256": "4b482542c009c7da8169b6db7f2bd1e1c19afbab6451da0f4a8898f59ee2e6d7"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/failure.json",
+      "bytes": 1114,
+      "sha256": "628343582d77927528e91922364e211059bb3ca8e903ae1a36765f72c2091f58"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/failure.png",
+      "bytes": 235390,
+      "sha256": "2fa5bd3c6e27533c7b458b078efa2b86c395e599c254636066a45a038837bb46"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-0-beat-0.png",
+      "bytes": 142065,
+      "sha256": "c61517effe3bed0906564908389581d1ac09ae50e2e71cc13bd66071205ac2a5"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-0-beat-1.png",
+      "bytes": 219597,
+      "sha256": "9171ff2f7917c416b587731e4d9f0ca2d9f2bd0aaafc0446c6d9661138d4716f"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-0-beat-2.png",
+      "bytes": 209103,
+      "sha256": "ca9d4d117bc9496aa9af28883e7f00d3c3ff015561a478d83d0bf887c43a7092"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-0-beat-3.png",
+      "bytes": 200508,
+      "sha256": "5c07a59790895b4e79c5c55afd8d292e5620c299232c5d14904be4d45b5828fb"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-0-beat-4.png",
+      "bytes": 179919,
+      "sha256": "e07123058834c6b9f897042e9d215a3d7a337c30de1b0056172b338d20c6b2ba"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-1-beat-0.png",
+      "bytes": 117569,
+      "sha256": "6b7b9598ea5b10f601f7e68c98fe459c398a39b17cd3bf3f5ff66aea7841670c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-1-beat-1.png",
+      "bytes": 168751,
+      "sha256": "1030e924999b3aaa34270b4a0839a7f1a91b83bc42ea7171859c5ac4a779bd4d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-1-beat-2.png",
+      "bytes": 128201,
+      "sha256": "2e599ef46d49e637bbf9e9d9bf3bbea60cbaefbcf82ed9d32a3b34f622a3041b"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-1-beat-3.png",
+      "bytes": 139855,
+      "sha256": "45d87d15cc4a0b68a75b7140c16bb940d7f2119da38271f3cb1dd4e27769a57d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-2-beat-0.png",
+      "bytes": 134631,
+      "sha256": "cab4cd22843b8dac8bd9807aa354a0c828481fd58d4e841937a8acc843a1fb7c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-2-beat-1.png",
+      "bytes": 215265,
+      "sha256": "2e5e105039c1d458fb8eb4e632b523f483c587e0e327f9b10f0c6c0aa73eb2ce"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-2-beat-2.png",
+      "bytes": 164275,
+      "sha256": "c560b087cabec20c747839f28d00106daaecf41ca51059ab856938284558d86c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-2-beat-3.png",
+      "bytes": 162225,
+      "sha256": "5ab6b2bce56ec877cdb5a850e50cb8e15a5e60447ec45f12fb5b0026b15731d2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/film-2-beat-4.png",
+      "bytes": 171783,
+      "sha256": "16e446149b7595ba91c98e337718ddf09f4b812c392642867eb6e04807f54d61"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/plans-desktop.png",
+      "bytes": 110183,
+      "sha256": "6790987f45db2c9defc1d14d7159a75d272ffd52e7bed156a7d5ab121349d166"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/result.json",
+      "bytes": 20194,
+      "sha256": "f42d1e5c4d2799aaef68d847a3a4ba3ac69bcc05cf1a5e23fd6aab8d2aeb103d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/script-desktop.png",
+      "bytes": 132198,
+      "sha256": "8635331a36e0d54f9a252aac666e2565e2542557ae2f99b3081fd9342368e092"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/initial-attempt/script-mobile.png",
+      "bytes": 57029,
+      "sha256": "69e188103cd7b295a488e0a483cd07769560c01c31632eb67c445e91cf3c3be4"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/lint.log",
+      "bytes": 214,
+      "sha256": "cb5965c87c3fd0fe8f1c62d85ec390542bb114f316e28e3634ac8978254e1ae8"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/parser.log",
+      "bytes": 632,
+      "sha256": "a54298824f3b9409647ecf410c534f9f99a3747f7c0888a5859b0dcdd5ebf41d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/plans-desktop.png",
+      "bytes": 107194,
+      "sha256": "2f51e5de8cf5f41cd81cca90855a5c67c9bd4602fe4e62b9babd8c53003f048a"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/producer-lane-failure.log",
+      "bytes": 37986,
+      "sha256": "2769240c2216eaa359f03aaed6bf68603e479469e1fba5344c7633fd301d406f"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/producer-lint.log",
+      "bytes": 213,
+      "sha256": "9cd6a0591f7ca75630020c955b08f1460fed0037b8e011a92c758b51b8a6f713"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/producer-typecheck.log",
+      "bytes": 173,
+      "sha256": "08e9ab66a5e05831b268fcb61f89a0cf60f8687c14d4fdc976f855daac0c5833"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/recovered-browser.log",
+      "bytes": 762,
+      "sha256": "a48dc206a068dd8fb7ae59ea9e97ddeed7fb93ea76b714bbdb36a79c6ebe16e6"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/render-cancel.log",
+      "bytes": 2072,
+      "sha256": "e02cf87101482d2e5c5f9d93c4954fff4c25e4e4ac9a13ad4456ec8c6c588ad5"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/result.json",
+      "bytes": 20211,
+      "sha256": "be54c301c3789ee24da5ff6a5d0fff8768d845a07116c1ccfeae2cd7035c3f72"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/browser.log",
+      "bytes": 524,
+      "sha256": "21f3544c437273dd8eb95e19b9e429a1a22a5c689fe847d28d00d97c4e653391"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/failure.png",
+      "bytes": 235390,
+      "sha256": "2fa5bd3c6e27533c7b458b078efa2b86c395e599c254636066a45a038837bb46"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-0-beat-0.png",
+      "bytes": 134150,
+      "sha256": "12a1470bfe56bd9b091525c379d2266e1da9e4804a1b325f9fec835dc865f17e"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-0-beat-1.png",
+      "bytes": 215265,
+      "sha256": "2e5e105039c1d458fb8eb4e632b523f483c587e0e327f9b10f0c6c0aa73eb2ce"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-0-beat-2.png",
+      "bytes": 125090,
+      "sha256": "955d0c7852d7122cde7f399be8e443cb2f1667e4800aae56a275e4e84add7bfa"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-0-beat-3.png",
+      "bytes": 138009,
+      "sha256": "362f459dfba1bb99d305a04529a49a02c6c290963204da8f609a8fffd222b906"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-0-beat-4.png",
+      "bytes": 171842,
+      "sha256": "c268d3343e2b3dd64248a517c4c8ba8f20948fd5c5cf13f546f0e1d16452f8d2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-1-beat-0.png",
+      "bytes": 137900,
+      "sha256": "9c7be710ab0401007beacac6fbf49877aa04a6d591406650f7b1c191f66ddd6c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-1-beat-1.png",
+      "bytes": 198165,
+      "sha256": "dd80bc9212601f5c07d4cf26d5fc96e54218aaba56eb2338eb0b4e1ed44e1266"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-1-beat-2.png",
+      "bytes": 131960,
+      "sha256": "1401882589e4257fd6bd4414d9a32cc25236a9d00f0d99d452d032d3576105aa"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-1-beat-3.png",
+      "bytes": 137812,
+      "sha256": "7d39310f81596e309337b237ea224ad2f4c15e4a345063947a324c653da8eac4"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-1-beat-4.png",
+      "bytes": 170525,
+      "sha256": "b1cbf5258fe5062bbe8ebdf343e802914ba2b38a86f7abf782c8b6cc7c51a6d8"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-2-beat-0.png",
+      "bytes": 122060,
+      "sha256": "7d9b4090ae54ce3a63c423fa22203429c80983bebfccfa23c0b6dfcf22ad17f5"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-2-beat-1.png",
+      "bytes": 186271,
+      "sha256": "f770aded4e75b03bb755dfa7fc4945669c661611b6481bf2ccc452ccf9b0a616"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-2-beat-2.png",
+      "bytes": 124651,
+      "sha256": "25cfd2c6a2220a5bf57f05b1ca4c9b9b72a106229587ff6b8a6145ac3bc8afb2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-2-beat-3.png",
+      "bytes": 192055,
+      "sha256": "2764e774cd1d9624420de34207d3eed6d04b7ae35f938fe072ce45fd680446ab"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/film-2-beat-4.png",
+      "bytes": 151962,
+      "sha256": "dde3ccacdbfb75bb323b7a6f3c8acccc1d224193bc7065ccced104862b2a1ab8"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/plans-desktop.png",
+      "bytes": 109771,
+      "sha256": "c590ea679ec5ee0fa8452d8841289aa1e07ba9f767f9f80cb92c3e589df18eb8"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/result.json",
+      "bytes": 21844,
+      "sha256": "58feb26bd600bf7948254ff514b8d34030fdfc88f5ed540db4c3dc9670bea3fb"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/script-desktop.png",
+      "bytes": 130556,
+      "sha256": "75ac11951a3181346c500f59a45680ed100ab1932bdda0abcf814db44acff011"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/script-mobile.png",
+      "bytes": 55137,
+      "sha256": "2c4d8d492be8ad203fdb829fc123665d588835744d181dc1a337bdaec6c2f454"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/seams.json",
+      "bytes": 9857,
+      "sha256": "140b7a0335b25f28690237b51d1c3918d4498e18e0277c82dd58cdacbbf07db3"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-attempt/seams.log",
+      "bytes": 45,
+      "sha256": "a467575c60a05dadc5e6f30ede02054c23a1d3b4c301ae6113652a509ab04b19"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/resumed-server.log",
+      "bytes": 30582,
+      "sha256": "dbbedd65ce12a6c498b67eb5523962774391ba231bcf8087e4c4f16c1be52878"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/script-desktop.png",
+      "bytes": 128730,
+      "sha256": "4d5ce98c22270882c3b9d8f6779811338a5cbd5dc432ea8f835b4aaf0c4d478f"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/script-mobile.png",
+      "bytes": 55137,
+      "sha256": "2c4d8d492be8ad203fdb829fc123665d588835744d181dc1a337bdaec6c2f454"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/seams.json",
+      "bytes": 9103,
+      "sha256": "047c63fc9bc057478c62469127d855a4ff682f07f57e062bfabfdd8b0b9d0f41"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/seams.log",
+      "bytes": 45,
+      "sha256": "d97b1deece9c161c02754c0e981b4b040ce31b8192b376c134657e1f93ce8323"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/second-compile-stall.log",
+      "bytes": 3312,
+      "sha256": "7c242a7affe2c302b9f4486acef1c7803ca07194945e8920e036c8ccf59a0c2d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/second-stalled-browser.log",
+      "bytes": 514,
+      "sha256": "a873b3fbc7170ecb5c962b186a51c55002065cd249d1184bc81302604660b0b4"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/acceptance.log",
+      "bytes": 3050,
+      "sha256": "178798acdc807c3e3377d2a9ce78510727f1d154b1f45067332019d9cd0f3f9e"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/browser.log",
+      "bytes": 1395,
+      "sha256": "91399e464bdd37e872860ef3389a8ff4e70c260fda1c0554c1a03438f18b3a43"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/failure.json",
+      "bytes": 1114,
+      "sha256": "628343582d77927528e91922364e211059bb3ca8e903ae1a36765f72c2091f58"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/failure.png",
+      "bytes": 235390,
+      "sha256": "2fa5bd3c6e27533c7b458b078efa2b86c395e599c254636066a45a038837bb46"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/fallow.log",
+      "bytes": 44761,
+      "sha256": "b0808226a2bb729177015b4d37bcb2aacfc674c913c38192314f41271c850f31"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-0-beat-0.png",
+      "bytes": 131167,
+      "sha256": "fa7565e4b51023abd4da66e96989d3c444680bb7a65c51d951ad463f5e6b2a03"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-0-beat-1.png",
+      "bytes": 196713,
+      "sha256": "5daac6da633d1984ad1db10a91f2c2fb09befd66c0faf356e894a0536303c762"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-0-beat-2.png",
+      "bytes": 169250,
+      "sha256": "1b028969a0b22f643789bb606564f19f834064e00a63284c8869f8f110114cab"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-0-beat-3.png",
+      "bytes": 199456,
+      "sha256": "140633c50a4bacea00154c7ef8d6b3eac32c9fcb29bf6a8f431bfb35fb41e09d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-0-beat-4.png",
+      "bytes": 166089,
+      "sha256": "11833deb731cf853ccc660a666406401aac9755cf54135c4e4d300631668d3b2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-1-beat-0.png",
+      "bytes": 117569,
+      "sha256": "6b7b9598ea5b10f601f7e68c98fe459c398a39b17cd3bf3f5ff66aea7841670c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-1-beat-1.png",
+      "bytes": 168751,
+      "sha256": "1030e924999b3aaa34270b4a0839a7f1a91b83bc42ea7171859c5ac4a779bd4d"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-1-beat-2.png",
+      "bytes": 127415,
+      "sha256": "08e8f1f9341345dbe2b621e299cd41e82b8bb85e14fba4329ff0b5a505e68b26"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-1-beat-3.png",
+      "bytes": 139446,
+      "sha256": "51b2ca4277ec4992305ab37236b6513f2cb29ee0d205725b521c865c91aad77a"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-2-beat-0.png",
+      "bytes": 134631,
+      "sha256": "cab4cd22843b8dac8bd9807aa354a0c828481fd58d4e841937a8acc843a1fb7c"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-2-beat-1.png",
+      "bytes": 215265,
+      "sha256": "2e5e105039c1d458fb8eb4e632b523f483c587e0e327f9b10f0c6c0aa73eb2ce"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-2-beat-2.png",
+      "bytes": 164475,
+      "sha256": "2273382e9eea8fbdc818de1e3f01f1e99c529ec3b88de23423525d0d616b20c0"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-2-beat-3.png",
+      "bytes": 163182,
+      "sha256": "73eda1220ec7651e04193fecfef75f6242d7346a927082b9cd72059d75871020"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/film-2-beat-4.png",
+      "bytes": 171801,
+      "sha256": "397ee966e8d1207445f3aeebcb3cf4712f2f62feb92372ed1851f5a518f9841a"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/lint.log",
+      "bytes": 214,
+      "sha256": "9833256fa2bf6b88f8a156d874c806577a846cf7b2e54672266c9002150fb6b2"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/plans-desktop.png",
+      "bytes": 190790,
+      "sha256": "8814800f4de5bfdb1b39c307d1f19d67d7285cd8650a8f81901273934386f404"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/result.json",
+      "bytes": 19919,
+      "sha256": "db03d685e621370c17c5ff6156743ceef0f5d9d66919532fc57871326801bd45"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/script-desktop.png",
+      "bytes": 125897,
+      "sha256": "145fe6b2c4779746017d6c696c22b2a5833011b36ac7c433b5fd3675542e5605"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/script-mobile.png",
+      "bytes": 54006,
+      "sha256": "685ec083ceed2b98d579fa88ef9e0ece0b2d542519567bc974bee19759de3e7a"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/stale-runtime-attempt/typecheck.log",
+      "bytes": 275,
+      "sha256": "4c32152c6857dfa796d14619deeff606fa9f1a2ecf092254dcc0bdf12921092a"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/traced-font-stall.log",
+      "bytes": 3594,
+      "sha256": "ec9e3285bbe347e316da0835ab4f2c526461680441e519ef361b2e620ccd1d30"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/traced-stalled-browser.log",
+      "bytes": 514,
+      "sha256": "522fe497799b37e8ae18c5346225ac5e1ab4c1de3a71a8b6dd75b73ba05bcf3a"
+    },
+    {
+      "path": "evidence/tickets/AFM-093/story-planning/typecheck.log",
+      "bytes": 326,
+      "sha256": "2abf1746711f45ee1b902ef366fc9df45a4623be09babcdc3464e7204dc70667"
+    },
+    {
+      "path": "out/story-planning/intake.json",
+      "bytes": 579953,
+      "sha256": "9593baeef548ba2177992ae5e03f06cdc349e62227297994e43d4c7d846661db"
+    },
+    {
+      "path": "out/story-planning/projects.json",
+      "bytes": 370,
+      "sha256": "e418308fd919c255296485f9cd6f8a246f816b5a5f1b8624a045d12bcf491c07"
+    }
+  ]
+}

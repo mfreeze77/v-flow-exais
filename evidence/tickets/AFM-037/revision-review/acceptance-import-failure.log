@@ -1,0 +1,49 @@
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-037.test.ts" "tests/acceptance/AFM-093.revisions.test.ts" "tests/acceptance/AFM-093.understanding.test.ts" "tests/acceptance/AFM-093.stories.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mplans distinct implementation stories with authored scripts, exact integer timing and captured relationships[33m 821[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mreplans for audience/count, refuses invented evidence, repairs scripts and protects reviewed or existing project versions[32m 229[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mdoes not pad a manifest-only repository into multiple films[32m 8[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mkeeps concurrent edits to different stories and diversifies maintainer plans[32m 61[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mframes a call beyond a long source-line prefix without changing the captured evidence[32m 6[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mcaptures implementation, APIs, models and workflow call evidence from actual files with exact immutable line citations[32m 24[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mresolves same-named exports by source module, preserves repeated call sites, and withholds shadowed/ambiguous relationships[32m 5[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Suites 2 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/acceptance/AFM-037.test.ts[2m [ tests/acceptance/AFM-037.test.ts ][22m
+[31m[1mError[22m: Cannot find package '@hyperframes/diagram-engine' imported from /workspace/tests/acceptance/AFM-037.test.ts[39m
+[36m [2m❯[22m tests/acceptance/AFM-037.test.ts:[2m3:1[22m[39m
+    [90m  1|[39m [35mimport[39m { it[33m,[39m expect } [35mfrom[39m [32m"vitest"[39m[33m;[39m
+    [90m  2|[39m [35mimport[39m { readFileSync } [35mfrom[39m [32m"node:fs"[39m[33m;[39m
+    [90m  3|[39m [35mimport[39m { compareDiagrams } [35mfrom[39m [32m"@hyperframes/diagram-engine"[39m[33m;[39m
+    [90m   |[39m [31m^[39m
+    [90m  4|[39m [35mimport[39m { createHash } [35mfrom[39m [32m"node:crypto"[39m[33m;[39m
+    [90m  5|[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22m[39m
+[31m[1mSerialized Error:[22m[39m [90m{ code: 'ERR_MODULE_NOT_FOUND' }[39m
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/acceptance/AFM-093.revisions.test.ts[2m [ tests/acceptance/AFM-093.revisions.test.ts ][22m
+[31m[1mError[22m: Cannot find package 'hono' imported from /workspace/tests/acceptance/AFM-093.revisions.test.ts[39m
+[36m [2m❯[22m tests/acceptance/AFM-093.revisions.test.ts:[2m14:1[22m[39m
+    [90m 12|[39m [35mimport[39m { join[33m,[39m resolve } [35mfrom[39m [32m"node:path"[39m[33m;[39m
+    [90m 13|[39m [35mimport[39m { tmpdir } [35mfrom[39m [32m"node:os"[39m[33m;[39m
+    [90m 14|[39m [35mimport[39m { [33mHono[39m } [35mfrom[39m [32m"hono"[39m[33m;[39m
+    [90m   |[39m [31m^[39m
+    [90m 15|[39m import { UnifiedProjectService } from "../../packages/studio-server/sr…
+    [90m 16|[39m import { readReviewSource } from "../../packages/studio-server/src/pro…
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22m[39m
+[31m[1mSerialized Error:[22m[39m [90m{ code: 'ERR_MODULE_NOT_FOUND' }[39m
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m2 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[32m7 passed[39m[22m[90m (7)[39m
+[2m   Start at [22m 14:05:19
+[2m   Duration [22m 5.48s[2m (transform 2.84s, setup 0ms, import 3.80s, tests 1.16s, environment 0ms)[22m
+
+error: script "test:acceptance" exited with code 1

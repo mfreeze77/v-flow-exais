@@ -1,32 +1,90 @@
 {
   "ticketId": "AFM-095",
+  "title": "Shared project CLI including local revision comparison",
   "date": "2026-09-11",
   "status": "in_progress",
-  "commit": "8756a982bcd0df4e93190573eecab861811307c7",
-  "implemented": "CLI story settings, replan/revise/reviewed accept commands sharing Studio validation; recorded seven-command workflow.",
-  "previousReceipt": "evidence/tickets/AFM-095/pre-story-result.json",
+  "commit": "375998e67d9701ca7d4c9d5c21c16fec3d92e86a",
+  "runtime": {
+    "execution": "Docker only",
+    "image": "v-flow-exais:dev",
+    "imageId": "sha256:32798034cb5a79000ad0c4520e0c8808b0e51384625c991849195880c6bddcf7",
+    "chrome": "/root/.cache/puppeteer/chrome-headless-shell/linux-148.0.7778.167/chrome-headless-shell-linux64/chrome-headless-shell"
+  },
+  "handoff": "docs/designs/revision-review.md",
+  "fullScope": "docs/designs/product-completion.md",
   "commands": [
     {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{parsers,studio-server,studio,cli}' typecheck",
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run test:acceptance tests/acceptance/AFM-037.test.ts tests/acceptance/AFM-093.revisions.test.ts tests/acceptance/AFM-093.understanding.test.ts tests/acceptance/AFM-093.stories.test.ts > evidence/tickets/AFM-037/revision-review/final-acceptance.log 2>&1'",
+      "cwd": "/workspace",
       "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-093/story-planning/typecheck.log"
+      "logPath": "evidence/tickets/AFM-037/revision-review/final-acceptance.log"
     },
     {
-      "invocation": "docker exec v-flow-exais-story-review bun tools/vflow/verify-story-cli.ts",
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'ARCHIFY_CHROME=\"$PRODUCER_HEADLESS_SHELL_PATH\" node --test packages/diagram-engine/test/architecture-delta.test.mjs packages/diagram-engine/test/repository-evidence.test.mjs > evidence/tickets/AFM-037/revision-review/inherited-baselines.log 2>&1'",
+      "cwd": "/workspace",
       "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-093/story-planning/cli.log"
+      "logPath": "evidence/tickets/AFM-037/revision-review/inherited-baselines.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run --cwd packages/studio-server typecheck > evidence/tickets/AFM-037/revision-review/final-server-typecheck.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/final-server-typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun run --cwd packages/cli typecheck > evidence/tickets/AFM-037/revision-review/final-cli-typecheck.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/final-cli-typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bunx oxlint packages/diagram-engine/src/compare.mjs packages/studio-server/src/project/gitSnapshots.ts packages/studio-server/src/project/revisionReview.ts packages/studio-server/src/project/diagramReview.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/routes/projectCommands.ts packages/studio-server/src/project/projectApiError.ts packages/cli/src/commands/projectReview.ts packages/cli/src/commands/project.ts tools/vflow/verify-revision-review.ts > evidence/tickets/AFM-037/revision-review/lint.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/lint.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bunx oxfmt --check packages/diagram-engine/src/compare.mjs packages/diagram-engine/src/index.mjs packages/diagram-engine/src/contracts.d.ts packages/studio-server/src/project/gitSnapshots.ts packages/studio-server/src/project/revisionReview.ts packages/studio-server/src/project/diagramReview.ts packages/studio-server/src/project/repositoryIntake.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/routes/projectCommands.ts packages/studio-server/src/project/projectApiError.ts packages/studio-server/src/index.ts packages/cli/src/commands/projectReview.ts packages/cli/src/commands/project.ts tests/acceptance/AFM-037.test.ts tests/acceptance/AFM-093.revisions.test.ts tools/vflow/verify-revision-review.ts > evidence/tickets/AFM-037/revision-review/format-check.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/format-check.log"
+    },
+    {
+      "invocation": "docker-compose run --rm -T workspace bash -lc 'bun tools/vflow/verify-revision-review.ts /input bf826a8 8756a98 > evidence/tickets/AFM-037/revision-review/repository-proof.log 2>&1'",
+      "cwd": "/workspace",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-037/revision-review/repository-proof.log"
     }
   ],
+  "checks": {
+    "focusedTests": 16,
+    "inheritedTests": 42,
+    "inheritedSkipped": 0,
+    "packageTypechecks": [
+      "studio-server",
+      "cli"
+    ],
+    "lint": "0 warnings, 0 errors",
+    "formatFiles": 16
+  },
+  "gateStatus": "No full-product gate passed. Predecessor tickets remain incomplete. The previously failing broad branch quality audit was not rerun for this server/CLI checkpoint.",
+  "videoEvidence": "No new film was produced. Compiler SVG comparison and inherited browser checks are not AFM-092 render acceptance.",
+  "implemented": "Adds compare-revisions, get-review and compare-diagrams using the same service as Studio API; actual CLI subprocesses exercise the workflow.",
+  "previousReceipt": "evidence/tickets/AFM-095/story-planning-result.json",
+  "relatedReceipt": "evidence/tickets/AFM-037/result.json",
   "remainingAcceptance": [
-    "Full command/compatibility/doctor coverage, clean distribution and recorded useful agent-to-video acceptance remain open."
+    "Full CLI/compatibility/doctor commands, installed invocation outside the repository, complete failure cases and useful recorded agent-to-video acceptance remain open."
   ],
-  "handoff": "docs/designs/story-planning.md",
-  "relatedReceipt": "evidence/tickets/AFM-093/result.json",
   "artifacts": [
     {
-      "path": "evidence/tickets/AFM-093/result.json",
-      "bytes": 39123,
-      "sha256": "942c3c21ba054f49bb54296427955a1c28cb54f925d363be1ff45a4a3ff05533"
+      "path": "evidence/tickets/AFM-037/result.json",
+      "bytes": 13691,
+      "sha256": "95d54671336c96ad17f94604fa9146ab855fc71fa763ae57da0a09a5b365bf19"
+    },
+    {
+      "path": "evidence/tickets/AFM-095/story-planning-result.json",
+      "bytes": 1277,
+      "sha256": "a6ffc0d55896b87ff235a614ed58e7b1f113e2a7ae9104770520d9498835e773"
     }
   ]
 }

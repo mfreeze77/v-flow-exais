@@ -1,7 +1,7 @@
 {
   "schema_version": "2.0.0",
   "product_working_name": "ArchFrame Studio",
-  "status": "planned_not_implemented",
+  "status": "implementation_in_progress",
   "tickets": [
     {
       "id": "AFM-001",
@@ -1564,7 +1564,7 @@
       "id": "AFM-037",
       "epic": "E04",
       "title": "Integrate source evidence and exact architecture deltas",
-      "status": "planned",
+      "status": "in_progress",
       "scope": "required-local",
       "priority": "P1",
       "dependencies": [
@@ -1601,7 +1601,13 @@
         "evidence/tickets/AFM-037/test.log"
       ],
       "test_path": "tests/acceptance/AFM-037.test.ts",
-      "issue_body_path": "tickets/AFM-037.md"
+      "issue_body_path": "tickets/AFM-037.md",
+      "execution_checkpoint": {
+        "date": "2026-09-11",
+        "commit": "375998e67d9701ca7d4c9d5c21c16fec3d92e86a",
+        "receipt": "evidence/tickets/AFM-037/result.json",
+        "handoff": "docs/designs/revision-review.md"
+      }
     },
     {
       "id": "AFM-038",
@@ -4059,7 +4065,7 @@
       "id": "AFM-093",
       "epic": "E10",
       "title": "Integrate repository/PR evidence into review workflows",
-      "status": "planned",
+      "status": "in_progress",
       "scope": "required-interface",
       "priority": "P1",
       "dependencies": [
@@ -4097,7 +4103,13 @@
         "evidence/tickets/AFM-093/test.log"
       ],
       "test_path": "tests/acceptance/AFM-093.test.ts",
-      "issue_body_path": "tickets/AFM-093.md"
+      "issue_body_path": "tickets/AFM-093.md",
+      "execution_checkpoint": {
+        "date": "2026-09-11",
+        "commit": "375998e67d9701ca7d4c9d5c21c16fec3d92e86a",
+        "receipt": "evidence/tickets/AFM-093/result.json",
+        "handoff": "docs/designs/revision-review.md"
+      }
     },
     {
       "id": "AFM-094",
@@ -4151,7 +4163,7 @@
       "id": "AFM-095",
       "epic": "E11",
       "title": "Expose one product CLI with native and diagram commands",
-      "status": "planned",
+      "status": "in_progress",
       "scope": "required-local",
       "priority": "P1",
       "dependencies": [
@@ -4191,7 +4203,13 @@
         "evidence/tickets/AFM-095/test.log"
       ],
       "test_path": "tests/acceptance/AFM-095.test.ts",
-      "issue_body_path": "tickets/AFM-095.md"
+      "issue_body_path": "tickets/AFM-095.md",
+      "execution_checkpoint": {
+        "date": "2026-09-11",
+        "commit": "375998e67d9701ca7d4c9d5c21c16fec3d92e86a",
+        "receipt": "evidence/tickets/AFM-095/result.json",
+        "handoff": "docs/designs/revision-review.md"
+      }
     },
     {
       "id": "AFM-096",
@@ -6127,5 +6145,6 @@
       "test_path": "tests/acceptance/AFM-134.test.ts",
       "issue_body_path": "tickets/AFM-134.md"
     }
-  ]
+  ],
+  "execution_status_source": "evidence/LEDGER.md and per-ticket result.json; unaffected original planning rows are not a live status audit"
 }

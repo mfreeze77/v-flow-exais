@@ -1,0 +1,697 @@
+{
+  "reviewId": "review-17e4a338-1819-479f-94da-e1ba24968d4b",
+  "home": "/var/lib/vflow/revision-review-checkpoint",
+  "sourceReviewHash": "079ea12fc27ae299d7d15289964d5b1d5c537bf3b219ed0bdcace6abd81ff9c3",
+  "before": {
+    "revision": "bf826a855691f087f129aa0a43d95adbe918faf3",
+    "treeHash": "8e0031f4c0ee61d16b9600c82fd23a440403d38b8775a1fa40244aeb9148ff1e",
+    "capturedFiles": 2855,
+    "omitted": 5354
+  },
+  "head": {
+    "revision": "8756a982bcd0df4e93190573eecab861811307c7",
+    "treeHash": "8c1b5b432fc89aef7facd559adba3bdb7f6271bc35dfda01c3914bbd2b8482c8",
+    "capturedFiles": 2857,
+    "omitted": 5370
+  },
+  "changes": [
+    {
+      "path": "docs/designs/product-completion.md",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "552362f7facde2459c973e30ddc721e4d68b8245",
+        "bytes": 7301,
+        "path": "docs/designs/product-completion.md"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "923d59476041143cbc433915dae601795b4a0dfe",
+        "bytes": 7315,
+        "path": "docs/designs/product-completion.md"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "docs/designs/story-planning.md",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "940eb7ac41157521a61f7c54cdb01869957ea8b9",
+        "bytes": 5106,
+        "path": "docs/designs/story-planning.md"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "evidence/LEDGER.md",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "55f8fbb0c8ad681b238114fc008668bc8494080f",
+        "bytes": 10758,
+        "path": "evidence/LEDGER.md"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "d101ce68775ac4d666d550d83f747aacff5e62dc",
+        "bytes": 11122,
+        "path": "evidence/LEDGER.md"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/cli/src/commands/project.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "70cb274349fee36efe82b369ea9ca61d57e51530",
+        "bytes": 8381,
+        "path": "packages/cli/src/commands/project.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "c239e6b1d61648d331417b1b131ad21fb4a112a6",
+        "bytes": 9445,
+        "path": "packages/cli/src/commands/project.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/cli/src/commands/projectProposal.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "27392d956dde6f01288416f52845d1ad01c5e40c",
+        "bytes": 1739,
+        "path": "packages/cli/src/commands/projectProposal.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "183f265ed9e44afcae134e38f027930044a28515",
+        "bytes": 2453,
+        "path": "packages/cli/src/commands/projectProposal.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/parsers/src/repositorySyntax.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "21991427c9b6fa46d19e2aea06e34d3f6d3a26f8",
+        "bytes": 12335,
+        "path": "packages/parsers/src/repositorySyntax.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "6a57f5b62591c325782672370b8bc47d5b772c6e",
+        "bytes": 12400,
+        "path": "packages/parsers/src/repositorySyntax.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/producer/src/services/deterministicFonts-retries.test.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "5dd7020bea5a67410fe3d95db59fefae1dcef129",
+        "bytes": 13361,
+        "path": "packages/producer/src/services/deterministicFonts-retries.test.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "cf8037b8f007b3fa2fcab095e94356071d7fba7a",
+        "bytes": 14016,
+        "path": "packages/producer/src/services/deterministicFonts-retries.test.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/producer/src/services/deterministicFonts.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "923d5fa7d458289d4610a7be1272c985a85c892a",
+        "bytes": 51905,
+        "path": "packages/producer/src/services/deterministicFonts.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "e7c5f64e0a11dbad6e529223a2bb000b6c704712",
+        "bytes": 52318,
+        "path": "packages/producer/src/services/deterministicFonts.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/producer/src/services/htmlCompiler.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "e1180d86d83979020f3c2587410061805d1ad661",
+        "bytes": 109387,
+        "path": "packages/producer/src/services/htmlCompiler.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "d7e6b13065f3f246d2a1f75fbf6a01b4abd04b07",
+        "bytes": 109780,
+        "path": "packages/producer/src/services/htmlCompiler.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/producer/src/services/renderOrchestrator.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "4a0f0a883b2541fca6825e087db4ed0986606b9d",
+        "bytes": 190561,
+        "path": "packages/producer/src/services/renderOrchestrator.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "63338f7acd7e3c01246e6168d938b644e81e5f9e",
+        "bytes": 190599,
+        "path": "packages/producer/src/services/renderOrchestrator.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/index.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "511884ba19240cb033e3da1a3a384c7f38c477be",
+        "bytes": 1889,
+        "path": "packages/studio-server/src/index.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "00f4be861f1506cc89e8d996999765c6fd15d9b8",
+        "bytes": 2195,
+        "path": "packages/studio-server/src/index.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/projectBatch.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "b560d35049bdd55143fbfc9a5741f77c3b09509c",
+        "bytes": 10855,
+        "path": "packages/studio-server/src/project/projectBatch.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "033db9c42d0bb7c5baaf7d5de31a7280f7f5e297",
+        "bytes": 11073,
+        "path": "packages/studio-server/src/project/projectBatch.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/projectService.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "4698fc2ce18c4843a9ce042888414eef4bed7731",
+        "bytes": 8000,
+        "path": "packages/studio-server/src/project/projectService.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "cde6452bd57f7dc8c8c02d3de25e97dcba721817",
+        "bytes": 8318,
+        "path": "packages/studio-server/src/project/projectService.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/repositoryIntake.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "a1d6522e5fba684e5bc9ce5546d87c8195a87b1d",
+        "bytes": 12111,
+        "path": "packages/studio-server/src/project/repositoryIntake.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "deea5ca229759c497c81c2aba6c210d853bce725",
+        "bytes": 12456,
+        "path": "packages/studio-server/src/project/repositoryIntake.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/repositoryUnderstanding.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "1db1b628793e03ca3e729c9ed50e8763c65e0a89",
+        "bytes": 12476,
+        "path": "packages/studio-server/src/project/repositoryUnderstanding.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "d497d8fb738f99d9c5e8f6a9e79c889b3eaea155",
+        "bytes": 12730,
+        "path": "packages/studio-server/src/project/repositoryUnderstanding.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/storyCandidates.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "692ba9141fb4c2e325bb4201f8000a2a0893735e",
+        "bytes": 5206,
+        "path": "packages/studio-server/src/project/storyCandidates.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/storyIntake.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "24789aa5b01fea5150a4203a9347248cade79e33",
+        "bytes": 4018,
+        "path": "packages/studio-server/src/project/storyIntake.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/storyPlanning.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "4bfad81974260a789473b6481dafac4ed67a09c2",
+        "bytes": 6747,
+        "path": "packages/studio-server/src/project/storyPlanning.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/storyProject.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "263d6d0fe0544e90cc693e4de1044306bf753b25",
+        "bytes": 3758,
+        "path": "packages/studio-server/src/project/storyProject.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/storySceneHtml.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "03695b56f36de411cc7c5184fe5dbb7473293fd2",
+        "bytes": 7437,
+        "path": "packages/studio-server/src/project/storySceneHtml.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/storyTypes.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "f110097b8e3949a4e1b3a5470b78dc2a7008106d",
+        "bytes": 2584,
+        "path": "packages/studio-server/src/project/storyTypes.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/storyValidation.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "86de3be13b05d73720a0e25c42779683df5c2fc6",
+        "bytes": 3758,
+        "path": "packages/studio-server/src/project/storyValidation.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/project/videoProposals.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "f39dfc4b0fdeeb05c7539be59d6258c36816c419",
+        "bytes": 8597,
+        "path": "packages/studio-server/src/project/videoProposals.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "b61ed2cf3f049f607e3dd500cb5c29c33092044b",
+        "bytes": 2309,
+        "path": "packages/studio-server/src/project/videoProposals.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio-server/src/routes/projectCommands.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "9abdbdf25e0899864dade382c8f9b21e3bd5ab3d",
+        "bytes": 5003,
+        "path": "packages/studio-server/src/routes/projectCommands.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "4328489f3dc5fe434f61350c058706b77b3b4351",
+        "bytes": 5538,
+        "path": "packages/studio-server/src/routes/projectCommands.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio/src/project/ProjectLauncher.tsx",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "a1401c3eda51f4bba9ea5bafc41395cc06daa176",
+        "bytes": 10228,
+        "path": "packages/studio/src/project/ProjectLauncher.tsx"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "f46933dadaa683aea04f30c64338ad687587bf03",
+        "bytes": 9735,
+        "path": "packages/studio/src/project/ProjectLauncher.tsx"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio/src/project/StoryPlanReview.css",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "4c67b0b9ca37884e0f0831d9ac1a828425094a5f",
+        "bytes": 1375,
+        "path": "packages/studio/src/project/StoryPlanReview.css"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio/src/project/StoryPlanReview.tsx",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "ba8437bc42a0313190158f2eb9ca4f2bd4a1e989",
+        "bytes": 7655,
+        "path": "packages/studio/src/project/StoryPlanReview.tsx"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "packages/studio/src/project/StorySettings.tsx",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "f0491f628da6f1c0b1a8304193028fee6a7dcfef",
+        "bytes": 1934,
+        "path": "packages/studio/src/project/StorySettings.tsx"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tests/acceptance/AFM-054.compile-cancel.test.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "d3349e7a98c8c88efeb826a47b0909b7ede3aa1b",
+        "bytes": 1765,
+        "path": "tests/acceptance/AFM-054.compile-cancel.test.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tests/acceptance/AFM-093.stories.test.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "6b22530174791c5787cc8cb3719fd10689fe31e6",
+        "bytes": 9616,
+        "path": "tests/acceptance/AFM-093.stories.test.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tests/acceptance/AFM-098.test.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "a6f5e63a7841424d310663480b5a1e5b9c463086",
+        "bytes": 15094,
+        "path": "tests/acceptance/AFM-098.test.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "7a6a640fe36f043c79ad5b1522bc930dde16e98f",
+        "bytes": 15352,
+        "path": "tests/acceptance/AFM-098.test.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tests/acceptance/AFM-099.source.test.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "90a7ee2dfc984fc2df590ff73a6e5c09b1592fc8",
+        "bytes": 6797,
+        "path": "tests/acceptance/AFM-099.source.test.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "3af108e2324cdcbf40293f6ad4dc8268118e5774",
+        "bytes": 7627,
+        "path": "tests/acceptance/AFM-099.source.test.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tools/vflow/collect-story-renders.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "4f37a324e4f386a5a15fdca448f06aeaf2099306",
+        "bytes": 3190,
+        "path": "tools/vflow/collect-story-renders.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tools/vflow/verify-proposal-review.ts",
+      "status": "modified",
+      "before": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "80b5bf452ecaf8aa62cb365ee0ee03ad3aa72a9a",
+        "bytes": 9401,
+        "path": "tools/vflow/verify-proposal-review.ts"
+      },
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "5283f3c06456e39b680ba04df90f222aec29e7d1",
+        "bytes": 9648,
+        "path": "tools/vflow/verify-proposal-review.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tools/vflow/verify-story-cancellation.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "956a19c3f30d36d529b2b6a86d4d88bb921cccdf",
+        "bytes": 2679,
+        "path": "tools/vflow/verify-story-cancellation.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tools/vflow/verify-story-cli.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "e653992d50a67ac975618a7c8e78f757c4b6e0bc",
+        "bytes": 2830,
+        "path": "tools/vflow/verify-story-cli.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tools/vflow/verify-story-planning.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "d23147b41f65bba0be4d4236e1ec2827591d61f7",
+        "bytes": 10149,
+        "path": "tools/vflow/verify-story-planning.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    },
+    {
+      "path": "tools/vflow/verify-story-seams.ts",
+      "status": "added",
+      "head": {
+        "mode": "100644",
+        "type": "blob",
+        "oid": "19c5c23debff1bbfea76fe72e34563b215bb767b",
+        "bytes": 1937,
+        "path": "tools/vflow/verify-story-seams.ts"
+      },
+      "classifications": [
+        "content"
+      ]
+    }
+  ],
+  "limitations": [
+    "Exact file changes compare the two complete Git trees by path, blob identity and mode. Renames are recorded as removal plus addition; similarity is not identity.",
+    "Source understanding covers only retained source text. Capture exclusions and limits are listed separately for each snapshot.",
+    "Code changes do not prove deployed architecture, runtime impact, performance, causality or the truth of repository prose.",
+    "Local Git objects only. This review does not fetch PR metadata, hosted revisions, submodules or missing objects."
+  ]
+}

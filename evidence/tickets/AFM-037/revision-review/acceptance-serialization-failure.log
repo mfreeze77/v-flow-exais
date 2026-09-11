@@ -1,0 +1,126 @@
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-037.test.ts" "tests/acceptance/AFM-093.revisions.test.ts" "tests/acceptance/AFM-093.understanding.test.ts" "tests/acceptance/AFM-093.stories.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mcompares exact authored snapshots, retains removed objects and distinct SVG namespaces[32m 33[2mms[22m[39m
+ [31m×[39m tests/acceptance/AFM-037.test.ts[2m > [22mmatches parallel edges by IDs across reordering and label changes[32m 8[2mms[22m[39m
+[31m   → undefined[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mdistinguishes moves, reroutes and unchanged snapshots without semantic claims[32m 21[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-037.test.ts[2m > [22mrejects missing/duplicate relationship IDs, malformed inputs and invalid diagrams[32m 20[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpins exact commits, preserves removed source bytes and compares complete trees independently of dirty files[32m 94[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mrefuses stale refs, missing objects and subdirectory selections[32m 41[2mms[22m[39m
+ [31m×[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpersists exact diagram comparison receipts and detects altered capture bytes[32m 73[2mms[22m[39m
+[31m   → Project contains a value that cannot be stored as JSON.[39m
+ [31m×[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mverifies separately authored source citations and rejects wrong revisions and origins[32m 56[2mms[22m[39m
+[31m   → Project contains a value that cannot be stored as JSON.[39m
+ [31m×[39m tests/acceptance/AFM-093.revisions.test.ts[2m > [22muses the actual API and CLI review ingress with conflict diagnostics[32m 74[2mms[22m[39m
+[31m   → expected 400 to be 200 // Object.is equality[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mplans distinct implementation stories with authored scripts, exact integer timing and captured relationships[33m 722[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mreplans for audience/count, refuses invented evidence, repairs scripts and protects reviewed or existing project versions[32m 224[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mdoes not pad a manifest-only repository into multiple films[32m 5[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mkeeps concurrent edits to different stories and diversifies maintainer plans[32m 55[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.stories.test.ts[2m > [22mframes a call beyond a long source-line prefix without changing the captured evidence[32m 6[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mcaptures implementation, APIs, models and workflow call evidence from actual files with exact immutable line citations[32m 22[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-093.understanding.test.ts[2m > [22mresolves same-named exports by source module, preserves repeated call sites, and withholds shadowed/ambiguous relationships[32m 4[2mms[22m[39m
+
+[31m⎯⎯⎯⎯⎯⎯⎯[39m[1m[41m Failed Tests 4 [49m[22m[31m⎯⎯⎯⎯⎯⎯⎯[39m
+
+[41m[1m FAIL [22m[49m tests/acceptance/AFM-037.test.ts[2m > [22mmatches parallel edges by IDs across reordering and label changes
+{
+  ok: false,
+  diagnostics: [
+    {
+      code: 'layout/constraint',
+      severity: 'error',
+      message: 'Label "Retry request" overlaps component "buyers" — adjust labelDx/labelDy/labelSegment or set labelAt.\n' +
+        '  label rect: [154, 267, 72, 14]\n' +
+        '  component "buyers" rect: [40, 250, 120, 60]\n' +
+        '  Suggested fix: labelAt [190, 324] or labelDy +47 (below); or labelAt [190, 246] or labelDy -31 (above)',
+      subject: [Object],
+      evidence: {},
+      supportedFixes: [],
+      pointer: '/',
+      side: 'head'
+    },
+    {
+      code: 'layout/constraint',
+      severity: 'error',
+      message: 'Label "Retry request" overlaps component "edge" — adjust labelDx/labelDy/labelSegment or set labelAt.\n' +
+        '  label rect: [154, 267, 72, 14]\n' +
+        '  component "edge" rect: [220, 250, 130, 60]\n' +
+        '  Suggested fix: labelAt [190, 324] or labelDy +47 (below); or labelAt [190, 246] or labelDy -31 (above)',
+      subject: [Object],
+      evidence: {},
+      supportedFixes: [],
+      pointer: '/',
+      side: 'head'
+    }
+  ],
+  stacks: []
+}
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22m[39m
+[31m[1mSerialized Error:[22m[39m [90m{ diagnostics: [ { code: 'layout/constraint', severity: 'error', message: 'Label "Retry request" overlaps component "buyers" — adjust labelDx/labelDy/labelSegment or set labelAt.\n  label rect: [154, 267, 72, 14]\n  component "buyers" rect: [40, 250, 120, 60]\n  Suggested fix: labelAt [190, 324] or labelDy +47 (below); or labelAt [190, 246] or labelDy -31 (above)', subject: { diagramType: 'architecture' }, evidence: {}, supportedFixes: [], pointer: '/', side: 'head' }, { code: 'layout/constraint', severity: 'error', message: 'Label "Retry request" overlaps component "edge" — adjust labelDx/labelDy/labelSegment or set labelAt.\n  label rect: [154, 267, 72, 14]\n  component "edge" rect: [220, 250, 130, 60]\n  Suggested fix: labelAt [190, 324] or labelDy +47 (below); or labelAt [190, 246] or labelDy -31 (above)', subject: { diagramType: 'architecture' }, evidence: {}, supportedFixes: [], pointer: '/', side: 'head' } ] }[39m
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mpersists exact diagram comparison receipts and detects altered capture bytes
+[31m[1mError[22m: Project contains a value that cannot be stored as JSON.[39m
+[36m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m48:11[22m[39m
+    [90m 46|[39m   [35mconst[39m result [33m=[39m [33mJSON[39m[33m.[39m[34mstringify[39m(value)[33m;[39m
+    [90m 47|[39m   [35mif[39m (result [33m===[39m undefined)
+    [90m 48|[39m     throw new Error("Project contains a value that cannot be stored as…
+    [90m   |[39m           [31m^[39m
+    [90m 49|[39m   [35mreturn[39m result[33m;[39m
+    [90m 50|[39m }
+[90m [2m❯[22m packages/project-model/src/storage/revisions.ts:[2m44:55[22m[39m
+[90m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m44:8[22m[39m
+[90m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m40:46[22m[39m
+[90m [2m❯[22m packages/project-model/src/storage/revisions.ts:[2m44:55[22m[39m
+[90m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m44:8[22m[39m
+[90m [2m❯[22m packages/project-model/src/storage/revisions.ts:[2m44:55[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/acceptance/AFM-093.revisions.test.ts[2m > [22mverifies separately authored source citations and rejects wrong revisions and origins
+[31m[1mError[22m: Project contains a value that cannot be stored as JSON.[39m
+[36m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m48:11[22m[39m
+    [90m 46|[39m   [35mconst[39m result [33m=[39m [33mJSON[39m[33m.[39m[34mstringify[39m(value)[33m;[39m
+    [90m 47|[39m   [35mif[39m (result [33m===[39m undefined)
+    [90m 48|[39m     throw new Error("Project contains a value that cannot be stored as…
+    [90m   |[39m           [31m^[39m
+    [90m 49|[39m   [35mreturn[39m result[33m;[39m
+    [90m 50|[39m }
+[90m [2m❯[22m packages/project-model/src/storage/revisions.ts:[2m44:55[22m[39m
+[90m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m44:8[22m[39m
+[90m [2m❯[22m packages/project-model/src/storage/revisions.ts:[2m44:55[22m[39m
+[90m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m44:8[22m[39m
+[90m [2m❯[22m packages/project-model/src/storage/revisions.ts:[2m44:55[22m[39m
+[90m [2m❯[22m canonicalJson packages/project-model/src/storage/revisions.ts:[2m44:8[22m[39m
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯[22m[39m
+
+[41m[1m FAIL [22m[49m tests/acceptance/AFM-093.revisions.test.ts[2m > [22muses the actual API and CLI review ingress with conflict diagnostics
+[31m[1mAssertionError[22m: expected 400 to be 200 // Object.is equality[39m
+
+[32m- Expected[39m
+[31m+ Received[39m
+
+[32m- 200[39m
+[31m+ 400[39m
+
+[36m [2m❯[22m tests/acceptance/AFM-093.revisions.test.ts:[2m218:5[22m[39m
+    [90m216|[39m       })
+    [90m217|[39m     )[33m.[39mstatus[33m,[39m
+    [90m218|[39m   )[33m.[39m[34mtoBe[39m([34m200[39m)[33m;[39m
+    [90m   |[39m     [31m^[39m
+    [90m219|[39m   [35mconst[39m run [33m=[39m ([33m...[39margs[33m:[39m string[]) [33m=>[39m
+    [90m220|[39m     [34mspawnSync[39m(
+
+[31m[2m⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯[22m[39m
+
+
+[2m Test Files [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m2 passed[39m[22m[90m (4)[39m
+[2m      Tests [22m [1m[31m4 failed[39m[22m[2m | [22m[1m[32m12 passed[39m[22m[90m (16)[39m
+[2m   Start at [22m 14:06:10
+[2m   Duration [22m 5.29s[2m (transform 2.07s, setup 0ms, import 3.47s, tests 1.46s, environment 0ms)[22m
+
+error: script "test:acceptance" exited with code 1
