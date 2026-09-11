@@ -16,25 +16,20 @@
         "path": "licenses/hyperframes-LICENSE",
         "upstream": "HyperFrames (Apache-2.0)",
         "present": true
-      },
-      {
-        "path": "THIRD_PARTY_NOTICES.md",
-        "upstream": "Aggregated notices for this repository",
-        "present": true
       }
     ],
     "allPresent": true
   },
   "assets": {
     "fonts": 164,
-    "media": 589,
+    "media": 710,
     "pendingRightsReview": 753,
     "byExtension": {
-      ".mp4": 92,
+      ".mp4": 123,
       ".mp3": 25,
       ".woff2": 164,
       ".svg": 46,
-      ".png": 278,
+      ".png": 368,
       ".jpg": 81,
       ".gif": 1,
       ".jpeg": 38,
@@ -52,16 +47,96 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/package.json",
       "upstreamSha256": "7fe2a96f0d6730b2d35811d7d4f5e7e969c166a47a0c87543cdf667a221815be",
-      "currentSha256": "50df09eda46e8e52cf030ae7b6d91c5741a47d570d8891af1793b76fb4ec9e5d",
+      "currentSha256": "d3793f12662187de4c4228b0960755b04232aff476b4f1fda02e1d49d1c9c25d",
       "reason": "Rewritten during AFM-009: renamed from the upstream 'archify' to @hyperframes/diagram-engine, marked private, runtime imports (ajv, parse5, saxes, simple-icons) moved from devDependencies to dependencies, the fast-uri 3.1.5 override preserved, exports and packed files declared, and the bin renamed to archframe-diagram so it cannot collide with a globally installed upstream CLI."
+    },
+    {
+      "path": "packages/diagram-engine/renderers/architecture/render-architecture.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/architecture/render-architecture.mjs",
+      "upstreamSha256": "f57077cb9fa64a8412ab0af705cb31e2e7a920114b31852882c04a76840365dc",
+      "currentSha256": "5507ed0997a126d3f9d3f646bbc791efad32d2a44b85c4e7c96cd036f1b4b275",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/dataflow/render-dataflow.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/dataflow/render-dataflow.mjs",
+      "upstreamSha256": "5a5da505e5c68041990de92847f53a38215efb9212bc36fc911774e8829335c9",
+      "currentSha256": "9ceb28b37495b9f80b2a0c8905246edb52349ebb39c99fdeaf6b753b136e46cb",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/lifecycle/render-lifecycle.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/lifecycle/render-lifecycle.mjs",
+      "upstreamSha256": "23720729a14495b4085839653ec0622f2465be3b1e8c9eb556b602ab3f4a8cda",
+      "currentSha256": "bbd063cd0614419e0b1ec12845a7d195a7fda314b85d1dc41107ee5d6b1737cb",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/sequence/render-sequence.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/sequence/render-sequence.mjs",
+      "upstreamSha256": "230c0fb79775badb4beb6fd74f45ed1ffbb70e932c3641a24bedcc61f912bddf",
+      "currentSha256": "866491941bc74d6329728ef76dfa9c7ed480c4709d5aadd1983912aa444debba",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/brand-marks.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/brand-marks.mjs",
+      "upstreamSha256": "4557b7f3eec25a3dba66a0f5da1c5dca6ec607e2a68e9be51cd697cefe9e6425",
+      "currentSha256": "4a082c4750d8b7264cfa16905907ce4a835b3354414fcc49a9f3b744c9544381",
+      "reason": "owned change (no specific note recorded)"
     },
     {
       "path": "packages/diagram-engine/renderers/shared/cli.mjs",
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/renderers/shared/cli.mjs",
       "upstreamSha256": "2a6b8fa11234451627a70bca71985d80362a4c52401a90a21840d6e2ae3012d9",
-      "currentSha256": "0b9abf4d2e3e44f01833eabbe1eb97fc344f95a9850ea6705c4c854f95c4e816",
+      "currentSha256": "692817c84827e47f4a159bbae8742f6a5c39148d8209b376a62144037de7ee93",
       "reason": "Modified during AFM-011: asset lookup remapped to package-owned resolvers. The upstream code resolved its template relative to an assumed skill root, which broke when the import routed the viewer template into @hyperframes/diagram-viewer (finding AFM-011-F1)."
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/diagnostics.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/diagnostics.mjs",
+      "upstreamSha256": "855fea15daf2beb5be7fad0d54b72a63a4af8595f227facf845ba1852b3b365a",
+      "currentSha256": "20cb18398ccbf415e56d254579a495217bc05c6d846fe734a71b98740da53f7a",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/shared/geometry.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/shared/geometry.mjs",
+      "upstreamSha256": "161785af32241fc96df051c9be4f2bb9c3b897418d708f4a051b63f1c44952cf",
+      "currentSha256": "b042d071bc888fabd75c26f20b5a495cb246668eb35a8765669d1ab2841e3408",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/workflow/render-workflow.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/workflow/render-workflow.mjs",
+      "upstreamSha256": "83be05d1efd1816c527fccdf3ebbd4a0f1454c6cb0c9f7554c6702eb40d9c540",
+      "currentSha256": "7890c2612dc65cf770919b21506f8cc4f68f6310c63a787597f5b31e995627c3",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/renderers/workflow/workflow-compiler.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/renderers/workflow/workflow-compiler.mjs",
+      "upstreamSha256": "06dc97f67041037d71fd8731934d4833ece95ac1a4278e3ef875b0e51e516104",
+      "currentSha256": "06324f403c676e59283505d5e6a07065d965e580a30e6d040b7a1cb49339a450",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/diagram-engine/test/architecture-delta.test.mjs",
+      "upstreamRepository": "archify",
+      "upstreamSourcePath": "archify/test/architecture-delta.test.mjs",
+      "upstreamSha256": "635816a7b89f7b6e0de92c79bb0226313249962f2bdf4bc42165f925ce2e78fc",
+      "currentSha256": "b3c351dbac453a06cf262f07f424ab54fb8c6cc295efd7daea616eccd4997666",
+      "reason": "owned change (no specific note recorded)"
     },
     {
       "path": ".gitattributes",
@@ -76,7 +151,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": ".gitignore",
       "upstreamSha256": "01d6ec77705a86795dcdb4628ce09425f5e9aee56fe3a258d0955525dcf5bcee",
-      "currentSha256": "d8231fb5ae868e25ff3c40e030f72fe964ff27ac7c3a377235525feddf97ed6f",
+      "currentSha256": "da662701148ebb133bacd0d32be38162b0f9c29cda56739938e8d15b9a9ba784",
       "reason": "Superseded during AFM-003: repository-owned policy. Upstream copy preserved at docs/upstream/hyperframes/.gitignore."
     },
     {
@@ -84,7 +159,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "bun.lock",
       "upstreamSha256": "1214990c9b1a33c5d4c88fb4c7f9ce6d62f72c9f956b02b68ee8f130945fdf12",
-      "currentSha256": "27a4af6917e1b6ea91ab8b4e7f89a98ca0b60b8f0d62f48cfb59129a2db6c6b4",
+      "currentSha256": "b6ea0c47caaf847e3dd2da8d98e5254edd1f76375744ab3735415fe4a6447966",
       "reason": "Regenerated by bun install after the root manifest was renamed to v-flow-exais. The lockfile records the workspace root name, so it necessarily diverges from upstream once the rename lands. Dependency versions are unchanged; the divergence is the root package identity only."
     },
     {
@@ -92,8 +167,120 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "package.json",
       "upstreamSha256": "656e53de03966a18b6b6626cbd2b0b6f918f1ac260d794cee3ed41e8dfff1ff2",
-      "currentSha256": "7fcf16ef912e887cfa7071acb78032e69954c7b16226d0337eb0d6e839780f3c",
+      "currentSha256": "7f27b850b652b6282f2adc2f338dbb68457aa5816d51318ac890bdfb3958f629",
       "reason": "Reconciled during AFM-003: renamed to v-flow-exais, upstream repository URL removed so this repo claims no ancestry it does not have, inherited prepare/lefthook lifecycle hook removed (AFM-005), new packages registered in the build order."
+    },
+    {
+      "path": "packages/cli/src/cli.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/cli/src/cli.ts",
+      "upstreamSha256": "3901a610a932d1e9152c628e4501e45f7baa73205dac92dc5cba6b810b284a5d",
+      "currentSha256": "bfacff0c63cdfbca484c86e73227edfe1e5c6c4ab7e46cbf68a4a851a967aa5c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/parsers/src/index.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/parsers/src/index.ts",
+      "upstreamSha256": "bf8751149211ff6c16b469a9ff5334b5d7659bacbb00f40d2697c2ac3e89daad",
+      "currentSha256": "e1ebe0df9bed2f27728e097ba17b40354ddd3d4aa651e1478813fbb28a66824c",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/src/services/deterministicFonts-retries.test.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/deterministicFonts-retries.test.ts",
+      "upstreamSha256": "802af6124ff931a7a1f5702e08b63f76dc2c4465b668685d541e5788163b41d3",
+      "currentSha256": "8202e24ca300dd1765681e86157eba7fcfcc47cc32aa4e184c6bd55d13a67cf4",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/src/services/deterministicFonts.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/deterministicFonts.ts",
+      "upstreamSha256": "2f2e85f7ce55ca09b89a6e033856ab5d3715ca1317c3e37441a1f8fe236fbb1a",
+      "currentSha256": "b6c19000ff25bc9e58a3ebe7f4aef8da7b3d753fb92971092b5a4c10b70fe9dc",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/src/services/htmlCompiler.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/htmlCompiler.ts",
+      "upstreamSha256": "9ce7e881c5787fefa4b1206c17e6748c278ad265bdc03ff60340b1e32d4ade7f",
+      "currentSha256": "5cf3d5f58b1002c46d8393671ed466a92563b697b381c0b222ef69372019860e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/producer/src/services/renderOrchestrator.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/producer/src/services/renderOrchestrator.ts",
+      "upstreamSha256": "dfba15ed54c652871f65176f2c2c104eca1688911c9de45e3fe6b72747459700",
+      "currentSha256": "f5a061fb92a8dcee192c559b76284759236ab650fa92a0e3f96def43a2027a79",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio-server/package.json",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio-server/package.json",
+      "upstreamSha256": "583d6a914fb6ce2fba26f7a6001f7d2b38d270d6d8a46e691874e2a7dfdaee2e",
+      "currentSha256": "7076c7051a1728f1d5bf489ab8ccdcdf071c161c2e908a9fb01473534460643f",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio-server/src/createStudioApi.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio-server/src/createStudioApi.ts",
+      "upstreamSha256": "f591dd2ee76e21ca7fb6df3743b5445eee8b6a0ecbe6e964497268c20390ead2",
+      "currentSha256": "779e0be0bd93ec9ec99e940a9f8cda84d45724840f1a03555b62fa69e50af415",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio-server/src/index.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio-server/src/index.ts",
+      "upstreamSha256": "8ca2377a8a3284cd6af6e31e21f12a6df1ba9811076a1be1162495cf333552fb",
+      "currentSha256": "7280b3cf9b42ebeed3765a0a553683f17af07043a7df911686503711a841bdbd",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio-server/src/types.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio-server/src/types.ts",
+      "upstreamSha256": "00110a3d3ef0a571e23e929734da8f3fe431169467df45e2e71f40b904a914b5",
+      "currentSha256": "1d28b0bb269f00f67065ed4569d5e8bc4040973d5e935ea28da8448ac703cd67",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio/package.json",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/package.json",
+      "upstreamSha256": "66ea3195f0264a1ab03d402c2ded2fcb8737a888331d35f38b285787cd19aa3e",
+      "currentSha256": "efc4baed4c12f4faca41c5be8d75ddcabd3a42eb4934f3f317b6210f042e6e56",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio/src/main.tsx",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/src/main.tsx",
+      "upstreamSha256": "abac0662eed044703c01935b57a31ed28fb58f520a4db05d7a146095859dacf6",
+      "currentSha256": "57f0d697476d709b3e65f81987ad4caab2351f694a24a0848fe5cce3e1738513",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio/vite.adapter.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/vite.adapter.ts",
+      "upstreamSha256": "fd4abf1921a12ea5b674923d41a1fdd32a0154392937929d8aa3db569c7e587d",
+      "currentSha256": "5d7e70a6284977f3293db124a6f55f23826a766418a843d57fdc9702180aa493",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio/vite.config.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/vite.config.ts",
+      "upstreamSha256": "7a3bc82818569b1b72fb2de2c39cb9cb50d4d1d6d4d9137f29d6d70a59d5431c",
+      "currentSha256": "4326518e36b96468d140da10c3bfead3ba6e78b1740f847fd0a5cf54d8cec983",
+      "reason": "owned change (no specific note recorded)"
     }
   ],
   "relocations": [
