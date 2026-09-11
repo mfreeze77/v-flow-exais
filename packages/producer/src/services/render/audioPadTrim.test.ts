@@ -326,7 +326,13 @@ describe("padOrTrimAudioToVideoFrameCount", () => {
     expect(result.error).toBe("synthetic correction stop");
     expect(calls).toHaveLength(2);
     const correctionArgs = calls[1]!;
-    expect(correctionArgs[correctionArgs.indexOf("-af") + 1]).toBe("volume=-2.500dB");
+    // A limiter ceiling, not a blanket gain cut. Measured peak +1.5 dBFS
+    // against a -1 dBFS delivery ceiling plus 0.5 dB overshoot margin gives a
+    // -4 dBFS limit, i.e. 0.630957 linear. The gain-cut form this replaced
+    // lowered the whole signal and moved integrated loudness by 5.9 LU.
+    expect(correctionArgs[correctionArgs.indexOf("-af") + 1]).toBe(
+      "alimiter=limit=0.630957:level=disabled",
+    );
     expect(correctionArgs[correctionArgs.indexOf("-t") + 1]).toBe("3.000000");
   });
 });

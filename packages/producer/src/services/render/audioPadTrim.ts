@@ -43,6 +43,14 @@ const AUDIO_DURATION_TOLERANCE_SECONDS = 0.001;
 /** Delivery headroom applied after every AAC encode in this stage. */
 export const AAC_DELIVERY_TRUE_PEAK_DBFS = -1;
 const MAX_TRUE_PEAK_CORRECTION_PASSES = 3;
+/**
+ * Headroom below the delivery ceiling when tightening the limiter.
+ *
+ * AAC encoding overshoots the limiter output, and the overshoot is
+ * level-dependent, so aiming exactly at the ceiling converges slowly. A
+ * small fixed margin converges in one pass at negligible loudness cost.
+ */
+const AAC_OVERSHOOT_MARGIN_DB = 0.5;
 
 export interface ProbeVideoFrameInfo {
   /** Number of video frames in the stream. */
@@ -116,12 +124,32 @@ export interface PadTrimAudioPlan {
   cleanupPaths: string[];
 }
 
+/**
+ * Constrains true peak with a look-ahead limiter rather than a blanket gain cut.
+ *
+ * This previously applied `volume=<attenuation>dB`, which lowers the entire
+ * signal to bring a few peaks under the ceiling — so integrated loudness fell by
+ * the full attenuation. Measured on ffmpeg 5.1.9, the delivered file landed
+ * 5.9 LU below source: peak-compliant, and a different mix.
+ *
+ * It also failed to converge sensibly. Each pass added the whole remaining
+ * deficit on the assumption that peak responds linearly to gain, but AAC
+ * encoding adds its own level-dependent overshoot — attenuating by 2.4 dB
+ * actually moved the measured peak *up*, from +1.4 to +2.3 dBFS. The next pass
+ * then compounded the correction to −5.7 dB and overshot the ceiling by 3.4 dB.
+ *
+ * `alimiter` reduces only what exceeds the ceiling, so loudness is preserved.
+ * `level=disabled` stops it from normalising the result back up, which would
+ * reintroduce the peaks it just removed.
+ */
 function buildAacTruePeakCorrectionArgs(
   inputPath: string,
   outputPath: string,
   targetDurationSeconds: number,
-  attenuationDb: number,
+  limitDbfs: number,
 ): string[] {
+  // alimiter takes a linear amplitude ceiling, not dBFS.
+  const limitLinear = 10 ** (limitDbfs / 20);
   return [
     "-i",
     inputPath,
@@ -129,7 +157,7 @@ function buildAacTruePeakCorrectionArgs(
     "0:a:0",
     "-vn",
     "-af",
-    `volume=${attenuationDb.toFixed(3)}dB`,
+    `alimiter=limit=${limitLinear.toFixed(6)}:level=disabled`,
     "-t",
     formatSeconds(targetDurationSeconds),
     "-c:a",
@@ -431,7 +459,10 @@ async function enforceAacTruePeak(
   try {
     scratchDir = mkdtempSync(join(dirname(input.audioPath), ".true-peak-"));
     const correctedPath = join(scratchDir, "audio.m4a");
-    let attenuationDb = 0;
+    // The limiter ceiling we ask for, which is lowered as needed. It is not a
+    // cumulative gain: each pass re-encodes from the original input, so the
+    // limiter is applied once, never stacked.
+    let limitDbfs = AAC_DELIVERY_TRUE_PEAK_DBFS;
     let measuredPath = input.audioPath;
     for (let pass = 0; pass <= MAX_TRUE_PEAK_CORRECTION_PASSES; pass += 1) {
       const truePeakDbfs = await input.probeTruePeak(measuredPath, input.signal);
@@ -444,13 +475,17 @@ async function enforceAacTruePeak(
       }
       if (pass === MAX_TRUE_PEAK_CORRECTION_PASSES) break;
 
-      attenuationDb += AAC_DELIVERY_TRUE_PEAK_DBFS - truePeakDbfs;
+      // Lower the limiter ceiling by however much the encoded result still
+      // exceeds the delivery ceiling, plus a small margin for AAC overshoot.
+      // Because the limiter only touches peaks, tightening it costs almost no
+      // integrated loudness — unlike the gain cut this replaced.
+      limitDbfs -= truePeakDbfs - AAC_DELIVERY_TRUE_PEAK_DBFS + AAC_OVERSHOOT_MARGIN_DB;
       const result = await input.runner(
         buildAacTruePeakCorrectionArgs(
           input.audioPath,
           correctedPath,
           input.targetDurationSeconds,
-          attenuationDb,
+          limitDbfs,
         ),
       );
       if (!result.success) {

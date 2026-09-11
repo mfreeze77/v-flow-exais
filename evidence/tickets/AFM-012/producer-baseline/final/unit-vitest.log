@@ -1,0 +1,163 @@
+# FINAL complete partition: unit / vitest
+# working tree at parent commit c5b22bc1dd4fd80d2879052c361b050a34796418 plus the audio and concat fixes
+# command: bun run test:unit:vitest
+
+$ node scripts/run-test-lane.mjs unit vitest
+[producer:unit/vitest] Selected 42 test files.
+  vitest src/logger.test.ts
+  vitest src/renderRequest.test.ts
+  vitest src/server.errorCode.test.ts
+  vitest src/server.extractionFailureMetadata.test.ts
+  vitest src/server.notMediaErrorCode.test.ts
+  vitest src/server.outputDynamicRange.test.ts
+  vitest src/services/distributed/planAudioCompat.test.ts
+  vitest src/services/hdrCompositor.test.ts
+  vitest src/services/htmlCompiler.fontEmbed.test.ts
+  vitest src/services/htmlCompiler.parity.test.ts
+  vitest src/services/hyperframeRuntimeLoader.test.ts
+  vitest src/services/mediaProbeConcurrency.test.ts
+  vitest src/services/render/artifactTransaction.test.ts
+  vitest src/services/render/audioPadTrim.integration.test.ts
+  vitest src/services/render/captureBeyondViewport.test.ts
+  vitest src/services/render/captureCost.heapAdvisory.test.ts
+  vitest src/services/render/capturePlan.test.ts
+  vitest src/services/render/cleanup.test.ts
+  vitest src/services/render/fallbackCaptureProfile.test.ts
+  vitest src/services/render/hdrMode.test.ts
+  vitest src/services/render/observability.test.ts
+  vitest src/services/render/perfSummary-dedup.test.ts
+  vitest src/services/render/perfSummary.test.ts
+  vitest src/services/render/renderEventPublisher.test.ts
+  vitest src/services/render/renderExecutionContext.test.ts
+  vitest src/services/render/renderFileLogger.test.ts
+  vitest src/services/render/stages/assembleStage.test.ts
+  vitest src/services/render/stages/audioStage.test.ts
+  vitest src/services/render/stages/captureHdrFrameShared.dom-mask.test.ts
+  vitest src/services/render/stages/captureHdrFrameShared.test.ts
+  vitest src/services/render/stages/captureHdrResources.test.ts
+  vitest src/services/render/stages/captureStage.test.ts
+  vitest src/services/render/stages/compileStage.test.ts
+  vitest src/services/render/stages/extractVideosStage.test.ts
+  vitest src/services/render/stages/extractVideosStage.timelineBound.test.ts
+  vitest src/services/render/videoFrameCoverage.test.ts
+  vitest src/services/renderOrchestrator.test.ts
+  vitest src/services/shaderTransitionWorkerPool.test.ts
+  vitest src/services/windowsFrameStaging.test.ts
+  vitest src/utils/errorMessage.test.ts
+  vitest src/utils/ffprobeArgvContract.test.ts
+  vitest src/utils/paths.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/packages/producer[39m
+
+ [32m✓[39m src/logger.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/services/hyperframeRuntimeLoader.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 752[2mms[22m[39m
+     [33m[2m✓[22m[39m returns env var when PRODUCER_HYPERFRAME_MANIFEST_PATH is set [33m 742[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/assembleStage.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/services/render/cleanup.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/services/render/capturePlan.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/services/render/fallbackCaptureProfile.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 7[2mms[22m[39m
+ [32m✓[39m src/services/render/perfSummary.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/services/render/videoFrameCoverage.test.ts [2m([22m[2m39 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+ [32m✓[39m src/services/render/observability.test.ts [2m([22m[2m17 tests[22m[2m)[22m[32m 24[2mms[22m[39m
+ [32m✓[39m src/services/render/hdrMode.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/audioStage.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+ [32m✓[39m src/services/render/artifactTransaction.test.ts [2m([22m[2m16 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/services/render/renderExecutionContext.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+[90mstderr[2m | src/server.extractionFailureMetadata.test.ts[2m > [22m[2mserver extraction failure metadata[2m > [22m[2memits the bounded top-level contract in blocking JSON
+[22m[39m[INFO] render started {"requestId":"extraction-failure-test","projectDir":"/tmp/producer-project-rzxugd","fps":{"num":30,"den":1},"quality":"high"}
+
+[90mstderr[2m | src/server.extractionFailureMetadata.test.ts[2m > [22m[2mserver extraction failure metadata[2m > [22m[2memits the bounded top-level contract in blocking JSON
+[22m[39m[ERROR] render failed {"requestId":"extraction-failure-test","durationMs":5,"error":"Video extraction failed","stage":"video_extract"}
+
+ [32m✓[39m src/renderRequest.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2mmaps auto through createRenderRequest to internal hdrMode auto
+[22m[39m[INFO] render-stream started {"requestId":"hdr-mode-test","projectDir":"/tmp/producer-project-3UpUDo"}
+
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2mmaps auto through createRenderRequest to internal hdrMode auto
+[22m[39m[INFO] render-stream completed {"requestId":"hdr-mode-test","fileSize":0,"perf":null}
+
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2mmaps hdr through createRenderRequest to internal hdrMode force-hdr
+[22m[39m[INFO] render-stream started {"requestId":"hdr-mode-test","projectDir":"/tmp/producer-project-cs4lC6"}
+
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2mmaps hdr through createRenderRequest to internal hdrMode force-hdr
+[22m[39m[INFO] render-stream completed {"requestId":"hdr-mode-test","fileSize":0,"perf":null}
+
+[90mstderr[2m | src/server.extractionFailureMetadata.test.ts[2m > [22m[2mserver extraction failure metadata[2m > [22m[2memits the same bounded top-level contract in SSE
+[22m[39m[INFO] render-stream started {"requestId":"extraction-failure-test","projectDir":"/tmp/producer-project-3cqssE"}
+
+[90mstderr[2m | src/server.extractionFailureMetadata.test.ts[2m > [22m[2mserver extraction failure metadata[2m > [22m[2memits the same bounded top-level contract in SSE
+[22m[39m[ERROR] render-stream failed {"requestId":"extraction-failure-test","elapsedMs":3,"error":"Video extraction failed","stage":"video_extract"}
+
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2mmaps sdr through createRenderRequest to internal hdrMode force-sdr
+[22m[39m[INFO] render-stream started {"requestId":"hdr-mode-test","projectDir":"/tmp/producer-project-GIKSy3"}
+
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2mmaps sdr through createRenderRequest to internal hdrMode force-sdr
+[22m[39m[INFO] render-stream completed {"requestId":"hdr-mode-test","fileSize":0,"perf":null}
+
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2maccepts the matching legacy field during rolling deployment
+[22m[39m[INFO] render-stream started {"requestId":"hdr-mode-test","projectDir":"/tmp/producer-project-zYL6aR"}
+
+[90mstderr[2m | src/server.outputDynamicRange.test.ts[2m > [22m[2mPOST /v1/render-stream — outputDynamicRange[2m > [22m[2maccepts the matching legacy field during rolling deployment
+[22m[39m[INFO] render-stream completed {"requestId":"hdr-mode-test","fileSize":0,"perf":null}
+
+[90mstderr[2m | src/server.extractionFailureMetadata.test.ts[2m > [22m[2mserver extraction failure metadata[2m > [22m[2mdoes not impose a caller-specific schema on public metadata
+[22m[39m[INFO] render started {"requestId":"extraction-failure-test","projectDir":"/tmp/producer-project-44azqt","fps":{"num":30,"den":1},"quality":"high"}
+
+[90mstderr[2m | src/server.extractionFailureMetadata.test.ts[2m > [22m[2mserver extraction failure metadata[2m > [22m[2mdoes not impose a caller-specific schema on public metadata
+[22m[39m[ERROR] render failed {"requestId":"extraction-failure-test","durationMs":1,"error":"Video extraction failed","stage":"video_extract"}
+
+ [32m✓[39m src/server.extractionFailureMetadata.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 31[2mms[22m[39m
+ [32m✓[39m src/server.outputDynamicRange.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 32[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/captureHdrFrameShared.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/utils/errorMessage.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/utils/paths.test.ts [2m([22m[2m23 tests[22m[2m)[22m[32m 6[2mms[22m[39m
+ [32m✓[39m src/services/render/captureBeyondViewport.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/services/shaderTransitionWorkerPool.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1409[2mms[22m[39m
+ [32m✓[39m src/services/htmlCompiler.fontEmbed.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/compileStage.test.ts [2m([22m[2m13 tests[22m[2m)[22m[32m 76[2mms[22m[39m
+ [32m✓[39m src/services/mediaProbeConcurrency.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 23[2mms[22m[39m
+[90mstderr[2m | src/services/windowsFrameStaging.test.ts[2m > [22m[2mWindows link fallbacks[2m > [22m[2mcopies only after the junction is rejected with EPERM
+[22m[39m[INFO] [Render] Linking extracted frames was rejected (EPERM); copying them into the compiled dir instead.
+
+ [32m✓[39m src/services/windowsFrameStaging.test.ts [2m([22m[2m11 tests[22m[2m | [22m[33m1 skipped[39m[2m)[22m[32m 46[2mms[22m[39m
+ [32m✓[39m src/services/render/renderFileLogger.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/services/distributed/planAudioCompat.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/extractVideosStage.timelineBound.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+ [32m✓[39m src/server.errorCode.test.ts [2m([22m[2m7 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+ [32m✓[39m src/services/render/renderEventPublisher.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+ [32m✓[39m src/services/render/perfSummary-dedup.test.ts [2m([22m[2m12 tests[22m[2m)[22m[32m 23[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/extractVideosStage.test.ts [2m([22m[2m20 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+[90mstderr[2m | src/services/renderOrchestrator.test.ts[2m > [22m[2mmaterializeExtractedFramesForCompiledDir[2m > [22m[2mfalls back to copying frames when symlinkSync fails with EPERM (Windows, no Developer Mode)
+[22m[39m[INFO] [Render] Linking extracted frames was rejected (EPERM); copying them into the compiled dir instead.
+
+[90mstderr[2m | src/services/renderOrchestrator.test.ts[2m > [22m[2mwriteCompiledArtifacts — external assets on Windows drive-letter paths (GH #321)[2m > [22m[2mrejects a maliciously crafted key that tries to escape compileDir
+[22m[39m[Render] Skipping external asset with unsafe path: hf-ext/../../etc/passwd
+
+[90mstderr[2m | src/services/renderOrchestrator.test.ts[2m > [22m[2mresolveRenderWorkerCount[2m > [22m[2muses measured capture cost when static hints miss an expensive composition
+[22m[39m[WARN] [Render] Reduced auto worker count for high-cost capture workload to avoid Chrome compositor starvation. {"from":5,"to":1,"costMultiplier":4,"reasons":["calibration-p95=2400ms"]}
+
+ [32m✓[39m src/services/renderOrchestrator.test.ts [2m([22m[2m207 tests[22m[2m)[22m[32m 113[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/captureHdrFrameShared.dom-mask.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 5[2mms[22m[39m
+ [32m✓[39m src/services/hdrCompositor.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/services/render/captureCost.heapAdvisory.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/server.notMediaErrorCode.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 3[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/captureStage.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 4[2mms[22m[39m
+ [32m✓[39m src/services/render/audioPadTrim.integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 2483[2mms[22m[39m
+     [33m[2m✓[22m[39m normalizes a tiny raw-ADTS pad without an oversized terminal packet [33m 1496[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the delivered AAC below its true-peak ceiling [33m 986[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/captureHdrResources.test.ts [2m([22m[2m35 tests[22m[2m)[22m[33m 938[2mms[22m[39m
+[90mstderr[2m | src/services/htmlCompiler.parity.test.ts[2m > [22m[2mpreview/render semantic compilation parity[2m > [22m[2mkeeps legacy end/layer timing semantically identical
+[22m[39m[StaticGuard] Invalid HyperFrame contract: <div id="legacy"> uses data-layer instead of data-track-index.; <div id="legacy"> uses data-end without data-duration. Use data-duration in source HTML.
+
+[90mstderr[2m | src/services/htmlCompiler.parity.test.ts[2m > [22m[2mmount/compile assembly parity[2m > [22m[2massembles 'an anonymous host scoping to the id i…' identically on all three paths
+[22m[39m[StaticGuard] Invalid HyperFrame contract: Composition host for "compositions/card.html" is missing `data-composition-id`.
+
+ [32m✓[39m src/services/htmlCompiler.parity.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 332[2mms[22m[39m
+ [32m✓[39m src/utils/ffprobeArgvContract.test.ts [2m([22m[2m73 tests[22m[2m)[22m[32m 143[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m42 passed[39m[22m[90m (42)[39m
+[2m      Tests [22m [1m[32m666 passed[39m[22m[2m | [22m[33m1 skipped[39m[90m (667)[39m
+[2m   Start at [22m 17:29:30
+[2m   Duration [22m 29.91s[2m (transform 138.17s, setup 0ms, import 221.90s, tests 6.69s, environment 278ms)[22m
+
+EXIT=0

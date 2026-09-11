@@ -1,180 +1,153 @@
 # Producer regression baseline
 
-**Commit:** `81ae028adfdce3a56f78cfa53e9833c08308f0d4` (partition runs)
 **Image:** `v-flow-exais:dev` — node v22.23.2, bun 1.3.13, ffmpeg 5.1.9-0+deb12u1,
 chrome-headless-shell 148.0.7778.167, Debian 12.15
-**Method:** each partition run standalone. No chaining, so a failure in one could
-not prevent learning anything about the others.
+**Method:** each partition run standalone, never chained, so a failure in one
+could not prevent learning anything about the others.
 
-## Inventory, regenerated at this commit
+## Final result — all four partitions complete, one tree
 
+Logs in `final/`.
+
+| Partition | Exit | Files | Cases passed | Cases failed | Unlaunched |
+|---|---|---|---|---|---|
+| unit / bun | **0** | 42/42 | 660 | 0 | none |
+| unit / vitest | **0** | 42/42 | 666 | 0 | none |
+| integration / bun | **0** | 10/10 | 175 | 0 | none |
+| integration / vitest | **0** | 9/9 | 77 | 0 | none |
+
+**103 of 103 selected files launched and passed. 1,578 test cases.**
+
+Inventory regenerated at the tested commit:
 `{"total":103,"unit":{"bun":42,"vitest":42},"integration":{"bun":10,"vitest":9}}`
 
-Matches the previously recorded counts exactly. **These are selection counts,
-not execution results.**
+Earlier runs are retained in the parent directory. A later passing run does not
+retroactively make an earlier failing run pass, and the originals show what the
+inherited producer actually did before the fixes.
 
-## Results
+## The three failures, and how each was resolved
 
-| Partition | Exit | Selected | Launched | Files passed | Files failed | Cases passed | Cases failed |
-|---|---|---|---|---|---|---|---|
-| unit / bun | **0** | 42 | 42 | 42 | 0 | 660 | 0 |
-| unit / vitest | **1** | 42 | 42 | 40 | 2 | — | 2 |
-| integration / bun | **1** | 10 | **3** | 2 | 1 | 30 | 1 |
-| integration / vitest | **0** | 9 | 9 | 9 | 0 | 77 | 0 |
+### 1. ffprobe argv contract — confirmed integration regression
 
-After the ffprobe caller fix below, unit/vitest was rerun and reports exact
-aggregates: **665 passed, 1 failed, 1 skipped, 667 total, 41 of 42 files
-passing**. The 1 skipped case is recorded as skipped, not as passed.
+`packages/studio-server/src/project/projectBatch.ts` is **new code in this
+repository**, not imported. It built its ffprobe argv without `--` before the
+input path, so a media file named `-foo.mp4` would be parsed as an option.
 
-## CORRECTION: integration/bun left 7 files unlaunched
+The assertion was preserved; the caller was fixed.
 
-An earlier version of this document claimed *"no files were left unlaunched in
-any partition"*. **That was wrong**, and it contradicted a log committed in this
-same directory. The runner states its own verdict plainly:
+### 2. Concat chunk-boundary timing — confirmed defect in inherited code
 
 ```
-[producer:integration/bun] Selected 10 test files.
-[producer:integration/bun] Runner exited 1; 7 selected files not launched.
+expected r_frame_rate "30/1", received "30000/1001"
 ```
 
-The partition is fail-fast: `assemble.test.ts` failed and the run stopped. Only
-**3 of 10** files launched — 2 passing, 1 failing.
+The concat list was written as bare `file '<path>'` lines with **no `duration`
+directives**, so the demuxer positioned each next input using the container's
+*rounded* duration: a 5-frame 30fps chunk reports `0.167000`, not `0.166667`.
+Chunk 2 therefore started 5 ticks late at time base 1/15360, and the irregular
+gap made ffmpeg derive `30000/1001`.
 
-The error was mine, and instructive: reporting unlaunched files is exactly the
-capability merged in PR #1. It printed the answer in plain English and I counted
-`Ran … across` summaries with a regex instead of reading the runner's verdict. A
-derived count was trusted over the tool's own statement.
+Measured here on our own ffmpeg 5.1.9:
 
-**The 7 files were then run independently** — see
-`integration-bun-unlaunched.log`. All 7 pass: **144 cases, 0 failed, 0 skipped**.
+| variant | final `r_frame_rate` | packet 6 PTS |
+|---|---|---|
+| original | `30000/1001` | 0.166992 |
+| output-`r`-only | `30000/1001` | 0.166992 |
+| **frame-derived duration** | **`30/1`** | **0.166667** |
+| rounded-duration control | `30000/1001` | 0.166992 |
 
-| Previously unlaunched file | Result |
-|---|---|
-| `src/services/distributed/chunkBoundary.test.ts` | pass |
-| `src/services/distributed/crossWorkerIdempotency.test.ts` | pass |
-| `src/services/distributed/plan.test.ts` | pass |
-| `src/services/distributed/planSizeCap.test.ts` | pass |
-| `src/services/distributed/renderChunk.test.ts` | pass |
-| `src/services/fileServer.test.ts` | pass |
-| `src/services/htmlCompiler.naturalDuration.test.ts` | pass |
+At 24000/1001 the original degrades further, to `287/12`.
 
-The fail-fast runner was **not** modified to make this report look complete, and
-the original fail-fast log is retained unchanged.
+Two things this settles. **The input-side `-r` does not prevent it** — the
+`-r`-only variant still produced `30000/1001`, so adding frame-rate flags would
+have been the wrong fix. And the upstream comment sitting beside that flag shows
+it was an attempt at this same problem: a known-needed, insufficient mitigation.
 
-## Coverage caveat: two macOS font checks pass without exercising macOS
+**Fix:** derive each entry's `duration` from validated chunk frame ranges and the
+plan's rational rate — `frames × fpsDen / fpsNum` at full precision. No
+re-encode, no new flags. The timestamps are corrected, not the metadata label.
 
-In `deterministicFonts-systemCapture.test.ts`, cases print
-
-```
-Skipping: /System/Library/Fonts/Supplemental/Impact.ttf not available
-```
-
-and return early, yet Bun records them as `(pass)`. They are counted among the
-passing cases above but are **not** evidence that macOS system-font capture
-works. That behaviour is unverified on this platform.
-
-## Failures, classified by evidence
-
-Classification rests on whether the implicated source differs from the imported
-upstream bytes — not on where the test originated.
-
-### 1. `src/utils/ffprobeArgvContract.test.ts` — confirmed integration regression — FIXED
-
-```
-packages/studio-server/src/project/projectBatch.ts:
-  "--" must be immediately before the input
-```
-
-`projectBatch.ts` is **new code in this repository**, not imported from upstream.
-It built `["-v","error","-count_frames","-show_streams","-show_format","-of",
-"json", path]` with no `--`, so a media file whose name begins with `-` would be
-parsed as an option rather than as the file to probe.
-
-The assertion was **not** weakened; the caller was fixed. Focused rerun:
-**73/73**. Full-partition rerun: 2 failing files → 1, recorded in
-`unit-vitest-after-fix.log`. The original failing run is retained in
-`unit-vitest.log`; a later passing run does not retroactively make it pass.
-
-### 2. `src/services/distributed/assemble.test.ts` — not yet classified
-
-```
-concat-copies two mp4 chunks and applies faststart
-expected videoStream.r_frame_rate to be "30/1", received "30000/1001"
-```
-
-Both `assemble.ts` and `assemble.test.ts` are byte-identical to the imported
-upstream, so our edits did not cause this. That alone does not make it inherited.
-
-`assemble.ts` does pass `-r fpsArg` on the concat path — **but its presence does
-not prove the packet timestamps carry the required cadence.** Output `-r` during
-stream copy neither drops nor duplicates frames, so it can disagree with the
-actual timestamps, and the concat demuxer positions each input using its
-declared duration.
-
-An independent experiment reproduced this exact fraction: concatenating two
-5-frame 30fps chunks whose durations were declared as rounded `0.167` seconds
-produced **`30000/1001`**, while frame-derived durations produced `30/1`. At
-time base 1/15360 the second chunk should start at 2560 ticks; the rounded case
-started it at 2565, with the preceding packet lasting 517 ticks instead of 512.
-
-That is a controlled reproduction of a plausible mechanism, **not proof** that
-the ffmpeg 5.1.9 failure here has the same cause. The cheap next experiment is
-to preserve the chunks and concat intermediate and compare container durations,
-stream durations, packet timestamps, packet durations and time bases — before
-changing ffmpeg versions or adding frame-rate flags. A metadata-only fix that
-leaves timing wrong would not satisfy the contract.
-
-### 3. `src/services/render/audioPadTrim.integration.test.ts` — not yet classified
+### 3. AAC delivery loudness — confirmed defect in inherited code
 
 ```
 audio pad real-media packet contract > keeps the delivered AAC below its true-peak ceiling
 AssertionError: expected 5.9 to be less than or equal to 3   (line 179)
 ```
 
-**CORRECTION: this is not a true-peak failure.** An earlier version of this
-document took the test's *title* as the diagnosis. The test asserts three things
-in order, and line 179 is the third:
+**This was never a true-peak failure.** The test asserts three things and line
+179 is the third; the delivered-peak assertion on line 176 **passed**. `5.9` is
+an integrated-loudness delta in **LU**, not a peak in dBFS.
 
-```ts
-expect(sourceLevel.truePeakDbfs).toBeCloseTo(-1.5, 1);                 // passed
-expect(deliveredLevel.truePeakDbfs).toBeLessThanOrEqual(-1);           // passed
-expect(Math.abs(deliveredLevel.integratedLufs
-              - sourceLevel.integratedLufs)).toBeLessThanOrEqual(3);   // FAILED
-```
+The correction applied `volume=<attenuation>dB` — a blanket gain cut across the
+whole signal to bring a few peaks under the ceiling, so integrated loudness fell
+by the full attenuation. It also could not converge, because each pass added the
+entire remaining deficit on the assumption that peak responds linearly to gain.
+It does not: AAC encoding adds a level-dependent overshoot.
 
-The delivered-peak assertion **passed**. `5.9` is an **integrated-loudness delta
-in LU**, not a true peak in dBFS. The engineering question is therefore not "why
-did the limiter fail" but **"why does reaching the peak ceiling shift overall
-loudness by more than 3 LU?"**
+Measured on ffmpeg 5.1.9:
 
-An independent reproduction on a different ffmpeg build (7.1.5) showed the same
-failure pattern — cumulative correction gains of −3.6, −4.5 and −5.9 dB, final
-loudness delta 6.1. That does not rule out build variation, but it does mean
-**upgrading ffmpeg is not an established fix**.
+| pass | attenuation | integrated LUFS | true peak dBFS |
+|---|---|---|---|
+| 0 (trimmed) | 0.0 dB | 1.7 | **+1.4** |
+| 1 | −2.4 dB | −0.7 | **+2.3** ← peak *rose* |
+| 2 | −5.7 dB | −4.0 | −4.4 |
 
-Next step is stage-level measurement in the pinned container: source PCM, mixed
-AAC, trim output, each correction candidate, delivered media — the implementation
-re-encodes during both duration and peak correction, so those are the boundaries
-to inspect. Both requirements must hold: safe delivered peak **and** loudness
-preservation. Neither may be relaxed to satisfy the other.
+Attenuating by 2.4 dB moved the measured peak **up**. The next pass compounded
+to −5.7 dB and undershot the ceiling by 3.4 dB, taking loudness with it.
 
-There is no reason to assume failures 2 and 3 share a cause.
+This reproduces on ffmpeg 5.1.9 (5.9) and on 7.1.5 (6.1), so it is not build
+variation and an ffmpeg upgrade would not have fixed it.
 
-## What this baseline does and does not establish
+**Fix:** a look-ahead limiter, which reduces only what exceeds the ceiling —
+`alimiter=limit=<linear>:level=disabled`. `level=disabled` matters: the default
+normalises the result back up, reintroducing the peaks just removed. The loop
+lowers a limiter ceiling rather than accumulating gain, with a 0.5 dB margin for
+AAC overshoot, and each pass re-encodes from the original input so limiting is
+never stacked.
 
-**Does:** every selected file now has execution evidence — 96 of 103 from the
-partition runs, plus the 7 from independent follow-up runs. unit/bun is green at
-660 cases, integration/vitest at 77, the follow-up files at 144. One failure was
-a regression from our own new code and is fixed.
+Both requirements hold and neither assertion was weakened.
 
-**Does not:** prove the producer works. Two media failures remain unexplained,
-and an unexplained failure is not a passing one. The closing evidence this still
-needs is a **complete rerun of the affected partitions against one final commit**
-— the present state is one fail-fast partition plus separate follow-up runs.
+## Corrections made to this document
 
-A caution on attribution: byte-identical source establishes that *those files*
-were not edited. It does not exclude every effect of the fork — dependencies,
-helpers, export resolution, configuration and native tool builds can all differ.
+Two reporting errors of mine, both caught in external review:
+
+1. **It claimed no files were left unlaunched.** The fail-fast integration/bun
+   run had left **7 of 10** unlaunched, and said so plainly:
+   `Runner exited 1; 7 selected files not launched`. I counted `Ran … across`
+   summaries with a regex instead of reading the runner's own verdict —
+   trusting a derived count over the tool's statement. Reporting unlaunched
+   files is precisely the capability merged in PR #1.
+
+2. **It diagnosed the audio failure as a true-peak failure**, taking the test's
+   title rather than reading which assertion failed.
+
+The 7 files were run independently at the time, and now launch in the normal
+partition because the fail-fast *cause* is gone. The runner was never modified
+to make a report look complete.
+
+## Known coverage gaps — passing is not always covering
+
+- **macOS system-font capture is unverified.** Two cases in
+  `deterministicFonts-systemCapture.test.ts` print
+  `Skipping: /System/Library/Fonts/… not available`, return early, and Bun
+  records them as `(pass)`. They count among the passing cases above but
+  demonstrate nothing about macOS behaviour.
+- **`alimiter` is a dynamics processor.** It changes audio character, not only
+  level. Both assertions hold, but nothing here evaluates perceptual quality;
+  that warrants a human listen before shipping.
+- **Attribution.** Byte-identical source establishes that *those files* were not
+  edited — not that every effect of the fork is excluded. Dependencies, helpers,
+  export resolution, configuration and native tool builds can all still differ.
+
+## What this establishes, and what it does not
+
+**Does:** every selected producer test file launches and passes in the supported
+environment, and two genuine defects in inherited code were diagnosed to
+mechanism and fixed without weakening any assertion.
+
+**Does not:** prove the producer works, or complete AFM-012. Passing the
+inherited suites is not the same as the product being correct, and AFM-012's
+package-boundary and reporting requirements are separate from its test results.
 
 ## Reproducing
 
@@ -183,11 +156,9 @@ docker compose run --rm workspace bash -lc \
   'cd packages/producer && bun run test:unit:bun'
 ```
 
-Run each partition separately (`test:unit:bun`, `test:unit:vitest`,
-`test:integration:bun`, `test:integration:vitest`). Focused diagnosis of one file:
+Run each partition separately: `test:unit:bun`, `test:unit:vitest`,
+`test:integration:bun`, `test:integration:vitest`. Focused single file:
 
 ```sh
-node scripts/run-test-lane.mjs integration bun src/services/distributed/plan.test.ts
+node scripts/run-test-lane.mjs integration bun src/services/distributed/assemble.test.ts
 ```
-
-Logs in this directory carry the commit, exact command, full output and exit code.
