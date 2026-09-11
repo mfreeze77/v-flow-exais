@@ -1,0 +1,116 @@
+{
+  "ticketId": "AFM-003",
+  "title": "Initialize and populate the new owned monorepo",
+  "status": "verified",
+  "commit": "8bae64a",
+  "date": "2026-09-10",
+  "environment": {
+    "execution": "docker compose run --rm workspace",
+    "image": "v-flow-exais:dev",
+    "bun": "1.3.13",
+    "node": "v22.23.2"
+  },
+  "commands": [
+    {
+      "invocation": "bun run tools/import/apply-cli.ts --dry-run",
+      "exitCode": 2,
+      "result": "4 conflicts reported, nothing written (non-destructive refusal)"
+    },
+    {
+      "invocation": "bun run tools/import/apply-cli.ts --reconcile package.json,bun.lock --supersede .gitignore,.gitattributes",
+      "exitCode": 0,
+      "result": "7784 written, 2 superseded, 0 conflicts",
+      "durationSeconds": 246
+    },
+    {
+      "invocation": "bun install",
+      "exitCode": 0,
+      "result": "1555 packages, no lifecycle hook fired"
+    },
+    {
+      "invocation": "bun run test:acceptance",
+      "exitCode": 0,
+      "result": "74 passed, 0 failed across 3 files (AFM-001 31, AFM-002 22, AFM-003 21)",
+      "logPath": "evidence/tickets/AFM-003/test.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "provenance/import-receipt.json",
+      "sha256": "d2ddcb20e21388e4a1b433cdfc356492eeace2255963ac142331d3057bdbe6d7",
+      "type": "import-receipt"
+    },
+    {
+      "path": "tools/import/apply.ts",
+      "sha256": "1b1b22018b1da1906f39a0135934dd4518097ca96f9877f52cc02d8cff1ccbfc",
+      "type": "source"
+    },
+    {
+      "path": "tools/import/apply-cli.ts",
+      "sha256": "82a45185f7250a2b61be1bc81ea818f2fda1fd7d4faab6305cde50cd861bd119",
+      "type": "source"
+    },
+    {
+      "path": "evidence/tickets/AFM-003/test.log",
+      "type": "test-log"
+    }
+  ],
+  "importSummary": {
+    "planned": 7786,
+    "written": 7784,
+    "superseded": 2,
+    "conflicts": 0,
+    "trackedInGit": 7784,
+    "executableBitsPreserved": 28,
+    "symlinksPreserved": 1,
+    "workspacePackages": 16,
+    "nestedRepositories": 0
+  },
+  "acceptanceResults": [
+    {
+      "criterion": "The repo builds without sibling raw folders, submodules or globally installed upstream CLIs once workspace reconciliation is complete.",
+      "met": "partial",
+      "evidence": "bun install resolves 1555 packages entirely from the imported workspace with no reference to _sources/ and no global CLI. No submodules and no nested .git exist. Full `bun run build` is deliberately NOT claimed here: the four new packages (project-model, diagram-motion and the diagram-engine/viewer package manifests) do not exist yet, and workspace reconciliation is E02's scope, which this ticket's own wording defers to."
+    },
+    {
+      "criterion": "Inputs retain their original inventory hashes.",
+      "met": true,
+      "evidence": "Sources are chmod a-w on the host and bind-mounted :ro. The import reads from the ZIPs and never opens a source folder for writing. AFM-001's baseline comparison re-runs clean in the same suite."
+    },
+    {
+      "criterion": "The import is resumable and never fabricates upstream Git ancestry or pushes a remote.",
+      "met": true,
+      "evidence": "Resume is keyed to the ledger digest: a matching receipt skips completed entries, a mismatched one redoes everything rather than mixing plans. Both paths are tested. The receipt records gitHistory=not_initialized_by_import, upstreamAncestry=not_fabricated, remote=none_configured; the root manifest's upstream repository URL was removed. No remote is configured and nothing was pushed."
+    }
+  ],
+  "findings": [
+    {
+      "id": "AFM-003-F1",
+      "severity": "resolved",
+      "summary": "Unanchored .gitignore rules silently dropped 48 imported files.",
+      "detail": "`renders/` matched packages/studio/src/components/renders/, hiding 16 real Studio source files; `.claude/` hid 26 imported reference files under docs/upstream/; `_archive/` hid 6 skill templates. All were on disk but untracked, so they would have been absent from the handoff archive while appearing to import cleanly.",
+      "consequence": "Root-scoped ignore rules are now anchored with a leading slash. Reconciliation of receipt.written against git ls-files is now an assertion, not a spot check."
+    },
+    {
+      "id": "AFM-003-F2",
+      "severity": "resolved",
+      "summary": "Windows git dropped all 28 executable bits and refused the symlink.",
+      "detail": "core.filemode defaults to false on Windows, so no file was recorded as mode 100755. Windows git also could not add the upstream symlink at all ('could not open directory ... Function not implemented').",
+      "consequence": "Both are now driven from the ledger rather than from the filesystem: update-index --chmod=+x for the 28 executables, and a mode 120000 blob for the symlink. Verified 28 and 1 in the index."
+    },
+    {
+      "id": "AFM-003-F3",
+      "severity": "resolved",
+      "summary": "Removing the root prepare script did not stop inherited git hooks.",
+      "detail": "The lefthook dependency installs pre-commit and commit-msg into .git/hooks from its own postinstall during bun install. The hooks fired on the next commit and hardcode a container path (/workspace/node_modules/...), so they fail on the host and would run an unreviewed toolchain in the container.",
+      "consequence": "core.hooksPath redirected to a repository-owned .githooks/. Handled under AFM-005, which owns automation quarantine."
+    }
+  ],
+  "skippedTests": [],
+  "blockers": [],
+  "notPerformed": [
+    "Full `bun run build` of the workspace. The new packages do not exist yet; workspace reconciliation and baseline verification are E02 (AFM-009 onward).",
+    "No remote was created, configured or pushed to. No package was published."
+  ],
+  "review": null
+}

@@ -16,6 +16,20 @@ docker compose run --rm workspace bash
 
 Renders use the pinned `chrome-headless-shell` from the image. Do not bump it casually: each Chrome stable bump shifts pixel output enough to fail PSNR against the golden baselines, so a bump means regenerating baselines in the same commit.
 
+### Clean up after yourself
+
+This machine hosts several other Docker projects. Leaving containers, dangling
+images and build cache behind fills the disk.
+
+- **Always `docker compose run --rm`.** Never leave a container behind.
+- After a batch of work: `docker image prune -f && docker builder prune -f`.
+  Both only remove unreferenced layers.
+- **Never `docker volume prune` or `docker system prune -a`.** Other projects'
+  database volumes live on this host, and `v-flow-exais_workspace-node-modules`
+  / `v-flow-exais_bun-cache` are load-bearing here.
+- Check with `docker system df`; scope anything destructive with
+  `--filter name=v-flow-exais`.
+
 ## Rules
 
 - **`_sources/` is frozen.** It is the read-only provenance baseline for drift detection and source-anchor lookups. Nothing imports it, nothing builds from it, and the repo must build with it absent. The product owns its copy under `packages/` — that is the code you edit.
