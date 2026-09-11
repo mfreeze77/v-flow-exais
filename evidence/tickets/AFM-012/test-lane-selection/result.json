@@ -1,0 +1,118 @@
+{
+  "ticketId": "AFM-012",
+  "component": "Focused producer test-lane selection",
+  "status": "in_progress",
+  "date": "2026-09-11",
+  "baseCommit": "ce6275dc947e5c000ed9c904a03792ba17f20e0d",
+  "codeCommit": "81b7b53631287d61743e408b1c327c29dd631e69",
+  "scope": "Bounded implementation of standardizing test entry scripts. Does not close AFM-012 or a product gate.",
+  "environment": {
+    "execution": "Linux assistant sandbox container, not the project Docker image",
+    "node": "v22.16.0",
+    "platform": "linux/x64",
+    "bunAvailable": false,
+    "dockerAvailable": false
+  },
+  "sourceMaterialization": "Relevant unchanged input bytes were recovered from the uploaded source snapshot and matched to current GitHub blob SHAs. This was not a complete fresh checkout or dependency install.",
+  "implemented": [
+    "Exact classified file/directory selection with optional runner and --list planning.",
+    "Reject missing, wrong-lane/runner, empty or invalid selections before launching.",
+    "Absolute Vitest filters with collision rejection; explicit Bun file paths with per-file isolation.",
+    "Preserve exit codes and report selected-but-unlaunched files on failure.",
+    "Wire the new Node tests into the existing classification command; no lane assignments or dependency versions changed."
+  ],
+  "commands": [
+    {
+      "invocation": "node --check packages/producer/scripts/run-test-lane.mjs",
+      "exitCode": 0
+    },
+    {
+      "invocation": "node --check packages/producer/scripts/test-lane-selection.mjs",
+      "exitCode": 0
+    },
+    {
+      "invocation": "NO_COLOR=1 NODE_DISABLE_COLORS=1 node --test --test-reporter=spec packages/producer/scripts/run-test-lane.test.mjs",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-012/test-lane-selection/test.log"
+    },
+    {
+      "invocation": "git apply --check /mnt/data/vflow-pr-work/producer-test-lane-selection.patch",
+      "cwd": "/mnt/data/vflow-pr-work/base",
+      "exitCode": 0,
+      "scope": "Patch application against the matched input-file subset, not a full repository build."
+    },
+    {
+      "invocation": "node /mnt/data/vflow-pr-work/compare-runners.mjs",
+      "exitCode": 0,
+      "scope": "Separate baseline/patched CLI processes; synthetic inventory and recorded child boundary. Result retained in before-after.json."
+    }
+  ],
+  "tests": {
+    "runner": "node:test",
+    "passed": 37,
+    "failed": 0,
+    "skipped": 0,
+    "scope": "Selection, dispatch and real Node CLI process wiring with synthetic inventory and recorded Bun/Vitest boundaries; NOT application-test passes."
+  },
+  "reviewedGitHubBlobMatches": [
+    {
+      "path": "packages/producer/scripts/run-test-lane.mjs",
+      "baseBlobSha": "8c22ca09ec0092206ae323842361cb8b158c2d99",
+      "blobSha": "33497692d90ce4f7f45c006cbcaa906296b99596",
+      "sha256": "19429a727da3f4613f2874de45bf1d553e59cda94ecd65b93ed0daf0252b043a",
+      "bytes": 2264,
+      "codeCommit": "81b7b53631287d61743e408b1c327c29dd631e69"
+    },
+    {
+      "path": "packages/producer/scripts/test-lane-selection.mjs",
+      "baseBlobSha": null,
+      "blobSha": "9cc16b2d91ecbaef7c3d6cee0b52d5e078edeacd",
+      "sha256": "02620091bc85d806a7bb9e9fa5dd1fbb2487a03c7cd2f6bc3843049138ef3ec6",
+      "bytes": 4652,
+      "codeCommit": "81b7b53631287d61743e408b1c327c29dd631e69"
+    },
+    {
+      "path": "packages/producer/scripts/run-test-lane.test.mjs",
+      "baseBlobSha": null,
+      "blobSha": "df28f1dec79c0d038510b6b64ac684c05ca2b12c",
+      "sha256": "611ab0623aab0e2aaa50fe3ed603a520806e68f057a3500d8ac9fc15614c759d",
+      "bytes": 13228,
+      "codeCommit": "81b7b53631287d61743e408b1c327c29dd631e69"
+    },
+    {
+      "path": "packages/producer/package.json",
+      "baseBlobSha": "7ab0bc379672b80dd3e17321d60401f52cd84854",
+      "blobSha": "4f97b9217bc9289cb39a6bb4fca64c11aec83c0e",
+      "sha256": "8ccc04d7b3e6e1f6f14e053b09d69ac8cc9f7f597627c7352794a034a51e4ba2",
+      "bytes": 5615,
+      "codeCommit": "81b7b53631287d61743e408b1c327c29dd631e69"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-012/test-lane-selection/test.log",
+      "bytes": 3473,
+      "sha256": "223e3ae1a3d08b29b3a03172df7a9af07ca807e8be11c8485a4168f75ca88896"
+    },
+    {
+      "path": "evidence/tickets/AFM-012/test-lane-selection/before-after.json",
+      "bytes": 937,
+      "sha256": "228de835f7c7026ca7fcd52d0ad28c84dfca5b7d48e6967efb433eee8f8486ce"
+    }
+  ],
+  "notRun": [
+    "Pinned Docker image checks: Bun and Docker are unavailable in this sandbox.",
+    "Actual Bun/Vitest producer test bodies and the inherited full classification corpus.",
+    "Full workspace install/build/typecheck and package-entry regression baseline.",
+    "oxfmt, oxlint and the broader fallow audit.",
+    "Browser, video rendering, native Windows/macOS and other product gate checks."
+  ],
+  "remainingAcceptance": [
+    "Run the documented focused command and full classified lanes in the pinned development image.",
+    "Run formatter/linter checks and reconcile any style changes before marking the PR ready.",
+    "Resolve the separate package-entry/build-order failures and ffprobe argument-contract failure.",
+    "Complete the other AFM-012 requirements and prerequisite tickets; do not infer completion from these 37 tests."
+  ],
+  "gatePassed": false,
+  "reviewNote": "A draft PR is appropriate until pinned-environment checks are recorded. Main is not modified or merged by this contribution."
+}

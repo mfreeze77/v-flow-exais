@@ -1,0 +1,59 @@
+$ node --check packages/producer/scripts/run-test-lane.mjs
+exitCode=0
+$ node --check packages/producer/scripts/test-lane-selection.mjs
+exitCode=0
+$ node --test --test-reporter=spec packages/producer/scripts/run-test-lane.test.mjs
+▶ producer lane arguments
+  ✔ keeps the no-selector unit/integration interface (1.375335ms)
+  ✔ parses file selection without requiring a runner (0.113ms)
+  ✔ accepts a separator and list-only planning (0.769872ms)
+  ✔ rejects malformed arguments [] (0.396027ms)
+  ✔ rejects malformed arguments ["browser"] (0.080862ms)
+  ✔ rejects malformed arguments ["unit","--watch"] (0.067662ms)
+  ✔ rejects malformed arguments ["unit","vitest","--"] (0.102204ms)
+  ✔ rejects malformed arguments ["unit",""] (0.133922ms)
+  ✔ rejects malformed arguments ["unit","--","--list"] (0.15241ms)
+✔ producer lane arguments (4.235491ms)
+▶ classified file selection
+  ✔ selects the requested file instead of the full Vitest lane (original regression) (0.4505ms)
+  ✔ retains both full-lane and runner-specific defaults (0.343138ms)
+  ✔ intersects directory selection with the selected lane and runner (0.228534ms)
+  ✔ deduplicates overlapping selectors without changing inventory order (0.738955ms)
+  ✔ accepts package-relative, repository-relative, absolute and backslash paths (0.327654ms)
+  ✔ accepts paths containing spaces as one argument (0.187152ms)
+  ✔ rejects missing, abbreviated and glob selectors rather than falling back (0.222486ms)
+  ✔ rejects one invalid selector even if another selector matches (0.167693ms)
+  ✔ rejects wrong-lane and wrong-runner files (0.179861ms)
+  ✔ rejects paths outside the producer package and control characters (0.146771ms)
+  ✔ fails rather than reports green when the requested lane is empty (0.121423ms)
+  ✔ does not mutate the inventory (0.283408ms)
+✔ classified file selection (3.736318ms)
+▶ runner invocation contract
+  ✔ uses absolute Vitest filters and prohibits automatic dependency installation (0.336637ms)
+  ✔ preserves a fresh Bun process and explicit ./ file path for each file (0.561397ms)
+  ✔ refuses a Vitest substring collision with any unselected classified file (0.838185ms)
+  ✔ lists the selected files without starting a process (0.276447ms)
+  ✔ uses the package cwd, preserves environment and overrides only the lane (0.328285ms)
+  ✔ stops after a Vitest failure and reports unlaunched Bun files (0.171699ms)
+  ✔ stops after a Bun failure without executing subsequent files (0.115083ms)
+  ✔ treats a signalled runner as failure (0.169195ms)
+  ✔ propagates spawn errors and does not claim the failed launch executed files (0.490871ms)
+  ✔ validates every selector before spawning even one child (0.154753ms)
+✔ runner invocation contract (3.761555ms)
+▶ CLI process wiring
+  ✔ passes exactly one selected file through real process.argv from an unrelated cwd (40.702093ms)
+  ✔ executes a symlinked entry rather than exiting successfully without tests (45.612557ms)
+  ✔ exits nonzero for a typo without launching any runner (33.938648ms)
+  ✔ list-only CLI does not launch children (40.94515ms)
+  ✔ preserves the failing child exit status at the CLI boundary (37.706173ms)
+✔ CLI process wiring (199.174529ms)
+✔ runs the new regressions from the existing classification script (0.520025ms)
+ℹ tests 37
+ℹ suites 4
+ℹ pass 37
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 289.716618
+exitCode=0

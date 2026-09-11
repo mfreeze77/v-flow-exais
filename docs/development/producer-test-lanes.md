@@ -23,7 +23,7 @@ docker compose run --rm workspace bun run --cwd packages/producer \
 
 # Keep real host-capability tests in their integration lane.
 docker compose run --rm workspace bun run --cwd packages/producer \
-  test:integration:vitest src/services/fileServer.test.ts
+  test:integration:bun src/services/fileServer.test.ts
 
 # Classification and the runner's own dependency-free regression checks.
 docker compose run --rm workspace bun run --cwd packages/producer test:classification
