@@ -1,0 +1,111 @@
+{
+  "ticketId": "AFM-012",
+  "title": "Reconcile lint, types, tests and package boundaries",
+  "status": "in_progress",
+  "commit": "PENDING",
+  "date": "2026-09-11",
+  "environment": {
+    "execution": "docker compose run --rm workspace",
+    "image": "v-flow-exais:dev",
+    "node": "v22.23.2",
+    "bun": "1.3.13",
+    "ffmpeg": "5.1.9-0+deb12u1",
+    "chromeHeadlessShell": "148.0.7778.167",
+    "os": "Debian 12.15"
+  },
+  "producerBaseline": {
+    "scope": "All four producer partitions, each run standalone against one final tree.",
+    "inventory": {
+      "total": 103,
+      "unit": {
+        "bun": 42,
+        "vitest": 42
+      },
+      "integration": {
+        "bun": 10,
+        "vitest": 9
+      }
+    },
+    "results": {
+      "unit/bun": {
+        "exit": 0,
+        "files": "42/42",
+        "casesPassed": 660,
+        "casesFailed": 0,
+        "unlaunched": 0
+      },
+      "unit/vitest": {
+        "exit": 0,
+        "files": "42/42",
+        "casesPassed": 666,
+        "casesFailed": 0,
+        "unlaunched": 0
+      },
+      "integration/bun": {
+        "exit": 0,
+        "files": "10/10",
+        "casesPassed": 175,
+        "casesFailed": 0,
+        "unlaunched": 0
+      },
+      "integration/vitest": {
+        "exit": 0,
+        "files": "9/9",
+        "casesPassed": 77,
+        "casesFailed": 0,
+        "unlaunched": 0
+      }
+    },
+    "totalCasesPassed": 1578,
+    "logs": "evidence/tickets/AFM-012/producer-baseline/final/"
+  },
+  "findings": [
+    {
+      "id": "AFM-012-F1",
+      "severity": "resolved",
+      "classification": "confirmed integration regression",
+      "summary": "New code violated the inherited ffprobe argv contract.",
+      "detail": "packages/studio-server/src/project/projectBatch.ts is new in this repository and built its ffprobe argv with no option terminator before the input path, so a media file whose name begins with a dash would be parsed as an option.",
+      "consequence": "The assertion was preserved and the caller fixed."
+    },
+    {
+      "id": "AFM-012-F2",
+      "severity": "resolved",
+      "classification": "confirmed defect in inherited code",
+      "summary": "Concat positioned chunks by rounded container duration, corrupting frame rate.",
+      "detail": "The concat list had no duration directives, so the demuxer used each container's rounded duration: a 5-frame 30fps chunk reports 0.167000 rather than 0.166667, starting chunk 2 five ticks late at time base 1/15360 and making ffmpeg derive 30000/1001. At 24000/1001 it degraded to 287/12. Measured on our own ffmpeg 5.1.9, an -r-only variant still failed, proving the existing flag was a known-needed but insufficient mitigation.",
+      "consequence": "Durations are now derived from validated chunk frame ranges and the plan's rational rate. No re-encode, no new flags; timestamps corrected rather than the metadata label.",
+      "creditedTo": "external review supplied the rounding hypothesis and a runnable diagnostic"
+    },
+    {
+      "id": "AFM-012-F3",
+      "severity": "resolved",
+      "classification": "confirmed defect in inherited code",
+      "summary": "Peak correction cut broadband gain, destroying integrated loudness.",
+      "detail": "The correction lowered the entire signal to constrain a few peaks, so loudness fell by the full attenuation (5.9 LU). It also could not converge: each pass added the whole remaining deficit assuming linear response, but AAC overshoot is level-dependent. Attenuating 2.4 dB moved the measured peak UP from +1.4 to +2.3 dBFS, and the next pass compounded to -5.7 dB. Reproduces on ffmpeg 5.1.9 (5.9) and 7.1.5 (6.1), so it is not build variation.",
+      "consequence": "Replaced with a look-ahead limiter that reduces only what exceeds the ceiling, with level normalisation disabled. The loop lowers a limiter ceiling instead of accumulating gain, with a 0.5 dB overshoot margin, re-encoding from the original input so limiting is never stacked. Both the peak and loudness assertions pass; neither was weakened.",
+      "creditedTo": "external review corrected the diagnosis from true-peak to loudness and supplied stage measurements"
+    },
+    {
+      "id": "AFM-012-F4",
+      "severity": "resolved",
+      "classification": "reporting error",
+      "summary": "The baseline claimed no files were left unlaunched while a committed log said 7 were.",
+      "detail": "The fail-fast integration/bun run printed that 7 selected files were not launched. I counted run summaries with a regex instead of reading the runner's verdict, trusting a derived count over the tool's own statement. Reporting unlaunched files is exactly the capability merged in PR #1.",
+      "consequence": "Corrected in BASELINE.md; the 7 files were run independently and now launch normally because the fail-fast cause is fixed. The runner was never modified to make a report look complete."
+    }
+  ],
+  "knownCoverageGaps": [
+    "macOS system-font capture is unverified: two cases in deterministicFonts-systemCapture print a skip message, return early, and Bun records them as passing. They count among the passing cases but demonstrate nothing about macOS behaviour.",
+    "The limiter is a dynamics processor and changes audio character, not only level. Both assertions hold, but no test here evaluates perceptual quality; a human listen is warranted before shipping.",
+    "Byte-identical source establishes that those files were not edited, not that every effect of the fork is excluded. Dependencies, helpers, export resolution, configuration and native tool builds can still differ."
+  ],
+  "remainingAcceptance": [
+    "AFM-012's package-boundary requirements are not satisfied by passing tests and remain open.",
+    "AFM-012's reporting requirements remain open.",
+    "Passing the inherited producer suites is not proof that the producer is correct."
+  ],
+  "blockers": [],
+  "skippedTests": [],
+  "review": null
+}
