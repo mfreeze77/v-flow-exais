@@ -2,7 +2,7 @@
   "ticketId": "AFM-012",
   "title": "Reconcile lint, types, tests and package boundaries",
   "status": "complete",
-  "commit": "dfb49aa0f17dde4e04c2475a430346493ea12ac5",
+  "commit": "ee23fca2065e249ec05b96797942ea405748e093",
   "date": "2026-09-11",
   "environment": {
     "execution": "docker compose run --rm workspace",
@@ -67,7 +67,8 @@
     "totalCasesPassed": 1584,
     "totalSkipped": 1,
     "totalUnlaunched": 0,
-    "logs": "evidence/tickets/AFM-012/final-checkpoint/"
+    "logs": "evidence/tickets/AFM-012/final-checkpoint/",
+    "nativeReports": "The runners' own reports are committed alongside the logs: four lane records (<lane>.report.json) and 54 native framework reports (Bun JUnit XML, Vitest JSON) under the per-run <runId>-reports/ directories. The totals above are derived from these, not from terminal output."
   },
   "findings": [
     {
@@ -164,6 +165,15 @@
       "detail": "Recording an exit code for every check showed the lint chain failing at its first link: check:docs-snippet-motion crashed with ENOENT because it pointed at docs/snippets/, the upstream repository's layout, while the import placed those files at docs/upstream/hyperframes/snippets/ under their retain-reference-docs disposition. The chain is &&-joined, so the ten checks after it never ran. Reporting oxlint's result alone had made the repository look clean.",
       "consequence": "Four defects fixed. (1) packages/gcp-cloud-run/Dockerfile was missing project-model, diagram-viewer, diagram-engine and diagram-motion \u2014 manifests, sources and builds \u2014 so a Cloud Run image could not have built; the merge added them as producer dependencies and the Dockerfile was never updated. (2) diagram-engine and diagram-viewer declared no typecheck; the engine now typechecks its contracts.d.ts with skipLibCheck off, since that declaration file is the public type surface diagram-motion and project-model compile against, and the viewer carries a documented opt-out because it has no TypeScript at all. (3) A runtime dependency cycle core -> studio-server -> diagram-motion -> core. The checker carried an exception for the two-package core/studio-server component, to be deleted 'with the forwarding surface in the next breaking release'; the merge grew the component to three and it failed correctly. The exception was removed rather than widened: this repository has no published consumers, and every shim under core/src/studio-api/ re-exported code already living in studio-server, including three test files duplicated verbatim from studio-server's own. Seven import sites were repointed. (4) The skill mirror could not exist because /.claude/ was gitignored whole; the rule is now /.claude/* with the skills directory re-included, since it is tracked content rather than scratch and each CLI reads only its own path. scripts/publish-workflow.test.mjs was removed: it asserted on .github/workflows/publish.yml, which does not exist here because every upstream workflow was imported under quarantine-automation, a quarantine audit:automation already asserts.",
       "creditedTo": "surfaced by the exit-code recording required by this ticket"
+    },
+    {
+      "id": "AFM-012-F12",
+      "severity": "resolved",
+      "classification": "enforcement and evidence checks too weak to support their own verdict",
+      "summary": "Three mechanisms accepted evidence that did not establish what it claimed.",
+      "detail": "External review executed the committed modules against disposable fixtures and produced six passing controls and ten failed rejections. Boundary enforcement: a specifier written './capture.js' whose source is 'capture.ts', a paths alias in a protected package's own tsconfig, real code inside a template interpolation, and a package whose root conditional exports overrides its main were all certified clean. Framework reporting: a JUnit document truncated mid-element still declared tests=8 and was read as eight passing cases; a Vitest report covering one of two dispatched files, or naming a file never dispatched at all, was accepted because the totals added up. Checkpoint completeness: a partition log with no EXIT marker was correctly called unknown and the overall checkpoint still printed PASS; deleting lint.log entirely passed, because root checks were discovered by listing logs rather than required by name; and a lane record claiming evidenceComplete with no execution counts passed with unknown totals.",
+      "consequence": "The scanner was replaced rather than patched again: syntax now comes from ts.createSourceFile and resolution from ts.resolveModuleName under the compiler options governing each file, so extension substitution, the nearest tsconfig's paths, and exports precedence are the compiler's behaviour rather than reimplementations of it. Report file identities survive parsing and are compared as sets, with a new EVIDENCE.incomplete state that keeps a partial run's real results without certifying the whole selection, and JUnit is checked for tag balance and for declared totals matching the cases present. The checkpoint declares REQUIRED_CHECKS in advance so an absent log is a reported absence, promotes an unknown partition verdict to a global problem, and validates the counts behind a completeness claim. All sixteen review cases pass, and every one is pinned in the repository's own suites. One behaviour changed as a consequence: a relative import to a file that does not exist is now reported unresolved, where textual path arithmetic had silently attributed it to a package.",
+      "creditedTo": "external review supplied the sixteen cases and a runnable reproducer"
     }
   ],
   "knownCoverageGaps": [
@@ -208,6 +218,16 @@
     "suites": {
       "acceptance": "pass"
     },
-    "problems": []
-  }
+    "problems": [],
+    "scope": "Sixteen checks executed in the pinned container against the source tree named by testedSourceTree. `lint` passing includes the Cloud Run Dockerfile workspace COVERAGE check; no Cloud Run image was built or deployed and none is claimed."
+  },
+  "testedSourceTree": "5bb5071fa10321625e7fe4514b66291ebca7ba7f",
+  "evidenceIntegrity": "The checkpoint ran against the working tree, and that tree was fingerprinted before and after execution and found identical. Commit ee23fca2065e249ec05b96797942ea405748e093 carries exactly that tree, so testedSourceTree equals its tree object and `git cat-file -p ee23fca2065e249ec05b96797942ea405748e093` can be checked against it. This file was written afterward from that checkpoint's summary.json and is the only path differing between the tested tree and the commit that adds it; no source byte was changed after execution.",
+  "compatibilityBreaks": [
+    {
+      "change": "Removed @hyperframes/core/studio-api and its five subpath exports, along with the core -> studio-server dependency.",
+      "reason": "Those files were deprecated forwarding shims re-exporting code that already lives in studio-server, and with diagram-motion added by the merge they completed a runtime cycle core -> studio-server -> diagram-motion -> core. The cycle checker's exception was written to be deleted 'with the forwarding surface in the next breaking release'.",
+      "effect": "Consumers must import @hyperframes/studio-server directly. Seven in-repository import sites were repointed. This is an intentional breaking change in this fork, not an incidental cleanup."
+    }
+  ]
 }
