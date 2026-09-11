@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useMountEffect } from "../hooks/useMountEffect";
 import { projectApi, openProject } from "./api";
 import { BatchPanel } from "./BatchPanel";
+import { SourceReview } from "./SourceReview";
 
 export function ProjectLauncher() {
   const [kind, setKind] = useState<"local" | "github">("local");
@@ -149,6 +150,9 @@ export function ProjectLauncher() {
             {intake.facts.packages.length} packages · {intake.facts.fileCount} source paths ·
             snapshot {intake.facts.snapshotHash.slice(0, 12)}
           </p>
+          {intake.facts.understanding && (
+            <SourceReview key={intake.id} understanding={intake.facts.understanding} />
+          )}
           <div className="vf-plan-grid">
             {intake.proposals.map((plan: any, index: number) => (
               <article className="vf-plan" key={plan.id}>

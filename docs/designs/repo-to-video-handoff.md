@@ -12,11 +12,17 @@ projects, change diagram labels/source or scene presentation, save/reopen, and
 export the batch. The demo files are in `out/vflow-demo/`; saved projects and
 revision histories are in `v-flow-exais_project-data`, not the Windows bind mount.
 
-The current plan generator extracts package membership, explicitly declared
-dependencies, script names and language inventory. Captured evidence has file
-paths, SHA-256 hashes and Git revision/dirty context. It never executes the
-inspected repository's scripts. This is deterministic source planning, not a
-configured AI provider or an inference that dependencies prove runtime traffic.
+Intake now also captures implementation files and documentation and extracts
+JavaScript/TypeScript syntax observations, local imports/calls, API registration
+sites, model fields and declared entry points. Studio exposes searchable
+findings, captured line excerpts and unresolved/unsupported analysis. See
+`source-understanding.md` and the AFM-093 receipt for current proof and limits.
+
+The current plan generator still uses package membership, explicitly declared
+dependencies, script names and language inventory. Replacing those three fixed
+templates with meaningful source-grounded stories is the next product step.
+Intake analysis is not a configured AI provider, runtime trace or proof of
+documentation claims. It never executes inspected repository scripts.
 
 ## Owned implementation boundaries
 
@@ -59,6 +65,9 @@ The complete 134-ticket contract is not closed. In particular:
 
 G0/G1 and final capability gates remain unpassed. Keep the seven historical
 verified tickets separate from the newly exercised implementation slice.
+
+The owner's full 28-area completion contract, excluding security work, is
+tracked in `product-completion.md`. None of those areas is fully accepted yet.
 
 ## Recovery notes
 

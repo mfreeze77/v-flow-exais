@@ -41,3 +41,4 @@ export {
 } from "./helpers/studioMotionRenderScript.js";
 export { UnifiedProjectService } from './project/projectService';
 export { ProjectBatchService, probeVideo } from './project/projectBatch';
+export type { RepositoryUnderstanding, SourceObservation, SourceRelationship, SourceExcerpt } from './project/repositoryUnderstanding';

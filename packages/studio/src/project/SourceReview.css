@@ -1,0 +1,109 @@
+.vf-source-review {
+  margin: 24px 0;
+  padding: 24px;
+  border: 1px solid var(--vf-line);
+  border-radius: 12px;
+  background: var(--vf-panel);
+}
+.vf-source-review h3 {
+  font-size: 22px;
+  margin-top: 0;
+}
+.vf-source-filters {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 16px;
+}
+.vf-source-columns {
+  display: grid;
+  grid-template-columns: minmax(220px, 1fr) minmax(0, 2fr);
+  gap: 24px;
+}
+.vf-source-findings {
+  list-style: none;
+  padding: 0;
+  max-height: 520px;
+  overflow: auto;
+}
+.vf-source-findings button {
+  display: block;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 8px;
+  overflow-wrap: anywhere;
+}
+.vf-source-findings button[aria-pressed="true"] {
+  border-color: var(--vf-accent);
+}
+.vf-source-findings strong,
+.vf-source-findings span,
+.vf-source-findings small {
+  display: block;
+}
+.vf-source-findings small,
+.vf-source-findings span {
+  color: #a6b6c6;
+  font-size: 12px;
+}
+.vf-source-detail {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.vf-source-detail h4 {
+  font-size: 18px;
+  margin: 16px 0 8px;
+}
+.vf-source-excerpt pre {
+  background: #080f17;
+  padding: 14px;
+  border-radius: 8px;
+  overflow: auto;
+  max-height: 340px;
+  font-size: 13px;
+  line-height: 1.7;
+}
+.vf-source-excerpt pre i {
+  display: inline-block;
+  width: 4em;
+  color: #9eaebf;
+  font-style: normal;
+  user-select: none;
+}
+.vf-source-excerpt small {
+  color: #a6b6c6;
+  overflow-wrap: anywhere;
+}
+.vf-source-detail details,
+.vf-source-uncertainties {
+  border-top: 1px solid var(--vf-line);
+  padding: 16px 0;
+  margin-top: 16px;
+}
+.vf-source-review summary {
+  cursor: pointer;
+}
+.vf-source-review button:focus-visible,
+.vf-source-review summary:focus-visible {
+  outline: 2px solid var(--vf-accent);
+  outline-offset: 3px;
+}
+.vf-source-uncertainties ul {
+  max-height: 420px;
+  overflow: auto;
+  padding-left: 24px;
+}
+.vf-source-uncertainties li {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 760px) {
+  .vf-source-columns,
+  .vf-source-filters {
+    grid-template-columns: 1fr;
+  }
+  .vf-source-review {
+    padding: 16px;
+  }
+  .vf-source-findings {
+    max-height: 280px;
+  }
+}

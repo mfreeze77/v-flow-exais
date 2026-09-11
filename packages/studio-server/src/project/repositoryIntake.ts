@@ -14,6 +14,11 @@ import {
 } from "node:fs";
 import { basename, dirname, extname, isAbsolute, join, relative, resolve } from "node:path";
 import { createVideoProposals, type VideoProposal } from "./videoProposals";
+import {
+  understandRepository,
+  type CapturedSource,
+  type RepositoryUnderstanding,
+} from "./repositoryUnderstanding";
 
 export interface SourceRoot {
   id: string;
@@ -45,6 +50,7 @@ export interface RepositoryFacts {
   languages: Record<string, number>;
   packages: SourcePackage[];
   files: SourceFile[];
+  understanding: RepositoryUnderstanding;
   limitations: string[];
 }
 export interface RepositoryIntake {
@@ -75,11 +81,13 @@ const skipped = new Set([
   "test",
   "tests",
   "__tests__",
+  "out",
 ]);
 const safeFile = (name: string) =>
   !name.split("/").some((part) => part.startsWith(".") || skipped.has(part)) &&
   !/^(docs\/(upstream|implementation)|tools\/upstream-archify)\//.test(name) &&
   !/(^|\/)(?:credentials|secrets?|id_rsa|id_ed25519|config\.local)(\.|\/|$)/i.test(name) &&
+  !/\.(test|spec)\.[cm]?[jt]sx?$/i.test(name) &&
   !/\.(pem|key|p12|pfx|jks|sqlite|db|zip|mp4|png|jpg|woff2?|lock)$/i.test(name);
 const languages: Record<string, string> = {
   ".ts": "TypeScript",
@@ -170,14 +178,19 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
   const counts: Record<string, number> = {};
   const packages: SourcePackage[] = [];
   const files: SourceFile[] = [];
+  const captured: CapturedSource[] = [];
+  const omissions: { code: string; message: string; path: string }[] = [];
   let workspacePatterns: string[] | null = null;
   let byteCount = 0;
   for (const name of names) {
     const language = languages[extname(name)];
     if (language) counts[language] = (counts[language] || 0) + 1;
-    // Capture bounded package/config evidence, never execute repository code.
+    // Preserve the implementation bytes used for every observation. Analysis
+    // consumes these immutable copies rather than rereading the working tree.
     if (
       !(
+        Boolean(language) ||
+        /\.(md|mdx|rst|json|toml|ya?ml|sql|graphql|prisma)$/i.test(name) ||
         basename(name) === "package.json" ||
         /(^|\/)(pyproject\.toml|Cargo\.toml|go\.mod|Dockerfile|compose\.ya?ml|README\.md)$/i.test(
           name,
@@ -185,8 +198,33 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
       )
     )
       continue;
-    const bytes = readSource(root, name);
-    if (!bytes || byteCount + bytes.length > 8_000_000) continue;
+    let bytes: Buffer | null;
+    try {
+      bytes = readSource(root, name);
+    } catch {
+      omissions.push({
+        code: "source-unreadable",
+        path: name,
+        message: "File was unavailable during snapshot capture.",
+      });
+      continue;
+    }
+    if (!bytes || byteCount + bytes.length > 32_000_000) {
+      omissions.push({
+        code: "capture-limit",
+        path: name,
+        message: "File exceeds the 512 KB per-file or 32 MB snapshot limit.",
+      });
+      continue;
+    }
+    if (bytes.includes(0)) {
+      omissions.push({
+        code: "binary-source",
+        path: name,
+        message: "Binary content is not parsed as source text.",
+      });
+      continue;
+    }
     const content = bytes.toString("utf8");
     if (
       /-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----|\b(?:ghp_[a-zA-Z0-9]{30,}|sk-(?:proj-)?[a-zA-Z0-9_-]{35,})/.test(
@@ -197,6 +235,7 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
     byteCount += bytes.length;
     const citation = { path: name, sha256: digest(bytes), bytes: bytes.length };
     files.push(citation);
+    captured.push({ file: citation, content });
     const dest = join(snapshotDir, name);
     mkdirSync(dirname(dest), { recursive: true });
     writeFileSync(dest, bytes, { flag: "wx", mode: 0o600 });
@@ -207,6 +246,7 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
     } catch {
       continue;
     }
+    if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) continue;
     if (name === "package.json") {
       const declared = Array.isArray(parsed.workspaces)
         ? parsed.workspaces
@@ -250,14 +290,16 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
         .replace(/\*\*/g, "\u0001")
         .replace(/\*/g, "\u0002")
         .replace(/[.+?^${}()|[\]\\]/g, "\\$&")
-        .replace(/\u0001/g, ".*")
-        .replace(/\u0002/g, "[^/]+");
+        .replaceAll("\u0001", ".*")
+        .replaceAll("\u0002", "[^/]+");
       return new RegExp(`^${expression.replace(/\/$/, "")}$`).test(dirname(path));
     });
   const scopedPackages =
     workspacePatterns === null
       ? packages
       : packages.filter((item) => item.path === "package.json" || matchesWorkspace(item.path));
+  const understanding = understandRepository(captured);
+  understanding.uncertainties.push(...omissions);
   return {
     title,
     revision,
@@ -267,9 +309,11 @@ export function inspectRepository(root: string, snapshotDir: string): Repository
     languages: counts,
     packages: scopedPackages,
     files,
+    understanding,
     limitations: [
-      "Static source inventory and declared package dependencies; runtime and deployment behavior are not inferred.",
-      "Dependency, generated, hidden, test and secret-bearing inputs are excluded. At most 10,000 paths and 8 MB of configuration evidence are inspected.",
+      "Static implementation analysis, documentation excerpts and declared manifests. Runtime, execution order, deployed architecture and documentation truth are not inferred.",
+      "Dependency, generated, hidden, test and secret-bearing inputs are excluded. Capture is bounded to 10,000 paths, 512 KB per file and 32 MB total; omissions and unsupported language analysis are reported.",
+      "Local working-tree files are captured individually with content hashes; this does not assert an atomic Git tree when files are changing during intake.",
     ],
   };
 }
