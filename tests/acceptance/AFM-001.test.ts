@@ -76,7 +76,7 @@ describe("AFM-001: real source inputs match the pinned baseline", () => {
       expect(result.filesChecked).toBe(SNAPSHOTS[repository].file_entries);
       expect(result.treeContentSha256).toBe(SNAPSHOTS[repository].tree_content_sha256);
       expect(result.matchesBaseline).toBe(true);
-    }, 120_000);
+    });
   }
 
   it("preserves the HyperFrames symlink as a link, not as its target's content", () => {
@@ -90,7 +90,7 @@ describe("AFM-001: real source inputs match the pinned baseline", () => {
     expect(link).toBeDefined();
     expect(link!.kind).toBe("symlink");
     expect(SNAPSHOTS.hyperframes.symlinks).toContain(link!.path);
-  }, 120_000);
+  });
 
   it("reports PASS for both unmodified inputs and mutates nothing", () => {
     const report = preflight({
@@ -315,7 +315,7 @@ describe("AFM-001: archive handling", () => {
     expect(zip.archiveCommentRevisionCandidate).toBe(
       SNAPSHOTS.archify.archive_comment_revision_candidate,
     );
-  }, 120_000);
+  });
 
   it("classifies a symlink entry by its unix mode", () => {
     const zip = makeZip([
