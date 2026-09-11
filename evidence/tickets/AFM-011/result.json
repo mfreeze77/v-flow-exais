@@ -12,7 +12,7 @@
   "review": null,
   "ticketId": "AFM-011",
   "title": "Repair build order, exports and asset relocation",
-  "commit": "PENDING",
+  "commit": "dab0132609707cd79ab4546c3ab39d543d5dbf33",
   "commands": [
     {
       "invocation": "node renderers/architecture/render-architecture.mjs (before fix)",

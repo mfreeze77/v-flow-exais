@@ -12,7 +12,7 @@
   "review": null,
   "ticketId": "AFM-009",
   "title": "Reconcile workspace manifests and package ownership",
-  "commit": "PENDING",
+  "commit": "dab0132609707cd79ab4546c3ab39d543d5dbf33",
   "commands": [
     {
       "invocation": "bun install",
