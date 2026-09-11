@@ -11,7 +11,7 @@
   "review": null,
   "ticketId": "AFM-006",
   "title": "Keep source movement safe across Windows, macOS and Linux",
-  "commit": "PENDING",
+  "commit": "4bc67baabc16a593a5d1fc8073c9457764a2feb1",
   "commands": [
     {
       "invocation": "checkRepository against all 7786 ledger targets",

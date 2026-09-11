@@ -11,7 +11,7 @@
   "review": null,
   "ticketId": "AFM-005",
   "title": "Quarantine inherited publication, hooks and deployment",
-  "commit": "PENDING",
+  "commit": "4bc67baabc16a593a5d1fc8073c9457764a2feb1",
   "commands": [
     {
       "invocation": "bun run audit:automation",
