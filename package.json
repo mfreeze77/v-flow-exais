@@ -24,7 +24,7 @@
     "sync-schemas:check": "tsx scripts/sync-schemas.ts --check",
     "sync:package-subpaths": "node scripts/package-subpaths.mjs --write",
     "check:package-subpaths": "node scripts/package-subpaths.mjs",
-    "lint": "bun run check:docs-snippet-motion && bun run check:tracked-artifacts && bun run check:workspace-contracts && bun run check:gcp-cloud-run-dockerfile && bun run check:package-boundaries && bun run check:package-cycles && bun run check:package-subpaths && bun run check:cli-process-ownership && oxlint . && tsx scripts/lint-skills.ts && node scripts/check-skill-mirror.mjs",
+    "lint": "bun run check:docs-snippet-motion && bun run check:import-reconciliation && bun run check:tracked-artifacts && bun run check:workspace-contracts && bun run check:gcp-cloud-run-dockerfile && bun run check:package-boundaries && bun run check:package-cycles && bun run check:package-subpaths && bun run check:cli-process-ownership && oxlint . && tsx scripts/lint-skills.ts && node scripts/check-skill-mirror.mjs",
     "check:gcp-cloud-run-dockerfile": "bun run --cwd packages/gcp-cloud-run test:dockerfile-workspaces",
     "lint:skills": "tsx scripts/lint-skills.ts",
     "check:skill-mirror": "node scripts/check-skill-mirror.mjs",
@@ -46,7 +46,7 @@
     "player:perf": "bun run --filter @hyperframes/player perf",
     "format:check": "oxfmt --check .",
     "knip": "knip",
-    "test:scripts": "node --import tsx --test scripts/animejs-v4-guidance.test.mjs scripts/check-tracked-artifacts.test.mjs scripts/check-no-main-deletions.test.mjs scripts/check-docs-snippet-motion.test.mjs scripts/registry-target-paths.test.mjs scripts/check-workspace-contracts.test.mjs scripts/check-package-cycles.test.mjs scripts/check-cli-process-ownership.test.mjs scripts/check-large-files.test.mjs scripts/package-subpaths.test.mjs scripts/validate-release-channel.test.mjs scripts/install-workspace-dependencies.test.mjs scripts/draft-changelog.test.ts scripts/set-version.test.ts scripts/release-prepare.test.ts scripts/cli-options.test.ts scripts/changelog-weekly.test.ts scripts/claude-plugin-compression.test.ts scripts/catalog-payload-assets.test.ts scripts/host-registry-assets.test.ts scripts/catalog-preview-temp.test.ts scripts/catalog-hosted-files.test.ts scripts/player-cdn-pin.test.ts scripts/studio-runtime-smoke.test.mjs scripts/verify-packed-manifests.test.mjs scripts/lint-skills.test.mjs packages/gcp-cloud-run/check-dockerfile-workspaces.test.mjs packages/core/scripts/writeGeneratedFile.test.ts && vitest run scripts/catalog/",
+    "test:scripts": "node --import tsx --test scripts/animejs-v4-guidance.test.mjs scripts/check-tracked-artifacts.test.mjs scripts/check-import-reconciliation.test.mjs scripts/check-no-main-deletions.test.mjs scripts/check-docs-snippet-motion.test.mjs scripts/registry-target-paths.test.mjs scripts/check-workspace-contracts.test.mjs scripts/check-package-cycles.test.mjs scripts/check-cli-process-ownership.test.mjs scripts/check-large-files.test.mjs scripts/package-subpaths.test.mjs scripts/validate-release-channel.test.mjs scripts/install-workspace-dependencies.test.mjs scripts/draft-changelog.test.ts scripts/set-version.test.ts scripts/release-prepare.test.ts scripts/cli-options.test.ts scripts/changelog-weekly.test.ts scripts/claude-plugin-compression.test.ts scripts/catalog-payload-assets.test.ts scripts/host-registry-assets.test.ts scripts/catalog-preview-temp.test.ts scripts/catalog-hosted-files.test.ts scripts/player-cdn-pin.test.ts scripts/studio-runtime-smoke.test.mjs scripts/verify-packed-manifests.test.mjs scripts/lint-skills.test.mjs packages/gcp-cloud-run/check-dockerfile-workspaces.test.mjs packages/core/scripts/writeGeneratedFile.test.ts && vitest run scripts/catalog/",
     "typecheck:scripts": "tsc --noEmit -p scripts/tsconfig.json",
     "test:skills": "node --test 'skills/**/*.test.mjs'",
     "generate:previews": "tsx scripts/generate-template-previews.ts",
@@ -65,7 +65,8 @@
     "build:owned-runtimes": "bun run build:hyperframes-runtime && bun run --cwd packages/core build:position-edits-render && bun run --cwd packages/core build:audio-fx-runtime",
     "vflow": "bun run packages/cli/src/cli.ts project",
     "doctor": "bun run tools/doctor/runtime-cli.ts",
-    "check:package-boundaries": "node scripts/check-package-boundaries.mjs"
+    "check:package-boundaries": "node scripts/check-package-boundaries.mjs",
+    "check:import-reconciliation": "node scripts/check-import-reconciliation.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",

@@ -32,6 +32,23 @@ images and build cache behind fills the disk.
 
 ## Rules
 
+- **`git add -A` on Windows deletes the repo's one symlink.** Git here cannot
+  stat `packages/producer/tests/render-symlinked-assets/src/shared`; it warns
+  `Function not implemented` and then stages the path as _deleted_. That is how
+  it vanished in AFM-005 — a commit about git hooks — and a clean `git status`
+  looked like proof the import was complete. Never filter that warning out of a
+  status check. If the entry is missing, restore it and re-arm the guard:
+
+  ```sh
+  git update-index --add --cacheinfo 120000,8fba6b66ae1b3d5c30626aa5a86283c4e96d80b2,packages/producer/tests/render-symlinked-assets/src/shared
+  git update-index --skip-worktree packages/producer/tests/render-symlinked-assets/src/shared
+  ```
+
+  `skip-worktree` is a local index flag, so a fresh clone on Windows needs it
+  set again. `bun run check:import-reconciliation` (first links of the lint
+  chain) fails if any imported file stops being tracked without a declared
+  reason, so the loss is caught rather than discovered later.
+
 - **`_sources/` is frozen.** It is the read-only provenance baseline for drift detection and source-anchor lookups. Nothing imports it, nothing builds from it, and the repo must build with it absent. The product owns its copy under `packages/` — that is the code you edit.
 - **Adding a workspace package means updating every Dockerfile.** The `COPY packages/<name>/package.json` lists are explicit; `bun install --frozen-lockfile` fails on any member missing from the build context. `bun run check:dockerfile-workspaces` catches it.
 - **Keep the `@hyperframes/*` scope for now.** Per contract C11 a scope rename must update code, lockfile, exports, build scripts, skills and distribution tests atomically — it is its own ticket, not a drive-by.

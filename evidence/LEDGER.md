@@ -240,3 +240,26 @@ repository look clean. Three real defects were hiding behind that:
 The lesson is the ticket's own: a check that records no exit status is not
 evidence, and a summary assembled from console text will agree with whatever it
 was given.
+
+## A file that silently left the repository
+
+`packages/producer/tests/render-symlinked-assets/src/shared` is the repository's
+only symlink. Git on Windows cannot stat it, warns `Function not implemented`,
+and `git add -A` then stages it as deleted. It was added correctly as a
+mode-120000 blob in AFM-003 (`8bae64a`) and removed by AFM-005 (`f07f4c7`), a
+commit about neutralising git hooks. Nothing in the diff review showed it,
+because for this path a clean `git status` is exactly what the deletion looks
+like — and status checks here were piping that warning through
+`grep -v 'Function not implemented'`, filtering out the only evidence.
+
+Restored as a symlink, with `--skip-worktree` set so `git add -A` leaves it
+alone. That flag is local to an index, so a fresh clone on Windows needs it
+again; `bun run check:import-reconciliation` is the durable guard and fails if
+any of the 7,786 imported files stops being tracked without a declared reason.
+
+Two other ledger files are absent by intent and are now declared in
+`scripts/check-import-reconciliation.mjs` rather than merely missing:
+`packages/diagram-engine/package-lock.json` (an npm lockfile in a Bun
+workspace) and `scripts/publish-workflow.test.mjs` (asserted on CI this
+repository deliberately does not have), plus the nine
+`packages/core/src/studio-api/` forwarding shims removed in AFM-012.
