@@ -1,0 +1,37 @@
+{
+  "scope": "Exact tested toolchain for the combined product (AFM-010). Recorded from a real container run, not inferred from manifests.",
+  "recordedAt": "2026-09-11",
+  "image": {
+    "name": "v-flow-exais:dev",
+    "base": "node:22-bookworm-slim",
+    "baseDigest": "sha256:d649c27dae7ba0137b3cef5dd75baa422c08dc3d9e3fc0c23dfb172dc3cc6436",
+    "note": "Pinned by digest because a tag can move between builds. Pinning the base does not freeze later apt/npm downloads, so those versions are recorded below as observed rather than guaranteed."
+  },
+  "tested": {
+    "os": "Debian GNU/Linux 12.15 (bookworm)",
+    "node": "v22.23.2",
+    "bun": "1.3.13",
+    "ffmpeg": "5.1.9-0+deb12u1",
+    "ffprobe": "5.1.9-0+deb12u1",
+    "chromeHeadlessShell": "Google Chrome for Testing 148.0.7778.167",
+    "chromium": "Chromium 152.0.7977.82"
+  },
+  "declared": {
+    "node": ">=22",
+    "bun": ">=1.3.13",
+    "chromeHeadlessShellPinned": "148.0.7778.167"
+  },
+  "supported": [
+    "The image above, built from .devcontainer/Dockerfile. This is the only configuration the product is tested on."
+  ],
+  "untestedNotUnsupported": [
+    "Host execution on Windows, macOS or a non-container Linux. Node 22 and Bun 1.3.13 may work; nothing here verifies it, and the pinned headless shell and ffmpeg builds would differ.",
+    "Any Node newer than 22. Not tested; the declared floor is a minimum, not a certification.",
+    "Arm64. The recorded digest and headless-shell path are linux/amd64."
+  ],
+  "notes": [
+    "A package's engines field describes that package, not the combined product. This file is the binding statement for the whole application.",
+    "chrome-headless-shell is pinned because each Chrome stable bump shifts pixel output enough to fail PSNR against the golden baselines. Bumping it and regenerating baselines belong in one commit.",
+    "Verify a live environment with: bun run doctor"
+  ]
+}

@@ -9,7 +9,12 @@
 # System dependencies mirror _sources/hyperframes-main/Dockerfile.test so that
 # renders produced here match the production rendering environment.
 
-FROM node:22-bookworm-slim
+# Pinned by digest, not by tag. A tag moves between builds, so
+# `node:22-bookworm-slim` alone does not identify a reproducible base.
+# This digest resolves to node v22.23.2 on Debian 12.15.
+# Update deliberately: change the digest and re-record the toolchain in
+# provenance/runtime-contract.json in the same commit.
+FROM node:22-bookworm-slim@sha256:d649c27dae7ba0137b3cef5dd75baa422c08dc3d9e3fc0c23dfb172dc3cc6436
 
 # ── System dependencies (kept identical to the upstream render environment) ───
 RUN apt-get update && apt-get install -y --no-install-recommends \

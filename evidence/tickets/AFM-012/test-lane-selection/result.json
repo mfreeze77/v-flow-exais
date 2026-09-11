@@ -100,15 +100,10 @@
       "sha256": "228de835f7c7026ca7fcd52d0ad28c84dfca5b7d48e6967efb433eee8f8486ce"
     }
   ],
-  "notRun": [
-    "Actual Bun/Vitest producer test bodies and the inherited full classification corpus.",
-    "Full workspace install/build/typecheck and package-entry regression baseline.",
-    "Browser, video rendering, native Windows/macOS and other product gate checks."
-  ],
   "remainingAcceptance": [
-    "Run the documented focused command and full classified lanes in the pinned development image.",
-    "Resolve the separate package-entry/build-order failures and ffprobe argument-contract failure.",
-    "Complete the other AFM-012 requirements and prerequisite tickets; do not infer completion from these 37 tests."
+    "Execute the full classified producer lanes and record selected, executed, failed and never-launched counts separately.",
+    "Resolve the ffprobe argument-contract failure.",
+    "Complete the other AFM-012 requirements; do not infer completion from these 37 selection tests."
   ],
   "gatePassed": false,
   "reviewNote": "A draft PR is appropriate until pinned-environment checks are recorded. Main is not modified or merged by this contribution.",
@@ -134,5 +129,24 @@
   "containerFixes": [
     "oxlint no-control-regex failed on /[\u0000\r\n]/. The rule rejects matching control characters in any escape form, so the check was rewritten as an explicit code-point scan. It is now stricter than the original: every C0 control and DEL is rejected, not just NUL, CR and LF.",
     "oxfmt reported style issues in two files; formatted. The 37 regression tests still pass and focused selection still resolves 1 file out of 42."
+  ],
+  "originalSandboxLimitations": {
+    "note": "Limits of the environment the change was authored in. Historical; several are now discharged. Do not read as current status.",
+    "items": [
+      "Actual Bun/Vitest producer test bodies and the inherited full classification corpus.",
+      "Full workspace install/build/typecheck and package-entry regression baseline.",
+      "Browser, video rendering, native Windows/macOS and other product gate checks."
+    ],
+    "dischargedHere": [
+      "Pinned Docker image checks - run in v-flow-exais:dev.",
+      "Producer test:classification corpus - 0 fail, 103 tests classified.",
+      "A focused application test executed through Bun - 1 file, 4 tests passed.",
+      "oxfmt, oxlint - both clean after the control-regex and formatting fixes."
+    ]
+  },
+  "currentLimitations": [
+    "Full producer unit and integration lanes have NOT been executed end to end. 42 files were *selected* for the unit/bun lane; only one was run. Selection is not execution.",
+    "The broader fallow audit has not been run.",
+    "Browser, video rendering and native Windows/macOS gate checks are out of scope for this change."
   ]
 }

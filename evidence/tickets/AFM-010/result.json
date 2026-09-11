@@ -1,0 +1,116 @@
+{
+  "ticketId": "AFM-010",
+  "title": "Pin runtime, lockfile and installation prerequisites",
+  "status": "verified",
+  "commit": "PENDING",
+  "date": "2026-09-11",
+  "environment": {
+    "execution": "docker compose run --rm workspace",
+    "image": "v-flow-exais:dev",
+    "baseDigest": "sha256:d649c27dae7ba0137b3cef5dd75baa422c08dc3d9e3fc0c23dfb172dc3cc6436",
+    "node": "v22.23.2",
+    "bun": "1.3.13",
+    "ffmpeg": "5.1.9-0+deb12u1",
+    "chromeHeadlessShell": "148.0.7778.167",
+    "os": "Debian 12.15"
+  },
+  "commands": [
+    {
+      "invocation": "bun run build (root, in-place)",
+      "exitCode": 0,
+      "result": "19 packages built"
+    },
+    {
+      "invocation": "git clone + bun install --frozen-lockfile (isolated checkout, fresh BUN_INSTALL_CACHE_DIR)",
+      "exitCode": 0,
+      "result": "1555 packages; bun.lock unchanged by the install"
+    },
+    {
+      "invocation": "bun run build (clean checkout, no manual prebuild)",
+      "exitCode": 0,
+      "result": "16 dist directories produced"
+    },
+    {
+      "invocation": "bun install --frozen-lockfile with a deliberately stale lockfile",
+      "exitCode": 1,
+      "result": "refused: 'lockfile had changes, but lockfile is frozen'; bun.lock NOT rewritten"
+    },
+    {
+      "invocation": "bunx vitest run tests/acceptance/AFM-010.test.ts",
+      "exitCode": 0,
+      "result": "22/22"
+    },
+    {
+      "invocation": "bun run doctor",
+      "exitCode": 0,
+      "result": "canBuild true, canRender true"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "tools/doctor/runtime.ts",
+      "type": "source"
+    },
+    {
+      "path": "tools/doctor/runtime-cli.ts",
+      "type": "source"
+    },
+    {
+      "path": "provenance/runtime-contract.json",
+      "type": "runtime-contract"
+    },
+    {
+      "path": ".devcontainer/Dockerfile",
+      "type": "image-definition"
+    }
+  ],
+  "acceptanceResults": [
+    {
+      "criterion": "A frozen-lockfile install succeeds on the declared test matrix.",
+      "met": true,
+      "evidence": "Isolated git clone with no node_modules and no dist, fresh BUN_INSTALL_CACHE_DIR: 1555 packages installed, exit 0, bun.lock byte-identical afterwards. The declared matrix is one configuration - the digest-pinned image - and provenance/runtime-contract.json states that explicitly rather than implying host support."
+    },
+    {
+      "criterion": "Missing runtimes or native dependencies are reported before attempting a render.",
+      "met": true,
+      "evidence": "bun run doctor executes each dependency and compares versions. 22 tests cover missing file, directory instead of binary, non-executable, wrong version, hanging probe, non-zero and timed-out probes, and a concealed explicit override."
+    },
+    {
+      "criterion": "No claim that any Node >=18 installation runs the combined product.",
+      "met": true,
+      "evidence": "diagram-engine raised from >=18 to >=22; root declares node >=22 and bun >=1.3.13. The binding statement for the combined product is provenance/runtime-contract.json, which also distinguishes the one supported configuration from untested-but-not-unsupported ones."
+    }
+  ],
+  "findings": [
+    {
+      "id": "AFM-010-F1",
+      "severity": "resolved",
+      "summary": "The runtime doctor had two false-positive paths.",
+      "detail": "The headless-shell check tested only for file existence, so a wrong-version or non-executable file passed; because it selected the first existing candidate, an invalid explicit PRODUCER_HEADLESS_SHELL_PATH was concealed by validating the fallback instead. checkExecutable substituted the pathname when the version probe failed, so 'found on PATH' reported as ok. No probe had a timeout.",
+      "consequence": "Discovery and execution are now separate fields, probes are bounded at 10s with distinct failure reasons, the headless shell is executed and version-compared, and an explicit override is never replaced by a fallback. Found in external source review, not by our own tests - the tests were written after, to cover exactly these paths.",
+      "creditedTo": "external review"
+    },
+    {
+      "id": "AFM-010-F2",
+      "severity": "resolved",
+      "summary": "The base image was pinned only by a moving tag.",
+      "detail": "node:22-bookworm-slim can resolve to different builds over time, so it does not identify a reproducible environment.",
+      "consequence": "Pinned by digest. provenance/runtime-contract.json records the exact observed toolchain and notes that pinning the base does not freeze later apt/npm downloads."
+    },
+    {
+      "id": "AFM-010-F3",
+      "severity": "resolved",
+      "summary": "The clean-checkout build initially failed because the fixes were uncommitted.",
+      "detail": "The first clean-checkout run reported 'Script not found: doctor' and a filter miss, because a clone sees committed state only.",
+      "consequence": "Confirms the clean-checkout test is meaningful rather than reading the working tree. Re-run after committing: exit 0."
+    }
+  ],
+  "notPerformed": [
+    "Host (non-container) execution on Windows, macOS or bare Linux is untested. Recorded as untested-not-unsupported in the runtime contract rather than claimed.",
+    "arm64 is untested; the digest and headless-shell path are linux/amd64.",
+    "Full producer unit and integration lanes were not executed here; that remains AFM-012."
+  ],
+  "blockers": [],
+  "skippedTests": [],
+  "review": null
+}

@@ -76,11 +76,7 @@ export interface ProbeResult {
  * Runs a bounded version probe. Distinguishes every failure mode rather than
  * collapsing them to null, so the caller can report an actionable reason.
  */
-export function probe(
-  command: string,
-  args: string[],
-  timeoutMs = PROBE_TIMEOUT_MS,
-): ProbeResult {
+export function probe(command: string, args: string[], timeoutMs = PROBE_TIMEOUT_MS): ProbeResult {
   try {
     const stdout = execFileSync(command, args, {
       stdio: ["ignore", "pipe", "ignore"],
@@ -120,16 +116,42 @@ export function meetsMinimum(actual: string | null, minimum: string): boolean {
   return true;
 }
 
-export function checkNode(actual: string | null = process.version): RuntimeCheck {
-  const major = majorVersion(actual);
+/**
+ * Checks the Node binary the product will actually run under.
+ *
+ * Deliberately does NOT use process.version. Under `bun run`, that reports
+ * Bun's Node-compatibility version (v24.3.0) rather than the installed Node
+ * — so the doctor cheerfully reported a version no binary on the system had,
+ * contradicting the recorded runtime contract. Probe the real executable, and
+ * fall back to process.version only when the probe cannot run at all.
+ */
+export function checkNode(
+  runner: (command: string, args: string[]) => ProbeResult = probe,
+): RuntimeCheck {
   const required = RUNTIME_CONTRACT.node.minimumMajor;
+  const result = runner("node", ["--version"]);
+  const reported = result.ok ? result.stdout.split("\n")[0]!.trim() : null;
+
+  if (!result.ok) {
+    return {
+      name: "node",
+      severity: "required",
+      state: result.reason === "not-found" ? "missing" : "probe-failed",
+      discoveredAt: null,
+      executedVersion: null,
+      expected: `>=${required}`,
+      remediation: `The node binary could not be executed (${result.reason}). Run inside the container (docker compose run --rm workspace).`,
+    };
+  }
+
+  const major = majorVersion(reported);
   const ok = major !== null && major >= required;
   return {
     name: "node",
     severity: "required",
     state: ok ? "ok" : "unsupported",
-    discoveredAt: process.execPath,
-    executedVersion: actual,
+    discoveredAt: "node",
+    executedVersion: reported,
     expected: `>=${required}`,
     remediation: ok
       ? undefined
@@ -265,11 +287,17 @@ export function runtimeReport(
   const bunOk = bunProbe.ok && meetsMinimum(bunVersion, RUNTIME_CONTRACT.bun.minimum);
 
   const checks: RuntimeCheck[] = [
-    checkNode(),
+    checkNode(runner),
     {
       name: "bun",
       severity: "required",
-      state: !bunProbe.ok ? (bunProbe.reason === "not-found" ? "missing" : "probe-failed") : bunOk ? "ok" : "unsupported",
+      state: !bunProbe.ok
+        ? bunProbe.reason === "not-found"
+          ? "missing"
+          : "probe-failed"
+        : bunOk
+          ? "ok"
+          : "unsupported",
       discoveredAt: bunProbe.ok ? "bun" : null,
       executedVersion: bunVersion,
       expected: `>=${RUNTIME_CONTRACT.bun.minimum}`,

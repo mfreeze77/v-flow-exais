@@ -99,31 +99,51 @@ describe("AFM-010: a located-but-broken binary fails", () => {
   it("fails when the version probe exits non-zero", () => {
     // Previously: which() found it, version() returned null, the path was
     // substituted and the check reported ok.
-    const check = checkExecutable("ffmpeg", ["-version"], "render-only", "hint",
-      stub({ ok: false, stdout: "", reason: "nonzero-exit" }));
+    const check = checkExecutable(
+      "ffmpeg",
+      ["-version"],
+      "render-only",
+      "hint",
+      stub({ ok: false, stdout: "", reason: "nonzero-exit" }),
+    );
     expect(check.state).toBe("probe-failed");
     expect(check.executedVersion).toBeNull();
     expect(check.remediation).toContain("exited non-zero");
   });
 
   it("fails when the version probe times out", () => {
-    const check = checkExecutable("ffprobe", ["-version"], "render-only", "hint",
-      stub({ ok: false, stdout: "", reason: "timeout" }));
+    const check = checkExecutable(
+      "ffprobe",
+      ["-version"],
+      "render-only",
+      "hint",
+      stub({ ok: false, stdout: "", reason: "timeout" }),
+    );
     expect(check.state).toBe("probe-failed");
     expect(check.remediation).toContain(`${PROBE_TIMEOUT_MS}ms`);
   });
 
   it("reports missing separately from broken", () => {
-    const check = checkExecutable("ffmpeg", ["-version"], "render-only", "hint",
-      stub({ ok: false, stdout: "", reason: "not-found" }));
+    const check = checkExecutable(
+      "ffmpeg",
+      ["-version"],
+      "render-only",
+      "hint",
+      stub({ ok: false, stdout: "", reason: "not-found" }),
+    );
     expect(check.state).toBe("missing");
     expect(check.discoveredAt).toBeNull();
   });
 
   it("never reports ok without a successful execution", () => {
     for (const reason of ["not-found", "nonzero-exit", "timeout", "spawn-error"] as const) {
-      const check = checkExecutable("x", [], "render-only", "hint",
-        stub({ ok: false, stdout: "", reason }));
+      const check = checkExecutable(
+        "x",
+        [],
+        "render-only",
+        "hint",
+        stub({ ok: false, stdout: "", reason }),
+      );
       expect(check.state).not.toBe("ok");
       expect(check.executedVersion).toBeNull();
     }
@@ -168,8 +188,10 @@ describe("AFM-010: the headless shell is verified, not merely located", () => {
     const file = join(tmp, "wrong-version");
     writeFileSync(file, "#!/bin/sh\necho wrong\n");
     chmodSync(file, 0o755);
-    const check = checkHeadlessShell(file,
-      stub({ ok: true, stdout: "Chrome Headless Shell 131.0.6778.85" }));
+    const check = checkHeadlessShell(
+      file,
+      stub({ ok: true, stdout: "Chrome Headless Shell 131.0.6778.85" }),
+    );
     expect(check.state).toBe("unsupported");
     expect(check.executedVersion).toContain("131.0.6778.85");
     expect(check.remediation).toContain(RUNTIME_CONTRACT.chromeHeadlessShell.pinned);
@@ -197,8 +219,10 @@ describe("AFM-010: the headless shell is verified, not merely located", () => {
     const file = join(tmp, "correct");
     writeFileSync(file, "#!/bin/sh\n");
     chmodSync(file, 0o755);
-    const check = checkHeadlessShell(file,
-      stub({ ok: true, stdout: `Chrome Headless Shell ${pinned}` }));
+    const check = checkHeadlessShell(
+      file,
+      stub({ ok: true, stdout: `Chrome Headless Shell ${pinned}` }),
+    );
     expect(check.state).toBe("ok");
     expect(check.executedVersion).toContain(pinned);
   });
@@ -206,14 +230,29 @@ describe("AFM-010: the headless shell is verified, not merely located", () => {
 
 describe("AFM-010: unsupported runtimes are rejected", () => {
   it("rejects Node below the tested floor", () => {
-    const check = checkNode("v18.20.4");
+    const check = checkNode(stub({ ok: true, stdout: "v18.20.4" }));
     expect(check.state).toBe("unsupported");
     expect(check.remediation).toContain("below the tested floor");
   });
 
   it("accepts Node at or above the floor", () => {
-    expect(checkNode("v22.23.2").state).toBe("ok");
-    expect(checkNode("v24.3.0").state).toBe("ok");
+    expect(checkNode(stub({ ok: true, stdout: "v22.23.2" })).state).toBe("ok");
+    expect(checkNode(stub({ ok: true, stdout: "v24.3.0" })).state).toBe("ok");
+  });
+
+  it("probes the real node binary rather than process.version", () => {
+    // Under `bun run`, process.version reports Bun's Node-compatibility version
+    // (v24.3.0), not the installed Node. Reading it made the doctor report a
+    // version no binary on the system had, contradicting the runtime contract.
+    const check = checkNode();
+    const contract = JSON.parse(readFileSync("provenance/runtime-contract.json", "utf8"));
+    expect(check.executedVersion).toBe(contract.tested.node);
+  }, 30_000);
+
+  it("fails when the node binary cannot be executed", () => {
+    const check = checkNode(stub({ ok: false, stdout: "", reason: "not-found" }));
+    expect(check.state).toBe("missing");
+    expect(check.executedVersion).toBeNull();
   });
 
   it("marks a required failure as unable to build", () => {
