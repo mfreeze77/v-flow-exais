@@ -6,6 +6,7 @@ import { verifyBuild } from "../project/projectBuild";
 import type { StudioApiAdapter } from "../types";
 import { registerProjectProposalRoutes } from "./projectProposals";
 import { projectApiError } from "../project/projectApiError";
+import { replanIntakeStories, reviseIntakeStory } from "../project/storyIntake";
 
 function publicBatch(record: ProjectBatch) {
   return {
@@ -41,9 +42,26 @@ export function registerProjectCommandRoutes(api: Hono, adapter: StudioApiAdapte
   api.get("/vflow/projects", (c) => c.json({ projects: service.list() }));
   api.post("/vflow/intakes", async (c) => c.json(await service.intake(await c.req.json())));
   api.get("/vflow/intakes/:id", (c) => c.json(service.readIntake(c.req.param("id"))));
+  api.post("/vflow/intakes/:id/plan", async (c) =>
+    c.json(replanIntakeStories(service, c.req.param("id"), await c.req.json())),
+  );
+  api.post("/vflow/intakes/:id/stories/:storyId", async (c) => {
+    const body = await c.req.json();
+    return c.json(
+      await reviseIntakeStory(
+        service,
+        c.req.param("id"),
+        c.req.param("storyId"),
+        body.planHash,
+        body.story,
+      ),
+    );
+  });
   api.post("/vflow/intakes/:id/accept", async (c) => {
     const body = await c.req.json();
-    return c.json({ projects: await service.acceptIntake(c.req.param("id"), body.selected) });
+    return c.json({
+      projects: await service.acceptIntake(c.req.param("id"), body.selected, body.review),
+    });
   });
   api.post("/vflow/import-diagram", async (c) =>
     c.json(await service.importDiagram(await c.req.json())),

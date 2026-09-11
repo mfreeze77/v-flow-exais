@@ -40,6 +40,10 @@ export {
   type StudioMotionRenderScriptOptions,
 } from "./helpers/studioMotionRenderScript.js";
 export { UnifiedProjectService } from "./project/projectService";
+export type { StoryOptions, StoryPlan, StoryBeat, StoryEvidence } from "./project/storyTypes";
+export type { VideoProposal } from "./project/videoProposals";
+export type { RepositoryIntake } from "./project/repositoryIntake";
+export { replanIntakeStories, reviseIntakeStory } from "./project/storyIntake";
 export { ProjectBatchService, probeVideo } from "./project/projectBatch";
 export type {
   RepositoryUnderstanding,

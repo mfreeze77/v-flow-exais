@@ -1,5 +1,6 @@
 import { readFileSync } from "node:fs";
 import type { UnifiedProjectService } from "@hyperframes/studio-server";
+import { replanIntakeStories, reviseIntakeStory } from "@hyperframes/studio-server";
 
 export const proposalActions = new Set([
   "proposal-context",
@@ -9,6 +10,9 @@ export const proposalActions = new Set([
   "revise-proposal",
   "accept-proposal",
   "reject-proposal",
+  "plan-stories",
+  "revise-story",
+  "accept-stories",
 ]);
 export async function runProjectProposal(
   service: UnifiedProjectService,
@@ -18,6 +22,15 @@ export async function runProjectProposal(
     if (!args.file) throw new Error("This proposal command requires --file.");
     return JSON.parse(readFileSync(args.file, "utf8"));
   };
+  if (["plan-stories", "revise-story", "accept-stories"].includes(args.action)) {
+    if (!args.intake) throw new Error("Story commands require --intake.");
+    const body = input();
+    if (args.action === "plan-stories") return replanIntakeStories(service, args.intake, body);
+    if (args.action === "accept-stories")
+      return service.acceptIntake(args.intake, body.selected, body.review);
+    if (!args.proposal) throw new Error("revise-story requires --proposal.");
+    return reviseIntakeStory(service, args.intake, args.proposal, body.planHash, body.story);
+  }
   if (args.action === "propose") return service.proposals.create(input());
   if (!args.id) throw new Error("Proposal commands require the project --id.");
   if (args.action === "proposal-context") {

@@ -23,7 +23,7 @@ export default defineCommand({
       type: "positional",
       default: "list",
       description:
-        "list | plan | from-source | import | get | command | build | export | resume | batch-status | download | proposal-context | propose | proposals | review-proposal | revise-proposal | accept-proposal | reject-proposal",
+        "list | plan | plan-stories | revise-story | accept-stories | from-source | import | get | command | build | export | resume | batch-status | download | proposal-context | propose | proposals | review-proposal | revise-proposal | accept-proposal | reject-proposal",
     },
     source: {
       type: "string",
@@ -34,6 +34,23 @@ export default defineCommand({
       description: "Unified project data directory; defaults to VFLOW_DATA_HOME.",
     },
     id: { type: "string", description: "Project or batch ID." },
+    audience: {
+      type: "string",
+      default: "developers",
+      description: "developers | new-users | maintainers",
+    },
+    purpose: { type: "string", default: "explain", description: "explain | onboard | review" },
+    seconds: {
+      type: "string",
+      default: "40",
+      description: "Target story duration, 20 to 120 seconds.",
+    },
+    count: { type: "string", default: "3", description: "Requested distinct videos, 1 to 6." },
+    "reviewed-drafts": {
+      type: "boolean",
+      default: false,
+      description: "Acknowledge editorial review when creating generated story drafts headlessly.",
+    },
     intake: { type: "string", description: "Pinned source intake ID for proposal context." },
     proposal: {
       type: "string",
@@ -113,16 +130,26 @@ export default defineCommand({
       if (proposalActions.has(args.action)) result = await runProjectProposal(service, args);
       else if (args.action === "list") result = { projects: service.list() };
       else if (args.action === "plan" || args.action === "from-source") {
+        const story = {
+          audience: args.audience,
+          purpose: args.purpose,
+          durationSeconds: Number(args.seconds),
+          count: Number(args.count),
+        };
         const intake = await service.intake(
           /^https:/.test(source)
-            ? { kind: "github", url: source }
-            : { kind: "local", rootId: "source", path: "." },
+            ? { kind: "github", url: source, story }
+            : { kind: "local", rootId: "source", path: ".", story },
         );
         result = { intake };
         if (args.action === "from-source") {
           result.projects = await service.acceptIntake(
             intake.id,
             intake.proposals.map((plan) => plan.id),
+            {
+              acknowledged: args["reviewed-drafts"],
+              hashes: Object.fromEntries(intake.proposals.map((plan) => [plan.id, plan.planHash!])),
+            },
           );
           if (args.render)
             batchId = (await batches.start(result.projects.map((project: any) => project.id))).id;

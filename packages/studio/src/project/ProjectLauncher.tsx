@@ -3,6 +3,9 @@ import { useMountEffect } from "../hooks/useMountEffect";
 import { projectApi, openProject } from "./api";
 import { BatchPanel } from "./BatchPanel";
 import { SourceReview } from "./SourceReview";
+import { StorySettings } from "./StorySettings";
+import { StoryPlanReview } from "./StoryPlanReview";
+import type { StoryOptions } from "@hyperframes/studio-server";
 
 export function ProjectLauncher() {
   const [kind, setKind] = useState<"local" | "github">("local");
@@ -17,6 +20,14 @@ export function ProjectLauncher() {
   const [busy, setBusy] = useState("");
   const [error, setError] = useState("");
   const [batchId, setBatchId] = useState<string | null>(null);
+  const [storyDraftDirty, setStoryDraftDirty] = useState(false);
+  const [planningEpoch, setPlanningEpoch] = useState(0);
+  const [storyOptions, setStoryOptions] = useState<StoryOptions>({
+    audience: "developers",
+    purpose: "explain",
+    durationSeconds: 40,
+    count: 3,
+  });
   const refresh = async () => {
     const data = await projectApi("/projects");
     setProjects(data.projects);
@@ -114,18 +125,21 @@ export function ProjectLauncher() {
             />
           </label>
         )}
+        <StorySettings value={storyOptions} onChange={setStoryOptions} />
         <div className="vf-row">
           <p className="vf-muted">
             Source inspection reads files and declarations. Repository scripts stay inactive.
           </p>
           <button
             className="vf-primary"
-            disabled={!!busy}
+            disabled={!!busy || storyDraftDirty}
             onClick={() =>
               void act("Inspecting source…", async () => {
                 const result = await projectApi(
                   "/intakes",
-                  kind === "local" ? { kind, rootId, path: sourcePath } : { kind, url },
+                  kind === "local"
+                    ? { kind, rootId, path: sourcePath, story: storyOptions }
+                    : { kind, url, story: storyOptions },
                 );
                 setIntake(result);
                 setSelected(result.proposals.map((plan: any) => plan.id));
@@ -153,60 +167,34 @@ export function ProjectLauncher() {
           {intake.facts.understanding && (
             <SourceReview key={intake.id} understanding={intake.facts.understanding} />
           )}
-          <div className="vf-plan-grid">
-            {intake.proposals.map((plan: any, index: number) => (
-              <article className="vf-plan" key={plan.id}>
-                <label className="vf-plan-choice">
-                  <input
-                    type="checkbox"
-                    checked={selected.includes(plan.id)}
-                    onChange={(event) =>
-                      setSelected(
-                        event.target.checked
-                          ? [...selected, plan.id]
-                          : selected.filter((id) => id !== plan.id),
-                      )
-                    }
-                  />
-                  <span>VIDEO {String(index + 1).padStart(2, "0")}</span>
-                </label>
-                <h3>{plan.title}</h3>
-                <p>{plan.angle}</p>
-                <ol>
-                  {plan.snapshot.manifest.scenes.slice(1).map((scene: any) => (
-                    <li key={scene.id}>{scene.presentation.title}</li>
-                  ))}
-                </ol>
-                <details>
-                  <summary>{plan.evidence.length} source citations</summary>
-                  {plan.evidence.map((file: any) => (
-                    <p key={file.path}>
-                      <code>{file.path}</code>
-                      <br />
-                      <small>{file.sha256.slice(0, 16)}</small>
-                    </p>
-                  ))}
-                </details>
-              </article>
-            ))}
-          </div>
-          <p className="vf-muted">
-            These are source-grounded drafts. Declared dependencies are not claims about running
-            infrastructure.
-          </p>
           <button
-            className="vf-primary"
-            disabled={!!busy || !selected.length}
+            disabled={!!busy || storyDraftDirty}
             onClick={() =>
-              void act("Creating projects…", async () => {
-                await projectApi(`/intakes/${intake.id}/accept`, { selected });
-                await refresh();
-                setIntake(null);
+              void act("Replanning from captured source…", async () => {
+                const result = await projectApi(`/intakes/${intake.id}/plan`, storyOptions);
+                setIntake(result);
+                setSelected(result.proposals.map((plan: any) => plan.id));
+                setPlanningEpoch((epoch) => epoch + 1);
               })
             }
           >
-            Create {selected.length} video projects
+            Replan with current story settings
           </button>
+          <StoryPlanReview
+            key={`${intake.id}:${planningEpoch}`}
+            intake={intake}
+            selected={selected}
+            onSelected={setSelected}
+            onIntake={setIntake}
+            onDraftDirty={setStoryDraftDirty}
+            act={act}
+            busy={!!busy}
+            onCreated={async () => {
+              await refresh();
+              setIntake(null);
+              setStoryDraftDirty(false);
+            }}
+          />
         </section>
       )}
       <section className="vf-projects">

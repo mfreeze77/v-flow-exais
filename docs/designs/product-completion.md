@@ -14,9 +14,9 @@ conditional on configuration and authorization. All execution stays in Docker.
 | # | Required end state | Evidence required for acceptance | State |
 |---|---|---|---|
 | 1 | Understand implementation, docs, entry points, APIs, data models and workflows; explain interactions with citations and uncertainty | Varied real repositories, pinned excerpts, semantic extraction and factual human review | In progress |
-| 2 | Distinct worthwhile stories; audience, purpose, duration and count; scripts with opening, progression and payoff | Reviewed project-specific plans and finished distinct films | Open |
+| 2 | Distinct worthwhile stories; audience, purpose, duration and count; scripts with opening, progression and payoff | Reviewed project-specific plans and finished distinct films | In progress |
 | 3 | Configured-agent typed proposals; factual/relationship/wording/edit preview; revise, reject, atomic accept; unavailable/partly invalid handling (096,098,102) | Real tool workflow, rejection invariance, atomic undo and source grounding | In progress |
-| 4 | Explanatory scenes, diagrams, excerpts and appropriate footage; typography, pacing, transitions and emphasis | Actual probed films and explicit human usefulness/quality review | Open |
+| 4 | Explanatory scenes, diagrams, excerpts and appropriate footage; typography, pacing, transitions and emphasis | Actual probed films and explicit human usefulness/quality review | In progress |
 | 5 | Repository/PR before/head pinning; exact adds/removes/changes; before/change/after scenes retaining removed objects (037,092,093) | Two-revision fixtures, exact delta receipts and rendered review | Open |
 | 6 | One complete Studio for managed diagram/native projects, selection, inspector, timeline, media and history (059-063,072,082,085) | Browser editing of mixed projects with one shared workspace | Open |
 | 7 | Type-aware semantic forms, object/edge CRUD, duplicate/group/layout/routing and correct identity/track selection (061-069) | All-family browser gestures, persistence and validation | Open |

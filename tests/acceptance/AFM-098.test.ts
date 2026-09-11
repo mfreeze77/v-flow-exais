@@ -24,7 +24,16 @@ async function fixture() {
     sourceRoots: [{ id: "test", label: "Test", path: source }],
   });
   const intake = await service.intake({ kind: "local", rootId: "test", path: "." });
-  const [project] = await service.acceptIntake(intake.id, [intake.proposals[0]!.id]);
+  const project = await service.importDiagram({
+    schema_version: 1,
+    diagram_type: "architecture",
+    meta: { title: "Orders", viewBox: [900, 570], legend: { mode: "hidden" } },
+    components: [
+      { id: "object-0", type: "backend", label: "Orders", pos: [60, 80], size: [180, 70] },
+    ],
+    connections: [],
+    cards: [],
+  });
   const snapshot = service.get(project!.id).snapshot;
   const doc = snapshot.manifest.documents.find((item) => item.kind !== "native")!;
   const observation = intake.facts.understanding.observations.find(

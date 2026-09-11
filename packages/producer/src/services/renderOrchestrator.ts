@@ -2342,6 +2342,7 @@ async function executeRenderPipeline(input: {
         needsAlpha,
         log,
         assertNotAborted,
+        abortSignal: executionSignal,
         variables: job.config.variables,
       }),
     );

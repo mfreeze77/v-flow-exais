@@ -171,6 +171,9 @@ export class ProjectBatchService {
     // This service queues batches; kernel locks prevent duplicate cross-session work.
     this.tail = this.tail
       .then(async () => {
+        // Let the API flush the durable batch receipt before producer setup can
+        // perform synchronous compilation work on this event loop.
+        await new Promise<void>((resolve) => setImmediate(resolve));
         try {
           for (const item of record.items) {
             state.cancelled ||= existsSync(`${this.path(record.id)}.cancel`);

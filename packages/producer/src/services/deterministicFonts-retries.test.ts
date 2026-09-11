@@ -414,4 +414,22 @@ describe("deterministic Google Fonts retries", () => {
     expect(result).not.toContain("data-hyperframes-deterministic-fonts");
     expect(calls).toBe(1);
   });
+
+  it("bounds a hung local font request and retains the existing fallback policy", async () => {
+    const { html } = unresolvedHtml();
+    let calls = 0;
+    const fetchImpl = ((_input: unknown, init?: RequestInit) => {
+      calls++;
+      return new Promise<Response>((_resolve, reject) =>
+        init!.signal!.addEventListener("abort", () => reject(init!.signal!.reason), { once: true }),
+      );
+    }) as typeof fetch;
+    const result = await injectDeterministicFontFaces(html, {
+      fetchImpl,
+      allowSystemFontCapture: false,
+      fontFetchRetryPolicy: FAST_RETRY,
+    });
+    expect(result).toBe(html);
+    expect(calls).toBe(1);
+  });
 });

@@ -13,11 +13,13 @@ receipts — never by guessing that a generated file proves success.
 
 The owner requires all 28 non-security product areas in
 `docs/designs/product-completion.md`. No area is fully accepted yet.
-The latest AFM-093 checkpoint adds captured implementation analysis and a
-searchable Studio source review with exact excerpts and uncertainty. It does
-not complete repository understanding, replace the manifest video templates,
-implement PR deltas or close a gate. The current code SHA, checks and screenshot
-hashes are in `evidence/tickets/AFM-093/result.json`.
+The latest AFM-093 checkpoint replaces the fixed manifest templates with
+source-supported story drafts, audience/purpose/count/duration controls,
+script/storyboard revision and mixed native/diagram scenes. Captured call-site
+columns keep long excerpts framed around the referenced call. This does not
+complete repository understanding, useful films, PR deltas or a gate. Current
+code SHA, commands, probes and visual checks are in `evidence/tickets/AFM-093/result.json`
+and `docs/designs/story-planning.md`.
 
 The latest AFM-098 checkpoint adds typed source-backed proposals, real Studio
 claim/diff review, revision/rejection/atomic acceptance and CLI ingress. Seven
@@ -26,19 +28,22 @@ review/accept/undo journey pass. The broad branch audit fails; configured model
 calls, complete agent tooling and useful story/video acceptance remain open.
 See `evidence/tickets/AFM-098/result.json` and `docs/designs/proposal-review.md`.
 
-Continue with distinct source-backed story planning and exact before/head
-capture, using the actual AFM-037/093/098 ticket bodies. Keep the entire owner
-checklist active. Source understanding limits are in `docs/designs/source-understanding.md`.
+Continue with richer product/workflow stories and exact before/head capture,
+using the actual AFM-037/093/098 ticket bodies. The recorded font-resolution
+stall now has bounded requests and a forwarded cancellation signal; complete
+font pinning and crash/cancellation coverage remain before durable or offline
+production acceptance. Keep the entire owner checklist active. Source
+understanding limits are in `docs/designs/source-understanding.md`.
 
 ## Counts
 
 | State | Count | Tickets |
 |---|---|---|
 | verified | 7 | AFM-001–006, AFM-009 |
-| in_progress | 28 | AFM-017–022, AFM-024–029, AFM-039–043, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-093, AFM-095–096, AFM-098–099 |
+| in_progress | 30 | AFM-017–022, AFM-024–029, AFM-039–043, AFM-049, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-083, AFM-093, AFM-095–096, AFM-098–099 |
 | implemented_unverified | 0 | — |
 | blocked | 1 | AFM-011 — package isolation and integration now pass; clean workspace build prerequisite remains |
-| untouched | 98 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
+| untouched | 96 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
 
 This checkpoint delivers a working source-to-three-videos path, not closure of
 every contributing ticket. Per-ticket receipts distinguish the verified slice

@@ -14,6 +14,8 @@ import {
 } from "node:fs";
 import { basename, dirname, extname, isAbsolute, join, relative, resolve } from "node:path";
 import { createVideoProposals, type VideoProposal } from "./videoProposals";
+import { planRepositoryStories } from "./storyPlanning";
+import type { StoryOptions } from "./storyTypes";
 import {
   understandRepository,
   type CapturedSource,
@@ -25,9 +27,10 @@ export interface SourceRoot {
   label: string;
   path: string;
 }
-export type SourceRequest =
+export type SourceRequest = (
   | { kind: "local"; rootId: string; path: string }
-  | { kind: "github"; url: string };
+  | { kind: "github"; url: string }
+) & { story?: unknown };
 export interface SourceFile {
   path: string;
   sha256: string;
@@ -59,6 +62,7 @@ export interface RepositoryIntake {
   createdAt: string;
   facts: RepositoryFacts;
   proposals: VideoProposal[];
+  planning?: { options: StoryOptions; warnings: string[] };
 }
 export const digest = (bytes: string | Uint8Array) =>
   createHash("sha256").update(bytes).digest("hex");
@@ -373,12 +377,14 @@ export async function createRepositoryIntake(
     );
   } else throw new Error("Unsupported source kind.");
   const facts = inspectRepository(root, join(dir, "snapshot"));
+  const planned = planRepositoryStories(facts, request.story);
   const intake: RepositoryIntake = {
     schemaVersion: 1,
     id,
     createdAt: new Date().toISOString(),
     facts,
-    proposals: createVideoProposals(facts),
+    proposals: createVideoProposals(facts, planned.options),
+    planning: { options: planned.options, warnings: planned.warnings },
   };
   writeFileSync(join(dir, "intake.json"), JSON.stringify(intake, null, 2), {
     flag: "wx",

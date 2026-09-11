@@ -1931,6 +1931,11 @@ export async function compileForRender(
   downloadDir: string,
   options: CompileForRenderOptions = {},
 ): Promise<CompiledComposition> {
+  const checkpoint = (stage: string) => {
+    if (process.env.VFLOW_DEBUG_COMPILE === "1")
+      options.log?.info(`[Compiler:checkpoint] ${stage}`);
+  };
+  checkpoint("entry");
   const entryHtml = rebaseDirectEntryAssetPaths(
     readFileSync(htmlPath, "utf-8"),
     projectDir,
@@ -1945,6 +1950,7 @@ export async function compileForRender(
   // that silently drops a scene is strictly worse than one that refuses to
   // start.
   assertSubCompositionsUsable(rawHtml, projectDir);
+  checkpoint("subcomposition-preflight");
 
   const { html: compiledHtml, unresolvedCompositions } = await compileHtmlFile(
     rawHtml,
@@ -1955,6 +1961,7 @@ export async function compileForRender(
 
   // Compile each referenced sub-composition so the inliner can hoist it.
   const { subCompositions } = await parseSubCompositions(compiledHtml, projectDir, downloadDir);
+  checkpoint("subcomposition-compile");
 
   // Ensure the HTML is a full document before inlining sub-compositions.
   // When index.html is a fragment (no <html>/<head>/<body>), linkedom.parseHTML()
@@ -1994,12 +2001,14 @@ export async function compileForRender(
       coalesceHeadStylesAndBodyScripts(promoteCssImportsToLinkTags(sanitizedHtml)),
     ),
   );
+  checkpoint("normalized-fonts");
 
   const coalescedHtml = await injectDeterministicFontFaces(normalizedFontHtml, {
     failClosedFontFetch: options.failClosedFontFetch === true,
     allowSystemFontCapture: options.allowSystemFontCapture,
     abortSignal: options.abortSignal,
   });
+  checkpoint("resolved-fonts");
 
   // Download CDN scripts and inline them AFTER coalescing. This order matters:
   // coalesceHeadStylesAndBodyScripts merges inline scripts and appends them at
@@ -2007,6 +2016,7 @@ export async function compileForRender(
   // become an inline script that gets moved after local <script src="script.js">
   // tags that depend on it, causing "gsap is not defined" errors.
   const assembledHtml = await inlineExternalScripts(coalescedHtml);
+  checkpoint("external-scripts");
 
   // Inject studio position seek re-apply script when positions are baked into HTML.
   // GSAP overwrites the `translate` CSS property on every frame seek; this script
@@ -2074,6 +2084,7 @@ export async function compileForRender(
   }
 
   const embeddedHtml = await embedLocalFontFaces(htmlWithPreparedGifs, projectDir);
+  checkpoint("embedded-assets");
 
   // Collect assets that resolve outside projectDir (e.g. ../shared-assets/hero.png).
   // These can't be served by the file server, so we map them to paths the

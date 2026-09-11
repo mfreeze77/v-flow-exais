@@ -7,6 +7,8 @@ export interface SourceExcerpt extends SourceFile {
   startLine: number;
   endLine: number;
   text: string;
+  /** Zero-based call-site column, retained so long source lines can be framed accurately. */
+  focusColumn?: number;
 }
 export interface SourceObservation {
   id: string;
@@ -185,6 +187,7 @@ export function understandRepository(sources: CapturedSource[]): RepositoryUnder
     source: CapturedSource,
     at: number,
     description: string,
+    focusColumn?: number,
   ) => {
     const key = JSON.stringify([source.file.path, kind, at]);
     const occurrence = occurrences.get(key) || 0;
@@ -194,7 +197,10 @@ export function understandRepository(sources: CapturedSource[]): RepositoryUnder
       kind,
       from,
       to,
-      evidence: sourceExcerpt(source, at),
+      evidence: {
+        ...sourceExcerpt(source, at),
+        ...(focusColumn === undefined ? {} : { focusColumn }),
+      },
       description,
     });
   };
@@ -252,6 +258,7 @@ export function understandRepository(sources: CapturedSource[]): RepositoryUnder
             source,
             call.line,
             `${declaration.name} contains ${call.awaited ? "an awaited" : "a"} call to ${call.target}; this is not an execution trace.`,
+            call.column,
           );
         else
           result.uncertainties.push({

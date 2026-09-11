@@ -1044,7 +1044,14 @@ async function fetchFontResource<T>(
   options: InternalFontFetchOptions,
 ): Promise<FontFetchResult<T>> {
   if (!options.failClosedFontFetch) {
-    const response = await options.fetchImpl(url, { ...init, signal: options.abortSignal });
+    throwIfCallerAborted(options.abortSignal);
+    const remainingMs = options.retryDeadlineMs - Date.now();
+    if (remainingMs <= 0) throw new DOMException("Font fetch budget exhausted", "TimeoutError");
+    const timeout = AbortSignal.timeout(
+      Math.max(1, Math.min(options.retryPolicy.attemptTimeoutMs, remainingMs)),
+    );
+    const signal = options.abortSignal ? AbortSignal.any([options.abortSignal, timeout]) : timeout;
+    const response = await options.fetchImpl(url, { ...init, signal });
     if (!response.ok) return { ok: false, response };
     return { ok: true, response, body: await readBody(response) };
   }

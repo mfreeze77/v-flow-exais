@@ -10,7 +10,7 @@ export interface RepositorySyntax {
     endLine: number;
     exportedAs: string[];
     fields: string[];
-    calls: { target: string; line: number; awaited: boolean; shadowed: boolean }[];
+    calls: { target: string; line: number; column: number; awaited: boolean; shadowed: boolean }[];
   }[];
   routes: {
     receiver: string;
@@ -254,6 +254,7 @@ export function inspectRepositorySyntax(path: string, source: string): Repositor
           observed.calls.push({
             target,
             line: line(node),
+            column: node.loc?.start.column || 0,
             awaited: parent?.type === "AwaitExpression",
             shadowed:
               shadowed.has(target.split(".")[0]!) ||

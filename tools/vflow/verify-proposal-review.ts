@@ -18,7 +18,16 @@ const service = new UnifiedProjectService({
   ],
 });
 const intake = await service.intake({ kind: "local", rootId: "source", path: "." });
-const [project] = await service.acceptIntake(intake.id, [intake.proposals[0]!.id]);
+const project = await service.importDiagram({
+  schema_version: 1,
+  diagram_type: "architecture",
+  meta: { title: "Source review", viewBox: [900, 570], legend: { mode: "hidden" } },
+  components: [
+    { id: "object-0", type: "backend", label: "Source", pos: [60, 80], size: [180, 70] },
+  ],
+  connections: [],
+  cards: [],
+});
 const id = project!.id;
 const before = service.get(id).snapshot;
 const document = before.manifest.documents.find((item) => item.kind !== "native")!;

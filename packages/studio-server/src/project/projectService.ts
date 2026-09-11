@@ -22,6 +22,7 @@ import {
 import { nativeTitle } from "./videoProposals";
 import { ProjectProposalService } from "./projectProposals";
 import type { ProposalProvider } from "./proposalTypes";
+import { assertStoryReview } from "./storyIntake";
 
 const validId = (id: string) => /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,127}$/.test(id);
 export interface ProjectServiceOptions {
@@ -117,7 +118,11 @@ export class UnifiedProjectService {
     const path = contained(this.intakesDir, `${id}/intake.json`);
     return JSON.parse(readFileSync(path, "utf8"));
   }
-  async acceptIntake(id: string, selected: string[]) {
+  async acceptIntake(
+    id: string,
+    selected: string[],
+    review?: { hashes?: Record<string, string>; acknowledged?: boolean },
+  ) {
     const intake = this.readIntake(id);
     if (
       !Array.isArray(selected) ||
@@ -126,6 +131,7 @@ export class UnifiedProjectService {
       selected.some((key) => !intake.proposals.some((plan) => plan.id === key))
     )
       throw new Error("Select valid video proposals.");
+    assertStoryReview(this, intake, selected, review);
     const results = [];
     for (const key of [...new Set(selected)]) {
       const proposal = intake.proposals.find((plan) => plan.id === key)!;
@@ -139,6 +145,9 @@ export class UnifiedProjectService {
           dirty: intake.facts.dirty,
           citations: proposal.evidence,
           limitations: intake.facts.limitations,
+          story: proposal.story,
+          planHash: proposal.planHash,
+          editorialReviewed: !!review?.acknowledged,
         });
       }
       results.push({ id: proposal.snapshot.manifest.id, title: proposal.title });

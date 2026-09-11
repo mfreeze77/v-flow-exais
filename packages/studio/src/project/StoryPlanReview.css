@@ -1,0 +1,76 @@
+.vf-story-settings {
+  border: 1px solid #334355;
+  border-radius: 10px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+  margin: 24px 0;
+  padding: 20px;
+}
+.vf-story-settings legend {
+  padding: 0 10px;
+  color: #c5d4e4;
+}
+.vf-story-settings input,
+.vf-story-settings select {
+  width: 100%;
+}
+.vf-story-question {
+  color: #b4eedf;
+}
+.vf-story-plan details {
+  padding: 14px 0;
+  border-top: 1px solid #334355;
+}
+.vf-story-plan summary {
+  cursor: pointer;
+}
+.vf-story-beats {
+  padding-left: 24px;
+}
+.vf-story-beats > li {
+  padding: 18px 0;
+  border-bottom: 1px solid #334355;
+}
+.vf-story-beats .vf-row > label {
+  max-width: 100px;
+}
+.vf-story-beats textarea {
+  min-height: 120px;
+}
+.vf-story-evidence {
+  padding: 14px 0;
+  border-bottom: 1px solid #334355;
+  overflow-wrap: anywhere;
+}
+.vf-story-evidence pre {
+  overflow: auto;
+  white-space: pre-wrap;
+  font-size: 12px;
+  background: #080f16;
+  padding: 12px;
+  max-height: 260px;
+}
+.vf-story-ack {
+  display: flex !important;
+  align-items: center;
+  gap: 12px;
+  margin: 24px 0;
+}
+.vf-story-ack input {
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+@media (max-width: 900px) {
+  .vf-story-settings {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 550px) {
+  .vf-story-settings {
+    grid-template-columns: 1fr;
+  }
+  .vf-story-beats {
+    padding-left: 18px;
+  }
+}
