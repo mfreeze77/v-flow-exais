@@ -1,0 +1,50 @@
+{
+  "ticketId": "AFM-095",
+  "title": "AFM-095 — Expose one product CLI with native and diagram commands",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Existing CLI registers project commands that use the same authoring and render services as Studio.",
+  "remainingAcceptance": [
+    "Remaining command families and distribution acceptance are not closed."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/cli typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/cli-typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run vflow plan --source https://github.com/mfreeze77/v-flow-exais",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/github-intake.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun run vflow download --id batch-824fcd55-f14f-443e-917b-c6d84af00f46 --output /workspace/out/cli-downloads",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/cli-download.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/cli-typecheck.log",
+      "type": "evidence",
+      "bytes": 139,
+      "sha256": "8d073215930bbf4147a09d1cac2a2b5d95d12b1ab63f92b9e559e0a1916f0fbc"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/github-intake.log",
+      "type": "evidence",
+      "bytes": 67615,
+      "sha256": "c864dfa46a15cf041ae14eb91642a884ce4d5020117756ed26463e096dcba76c"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/cli-download.log",
+      "type": "evidence",
+      "bytes": 11439,
+      "sha256": "b0a8701dc4e30553104aa5ec5e58cce506fa273609bd36e6e966ded618173a48"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}

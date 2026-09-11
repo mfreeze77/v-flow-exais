@@ -1,5 +1,7 @@
 {
-  "implemented": "Adds real source context, typed proposal submission/list/review/revise/reject/accept commands to the existing CLI and fixes large piped JSON output draining.",
+  "status": "in_progress",
+  "title": "AFM-096 - Expose revision-aware diagram and story agent tools",
+  "commit": "11eccf055c3a9cb374c2cc1434da5a14ccbf0ba9",
   "artifacts": [
     {
       "bytes": 25822,
@@ -8,10 +10,15 @@
     }
   ],
   "handoff": "docs/designs/proposal-review.md",
+  "implemented": "Managed projects register project inspection, captured source context, typed proposal submission and proposal listing through the inherited local registrar/polyfill; structured diagnostics share the project service.",
+  "gatePassed": false,
   "remainingAcceptance": [
-    "Remaining command families, compatibility, help/doctor and clean distribution command acceptance remain open.",
-    "The recorded CLI edit is source-backed and accepted/undone in Studio; no finished useful story/video or live configured-model call is claimed."
+    "Complete inspectDiagram/applyCommand/createScene/inspectConflicts/render-status/capability tools and their full input schemas.",
+    "Record local browser-agent registration/invocation and the required valid-edit/fabricated-edge/stale-revision/orphan-resolution/idempotent-replay cases through the actual tool surface.",
+    "Complete prerequisites AFM-051/057/061/095.",
+    "Broad branch audit remains failed."
   ],
+  "evidenceBoundary": "CLI and Studio workflow is real. Provider adapter is a contract test. Live browser-agent invocation of these new tools has not been recorded.",
   "commands": [
     {
       "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-098.test.ts tests/acceptance/AFM-099.source.test.ts",
@@ -44,56 +51,6 @@
       "logPath": "evidence/tickets/AFM-098/proposal-review/fallow.log"
     }
   ],
-  "recordedCliCommands": [
-    {
-      "args": [
-        "bun",
-        "run",
-        "vflow",
-        "proposal-context",
-        "--id",
-        "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
-        "--intake",
-        "intake-771ce4a9-2057-4859-80ab-c7e6d29f7ceb",
-        "--home",
-        "/tmp/vflow-proposal-review"
-      ],
-      "exitCode": 0
-    },
-    {
-      "args": [
-        "bun",
-        "run",
-        "vflow",
-        "propose",
-        "--file",
-        "/workspace/evidence/tickets/AFM-098/browser/agent-proposal.json",
-        "--home",
-        "/tmp/vflow-proposal-review"
-      ],
-      "exitCode": 0
-    },
-    {
-      "args": [
-        "bun",
-        "run",
-        "vflow",
-        "review-proposal",
-        "--id",
-        "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
-        "--proposal",
-        "proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969",
-        "--home",
-        "/tmp/vflow-proposal-review"
-      ],
-      "exitCode": 0
-    }
-  ],
   "date": "2026-09-11",
-  "title": "AFM-095 - Expose one product CLI with native and diagram commands",
-  "status": "in_progress",
-  "commit": "11eccf055c3a9cb374c2cc1434da5a14ccbf0ba9",
-  "gatePassed": false,
-  "previousReceipt": "evidence/tickets/AFM-095/initial-cli-result.json",
-  "ticketId": "AFM-095"
+  "ticketId": "AFM-096"
 }

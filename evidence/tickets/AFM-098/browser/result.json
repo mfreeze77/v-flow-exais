@@ -1,0 +1,67 @@
+{
+  "projectId": "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
+  "intakeId": "intake-771ce4a9-2057-4859-80ab-c7e6d29f7ceb",
+  "sourceSnapshot": "c5db538259a5bbbe5a72c852df37646be8532de294b79232c9fccb8957acf101",
+  "sourceEvidence": {
+    "path": "proposalStore.ts",
+    "sha256": "91c58da5978901d9cc89fc03c62088b20ea7eb8de796b56468d98140f7836f74",
+    "bytes": 3209,
+    "startLine": 25,
+    "endLine": 31,
+    "text": "export function proposalPath(root: string, id: string) {\n  if (!/^proposal-[a-f0-9-]{36}$/.test(id))\n    throw new ProposalError(\"proposal/invalid-id\", \"Invalid proposal ID.\");\n  const path = join(proposalDirectory(root), `${id}.json`);\n  assertContainedPath(root, path);\n  return path;\n}"
+  },
+  "acceptedProposal": "proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969",
+  "rejectedProposal": "proposal-12b68852-6c07-45b6-92be-cb505feb3b69",
+  "acceptedRevision": 1,
+  "reviewedProposalVersion": 2,
+  "undoRevision": 2,
+  "sourceRestored": true,
+  "historicalPreviewValid": true,
+  "cliCommands": [
+    {
+      "args": [
+        "bun",
+        "run",
+        "vflow",
+        "proposal-context",
+        "--id",
+        "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
+        "--intake",
+        "intake-771ce4a9-2057-4859-80ab-c7e6d29f7ceb",
+        "--home",
+        "/tmp/vflow-proposal-review"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "bun",
+        "run",
+        "vflow",
+        "propose",
+        "--file",
+        "/workspace/evidence/tickets/AFM-098/browser/agent-proposal.json",
+        "--home",
+        "/tmp/vflow-proposal-review"
+      ],
+      "exitCode": 0
+    },
+    {
+      "args": [
+        "bun",
+        "run",
+        "vflow",
+        "review-proposal",
+        "--id",
+        "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
+        "--proposal",
+        "proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969",
+        "--home",
+        "/tmp/vflow-proposal-review"
+      ],
+      "exitCode": 0
+    }
+  ],
+  "errors": [],
+  "providerEvidence": "No configured-provider model call; this records an agent-authored proposal, real CLI, real Studio review and actual project revisions."
+}

@@ -19,19 +19,26 @@ not complete repository understanding, replace the manifest video templates,
 implement PR deltas or close a gate. The current code SHA, checks and screenshot
 hashes are in `evidence/tickets/AFM-093/result.json`.
 
-Continue with source-backed story planning and configured-agent proposal review,
-using the actual AFM-098/096/037/093 ticket bodies and
-`docs/designs/source-understanding.md`. Keep the entire owner checklist active.
+The latest AFM-098 checkpoint adds typed source-backed proposals, real Studio
+claim/diff review, revision/rejection/atomic acceptance and CLI ingress. Seven
+focused tests, three package typechecks, changed-file lint and the actual browser
+review/accept/undo journey pass. The broad branch audit fails; configured model
+calls, complete agent tooling and useful story/video acceptance remain open.
+See `evidence/tickets/AFM-098/result.json` and `docs/designs/proposal-review.md`.
+
+Continue with distinct source-backed story planning and exact before/head
+capture, using the actual AFM-037/093/098 ticket bodies. Keep the entire owner
+checklist active. Source understanding limits are in `docs/designs/source-understanding.md`.
 
 ## Counts
 
 | State | Count | Tickets |
 |---|---|---|
 | verified | 7 | AFM-001–006, AFM-009 |
-| in_progress | 27 | AFM-017–022, AFM-024–029, AFM-039–043, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-093, AFM-095, AFM-098–099 |
+| in_progress | 28 | AFM-017–022, AFM-024–029, AFM-039–043, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-093, AFM-095–096, AFM-098–099 |
 | implemented_unverified | 0 | — |
 | blocked | 1 | AFM-011 — package isolation and integration now pass; clean workspace build prerequisite remains |
-| untouched | 99 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
+| untouched | 98 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
 
 This checkpoint delivers a working source-to-three-videos path, not closure of
 every contributing ticket. Per-ticket receipts distinguish the verified slice

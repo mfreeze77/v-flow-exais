@@ -1,0 +1,35 @@
+{
+  "schemaVersion": 1,
+  "projectId": "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
+  "title": "Explain the proposalPath source identity",
+  "expectedRevision": 0,
+  "source": {
+    "intakeId": "intake-771ce4a9-2057-4859-80ab-c7e6d29f7ceb",
+    "snapshotHash": "c5db538259a5bbbe5a72c852df37646be8532de294b79232c9fccb8957acf101"
+  },
+  "operations": [
+    {
+      "type": "rename-object",
+      "documentId": "diagram-0",
+      "objectId": "object-0",
+      "label": "proposalPath"
+    }
+  ],
+  "claims": [
+    {
+      "id": "source-name",
+      "basis": "observation",
+      "sourceId": "source-02fe6155e9c39022175634ae",
+      "field": "name"
+    }
+  ],
+  "wording": [
+    {
+      "operationIndex": 0,
+      "pointer": "/label",
+      "claimId": "source-name"
+    }
+  ],
+  "objects": [],
+  "relationships": []
+}

@@ -3,26 +3,518 @@
   "title": "AFM-098 — Implement source-grounded AI proposal review",
   "date": "2026-09-11",
   "status": "in_progress",
-  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
-  "implemented": "Deterministic source-grounded plan review cards and validation boundaries support future configured-agent proposals.",
-  "remainingAcceptance": [
-    "Configured-agent proposed commands, diff review and provider-unavailable cases are not implemented. Deterministic cards do not satisfy AFM-098."
-  ],
+  "commit": "11eccf055c3a9cb374c2cc1434da5a14ccbf0ba9",
+  "previousReceipt": "evidence/tickets/AFM-098/initial-plan-cards-result.json",
+  "implemented": "Typed source-backed project proposals, canonical claim/excerpt and field-diff review, invalid-batch repair, optimistic proposal revision, rejection, project-owned atomic acceptance/undo, durable review sidecars and journal recovery; optional provider interface, CLI ingress and partial local browser tools.",
   "commands": [
     {
-      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-099.source.test.ts",
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-098.test.ts tests/acceptance/AFM-099.source.test.ts",
       "exitCode": 0,
-      "logPath": "evidence/tickets/AFM-099/source-test.log"
+      "logPath": "evidence/tickets/AFM-098/proposal-review/acceptance.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{studio-server,studio,cli}' typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-098/proposal-review/typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxlint packages/cli/src/commands/project.ts packages/cli/src/commands/projectProposal.ts packages/studio-server/src/createStudioApi.ts packages/studio-server/src/index.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/project/projectApiError.ts packages/studio-server/src/project/projectProposals.ts packages/studio-server/src/project/proposalGrounding.ts packages/studio-server/src/project/proposalPreview.ts packages/studio-server/src/project/proposalSchema.ts packages/studio-server/src/project/proposalStore.ts packages/studio-server/src/project/proposalTypes.ts packages/studio-server/src/routes/projectProposals.ts packages/studio-server/src/routes/projectCommands.ts packages/studio/src/project/ProjectWorkspace.tsx packages/studio/src/project/api.ts packages/studio/src/project/ProposalReview.tsx packages/studio/src/project/ProjectAgentTools.tsx",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-098/proposal-review/lint.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-proposal-review bun tools/vflow/verify-proposal-review.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-098/proposal-review/browser.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install oxfmt --check packages/cli/src/commands/project.ts packages/cli/src/commands/projectProposal.ts packages/studio-server/src/createStudioApi.ts packages/studio-server/src/index.ts packages/studio-server/src/project/projectService.ts packages/studio-server/src/project/projectApiError.ts packages/studio-server/src/project/projectProposals.ts packages/studio-server/src/project/proposalGrounding.ts packages/studio-server/src/project/proposalPreview.ts packages/studio-server/src/project/proposalSchema.ts packages/studio-server/src/project/proposalStore.ts packages/studio-server/src/project/proposalTypes.ts packages/studio-server/src/routes/projectProposals.ts packages/studio-server/src/routes/projectCommands.ts packages/studio/src/project/ProjectWorkspace.tsx packages/studio/src/project/api.ts packages/studio/src/project/ProposalReview.tsx packages/studio/src/project/ProposalReview.css packages/studio/src/project/ProjectAgentTools.tsx tests/acceptance/AFM-098.test.ts tools/vflow/verify-proposal-review.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-098/proposal-review/format.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bunx --no-install fallow audit --base origin/main --fail-on-issues",
+      "exitCode": 1,
+      "logPath": "evidence/tickets/AFM-098/proposal-review/fallow.log"
     }
   ],
-  "artifacts": [
-    {
-      "path": "evidence/tickets/AFM-099/source-test.log",
-      "type": "evidence",
-      "bytes": 768,
-      "sha256": "64754f1dc41b9cb5aa4dc38c3a721a6c54999b4d09ad307c60c9d461dbbb972f"
-    }
+  "testSummary": {
+    "acceptanceTests": 7,
+    "testFiles": 2,
+    "typecheckedPackages": [
+      "studio-server",
+      "studio",
+      "cli"
+    ],
+    "lint": "0 warnings and 0 errors across 18 changed application files",
+    "format": "21 files passed",
+    "browser": "Real source-context/propose/review CLI calls; pinned Chromium rejection, typed JSON revision to version 2, source and before/after review, acceptance at project revision 1, undo at revision 2, all authoring documents restored, historical accepted review valid, no page errors."
+  },
+  "runtime": {
+    "image": "sha256:32798034cb5a79000ad0c4520e0c8808b0e51384625c991849195880c6bddcf7",
+    "bun": "1.3.13",
+    "chrome": "Google Chrome for Testing 148.0.7778.167"
+  },
+  "evidenceBoundaries": {
+    "provider": "Injected test adapter only. No configured-provider model call or live integration is claimed; normal Studio host has no configured generation provider.",
+    "recovery": "Models project commit before proposal-sidecar update; not a real process-kill or concurrent-process fault matrix.",
+    "agent": "Agent-authored JSON using actual repository evidence and real CLI, reviewed through Studio. Not a live browser-agent session or completed agent-to-video acceptance.",
+    "render": "No video generated in this checkpoint. Existing fixed manifest story templates remain.",
+    "source": "Canonical syntax observations identify captured code structure; documentation, custom interpretation and editorial wording require acknowledgement and do not prove runtime behavior."
+  },
+  "visualInspection": {
+    "inspected": true,
+    "artifacts": [
+      "browser/review-desktop.png",
+      "browser/review-mobile.png",
+      "browser/accepted.png"
+    ],
+    "findings": "Desktop 1440x1100 shows readable source excerpt and label before/proposed comparison. Mobile 390x844 wraps source and stacks comparison fields in a scrolling modal. Acceptance screenshot captures the detail before saved-list refresh finishes; final journal and undo assertions passed."
+  },
+  "broaderAudit": {
+    "status": "failed",
+    "deadCodeIssues": 48,
+    "complexityFindings": 214,
+    "cloneGroups": 29,
+    "changedFiles": 386,
+    "inheritedFindingsExcluded": 131,
+    "note": "New review/schema/grounding complexity, unused internal exports and proof-script duplication remain. Some method findings name actual HTTP/CLI entry points. No suppressions added."
+  },
+  "resolvedFailures": [
+    "Large piped CLI context JSON was intermittently truncated; awaiting stdout callback fixed the recorded real CLI journey.",
+    "Initial browser driver clicked disabled proposal buttons before loading finished; waits now require enabled choices. The retained browser/failure files are the earlier failed attempt, not the final result.",
+    "New Hono proposal errors initially mapped unavailable providers to 400; shared top-level mapper now returns 503 and is tested."
+  ],
+  "remainingAcceptance": [
+    "Normal Studio provider host configuration and real configured-agent integration; conditional live model verification requires configuration/authorization.",
+    "Full AFM-096 semantic tool catalog, complete input schemas, capability alternatives, orphan handling and recorded real browser-agent workflow.",
+    "All-family motion/narration grounding, useful story plans and finished factual/visually reviewed films.",
+    "Complete AFM-024/037 and underlying AFM-061/095 dependencies; exact before/head capture and delta evidence.",
+    "Actual cross-process contention and process-kill/recovery matrix, proposal retention/history and complete source revision integrity contracts.",
+    "Refactor new complexity and unused exports; broad branch audit remains failed.",
+    "All 28 non-security product areas remain active. No ticket or product gate is newly passed."
   ],
   "gatePassed": false,
-  "handoff": "docs/designs/repo-to-video-handoff.md"
+  "handoff": "docs/designs/proposal-review.md",
+  "artifacts": [
+    {
+      "bytes": 1071,
+      "sha256": "25693ed42762ded1ac52df4fb94aa744a0ef7e7926070168cba251c0e2ad2a14",
+      "path": "evidence/tickets/AFM-098/initial-plan-cards-result.json"
+    },
+    {
+      "bytes": 164808,
+      "sha256": "ee04f6ce525c0c03f5dbc0ddca5b9e28b525ab321e1a6668de7c9d3dce07af78",
+      "path": "evidence/tickets/AFM-098/browser/accepted.png"
+    },
+    {
+      "bytes": 813,
+      "sha256": "3373d018125d37e3b034e963bd375ead0e41c9620b808002da5b97060bf47113",
+      "path": "evidence/tickets/AFM-098/browser/agent-proposal.json"
+    },
+    {
+      "bytes": 334954,
+      "sha256": "45531f08939079bda289e629d38ed09fe3b6cacffcd3efc0b15e88f7045b5e83",
+      "path": "evidence/tickets/AFM-098/browser/cli-context-diagnostic.txt"
+    },
+    {
+      "bytes": 1139,
+      "sha256": "bb74b586fb7592f492c54349fc34e654fe5bb6b6fa9c110cb3c0081397a54ab0",
+      "path": "evidence/tickets/AFM-098/browser/failure.json"
+    },
+    {
+      "bytes": 122500,
+      "sha256": "4f223f9e368b35d9bbfe2c14ca8d142b5708e58b3c0518dfecf7d992470e778d",
+      "path": "evidence/tickets/AFM-098/browser/failure.png"
+    },
+    {
+      "bytes": 2145,
+      "sha256": "13e2155ee29e3a88fc97a42529ae1a32ee7051e1403424e94219bdd8932d5e2b",
+      "path": "evidence/tickets/AFM-098/browser/result.json"
+    },
+    {
+      "bytes": 171452,
+      "sha256": "116c95059028ec0e2dbc4973db0338ef7433f6ce11e213a46b7ad39188312375",
+      "path": "evidence/tickets/AFM-098/browser/review-desktop.png"
+    },
+    {
+      "bytes": 68102,
+      "sha256": "cdeab09fd7bd35704b9ef5b97cf47a072330cc54ceb59e7847179d1dbee6d6a8",
+      "path": "evidence/tickets/AFM-098/browser/review-mobile.png"
+    },
+    {
+      "bytes": 1953,
+      "sha256": "dd49af46576f95bdda18c102b7b9fa7a3e78a6f60daa6dc291fff3ff4c202eee",
+      "path": "evidence/tickets/AFM-098/proposal-review/acceptance.log"
+    },
+    {
+      "bytes": 730,
+      "sha256": "640789aa1521d4fa49e3e9f833508ef4614be81279b2aa0c63f9ae0c7597c30d",
+      "path": "evidence/tickets/AFM-098/proposal-review/browser.log"
+    },
+    {
+      "bytes": 43800,
+      "sha256": "a89d1674e903c776a13ddf16e25fc95f1a98a3af1ed23aab08f32d71b8281ac4",
+      "path": "evidence/tickets/AFM-098/proposal-review/fallow.log"
+    },
+    {
+      "bytes": 235,
+      "sha256": "21eaf1bd2e684b226dfadaf52f50e815fe9c30e825259563af5d6c68e9a430b5",
+      "path": "evidence/tickets/AFM-098/proposal-review/format.log"
+    },
+    {
+      "bytes": 214,
+      "sha256": "c4ac24ba8ce80a660805a6da03a5304e1e9f76446af5dc2bb58523ccaac6e50b",
+      "path": "evidence/tickets/AFM-098/proposal-review/lint.log"
+    },
+    {
+      "bytes": 275,
+      "sha256": "1bc72044a70db83e02e7b11ab2276675345d71578fa74e78f0dfeac4f3efaaee",
+      "path": "evidence/tickets/AFM-098/proposal-review/typecheck.log"
+    }
+  ],
+  "retainedLocalProjectAndIntake": [
+    {
+      "bytes": 143,
+      "sha256": "662dae283756f0891e625b5da8b5181d24b0475e4959c130e423ae15459c953c",
+      "path": "out/proposal-review/accepted-project/.vflow/CURRENT"
+    },
+    {
+      "bytes": 97,
+      "sha256": "f60dfc5142a066b2f366ff168739a14c6a133a1e16a0a76eae03f55fc3538340",
+      "path": "out/proposal-review/accepted-project/.vflow/LAST_BUILD.json"
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "out/proposal-review/accepted-project/.vflow/LOCK"
+    },
+    {
+      "bytes": 832,
+      "sha256": "d9fc9ab541f450bf6075c599af0d551922cb41e2f3f10d65e50a899e9177ab1e",
+      "path": "out/proposal-review/accepted-project/.vflow/source-evidence.json"
+    },
+    {
+      "bytes": 1251,
+      "sha256": "cc951c084dc9c26c32835d8b6643eea35eb8e06fefa98fa70067506f79baeb7b",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/4c351baef147b140f8b6d53c8b71341acbeb0c3a39dd5fe01d0456fa6104545f/build-receipt.json"
+    },
+    {
+      "bytes": 1411,
+      "sha256": "9c7e1a120c6d6e55ac3117840bf6d8cc9180eb48211fbb94c10a1f337199bd5e",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/4c351baef147b140f8b6d53c8b71341acbeb0c3a39dd5fe01d0456fa6104545f/index.html"
+    },
+    {
+      "bytes": 393,
+      "sha256": "dfbbd361f484afc67b57cecd3494062efbe453f9ca001965d167d34b5505c988",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/4c351baef147b140f8b6d53c8b71341acbeb0c3a39dd5fe01d0456fa6104545f/ledger.json"
+    },
+    {
+      "bytes": 1291,
+      "sha256": "5bc052eb232dd463c7960c2b524511fddff16b0b297f65e008570c4ccea5e7ac",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/4c351baef147b140f8b6d53c8b71341acbeb0c3a39dd5fe01d0456fa6104545f/scene-0-title-scene.html"
+    },
+    {
+      "bytes": 119438,
+      "sha256": "cbd2a4e1b8972976a79d25f4193595ac8401c7d547ca437c829993f562461477",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/4c351baef147b140f8b6d53c8b71341acbeb0c3a39dd5fe01d0456fa6104545f/scene-1-chapter-0.html"
+    },
+    {
+      "bytes": 72927,
+      "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/4c351baef147b140f8b6d53c8b71341acbeb0c3a39dd5fe01d0456fa6104545f/assets/gsap.min.js"
+    },
+    {
+      "bytes": 1251,
+      "sha256": "97f28e6b5845088e073ee1fc2e29570523ae7f8d3c55287628a1a62babc43789",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/685074f9a2ffc4ea745072979ac4000e71151e182cc7c45310cf67f1547e5296/build-receipt.json"
+    },
+    {
+      "bytes": 1411,
+      "sha256": "1a0c8e9004c1ef552fc1fc438addb76e65cd23381697544e0ec0f0667bc8beec",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/685074f9a2ffc4ea745072979ac4000e71151e182cc7c45310cf67f1547e5296/index.html"
+    },
+    {
+      "bytes": 393,
+      "sha256": "dfbbd361f484afc67b57cecd3494062efbe453f9ca001965d167d34b5505c988",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/685074f9a2ffc4ea745072979ac4000e71151e182cc7c45310cf67f1547e5296/ledger.json"
+    },
+    {
+      "bytes": 1291,
+      "sha256": "5bc052eb232dd463c7960c2b524511fddff16b0b297f65e008570c4ccea5e7ac",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/685074f9a2ffc4ea745072979ac4000e71151e182cc7c45310cf67f1547e5296/scene-0-title-scene.html"
+    },
+    {
+      "bytes": 119430,
+      "sha256": "13db57d66323a449b130e2e1a15a5ff91cdf5ef04cb3ba4e52d3deddd7950e63",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/685074f9a2ffc4ea745072979ac4000e71151e182cc7c45310cf67f1547e5296/scene-1-chapter-0.html"
+    },
+    {
+      "bytes": 72927,
+      "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/685074f9a2ffc4ea745072979ac4000e71151e182cc7c45310cf67f1547e5296/assets/gsap.min.js"
+    },
+    {
+      "bytes": 1251,
+      "sha256": "484a9519c1ff98c5af1a1ea0c90db20bee4973ca40f78b783188f1f5e47b8f3d",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/aa94eee218c10a7d4e5e3947bd92389ba7bc27ebe61948904810440e7d09309b/build-receipt.json"
+    },
+    {
+      "bytes": 1411,
+      "sha256": "9cf1ca2d2026d610219fb510e2ea6948aecd51efacb89cd0314444abef3eeb4c",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/aa94eee218c10a7d4e5e3947bd92389ba7bc27ebe61948904810440e7d09309b/index.html"
+    },
+    {
+      "bytes": 393,
+      "sha256": "dfbbd361f484afc67b57cecd3494062efbe453f9ca001965d167d34b5505c988",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/aa94eee218c10a7d4e5e3947bd92389ba7bc27ebe61948904810440e7d09309b/ledger.json"
+    },
+    {
+      "bytes": 1291,
+      "sha256": "5bc052eb232dd463c7960c2b524511fddff16b0b297f65e008570c4ccea5e7ac",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/aa94eee218c10a7d4e5e3947bd92389ba7bc27ebe61948904810440e7d09309b/scene-0-title-scene.html"
+    },
+    {
+      "bytes": 119430,
+      "sha256": "13db57d66323a449b130e2e1a15a5ff91cdf5ef04cb3ba4e52d3deddd7950e63",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/aa94eee218c10a7d4e5e3947bd92389ba7bc27ebe61948904810440e7d09309b/scene-1-chapter-0.html"
+    },
+    {
+      "bytes": 72927,
+      "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb",
+      "path": "out/proposal-review/accepted-project/.vflow/builds/aa94eee218c10a7d4e5e3947bd92389ba7bc27ebe61948904810440e7d09309b/assets/gsap.min.js"
+    },
+    {
+      "bytes": 845,
+      "sha256": "2b1e31661972ffbe00760e03f97cf057f3c1b2a53c9f722467c65b68eaae8983",
+      "path": "out/proposal-review/accepted-project/.vflow/proposals/proposal-12b68852-6c07-45b6-92be-cb505feb3b69.json"
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "out/proposal-review/accepted-project/.vflow/proposals/proposal-12b68852-6c07-45b6-92be-cb505feb3b69.json.lock"
+    },
+    {
+      "bytes": 924,
+      "sha256": "53ab19853704b104f087d7817649f65618520a94cfef8b1ebcfa2f11e3183421",
+      "path": "out/proposal-review/accepted-project/.vflow/proposals/proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969.json"
+    },
+    {
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "path": "out/proposal-review/accepted-project/.vflow/proposals/proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969.json.lock"
+    },
+    {
+      "bytes": 863,
+      "sha256": "18a9451967c67eb2168a59c70779d27297d2d68a924beef1e433587f33a00e66",
+      "path": "out/proposal-review/accepted-project/.vflow/proposals/proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969.v1.json"
+    },
+    {
+      "bytes": 558,
+      "sha256": "cca6d15510048be8e958def211809ebd9eeaba95098cae186afb6c9fb16d9a9a",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/0-6054efb3-f3fa-461d-8d34-60f66bb34309/index.json"
+    },
+    {
+      "bytes": 961,
+      "sha256": "37f3bd7957265eda52446df10ce79f85e3d7d1f351ca5e2eddab8ec37ce4b71d",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/0-6054efb3-f3fa-461d-8d34-60f66bb34309/manifest.json"
+    },
+    {
+      "bytes": 262,
+      "sha256": "0c002c93b7099a437173e7911eada510d5b2e57be4c0c191e18d1c10aad1b7ae",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/0-6054efb3-f3fa-461d-8d34-60f66bb34309/documents/diagram-0.architecture.json"
+    },
+    {
+      "bytes": 1291,
+      "sha256": "5bc052eb232dd463c7960c2b524511fddff16b0b297f65e008570c4ccea5e7ac",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/0-6054efb3-f3fa-461d-8d34-60f66bb34309/documents/title.html"
+    },
+    {
+      "bytes": 1231,
+      "sha256": "8345bb3ad8c07037049be893fe5446c3837623082b5e38602c7e1463c0d6d700",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/1-03a88761-e432-4272-b1d2-7227ae025384/index.json"
+    },
+    {
+      "bytes": 961,
+      "sha256": "8949487b19071f56379127c97a9eaedab103fda291fcfa1b80e173a03be3ffe9",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/1-03a88761-e432-4272-b1d2-7227ae025384/manifest.json"
+    },
+    {
+      "bytes": 264,
+      "sha256": "78e559ef4d1ee5163c2a79aa2ed3db77f10dace5c08589ee208acf90b2ee31b1",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/1-03a88761-e432-4272-b1d2-7227ae025384/documents/diagram-0.architecture.json"
+    },
+    {
+      "bytes": 1291,
+      "sha256": "5bc052eb232dd463c7960c2b524511fddff16b0b297f65e008570c4ccea5e7ac",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/1-03a88761-e432-4272-b1d2-7227ae025384/documents/title.html"
+    },
+    {
+      "bytes": 1586,
+      "sha256": "9268a62b4d0a2d67d26c20df53c62e683efa34cd998358a0c3a33a71d865e8df",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/2-f2855ac2-a39f-4263-b151-f894d2d6e0a4/index.json"
+    },
+    {
+      "bytes": 961,
+      "sha256": "c34c50195d9b84120b92481c58f97f0af415d24ed4efa6325765275fe27e5b96",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/2-f2855ac2-a39f-4263-b151-f894d2d6e0a4/manifest.json"
+    },
+    {
+      "bytes": 262,
+      "sha256": "0c002c93b7099a437173e7911eada510d5b2e57be4c0c191e18d1c10aad1b7ae",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/2-f2855ac2-a39f-4263-b151-f894d2d6e0a4/documents/diagram-0.architecture.json"
+    },
+    {
+      "bytes": 1291,
+      "sha256": "5bc052eb232dd463c7960c2b524511fddff16b0b297f65e008570c4ccea5e7ac",
+      "path": "out/proposal-review/accepted-project/.vflow/revisions/2-f2855ac2-a39f-4263-b151-f894d2d6e0a4/documents/title.html"
+    },
+    {
+      "bytes": 364235,
+      "sha256": "45ee00ac6a71bd6f9e2c6fb5b772a011a111158c1391ac1198d6a1029c2de914",
+      "path": "out/proposal-review/source-intake/intake.json"
+    },
+    {
+      "bytes": 1268,
+      "sha256": "bc6888331eb733dd00d4173933b1afe5e372fa82814d62a3502ada7385b43b1e",
+      "path": "out/proposal-review/source-intake/snapshot/batchLock.ts"
+    },
+    {
+      "bytes": 1637,
+      "sha256": "1f6ef925e3342ef4b69737b3c471d56dcf9a5222238adce4138592794ff823d2",
+      "path": "out/proposal-review/source-intake/snapshot/localApiPolicy.ts"
+    },
+    {
+      "bytes": 626,
+      "sha256": "815c4cd32061d7f2e5371e6bc9460efda4a8c7226bb0c1fc79cc6c3130c32fb5",
+      "path": "out/proposal-review/source-intake/snapshot/projectApiError.ts"
+    },
+    {
+      "bytes": 10855,
+      "sha256": "c017c58c96d6d8e07c2c0f5408676ecd1c2bf23252afd02d2cf7784f608ac578",
+      "path": "out/proposal-review/source-intake/snapshot/projectBatch.ts"
+    },
+    {
+      "bytes": 3878,
+      "sha256": "c2c372d07103e6778592000adcc0de2828bca0872a946235227b86726304713f",
+      "path": "out/proposal-review/source-intake/snapshot/projectBuild.ts"
+    },
+    {
+      "bytes": 8966,
+      "sha256": "1251f0b5fd2e48f65e88872477d1d7bc0e320feaa25ab00e1297c297e83874f4",
+      "path": "out/proposal-review/source-intake/snapshot/projectProposals.ts"
+    },
+    {
+      "bytes": 8000,
+      "sha256": "4090e248b924e21e0b5c5d2c8d42c85f300cd0f555be5189c741f67552f541d2",
+      "path": "out/proposal-review/source-intake/snapshot/projectService.ts"
+    },
+    {
+      "bytes": 8329,
+      "sha256": "78b7ccdee4a5da1d28f881133d074f9fd6d04da49492d6336d77da16c6da2121",
+      "path": "out/proposal-review/source-intake/snapshot/proposalGrounding.ts"
+    },
+    {
+      "bytes": 4493,
+      "sha256": "a43612c16abd8f7f0ef5097bd07cd97f505a5d60fe49887767b26a1f290fe6c0",
+      "path": "out/proposal-review/source-intake/snapshot/proposalPreview.ts"
+    },
+    {
+      "bytes": 4981,
+      "sha256": "762c63fe3ae4dbe2e5856782e66798a7be176ce8f5cbf49fa7f143cdfc8af27a",
+      "path": "out/proposal-review/source-intake/snapshot/proposalSchema.ts"
+    },
+    {
+      "bytes": 3209,
+      "sha256": "91c58da5978901d9cc89fc03c62088b20ea7eb8de796b56468d98140f7836f74",
+      "path": "out/proposal-review/source-intake/snapshot/proposalStore.ts"
+    },
+    {
+      "bytes": 2271,
+      "sha256": "7d9c2052132990fc0792ffc3318c35489b3b83554a73d3a8ef853b7631aacfb3",
+      "path": "out/proposal-review/source-intake/snapshot/proposalTypes.ts"
+    },
+    {
+      "bytes": 12111,
+      "sha256": "6cd0697fb7bfb367a92107d3028c6c62fb3be04446719639fbaad6bcb66de078",
+      "path": "out/proposal-review/source-intake/snapshot/repositoryIntake.ts"
+    },
+    {
+      "bytes": 12476,
+      "sha256": "9a2f6fe65a9d8ee39721fe60b8798569c420f433f5de625f07f06c31a67bc640",
+      "path": "out/proposal-review/source-intake/snapshot/repositoryUnderstanding.ts"
+    },
+    {
+      "bytes": 8597,
+      "sha256": "e5370c6d3be03898c73fe39292f3a2a907952daa0a25a8ad6a6846a5bbb94aa4",
+      "path": "out/proposal-review/source-intake/snapshot/videoProposals.ts"
+    }
+  ],
+  "browserResult": {
+    "projectId": "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
+    "intakeId": "intake-771ce4a9-2057-4859-80ab-c7e6d29f7ceb",
+    "sourceSnapshot": "c5db538259a5bbbe5a72c852df37646be8532de294b79232c9fccb8957acf101",
+    "sourceEvidence": {
+      "path": "proposalStore.ts",
+      "sha256": "91c58da5978901d9cc89fc03c62088b20ea7eb8de796b56468d98140f7836f74",
+      "bytes": 3209,
+      "startLine": 25,
+      "endLine": 31,
+      "text": "export function proposalPath(root: string, id: string) {\n  if (!/^proposal-[a-f0-9-]{36}$/.test(id))\n    throw new ProposalError(\"proposal/invalid-id\", \"Invalid proposal ID.\");\n  const path = join(proposalDirectory(root), `${id}.json`);\n  assertContainedPath(root, path);\n  return path;\n}"
+    },
+    "acceptedProposal": "proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969",
+    "rejectedProposal": "proposal-12b68852-6c07-45b6-92be-cb505feb3b69",
+    "acceptedRevision": 1,
+    "reviewedProposalVersion": 2,
+    "undoRevision": 2,
+    "sourceRestored": true,
+    "historicalPreviewValid": true,
+    "cliCommands": [
+      {
+        "args": [
+          "bun",
+          "run",
+          "vflow",
+          "proposal-context",
+          "--id",
+          "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
+          "--intake",
+          "intake-771ce4a9-2057-4859-80ab-c7e6d29f7ceb",
+          "--home",
+          "/tmp/vflow-proposal-review"
+        ],
+        "exitCode": 0
+      },
+      {
+        "args": [
+          "bun",
+          "run",
+          "vflow",
+          "propose",
+          "--file",
+          "/workspace/evidence/tickets/AFM-098/browser/agent-proposal.json",
+          "--home",
+          "/tmp/vflow-proposal-review"
+        ],
+        "exitCode": 0
+      },
+      {
+        "args": [
+          "bun",
+          "run",
+          "vflow",
+          "review-proposal",
+          "--id",
+          "video-5e37f7a3-2292-4702-ad24-8cf29a3d9dbb",
+          "--proposal",
+          "proposal-38cfdb02-db28-4f3c-9bb3-13c5c97c9969",
+          "--home",
+          "/tmp/vflow-proposal-review"
+        ],
+        "exitCode": 0
+      }
+    ],
+    "errors": [],
+    "providerEvidence": "No configured-provider model call; this records an agent-authored proposal, real CLI, real Studio review and actual project revisions."
+  }
 }

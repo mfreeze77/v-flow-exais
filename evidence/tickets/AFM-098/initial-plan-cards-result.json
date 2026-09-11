@@ -1,0 +1,28 @@
+{
+  "ticketId": "AFM-098",
+  "title": "AFM-098 — Implement source-grounded AI proposal review",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Deterministic source-grounded plan review cards and validation boundaries support future configured-agent proposals.",
+  "remainingAcceptance": [
+    "Configured-agent proposed commands, diff review and provider-unavailable cases are not implemented. Deterministic cards do not satisfy AFM-098."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/source-test.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/source-test.log",
+      "type": "evidence",
+      "bytes": 768,
+      "sha256": "64754f1dc41b9cb5aa4dc38c3a721a6c54999b4d09ad307c60c9d461dbbb972f"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}
