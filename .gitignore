@@ -40,13 +40,17 @@ _sources/
 /renders/
 *.mp4.tmp
 
-# Evidence: per-ticket receipts and gate results ARE tracked deliverables
-# (docs/DEFINITION_OF_DONE.md requires them in the handoff), but the raw render
-# artifacts they reference are large and regenerable. Track the JSON, not the video.
-evidence/**/*.mp4
-evidence/**/*.webm
-evidence/**/*.png
-evidence/**/frames/
+# Evidence is a tracked deliverable in full -- receipts AND the artifacts they
+# cite. docs/DEFINITION_OF_DONE.md requires render tickets to produce and
+# inspect real output, so a receipt whose screenshot or video is untracked is an
+# unverified success claim.
+#
+# These were previously ignored "because artifacts are large and regenerable".
+# They are not large: the whole set is 3.3 MB. The rule silently dropped 14
+# artifacts, including the ones a commit titled "retain inspected proposal
+# review screenshots" claimed to retain, while other evidence was force-added --
+# leaving no way to tell which proof was real. Nothing under evidence/ is
+# ignored.
 
 # Local unified projects and immutable render/cache artifacts.
 .vflow/
