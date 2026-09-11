@@ -1,0 +1,173 @@
+ Container v-flow-exais-workspace-run-7bd45e980f4d Creating 
+ Container v-flow-exais-workspace-run-7bd45e980f4d Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-011.test.ts" "tests/acceptance/AFM-011.package.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mdenies reads of the owned checkout and frozen raw inputs[32m 47[2mms[22m[39m
+ [31m×[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mrenders all five families using only installed package contents[32m 86[2mms[22m[39m
+[31m   → Command failed: node --experimental-permission --allow-fs-read=/tmp/afm011 packed artifacts uL6vkT/isolated consumer --allow-fs-write=/tmp/afm011 packed artifacts uL6vkT/isolated consumer /tmp/afm011 packed artifacts uL6vkT/isolated consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs /tmp/afm011 packed artifacts uL6vkT/isolated consumer/node_modules/@hyperframes/diagram-engine/examples/brand-aware-delivery.architecture.json /tmp/afm011 packed artifacts uL6vkT/isolated consumer/architecture.html
+node:fs:1720
+    throw new ERR_ACCESS_DENIED('Access to this API has been restricted', 'FileSystemRead', resource);
+          ^
+
+Error [ERR_ACCESS_DENIED]: Access to this API has been restricted
+    at Object.lstatSync (node:fs:1720:11)
+    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)
+    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)
+    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)
+    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)
+    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)
+    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)
+    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)
+    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {
+  code: 'ERR_ACCESS_DENIED',
+  permission: 'FileSystemRead',
+  resource: '/tmp'
+}
+
+Node.js v22.23.2
+[39m
+ [31m×[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mpreserves explicit relationship identities, endpoints and arrow direction[32m 79[2mms[22m[39m
+[31m   → Command failed: node --experimental-permission --allow-fs-read=/tmp/afm011 packed artifacts uL6vkT/isolated consumer --allow-fs-write=/tmp/afm011 packed artifacts uL6vkT/isolated consumer /tmp/afm011 packed artifacts uL6vkT/isolated consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs /tmp/afm011 packed artifacts uL6vkT/isolated consumer/deployment with identities.json /tmp/afm011 packed artifacts uL6vkT/isolated consumer/deployment.html
+node:fs:1720
+    throw new ERR_ACCESS_DENIED('Access to this API has been restricted', 'FileSystemRead', resource);
+          ^
+
+Error [ERR_ACCESS_DENIED]: Access to this API has been restricted
+    at Object.lstatSync (node:fs:1720:11)
+    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)
+    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)
+    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)
+    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)
+    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)
+    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)
+    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)
+    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {
+  code: 'ERR_ACCESS_DENIED',
+  permission: 'FileSystemRead',
+  resource: '/tmp'
+}
+
+Node.js v22.23.2
+[39m
+ [32m✓[39m tests/acceptance/AFM-011.package.test.ts[2m > [22mAFM-011: actual installed archives without source-checkout access[2m > [22mfails when the packed viewer template is missing instead of reaching into the checkout[32m 72[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mresolves the viewer template through the package export[32m 56[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mdoes not keep a duplicate template inside the engine[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mresolves a schema and an example for every diagram family[32m 11[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mexposes every asset root it owns[32m 16[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mderives the package root from the module, never from cwd[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: assets resolve from package-owned paths[2m > [22mno longer resolves assets through an assumed skill root[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mrenders architecture from a directory whose name contains spaces[33m 421[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mrenders all five families from that same unrelated directory[33m 1951[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: the renderers run from an unrelated directory[2m > [22mreports asset paths outside the raw source quarantine[32m 11[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mexports the engine entry point and its asset resolver[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mexports the viewer template as a resolvable subpath[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mincludes runtime-only asset directories in the packed file list[32m 5[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mgives the engine a non-conflicting binary name[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-011.test.ts[2m > [22mAFM-011: package exports and packed files are correct[2m > [22mnames the engine under the workspace scope[32m 4[2mms[22m[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/acceptance/AFM-011.package.test.ts > AFM-011: actual installed archives without source-checkout access > renders all five families using only installed package contents
+Error: Command failed: node --experimental-permission --allow-fs-read=/tmp/afm011 packed artifacts uL6vkT/isolated consumer --allow-fs-write=/tmp/afm011 packed artifacts uL6vkT/isolated consumer /tmp/afm011 packed artifacts uL6vkT/isolated consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs /tmp/afm011 packed artifacts uL6vkT/isolated consumer/node_modules/@hyperframes/diagram-engine/examples/brand-aware-delivery.architecture.json /tmp/afm011 packed artifacts uL6vkT/isolated consumer/architecture.html
+node:fs:1720
+    throw new ERR_ACCESS_DENIED('Access to this API has been restricted', 'FileSystemRead', resource);
+          ^
+
+Error [ERR_ACCESS_DENIED]: Access to this API has been restricted
+    at Object.lstatSync (node:fs:1720:11)
+    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)
+    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)
+    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)
+    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)
+    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)
+    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)
+    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)
+    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {
+  code: 'ERR_ACCESS_DENIED',
+  permission: 'FileSystemRead',
+  resource: '/tmp'
+}
+
+Node.js v22.23.2
+
+ ❯ canonicalize ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17
+ ❯ canonicalFuturePath ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12
+ ❯ futurePathsAlias ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16
+ ❯ pathsAlias ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7
+ ❯ resolveOutputPath ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10
+ ❯ loadDiagram ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35
+ ❯ loadDiagramWithBrandMarks ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18
+ ❯ ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68
+ ❯ isolatedNode tests/acceptance/AFM-011.package.test.ts:15:10
+     13|
+     14| function isolatedNode(args: string[]) {
+     15|   return execFileSync("node", [
+       |          ^
+     16|     "--experimental-permission",
+     17|     `--allow-fs-read=${consumer}`,
+ ❯ render tests/acceptance/AFM-011.package.test.ts:24:3
+ ❯ tests/acceptance/AFM-011.package.test.ts:82:20
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { status: 1, signal: null, output: [ null, '', 'node:fs:1720\n    throw new ERR_ACCESS_DENIED(\'Access to this API has been restricted\', \'FileSystemRead\', resource);\n          ^\n\nError [ERR_ACCESS_DENIED]: Access to this API has been restricted\n    at Object.lstatSync (node:fs:1720:11)\n    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)\n    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)\n    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)\n    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)\n    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)\n    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)\n    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)\n    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {\n  code: \'ERR_ACCESS_DENIED\',\n  permission: \'FileSystemRead\',\n  resource: \'/tmp\'\n}\n\nNode.js v22.23.2\n' ], pid: 61, stdout: '', stderr: 'node:fs:1720\n    throw new ERR_ACCESS_DENIED(\'Access to this API has been restricted\', \'FileSystemRead\', resource);\n          ^\n\nError [ERR_ACCESS_DENIED]: Access to this API has been restricted\n    at Object.lstatSync (node:fs:1720:11)\n    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)\n    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)\n    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)\n    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)\n    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)\n    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)\n    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)\n    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {\n  code: \'ERR_ACCESS_DENIED\',\n  permission: \'FileSystemRead\',\n  resource: \'/tmp\'\n}\n\nNode.js v22.23.2\n' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/acceptance/AFM-011.package.test.ts > AFM-011: actual installed archives without source-checkout access > preserves explicit relationship identities, endpoints and arrow direction
+Error: Command failed: node --experimental-permission --allow-fs-read=/tmp/afm011 packed artifacts uL6vkT/isolated consumer --allow-fs-write=/tmp/afm011 packed artifacts uL6vkT/isolated consumer /tmp/afm011 packed artifacts uL6vkT/isolated consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs /tmp/afm011 packed artifacts uL6vkT/isolated consumer/deployment with identities.json /tmp/afm011 packed artifacts uL6vkT/isolated consumer/deployment.html
+node:fs:1720
+    throw new ERR_ACCESS_DENIED('Access to this API has been restricted', 'FileSystemRead', resource);
+          ^
+
+Error [ERR_ACCESS_DENIED]: Access to this API has been restricted
+    at Object.lstatSync (node:fs:1720:11)
+    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)
+    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)
+    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)
+    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)
+    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)
+    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)
+    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)
+    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {
+  code: 'ERR_ACCESS_DENIED',
+  permission: 'FileSystemRead',
+  resource: '/tmp'
+}
+
+Node.js v22.23.2
+
+ ❯ canonicalize ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17
+ ❯ canonicalFuturePath ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12
+ ❯ futurePathsAlias ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16
+ ❯ pathsAlias ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7
+ ❯ resolveOutputPath ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10
+ ❯ loadDiagram ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35
+ ❯ loadDiagramWithBrandMarks ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18
+ ❯ ../tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68
+ ❯ isolatedNode tests/acceptance/AFM-011.package.test.ts:15:10
+     13|
+     14| function isolatedNode(args: string[]) {
+     15|   return execFileSync("node", [
+       |          ^
+     16|     "--experimental-permission",
+     17|     `--allow-fs-read=${consumer}`,
+ ❯ render tests/acceptance/AFM-011.package.test.ts:24:3
+ ❯ tests/acceptance/AFM-011.package.test.ts:92:18
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { status: 1, signal: null, output: [ null, '', 'node:fs:1720\n    throw new ERR_ACCESS_DENIED(\'Access to this API has been restricted\', \'FileSystemRead\', resource);\n          ^\n\nError [ERR_ACCESS_DENIED]: Access to this API has been restricted\n    at Object.lstatSync (node:fs:1720:11)\n    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)\n    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)\n    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)\n    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)\n    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)\n    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)\n    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)\n    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {\n  code: \'ERR_ACCESS_DENIED\',\n  permission: \'FileSystemRead\',\n  resource: \'/tmp\'\n}\n\nNode.js v22.23.2\n' ], pid: 68, stdout: '', stderr: 'node:fs:1720\n    throw new ERR_ACCESS_DENIED(\'Access to this API has been restricted\', \'FileSystemRead\', resource);\n          ^\n\nError [ERR_ACCESS_DENIED]: Access to this API has been restricted\n    at Object.lstatSync (node:fs:1720:11)\n    at canonicalize (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:25:17)\n    at canonicalFuturePath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:53:12)\n    at futurePathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:196:16)\n    at pathsAlias (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:221:7)\n    at resolveOutputPath (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/output-path.mjs:300:10)\n    at loadDiagram (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:40:35)\n    at loadDiagramWithBrandMarks (file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/shared/cli.mjs:49:18)\n    at file:///tmp/afm011%20packed%20artifacts%20uL6vkT/isolated%20consumer/node_modules/@hyperframes/diagram-engine/renderers/architecture/render-architecture.mjs:55:68\n    at ModuleJob.run (node:internal/modules/esm/module_job:343:25) {\n  code: \'ERR_ACCESS_DENIED\',\n  permission: \'FileSystemRead\',\n  resource: \'/tmp\'\n}\n\nNode.js v22.23.2\n' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[2m | [22m[1m[32m1 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[31m2 failed[39m[22m[2m | [22m[1m[32m16 passed[39m[22m[90m (18)[39m
+[2m   Start at [22m 03:10:43
+[2m   Duration [22m 5.07s[2m (transform 81ms, setup 0ms, import 439ms, tests 4.42s, environment 0ms)[22m
+
+error: script "test:acceptance" exited with code 1
+

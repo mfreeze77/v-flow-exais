@@ -1,0 +1,376 @@
+{
+  "cancelled": {
+    "schemaVersion": 1,
+    "id": "batch-81876937-8362-4863-bd9f-c1c6a7152ce8",
+    "createdAt": "2026-09-11T04:51:49.511Z",
+    "status": "cancelled",
+    "items": [
+      {
+        "projectId": "good-one",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b",
+          "dir": "/tmp/vflow-real-recovery-2EWWKE/projects/good-one/.vflow/builds/60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b",
+          "revision": 0,
+          "projectId": "good-one",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "good-one",
+            "revision": 0,
+            "durationFrames": 165,
+            "output": {
+              "fps": {
+                "denominator": 1001,
+                "numerator": 30000
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "diagram-0": {
+                "sourceHash": "40cf2e63ed990218abaf0880d001826f35a1bb0f12809b1142f05fca6bc895c8",
+                "artifactHash": "47d9be3c6375cbdca8ce21e0a6018a0622e242d0ce00456de3cc07e214063f88"
+              }
+            },
+            "sceneIds": [
+              "title-scene",
+              "chapter-0"
+            ],
+            "authoringHash": "1835120582c1dad443a0293542dc61bda5e0165e490a9fffb74121c038d2e187",
+            "files": {
+              "scene-0-title-scene.html": "1d8a698a4c93d81e491b6958a192619797032e657b4d9ab89003fdeb1b631796",
+              "scene-1-chapter-0.html": "ca817763e3db2a55d69d6777d8af6b0342a8475e7ecb8a9ca2dc94ebc037176a",
+              "index.html": "dae4678ac58b5cf150e61f2b4f088a2c633f0a52e0fbb599ccfb0b46a25fd6c8",
+              "ledger.json": "b326c1f8f44f720efa9e95462bfd415d5b52b1300c653873c6a22dba435182ff",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b"
+          }
+        },
+        "attemptId": "9aa4b95e-bc7f-487a-8eb9-acfe6ba01803",
+        "outputPath": "/tmp/vflow-real-recovery-2EWWKE/projects/good-one/.vflow/renders/60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b/9aa4b95e-bc7f-487a-8eb9-acfe6ba01803.mp4",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30000/1001",
+          "duration": 5.5055,
+          "frames": 165,
+          "bytes": 351655
+        },
+        "sha256": "b955dac8000decddfb70333779efafa30e78a0d1fd9385b0d60402f93d62b39e"
+      },
+      {
+        "projectId": "good-two",
+        "status": "cancelled",
+        "progress": 0,
+        "build": {
+          "hash": "917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33",
+          "dir": "/tmp/vflow-real-recovery-2EWWKE/projects/good-two/.vflow/builds/917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33",
+          "revision": 0,
+          "projectId": "good-two",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "good-two",
+            "revision": 0,
+            "durationFrames": 165,
+            "output": {
+              "fps": {
+                "denominator": 1001,
+                "numerator": 30000
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "diagram-0": {
+                "sourceHash": "40cf2e63ed990218abaf0880d001826f35a1bb0f12809b1142f05fca6bc895c8",
+                "artifactHash": "47d9be3c6375cbdca8ce21e0a6018a0622e242d0ce00456de3cc07e214063f88"
+              }
+            },
+            "sceneIds": [
+              "title-scene",
+              "chapter-0"
+            ],
+            "authoringHash": "7e2b9d32e7e3709a4cc1fb6d6e31ee2706388c88e0fad939ac9b05f79e3b7c8c",
+            "files": {
+              "scene-0-title-scene.html": "1d8a698a4c93d81e491b6958a192619797032e657b4d9ab89003fdeb1b631796",
+              "scene-1-chapter-0.html": "ca817763e3db2a55d69d6777d8af6b0342a8475e7ecb8a9ca2dc94ebc037176a",
+              "index.html": "1a1c1db2bdcd055caaae68e13f2d67f9c43bf37950bf2d506279ccd97f8f3a31",
+              "ledger.json": "b326c1f8f44f720efa9e95462bfd415d5b52b1300c653873c6a22dba435182ff",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33"
+          }
+        },
+        "attemptId": "c60c7aa6-7b17-44d1-96b8-40b7f8759b2f",
+        "outputPath": "/tmp/vflow-real-recovery-2EWWKE/projects/good-two/.vflow/renders/917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33/c60c7aa6-7b17-44d1-96b8-40b7f8759b2f.mp4"
+      },
+      {
+        "projectId": "invalid-diagram",
+        "status": "failed",
+        "progress": 0,
+        "error": "Component \"object-0\" must include pos [x, y] when layout.mode is omitted (free placement).\nComponent \"object-0\" has non-finite pos/size — pos and size must be [number, number]."
+      }
+    ]
+  },
+  "finished": {
+    "schemaVersion": 1,
+    "id": "batch-81876937-8362-4863-bd9f-c1c6a7152ce8",
+    "createdAt": "2026-09-11T04:51:49.511Z",
+    "status": "partial",
+    "items": [
+      {
+        "projectId": "good-one",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b",
+          "dir": "/tmp/vflow-real-recovery-2EWWKE/projects/good-one/.vflow/builds/60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b",
+          "revision": 0,
+          "projectId": "good-one",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "good-one",
+            "revision": 0,
+            "durationFrames": 165,
+            "output": {
+              "fps": {
+                "denominator": 1001,
+                "numerator": 30000
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "diagram-0": {
+                "sourceHash": "40cf2e63ed990218abaf0880d001826f35a1bb0f12809b1142f05fca6bc895c8",
+                "artifactHash": "47d9be3c6375cbdca8ce21e0a6018a0622e242d0ce00456de3cc07e214063f88"
+              }
+            },
+            "sceneIds": [
+              "title-scene",
+              "chapter-0"
+            ],
+            "authoringHash": "1835120582c1dad443a0293542dc61bda5e0165e490a9fffb74121c038d2e187",
+            "files": {
+              "scene-0-title-scene.html": "1d8a698a4c93d81e491b6958a192619797032e657b4d9ab89003fdeb1b631796",
+              "scene-1-chapter-0.html": "ca817763e3db2a55d69d6777d8af6b0342a8475e7ecb8a9ca2dc94ebc037176a",
+              "index.html": "dae4678ac58b5cf150e61f2b4f088a2c633f0a52e0fbb599ccfb0b46a25fd6c8",
+              "ledger.json": "b326c1f8f44f720efa9e95462bfd415d5b52b1300c653873c6a22dba435182ff",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b"
+          }
+        },
+        "attemptId": "9aa4b95e-bc7f-487a-8eb9-acfe6ba01803",
+        "outputPath": "/tmp/vflow-real-recovery-2EWWKE/projects/good-one/.vflow/renders/60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b/9aa4b95e-bc7f-487a-8eb9-acfe6ba01803.mp4",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30000/1001",
+          "duration": 5.5055,
+          "frames": 165,
+          "bytes": 351655
+        },
+        "sha256": "b955dac8000decddfb70333779efafa30e78a0d1fd9385b0d60402f93d62b39e"
+      },
+      {
+        "projectId": "good-two",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33",
+          "dir": "/tmp/vflow-real-recovery-2EWWKE/projects/good-two/.vflow/builds/917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33",
+          "revision": 0,
+          "projectId": "good-two",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "good-two",
+            "revision": 0,
+            "durationFrames": 165,
+            "output": {
+              "fps": {
+                "denominator": 1001,
+                "numerator": 30000
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "diagram-0": {
+                "sourceHash": "40cf2e63ed990218abaf0880d001826f35a1bb0f12809b1142f05fca6bc895c8",
+                "artifactHash": "47d9be3c6375cbdca8ce21e0a6018a0622e242d0ce00456de3cc07e214063f88"
+              }
+            },
+            "sceneIds": [
+              "title-scene",
+              "chapter-0"
+            ],
+            "authoringHash": "7e2b9d32e7e3709a4cc1fb6d6e31ee2706388c88e0fad939ac9b05f79e3b7c8c",
+            "files": {
+              "scene-0-title-scene.html": "1d8a698a4c93d81e491b6958a192619797032e657b4d9ab89003fdeb1b631796",
+              "scene-1-chapter-0.html": "ca817763e3db2a55d69d6777d8af6b0342a8475e7ecb8a9ca2dc94ebc037176a",
+              "index.html": "1a1c1db2bdcd055caaae68e13f2d67f9c43bf37950bf2d506279ccd97f8f3a31",
+              "ledger.json": "b326c1f8f44f720efa9e95462bfd415d5b52b1300c653873c6a22dba435182ff",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33"
+          }
+        },
+        "attemptId": "e9119203-723d-4aaf-9298-f686274d4f8a",
+        "outputPath": "/tmp/vflow-real-recovery-2EWWKE/projects/good-two/.vflow/renders/917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33/e9119203-723d-4aaf-9298-f686274d4f8a.mp4",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30000/1001",
+          "duration": 5.5055,
+          "frames": 165,
+          "bytes": 351655
+        },
+        "sha256": "b955dac8000decddfb70333779efafa30e78a0d1fd9385b0d60402f93d62b39e"
+      },
+      {
+        "projectId": "invalid-diagram",
+        "status": "failed",
+        "progress": 0,
+        "error": "This item has no valid pinned build. Repair the source and start a new batch."
+      }
+    ]
+  },
+  "reused": {
+    "schemaVersion": 1,
+    "id": "batch-cc34763e-fc05-4236-b8d9-41a1ac52499c",
+    "createdAt": "2026-09-11T04:52:13.468Z",
+    "status": "complete",
+    "items": [
+      {
+        "projectId": "good-one",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b",
+          "dir": "/tmp/vflow-real-recovery-2EWWKE/projects/good-one/.vflow/builds/60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b",
+          "revision": 0,
+          "projectId": "good-one",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "good-one",
+            "revision": 0,
+            "durationFrames": 165,
+            "output": {
+              "fps": {
+                "denominator": 1001,
+                "numerator": 30000
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "diagram-0": {
+                "sourceHash": "40cf2e63ed990218abaf0880d001826f35a1bb0f12809b1142f05fca6bc895c8",
+                "artifactHash": "47d9be3c6375cbdca8ce21e0a6018a0622e242d0ce00456de3cc07e214063f88"
+              }
+            },
+            "sceneIds": [
+              "title-scene",
+              "chapter-0"
+            ],
+            "authoringHash": "1835120582c1dad443a0293542dc61bda5e0165e490a9fffb74121c038d2e187",
+            "files": {
+              "scene-0-title-scene.html": "1d8a698a4c93d81e491b6958a192619797032e657b4d9ab89003fdeb1b631796",
+              "scene-1-chapter-0.html": "ca817763e3db2a55d69d6777d8af6b0342a8475e7ecb8a9ca2dc94ebc037176a",
+              "index.html": "dae4678ac58b5cf150e61f2b4f088a2c633f0a52e0fbb599ccfb0b46a25fd6c8",
+              "ledger.json": "b326c1f8f44f720efa9e95462bfd415d5b52b1300c653873c6a22dba435182ff",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b"
+          }
+        },
+        "outputPath": "/tmp/vflow-real-recovery-2EWWKE/projects/good-one/.vflow/renders/60518f9e7dbc465d6b7c877f284f98c90f6742a8f3cb350d91542f23c46fa90b/9aa4b95e-bc7f-487a-8eb9-acfe6ba01803.mp4",
+        "sha256": "b955dac8000decddfb70333779efafa30e78a0d1fd9385b0d60402f93d62b39e",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30000/1001",
+          "duration": 5.5055,
+          "frames": 165,
+          "bytes": 351655
+        },
+        "reused": true
+      },
+      {
+        "projectId": "good-two",
+        "status": "complete",
+        "progress": 100,
+        "build": {
+          "hash": "917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33",
+          "dir": "/tmp/vflow-real-recovery-2EWWKE/projects/good-two/.vflow/builds/917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33",
+          "revision": 0,
+          "projectId": "good-two",
+          "receipt": {
+            "schemaVersion": 1,
+            "projectId": "good-two",
+            "revision": 0,
+            "durationFrames": 165,
+            "output": {
+              "fps": {
+                "denominator": 1001,
+                "numerator": 30000
+              },
+              "height": 720,
+              "width": 1280
+            },
+            "engineVersion": "2.17.0-dev.1+afm027.1",
+            "motionVersion": "1.0.0",
+            "sources": {
+              "diagram-0": {
+                "sourceHash": "40cf2e63ed990218abaf0880d001826f35a1bb0f12809b1142f05fca6bc895c8",
+                "artifactHash": "47d9be3c6375cbdca8ce21e0a6018a0622e242d0ce00456de3cc07e214063f88"
+              }
+            },
+            "sceneIds": [
+              "title-scene",
+              "chapter-0"
+            ],
+            "authoringHash": "7e2b9d32e7e3709a4cc1fb6d6e31ee2706388c88e0fad939ac9b05f79e3b7c8c",
+            "files": {
+              "scene-0-title-scene.html": "1d8a698a4c93d81e491b6958a192619797032e657b4d9ab89003fdeb1b631796",
+              "scene-1-chapter-0.html": "ca817763e3db2a55d69d6777d8af6b0342a8475e7ecb8a9ca2dc94ebc037176a",
+              "index.html": "1a1c1db2bdcd055caaae68e13f2d67f9c43bf37950bf2d506279ccd97f8f3a31",
+              "ledger.json": "b326c1f8f44f720efa9e95462bfd415d5b52b1300c653873c6a22dba435182ff",
+              "assets/gsap.min.js": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+            },
+            "buildHash": "917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33"
+          }
+        },
+        "outputPath": "/tmp/vflow-real-recovery-2EWWKE/projects/good-two/.vflow/renders/917e2c32302ab09fa34ca0fec815df17ee68a16a0e1057b750656c19cb50cf33/e9119203-723d-4aaf-9298-f686274d4f8a.mp4",
+        "sha256": "b955dac8000decddfb70333779efafa30e78a0d1fd9385b0d60402f93d62b39e",
+        "probe": {
+          "codec": "h264",
+          "width": 1280,
+          "height": 720,
+          "fps": "30000/1001",
+          "duration": 5.5055,
+          "frames": 165,
+          "bytes": 351655
+        },
+        "reused": true
+      }
+    ]
+  }
+}

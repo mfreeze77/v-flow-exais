@@ -1,0 +1,14 @@
+@hyperframes/core build:hyperframes-runtime: {"event":"hyperframe_runtime_artifacts_generated","buildId":"dev","distDir":"/workspace/packages/core/dist","iifePath":"/workspace/packages/core/dist/hyperframe.runtime.iife.js","esmPath":"/workspace/packages/core/dist/hyperframe.runtime.mjs","manifestPath":"/workspace/packages/core/dist/hyperframe.manifest.json","inlineModulePath":"/workspace/packages/core/src/generated/runtime-inline.ts","sourceBytes":401731,"esmBytes":401707,"sha256":"3056a243b7ed69e68d5ade51e49dbc3df6e342c89ecf9554e8743bf4533b21e3"}
+$ bun run build:owned-runtimes && bun run --filter @hyperframes/studio dev:container
+$ bun run build:hyperframes-runtime && bun run --cwd packages/core build:position-edits-render && bun run --cwd packages/core build:audio-fx-runtime
+$ bun run --filter @hyperframes/core build:hyperframes-runtime
+$ tsx scripts/build-position-edits-render.ts
+$ tsx scripts/build-audio-fx-runtime.ts
+@hyperframes/core build:hyperframes-runtime: Exited with code 0
+{"event":"position_edits_render_generated","outPath":"/workspace/packages/core/src/generated/position-edits-render-inline.ts","bytes":3817}
+{"event":"audio_fx_runtime_generated","outPath":"/workspace/packages/core/src/generated/audio-fx-runtime-inline.ts","bytes":38675}
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   VITE v6.4.2  ready in 1291 ms
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   ➜  Local:   http://localhost:5190/
+@hyperframes/studio dev:container:   ➜  Network: http://192.168.112.2:5190/

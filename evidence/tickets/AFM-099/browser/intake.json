@@ -1,0 +1,2781 @@
+{
+  "schemaVersion": 1,
+  "id": "intake-bb7b8ac3-7906-46bc-9f61-8e6b4d48368c",
+  "createdAt": "2026-09-11T04:17:41.071Z",
+  "facts": {
+    "title": "v-flow-exais",
+    "revision": "37e2d0a28f282c40340723f65b156aab72f754ea",
+    "dirty": true,
+    "snapshotHash": "f0af557f7f8a83e99dabaaee3ec46d72886b708771f7eabd0e6795894e96622b",
+    "fileCount": 5166,
+    "languages": {
+      "JavaScript": 326,
+      "Shell": 25,
+      "HTML": 809,
+      "TypeScript": 2828,
+      "Python": 6,
+      "CSS": 7
+    },
+    "packages": [
+      {
+        "name": "v-flow-exais",
+        "path": "package.json",
+        "description": "V-Flow EXAIS - one Studio for typed architecture diagrams and real video production. Built from owned Archify and HyperFrames sources.",
+        "dependencies": [
+          "@commitlint/cli",
+          "@commitlint/config-conventional",
+          "@hyperframes/player",
+          "@types/node",
+          "concurrently",
+          "fallow",
+          "happy-dom",
+          "knip",
+          "lefthook",
+          "oxfmt",
+          "oxlint",
+          "tsx",
+          "typescript",
+          "vitest",
+          "yaml"
+        ],
+        "scripts": [
+          "audit:assets",
+          "audit:automation",
+          "build",
+          "build:hyperframes-runtime",
+          "build:hyperframes-runtime:modular",
+          "build:owned-runtimes",
+          "build:producer",
+          "changelog:draft",
+          "changelog:weekly",
+          "check:cli-process-ownership",
+          "check:docs-snippet-motion",
+          "check:gcp-cloud-run-dockerfile",
+          "check:package-cycles",
+          "check:package-subpaths",
+          "check:skill-mirror",
+          "check:tracked-artifacts",
+          "check:workspace",
+          "check:workspace-contracts",
+          "dev",
+          "format",
+          "format:check",
+          "generate:catalog-previews",
+          "generate:previews",
+          "host:registry-assets",
+          "import:apply",
+          "import:plan",
+          "knip",
+          "lint",
+          "lint:fix",
+          "lint:registry-items",
+          "lint:skills",
+          "package:codex-plugin",
+          "player:perf",
+          "preflight:sources",
+          "producer:test:classification",
+          "producer:test:integration",
+          "producer:test:unit",
+          "producer:test:unit:bun",
+          "producer:test:unit:vitest",
+          "release:prepare",
+          "set-version",
+          "studio",
+          "studio:container",
+          "sync-schemas",
+          "sync-schemas:check",
+          "sync:package-subpaths",
+          "test",
+          "test:acceptance",
+          "test:regression",
+          "test:scripts",
+          "test:skills",
+          "test:unit",
+          "typecheck:scripts",
+          "upload:docs-images",
+          "validate:release-channel",
+          "verify:packed-manifests"
+        ],
+        "citation": {
+          "path": "package.json",
+          "sha256": "e2b66597bc4310ec0460dc37bee6ab3cb5ab636f7d955bdf580900d0c06764eb",
+          "bytes": 6761
+        }
+      },
+      {
+        "name": "@hyperframes/aws-lambda",
+        "path": "packages/aws-lambda/package.json",
+        "description": "AWS Lambda adapter for HyperFrames distributed rendering — handler, client-side SDK, and CDK construct.",
+        "dependencies": [
+          "@aws-sdk/client-s3",
+          "@aws-sdk/client-sfn",
+          "@hyperframes/producer",
+          "@sparticuz/chromium",
+          "@types/aws-lambda",
+          "@types/node",
+          "@types/tar",
+          "aws-cdk-lib",
+          "constructs",
+          "esbuild",
+          "ffmpeg-static",
+          "ffprobe-static",
+          "puppeteer-core",
+          "tar",
+          "tsx",
+          "typescript",
+          "yaml"
+        ],
+        "scripts": [
+          "build",
+          "build:zip",
+          "probe:beginframe",
+          "probe:beginframe:docker",
+          "test",
+          "typecheck",
+          "verify:zip-size"
+        ],
+        "citation": {
+          "path": "packages/aws-lambda/package.json",
+          "sha256": "6fc5c9e39f97ec70bd86115d3eac695b2eff370aca39b548a889c8e3fcbc937b",
+          "bytes": 2822
+        }
+      },
+      {
+        "name": "@hyperframes/cli",
+        "path": "packages/cli/package.json",
+        "description": "HyperFrames CLI — create, preview, and render HTML video compositions",
+        "dependencies": [
+          "@clack/prompts",
+          "@google/genai",
+          "@hono/node-server",
+          "@hyperframes/aws-lambda",
+          "@hyperframes/core",
+          "@hyperframes/engine",
+          "@hyperframes/gcp-cloud-run",
+          "@hyperframes/lint",
+          "@hyperframes/parsers",
+          "@hyperframes/producer",
+          "@hyperframes/studio",
+          "@hyperframes/studio-server",
+          "@puppeteer/browsers",
+          "@types/css-tree",
+          "@types/fontkit",
+          "@types/mime-types",
+          "@types/node",
+          "adm-zip",
+          "ajv",
+          "citty",
+          "compare-versions",
+          "css-tree",
+          "debug",
+          "esbuild",
+          "fontkit",
+          "giget",
+          "hono",
+          "ignore",
+          "linkedom",
+          "onnxruntime-node",
+          "open",
+          "picocolors",
+          "postcss",
+          "prettier",
+          "puppeteer-core",
+          "sharp",
+          "tsup",
+          "tsx",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "build:beat-analyzer",
+          "build:copy",
+          "build:fonts",
+          "build:runtime",
+          "dev",
+          "gen:agent-dirs",
+          "gen:skills-manifest",
+          "test",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/cli/package.json",
+          "sha256": "db87cff6622b92f64fb32d0e9e4e43d00ac6b886ae53ebede63dbc3330f488da",
+          "bytes": 2443
+        }
+      },
+      {
+        "name": "@hyperframes/core",
+        "path": "packages/core/package.json",
+        "description": "",
+        "dependencies": [
+          "@chenglou/pretext",
+          "@hyperframes/lint",
+          "@hyperframes/parsers",
+          "@hyperframes/studio-server",
+          "@types/jsdom",
+          "@types/node",
+          "@vitest/coverage-v8",
+          "bpm-detective",
+          "esbuild",
+          "jsdom",
+          "linkedom",
+          "postcss",
+          "tsx",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "build:audio-fx-runtime",
+          "build:hyperframe-runtime",
+          "build:hyperframes-runtime",
+          "build:hyperframes-runtime:modular",
+          "build:position-edits-render",
+          "check:hyperframe-html",
+          "check:position-edits-render",
+          "debug:timeline",
+          "lint:runtime-preview-guards",
+          "prepublishOnly",
+          "test",
+          "test:coverage",
+          "test:hyperframe-linter",
+          "test:hyperframe-runtime-behavior",
+          "test:hyperframe-runtime-ci",
+          "test:hyperframe-runtime-contract",
+          "test:hyperframe-runtime-duration-guards",
+          "test:hyperframe-runtime-parity",
+          "test:hyperframe-runtime-security",
+          "test:hyperframe-runtime-seek",
+          "test:runtime-coverage",
+          "test:watch",
+          "typecheck",
+          "typecheck:runtime"
+        ],
+        "citation": {
+          "path": "packages/core/package.json",
+          "sha256": "ab8e70239fd141e1e87e458b99c3bdf66735769f92aec932f4811f588f628723",
+          "bytes": 26102
+        }
+      },
+      {
+        "name": "@hyperframes/diagram-engine",
+        "path": "packages/diagram-engine/package.json",
+        "description": "Owned diagram compilation engine: typed JSON-IR renderers for architecture, workflow, sequence, dataflow and lifecycle diagrams.",
+        "dependencies": [
+          "@hyperframes/diagram-viewer",
+          "ajv",
+          "parse5",
+          "saxes",
+          "simple-icons"
+        ],
+        "scripts": [
+          "build:gallery",
+          "build:guide",
+          "build:readme-showcase",
+          "build:start",
+          "check:artifact-styles",
+          "check:brand-marks",
+          "check:release-identity",
+          "check:validators",
+          "generate:artifact-styles",
+          "generate:brand-marks",
+          "generate:validators",
+          "render:examples",
+          "test",
+          "test:webm"
+        ],
+        "citation": {
+          "path": "packages/diagram-engine/package.json",
+          "sha256": "b34b2a952fd4c7b4f1c757d96cab429ec0da75191ee193140e5fc69bc2bad199",
+          "bytes": 2226
+        }
+      },
+      {
+        "name": "@hyperframes/diagram-motion",
+        "path": "packages/diagram-motion/package.json",
+        "description": "Compiles guided-view semantic intent into deterministic, seekable motion on the composition timeline (contract C06).",
+        "dependencies": [
+          "@hyperframes/core",
+          "@hyperframes/diagram-engine",
+          "@hyperframes/project-model",
+          "saxes"
+        ],
+        "scripts": [
+          "build",
+          "test",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/diagram-motion/package.json",
+          "sha256": "698719d5f720419a2e78299e990c76624834fdd011fa1b67151ae6c41960ebd0",
+          "bytes": 732
+        }
+      },
+      {
+        "name": "@hyperframes/diagram-viewer",
+        "path": "packages/diagram-viewer/package.json",
+        "description": "Standalone diagram viewer shell: the HTML template and viewer assets that wrap a compiled diagram artifact.",
+        "dependencies": [],
+        "scripts": [
+          "test"
+        ],
+        "citation": {
+          "path": "packages/diagram-viewer/package.json",
+          "sha256": "d1843847a350c8334eaa04cc1ee5ed2dd3c00544f65b2ca82420111f72f6d0b9",
+          "bytes": 534
+        }
+      },
+      {
+        "name": "@hyperframes/engine",
+        "path": "packages/engine/package.json",
+        "description": "Seekable web page to video rendering engine (Puppeteer + FFmpeg)",
+        "dependencies": [
+          "@hono/node-server",
+          "@hyperframes/core",
+          "@hyperframes/parsers",
+          "@types/node",
+          "@webgpu/types",
+          "hono",
+          "linkedom",
+          "puppeteer",
+          "puppeteer-core",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "test",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/engine/package.json",
+          "sha256": "23bd17ec7d500bb70a4751f8be95e2f3f0cad98e405339b411777515ea68dbc5",
+          "bytes": 2004
+        }
+      },
+      {
+        "name": "@hyperframes/gcp-cloud-run",
+        "path": "packages/gcp-cloud-run/package.json",
+        "description": "Google Cloud Run + Workflows adapter for HyperFrames distributed rendering — request handler, client-side SDK, and Terraform module.",
+        "dependencies": [
+          "@google-cloud/storage",
+          "@google-cloud/workflows",
+          "@hono/node-server",
+          "@hyperframes/producer",
+          "@types/node",
+          "@types/tar",
+          "esbuild",
+          "hono",
+          "puppeteer-core",
+          "tar",
+          "tsx",
+          "typescript",
+          "yaml"
+        ],
+        "scripts": [
+          "build",
+          "start",
+          "test",
+          "test:dockerfile-workspaces",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/gcp-cloud-run/package.json",
+          "sha256": "6ab9c4452647ccc12becd03d1cbb27ebba14ba754ec8318a3bcd1c8f1781098b",
+          "bytes": 2295
+        }
+      },
+      {
+        "name": "@hyperframes/lint",
+        "path": "packages/lint/package.json",
+        "description": "",
+        "dependencies": [
+          "@hyperframes/parsers",
+          "@types/node",
+          "htmlparser2",
+          "linkedom",
+          "postcss",
+          "postcss-selector-parser",
+          "tsup",
+          "tsx",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "prepublishOnly",
+          "test",
+          "test:watch",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/lint/package.json",
+          "sha256": "5cd1b6bda2b0c28d016a5195bd5c72ab487c4bcc3f38f0c4a1f20909ac3756f5",
+          "bytes": 1599
+        }
+      },
+      {
+        "name": "@hyperframes/parsers",
+        "path": "packages/parsers/package.json",
+        "description": "",
+        "dependencies": [
+          "@babel/parser",
+          "@hyperframes/core",
+          "@types/node",
+          "acorn",
+          "acorn-walk",
+          "linkedom",
+          "magic-string",
+          "recast",
+          "tsup",
+          "tsx",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "prepublishOnly",
+          "test",
+          "test:watch",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/parsers/package.json",
+          "sha256": "5d872e6c906d53e506b4389b69a3ca29a080f65f22e06978bc74a4273ae81da8",
+          "bytes": 6250
+        }
+      },
+      {
+        "name": "@hyperframes/player",
+        "path": "packages/player/package.json",
+        "description": "Embeddable web component for HyperFrames compositions",
+        "dependencies": [
+          "@hyperframes/core",
+          "@types/bun",
+          "gsap",
+          "puppeteer-core",
+          "tsup",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "perf",
+          "test",
+          "test:browser-security",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/player/package.json",
+          "sha256": "6649f84b72e906bef539df27efb3f078b1f960b2d450e680755ab898f67b3508",
+          "bytes": 1468
+        }
+      },
+      {
+        "name": "@hyperframes/producer",
+        "path": "packages/producer/package.json",
+        "description": "HTML-to-video rendering engine using Chrome's BeginFrame API",
+        "dependencies": [
+          "@fontsource/archivo-black",
+          "@fontsource/eb-garamond",
+          "@fontsource/ibm-plex-mono",
+          "@fontsource/inter",
+          "@fontsource/jetbrains-mono",
+          "@fontsource/lato",
+          "@fontsource/league-gothic",
+          "@fontsource/montserrat",
+          "@fontsource/noto-sans-jp",
+          "@fontsource/nunito",
+          "@fontsource/open-sans",
+          "@fontsource/oswald",
+          "@fontsource/outfit",
+          "@fontsource/playfair-display",
+          "@fontsource/poppins",
+          "@fontsource/roboto",
+          "@fontsource/source-code-pro",
+          "@fontsource/space-mono",
+          "@hono/node-server",
+          "@hyperframes/aws-lambda",
+          "@hyperframes/core",
+          "@hyperframes/engine",
+          "@hyperframes/lint",
+          "@hyperframes/parsers",
+          "@hyperframes/studio-server",
+          "@types/node",
+          "@webgpu/types",
+          "esbuild",
+          "hono",
+          "linkedom",
+          "postcss",
+          "puppeteer",
+          "puppeteer-core",
+          "tsx",
+          "typescript",
+          "vitest",
+          "wawoff2"
+        ],
+        "scripts": [
+          "bench:hdr",
+          "benchmark",
+          "build",
+          "build:fonts",
+          "build:hf-early-stub",
+          "check:runtime-conformance",
+          "docker:build:test",
+          "docker:test",
+          "docker:test:distributed",
+          "docker:test:lambda-local",
+          "docker:test:update",
+          "parity:check",
+          "parity:check:ci",
+          "parity:fixtures",
+          "parity:fixtures:ci",
+          "parity:plans",
+          "perf:gate",
+          "prepublishOnly",
+          "test",
+          "test:classification",
+          "test:distributed",
+          "test:integration",
+          "test:integration:bun",
+          "test:integration:vitest",
+          "test:lambda-local",
+          "test:regression",
+          "test:regression:update",
+          "test:transparency",
+          "test:unit",
+          "test:unit:bun",
+          "test:unit:vitest",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/producer/package.json",
+          "sha256": "0cb0c56d3bf19008d3aa32c1dd86c77759a324ff3abfebb8f2c7278a6375cd9f",
+          "bytes": 5584
+        }
+      },
+      {
+        "name": "@hyperframes/project-model",
+        "path": "packages/project-model/package.json",
+        "description": "Shared project envelope, document kinds, stable identities, command validation and atomic revision history (contracts C01, C03, C04, C05).",
+        "dependencies": [
+          "ajv"
+        ],
+        "scripts": [
+          "build",
+          "test",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/project-model/package.json",
+          "sha256": "36594eec33b66edc2c676e99f75b72f27681db61186c32f3698cd72135b41b4f",
+          "bytes": 708
+        }
+      },
+      {
+        "name": "@hyperframes/sdk-playground",
+        "path": "packages/sdk-playground/package.json",
+        "description": "",
+        "dependencies": [
+          "@hyperframes/core",
+          "@hyperframes/sdk",
+          "@types/node",
+          "gsap",
+          "typescript",
+          "vite",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "dev",
+          "test",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/sdk-playground/package.json",
+          "sha256": "95e8f661b25c744909e4beade9b3f6e54df0c4552bef2a17685f8d264031c5e8",
+          "bytes": 490
+        }
+      },
+      {
+        "name": "@hyperframes/sdk",
+        "path": "packages/sdk/package.json",
+        "description": "Headless, framework-neutral HyperFrames composition editing engine",
+        "dependencies": [
+          "@hyperframes/core",
+          "@hyperframes/parsers",
+          "@types/node",
+          "happy-dom",
+          "linkedom",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "test",
+          "test:watch",
+          "typecheck",
+          "typecheck:examples"
+        ],
+        "citation": {
+          "path": "packages/sdk/package.json",
+          "sha256": "df4e45ae2121d8c9122219478c575177e6a44ae3327a5b7477e04a994d48dbfc",
+          "bytes": 2650
+        }
+      },
+      {
+        "name": "@hyperframes/shader-transitions",
+        "path": "packages/shader-transitions/package.json",
+        "description": "WebGL shader transitions for HyperFrames compositions",
+        "dependencies": [
+          "html2canvas",
+          "tsup",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "test",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/shader-transitions/package.json",
+          "sha256": "49663b23dbd4853c9be8e04f0c95d92111d3e5c3870c6480df44fd945f4fac97",
+          "bytes": 1197
+        }
+      },
+      {
+        "name": "@hyperframes/studio-server",
+        "path": "packages/studio-server/package.json",
+        "description": "",
+        "dependencies": [
+          "@hyperframes/core",
+          "@hyperframes/diagram-engine",
+          "@hyperframes/diagram-motion",
+          "@hyperframes/parsers",
+          "@hyperframes/project-model",
+          "@types/node",
+          "gsap",
+          "hono",
+          "linkedom",
+          "postcss",
+          "postcss-selector-parser",
+          "tsup",
+          "tsx",
+          "typescript",
+          "vitest"
+        ],
+        "scripts": [
+          "build",
+          "prepublishOnly",
+          "report:gsap-writers",
+          "test",
+          "test:acorn-writer",
+          "test:watch",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/studio-server/package.json",
+          "sha256": "412e299b7f5f6810845c5d7bf1952204927d125b6b5340fc7605cea8b38fb532",
+          "bytes": 5398
+        }
+      },
+      {
+        "name": "@hyperframes/studio",
+        "path": "packages/studio/package.json",
+        "description": "",
+        "dependencies": [
+          "@codemirror/autocomplete",
+          "@codemirror/commands",
+          "@codemirror/lang-css",
+          "@codemirror/lang-html",
+          "@codemirror/lang-javascript",
+          "@codemirror/lang-markdown",
+          "@codemirror/language",
+          "@codemirror/search",
+          "@codemirror/state",
+          "@codemirror/theme-one-dark",
+          "@codemirror/view",
+          "@hyperframes/core",
+          "@hyperframes/parsers",
+          "@hyperframes/player",
+          "@hyperframes/producer",
+          "@hyperframes/project-model",
+          "@hyperframes/sdk",
+          "@hyperframes/studio-server",
+          "@mcp-b/global",
+          "@phosphor-icons/react",
+          "@tanstack/react-virtual",
+          "@types/react",
+          "@types/react-dom",
+          "@vitejs/plugin-react",
+          "autoprefixer",
+          "bpm-detective",
+          "chokidar",
+          "dompurify",
+          "fake-indexeddb",
+          "gsap",
+          "marked",
+          "mediabunny",
+          "postcss",
+          "puppeteer-core",
+          "tailwindcss",
+          "tsup",
+          "typescript",
+          "vite",
+          "vitest",
+          "zustand"
+        ],
+        "scripts": [
+          "build",
+          "dev",
+          "dev:container",
+          "report:sdk-cutover",
+          "test",
+          "test:timeline-default",
+          "test:timeline-virtualization",
+          "test:watch",
+          "test:webmcp-edit-loop",
+          "typecheck"
+        ],
+        "citation": {
+          "path": "packages/studio/package.json",
+          "sha256": "77c035fd08defb8a86fce47751255292b6645de4716bb1155b7bc7e4db58394b",
+          "bytes": 3486
+        }
+      }
+    ],
+    "files": [
+      {
+        "path": "README.md",
+        "sha256": "aa8947018e4a91cd28f1443042aa675a4df15fb905aefbcb6c6c0d801fcea60a",
+        "bytes": 1686
+      },
+      {
+        "path": "compose.yaml",
+        "sha256": "c19c94c16feb4e783177a944e9742fb02ec7f20eba7e7d2569ee9e7d190a2a40",
+        "bytes": 1754
+      },
+      {
+        "path": "examples/aws-lambda/README.md",
+        "sha256": "7a9e5ec5a56443abd10178faba9b44b556f399cd53a84d05807a0fb817d361b7",
+        "bytes": 12803
+      },
+      {
+        "path": "examples/gcp-cloud-run/README.md",
+        "sha256": "2c14841b7a8c0c9be4133fca9250880cecfea157420cb7e6086c182ddc3361f5",
+        "bytes": 5376
+      },
+      {
+        "path": "examples/k8s-jobs/README.md",
+        "sha256": "9b71da14e0943938c8c0aebdd3a5779f46845122a83bfcb6863de1ba5267db24",
+        "bytes": 2435
+      },
+      {
+        "path": "package.json",
+        "sha256": "e2b66597bc4310ec0460dc37bee6ab3cb5ab636f7d955bdf580900d0c06764eb",
+        "bytes": 6761
+      },
+      {
+        "path": "packages/aws-lambda/README.md",
+        "sha256": "9187fb3d6eac4fe5f20582674d62ebe69556f3f8ffe48297476a4dd6bff33549",
+        "bytes": 10506
+      },
+      {
+        "path": "packages/aws-lambda/package.json",
+        "sha256": "6fc5c9e39f97ec70bd86115d3eac695b2eff370aca39b548a889c8e3fcbc937b",
+        "bytes": 2822
+      },
+      {
+        "path": "packages/cli/README.md",
+        "sha256": "a3e3918f242050e5c070ee4554ecd2f756dc91787435e7ead9262a73de8aa957",
+        "bytes": 4710
+      },
+      {
+        "path": "packages/cli/package.json",
+        "sha256": "db87cff6622b92f64fb32d0e9e4e43d00ac6b886ae53ebede63dbc3330f488da",
+        "bytes": 2443
+      },
+      {
+        "path": "packages/core/README.md",
+        "sha256": "0875e71d6b1f7866c6ab7dbabf5ca08ae23d72039ab4588c29b859412c60ade3",
+        "bytes": 3737
+      },
+      {
+        "path": "packages/core/package.json",
+        "sha256": "ab8e70239fd141e1e87e458b99c3bdf66735769f92aec932f4811f588f628723",
+        "bytes": 26102
+      },
+      {
+        "path": "packages/core/src/runtime/README.md",
+        "sha256": "7d53c11704e687738e40508b7e2949905947d3e36aa8da38b25fb02d605ef355",
+        "bytes": 2113
+      },
+      {
+        "path": "packages/diagram-engine/brand-marks/README.md",
+        "sha256": "8b771a16322ce9ea47fdc00b9935e33adf0f3af608f2d735235443e15ef622e2",
+        "bytes": 1449
+      },
+      {
+        "path": "packages/diagram-engine/package.json",
+        "sha256": "b34b2a952fd4c7b4f1c757d96cab429ec0da75191ee193140e5fc69bc2bad199",
+        "bytes": 2226
+      },
+      {
+        "path": "packages/diagram-engine/renderers/dataflow/README.md",
+        "sha256": "18c4f86ba62fcee371d9fe38094625b3a68cc76231c36ab8c8124acb4c1ffa42",
+        "bytes": 4202
+      },
+      {
+        "path": "packages/diagram-engine/renderers/lifecycle/README.md",
+        "sha256": "f8ef88dc859189bb18bad7bb2e27d997cbc9d30936cf20f8bf401bae7f57deec",
+        "bytes": 5197
+      },
+      {
+        "path": "packages/diagram-engine/renderers/sequence/README.md",
+        "sha256": "a442335dcf44b1587d3ad88809e31b001a4fafdf7a134040e8b1927455af4206",
+        "bytes": 4828
+      },
+      {
+        "path": "packages/diagram-engine/renderers/workflow/README.md",
+        "sha256": "7e1bd65cc5cc38206304ae2f61f4f0f493da98d71a111a61d0754c9da362c5c9",
+        "bytes": 10386
+      },
+      {
+        "path": "packages/diagram-engine/schemas/README.md",
+        "sha256": "f4ca94ec18cf60ad02211f2c5bb64e9c26a87467a22215e06db34dbfc5d6145f",
+        "bytes": 11462
+      },
+      {
+        "path": "packages/diagram-motion/package.json",
+        "sha256": "698719d5f720419a2e78299e990c76624834fdd011fa1b67151ae6c41960ebd0",
+        "bytes": 732
+      },
+      {
+        "path": "packages/diagram-viewer/package.json",
+        "sha256": "d1843847a350c8334eaa04cc1ee5ed2dd3c00544f65b2ca82420111f72f6d0b9",
+        "bytes": 534
+      },
+      {
+        "path": "packages/engine/README.md",
+        "sha256": "15ae731767b4e7a5d82d3b336408bb251f3563f93bc461be007668b757a22a1b",
+        "bytes": 2909
+      },
+      {
+        "path": "packages/engine/package.json",
+        "sha256": "23bd17ec7d500bb70a4751f8be95e2f3f0cad98e405339b411777515ea68dbc5",
+        "bytes": 2004
+      },
+      {
+        "path": "packages/gcp-cloud-run/Dockerfile",
+        "sha256": "525f9d1a27788033c13faff60daea914270553cd1b19c2d4e4773539c800635c",
+        "bytes": 7416
+      },
+      {
+        "path": "packages/gcp-cloud-run/README.md",
+        "sha256": "e36a368693415d1deba7ac6c13a4784280b18755ead355d0024c33d58337fe4e",
+        "bytes": 6739
+      },
+      {
+        "path": "packages/gcp-cloud-run/package.json",
+        "sha256": "6ab9c4452647ccc12becd03d1cbb27ebba14ba754ec8318a3bcd1c8f1781098b",
+        "bytes": 2295
+      },
+      {
+        "path": "packages/lint/package.json",
+        "sha256": "5cd1b6bda2b0c28d016a5195bd5c72ab487c4bcc3f38f0c4a1f20909ac3756f5",
+        "bytes": 1599
+      },
+      {
+        "path": "packages/parsers/package.json",
+        "sha256": "5d872e6c906d53e506b4389b69a3ca29a080f65f22e06978bc74a4273ae81da8",
+        "bytes": 6250
+      },
+      {
+        "path": "packages/player/README.md",
+        "sha256": "cbacafdc58e29d003d1c16a5633bd4e798d2741ff08f49e750cfa83ba39c3e63",
+        "bytes": 13412
+      },
+      {
+        "path": "packages/player/package.json",
+        "sha256": "6649f84b72e906bef539df27efb3f078b1f960b2d450e680755ab898f67b3508",
+        "bytes": 1468
+      },
+      {
+        "path": "packages/producer/README.md",
+        "sha256": "009b487925c7fc2f8ee59496be0e8d1192254a819e8bdd623a5965951b5cd230",
+        "bytes": 9661
+      },
+      {
+        "path": "packages/producer/package.json",
+        "sha256": "0cb0c56d3bf19008d3aa32c1dd86c77759a324ff3abfebb8f2c7278a6375cd9f",
+        "bytes": 5584
+      },
+      {
+        "path": "packages/project-model/package.json",
+        "sha256": "36594eec33b66edc2c676e99f75b72f27681db61186c32f3698cd72135b41b4f",
+        "bytes": 708
+      },
+      {
+        "path": "packages/sdk-playground/README.md",
+        "sha256": "9406f6aa8c3cb3bcb050a8edcf4a320c0a9b892f2224190dd028393a1402fa16",
+        "bytes": 4879
+      },
+      {
+        "path": "packages/sdk-playground/package.json",
+        "sha256": "95e8f661b25c744909e4beade9b3f6e54df0c4552bef2a17685f8d264031c5e8",
+        "bytes": 490
+      },
+      {
+        "path": "packages/sdk/package.json",
+        "sha256": "df4e45ae2121d8c9122219478c575177e6a44ae3327a5b7477e04a994d48dbfc",
+        "bytes": 2650
+      },
+      {
+        "path": "packages/shader-transitions/README.md",
+        "sha256": "a7728fcc5cd2f3e9bd4b1aba36e8c3b00faa97d0a6774323e99f0aff62193990",
+        "bytes": 7268
+      },
+      {
+        "path": "packages/shader-transitions/package.json",
+        "sha256": "49663b23dbd4853c9be8e04f0c95d92111d3e5c3870c6480df44fd945f4fac97",
+        "bytes": 1197
+      },
+      {
+        "path": "packages/studio-server/package.json",
+        "sha256": "412e299b7f5f6810845c5d7bf1952204927d125b6b5340fc7605cea8b38fb532",
+        "bytes": 5398
+      },
+      {
+        "path": "packages/studio/README.md",
+        "sha256": "75005fc19bbdc721632d901376bff965adfecc57f67f652c51d2c3b6a37f9ae1",
+        "bytes": 1319
+      },
+      {
+        "path": "packages/studio/frontend/package.json",
+        "sha256": "2f76e9f341c739b3fb5d9165f8d72d86e4281ee5763d12f5a6741dfa1d5cd8c0",
+        "bytes": 98
+      },
+      {
+        "path": "packages/studio/package.json",
+        "sha256": "77c035fd08defb8a86fce47751255292b6645de4716bb1155b7bc7e4db58394b",
+        "bytes": 3486
+      },
+      {
+        "path": "registry/catalog-artifact/README.md",
+        "sha256": "5db18eb4c226cd18bec466d95f9614f235c8af986c3ef68f1dc7e3f52a143358",
+        "bytes": 2553
+      },
+      {
+        "path": "registry/components/ascii-render-pass/README.md",
+        "sha256": "16da1ac3ccc986669d952a91ad4905bc25bd4b006b782c9d0f44cfa2f5f18120",
+        "bytes": 3810
+      },
+      {
+        "path": "registry/components/before-after-wipe/README.md",
+        "sha256": "ea830598205a3036354b769232b71ab23d9bd09c92ebd0ceea8a55cb7cde313c",
+        "bytes": 3967
+      },
+      {
+        "path": "registry/components/browser-device-stage/README.md",
+        "sha256": "ed3585b7d534f5ec5634abe33d1f52bfd157a8d18d46b6b72fc0ee7d1ac50384",
+        "bytes": 5528
+      },
+      {
+        "path": "registry/components/chart-story/README.md",
+        "sha256": "d4864c04008d681be77f628f7704624c92bebc8c0d9ee1992fbd6e74c0985b14",
+        "bytes": 3898
+      },
+      {
+        "path": "registry/components/code-terminal-run/README.md",
+        "sha256": "48a48f357b1461076be81ad042e69a009eb879292c162e8df4b3ebb0a1fab1c4",
+        "bytes": 5152
+      },
+      {
+        "path": "registry/components/constellation-hub/README.md",
+        "sha256": "11c9f2409c8ec79e7c5bc9e5a0a98ffc3ff94cd71fbc93f72813fa0f871b5cb2",
+        "bytes": 2802
+      },
+      {
+        "path": "registry/components/count-up/README.md",
+        "sha256": "15d92a660a2f7f92e7e19a4f88ad459fe93222475169153b48749c5b5ed7512b",
+        "bytes": 2244
+      },
+      {
+        "path": "registry/components/cta-close/README.md",
+        "sha256": "8ab1e44f44307bbeac4205ad58ac17ca5bb385fa61ab0ae36a193d675a24368d",
+        "bytes": 2428
+      },
+      {
+        "path": "registry/components/cursor-glyph-trail/README.md",
+        "sha256": "5d0ea3c60704f05f17b86fb4790308aceb6d08ea3bf4cfb17bcaac0fc77f11e4",
+        "bytes": 3732
+      },
+      {
+        "path": "registry/components/cut-the-curve/README.md",
+        "sha256": "9ab32f6774b91d471794a95b9a9ee46ed517c8e2d02b5e8e16d67328b8a1939b",
+        "bytes": 2348
+      },
+      {
+        "path": "registry/components/echo-trail/README.md",
+        "sha256": "5e66580a96feb12dc6cd2fe4f6737f833b8476d9fe9b148f453f800a8ed9c181",
+        "bytes": 3385
+      },
+      {
+        "path": "registry/components/facet-morph/README.md",
+        "sha256": "a8fe946678cdee71c188e5538654c9456992981b43fef9e1062128eaf8a2ac7b",
+        "bytes": 3558
+      },
+      {
+        "path": "registry/components/grid-card-assemble/README.md",
+        "sha256": "e0bdd87754626b5708de08cc978279233663f2419f4418934f1819387b39789f",
+        "bytes": 5379
+      },
+      {
+        "path": "registry/components/halftone-dissolve/README.md",
+        "sha256": "cff6f0f82b3f61fdfd2c2567e76740dd200906f765a9865e7b1babbb3d58daa2",
+        "bytes": 3276
+      },
+      {
+        "path": "registry/components/ink-bleed-reveal/README.md",
+        "sha256": "c785dbbf158587148e48a2034b26f9417a3691e1f648bd30ebd4a5686fb3fb3c",
+        "bytes": 3880
+      },
+      {
+        "path": "registry/components/iris-reveal/README.md",
+        "sha256": "64991236af23d7f3f4f20cab67449d8b567ee51bdfedf59c792cad026001d7ab",
+        "bytes": 4154
+      },
+      {
+        "path": "registry/components/kinetic-type-swap/README.md",
+        "sha256": "9ccd3c0d76e70543187e1e7728152b45f47222bb7964becf16e118fe7096eb95",
+        "bytes": 3027
+      },
+      {
+        "path": "registry/components/light-sweep-pass/README.md",
+        "sha256": "19d72de900dc0d2c6f71fc165ded0481b7eff6abe20c73a8bf2e3bf862715d3e",
+        "bytes": 4335
+      },
+      {
+        "path": "registry/components/line-swap/README.md",
+        "sha256": "f794976bd777eae9201c67f9d12b17c6afacd09c7bf4bdaf37c452fdc9e66bfd",
+        "bytes": 2859
+      },
+      {
+        "path": "registry/components/logo-brand-close/README.md",
+        "sha256": "32bd80ceb611da5754dc353b48925f71f26db75c0d11bd934e46be1e03c213ff",
+        "bytes": 3539
+      },
+      {
+        "path": "registry/components/marker-highlight/README.md",
+        "sha256": "0d9852b3427b32aebd6f77d5bf55193ec16e421ce8037e9b37bccf7ae2e3ef84",
+        "bytes": 3081
+      },
+      {
+        "path": "registry/components/modal-morph/README.md",
+        "sha256": "a0aa4b234c76010df7fb3a26f88767f8c8a8311e7e722e9c4ae693dd8e1042e2",
+        "bytes": 3693
+      },
+      {
+        "path": "registry/components/morph-swap/README.md",
+        "sha256": "59fc780c41844083df58a0692c8b33c0d65030a0814c9a395a18397c583caf57",
+        "bytes": 3932
+      },
+      {
+        "path": "registry/components/native-notification-pop/README.md",
+        "sha256": "9840eed05a93e6a4f69ceb6ce9c32bf9916cad9a9f472ccd8d2b0ba51bebee9a",
+        "bytes": 4863
+      },
+      {
+        "path": "registry/components/notification-stack/README.md",
+        "sha256": "a3bdb98a6628b9cc5df9d7b8ceaeb9b412a8ac518f22d3875fd9199f7c9042c6",
+        "bytes": 4290
+      },
+      {
+        "path": "registry/components/ordered-dither-pass/README.md",
+        "sha256": "1d44a1d79768de7aacaf10300a6656bf154f92a1b1687c39ed9965df96070ac7",
+        "bytes": 3852
+      },
+      {
+        "path": "registry/components/oversized-cursor/README.md",
+        "sha256": "54f41b4f36f9cb47d243fd6508326138bba43230c1e8e2ddf43d2ec9b7224b46",
+        "bytes": 2560
+      },
+      {
+        "path": "registry/components/particle-image-reveal/README.md",
+        "sha256": "0e29ba50d88fd1212065b9bfc7c8e0b3472ecba3e661597247c1b623ec4be653",
+        "bytes": 3374
+      },
+      {
+        "path": "registry/components/particle-text-dissolve/README.md",
+        "sha256": "e46c85ae17daf21fa1b1ffa5a30a847635df8e0b83ef9030b61a2fc33babcc9d",
+        "bytes": 3390
+      },
+      {
+        "path": "registry/components/per-word-rise/README.md",
+        "sha256": "bc678a6d28b1562e4fc0e2e9cd70686bf0a0df5571a9e7e31e38b0aafb896033",
+        "bytes": 2543
+      },
+      {
+        "path": "registry/components/press-ripple/README.md",
+        "sha256": "135c62c96e8b5adb915a6222b9e8f8e4cd58e6b946cc6b5665ebe95af3a671fa",
+        "bytes": 4575
+      },
+      {
+        "path": "registry/components/radial-surround/README.md",
+        "sha256": "3ab2857ea649da6b69d2f395a02ca536d386e7f87b6c24bf75f8d1525284deda",
+        "bytes": 4421
+      },
+      {
+        "path": "registry/components/scramble-reveal/README.md",
+        "sha256": "beff6fcbf71caa094c8ddd7553aeba66fc5a5dcd1dacce097075f07f31fbf6dc",
+        "bytes": 2018
+      },
+      {
+        "path": "registry/components/screen-flow-carousel/README.md",
+        "sha256": "490a6464208df942996d5a69bd3a76232d69f43d464b6c201ff38ff45f06c58e",
+        "bytes": 4126
+      },
+      {
+        "path": "registry/components/scroll-camera-story/README.md",
+        "sha256": "cd86e74211f5938089c21511a1d6718492ed30f603c68f4da1f03d800b1a5601",
+        "bytes": 4108
+      },
+      {
+        "path": "registry/components/scroll-feed/README.md",
+        "sha256": "c87fc1b68b4927408d69f885a99941403508af699299d78b49276afa54ed5183",
+        "bytes": 3141
+      },
+      {
+        "path": "registry/components/segmentation-flood/README.md",
+        "sha256": "2b8fd5620e6799033e32b815ad84fba450e4493414e4e9e23dad733fd0e01b63",
+        "bytes": 3510
+      },
+      {
+        "path": "registry/components/slit-scan-reveal/README.md",
+        "sha256": "4a4f1c86a5ae64325b9a83ddd96364aeb7b31756bd1b8eec13b17bfb803e34cd",
+        "bytes": 3169
+      },
+      {
+        "path": "registry/components/soft-blob-touch/README.md",
+        "sha256": "c2e2b1dff45e1122783bd50824f755ed0bdb7d62edc6db87e18182551ff46ce7",
+        "bytes": 3821
+      },
+      {
+        "path": "registry/components/split-tilt-cards/README.md",
+        "sha256": "a2d2e44ba1c0acbf2f164a5bec766f6f02ccf76b969a5daa2f21a703b227252e",
+        "bytes": 4569
+      },
+      {
+        "path": "registry/components/spring-stack-shuffle/README.md",
+        "sha256": "d1b1ef67f171fe97245c6bb05fb0df813f9c7c12d75057dfa9f1a24efa5688dc",
+        "bytes": 4472
+      },
+      {
+        "path": "registry/components/state-chip-rail/README.md",
+        "sha256": "6d6c723145d57a650480888233a7f19bca2bf4de5f0fa2e82aee003c0a123e0b",
+        "bytes": 4326
+      },
+      {
+        "path": "registry/components/stitched-text-draw/README.md",
+        "sha256": "3d136275f98bebdf6089f7b617bcd01d6d9b0ed558bf3f941d9e6f28f4d9ae59",
+        "bytes": 4124
+      },
+      {
+        "path": "registry/components/stop-motion-cadence/README.md",
+        "sha256": "c531f140feb73faf0f6b4a54a832b6ad7445d66aa288c386be34286430b43d81",
+        "bytes": 3146
+      },
+      {
+        "path": "registry/components/svg-stroke-trace/README.md",
+        "sha256": "a08fdb2776364ee574f03db6b82d06e455aa1b78460e85f8631a9bf8ef6234a2",
+        "bytes": 2020
+      },
+      {
+        "path": "registry/components/telemetry-hud/README.md",
+        "sha256": "1423642d35e2fc94d3baa1d9e1f119e83d506c3b730b1172c954ef710e8f8acf",
+        "bytes": 4154
+      },
+      {
+        "path": "registry/components/testimonial-proof-card/README.md",
+        "sha256": "e03d0ca759936b8d93c5178e1dcdf7d9681203259c13466b511133317c98f886",
+        "bytes": 5057
+      },
+      {
+        "path": "registry/components/titlecard-lockup/README.md",
+        "sha256": "93844180bfcacfe9d52517e600bc3d1481ecc384a820b60d1cd621f3e748b214",
+        "bytes": 3156
+      },
+      {
+        "path": "registry/components/trust-strip/README.md",
+        "sha256": "33bee5645d1ef6a108d6c35747a8e867b4f268e41d1fff7283b0c7c08143785f",
+        "bytes": 3129
+      },
+      {
+        "path": "registry/components/typed-prompt/README.md",
+        "sha256": "f441aab606e2ddd7dd760f8cbafdfc7d081258a4c07c1da52f0f6f75766b07f8",
+        "bytes": 3211
+      },
+      {
+        "path": "registry/components/ui-focus-zoom/README.md",
+        "sha256": "183426ead0bf496b567145e0bcd6b6d20a9a634fbad158e92ce4d7ffd1a1a0f2",
+        "bytes": 5284
+      },
+      {
+        "path": "registry/components/variable-font-flex/README.md",
+        "sha256": "6eb4cee31034a45cf005e98875f39dc6dc1f43a7af893bba751863ff987e4759",
+        "bytes": 3459
+      },
+      {
+        "path": "registry/components/vox-annotate/README.md",
+        "sha256": "a9a0d3350c23487661ddab50b86dfdca9e376fac8a6e67764a7101b4f1ecf1cf",
+        "bytes": 3684
+      },
+      {
+        "path": "registry/components/whip-pan-cut/README.md",
+        "sha256": "e5a2204c6f7a5084dba1c5c4f6f016c3f1546c5849ab52d742709e6ce27bb88d",
+        "bytes": 4192
+      },
+      {
+        "path": "registry/components/whiteboard-ink/README.md",
+        "sha256": "136c89338cbc2cfb4ba94f5b75e4dba9e05c212788213d0b784481354be73006",
+        "bytes": 4859
+      },
+      {
+        "path": "skills/embedded-captions/dna/README.md",
+        "sha256": "3e0dcb20140a8d73ea166dfde7af27f5d4cd492fd9ad2805c5c8dd064ba58f1c",
+        "bytes": 12207
+      },
+      {
+        "path": "skills/embedded-captions/modes/cinematic/README.md",
+        "sha256": "c95d0d2374ba6b3a0e721bbf9c66c125aaedd738e78c04591a9552e0f1fcfa46",
+        "bytes": 2677
+      },
+      {
+        "path": "skills/embedded-captions/themes/README.md",
+        "sha256": "5ce273a6baa1997a933fef31994b1461ae6d4d78c7532d65c2770d3fed32d7b0",
+        "bytes": 84288
+      },
+      {
+        "path": "skills/media-use/luts/README.md",
+        "sha256": "c06cbbf2aab80cbf8aa25c83497202a63107a61e083b6c199a89d513e8096a3b",
+        "bytes": 1087
+      },
+      {
+        "path": "skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/README.md",
+        "sha256": "12dfb3609e2be9b112ea92036049296cbfa11696bda471e79c6061eeb2d3009e",
+        "bytes": 2221
+      },
+      {
+        "path": "skills/remotion-to-hyperframes/assets/test-corpus/tier-1-title-card/remotion-src/package.json",
+        "sha256": "f9037f73cfc4bc7ad28fcd4bb140d7e6fa6cccf282e52bc27164ccc56a40cf9c",
+        "bytes": 296
+      },
+      {
+        "path": "skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/README.md",
+        "sha256": "09a12cc6b77d74533998e622dd7878f931a051991168a6c26bef743f47655b82",
+        "bytes": 3152
+      },
+      {
+        "path": "skills/remotion-to-hyperframes/assets/test-corpus/tier-2-multi-scene/remotion-src/package.json",
+        "sha256": "54130e2f8e546c5a0d22e8f90cb08e13d3c0e4efa0bf258796f0503c47e87a58",
+        "bytes": 298
+      },
+      {
+        "path": "skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/README.md",
+        "sha256": "cc18dd2d50e77116a733264294d59360a7a908d3a83cafb7825f911c1269648e",
+        "bytes": 5026
+      },
+      {
+        "path": "skills/remotion-to-hyperframes/assets/test-corpus/tier-3-data-driven/remotion-src/package.json",
+        "sha256": "dea1bb6534c27d6cf15e1987f43eb994cc7be9a93b81d60c50c7099b52742876",
+        "bytes": 319
+      },
+      {
+        "path": "skills/remotion-to-hyperframes/assets/test-corpus/tier-4-escape-hatch/README.md",
+        "sha256": "1ecada7bc9e9313d188cc3e1d2c731ab5e41f4ab7b9ee157dfec91a63afe4b9d",
+        "bytes": 2825
+      }
+    ],
+    "limitations": [
+      "Static source inventory and declared package dependencies; runtime and deployment behavior are not inferred.",
+      "Dependency, generated, hidden, test and secret-bearing inputs are excluded. At most 10,000 paths and 8 MB of configuration evidence are inspected."
+    ]
+  },
+  "proposals": [
+    {
+      "id": "overview",
+      "title": "v-flow-exais / project tour",
+      "angle": "A visual tour of the inspected source snapshot.",
+      "evidence": [
+        {
+          "path": "packages/aws-lambda/package.json",
+          "sha256": "6fc5c9e39f97ec70bd86115d3eac695b2eff370aca39b548a889c8e3fcbc937b",
+          "bytes": 2822
+        },
+        {
+          "path": "packages/cli/package.json",
+          "sha256": "db87cff6622b92f64fb32d0e9e4e43d00ac6b886ae53ebede63dbc3330f488da",
+          "bytes": 2443
+        },
+        {
+          "path": "packages/core/package.json",
+          "sha256": "ab8e70239fd141e1e87e458b99c3bdf66735769f92aec932f4811f588f628723",
+          "bytes": 26102
+        },
+        {
+          "path": "packages/diagram-engine/package.json",
+          "sha256": "b34b2a952fd4c7b4f1c757d96cab429ec0da75191ee193140e5fc69bc2bad199",
+          "bytes": 2226
+        },
+        {
+          "path": "packages/diagram-motion/package.json",
+          "sha256": "698719d5f720419a2e78299e990c76624834fdd011fa1b67151ae6c41960ebd0",
+          "bytes": 732
+        },
+        {
+          "path": "packages/diagram-viewer/package.json",
+          "sha256": "d1843847a350c8334eaa04cc1ee5ed2dd3c00544f65b2ca82420111f72f6d0b9",
+          "bytes": 534
+        },
+        {
+          "path": "packages/engine/package.json",
+          "sha256": "23bd17ec7d500bb70a4751f8be95e2f3f0cad98e405339b411777515ea68dbc5",
+          "bytes": 2004
+        },
+        {
+          "path": "packages/gcp-cloud-run/package.json",
+          "sha256": "6ab9c4452647ccc12becd03d1cbb27ebba14ba754ec8318a3bcd1c8f1781098b",
+          "bytes": 2295
+        },
+        {
+          "path": "packages/lint/package.json",
+          "sha256": "5cd1b6bda2b0c28d016a5195bd5c72ab487c4bcc3f38f0c4a1f20909ac3756f5",
+          "bytes": 1599
+        },
+        {
+          "path": "packages/parsers/package.json",
+          "sha256": "5d872e6c906d53e506b4389b69a3ca29a080f65f22e06978bc74a4273ae81da8",
+          "bytes": 6250
+        },
+        {
+          "path": "packages/player/package.json",
+          "sha256": "6649f84b72e906bef539df27efb3f078b1f960b2d450e680755ab898f67b3508",
+          "bytes": 1468
+        },
+        {
+          "path": "packages/producer/package.json",
+          "sha256": "0cb0c56d3bf19008d3aa32c1dd86c77759a324ff3abfebb8f2c7278a6375cd9f",
+          "bytes": 5584
+        },
+        {
+          "path": "packages/project-model/package.json",
+          "sha256": "36594eec33b66edc2c676e99f75b72f27681db61186c32f3698cd72135b41b4f",
+          "bytes": 708
+        },
+        {
+          "path": "packages/sdk-playground/package.json",
+          "sha256": "95e8f661b25c744909e4beade9b3f6e54df0c4552bef2a17685f8d264031c5e8",
+          "bytes": 490
+        },
+        {
+          "path": "packages/sdk/package.json",
+          "sha256": "df4e45ae2121d8c9122219478c575177e6a44ae3327a5b7477e04a994d48dbfc",
+          "bytes": 2650
+        },
+        {
+          "path": "packages/shader-transitions/package.json",
+          "sha256": "49663b23dbd4853c9be8e04f0c95d92111d3e5c3870c6480df44fd945f4fac97",
+          "bytes": 1197
+        },
+        {
+          "path": "packages/studio-server/package.json",
+          "sha256": "412e299b7f5f6810845c5d7bf1952204927d125b6b5340fc7605cea8b38fb532",
+          "bytes": 5398
+        },
+        {
+          "path": "packages/studio/package.json",
+          "sha256": "77c035fd08defb8a86fce47751255292b6645de4716bb1155b7bc7e4db58394b",
+          "bytes": 3486
+        }
+      ],
+      "snapshot": {
+        "manifest": {
+          "schemaVersion": 1,
+          "id": "video-0dff94fc-a2bb-4396-b745-450d209eb65c",
+          "title": "v-flow-exais / project tour",
+          "revision": 0,
+          "documents": [
+            {
+              "id": "title",
+              "kind": "native",
+              "path": "title.html",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-0",
+              "kind": "architecture",
+              "path": "diagram-0.architecture.json",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-1",
+              "kind": "architecture",
+              "path": "diagram-1.architecture.json",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-2",
+              "kind": "architecture",
+              "path": "diagram-2.architecture.json",
+              "authoritative": true
+            }
+          ],
+          "scenes": [
+            {
+              "id": "title-scene",
+              "kind": "native",
+              "documentId": "title",
+              "startFrame": 0,
+              "durationFrames": 75,
+              "presentation": {
+                "title": "v-flow-exais / project tour",
+                "subtitle": "A visual tour of the inspected source snapshot.",
+                "focusObjectIds": [],
+                "relationshipIds": []
+              }
+            },
+            {
+              "id": "chapter-0",
+              "kind": "diagram",
+              "documentId": "diagram-0",
+              "startFrame": 75,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "What is in this project?",
+                "subtitle": "Packages declared in source manifests. Each box is an owned package.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4",
+                  "object-5"
+                ],
+                "relationshipIds": []
+              }
+            },
+            {
+              "id": "chapter-1",
+              "kind": "diagram",
+              "documentId": "diagram-1",
+              "startFrame": 240,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "Source map / 2",
+                "subtitle": "Packages declared in source manifests. Each box is an owned package.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4",
+                  "object-5"
+                ],
+                "relationshipIds": []
+              }
+            },
+            {
+              "id": "chapter-2",
+              "kind": "diagram",
+              "documentId": "diagram-2",
+              "startFrame": 405,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "Source map / 3",
+                "subtitle": "Packages declared in source manifests. Each box is an owned package.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4",
+                  "object-5"
+                ],
+                "relationshipIds": []
+              }
+            }
+          ],
+          "output": {
+            "width": 1280,
+            "height": 720,
+            "fps": {
+              "numerator": 30,
+              "denominator": 1
+            }
+          },
+          "policy": {
+            "sourceSharing": "private",
+            "htmlTrust": "trusted-local"
+          }
+        },
+        "sources": {
+          "title": "<!doctype html><html><head><meta charset=\"utf-8\"><script src=\"assets/gsap.min.js\"></script><style>html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#07101c}#title{width:100%;height:100%;box-sizing:border-box;padding:10%;display:flex;justify-content:center;flex-direction:column;background:radial-gradient(ellipse at 100% 0%,#184356,#07101c 65%);color:#e8f5f5;font-family:Arial,sans-serif}#title .kicker{font-size:15px;color:#5eead4;letter-spacing:5px}#title h1{font-size:64px;line-height:1.04;letter-spacing:-3px;max-width:1000px;margin:28px 0}#title p{font-size:24px;color:#9bafbf;max-width:1000px;line-height:1.5}</style></head><body><div id=\"title\" data-composition-id=\"title\" data-width=\"1280\" data-height=\"720\" data-start=\"0\" data-duration=\"2.5\"><div class=\"kicker\">V-FLOW / REPOSITORY STORIES</div><h1>v-flow-exais / project tour</h1><p>A visual tour of the inspected source snapshot.</p><script>const tl=gsap.timeline({paused:true});tl.fromTo(\"#title h1\",{y:55},{y:0,duration:0.2,ease:\"power4.out\",immediateRender:false},0);tl.fromTo(\"#title p\",{y:40,opacity:0},{y:0,opacity:1,duration:0.18,ease:\"power4.out\",immediateRender:false},0.18);tl.to({},{duration:2.5},0);window.__timelines=window.__timelines||{};window.__timelines[\"title\"]=tl;</script></div></body></html>",
+          "diagram-0": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Source inventory",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "backend",
+                "label": "aws-lambda",
+                "pos": [
+                  60,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "cli",
+                "pos": [
+                  340,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "core",
+                "pos": [
+                  620,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "diagram-engine",
+                "pos": [
+                  60,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "diagram-motion",
+                "pos": [
+                  340,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-5",
+                "type": "backend",
+                "label": "diagram-viewer",
+                "pos": [
+                  620,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [],
+            "cards": []
+          },
+          "diagram-1": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Source inventory",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "backend",
+                "label": "engine",
+                "pos": [
+                  60,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "gcp-cloud-run",
+                "pos": [
+                  340,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "lint",
+                "pos": [
+                  620,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "parsers",
+                "pos": [
+                  60,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "player",
+                "pos": [
+                  340,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-5",
+                "type": "backend",
+                "label": "producer",
+                "pos": [
+                  620,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [],
+            "cards": []
+          },
+          "diagram-2": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Source inventory",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "backend",
+                "label": "project-model",
+                "pos": [
+                  60,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "sdk-playground",
+                "pos": [
+                  340,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "sdk",
+                "pos": [
+                  620,
+                  100
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "shader-transitions",
+                "pos": [
+                  60,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "studio-server",
+                "pos": [
+                  340,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-5",
+                "type": "backend",
+                "label": "studio",
+                "pos": [
+                  620,
+                  290
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [],
+            "cards": []
+          }
+        }
+      }
+    },
+    {
+      "id": "dependencies",
+      "title": "v-flow-exais / dependency story",
+      "angle": "Follow relationships that are explicitly declared in source.",
+      "evidence": [
+        {
+          "path": "packages/cli/package.json",
+          "sha256": "db87cff6622b92f64fb32d0e9e4e43d00ac6b886ae53ebede63dbc3330f488da",
+          "bytes": 2443
+        },
+        {
+          "path": "packages/studio/package.json",
+          "sha256": "77c035fd08defb8a86fce47751255292b6645de4716bb1155b7bc7e4db58394b",
+          "bytes": 3486
+        },
+        {
+          "path": "packages/producer/package.json",
+          "sha256": "0cb0c56d3bf19008d3aa32c1dd86c77759a324ff3abfebb8f2c7278a6375cd9f",
+          "bytes": 5584
+        }
+      ],
+      "snapshot": {
+        "manifest": {
+          "schemaVersion": 1,
+          "id": "video-88f11d4b-82a5-403f-8104-ced44c57c1c8",
+          "title": "v-flow-exais / dependency story",
+          "revision": 0,
+          "documents": [
+            {
+              "id": "title",
+              "kind": "native",
+              "path": "title.html",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-0",
+              "kind": "architecture",
+              "path": "diagram-0.architecture.json",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-1",
+              "kind": "architecture",
+              "path": "diagram-1.architecture.json",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-2",
+              "kind": "architecture",
+              "path": "diagram-2.architecture.json",
+              "authoritative": true
+            }
+          ],
+          "scenes": [
+            {
+              "id": "title-scene",
+              "kind": "native",
+              "documentId": "title",
+              "startFrame": 0,
+              "durationFrames": 75,
+              "presentation": {
+                "title": "v-flow-exais / dependency story",
+                "subtitle": "Follow relationships that are explicitly declared in source.",
+                "focusObjectIds": [],
+                "relationshipIds": []
+              }
+            },
+            {
+              "id": "chapter-0",
+              "kind": "diagram",
+              "documentId": "diagram-0",
+              "startFrame": 75,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "cli / dependencies",
+                "subtitle": "Declared dependencies in package.json. Arrows mean “depends on”; they do not imply live traffic.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4"
+                ],
+                "relationshipIds": [
+                  "relationship-9aae9c87-45e9-4b1f-b11c-f7a8b934551e",
+                  "relationship-8d0732a2-286d-4279-b290-20c9c4617349",
+                  "relationship-031da34c-fc45-4708-be46-feaf5dc70c0e",
+                  "relationship-f744fcbc-5322-4419-9413-01590b9496d2"
+                ]
+              }
+            },
+            {
+              "id": "chapter-1",
+              "kind": "diagram",
+              "documentId": "diagram-1",
+              "startFrame": 240,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "studio / dependencies",
+                "subtitle": "Declared dependencies in package.json. Arrows mean “depends on”; they do not imply live traffic.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4"
+                ],
+                "relationshipIds": [
+                  "relationship-99e127ab-715f-40ab-b6cf-b4b7830b526c",
+                  "relationship-e4bac135-54c6-4873-b2ce-1e443ff1eb9f",
+                  "relationship-5aba4b54-0710-41bb-b81c-022df791d992",
+                  "relationship-6bd3037f-d5a4-4d41-b3d8-48e762693d33"
+                ]
+              }
+            },
+            {
+              "id": "chapter-2",
+              "kind": "diagram",
+              "documentId": "diagram-2",
+              "startFrame": 405,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "producer / dependencies",
+                "subtitle": "Declared dependencies in package.json. Arrows mean “depends on”; they do not imply live traffic.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4"
+                ],
+                "relationshipIds": [
+                  "relationship-ac874bd1-9b32-407c-a3c7-c31d84d2ceee",
+                  "relationship-e81a79eb-a1ee-483e-96f1-ef3aad84e735",
+                  "relationship-037b3567-47e3-47b1-9b24-78cde95faa3b",
+                  "relationship-286fa7ed-325e-4657-8ef9-6bd660eafd2d"
+                ]
+              }
+            }
+          ],
+          "output": {
+            "width": 1280,
+            "height": 720,
+            "fps": {
+              "numerator": 30,
+              "denominator": 1
+            }
+          },
+          "policy": {
+            "sourceSharing": "private",
+            "htmlTrust": "trusted-local"
+          }
+        },
+        "sources": {
+          "title": "<!doctype html><html><head><meta charset=\"utf-8\"><script src=\"assets/gsap.min.js\"></script><style>html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#07101c}#title{width:100%;height:100%;box-sizing:border-box;padding:10%;display:flex;justify-content:center;flex-direction:column;background:radial-gradient(ellipse at 100% 0%,#184356,#07101c 65%);color:#e8f5f5;font-family:Arial,sans-serif}#title .kicker{font-size:15px;color:#5eead4;letter-spacing:5px}#title h1{font-size:64px;line-height:1.04;letter-spacing:-3px;max-width:1000px;margin:28px 0}#title p{font-size:24px;color:#9bafbf;max-width:1000px;line-height:1.5}</style></head><body><div id=\"title\" data-composition-id=\"title\" data-width=\"1280\" data-height=\"720\" data-start=\"0\" data-duration=\"2.5\"><div class=\"kicker\">V-FLOW / REPOSITORY STORIES</div><h1>v-flow-exais / dependency story</h1><p>Follow relationships that are explicitly declared in source.</p><script>const tl=gsap.timeline({paused:true});tl.fromTo(\"#title h1\",{y:55},{y:0,duration:0.2,ease:\"power4.out\",immediateRender:false},0);tl.fromTo(\"#title p\",{y:40,opacity:0},{y:0,opacity:1,duration:0.18,ease:\"power4.out\",immediateRender:false},0.18);tl.to({},{duration:2.5},0);window.__timelines=window.__timelines||{};window.__timelines[\"title\"]=tl;</script></div></body></html>",
+          "diagram-0": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Declared dependencies",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "frontend",
+                "label": "cli",
+                "pos": [
+                  60,
+                  240
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "aws-lambda",
+                "pos": [
+                  540,
+                  40
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "core",
+                "pos": [
+                  540,
+                  175
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "engine",
+                "pos": [
+                  540,
+                  310
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "gcp-cloud-run",
+                "pos": [
+                  540,
+                  445
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [
+              {
+                "id": "relationship-9aae9c87-45e9-4b1f-b11c-f7a8b934551e",
+                "from": "object-0",
+                "to": "object-1",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-8d0732a2-286d-4279-b290-20c9c4617349",
+                "from": "object-0",
+                "to": "object-2",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-031da34c-fc45-4708-be46-feaf5dc70c0e",
+                "from": "object-0",
+                "to": "object-3",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-f744fcbc-5322-4419-9413-01590b9496d2",
+                "from": "object-0",
+                "to": "object-4",
+                "label": "depends on"
+              }
+            ],
+            "cards": []
+          },
+          "diagram-1": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Declared dependencies",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "frontend",
+                "label": "studio",
+                "pos": [
+                  60,
+                  240
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "core",
+                "pos": [
+                  540,
+                  40
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "parsers",
+                "pos": [
+                  540,
+                  175
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "player",
+                "pos": [
+                  540,
+                  310
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "producer",
+                "pos": [
+                  540,
+                  445
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [
+              {
+                "id": "relationship-99e127ab-715f-40ab-b6cf-b4b7830b526c",
+                "from": "object-0",
+                "to": "object-1",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-e4bac135-54c6-4873-b2ce-1e443ff1eb9f",
+                "from": "object-0",
+                "to": "object-2",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-5aba4b54-0710-41bb-b81c-022df791d992",
+                "from": "object-0",
+                "to": "object-3",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-6bd3037f-d5a4-4d41-b3d8-48e762693d33",
+                "from": "object-0",
+                "to": "object-4",
+                "label": "depends on"
+              }
+            ],
+            "cards": []
+          },
+          "diagram-2": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Declared dependencies",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "frontend",
+                "label": "producer",
+                "pos": [
+                  60,
+                  240
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "aws-lambda",
+                "pos": [
+                  540,
+                  40
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "core",
+                "pos": [
+                  540,
+                  175
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "engine",
+                "pos": [
+                  540,
+                  310
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "lint",
+                "pos": [
+                  540,
+                  445
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [
+              {
+                "id": "relationship-ac874bd1-9b32-407c-a3c7-c31d84d2ceee",
+                "from": "object-0",
+                "to": "object-1",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-e81a79eb-a1ee-483e-96f1-ef3aad84e735",
+                "from": "object-0",
+                "to": "object-2",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-037b3567-47e3-47b1-9b24-78cde95faa3b",
+                "from": "object-0",
+                "to": "object-3",
+                "label": "depends on"
+              },
+              {
+                "id": "relationship-286fa7ed-325e-4657-8ef9-6bd660eafd2d",
+                "from": "object-0",
+                "to": "object-4",
+                "label": "depends on"
+              }
+            ],
+            "cards": []
+          }
+        }
+      }
+    },
+    {
+      "id": "commands",
+      "title": "v-flow-exais / developer entry points",
+      "angle": "Explore the commands and languages available to a contributor.",
+      "evidence": [
+        {
+          "path": "package.json",
+          "sha256": "e2b66597bc4310ec0460dc37bee6ab3cb5ab636f7d955bdf580900d0c06764eb",
+          "bytes": 6761
+        },
+        {
+          "path": "packages/producer/package.json",
+          "sha256": "0cb0c56d3bf19008d3aa32c1dd86c77759a324ff3abfebb8f2c7278a6375cd9f",
+          "bytes": 5584
+        },
+        {
+          "path": "packages/core/package.json",
+          "sha256": "ab8e70239fd141e1e87e458b99c3bdf66735769f92aec932f4811f588f628723",
+          "bytes": 26102
+        }
+      ],
+      "snapshot": {
+        "manifest": {
+          "schemaVersion": 1,
+          "id": "video-3cbaf959-4b65-47f8-8fce-f22bf684cb52",
+          "title": "v-flow-exais / developer entry points",
+          "revision": 0,
+          "documents": [
+            {
+              "id": "title",
+              "kind": "native",
+              "path": "title.html",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-0",
+              "kind": "architecture",
+              "path": "diagram-0.architecture.json",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-1",
+              "kind": "architecture",
+              "path": "diagram-1.architecture.json",
+              "authoritative": true
+            },
+            {
+              "id": "diagram-2",
+              "kind": "architecture",
+              "path": "diagram-2.architecture.json",
+              "authoritative": true
+            }
+          ],
+          "scenes": [
+            {
+              "id": "title-scene",
+              "kind": "native",
+              "documentId": "title",
+              "startFrame": 0,
+              "durationFrames": 75,
+              "presentation": {
+                "title": "v-flow-exais / developer entry points",
+                "subtitle": "Explore the commands and languages available to a contributor.",
+                "focusObjectIds": [],
+                "relationshipIds": []
+              }
+            },
+            {
+              "id": "chapter-0",
+              "kind": "diagram",
+              "documentId": "diagram-0",
+              "startFrame": 75,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "v-flow-exais / available commands",
+                "subtitle": "Script names declared in package.json. Source inspection does not execute them.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4"
+                ],
+                "relationshipIds": [
+                  "relationship-16fc8356-ff73-4dbe-b1da-bbd00e3e6677",
+                  "relationship-40dc2e28-9932-459d-9c01-09536639d272",
+                  "relationship-d10aca3a-1f5c-4165-b8c0-5922d74deb03",
+                  "relationship-e44b085c-ef7b-4b86-98b8-440f01e678a8"
+                ]
+              }
+            },
+            {
+              "id": "chapter-1",
+              "kind": "diagram",
+              "documentId": "diagram-1",
+              "startFrame": 240,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "producer / available commands",
+                "subtitle": "Script names declared in packages/producer/package.json. Source inspection does not execute them.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4"
+                ],
+                "relationshipIds": [
+                  "relationship-5152020b-639c-4b68-b96f-e35382693ede",
+                  "relationship-b330966b-9683-4f84-afad-92cbc756b7a0",
+                  "relationship-86ff992d-2d04-4bdb-b6ed-06b8bb1e807b",
+                  "relationship-d9af4a1e-bf3a-4b0f-8b63-3e8d62cadc27"
+                ]
+              }
+            },
+            {
+              "id": "chapter-2",
+              "kind": "diagram",
+              "documentId": "diagram-2",
+              "startFrame": 405,
+              "durationFrames": 165,
+              "presentation": {
+                "title": "core / available commands",
+                "subtitle": "Script names declared in packages/core/package.json. Source inspection does not execute them.",
+                "focusObjectIds": [
+                  "object-0",
+                  "object-1",
+                  "object-2",
+                  "object-3",
+                  "object-4"
+                ],
+                "relationshipIds": [
+                  "relationship-baab5840-11c6-44b5-9f0e-4d9cfc7ca566",
+                  "relationship-1bb948f8-0078-4429-87c8-e0708d4a020f",
+                  "relationship-7fdae540-ad13-4212-8be3-77babe75beaf",
+                  "relationship-312db62e-bd73-49f5-8986-ff0e15b7a487"
+                ]
+              }
+            }
+          ],
+          "output": {
+            "width": 1280,
+            "height": 720,
+            "fps": {
+              "numerator": 30,
+              "denominator": 1
+            }
+          },
+          "policy": {
+            "sourceSharing": "private",
+            "htmlTrust": "trusted-local"
+          }
+        },
+        "sources": {
+          "title": "<!doctype html><html><head><meta charset=\"utf-8\"><script src=\"assets/gsap.min.js\"></script><style>html,body{margin:0;width:1280px;height:720px;overflow:hidden;background:#07101c}#title{width:100%;height:100%;box-sizing:border-box;padding:10%;display:flex;justify-content:center;flex-direction:column;background:radial-gradient(ellipse at 100% 0%,#184356,#07101c 65%);color:#e8f5f5;font-family:Arial,sans-serif}#title .kicker{font-size:15px;color:#5eead4;letter-spacing:5px}#title h1{font-size:64px;line-height:1.04;letter-spacing:-3px;max-width:1000px;margin:28px 0}#title p{font-size:24px;color:#9bafbf;max-width:1000px;line-height:1.5}</style></head><body><div id=\"title\" data-composition-id=\"title\" data-width=\"1280\" data-height=\"720\" data-start=\"0\" data-duration=\"2.5\"><div class=\"kicker\">V-FLOW / REPOSITORY STORIES</div><h1>v-flow-exais / developer entry points</h1><p>Explore the commands and languages available to a contributor.</p><script>const tl=gsap.timeline({paused:true});tl.fromTo(\"#title h1\",{y:55},{y:0,duration:0.2,ease:\"power4.out\",immediateRender:false},0);tl.fromTo(\"#title p\",{y:40,opacity:0},{y:0,opacity:1,duration:0.18,ease:\"power4.out\",immediateRender:false},0.18);tl.to({},{duration:2.5},0);window.__timelines=window.__timelines||{};window.__timelines[\"title\"]=tl;</script></div></body></html>",
+          "diagram-0": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Declared scripts",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "frontend",
+                "label": "v-flow-exais",
+                "pos": [
+                  60,
+                  240
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "build",
+                "pos": [
+                  540,
+                  40
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "build:hyperframes-runtime",
+                "pos": [
+                  540,
+                  175
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "build:hyperframes-runtime:",
+                "pos": [
+                  540,
+                  310
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "build:owned-runtimes",
+                "pos": [
+                  540,
+                  445
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [
+              {
+                "id": "relationship-16fc8356-ff73-4dbe-b1da-bbd00e3e6677",
+                "from": "object-0",
+                "to": "object-1",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-40dc2e28-9932-459d-9c01-09536639d272",
+                "from": "object-0",
+                "to": "object-2",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-d10aca3a-1f5c-4165-b8c0-5922d74deb03",
+                "from": "object-0",
+                "to": "object-3",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-e44b085c-ef7b-4b86-98b8-440f01e678a8",
+                "from": "object-0",
+                "to": "object-4",
+                "label": "defines"
+              }
+            ],
+            "cards": []
+          },
+          "diagram-1": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Declared scripts",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "frontend",
+                "label": "producer",
+                "pos": [
+                  60,
+                  240
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "build",
+                "pos": [
+                  540,
+                  40
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "build:fonts",
+                "pos": [
+                  540,
+                  175
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "build:hf-early-stub",
+                "pos": [
+                  540,
+                  310
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "test",
+                "pos": [
+                  540,
+                  445
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [
+              {
+                "id": "relationship-5152020b-639c-4b68-b96f-e35382693ede",
+                "from": "object-0",
+                "to": "object-1",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-b330966b-9683-4f84-afad-92cbc756b7a0",
+                "from": "object-0",
+                "to": "object-2",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-86ff992d-2d04-4bdb-b6ed-06b8bb1e807b",
+                "from": "object-0",
+                "to": "object-3",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-d9af4a1e-bf3a-4b0f-8b63-3e8d62cadc27",
+                "from": "object-0",
+                "to": "object-4",
+                "label": "defines"
+              }
+            ],
+            "cards": []
+          },
+          "diagram-2": {
+            "schema_version": 1,
+            "diagram_type": "architecture",
+            "meta": {
+              "title": "Declared scripts",
+              "viewBox": [
+                900,
+                570
+              ],
+              "legend": {
+                "mode": "hidden"
+              }
+            },
+            "components": [
+              {
+                "id": "object-0",
+                "type": "frontend",
+                "label": "core",
+                "pos": [
+                  60,
+                  240
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-1",
+                "type": "backend",
+                "label": "build",
+                "pos": [
+                  540,
+                  40
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-2",
+                "type": "backend",
+                "label": "build:audio-fx-runtime",
+                "pos": [
+                  540,
+                  175
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-3",
+                "type": "backend",
+                "label": "build:hyperframe-runtime",
+                "pos": [
+                  540,
+                  310
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              },
+              {
+                "id": "object-4",
+                "type": "backend",
+                "label": "build:hyperframes-runtime",
+                "pos": [
+                  540,
+                  445
+                ],
+                "size": [
+                  230,
+                  70
+                ]
+              }
+            ],
+            "connections": [
+              {
+                "id": "relationship-baab5840-11c6-44b5-9f0e-4d9cfc7ca566",
+                "from": "object-0",
+                "to": "object-1",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-1bb948f8-0078-4429-87c8-e0708d4a020f",
+                "from": "object-0",
+                "to": "object-2",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-7fdae540-ad13-4212-8be3-77babe75beaf",
+                "from": "object-0",
+                "to": "object-3",
+                "label": "defines"
+              },
+              {
+                "id": "relationship-312db62e-bd73-49f5-8986-ff0e15b7a487",
+                "from": "object-0",
+                "to": "object-4",
+                "label": "defines"
+              }
+            ],
+            "cards": []
+          }
+        }
+      }
+    }
+  ]
+}

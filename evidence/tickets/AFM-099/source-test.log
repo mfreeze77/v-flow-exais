@@ -1,0 +1,13 @@
+ Container v-flow-exais-workspace-run-8285891afca8 Creating 
+ Container v-flow-exais-workspace-run-8285891afca8 Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-099.source.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-099.source.test.ts[2m > [22minspects a local project, reviews three plans, imports idempotently and builds real mixed compositions[33m 1717[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m   Start at [22m 04:49:01
+[2m   Duration [22m 4.75s[2m (transform 2.24s, setup 0ms, import 2.90s, tests 1.72s, environment 0ms)[22m
+

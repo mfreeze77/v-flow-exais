@@ -1,0 +1,3 @@
+ Container v-flow-exais-workspace-run-e48de47c9e2c Creating 
+ Container v-flow-exais-workspace-run-e48de47c9e2c Created 
+$ node scripts/generate-artifact-styles.mjs --check

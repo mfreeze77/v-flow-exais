@@ -1,0 +1,61 @@
+{
+  "ticketId": "AFM-039",
+  "title": "AFM-039 — Implement the native managed diagram-scene contract",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Scoped diagram scenes, frame/rational-FPS conversion, authored-edge traces, finite seekable timelines and retained composition emission.",
+  "remainingAcceptance": [
+    "Complete motion intent/override/style/camera contract matrices and all-family visual parity remain open."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/diagram-motion test",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/motion-test.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-edit-render.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/edit-browser-test.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-batch-browser.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/ui-batch-render.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-seams.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/seam-gate.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/motion-test.log",
+      "type": "evidence",
+      "bytes": 619,
+      "sha256": "376772110c814203868da970e6c08d8492e1d8e689f3cd69f0599db995dc6270"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/edit-browser-test.log",
+      "type": "evidence",
+      "bytes": 407,
+      "sha256": "bdac8abda0ffaf559be26564f375d3f9141aa00a2bc17cde57af8a533d10167a"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/ui-batch-render.log",
+      "type": "evidence",
+      "bytes": 1943,
+      "sha256": "a011ab7588b3ad32d2c8fa388ff4ed708069ce1b415d692312f6eb6b7b543aff"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/seam-gate.log",
+      "type": "evidence",
+      "bytes": 46,
+      "sha256": "4a3e0fde40490a9bea84ad06c09cb02ecf1e0833d313c4e0b9f0def166dc5dde"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}

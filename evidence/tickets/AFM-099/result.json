@@ -1,0 +1,345 @@
+{
+  "ticketId": "AFM-099",
+  "title": "Support headless batch generation and resumable jobs",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "deliveryStatus": "source-to-three-videos demonstrated and inspected",
+  "environment": {
+    "execution": "Docker",
+    "image": "v-flow-exais:dev",
+    "bun": "1.3.13",
+    "chromium": "148.0.7778.167",
+    "projectStorage": "v-flow-exais_project-data",
+    "studio": "http://127.0.0.1:5190"
+  },
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-011.test.ts tests/acceptance/AFM-011.package.test.ts tests/acceptance/AFM-027.test.ts tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/acceptance.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/source-test.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/project-model test",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-020/project-model-test.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/diagram-motion test",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/motion-test.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{project-model,diagram-motion,studio-server,studio}' typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/cli typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/cli-typecheck.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run vflow plan --source https://github.com/mfreeze77/v-flow-exais",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/github-intake.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-edit-render.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/edit-browser-test.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-batch-browser.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/ui-batch-render.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-batch-recovery.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/recovery-test.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-seams.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/seam-gate.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun run vflow download --id batch-824fcd55-f14f-443e-917b-c6d84af00f46 --output /workspace/out/cli-downloads",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/cli-download.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/diagram-engine check:artifact-styles",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-027/style-check.log"
+    }
+  ],
+  "testSummary": {
+    "acceptance": 32,
+    "projectModel": 30,
+    "diagramMotion": 10,
+    "totalDistinctFocusedTests": 72,
+    "typecheckedPackages": [
+      "project-model",
+      "diagram-motion",
+      "studio-server",
+      "studio",
+      "cli"
+    ],
+    "seamChecks": 45
+  },
+  "acceptanceResults": [
+    {
+      "criterion": "A failed project does not invalidate successful jobs",
+      "met": true,
+      "evidence": "recovery-result.json: complete, complete, failed; batch partial"
+    },
+    {
+      "criterion": "Unchanged verified outputs can be reused",
+      "met": true,
+      "evidence": "recovery-result.json reused; browser batch repeated export"
+    },
+    {
+      "criterion": "Input folders are not overwritten",
+      "met": true,
+      "evidence": "read-only source mount; isolated intake/build/project directories; source-test.log"
+    }
+  ],
+  "videos": [
+    {
+      "projectId": "video-0dff94fc-a2bb-4396-b745-450d209eb65c",
+      "title": "v-flow-exais / project tour",
+      "path": "out/vflow-demo/project-tour.mp4",
+      "sha256": "f2dae6b43a9a6f19675e704b430561c009da7988f11be46abdf1018896a885f6",
+      "probe": {
+        "codec": "h264",
+        "width": 1280,
+        "height": 720,
+        "fps": "30/1",
+        "duration": 19,
+        "frames": 570,
+        "bytes": 959438
+      },
+      "buildHash": "d0749c8f587a97b9376978fff8d207535d871c40d38e8ebd80fc0a4dca162789",
+      "revision": 1,
+      "contact": "evidence/tickets/AFM-099/browser/project-tour-frames.png",
+      "bytes": 959438,
+      "visuallyInspected": true
+    },
+    {
+      "projectId": "video-88f11d4b-82a5-403f-8104-ced44c57c1c8",
+      "title": "v-flow-exais / dependency story",
+      "path": "out/vflow-demo/dependency-story.mp4",
+      "sha256": "fca55f813d11a969083cef6ff0715af75c960dc8cba52dfe5c9b410f29b5bfed",
+      "probe": {
+        "codec": "h264",
+        "width": 1280,
+        "height": 720,
+        "fps": "30/1",
+        "duration": 19,
+        "frames": 570,
+        "bytes": 957359
+      },
+      "buildHash": "531342a74898dccacae716657aa9784ac11f9c63a58854f7980abe7e487f6187",
+      "revision": 4,
+      "contact": "evidence/tickets/AFM-099/browser/dependency-story-frames.png",
+      "bytes": 957359,
+      "visuallyInspected": true
+    },
+    {
+      "projectId": "video-3cbaf959-4b65-47f8-8fce-f22bf684cb52",
+      "title": "v-flow-exais / developer entry points",
+      "path": "out/vflow-demo/developer-entry-points.mp4",
+      "sha256": "1745fe4d6b466db3142fa775c0bf58e0534f7b61da261836bd8cb20fcc17549f",
+      "probe": {
+        "codec": "h264",
+        "width": 1280,
+        "height": 720,
+        "fps": "30/1",
+        "duration": 19,
+        "frames": 570,
+        "bytes": 1017745
+      },
+      "buildHash": "b0ada742d2440e55999f664eedd6659d7cbfabb975fdc1eff7b75fb0a01d0653",
+      "revision": 1,
+      "contact": "evidence/tickets/AFM-099/browser/developer-entry-points-frames.png",
+      "bytes": 1017745,
+      "visuallyInspected": true
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/acceptance.log",
+      "type": "command-log",
+      "bytes": 7328,
+      "sha256": "018886322474f6eac63c49a50dc8006fc94fd15b314f5e8ef6146f3181e44434"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/source-test.log",
+      "type": "command-log",
+      "bytes": 768,
+      "sha256": "64754f1dc41b9cb5aa4dc38c3a721a6c54999b4d09ad307c60c9d461dbbb972f"
+    },
+    {
+      "path": "evidence/tickets/AFM-020/project-model-test.log",
+      "type": "command-log",
+      "bytes": 1465,
+      "sha256": "e1ff56dfb3e4a23df405cf657ba91bb85d7377fd5f76e7bc69c9604dad2547b2"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/motion-test.log",
+      "type": "command-log",
+      "bytes": 619,
+      "sha256": "376772110c814203868da970e6c08d8492e1d8e689f3cd69f0599db995dc6270"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/typecheck.log",
+      "type": "command-log",
+      "bytes": 349,
+      "sha256": "fffc33dc349dcd1d55caab74c6287afa2d66cb4edfbc731ef2b70b24d220e042"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/cli-typecheck.log",
+      "type": "command-log",
+      "bytes": 139,
+      "sha256": "8d073215930bbf4147a09d1cac2a2b5d95d12b1ab63f92b9e559e0a1916f0fbc"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/github-intake.log",
+      "type": "command-log",
+      "bytes": 67615,
+      "sha256": "c864dfa46a15cf041ae14eb91642a884ce4d5020117756ed26463e096dcba76c"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/edit-browser-test.log",
+      "type": "command-log",
+      "bytes": 407,
+      "sha256": "bdac8abda0ffaf559be26564f375d3f9141aa00a2bc17cde57af8a533d10167a"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/ui-batch-render.log",
+      "type": "command-log",
+      "bytes": 1943,
+      "sha256": "a011ab7588b3ad32d2c8fa388ff4ed708069ce1b415d692312f6eb6b7b543aff"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/recovery-test.log",
+      "type": "command-log",
+      "bytes": 21953,
+      "sha256": "ef4def94337b90fff27727d0eb420fbbc68f3ef730d64e5232b9f86b9d67e442"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/seam-gate.log",
+      "type": "command-log",
+      "bytes": 46,
+      "sha256": "4a3e0fde40490a9bea84ad06c09cb02ecf1e0833d313c4e0b9f0def166dc5dde"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/cli-download.log",
+      "type": "command-log",
+      "bytes": 11439,
+      "sha256": "b0a8701dc4e30553104aa5ec5e58cce506fa273609bd36e6e966ded618173a48"
+    },
+    {
+      "path": "evidence/tickets/AFM-027/style-check.log",
+      "type": "command-log",
+      "bytes": 176,
+      "sha256": "770b293a39947f8f0f3ec0edc32eed6fcca680e6db842030a6eff6f25f1e3e35"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/edit-seek.json",
+      "type": "evidence",
+      "bytes": 22158,
+      "sha256": "dcb665d8e56ff86862d968fcd1885775460a1e2080848a80368c9242e0c48b6a"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/batch-result.json",
+      "type": "evidence",
+      "bytes": 2037,
+      "sha256": "c922c99582bdee2cc381be139f455f23bfced8053e4538d3a9795f8318be02cf"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/recovery-result.json",
+      "type": "evidence",
+      "bytes": 16169,
+      "sha256": "bf1006b125af6346e62dc0a04671806d5209abb3964532f05d07c9e6d711cc15"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/seam-result.json",
+      "type": "evidence",
+      "bytes": 7520,
+      "sha256": "6fb00a39e9a684572010044ee7b5bae69953f7d4c3f069dc54c16ab43b5ed83a"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/studio-detached-startup.log",
+      "type": "evidence",
+      "bytes": 1576,
+      "sha256": "3cc7c36d44e05095ac9dbcc9ef4a3cdbc686e602d0c92fad833cfe7270b68ee6"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/01-launcher.png",
+      "type": "screenshot",
+      "bytes": 127497,
+      "sha256": "4303cc42ff5496baf794741fb00d6d67d09448bfdcd556d44b5acf67bc8d57aa"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/02-plans.png",
+      "type": "screenshot",
+      "bytes": 166550,
+      "sha256": "8a34aaf446be6da363b301c71fb8e5aca7b1d2dcdb9969f109bbafaf6e3f4d3d"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/04-edited-reopened.png",
+      "type": "screenshot",
+      "bytes": 322935,
+      "sha256": "3b574418f060a32a54f361a33f7422e55aaf1849025772307c80fa296e90e263"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/05-batch-complete.png",
+      "type": "screenshot",
+      "bytes": 187787,
+      "sha256": "434a861fc865e2e4df79c7691bad79debb8c3442af34dce29ffa8bf5b5d18183"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/dependency-story-frames.png",
+      "type": "screenshot",
+      "bytes": 460014,
+      "sha256": "8e659940e1f1e08beb9ff5a9d7f157ac128290b5ff5d2a44974d2482be655db4"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/developer-entry-points-frames.png",
+      "type": "screenshot",
+      "bytes": 500859,
+      "sha256": "db5272fabad3efe54407bcc4125382979d97bf35594ce4ed841d4aa731eada6d"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/browser/project-tour-frames.png",
+      "type": "screenshot",
+      "bytes": 423640,
+      "sha256": "e14ef4281be994b0b21e1a99e2479ee0b1236c2f62c1ac0c2d499e93485b40de"
+    }
+  ],
+  "recoveryProbe": {
+    "codec": "h264",
+    "width": 1280,
+    "height": 720,
+    "fps": "30000/1001",
+    "duration": 5.5055,
+    "frames": 165,
+    "bytes": 351655
+  },
+  "remainingAcceptance": [
+    "Dependencies AFM-095, AFM-026 and AFM-055 are not fully verified; this receipt does not close their full ticket matrices.",
+    "Full process-crash and cancellation-at-every-stage evidence, artifact retention cleanup and runtime/font fingerprinting remain open.",
+    "No narration/captions or configured AI proposal generation. Current drafts use manifest and source-inventory facts.",
+    "G0/G1 and final product gates are not passed."
+  ],
+  "handoff": "docs/designs/repo-to-video-handoff.md",
+  "gatePassed": false
+}

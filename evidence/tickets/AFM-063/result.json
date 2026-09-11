@@ -1,0 +1,50 @@
+{
+  "ticketId": "AFM-063",
+  "title": "AFM-063 — Create guided-view scenes and render the first vertical slice",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Managed Studio launcher and editor with retained player/source editor, scene forms, label/source commands and persisted undo/redo.",
+  "remainingAcceptance": [
+    "Full direct manipulation, native/diagram capability parity and advanced regeneration editing remain open."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --filter '@hyperframes/{project-model,diagram-motion,studio-server,studio}' typecheck",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/typecheck.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-edit-render.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/edit-browser-test.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-batch-browser.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/ui-batch-render.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/typecheck.log",
+      "type": "evidence",
+      "bytes": 349,
+      "sha256": "fffc33dc349dcd1d55caab74c6287afa2d66cb4edfbc731ef2b70b24d220e042"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/edit-browser-test.log",
+      "type": "evidence",
+      "bytes": 407,
+      "sha256": "bdac8abda0ffaf559be26564f375d3f9141aa00a2bc17cde57af8a533d10167a"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/ui-batch-render.log",
+      "type": "evidence",
+      "bytes": 1943,
+      "sha256": "a011ab7588b3ad32d2c8fa388ff4ed708069ce1b415d692312f6eb6b7b543aff"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}

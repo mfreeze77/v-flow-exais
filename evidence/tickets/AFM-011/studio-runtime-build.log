@@ -1,0 +1,4 @@
+ Container v-flow-exais-workspace-run-095e82f6a97b Creating 
+ Container v-flow-exais-workspace-run-095e82f6a97b Created 
+$ tsx scripts/build-hyperframes-runtime-artifact.ts
+{"event":"hyperframe_runtime_artifacts_generated","buildId":"dev","distDir":"/workspace/packages/core/dist","iifePath":"/workspace/packages/core/dist/hyperframe.runtime.iife.js","esmPath":"/workspace/packages/core/dist/hyperframe.runtime.mjs","manifestPath":"/workspace/packages/core/dist/hyperframe.manifest.json","inlineModulePath":"/workspace/packages/core/src/generated/runtime-inline.ts","sourceBytes":401731,"esmBytes":401707,"sha256":"3056a243b7ed69e68d5ade51e49dbc3df6e342c89ecf9554e8743bf4533b21e3"}

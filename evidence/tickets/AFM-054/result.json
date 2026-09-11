@@ -1,0 +1,50 @@
+{
+  "ticketId": "AFM-054",
+  "title": "AFM-054 — Run immutable mixed-project renders through the producer",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Shared managed API, preview, pinned producer jobs, cancellation/resume, batch ownership and verified media downloads.",
+  "remainingAcceptance": [
+    "Crash/cancel testing at every compile/capture/encode phase, cleanup/retention and complete API contract closure remain open."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/source-test.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-batch-browser.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/ui-batch-render.log"
+    },
+    {
+      "invocation": "docker exec v-flow-exais-studio-verify bun tools/vflow/verify-batch-recovery.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/recovery-test.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/source-test.log",
+      "type": "evidence",
+      "bytes": 768,
+      "sha256": "64754f1dc41b9cb5aa4dc38c3a721a6c54999b4d09ad307c60c9d461dbbb972f"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/ui-batch-render.log",
+      "type": "evidence",
+      "bytes": 1943,
+      "sha256": "a011ab7588b3ad32d2c8fa388ff4ed708069ce1b415d692312f6eb6b7b543aff"
+    },
+    {
+      "path": "evidence/tickets/AFM-099/recovery-test.log",
+      "type": "evidence",
+      "bytes": 21953,
+      "sha256": "ef4def94337b90fff27727d0eb420fbbc68f3ef730d64e5232b9f86b9d67e442"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}

@@ -1,0 +1,28 @@
+{
+  "ticketId": "AFM-017",
+  "title": "AFM-017 — Define the versioned unified project document",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Strict project/schema validation, semantic identities, revision-aware commands, kernel-locked atomic storage and persistent undo/redo.",
+  "remainingAcceptance": [
+    "Complete migration, exact-byte legacy backup, full history-operation and storage fault/crash matrices remain open."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/project-model test",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-020/project-model-test.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-020/project-model-test.log",
+      "type": "evidence",
+      "bytes": 1465,
+      "sha256": "e1ff56dfb3e4a23df405cf657ba91bb85d7377fd5f76e7bc69c9604dad2547b2"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}

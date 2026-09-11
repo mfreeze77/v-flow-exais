@@ -1,0 +1,25 @@
+ Container v-flow-exais-workspace-run-fd0d9b090c97 Creating 
+ Container v-flow-exais-workspace-run-fd0d9b090c97 Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-027.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mimports with forbidden argv, filesystem adapters, network and process handlers[33m 399[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles architecture concurrently without mutation, leaking options or invoking IO[32m 29[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles workflow concurrently without mutation, leaking options or invoking IO[33m 428[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles sequence concurrently without mutation, leaking options or invoking IO[32m 19[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles dataflow concurrently without mutation, leaking options or invoking IO[32m 18[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mcompiles lifecycle concurrently without mutation, leaking options or invoking IO[32m 16[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same architecture SVG to the compatibility CLI[33m 652[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same workflow SVG to the compatibility CLI[33m 842[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same sequence SVG to the compatibility CLI[33m 790[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same dataflow SVG to the compatibility CLI[33m 656[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns the same lifecycle SVG to the compatibility CLI[33m 579[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mpreserves deployment branches and explicit parallel relationship identities[32m 14[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-027.test.ts[2m > [22mAFM-027 / AFM-029 callable owned geometry[2m > [22mreturns structured failure and leaves the host usable[32m 17[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m13 passed[39m[22m[90m (13)[39m
+[2m   Start at [22m 03:44:43
+[2m   Duration [22m 6.08s[2m (transform 1.01s, setup 0ms, import 1.49s, tests 4.46s, environment 0ms)[22m
+

@@ -1,0 +1,10 @@
+{"event":"ui-batch-started","id":"batch-84e43c7f-7422-4004-8f13-11c3b1b8f1ab"}
+complete:100,running:20,queued:0
+complete:100,running:40,queued:0
+complete:100,running:60,queued:0
+complete:100,complete:100,running:0
+complete:100,complete:100,running:20
+complete:100,complete:100,running:40
+complete:100,complete:100,running:60
+complete:100,complete:100,complete:100
+{"batchId":"batch-84e43c7f-7422-4004-8f13-11c3b1b8f1ab","errors":[],"artifacts":[{"projectId":"video-0dff94fc-a2bb-4396-b745-450d209eb65c","title":"v-flow-exais / project tour","path":"out/vflow-demo/project-tour.mp4","sha256":"f2dae6b43a9a6f19675e704b430561c009da7988f11be46abdf1018896a885f6","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":19,"frames":570,"bytes":959438},"buildHash":"d0749c8f587a97b9376978fff8d207535d871c40d38e8ebd80fc0a4dca162789","revision":1,"contact":"evidence/tickets/AFM-099/browser/project-tour-frames.png"},{"projectId":"video-88f11d4b-82a5-403f-8104-ced44c57c1c8","title":"v-flow-exais / dependency story","path":"out/vflow-demo/dependency-story.mp4","sha256":"fca55f813d11a969083cef6ff0715af75c960dc8cba52dfe5c9b410f29b5bfed","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":19,"frames":570,"bytes":957359},"buildHash":"531342a74898dccacae716657aa9784ac11f9c63a58854f7980abe7e487f6187","revision":4,"contact":"evidence/tickets/AFM-099/browser/dependency-story-frames.png"},{"projectId":"video-3cbaf959-4b65-47f8-8fce-f22bf684cb52","title":"v-flow-exais / developer entry points","path":"out/vflow-demo/developer-entry-points.mp4","sha256":"1745fe4d6b466db3142fa775c0bf58e0534f7b61da261836bd8cb20fcc17549f","probe":{"codec":"h264","width":1280,"height":720,"fps":"30/1","duration":19,"frames":570,"bytes":1017745},"buildHash":"b0ada742d2440e55999f664eedd6659d7cbfabb975fdc1eff7b75fb0a01d0653","revision":1,"contact":"evidence/tickets/AFM-099/browser/developer-entry-points-frames.png"}]}

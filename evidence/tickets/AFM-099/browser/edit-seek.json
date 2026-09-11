@@ -1,0 +1,659 @@
+{
+  "id": "video-88f11d4b-82a5-403f-8104-ced44c57c1c8",
+  "errors": [],
+  "state": [
+    {
+      "time": 18.5,
+      "timelines": {
+        "main": {
+          "time": 18.5,
+          "duration": 19,
+          "paused": true
+        },
+        "title": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "slot-0": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "scene-1-chapter-0": {
+          "time": 5.5,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-1": {
+          "time": 5.5,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-2-chapter-1": {
+          "time": 5.5,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-2": {
+          "time": 5.5,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-3-chapter-2": {
+          "time": 5,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-3": {
+          "time": 5,
+          "duration": 5.5,
+          "paused": true
+        }
+      },
+      "signals": [
+        {
+          "id": "scene-1-chapter-0-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "0px"
+        },
+        {
+          "id": "scene-1-chapter-0-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "0px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "0px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "0px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "0px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "0px"
+        }
+      ],
+      "labels": [
+        "\n          CLI entry point · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          CLI entry point\n        ",
+        "CLI entry point",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          studio · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          studio\n        ",
+        "studio",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          parsers · Architecture component\n          \n          \n          \n            \n          \n          parsers\n        ",
+        "parsers",
+        "\n          producer · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          producer\n        ",
+        "producer",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core"
+      ]
+    },
+    {
+      "time": 0,
+      "timelines": {
+        "main": {
+          "time": 0,
+          "duration": 19,
+          "paused": true
+        },
+        "title": {
+          "time": 0,
+          "duration": 2.5,
+          "paused": true
+        },
+        "slot-0": {
+          "time": 0,
+          "duration": 2.5,
+          "paused": true
+        },
+        "scene-1-chapter-0": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-1": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-2-chapter-1": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-3-chapter-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-3": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        }
+      },
+      "signals": [
+        {
+          "id": "scene-1-chapter-0-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-1-chapter-0-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        }
+      ],
+      "labels": [
+        "\n          CLI entry point · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          CLI entry point\n        ",
+        "CLI entry point",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          studio · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          studio\n        ",
+        "studio",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          parsers · Architecture component\n          \n          \n          \n            \n          \n          parsers\n        ",
+        "parsers",
+        "\n          producer · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          producer\n        ",
+        "producer",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core"
+      ]
+    },
+    {
+      "time": 4.2,
+      "timelines": {
+        "main": {
+          "time": 4.2,
+          "duration": 19,
+          "paused": true
+        },
+        "title": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "slot-0": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "scene-1-chapter-0": {
+          "time": 1.7,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-1": {
+          "time": 1.7,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-2-chapter-1": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-3-chapter-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-3": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        }
+      },
+      "signals": [
+        {
+          "id": "scene-1-chapter-0-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "0.3333px"
+        },
+        {
+          "id": "scene-1-chapter-0-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        }
+      ],
+      "labels": [
+        "\n          CLI entry point · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          CLI entry point\n        ",
+        "CLI entry point",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          studio · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          studio\n        ",
+        "studio",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          parsers · Architecture component\n          \n          \n          \n            \n          \n          parsers\n        ",
+        "parsers",
+        "\n          producer · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          producer\n        ",
+        "producer",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core"
+      ]
+    },
+    {
+      "time": 4.2,
+      "timelines": {
+        "main": {
+          "time": 4.2,
+          "duration": 19,
+          "paused": true
+        },
+        "title": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "slot-0": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "scene-1-chapter-0": {
+          "time": 1.7,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-1": {
+          "time": 1.7,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-2-chapter-1": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-3-chapter-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-3": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        }
+      },
+      "signals": [
+        {
+          "id": "scene-1-chapter-0-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "0.3333px"
+        },
+        {
+          "id": "scene-1-chapter-0-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        }
+      ],
+      "labels": [
+        "\n          CLI entry point · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          CLI entry point\n        ",
+        "CLI entry point",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          studio · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          studio\n        ",
+        "studio",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          parsers · Architecture component\n          \n          \n          \n            \n          \n          parsers\n        ",
+        "parsers",
+        "\n          producer · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          producer\n        ",
+        "producer",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core"
+      ]
+    },
+    {
+      "time": 7,
+      "timelines": {
+        "main": {
+          "time": 7,
+          "duration": 19,
+          "paused": true
+        },
+        "title": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "slot-0": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "scene-1-chapter-0": {
+          "time": 4.5,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-1": {
+          "time": 4.5,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-2-chapter-1": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-3-chapter-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-3": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        }
+      },
+      "signals": [
+        {
+          "id": "scene-1-chapter-0-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "0px"
+        },
+        {
+          "id": "scene-1-chapter-0-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "0px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        }
+      ],
+      "labels": [
+        "\n          CLI entry point · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          CLI entry point\n        ",
+        "CLI entry point",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          studio · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          studio\n        ",
+        "studio",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          parsers · Architecture component\n          \n          \n          \n            \n          \n          parsers\n        ",
+        "parsers",
+        "\n          producer · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          producer\n        ",
+        "producer",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core"
+      ]
+    },
+    {
+      "time": 4.2,
+      "timelines": {
+        "main": {
+          "time": 4.2,
+          "duration": 19,
+          "paused": true
+        },
+        "title": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "slot-0": {
+          "time": 2.5,
+          "duration": 2.5,
+          "paused": true
+        },
+        "scene-1-chapter-0": {
+          "time": 1.7,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-1": {
+          "time": 1.7,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-2-chapter-1": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "scene-3-chapter-2": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        },
+        "slot-3": {
+          "time": 0,
+          "duration": 5.5,
+          "paused": true
+        }
+      },
+      "signals": [
+        {
+          "id": "scene-1-chapter-0-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "0.3333px"
+        },
+        {
+          "id": "scene-1-chapter-0-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-2-chapter-1-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-0",
+          "from": "object-0",
+          "to": "object-1",
+          "offset": "1px"
+        },
+        {
+          "id": "scene-3-chapter-2-signal-1",
+          "from": "object-0",
+          "to": "object-2",
+          "offset": "1px"
+        }
+      ],
+      "labels": [
+        "\n          CLI entry point · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          CLI entry point\n        ",
+        "CLI entry point",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          studio · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          studio\n        ",
+        "studio",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core",
+        "\n          parsers · Architecture component\n          \n          \n          \n            \n          \n          parsers\n        ",
+        "parsers",
+        "\n          producer · Architecture component\n          \n          \n          \n            \n            \n            \n            \n          \n          producer\n        ",
+        "producer",
+        "\n          aws-lambda · Architecture component\n          \n          \n          \n            \n          \n          aws-lambda\n        ",
+        "aws-lambda",
+        "\n          core · Architecture component\n          \n          \n          \n            \n          \n          core\n        ",
+        "core"
+      ]
+    }
+  ],
+  "captures": [
+    "edca64abca07833d596d1824df992c7583cb1feed8350d032aca38ec23c8d602",
+    "edca64abca07833d596d1824df992c7583cb1feed8350d032aca38ec23c8d602",
+    "edca64abca07833d596d1824df992c7583cb1feed8350d032aca38ec23c8d602"
+  ]
+}

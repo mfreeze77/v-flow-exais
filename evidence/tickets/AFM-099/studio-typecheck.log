@@ -1,0 +1,6 @@
+ Container v-flow-exais-workspace-run-2e822723a595 Creating 
+ Container v-flow-exais-workspace-run-2e822723a595 Created 
+$ tsc --noEmit
+src/project/ProjectWorkspace.tsx(14,25): error TS2709: Cannot use namespace 'HyperframesPlayer' as a type.
+src/project/ProjectWorkspace.tsx(49,92): error TS2709: Cannot use namespace 'HyperframesPlayer' as a type.
+

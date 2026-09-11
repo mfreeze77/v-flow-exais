@@ -1,0 +1,308 @@
+[
+  {
+    "projectId": "video-0dff94fc-a2bb-4396-b745-450d209eb65c",
+    "buildHash": "d0749c8f587a97b9376978fff8d207535d871c40d38e8ebd80fc0a4dca162789",
+    "seams": [
+      {
+        "id": "title-scene→chapter-0",
+        "cut": 2.5,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "chapter-0→chapter-1",
+        "cut": 8,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "chapter-1→chapter-2",
+        "cut": 13.5,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "video-88f11d4b-82a5-403f-8104-ced44c57c1c8",
+    "buildHash": "531342a74898dccacae716657aa9784ac11f9c63a58854f7980abe7e487f6187",
+    "seams": [
+      {
+        "id": "title-scene→chapter-0",
+        "cut": 2.5,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "chapter-0→chapter-1",
+        "cut": 8,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "chapter-1→chapter-2",
+        "cut": 13.5,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "projectId": "video-3cbaf959-4b65-47f8-8fce-f22bf684cb52",
+    "buildHash": "b0ada742d2440e55999f664eedd6659d7cbfabb975fdc1eff7b75fb0a01d0653",
+    "seams": [
+      {
+        "id": "title-scene→chapter-0",
+        "cut": 2.5,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "chapter-0→chapter-1",
+        "cut": 8,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      },
+      {
+        "id": "chapter-1→chapter-2",
+        "cut": 13.5,
+        "type": "cut",
+        "rows": [
+          {
+            "check": "ledger",
+            "status": "PASS",
+            "detail": "x- both sides"
+          },
+          {
+            "check": "exit-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "entry-vector",
+            "status": "PASS",
+            "detail": "-972 px/s x-"
+          },
+          {
+            "check": "speed-match",
+            "status": "PASS",
+            "detail": "ratio 1.00"
+          },
+          {
+            "check": "zero-overlap",
+            "status": "PASS",
+            "detail": "one side visible per frame"
+          }
+        ]
+      }
+    ]
+  }
+]

@@ -1,0 +1,39 @@
+{
+  "ticketId": "AFM-029",
+  "title": "AFM-029 — Refactor architecture layout and emit native geometry",
+  "date": "2026-09-11",
+  "status": "in_progress",
+  "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
+  "implemented": "Callable geometry artifacts for five families, thin compatibility CLIs and isolated compilation contexts.",
+  "remainingAcceptance": [
+    "Complete C02 field coverage, immutable upstream golden comparison and exhaustive diagnostics/asset resolver cases remain open."
+  ],
+  "commands": [
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-011.test.ts tests/acceptance/AFM-011.package.test.ts tests/acceptance/AFM-027.test.ts tests/acceptance/AFM-099.source.test.ts",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-099/acceptance.log"
+    },
+    {
+      "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/diagram-engine check:artifact-styles",
+      "exitCode": 0,
+      "logPath": "evidence/tickets/AFM-027/style-check.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "evidence/tickets/AFM-099/acceptance.log",
+      "type": "evidence",
+      "bytes": 7328,
+      "sha256": "018886322474f6eac63c49a50dc8006fc94fd15b314f5e8ef6146f3181e44434"
+    },
+    {
+      "path": "evidence/tickets/AFM-027/style-check.log",
+      "type": "evidence",
+      "bytes": 176,
+      "sha256": "770b293a39947f8f0f3ec0edc32eed6fcca680e6db842030a6eff6f25f1e3e35"
+    }
+  ],
+  "gatePassed": false,
+  "handoff": "docs/designs/repo-to-video-handoff.md"
+}

@@ -1,0 +1,32 @@
+ Container v-flow-exais-workspace-run-8121b6ffe74c Creating 
+ Container v-flow-exais-workspace-run-8121b6ffe74c Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-099.source.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/acceptance/AFM-099.source.test.ts [ tests/acceptance/AFM-099.source.test.ts ]
+Error: Cannot find package '@hyperframes/core/compiler' imported from /workspace/packages/diagram-motion/src/compiler.ts
+ ❯ packages/diagram-motion/src/compiler.ts:3:1
+      1| import { compileDiagram, ENGINE_VERSION, type DiagramArtifact, type Di…
+      2| import { assertProject, type ProjectSnapshot, type ProjectScene } from…
+      3| import { scopeCssToComposition, validateHyperframeHtmlContract } from …
+       | ^
+      4| import { namespaceSvg } from './namespaceSvg';
+      5| import { frameDiagram } from './camera';
+ ❯ packages/diagram-motion/src/index.ts:35:1
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { code: 'ERR_MODULE_NOT_FOUND' }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [2mno tests[22m
+[2m   Start at [22m 04:01:18
+[2m   Duration [22m 1.88s[2m (transform 1.46s, setup 0ms, import 0ms, tests 0ms, environment 0ms)[22m
+
+error: script "test:acceptance" exited with code 1
+

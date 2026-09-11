@@ -1,0 +1,86 @@
+{
+  "date": "2026-09-10",
+  "status": "verified",
+  "environment": {
+    "execution": "docker compose run --rm workspace",
+    "image": "v-flow-exais:dev",
+    "bun": "1.3.13",
+    "node": "v22.23.2"
+  },
+  "skippedTests": [],
+  "blockers": [],
+  "review": null,
+  "ticketId": "AFM-011",
+  "title": "Repair build order, exports and asset relocation",
+  "commit": "dab0132609707cd79ab4546c3ab39d543d5dbf33",
+  "commands": [
+    {
+      "invocation": "node renderers/architecture/render-architecture.mjs (before fix)",
+      "exitCode": 1,
+      "result": "ENOENT /workspace/packages/diagram-engine/assets/template.html"
+    },
+    {
+      "invocation": "node renderers/<type>/render-<type>.mjs for all five families",
+      "exitCode": 0,
+      "result": "architecture 821349, workflow 817897, sequence 812111, dataflow 819318, lifecycle 808440 bytes"
+    },
+    {
+      "invocation": "bun run test:acceptance",
+      "exitCode": 0,
+      "result": "see test.log",
+      "logPath": "evidence/tickets/AFM-011/test.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "packages/diagram-engine/src/resolveAssets.mjs",
+      "sha256": "09995dce1d18eca294075fb065754846c979687f5ea16605d807c0f80fe56391",
+      "type": "source"
+    },
+    {
+      "path": "packages/diagram-engine/src/index.mjs",
+      "type": "source"
+    },
+    {
+      "path": "packages/diagram-viewer/src/index.mjs",
+      "type": "source"
+    }
+  ],
+  "acceptanceResults": [
+    {
+      "criterion": "Build and packed-package smoke tests work from a clean directory.",
+      "met": true,
+      "evidence": "All five renderers run with cwd set to a temporary directory whose name contains spaces, outside the repository, producing valid SVG-bearing HTML. Asset resolution derives from import.meta.url; process.cwd() appears nowhere in the resolver's executable code."
+    },
+    {
+      "criterion": "CLI, Studio and producer resolve the same owned diagram engine.",
+      "met": "partial",
+      "evidence": "A single owned @hyperframes/diagram-engine is registered and resolves the viewer template through the @hyperframes/diagram-viewer package export. Studio and producer do not call the engine yet - that wiring is AFM-027 (compileDiagram API), AFM-051 (API) and AFM-063 (Studio). What is verified now is that exactly one engine exists to resolve, with no duplicate template copy to drift from."
+    },
+    {
+      "criterion": "Files required only at runtime are present in the package artifact.",
+      "met": true,
+      "evidence": "The engine's packed files list includes renderers, schemas, examples, brand-marks and src; the viewer's includes assets. Asserted by test, since omitting a runtime-only directory produces a package that resolves paths which do not exist."
+    }
+  ],
+  "findings": [
+    {
+      "id": "AFM-011-F1",
+      "severity": "resolved",
+      "summary": "The engine/viewer split broke Archify's asset resolution.",
+      "detail": "cli.mjs resolved its template as path.resolve(rendererDir, '../..') joined with assets/template.html, assuming the renderers still sat below a skill root that also held assets/. The import ledger routed archify/assets/template.html to packages/diagram-viewer/, so every renderer failed with ENOENT. This was the first hard blocker on the render path.",
+      "consequence": "Added packages/diagram-engine/src/resolveAssets.mjs: all asset lookup derives from import.meta.url or package resolution, never from cwd or an assumed parent layout. The viewer template resolves through the @hyperframes/diagram-viewer/template export, with a workspace-sibling fallback for an unlinked source checkout. Deliberately not path-patched: contract C02 keeps the HTML shell out of the engine entirely, and AFM-027 removes the engine's need for a template at all."
+    },
+    {
+      "id": "AFM-011-F2",
+      "severity": "resolved",
+      "summary": "The engine's binary name would have collided with a globally installed upstream CLI.",
+      "detail": "The inherited manifest declared bin 'archify'. docs/EXECUTION_RULES.md forbids relying on a globally installed upstream CLI, and an identically named bin makes the two indistinguishable on PATH.",
+      "consequence": "Renamed to 'archframe-diagram'."
+    }
+  ],
+  "notPerformed": [
+    "No build step was added for the engine: it is plain .mjs executed directly, and contract C11 says to keep .mjs where practical until a separately tested refactor provides value.",
+    "The five renderers remain CLI entry points. The side-effect-free compileDiagram(request) to DiagramArtifact boundary is AFM-027."
+  ]
+}

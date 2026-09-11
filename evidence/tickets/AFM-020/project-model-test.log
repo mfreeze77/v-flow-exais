@@ -1,0 +1,20 @@
+ Container v-flow-exais-workspace-run-4e5325e0b35c Creating 
+ Container v-flow-exais-workspace-run-4e5325e0b35c Created 
+$ vitest run
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/packages/project-model[39m
+
+ [32m✓[39m src/project.test.ts [2m([22m[2m21 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+ [32m✓[39m src/storage/revisions.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 2911[2mms[22m[39m
+     [33m[2m✓[22m[39m undoes and redoes source and presentation together after reopening without reusing revision numbers [33m 757[2mms[22m[39m
+     [33m[2m✓[22m[39m saves, reopens and replays a command once while rejecting a reused ID [33m 303[2mms[22m[39m
+     [33m[2m✓[22m[39m accepts exactly one concurrent expected-revision write [33m 443[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the last complete revision after failure after-document [33m 405[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the last complete revision after failure after-staging [33m 339[2mms[22m[39m
+     [33m[2m✓[22m[39m keeps the last complete revision after failure before-pointer [33m 329[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m2 passed[39m[22m[90m (2)[39m
+[2m      Tests [22m [1m[32m30 passed[39m[22m[90m (30)[39m
+[2m   Start at [22m 04:32:05
+[2m   Duration [22m 3.31s[2m (transform 274ms, setup 0ms, import 470ms, tests 2.93s, environment 0ms)[22m
+

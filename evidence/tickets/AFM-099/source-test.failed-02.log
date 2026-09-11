@@ -1,0 +1,36 @@
+ Container v-flow-exais-workspace-run-45c8a59f2a2f Creating 
+ Container v-flow-exais-workspace-run-45c8a59f2a2f Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-099.source.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [31m×[39m tests/acceptance/AFM-099.source.test.ts[2m > [22minspects a local project, reviews three plans, imports idempotently and builds real mixed compositions[32m 44[2mms[22m[39m
+[31m   → /meta/legend must be object {"type":"object"}[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/acceptance/AFM-099.source.test.ts > inspects a local project, reviews three plans, imports idempotently and builds real mixed compositions
+Error: /meta/legend must be object {"type":"object"}
+ ❯ compileProject packages/diagram-motion/src/compiler.ts:72:41
+     70|     const cached = geometryCache.get(key);
+     71|     const result = cached ? { ok: true as const, artifact: structuredC…
+     72|     if (!result.ok) throw Object.assign(new Error(result.diagnostics.m…
+       |                                         ^
+     73|     artifacts[doc.id] = result.artifact;
+     74|     if (!cached) {
+ ❯ UnifiedProjectService.create packages/studio-server/src/project/projectService.ts:73:5
+ ❯ UnifiedProjectService.acceptIntake packages/studio-server/src/project/projectService.ts:65:9
+ ❯ tests/acceptance/AFM-099.source.test.ts:22:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯
+Serialized Error: { diagnostics: [ { code: 'schema/type', severity: 'error', message: '/meta/legend must be object {"type":"object"}', subject: { diagramType: 'architecture', path: '/meta/legend' }, evidence: { keyword: 'type', type: 'object' }, supportedFixes: [ 'use "object" at /meta/legend' ], pointer: '/meta/legend' } ] }
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m   Start at [22m 04:01:40
+[2m   Duration [22m 3.43s[2m (transform 2.54s, setup 0ms, import 3.24s, tests 46ms, environment 0ms)[22m
+
+error: script "test:acceptance" exited with code 1
+

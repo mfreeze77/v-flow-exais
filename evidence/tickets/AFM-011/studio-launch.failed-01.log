@@ -1,0 +1,109 @@
+ Container v-flow-exais-studio-verify Creating 
+ Container v-flow-exais-studio-verify Created 
+$ bun run --filter @hyperframes/studio dev:container
+@hyperframes/studio dev:container: ✘ [ERROR] Failed to resolve entry for package "@hyperframes/studio-server". The package may have incorrect main/module/exports specified in its package.json. [plugin externalize-deps]
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:18:
+@hyperframes/studio dev:container:       16198 │   const err = new Error(
+@hyperframes/studio dev:container:             ╵                   ^
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     at packageEntryFailure (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:19)
+@hyperframes/studio dev:container:     at resolvePackageEntry (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3)
+@hyperframes/studio dev:container:     at tryNodeResolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18)
+@hyperframes/studio dev:container:     at resolveByViteResolver (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49369:20)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49403:28)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:1217:28)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:628:17)
+@hyperframes/studio dev:container:     at handleIncomingPacket (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:653:7)
+@hyperframes/studio dev:container:     at readFromStdout (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:581:7)
+@hyperframes/studio dev:container:     at emit (node:events:95:22)
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   This error came from the "onResolve" callback registered here:
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49391:17:
+@hyperframes/studio dev:container:       49391 │           build2.onResolve(
+@hyperframes/studio dev:container:             ╵                  ~~~~~~~~~
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     at setup (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49391:18)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:1141:21)
+@hyperframes/studio dev:container:     at buildOrContextImpl (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:854:5)
+@hyperframes/studio dev:container:     at buildOrContext (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:680:5)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:2026:15)
+@hyperframes/studio dev:container:     at Promise (unknown:1:11)
+@hyperframes/studio dev:container:     at build (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:2025:29)
+@hyperframes/studio dev:container:     at bundleConfigFile (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49343:24)
+@hyperframes/studio dev:container:     at async bundleAndLoadConfigFile (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49327:25)
+@hyperframes/studio dev:container:     at async loadConfigFromFile (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49291:50)
+@hyperframes/studio dev:container:     at async resolveConfig (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:48786:30)
+@hyperframes/studio dev:container:     at async _createServer (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:38373:72)
+@hyperframes/studio dev:container:     at async <anonymous> (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/cli.js:753:26)
+@hyperframes/studio dev:container:     at processTicksAndRejections (unknown:7:39)
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   The plugin "externalize-deps" was triggered by this import
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     vite.adapter.ts:24:7:
+@hyperframes/studio dev:container:       24 │ } from "@hyperframes/studio-server";
+@hyperframes/studio dev:container:          ╵        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container: ✘ [ERROR] Failed to resolve entry for package "@hyperframes/studio-server". The package may have incorrect main/module/exports specified in its package.json. [plugin externalize-deps]
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:18:
+@hyperframes/studio dev:container:       16198 │   const err = new Error(
+@hyperframes/studio dev:container:             ╵                   ^
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     at packageEntryFailure (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:19)
+@hyperframes/studio dev:container:     at resolvePackageEntry (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3)
+@hyperframes/studio dev:container:     at tryNodeResolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18)
+@hyperframes/studio dev:container:     at resolveByViteResolver (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49369:20)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49403:28)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:1217:28)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:628:17)
+@hyperframes/studio dev:container:     at handleIncomingPacket (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:653:7)
+@hyperframes/studio dev:container:     at readFromStdout (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:581:7)
+@hyperframes/studio dev:container:     at emit (node:events:95:22)
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   This error came from the "onResolve" callback registered here:
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49391:17:
+@hyperframes/studio dev:container:       49391 │           build2.onResolve(
+@hyperframes/studio dev:container:             ╵                  ~~~~~~~~~
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     at setup (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49391:18)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:1141:21)
+@hyperframes/studio dev:container:     at buildOrContextImpl (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:854:5)
+@hyperframes/studio dev:container:     at buildOrContext (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:680:5)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:2026:15)
+@hyperframes/studio dev:container:     at Promise (unknown:1:11)
+@hyperframes/studio dev:container:     at build (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:2025:29)
+@hyperframes/studio dev:container:     at bundleConfigFile (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49343:24)
+@hyperframes/studio dev:container:     at async bundleAndLoadConfigFile (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49327:25)
+@hyperframes/studio dev:container:     at async loadConfigFromFile (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:49291:50)
+@hyperframes/studio dev:container:     at async resolveConfig (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:48786:30)
+@hyperframes/studio dev:container:     at async _createServer (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:38373:72)
+@hyperframes/studio dev:container:     at async <anonymous> (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/cli.js:753:26)
+@hyperframes/studio dev:container:     at processTicksAndRejections (unknown:7:39)
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:   The plugin "externalize-deps" was triggered by this import
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container:     vite.browser.ts:6:43:
+@hyperframes/studio dev:container:       6 │ ...t { thumbnailDeviceScaleFactor } from "@hyperframes/studio-server";
+@hyperframes/studio dev:container:         ╵                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+@hyperframes/studio dev:container: 
+@hyperframes/studio dev:container: failed to load config from /workspace/packages/studio/vite.config.ts
+@hyperframes/studio dev:container: error when starting dev server:
+@hyperframes/studio dev:container: Error: Build failed with 2 errors:
+@hyperframes/studio dev:container: ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:18: ERROR: [plugin: externalize-deps] Failed to resolve entry for package "@hyperframes/studio-server". The package may have incorrect main/module/exports specified in its package.json.
+@hyperframes/studio dev:container: ../../node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:18: ERROR: [plugin: externalize-deps] Failed to resolve entry for package "@hyperframes/studio-server". The package may have incorrect main/module/exports specified in its package.json.
+@hyperframes/studio dev:container:     at failureErrorWithLog (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:1467:19)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:926:25)
+@hyperframes/studio dev:container:     at buildResponseToResult (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:924:7)
+@hyperframes/studio dev:container:     at <anonymous> (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:603:9)
+@hyperframes/studio dev:container:     at handleIncomingPacket (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:658:12)
+@hyperframes/studio dev:container:     at readFromStdout (/workspace/node_modules/.bun/esbuild@0.25.12/node_modules/esbuild/lib/main.js:581:7)
+@hyperframes/studio dev:container:     at emit (node:events:95:22)
+@hyperframes/studio dev:container:     at addChunk (internal:streams/readable:264:47)
+@hyperframes/studio dev:container:     at readableAddChunkPushByteMode (internal:streams/readable:242:18)
+@hyperframes/studio dev:container:     at handleNumberResult (internal:streams/native-readable:69:18)
+@hyperframes/studio dev:container: Exited with code 1
+error: script "studio:container" exited with code 1
+

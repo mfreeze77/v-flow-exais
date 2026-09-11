@@ -1,0 +1,29 @@
+ Container v-flow-exais-workspace-run-28822909995d Creating 
+ Container v-flow-exais-workspace-run-28822909995d Created 
+$ vitest run --config vitest.acceptance.config.ts "tests/acceptance/AFM-099.source.test.ts"
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [31m×[39m tests/acceptance/AFM-099.source.test.ts[2m > [22minspects a local project, reviews three plans, imports idempotently and builds real mixed compositions[32m 83[2mms[22m[39m
+[31m   → Native composition violates the retained contract: Found 1 asset path(s) traversing above the project root with "../" (../assets/). Renders rewrite this against each sub-composition's source path, but Studio preview and other live consumers resolve against the project root and 404.[39m
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/acceptance/AFM-099.source.test.ts > inspects a local project, reviews three plans, imports idempotently and builds real mixed compositions
+Error: Native composition violates the retained contract: Found 1 asset path(s) traversing above the project root with "../" (../assets/). Renders rewrite this against each sub-composition's source path, but Studio preview and other live consumers resolve against the project root and 404.
+ ❯ compileProject packages/diagram-motion/src/compiler.ts:93:36
+
+ ❯ UnifiedProjectService.create packages/studio-server/src/project/projectService.ts:73:5
+ ❯ UnifiedProjectService.acceptIntake packages/studio-server/src/project/projectService.ts:65:9
+ ❯ tests/acceptance/AFM-099.source.test.ts:22:22
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+[2m Test Files [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[31m1 failed[39m[22m[90m (1)[39m
+[2m   Start at [22m 04:02:40
+[2m   Duration [22m 3.38s[2m (transform 2.59s, setup 0ms, import 3.16s, tests 84ms, environment 0ms)[22m
+
+error: script "test:acceptance" exited with code 1
+

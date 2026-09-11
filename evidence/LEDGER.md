@@ -5,19 +5,24 @@ verified, blocked and untouched ticket IDs, the current commit, evidence paths
 and the next dependency-ready work. Resume from this file and the per-ticket
 receipts — never by guessing that a generated file proves success.
 
-**Last updated:** 2026-09-10
-**Head commit:** `7d02e0d` — AFM-009, AFM-011 receipts
+**Last updated:** 2026-09-11
+**Review baseline:** `37e2d0a28f282c40340723f65b156aab72f754ea`
 **Gate status:** G0 in progress (AFM-129 gates it)
 
 ## Counts
 
 | State | Count | Tickets |
 |---|---|---|
-| verified | 8 | AFM-001–006, AFM-009, AFM-011 |
-| in_progress | 0 | — |
+| verified | 7 | AFM-001–006, AFM-009 |
+| in_progress | 27 | AFM-017–022, AFM-024–029, AFM-039–043, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-093, AFM-095, AFM-098–099 |
 | implemented_unverified | 0 | — |
-| blocked | 0 | — |
-| untouched | 126 | AFM-007, AFM-008, AFM-010, AFM-012 … AFM-134 |
+| blocked | 1 | AFM-011 — package isolation and integration now pass; clean workspace build prerequisite remains |
+| untouched | 99 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
+
+This checkpoint delivers a working source-to-three-videos path, not closure of
+every contributing ticket. Per-ticket receipts distinguish the verified slice
+from unmet criteria. Code commit and artifact hashes are in
+`evidence/tickets/AFM-099/result.json`.
 
 ## Verified
 
@@ -30,9 +35,23 @@ receipts — never by guessing that a generated file proves success.
 | AFM-005 | `4bc67ba` | `evidence/tickets/AFM-005/` | 13 tests; automation audit 0 blocked, hooks neutralized |
 | AFM-006 | `4bc67ba` | `evidence/tickets/AFM-006/` | 21 tests; all 7786 target paths cross-platform safe, no raw-checkout reach-back |
 | AFM-009 | `dab0132` | `evidence/tickets/AFM-009/` | 18 packages register, 0 workspace problems, nested npm root removed |
-| AFM-011 | `dab0132` | `evidence/tickets/AFM-011/` | all five diagram families render from an unrelated directory |
 
-Acceptance suite total: **153 passing across 8 files.**
+Historical acceptance run at `dab0132`: **153 passing across 8 files**.
+That count does not prove the inherited package suites, actual archive installs,
+Studio integration, or video rendering. Current work must retain its own logs.
+
+## Partially implemented / blocked
+
+AFM-011 retains credit for the asset-resolution fix and standalone renderer
+process checks. Its original receipt overstated verification: one acceptance
+criterion was explicitly partial; archive contents and raw-source isolation
+were inferred from paths/manifests. The original receipt is preserved as
+`evidence/tickets/AFM-011/initial-result.json`.
+
+Actual archive packing, installation into an isolated directory, denied source
+checkout reads, all-five-family rendering, and directed relationship checks now
+pass. Studio and CLI share the callable engine and real producer path. AFM-010's
+installation contract and the full clean workspace build remain unverified.
 
 ## Render path status
 
@@ -46,46 +65,51 @@ All five diagram families compile to standalone HTML from the owned monorepo:
 | dataflow | 819,318 | event-stream |
 | lifecycle | 808,440 | agent-run |
 
-**The animation half is not wired.** Nothing in the diagram path calls the
-HyperFrames composition/producer stack yet. That connection —
-`compileDiagram -> scene -> motion -> composition -> MP4` — is E04/E05/E06 and
-is what AFM-130 / G1 gates.
+**The source-to-video path now runs.** Public GitHub URL and local project
+intake produce three reviewed, editable projects. The shared path is
+`compileDiagram -> diagram-motion -> retained composition compiler/player ->
+retained producer -> ffprobe-verified MP4`. Three 19-second 1280×720 H.264 files
+were rendered, downloaded through Studio, and visually inspected. A real edit,
+reopen, continuous authored-edge trace, repeated/reverse pixel equality, and
+three matched-motion seams were checked in the browser.
+
+Current focused checks: 32 acceptance tests, 30 project-model tests, 10 motion
+tests; typechecks pass for project-model, diagram-motion, studio-server, Studio,
+and CLI. Real batch recovery also passed with two valid projects and an invalid
+diagram, cancellation, resume, unchanged-output reuse, and a 30000/1001-fps MP4.
+Logs and scripts are under AFM-099 and `tools/vflow/`.
+
+These are silent source-inventory drafts based primarily on package manifests.
+Configured-agent proposal review, narration/captions, richer code/PR analysis,
+full editor capability parity, distribution/build closure, and the complete
+gate matrices remain open. No gate is newly marked passed.
 
 ## Resolved: the render-path blocker
 
 **AFM-011-F1 — fixed in `dab0132`.**
 
-`packages/diagram-engine/renderers/shared/cli.mjs` resolves its template as
-`path.resolve(rendererDir, '../..') + '/assets/template.html'`, but the import
-ledger routed `archify/assets/template.html` to
-`packages/diagram-viewer/assets/template.html`. Running the architecture
-renderer fails with ENOENT on
-`/workspace/packages/diagram-engine/assets/template.html`.
-
-Compounding it: `packages/diagram-viewer/` contains only two asset files and
-**no `package.json`**, so it is not a workspace member at all, and
-`packages/diagram-engine` is still registered under the upstream name
-`archify` rather than a `@hyperframes/*` scope.
-
-This is AFM-011's work (map Archify runtime code to diagram-engine/viewer) and
-it is the first hard blocker on the path to rendering a diagram. The proper
-resolution is the C02 boundary: the engine compiles to an artifact (SVG,
-styles, semantic objects) and the viewer owns the HTML template, rather than
-the engine reading a template at all. Interim path-patching would contradict
-AFM-027, so it is fixed as real ticket work.
+The imported CLI originally looked for a template under the engine, although
+the import placed it in the viewer. The repair introduced package-owned asset
+resolution and package manifests. That removed the standalone renderer's
+ENOENT failure. The AFM-027 callable artifact boundary now returns owned SVG,
+geometry, authored relationships, styles and diagnostics without CLI/process IO.
+Complete per-family contract/golden coverage remains separate acceptance work.
 
 ## Repository state
 
-- 16 workspace packages under `packages/`, including `diagram-engine` and
-  `diagram-viewer` from Archify. Still to be created: `project-model`,
-  `diagram-motion`, and package manifests for the two diagram packages.
+- 18 workspace packages under `packages/`, including `diagram-engine`,
+  `diagram-viewer`, `project-model` and `diagram-motion`, all with manifests.
+  The project model now implements validation, revision-aware commands,
+  immutable filesystem commits and undo/redo. Diagram motion emits scoped,
+  seekable compositions using integer frames and rational FPS.
 - `bun install` resolves 1555 packages with no reference to `_sources/`, no
   global CLI, no submodule and no nested `.git`.
 - No `.github/workflows/`: all 18 upstream workflow entries are quarantined to
   `docs/upstream/`. `core.hooksPath` redirected to a repo-owned `.githooks/`.
 - Root manifest renamed to `v-flow-exais` with the upstream repository URL and
   the inherited `prepare` lifecycle hook removed.
-- Index fidelity: 7784/7784 tracked, 28 executable bits, 1 symlink (mode 120000).
+- Original import fidelity: 7784/7784 tracked, 28 executable bits, 1 symlink
+  (mode 120000). Current code intentionally diverges from that frozen baseline.
 
 ## Source baseline
 
@@ -116,25 +140,31 @@ upstream Git history.
 - `_sources/` is a declared quarantine: read-only, gitignored, never imported.
 - Docker hygiene: always `--rm`; prune only dangling images and build cache;
   never `docker volume prune` (other projects' data lives on this host).
-- Local only: no remote push, no package publication, no paid provider calls.
+- Local implementation; remote push requires owner authorization. No package
+  publication, infrastructure creation or paid provider calls are implied.
 
 ## Scope
 
-`docs/designs/scope-local-single-user.md`: local single-user build. E12
-(AFM-103–112) and 77 off-path tickets are deferred; work is ordered by the
-54-ticket dependency path to AFM-130 / G1.
+`docs/designs/scope-local-single-user.md`: local single-user product. The owner
+has now requested repository/project intake through multiple finished videos.
+AFM-130 / G1 remains an early milestone; source-grounded proposals, batch jobs
+and minimum local protections are on the delivery path. Full product scope is
+retained. The complete specification and tickets ship in `docs/implementation/`.
 
 ## Remote
 
 `origin` = https://github.com/mfreeze77/v-flow-exais (public). Branch `main`.
 Push authorized by the owner; see the note in the session transcript about
 vendored font binaries becoming public on first push.
+The initial 15 commits were pushed, and remote `main` was verified at the review
+baseline SHA above. Current implementation work is on `feat/repo-to-video`.
 
 ## Next dependency-ready work
 
-AFM-010 and AFM-012 (then AFM-013–016) close E02. AFM-007 and AFM-008 close E01
+AFM-010, the remaining AFM-011 criteria, and AFM-012 (then AFM-013–016) close E02.
+AFM-007 and AFM-008 close E01
 and are required for gate AFM-129 / G0, but are off the render critical path.
 
-After E02, the G1 path runs through E03 (project model, AFM-017+), E04
-(callable engine, AFM-027+), E05 (motion, AFM-039+), E06 (render jobs) and
-E07 (Studio).
+The owner-requested end-to-end slice has exercised E03–E07 and source/batch
+integration ahead of complete epic closure. Continue from
+`docs/designs/repo-to-video-handoff.md`; read the actual next ticket first.

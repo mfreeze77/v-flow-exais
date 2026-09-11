@@ -1,0 +1,105 @@
+ Container v-flow-exais-studio-verify Creating 
+ Container v-flow-exais-studio-verify Created 
+$ bun --bun ./node_modules/.bin/vite --host 0.0.0.0 --port 5190 --strictPort --configLoader native
+
+  VITE v6.4.2  ready in 1001 ms
+
+  ➜  Local:   http://localhost:5190/
+  ➜  Network: http://192.168.112.3:5190/
+3:14:42 AM [vite] (ssr) Error when evaluating SSR module /workspace/packages/studio-server/src/index.ts: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+  Plugin: vite:import-analysis
+  File: /workspace/packages/studio-server/src/helpers/safePath.ts:7:49
+  1  |  import { join } from "node:path";
+  2  |  import { readdirSync } from "node:fs";
+  3  |  export { isSafePath, resolveWithinProject } from "@hyperframes/core";
+     |                                                    ^
+  4  |  const IGNORE_DIRS = /* @__PURE__ */ new Set([
+  5  |    ".thumbnails",
+      at packageEntryFailure (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:19)
+      at resolvePackageEntry (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16195:3)
+      at tryNodeResolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16060:18)
+      at resolveId (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:15831:19)
+      at resolveId (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17)
+      at async resolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:37)
+      at processTicksAndRejections (native:7:39)
+[Studio API] Error: 16193 |     packageEntryFailure(id, e.message);
+16194 |   }
+16195 |   packageEntryFailure(id);
+16196 | }
+16197 | function packageEntryFailure(id, details) {
+16198 |   const err = new Error(
+                          ^
+error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+        pos: 123,
+     plugin: "vite:import-analysis",
+         id: "/workspace/packages/studio-server/src/helpers/safePath.ts",
+ pluginCode: "import { join } from \"node:path\";\nimport { readdirSync } from \"node:fs\";\nexport { isSafePath, resolveWithinProject } from \"@hyperframes/core\";\nconst IGNORE_DIRS = /* @__PURE__ */ new Set([\n  \".thumbnails\",\n  \".transcode-cache\",\n  \".waveform-cache\",\n  \"node_modules\",\n  \".git\"\n]);\nfunction shouldIgnoreDir(rel) {\n  return rel === \".hyperframes/backup\";\n}\nexport function isInHiddenOrVendorDir(relPath) {\n  const segments = relPath.split(\"/\");\n  return segments.slice(0, -1).some((seg) => seg.startsWith(\".\") || seg === \"node_modules\");\n}\nexport function walkDir(dir, prefix = \"\") {\n  const files = [];\n  for (const entry of readdirSync(dir, { withFileTypes: true })) {\n    const rel = prefix ? `${prefix}/${entry.name}` : entry.name;\n    if (IGNORE_DIRS.has(entry.name) || shouldIgnoreDir(rel)) continue;\n    if (entry.isDirectory()) {\n      files.push(...walkDir(join(dir, entry.name), rel));\n    } else {\n      files.push(rel);\n    }\n  }\n  return files;\n}\n",
+        loc: {
+  file: "/workspace/packages/studio-server/src/helpers/safePath.ts",
+  line: 7,
+  column: 49,
+},
+      frame: "1  |  import { join } from \"node:path\";\n2  |  import { readdirSync } from \"node:fs\";\n3  |  export { isSafePath, resolveWithinProject } from \"@hyperframes/core\";\n   |                                                    ^\n4  |  const IGNORE_DIRS = /* @__PURE__ */ new Set([\n5  |    \".thumbnails\",",
+       code: "ERR_RESOLVE_PACKAGE_ENTRY_FAIL"
+
+      at packageEntryFailure (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:19)
+      at resolvePackageEntry (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:22333:57)
+      at tryNodeResolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:22090:3)
+      at resolveId (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:21843:2)
+      at resolveId (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17)
+      at resolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:37)
+      at processTicksAndRejections (native:7:39)
+
+547 | function reviveInvokeError(e) {
+548 |   const error = new Error(e.message || "Unknown invoke error");
+549 |   return Object.assign(error, e, {
+550 |     // pass the whole error instead of just the stacktrace
+551 |     // so that it gets formatted nicely with console.log
+552 |     runnerError: new Error("RunnerError")
+                           ^
+error: RunnerError
+      at reviveInvokeError (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/module-runner.js:552:22)
+      at invoke (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/module-runner.js:635:15)
+
+[Studio API] Error: 16193 |     packageEntryFailure(id, e.message);
+16194 |   }
+16195 |   packageEntryFailure(id);
+16196 | }
+16197 | function packageEntryFailure(id, details) {
+16198 |   const err = new Error(
+                          ^
+error: Failed to resolve entry for package "@hyperframes/core". The package may have incorrect main/module/exports specified in its package.json.
+        pos: 123,
+     plugin: "vite:import-analysis",
+         id: "/workspace/packages/studio-server/src/helpers/safePath.ts",
+ pluginCode: "import { join } from \"node:path\";\nimport { readdirSync } from \"node:fs\";\nexport { isSafePath, resolveWithinProject } from \"@hyperframes/core\";\nconst IGNORE_DIRS = /* @__PURE__ */ new Set([\n  \".thumbnails\",\n  \".transcode-cache\",\n  \".waveform-cache\",\n  \"node_modules\",\n  \".git\"\n]);\nfunction shouldIgnoreDir(rel) {\n  return rel === \".hyperframes/backup\";\n}\nexport function isInHiddenOrVendorDir(relPath) {\n  const segments = relPath.split(\"/\");\n  return segments.slice(0, -1).some((seg) => seg.startsWith(\".\") || seg === \"node_modules\");\n}\nexport function walkDir(dir, prefix = \"\") {\n  const files = [];\n  for (const entry of readdirSync(dir, { withFileTypes: true })) {\n    const rel = prefix ? `${prefix}/${entry.name}` : entry.name;\n    if (IGNORE_DIRS.has(entry.name) || shouldIgnoreDir(rel)) continue;\n    if (entry.isDirectory()) {\n      files.push(...walkDir(join(dir, entry.name), rel));\n    } else {\n      files.push(rel);\n    }\n  }\n  return files;\n}\n",
+        loc: {
+  file: "/workspace/packages/studio-server/src/helpers/safePath.ts",
+  line: 7,
+  column: 49,
+},
+      frame: "1  |  import { join } from \"node:path\";\n2  |  import { readdirSync } from \"node:fs\";\n3  |  export { isSafePath, resolveWithinProject } from \"@hyperframes/core\";\n   |                                                    ^\n4  |  const IGNORE_DIRS = /* @__PURE__ */ new Set([\n5  |    \".thumbnails\",",
+       code: "ERR_RESOLVE_PACKAGE_ENTRY_FAIL"
+
+      at packageEntryFailure (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:16198:19)
+      at resolvePackageEntry (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:22333:57)
+      at tryNodeResolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:22090:3)
+      at resolveId (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:21843:2)
+      at resolveId (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42267:17)
+      at resolve (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/chunks/dep-Dq2t6Dq0.js:42474:37)
+      at processTicksAndRejections (native:7:39)
+
+547 | function reviveInvokeError(e) {
+548 |   const error = new Error(e.message || "Unknown invoke error");
+549 |   return Object.assign(error, e, {
+550 |     // pass the whole error instead of just the stacktrace
+551 |     // so that it gets formatted nicely with console.log
+552 |     runnerError: new Error("RunnerError")
+                           ^
+error: RunnerError
+      at reviveInvokeError (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/module-runner.js:552:22)
+      at invoke (/workspace/node_modules/.bun/vite@6.4.2+59986b0d812a3e3d/node_modules/vite/dist/node/module-runner.js:181:76)
+      at processTicksAndRejections (unknown:7:39)
+
+error: script "dev:container" exited with code 143
+
