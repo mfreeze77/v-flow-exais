@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="10" assertions="49" failures="0" skipped="0" time="0.53989329">
+  <testsuite name="src/services/fileServer-seededRandom.test.ts" file="src/services/fileServer-seededRandom.test.ts" tests="10" assertions="49" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="buildVirtualTimeShim — backwards compatibility" file="src/services/fileServer-seededRandom.test.ts" line="65" tests="3" assertions="6" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="default (seedRandomFromFrame: false) is byte-identical to VIRTUAL_TIME_SHIM" classname="buildVirtualTimeShim — backwards compatibility" time="0.000037" file="src/services/fileServer-seededRandom.test.ts" line="66" assertions="1" />
+      <testcase name="default shim does not mention any seeded-RNG identifiers" classname="buildVirtualTimeShim — backwards compatibility" time="0.000075" file="src/services/fileServer-seededRandom.test.ts" line="75" assertions="4" />
+      <testcase name="default shim leaves Math.random pointing at the VM&apos;s native function" classname="buildVirtualTimeShim — backwards compatibility" time="0.000598" file="src/services/fileServer-seededRandom.test.ts" line="83" assertions="1" />
+    </testsuite>
+    <testsuite name="buildVirtualTimeShim — seedRandomFromFrame: true" file="src/services/fileServer-seededRandom.test.ts" line="92" tests="7" assertions="43" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="emits the seeded-RNG block" classname="buildVirtualTimeShim — seedRandomFromFrame: true" time="0.000044" file="src/services/fileServer-seededRandom.test.ts" line="93" assertions="3" />
+      <testcase name="replaces Math.random with a non-native PRNG" classname="buildVirtualTimeShim — seedRandomFromFrame: true" time="0.000418" file="src/services/fileServer-seededRandom.test.ts" line="100" assertions="1" />
+      <testcase name="produces identical Math.random sequences across two fresh VMs at the same time" classname="buildVirtualTimeShim — seedRandomFromFrame: true" time="0.000695" file="src/services/fileServer-seededRandom.test.ts" line="107" assertions="34" />
+      <testcase name="re-seeking to the same time produces the same Math.random sequence" classname="buildVirtualTimeShim — seedRandomFromFrame: true" time="0.000329" file="src/services/fileServer-seededRandom.test.ts" line="126" assertions="1" />
+      <testcase name="different times produce different Math.random sequences" classname="buildVirtualTimeShim — seedRandomFromFrame: true" time="0.000315" file="src/services/fileServer-seededRandom.test.ts" line="143" assertions="1" />
+      <testcase name="seeded crypto.getRandomValues writes deterministic bytes" classname="buildVirtualTimeShim — seedRandomFromFrame: true" time="0.000821" file="src/services/fileServer-seededRandom.test.ts" line="156" assertions="2" />
+      <testcase name="seeded crypto.getRandomValues handles odd byte lengths" classname="buildVirtualTimeShim — seedRandomFromFrame: true" time="0.000458" file="src/services/fileServer-seededRandom.test.ts" line="170" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

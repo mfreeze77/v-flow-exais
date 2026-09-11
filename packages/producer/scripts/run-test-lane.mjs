@@ -1,11 +1,12 @@
 // V-Flow EXAIS modification: explicit producer test selection and dispatch evidence (AFM-012).
 import { spawnSync } from "node:child_process";
 import { mkdirSync, realpathSync, writeFileSync } from "node:fs";
-import { dirname } from "node:path";
+import { dirname, join } from "node:path";
 import { pathToFileURL } from "node:url";
 import { discoverProducerTests, PRODUCER_ROOT } from "./test-classification.mjs";
 import { laneInvocations, parseLaneArgs, selectLaneTests } from "./test-lane-selection.mjs";
 import { buildLaneReport, classifyDispatch, DISPATCH, EVIDENCE } from "./lane-report.mjs";
+import { readInvocationReport, reporterArgs } from "./framework-report.mjs";
 
 /** Dependencies are injectable for runner-contract tests, not product/render evidence. */
 export function runTestLane(
@@ -32,8 +33,14 @@ export function runTestLane(
   // Dispatch outcomes are recorded as they happen. Reconstructing them from
   // console output afterwards is how a derived count ends up contradicting what
   // the runner actually did.
+  const runId = `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`;
+  const reportDir = env.VFLOW_LANE_REPORT
+    ? join(dirname(env.VFLOW_LANE_REPORT), `${runId}-reports`)
+    : null;
+  if (reportDir) mkdirSync(reportDir, { recursive: true });
+
   const attempts = [];
-  const record = (invocation, dispatch, result) =>
+  const record = (invocation, dispatch, result, evidence) =>
     attempts.push({
       args: invocation.args,
       files: invocation.files,
@@ -41,16 +48,22 @@ export function runTestLane(
       exitCode: result?.status ?? null,
       signal: result?.signal ?? null,
       error: result?.error ? String(result.error.message ?? result.error) : null,
-      // The wrapper cannot confirm which files a framework actually collected.
-      // Leaving this absent keeps "dispatched" from masquerading as "executed".
-      evidenceState: EVIDENCE.missing,
-      frameworkResults: null,
+      // Dispatch is what the wrapper saw; these two come from the framework's
+      // own report, so "dispatched" can never masquerade as "executed".
+      evidenceState: evidence?.state ?? EVIDENCE.missing,
+      frameworkResults: evidence?.results ?? null,
+      evidenceProblems: evidence?.problems ?? [],
     });
 
   let remaining = selected.length;
   let exitStatus = 0;
   for (const [index, invocation] of invocations.entries()) {
-    const result = spawn("bun", invocation.args, {
+    // Bind this invocation's report path before launching it.
+    const runner = invocation.args[0] === "test" ? "bun" : "vitest";
+    const outfile = reportDir ? join(reportDir, `${index}-${runner}.report`) : null;
+    const args = outfile ? [...invocation.args, ...reporterArgs(runner, outfile)] : invocation.args;
+
+    const result = spawn("bun", args, {
       cwd: producerRoot,
       env: { ...env, HYPERFRAMES_TEST_LANE: request.lane },
       stdio: "inherit",
@@ -66,7 +79,15 @@ export function runTestLane(
       throw result.error;
     }
 
-    record(invocation, classifyDispatch(result), result);
+    // Read the framework's own report. Absent or inconsistent evidence keeps
+    // execution unknown rather than assuming the dispatch told the whole story.
+    const evidence = outfile
+      ? readInvocationReport(outfile, runner, {
+          files: invocation.files,
+          exitCode: result.status ?? 1,
+        })
+      : { state: EVIDENCE.missing, results: null };
+    record(invocation, classifyDispatch(result), result, evidence);
     remaining -= invocation.files.length;
 
     if (result.status !== 0 || result.signal) {
@@ -93,7 +114,7 @@ export function runTestLane(
       lane: request.lane,
       runner: request.runner,
       command: `bun run test:${request.lane}:${request.runner ?? "all"}`,
-      runId: `${Date.now().toString(36)}-${Math.random().toString(36).slice(2, 8)}`,
+      runId,
       revision: readRevision(producerRoot),
       runtime: { node: process.version, bun: env.BUN_VERSION ?? null },
       selected: selected.map((test) => test.file),

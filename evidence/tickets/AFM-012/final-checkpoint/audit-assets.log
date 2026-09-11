@@ -1,14 +1,17 @@
+COMMAND: bun run audit:assets
+STARTED: 2026-09-11T20:25:24Z
+
 $ bun run tools/legal/asset-audit-cli.ts
 licenses present: true
   ok  licenses/archify-LICENSE  (Archify (MIT))
   ok  licenses/archify-THIRD_PARTY_NOTICES.md  (Archify third-party notices)
   ok  licenses/hyperframes-LICENSE  (HyperFrames (Apache-2.0))
 
-assets: 164 fonts, 710 media
+assets: 169 fonts, 712 media
   pending rights review: 753
   font binaries in evidence/: 0
 
-modifications vs upstream: 249
+modifications vs upstream: 263
   licenses/archify-THIRD_PARTY_NOTICES.md
       owned change (no specific note recorded)
   packages/diagram-engine/SKILL.md
@@ -467,6 +470,18 @@ modifications vs upstream: 249
       Reconciled during AFM-003: renamed to v-flow-exais, upstream repository URL removed so this repo cla
   packages/cli/src/cli.ts
       owned change (no specific note recorded)
+  packages/cli/src/commands/play.ts
+      owned change (no specific note recorded)
+  packages/cli/src/commands/present.ts
+      owned change (no specific note recorded)
+  packages/cli/src/server/studioServer.ts
+      owned change (no specific note recorded)
+  packages/cli/src/utils/staticProjectServer.ts
+      owned change (no specific note recorded)
+  packages/core/package.json
+      owned change (no specific note recorded)
+  packages/gcp-cloud-run/Dockerfile
+      owned change (no specific note recorded)
   packages/parsers/src/index.ts
       owned change (no specific note recorded)
   packages/producer/package.json
@@ -499,13 +514,32 @@ modifications vs upstream: 249
       owned change (no specific note recorded)
   packages/studio/package.json
       owned change (no specific note recorded)
+  packages/studio/src/hooks/gsapScriptCommitHelpers.ts
+      owned change (no specific note recorded)
+  packages/studio/src/hooks/useDomEditCommits.ts
+      owned change (no specific note recorded)
+  packages/studio/src/hooks/useGsapScriptCommits.ts
+      owned change (no specific note recorded)
   packages/studio/src/main.tsx
       owned change (no specific note recorded)
   packages/studio/vite.adapter.ts
       owned change (no specific note recorded)
   packages/studio/vite.config.ts
       owned change (no specific note recorded)
+  packages/studio/vite.studioMotion.ts
+      owned change (no specific note recorded)
   registry/examples/kinetic-type/compositions/main-graphics.html
+      owned change (no specific note recorded)
+  scripts/check-docs-snippet-motion.mjs
+      owned change (no specific note recorded)
+  scripts/check-docs-snippet-motion.test.mjs
+      owned change (no specific note recorded)
+  scripts/check-package-cycles.mjs
+      owned change (no specific note recorded)
+  scripts/player-cdn-pin.test.ts
       owned change (no specific note recorded)
 
 PASS
+
+FINISHED: 2026-09-11T20:26:38Z
+EXIT=0

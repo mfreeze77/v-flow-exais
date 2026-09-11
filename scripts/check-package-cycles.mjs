@@ -8,17 +8,23 @@ const ROOT = join(import.meta.dirname, "..");
 const RUNTIME_DEPENDENCY_FIELDS = ["dependencies", "optionalDependencies", "peerDependencies"];
 
 /**
- * The deprecated @hyperframes/core/studio-api forwarding surface is public and
- * cannot disappear before a breaking release. Keep its one known package SCC
- * explicit so every new cycle still fails CI. Delete this exception together
- * with the forwarding surface in the next breaking release.
+ * No cycle is permitted.
+ *
+ * This previously carried one exception, for the deprecated
+ * @hyperframes/core/studio-api forwarding surface, to be deleted "with the
+ * forwarding surface in the next breaking release". That release is this
+ * repository: it has no published consumers, so the surface was removed rather
+ * than grandfathered — every shim under core/src/studio-api/ re-exported code
+ * that already lives in studio-server, including three test files duplicated
+ * verbatim from studio-server's own.
+ *
+ * The merge had in any case outgrown the exception. Adding diagram-motion made
+ * the component {core, studio-server, diagram-motion}, which no longer matched
+ * the two-package exception and failed — correctly. Widening it would have
+ * preserved an inversion the exception existed to retire: core, the runtime
+ * library, depending on the editor's HTTP server.
  */
-export const ALLOWED_COMPATIBILITY_CYCLES = [
-  {
-    packages: ["@hyperframes/core", "@hyperframes/studio-server"],
-    reason: "Deprecated core/studio-api forwarding exports; remove at the next breaking release.",
-  },
-];
+export const ALLOWED_COMPATIBILITY_CYCLES = [];
 
 function canonicalComponent(names) {
   return [...names].sort().join(" -> ");

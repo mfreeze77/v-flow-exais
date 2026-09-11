@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="12" assertions="23" failures="0" skipped="0" time="0.025362728">
+  <testsuite name="src/services/render/runtimeEnvSnapshot.test.ts" file="src/services/render/runtimeEnvSnapshot.test.ts" tests="12" assertions="23" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="snapshotRuntimeEnv" file="src/services/render/runtimeEnvSnapshot.test.ts" line="13" tests="9" assertions="12" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="captures PRODUCER_RUNTIME_* keys" classname="snapshotRuntimeEnv" time="0.000149" file="src/services/render/runtimeEnvSnapshot.test.ts" line="14" assertions="1" />
+      <testcase name="captures PRODUCER_RENDER_* keys" classname="snapshotRuntimeEnv" time="0.000039" file="src/services/render/runtimeEnvSnapshot.test.ts" line="25" assertions="1" />
+      <testcase name="captures both prefix families in a single snapshot" classname="snapshotRuntimeEnv" time="0.000058" file="src/services/render/runtimeEnvSnapshot.test.ts" line="34" assertions="1" />
+      <testcase name="ignores keys that don&apos;t match either prefix" classname="snapshotRuntimeEnv" time="0.000048" file="src/services/render/runtimeEnvSnapshot.test.ts" line="45" assertions="2" />
+      <testcase name="skips keys whose value is undefined" classname="snapshotRuntimeEnv" time="0.000037" file="src/services/render/runtimeEnvSnapshot.test.ts" line="63" assertions="1" />
+      <testcase name="returns an empty object when no keys match" classname="snapshotRuntimeEnv" time="0.00003" file="src/services/render/runtimeEnvSnapshot.test.ts" line="73" assertions="1" />
+      <testcase name="returns a NEW object each call (no live reference to process.env)" classname="snapshotRuntimeEnv" time="0.000046" file="src/services/render/runtimeEnvSnapshot.test.ts" line="77" assertions="3" />
+      <testcase name="defaults to process.env when no argument is passed" classname="snapshotRuntimeEnv" time="0.000507" file="src/services/render/runtimeEnvSnapshot.test.ts" line="87" assertions="1" />
+      <testcase name="exports the prefix list for chunk-worker materialization" classname="snapshotRuntimeEnv" time="0.000035" file="src/services/render/runtimeEnvSnapshot.test.ts" line="99" assertions="1" />
+    </testsuite>
+    <testsuite name="applyRuntimeEnvSnapshot" file="src/services/render/runtimeEnvSnapshot.test.ts" line="107" tests="3" assertions="11" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="filters by RUNTIME_ENV_PREFIXES — refuses arbitrary keys" classname="applyRuntimeEnvSnapshot" time="0.000162" file="src/services/render/runtimeEnvSnapshot.test.ts" line="108" assertions="3" />
+      <testcase name="restore() reverts touched keys and only those keys" classname="applyRuntimeEnvSnapshot" time="0.000164" file="src/services/render/runtimeEnvSnapshot.test.ts" line="125" assertions="5" />
+      <testcase name="restore() is safe to call multiple times" classname="applyRuntimeEnvSnapshot" time="0.000078" file="src/services/render/runtimeEnvSnapshot.test.ts" line="150" assertions="3" />
+    </testsuite>
+  </testsuite>
+</testsuites>

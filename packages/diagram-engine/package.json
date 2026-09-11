@@ -46,7 +46,8 @@
     "render:examples": "node scripts/render-examples.mjs ../examples",
     "generate:artifact-styles": "node scripts/generate-artifact-styles.mjs",
     "check:artifact-styles": "node scripts/generate-artifact-styles.mjs --check",
-    "build": "node scripts/verify-assets.mjs"
+    "build": "node scripts/verify-assets.mjs",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@hyperframes/diagram-viewer": "workspace:*",

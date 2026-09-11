@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="4" assertions="30" failures="0" skipped="0" time="12.813030189">
+  <testsuite name="src/services/distributed/crossWorkerIdempotency.test.ts" file="src/services/distributed/crossWorkerIdempotency.test.ts" tests="4" assertions="30" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="cross-worker idempotency" file="src/services/distributed/crossWorkerIdempotency.test.ts" line="156" tests="4" assertions="30" failures="0" skipped="0" time="11.931" hostname="c0f3ebdcc432">
+      <testcase name="png-sequence: chunk 0 is byte-identical across two distinct output dirs" classname="cross-worker idempotency" time="1.091736" file="src/services/distributed/crossWorkerIdempotency.test.ts" line="165" assertions="6" />
+      <testcase name="mp4: chunk 0 is byte-identical across two distinct output paths" classname="cross-worker idempotency" time="4.965037" file="src/services/distributed/crossWorkerIdempotency.test.ts" line="208" assertions="9" />
+      <testcase name="png-sequence: chunk 1 is byte-identical across two distinct output dirs" classname="cross-worker idempotency" time="0.985899" file="src/services/distributed/crossWorkerIdempotency.test.ts" line="165" assertions="6" />
+      <testcase name="mp4: chunk 1 is byte-identical across two distinct output paths" classname="cross-worker idempotency" time="4.890226" file="src/services/distributed/crossWorkerIdempotency.test.ts" line="208" assertions="9" />
+    </testsuite>
+  </testsuite>
+</testsuites>

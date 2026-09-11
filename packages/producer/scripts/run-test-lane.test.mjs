@@ -49,6 +49,25 @@ function dispatch(argv, results = []) {
   return { calls, logs, code, env };
 }
 
+/**
+ * Collects a script's own sibling dependencies, transitively.
+ *
+ * Only same-directory relative imports are followed: those are the files a
+ * fixture workspace must physically carry. Package imports resolve through
+ * node_modules and need no copying.
+ */
+function localDependencies(entry, scriptsDir) {
+  const collected = new Set();
+  const visit = (name) => {
+    if (collected.has(name)) return;
+    collected.add(name);
+    const source = readFileSync(join(scriptsDir, name), "utf8");
+    for (const match of source.matchAll(/from\s+"\.\/([\w.-]+\.mjs)"/g)) visit(match[1]);
+  };
+  visit(entry);
+  return [...collected];
+}
+
 describe("producer lane arguments", () => {
   it("keeps the no-selector unit/integration interface", () => {
     assert.deepEqual(parseLaneArgs(["unit"]), {
@@ -198,18 +217,18 @@ describe("runner invocation contract", () => {
     const { calls, logs, code } = dispatch(["unit"], [{ status: 23 }]);
     assert.equal(code, 23);
     assert.equal(calls.length, 1);
-    assert.match(logs.at(-1), /3 selected files not launched/);
+    assert.match(logs.join("\n"), /3 selected files not launched/);
   });
   it("stops after a Bun failure without executing subsequent files", () => {
     const { calls, logs, code } = dispatch(["unit", "bun"], [{ status: 0 }, { status: 9 }]);
     assert.equal(code, 9);
     assert.equal(calls.length, 2);
-    assert.match(logs.at(-1), /1 selected files not launched/);
+    assert.match(logs.join("\n"), /1 selected files not launched/);
   });
   it("treats a signalled runner as failure", () => {
     const { code, logs } = dispatch(["unit"], [{ status: null, signal: "SIGTERM" }]);
     assert.equal(code, 1);
-    assert.match(logs.at(-1), /SIGTERM/);
+    assert.match(logs.join("\n"), /SIGTERM/);
   });
   it("propagates spawn errors and does not claim the failed launch executed files", () => {
     const error = new Error("spawn bun ENOENT");
@@ -224,7 +243,7 @@ describe("runner invocation contract", () => {
         }),
       (thrown) => thrown === error,
     );
-    assert.match(logs.at(-1), /5 selected files not launched/);
+    assert.match(logs.join("\n"), /5 selected files not launched/);
   });
   it("validates every selector before spawning even one child", () => {
     let spawned = false;
@@ -254,9 +273,12 @@ function cliFixture(argv, status = 0, symlink = false) {
     const producer = join(fixture, "packages", "producer");
     const directory = join(producer, "scripts");
     mkdirSync(directory, { recursive: true });
-    // lane-report.mjs is a real dependency of the runner, so the fixture
-    // workspace has to carry it or the CLI cannot start at all.
-    for (const file of ["run-test-lane.mjs", "test-lane-selection.mjs", "lane-report.mjs"])
+    // The runner's local dependencies are followed rather than listed. A fixed
+    // list silently rots: adding one import to the runner made every case here
+    // fail with MODULE_NOT_FOUND, which says nothing about the behaviour under
+    // test. Following the imports means the fixture carries whatever the runner
+    // actually needs.
+    for (const file of localDependencies("run-test-lane.mjs", scripts))
       cpSync(join(scripts, file), join(directory, file));
     writeFileSync(
       join(directory, "test-classification.mjs"),

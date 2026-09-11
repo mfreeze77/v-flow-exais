@@ -1,153 +1,270 @@
+COMMAND: node --test scripts/check-package-boundaries.test.mjs
+STARTED: 2026-09-11T20:27:05Z
+
 TAP version 13
 # Subtest: package boundaries — the real repository
     # Subtest: passes the declared policy
     ok 1 - passes the declared policy
       ---
-      duration_ms: 897.559715
+      duration_ms: 12841.874458
       type: 'test'
       ...
     # Subtest: reports no unresolvable import inside protected production code
     ok 2 - reports no unresolvable import inside protected production code
       ---
-      duration_ms: 886.959755
+      duration_ms: 13524.171247
       type: 'test'
       ...
     # Subtest: actually protects the packages the ticket names
     ok 3 - actually protects the packages the ticket names
       ---
-      duration_ms: 0.274438
+      duration_ms: 0.215699
       type: 'test'
       ...
     1..3
 ok 1 - package boundaries — the real repository
   ---
-  duration_ms: 1785.335663
+  duration_ms: 26366.891023
   type: 'suite'
   ...
 # Subtest: package boundaries — deliberately introduced violations
     # Subtest: fails a direct forbidden package import, naming file, line, target and rule
     ok 1 - fails a direct forbidden package import, naming file, line, target and rule
       ---
-      duration_ms: 2.002917
+      duration_ms: 2.556768
       type: 'test'
       ...
     # Subtest: fails a relative path into the same forbidden package
     ok 2 - fails a relative path into the same forbidden package
       ---
-      duration_ms: 1.212265
+      duration_ms: 1.153591
       type: 'test'
       ...
     # Subtest: fails a re-export that leads to forbidden code
     ok 3 - fails a re-export that leads to forbidden code
       ---
-      duration_ms: 1.21725
+      duration_ms: 0.999352
       type: 'test'
       ...
     # Subtest: fails a literal dynamic import and a CommonJS require consistently
     ok 4 - fails a literal dynamic import and a CommonJS require consistently
       ---
-      duration_ms: 1.342737
+      duration_ms: 1.25932
       type: 'test'
       ...
     # Subtest: does NOT report forbidden-looking text in comments or ordinary strings
     ok 5 - does NOT report forbidden-looking text in comments or ordinary strings
       ---
-      duration_ms: 1.095841
+      duration_ms: 1.202265
       type: 'test'
       ...
     # Subtest: reports an unresolvable import in production rather than certifying the boundary
     ok 6 - reports an unresolvable import in production rather than certifying the boundary
       ---
-      duration_ms: 1.171319
+      duration_ms: 2.281629
       type: 'test'
       ...
     1..6
 ok 2 - package boundaries — deliberately introduced violations
   ---
-  duration_ms: 8.430223
+  duration_ms: 9.835516
   type: 'suite'
   ...
 # Subtest: package boundaries — production and test scope are distinct
     # Subtest: allows a forbidden import in test scope but still lists it
     ok 1 - allows a forbidden import in test scope but still lists it
       ---
-      duration_ms: 0.910895
+      duration_ms: 1.147194
       type: 'test'
       ...
     # Subtest: does not let a production violation escape by moving into a helper
     ok 2 - does not let a production violation escape by moving into a helper
       ---
-      duration_ms: 1.143082
+      duration_ms: 1.33309
       type: 'test'
       ...
     # Subtest: classifies scope by location and filename, never by the import
     ok 3 - classifies scope by location and filename, never by the import
       ---
-      duration_ms: 0.072468
+      duration_ms: 0.067975
       type: 'test'
       ...
     1..3
 ok 3 - package boundaries — production and test scope are distinct
   ---
-  duration_ms: 2.217519
+  duration_ms: 2.640122
   type: 'suite'
   ...
 # Subtest: package boundaries — import extraction
     # Subtest: finds every supported import form with accurate line numbers
     ok 1 - finds every supported import form with accurate line numbers
       ---
-      duration_ms: 0.102627
+      duration_ms: 0.132115
       type: 'test'
       ...
     # Subtest: keeps line numbers accurate after stripping a block comment
     ok 2 - keeps line numbers accurate after stripping a block comment
       ---
-      duration_ms: 0.044205
+      duration_ms: 0.043158
       type: 'test'
       ...
-    # Subtest: ignores specifiers inside template literals
-    ok 3 - ignores specifiers inside template literals
+    # Subtest: reads a template-literal dynamic import like any other
+    ok 3 - reads a template-literal dynamic import like any other
       ---
-      duration_ms: 0.036188
+      duration_ms: 0.046412
       type: 'test'
       ...
-    1..3
+    # Subtest: skips an interpolated specifier, which is not statically known
+    ok 4 - skips an interpolated specifier, which is not statically known
+      ---
+      duration_ms: 0.03619
+      type: 'test'
+      ...
+    # Subtest: does not read import-shaped text inside an ordinary string
+    ok 5 - does not read import-shaped text inside an ordinary string
+      ---
+      duration_ms: 0.083355
+      type: 'test'
+      ...
+    1..5
 ok 4 - package boundaries — import extraction
   ---
-  duration_ms: 0.227998
+  duration_ms: 0.405641
   type: 'suite'
   ...
 # Subtest: package boundaries — resolution
     # Subtest: maps a bare specifier and its subpaths to the owning package
     ok 1 - maps a bare specifier and its subpaths to the owning package
       ---
-      duration_ms: 0.057216
+      duration_ms: 0.054868
       type: 'test'
       ...
     # Subtest: treats node builtins and third-party packages as outside the policy
     ok 2 - treats node builtins and third-party packages as outside the policy
       ---
-      duration_ms: 0.068486
+      duration_ms: 0.031527
       type: 'test'
       ...
     # Subtest: maps a relative path back to the package that owns the destination
     ok 3 - maps a relative path back to the package that owns the destination
       ---
-      duration_ms: 0.059968
+      duration_ms: 0.035167
       type: 'test'
       ...
     1..3
 ok 5 - package boundaries — resolution
   ---
-  duration_ms: 0.278089
+  duration_ms: 0.176353
   type: 'suite'
   ...
-1..5
-# tests 18
-# suites 5
-# pass 18
+# Subtest: package boundaries — crossings that a direct-import check misses
+    # Subtest: follows a configured tsconfig alias to its forbidden target
+    ok 1 - follows a configured tsconfig alias to its forbidden target
+      ---
+      duration_ms: 1.460199
+      type: 'test'
+      ...
+    # Subtest: follows a chain through another first-party package
+    ok 2 - follows a chain through another first-party package
+      ---
+      duration_ms: 1.643276
+      type: 'test'
+      ...
+    # Subtest: does not let test scope exempt a dependency production code relies on
+    ok 3 - does not let test scope exempt a dependency production code relies on
+      ---
+      duration_ms: 1.375871
+      type: 'test'
+      ...
+    # Subtest: checks .cts and .mts production files
+    ok 4 - checks .cts and .mts production files
+      ---
+      duration_ms: 1.190877
+      type: 'test'
+      ...
+    # Subtest: fails a direct browser-capture dependency
+    ok 5 - fails a direct browser-capture dependency
+      ---
+      duration_ms: 1.14473
+      type: 'test'
+      ...
+    # Subtest: does not fail on import-shaped text in a string constant
+    ok 6 - does not fail on import-shaped text in a string constant
+      ---
+      duration_ms: 1.56776
+      type: 'test'
+      ...
+    # Subtest: names browser-capture packages in every protected rule
+    ok 7 - names browser-capture packages in every protected rule
+      ---
+      duration_ms: 0.090167
+      type: 'test'
+      ...
+    1..7
+ok 6 - package boundaries — crossings that a direct-import check misses
+  ---
+  duration_ms: 8.610978
+  type: 'suite'
+  ...
+# Subtest: package boundaries — alias configuration
+    # Subtest: reads baseUrl-relative path mappings
+    ok 1 - reads baseUrl-relative path mappings
+      ---
+      duration_ms: 0.44995
+      type: 'test'
+      ...
+    # Subtest: tolerates comments in tsconfig, which JSON.parse does not
+    ok 2 - tolerates comments in tsconfig, which JSON.parse does not
+      ---
+      duration_ms: 0.316041
+      type: 'test'
+      ...
+    1..2
+ok 7 - package boundaries — alias configuration
+  ---
+  duration_ms: 0.868246
+  type: 'suite'
+  ...
+# Subtest: package boundaries — following a package to what it actually serves
+    # Subtest: follows a subpath import to the module the exports map names
+    ok 1 - follows a subpath import to the module the exports map names
+      ---
+      duration_ms: 1.398693
+      type: 'test'
+      ...
+    # Subtest: prefers the source condition over a built artifact
+    ok 2 - prefers the source condition over a built artifact
+      ---
+      duration_ms: 1.579492
+      type: 'test'
+      ...
+    # Subtest: reports an unfollowable first-party entry instead of passing silently
+    ok 3 - reports an unfollowable first-party entry instead of passing silently
+      ---
+      duration_ms: 1.278748
+      type: 'test'
+      ...
+    # Subtest: does not follow a subpath an exports map refuses to serve
+    ok 4 - does not follow a subpath an exports map refuses to serve
+      ---
+      duration_ms: 1.511038
+      type: 'test'
+      ...
+    1..4
+ok 8 - package boundaries — following a package to what it actually serves
+  ---
+  duration_ms: 5.865826
+  type: 'suite'
+  ...
+1..8
+# tests 33
+# suites 8
+# pass 33
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 1862.709014
+# duration_ms 26487.714058
+
+FINISHED: 2026-09-11T20:27:32Z
+EXIT=0

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="1" assertions="3" failures="0" skipped="0" time="0.023397014">
+  <testsuite name="src/services/render/stages/probeFailures.test.ts" file="src/services/render/stages/probeFailures.test.ts" tests="1" assertions="3" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="isActionableProbeFailure" file="src/services/render/stages/probeFailures.test.ts" line="4" tests="1" assertions="3" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="ignores favicon 404 noise without hiding real asset failures" classname="isActionableProbeFailure" time="0.000146" file="src/services/render/stages/probeFailures.test.ts" line="5" assertions="3" />
+    </testsuite>
+  </testsuite>
+</testsuites>

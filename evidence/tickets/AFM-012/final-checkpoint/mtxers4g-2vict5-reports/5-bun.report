@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="6" assertions="14" failures="0" skipped="0" time="0.660935541">
+  <testsuite name="src/regression-harness-parse.test.ts" file="src/regression-harness-parse.test.ts" tests="6" assertions="14" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="parseArgs() — --exclude-tags" file="src/regression-harness-parse.test.ts" line="17" tests="5" assertions="7" failures="0" skipped="0" time="0.006" hostname="c0f3ebdcc432">
+      <testcase name="splits a single --exclude-tags argument on commas" classname="parseArgs() — --exclude-tags" time="0.002257" file="src/regression-harness-parse.test.ts" line="18" assertions="1" />
+      <testcase name="accepts a single tag with no comma" classname="parseArgs() — --exclude-tags" time="0.004324" file="src/regression-harness-parse.test.ts" line="23" assertions="1" />
+      <testcase name="supports repeated --exclude-tags flags (accumulating)" classname="parseArgs() — --exclude-tags" time="0.000245" file="src/regression-harness-parse.test.ts" line="28" assertions="1" />
+      <testcase name="matches the values baked into Dockerfile.test ENTRYPOINT and package.json scripts" classname="parseArgs() — --exclude-tags" time="0.000123" file="src/regression-harness-parse.test.ts" line="35" assertions="3" />
+      <testcase name="defaults excludeTags to an empty array when the flag is absent" classname="parseArgs() — --exclude-tags" time="0.00006" file="src/regression-harness-parse.test.ts" line="53" assertions="1" />
+    </testsuite>
+    <testsuite name="regression temporary roots" file="src/regression-harness-parse.test.ts" line="59" tests="1" assertions="7" failures="0" skipped="0" time="0.002" hostname="c0f3ebdcc432">
+      <testcase name="isolates repeated suite runs and preserves the old predictable directory" classname="regression temporary roots" time="0.002248" file="src/regression-harness-parse.test.ts" line="60" assertions="7" />
+    </testsuite>
+  </testsuite>
+</testsuites>

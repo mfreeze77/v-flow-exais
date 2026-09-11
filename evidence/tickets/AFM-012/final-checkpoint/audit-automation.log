@@ -1,3 +1,6 @@
+COMMAND: bun run audit:automation
+STARTED: 2026-09-11T20:26:38Z
+
 $ bun run tools/import/audit-automation-cli.ts
 hooks path: .githooks
 blocked: 0  review: 25
@@ -53,3 +56,6 @@ blocked: 0  review: 25
       Dependency auto-update config; inert without the app installed on a remote
 
 PASS: provenance/automation-audit.json
+
+FINISHED: 2026-09-11T20:27:05Z
+EXIT=0

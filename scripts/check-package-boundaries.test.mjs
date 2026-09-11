@@ -10,6 +10,8 @@ import {
   checkRule,
   extractImports,
   isTestScope,
+  readPathAliases,
+  readWorkspacePackages,
   resolveImportTarget,
 } from "./check-package-boundaries.mjs";
 
@@ -32,6 +34,18 @@ const MANIFESTS = {
 };
 
 const RULE = BOUNDARY_RULES.find((r) => r.package === "@hyperframes/project-model");
+
+/**
+ * Checks a throwaway workspace the way checkBoundaries does: names, manifests
+ * and aliases all read from the tree under test. Hand-built maps drift from the
+ * real resolution path, and a case that passes against a hand-built map can
+ * still miss what the checker does on the repository.
+ */
+function checkTempWorkspace(root, rule = RULE) {
+  const manifests = new Map();
+  const packages = readWorkspacePackages(root, manifests);
+  return checkRule(rule, root, packages, readPathAliases(root), manifests);
+}
 
 function runRule(root) {
   const packagesByDir = new Map([
@@ -213,7 +227,22 @@ describe("package boundaries — import extraction", () => {
     assert.equal(found[0].line, 5);
   });
 
-  it("ignores specifiers inside template literals", () => {
+  it("reads a template-literal dynamic import like any other", () => {
+    // Changing the quote style must not change whether the rule applies.
+    const found = extractImports("const m = await import(`@hyperframes/studio`);\n");
+    assert.deepEqual(
+      found.map((f) => f.specifier),
+      ["@hyperframes/studio"],
+    );
+  });
+
+  it("skips an interpolated specifier, which is not statically known", () => {
+    assert.deepEqual(extractImports("const m = await import(`${base}/x`);\n"), []);
+  });
+
+  it("does not read import-shaped text inside an ordinary string", () => {
+    // Reported as a violation by an earlier version: a quoted example is prose.
+    assert.deepEqual(extractImports(`const s = "await import('@hyperframes/studio')";\n`), []);
     assert.deepEqual(extractImports('const s = `import x from "nope"`;\n'), []);
   });
 });
@@ -250,5 +279,232 @@ describe("package boundaries — resolution", () => {
       packagesByDir,
     );
     assert.equal(target.package, "@hyperframes/studio");
+  });
+});
+
+describe("package boundaries — crossings that a direct-import check misses", () => {
+  /**
+   * Each case below reaches forbidden code without a forbidden specifier ever
+   * appearing in the protected package's own source. Checking only direct
+   * imports declares every one of them clean.
+   */
+
+  it("follows a configured tsconfig alias to its forbidden target", () => {
+    const root = workspace({
+      ...MANIFESTS,
+      "tsconfig.json": JSON.stringify({
+        compilerOptions: { baseUrl: ".", paths: { "@ui/*": ["packages/studio/src/*"] } },
+      }),
+      "packages/studio/src/App.ts": "export const App = 1;\n",
+      "packages/project-model/src/a.ts": 'import { App } from "@ui/App";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "@hyperframes/studio");
+    assert.equal(report.violations[0].specifier, "@ui/App");
+  });
+
+  it("follows a chain through another first-party package", () => {
+    // project-model -> utils -> studio. Nothing forbidden is named in
+    // project-model, and no dependency cycle exists for the cycle checker.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/utils/package.json": '{"name":"@hyperframes/utils"}',
+      "packages/utils/src/index.ts": 'export { App } from "@hyperframes/studio";\n',
+      "packages/studio/src/index.ts": "export const App = 1;\n",
+      "packages/project-model/src/a.ts": 'import { App } from "@hyperframes/utils";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    const violation = report.violations[0];
+    assert.equal(violation.target, "@hyperframes/studio");
+    // The path is reported, not just the endpoint: "a.ts imports utils" alone
+    // does not tell anyone why it is a violation.
+    assert.equal(violation.file, "packages/project-model/src/a.ts");
+    assert.ok(violation.via.some((step) => step.includes("packages/utils/src/index.ts")));
+  });
+
+  it("does not let test scope exempt a dependency production code relies on", () => {
+    // The helper is test-scope by filename, so it may import Studio freely.
+    // Production importing that helper is a different fact, and is a violation.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/studio/src/index.ts": "export const App = 1;\n",
+      "packages/project-model/src/__tests__/helper.ts":
+        'export { App } from "@hyperframes/studio";\n',
+      "packages/project-model/src/a.ts": 'import { App } from "./__tests__/helper";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    const production = report.violations.filter((v) => v.scope === "production");
+    assert.equal(
+      production.length,
+      1,
+      "production reaching Studio via a test helper is a violation",
+    );
+    assert.equal(production[0].target, "@hyperframes/studio");
+  });
+
+  it("checks .cts and .mts production files", () => {
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/project-model/src/legacy.cts": 'const s = require("@hyperframes/studio");\n',
+      "packages/project-model/src/modern.mts": 'import "@hyperframes/producer";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.deepEqual(report.violations.map((v) => v.target).sort(), [
+      "@hyperframes/producer",
+      "@hyperframes/studio",
+    ]);
+  });
+
+  it("fails a direct browser-capture dependency", () => {
+    // Forbidding only workspace packages leaves the boundary open to the exact
+    // implementation coupling the rule exists to prevent.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/project-model/src/a.ts": 'import puppeteer from "puppeteer";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "puppeteer");
+  });
+
+  it("does not fail on import-shaped text in a string constant", () => {
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/project-model/src/a.ts":
+        "export const example = \"await import('@hyperframes/studio')\";\n",
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.deepEqual(report.violations, []);
+    assert.deepEqual(report.unresolved, []);
+  });
+
+  it("names browser-capture packages in every protected rule", () => {
+    for (const rule of BOUNDARY_RULES) {
+      assert.ok(
+        rule.forbidden.includes("puppeteer"),
+        `${rule.package} does not forbid direct browser capture`,
+      );
+    }
+  });
+});
+
+describe("package boundaries — alias configuration", () => {
+  it("reads baseUrl-relative path mappings", () => {
+    const root = workspace({
+      "tsconfig.json": JSON.stringify({
+        compilerOptions: { baseUrl: ".", paths: { "@ui/*": ["packages/studio/src/*"] } },
+      }),
+    });
+    const aliases = readPathAliases(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(aliases.length, 1);
+    assert.equal(aliases[0].pattern, "@ui/*");
+  });
+
+  it("tolerates comments in tsconfig, which JSON.parse does not", () => {
+    const root = workspace({
+      "tsconfig.json":
+        '{\n  // the editor writes these\n  "compilerOptions": { "paths": { "@x": ["packages/studio/src/x"] } }\n}\n',
+    });
+    const aliases = readPathAliases(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(aliases.length, 1);
+  });
+});
+
+describe("package boundaries — following a package to what it actually serves", () => {
+  it("follows a subpath import to the module the exports map names", () => {
+    // Walking to <dir>/src/index by convention would have followed this to the
+    // package index, which imports nothing forbidden, and reported it clean.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/utils/package.json": JSON.stringify({
+        name: "@hyperframes/utils",
+        exports: { ".": "./src/index.ts", "./capture": "./src/capture.ts" },
+      }),
+      "packages/utils/src/index.ts": "export const safe = 1;\n",
+      "packages/utils/src/capture.ts": 'export { chromium } from "playwright";\n',
+      "packages/project-model/src/a.ts": 'import { chromium } from "@hyperframes/utils/capture";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "playwright");
+  });
+
+  it("prefers the source condition over a built artifact", () => {
+    // dist/ can be stale or absent; the repository's own source is the truth
+    // the boundary is being asserted about.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/utils/package.json": JSON.stringify({
+        name: "@hyperframes/utils",
+        exports: { ".": { node: "./dist/index.js", bun: "./src/index.ts" } },
+      }),
+      "packages/utils/src/index.ts": 'export { App } from "@hyperframes/studio";\n',
+      "packages/utils/dist/index.js": "export const stale = 1;\n",
+      "packages/studio/src/index.ts": "export const App = 1;\n",
+      "packages/project-model/src/a.ts": 'import { App } from "@hyperframes/utils";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 1);
+    assert.equal(report.violations[0].target, "@hyperframes/studio");
+  });
+
+  it("reports an unfollowable first-party entry instead of passing silently", () => {
+    // Silence here would certify a chain that was never walked.
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/utils/package.json": JSON.stringify({
+        name: "@hyperframes/utils",
+        exports: { ".": "./src/index.ts" },
+      }),
+      "packages/project-model/src/a.ts": 'import { x } from "@hyperframes/utils";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    assert.equal(report.violations.length, 0);
+    assert.equal(report.unresolved.length, 1);
+    assert.match(report.unresolved[0].detail, /serves no resolvable file/);
+  });
+
+  it("does not follow a subpath an exports map refuses to serve", () => {
+    const root = workspace({
+      ...MANIFESTS,
+      "packages/utils/package.json": JSON.stringify({
+        name: "@hyperframes/utils",
+        exports: { ".": "./src/index.ts" },
+      }),
+      "packages/utils/src/index.ts": "export const safe = 1;\n",
+      "packages/utils/src/private.ts": 'export { App } from "@hyperframes/studio";\n',
+      "packages/project-model/src/a.ts": 'import { x } from "@hyperframes/utils/private";\n',
+    });
+    const report = checkTempWorkspace(root);
+    rmSync(root, { recursive: true, force: true });
+
+    // Not a violation, because that import cannot resolve at all — but it is
+    // reported, because the checker did not verify anything about it.
+    assert.equal(report.violations.length, 0);
+    assert.equal(report.unresolved.length, 1);
   });
 });

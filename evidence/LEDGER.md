@@ -204,3 +204,31 @@ and are required for gate AFM-129 / G0, but are off the render critical path.
 The owner-requested end-to-end slice has exercised E03–E07 and source/batch
 integration ahead of complete epic closure. Continue from
 `docs/designs/repo-to-video-handoff.md`; read the actual next ticket first.
+
+## Checks the lint chain had been skipping
+
+Recording an exit code for every check (`tools/evidence/run-checkpoint.sh`)
+showed that `bun run lint` had never completed. Its first link,
+`check:docs-snippet-motion`, crashed with ENOENT because it still pointed at
+`docs/snippets/` — the upstream repository's layout. The import placed those
+files at `docs/upstream/hyperframes/snippets/` under their
+`retain-reference-docs` disposition. Because the chain is `&&`-joined, the ten
+checks after it never ran, and reporting oxlint's result alone made the
+repository look clean. Three real defects were hiding behind that:
+
+- `packages/gcp-cloud-run/Dockerfile` was missing `project-model`,
+  `diagram-viewer`, `diagram-engine` and `diagram-motion` — manifests, sources
+  and builds. The merge added them as producer dependencies; the Dockerfile was
+  never updated, so a Cloud Run image would have failed to build.
+- `scripts/check-docs-snippet-motion.test.mjs` read the same stale path, so the
+  scripts lane was failing too.
+- `scripts/publish-workflow.test.mjs` asserted on
+  `.github/workflows/publish.yml`, which does not exist here: every upstream
+  workflow was imported under `quarantine-automation`, and this repository runs
+  no CI. Removed — `audit:automation` already asserts the quarantine holds
+  (`blocked: 0`). The quarantined copy remains at
+  `docs/upstream/hyperframes/workflows/publish.yml`.
+
+The lesson is the ticket's own: a check that records no exit status is not
+evidence, and a summary assembled from console text will agree with whatever it
+was given.

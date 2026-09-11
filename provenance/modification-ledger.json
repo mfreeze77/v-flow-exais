@@ -247,7 +247,7 @@
       "upstreamRepository": "archify",
       "upstreamSourcePath": "archify/package.json",
       "upstreamSha256": "7fe2a96f0d6730b2d35811d7d4f5e7e969c166a47a0c87543cdf667a221815be",
-      "currentSha256": "95639fba7ec40508406d281fbe5b32e998b4fd91dabc4afc47f35e07f03af041",
+      "currentSha256": "9021d7c5b4f3a5ca579717353ec39dc709bf7df109f56641976017035fc987da",
       "reason": "Rewritten during AFM-009: renamed from the upstream 'archify' to @hyperframes/diagram-engine, marked private, runtime imports (ajv, parse5, saxes, simple-icons) moved from devDependencies to dependencies, the fast-uri 3.1.5 override preserved, exports and packed files declared, and the bin renamed to archframe-diagram so it cannot collide with a globally installed upstream CLI."
     },
     {
@@ -1791,7 +1791,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": ".gitignore",
       "upstreamSha256": "01d6ec77705a86795dcdb4628ce09425f5e9aee56fe3a258d0955525dcf5bcee",
-      "currentSha256": "8769c80226cdaf18b9bc2eeb874e4ec203d8627c4589e221f70fb30a8c2b512c",
+      "currentSha256": "b95f0b65f5a7af58f42ebf6918c2bef064ae2e001762eb2746d516b3bb05ce9a",
       "reason": "Superseded during AFM-003: repository-owned policy. Upstream copy preserved at docs/upstream/hyperframes/.gitignore."
     },
     {
@@ -1823,7 +1823,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "package.json",
       "upstreamSha256": "656e53de03966a18b6b6626cbd2b0b6f918f1ac260d794cee3ed41e8dfff1ff2",
-      "currentSha256": "227242adc4dd058f3025a8baa6989e2f3c36fa0506a5cf33153e4d491d319452",
+      "currentSha256": "9dabb21832d450bd35eeb1b9b200ceb8463d47f4534107f653780f3e8459f758",
       "reason": "Reconciled during AFM-003: renamed to v-flow-exais, upstream repository URL removed so this repo claims no ancestry it does not have, inherited prepare/lefthook lifecycle hook removed (AFM-005), new packages registered in the build order."
     },
     {
@@ -1832,6 +1832,54 @@
       "upstreamSourcePath": "packages/cli/src/cli.ts",
       "upstreamSha256": "3901a610a932d1e9152c628e4501e45f7baa73205dac92dc5cba6b810b284a5d",
       "currentSha256": "e14c0fe2b2c8c3db5e47ba963f5e69c0d14881fc95cb34e2b9d8da9c670d9624",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/cli/src/commands/play.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/cli/src/commands/play.ts",
+      "upstreamSha256": "1e6346976c0fc6800a94de2490da28f27978c97488779e5ac072ba70b6cf1c13",
+      "currentSha256": "cba3eb10fb3e562956d9724d5cbe07390ac8a7d7f35d1e80c935362f2d794120",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/cli/src/commands/present.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/cli/src/commands/present.ts",
+      "upstreamSha256": "6c44447a24e2ab513b2be70349ca76836b73ddd54371f943ab73ede4a6d13015",
+      "currentSha256": "60c616199fd18323f4621ffe03fb7fc161fe077464440d3a36394e0556b29eeb",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/cli/src/server/studioServer.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/cli/src/server/studioServer.ts",
+      "upstreamSha256": "92e4c2d54c657950a8731ec7c9d924e602b7edb431d86664fa3ac5e5938f9914",
+      "currentSha256": "01576459675e49c0f11f68b899c9df4650611209e5d89e2370a974bf73e4d75b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/cli/src/utils/staticProjectServer.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/cli/src/utils/staticProjectServer.ts",
+      "upstreamSha256": "250e0aa5b4061556b9a25021912588199eff5e803e7bc8f6e661a5ce7033a564",
+      "currentSha256": "e90c7eb8d44f1fba3ef220f5699ef154b2192bbda436f15987db27c83f209536",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/core/package.json",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/core/package.json",
+      "upstreamSha256": "ab8e70239fd141e1e87e458b99c3bdf66735769f92aec932f4811f588f628723",
+      "currentSha256": "d48b32467c1f66d47b998f0c3557cbc50433bc7ab9cf14e0b19e739a0e6757ef",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/gcp-cloud-run/Dockerfile",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/gcp-cloud-run/Dockerfile",
+      "upstreamSha256": "525f9d1a27788033c13faff60daea914270553cd1b19c2d4e4773539c800635c",
+      "currentSha256": "94e60accb39a2c5398b838cf039fbb7fe5b9f8e88d0c079b70a33a9cb4092a36",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -1847,7 +1895,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/producer/package.json",
       "upstreamSha256": "0cb0c56d3bf19008d3aa32c1dd86c77759a324ff3abfebb8f2c7278a6375cd9f",
-      "currentSha256": "e5f669a70fc0899f56175f76b27fa35c38a1695fb9f548a4208c0c3e7411403c",
+      "currentSha256": "6d90d52b40dc7c289e0e6892cf64a5f0830156ecba649ff4db650c63fcaf2295",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -1855,7 +1903,7 @@
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/producer/scripts/run-test-lane.mjs",
       "upstreamSha256": "bff02680f19eebcce0df72cdeedbbc05edfdcede3f3f60658fc0cb18ed8c59f6",
-      "currentSha256": "1116ffdb7e13d232aa5a2aeb756a53995e7397aca0eaf49a4aa3abd7106ae775",
+      "currentSha256": "4047b8634ddf4bf19b12d80c660f15d2e1b9662751599ab17bc9f5322823d2e0",
       "reason": "owned change (no specific note recorded)"
     },
     {
@@ -1963,6 +2011,30 @@
       "reason": "owned change (no specific note recorded)"
     },
     {
+      "path": "packages/studio/src/hooks/gsapScriptCommitHelpers.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/src/hooks/gsapScriptCommitHelpers.ts",
+      "upstreamSha256": "0a80a388d2fcac0409dbf9b612526d985755c8f065abc108928501760243ece3",
+      "currentSha256": "822d09bb52997b8b9b4a1b988c577c73de509b69c3f288f5cef712059e1938b1",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio/src/hooks/useDomEditCommits.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/src/hooks/useDomEditCommits.ts",
+      "upstreamSha256": "08b7b8db52d0e38a785802fff70495220218d80148a2a1cf48dd63cc1e3afc87",
+      "currentSha256": "09043195031961a70e1e82284a19dbfd62f8d4af4836029c447fdbbdc1f0e0ea",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "packages/studio/src/hooks/useGsapScriptCommits.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/src/hooks/useGsapScriptCommits.ts",
+      "upstreamSha256": "24477e8328451d682a5458212c83255e8ef451b09e37960aba1f1f15d3cae401",
+      "currentSha256": "cb5136315ccdc1b637a76e3e08e6ee3d7f7e7b44bd90a8b8266ed1ce44bbbe87",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
       "path": "packages/studio/src/main.tsx",
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "packages/studio/src/main.tsx",
@@ -1987,11 +2059,51 @@
       "reason": "owned change (no specific note recorded)"
     },
     {
+      "path": "packages/studio/vite.studioMotion.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "packages/studio/vite.studioMotion.ts",
+      "upstreamSha256": "c1c49f97d3565971f13671b00cd80ee36c9a277fe9bdf1cd75699c554c381745",
+      "currentSha256": "ca5f83d4f29a1f6bdd293be8fad3b53fc395ae87bc167da9ce03d7a128c4ed76",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
       "path": "registry/examples/kinetic-type/compositions/main-graphics.html",
       "upstreamRepository": "hyperframes",
       "upstreamSourcePath": "registry/examples/kinetic-type/compositions/main-graphics.html",
       "upstreamSha256": "150e9f173117f39562862b05b5b6bafb888c8a1bdaea308a23837d77811b9148",
       "currentSha256": "8deafc91c775192d1a021eb8757108648372fc05d27b22f91d800be598211254",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "scripts/check-docs-snippet-motion.mjs",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "scripts/check-docs-snippet-motion.mjs",
+      "upstreamSha256": "609532b493150be2f28292d4d9e7310901eb10d694b2c1ec58bfb542d0bd6b88",
+      "currentSha256": "5316d2319c1a6fd7792d78ee376814cdc1a29078fd18da869cb6f11ac5de064b",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "scripts/check-docs-snippet-motion.test.mjs",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "scripts/check-docs-snippet-motion.test.mjs",
+      "upstreamSha256": "13d6e12db74bd6609d6e702a8b584e9ee62d62057caea9bdcd91461e01525dca",
+      "currentSha256": "9b68e4f1112ad9fb320797eba28835259b22bac60e8cfabc930550ce42a5676e",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "scripts/check-package-cycles.mjs",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "scripts/check-package-cycles.mjs",
+      "upstreamSha256": "658cbb8c4eac81febd96577741f58ad6a2186e07c9c0f5747f99176279be9277",
+      "currentSha256": "194db4892e43febc98c86e52ad6272a0c0305c77a4dacac09e2041108b119b05",
+      "reason": "owned change (no specific note recorded)"
+    },
+    {
+      "path": "scripts/player-cdn-pin.test.ts",
+      "upstreamRepository": "hyperframes",
+      "upstreamSourcePath": "scripts/player-cdn-pin.test.ts",
+      "upstreamSha256": "099812cb987353dcfac0f77bc7d370a06c89b1d0b9ce1d02df6dd9de57a690fd",
+      "currentSha256": "7108227960e698672af0772eeabef4f28d7ae2cb6df40b887a42bfc3f576d629",
       "reason": "owned change (no specific note recorded)"
     }
   ]

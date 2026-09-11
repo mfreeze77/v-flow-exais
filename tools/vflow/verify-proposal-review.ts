@@ -34,12 +34,25 @@ const document = before.manifest.documents.find((item) => item.kind !== "native"
 const cliCommands: { args: string[]; exitCode: number }[] = [];
 const cli = (args: string[]) => {
   const full = ["run", "vflow", ...args, "--home", home];
-  const result = execFileSync("bun", full, {
-    encoding: "utf8",
-    stdio: ["ignore", "pipe", "pipe"],
-    timeout: 60_000,
-    maxBuffer: 16_000_000,
-  });
+  let result: string;
+  try {
+    result = execFileSync("bun", full, {
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "pipe"],
+      timeout: 60_000,
+      maxBuffer: 16_000_000,
+    });
+  } catch (error) {
+    // Record what the process actually returned before rethrowing. Writing a
+    // literal 0 here relies on execFileSync throwing; the moment this becomes a
+    // non-throwing spawn, the record would claim success for a failed command.
+    const status = (error as { status?: number }).status;
+    cliCommands.push({
+      args: ["bun", ...full],
+      exitCode: typeof status === "number" ? status : -1,
+    });
+    throw error;
+  }
   cliCommands.push({ args: ["bun", ...full], exitCode: 0 });
   try {
     return JSON.parse(result);

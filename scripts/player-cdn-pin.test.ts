@@ -1,7 +1,7 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join, resolve } from "node:path";
 
 /**
@@ -40,7 +40,11 @@ function trackedTextFiles(): string[] {
       maxBuffer: 64 * 1024 * 1024,
     },
   );
-  return listing.split("\0").filter((file) => TEXT_FILE.test(file));
+  // `git ls-files` reports the index, not the working tree, so a file deleted
+  // but not yet committed is still listed. Reading it throws ENOENT and fails
+  // this test for a reason that has nothing to do with CDN pins. A path with no
+  // file has no content to scan, so skipping it loses no coverage.
+  return listing.split("\0").filter((file) => TEXT_FILE.test(file) && existsSync(join(ROOT, file)));
 }
 
 function pinnedReferences(): { file: string; version: string }[] {

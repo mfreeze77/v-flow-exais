@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="18" assertions="208" failures="0" skipped="0" time="5.302574816">
+  <testsuite name="src/regression-shard-plan.test.ts" file="src/regression-shard-plan.test.ts" tests="18" assertions="208" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="shard planner fixture discovery" file="src/regression-shard-plan.test.ts" line="33" tests="11" assertions="103" failures="0" skipped="0" time="3.578" hostname="c0f3ebdcc432">
+      <testcase name="sees every fixture the harness can actually run" classname="shard planner fixture discovery" time="0.900111" file="src/regression-shard-plan.test.ts" line="34" assertions="1" />
+      <testcase name="schedules exactly the fixtures the harness can run, minus explicit exclusions" classname="shard planner fixture discovery" time="0.925317" file="src/regression-shard-plan.test.ts" line="45" assertions="1" />
+      <testcase name="rejects a fixture listed in both timings and excluded" classname="shard planner fixture discovery" time="0.213039" file="src/regression-shard-plan.test.ts" line="64" assertions="1" />
+      <testcase name="never mixes harness modes within a shard" classname="shard planner fixture discovery" time="0.219235" file="src/regression-shard-plan.test.ts" line="80" assertions="18" />
+      <testcase name="gives every shard a mode the harness accepts" classname="shard planner fixture discovery" time="0.21808" file="src/regression-shard-plan.test.ts" line="93" assertions="9" />
+      <testcase name="rejects a distributed fixture that is not scheduled" classname="shard planner fixture discovery" time="0.214692" file="src/regression-shard-plan.test.ts" line="101" assertions="1" />
+      <testcase name="only assigns distributed mode to fixtures the harness can actually run that way" classname="shard planner fixture discovery" time="0.671532" file="src/regression-shard-plan.test.ts" line="114" assertions="4" />
+      <testcase name="would reject a distributed fixture the harness refuses to run chunked" classname="shard planner fixture discovery" time="0.000094" file="src/regression-shard-plan.test.ts" line="142" assertions="3" />
+      <testcase name="gives every distributed fixture a written reason" classname="shard planner fixture discovery" time="0.00175" file="src/regression-shard-plan.test.ts" line="152" assertions="4" />
+      <testcase name="gives every excluded fixture a written reason" classname="shard planner fixture discovery" time="0.001445" file="src/regression-shard-plan.test.ts" line="159" assertions="58" />
+      <testcase name="finds fixtures nested under tests/distributed/" classname="shard planner fixture discovery" time="0.216874" file="src/regression-shard-plan.test.ts" line="170" assertions="3" />
+    </testsuite>
+    <testsuite name="packShards()" file="src/regression-shard-plan.test.ts" line="180" tests="4" assertions="5" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="spreads work so the heaviest shard is no worse than longest-item-plus-average" classname="packShards()" time="0.000315" file="src/regression-shard-plan.test.ts" line="181" assertions="2" />
+      <testcase name="keeps a single indivisible fixture as the floor" classname="packShards()" time="0.000155" file="src/regression-shard-plan.test.ts" line="192" assertions="1" />
+      <testcase name="assumes untimed fixtures are expensive rather than free" classname="packShards()" time="0.00012" file="src/regression-shard-plan.test.ts" line="200" assertions="1" />
+      <testcase name="emits no empty shards when fixtures are fewer than the shard count" classname="packShards()" time="0.000049" file="src/regression-shard-plan.test.ts" line="206" assertions="1" />
+    </testsuite>
+    <testsuite name="planShards()" file="src/regression-shard-plan.test.ts" line="212" tests="3" assertions="100" failures="0" skipped="0" time="0.862" hostname="c0f3ebdcc432">
+      <testcase name="schedules or explicitly excludes every fixture on disk" classname="planShards()" time="0.216342" file="src/regression-shard-plan.test.ts" line="213" assertions="1" />
+      <testcase name="produces a matrix the workflow can consume" classname="planShards()" time="0.211666" file="src/regression-shard-plan.test.ts" line="219" assertions="20" />
+      <testcase name="runs every fixture that is not explicitly excluded" classname="planShards()" time="0.435752" file="src/regression-shard-plan.test.ts" line="231" assertions="79" />
+    </testsuite>
+  </testsuite>
+</testsuites>

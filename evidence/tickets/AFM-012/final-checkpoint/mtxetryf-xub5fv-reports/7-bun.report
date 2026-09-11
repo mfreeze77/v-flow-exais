@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="13" assertions="43" failures="0" skipped="0" time="3.72062776">
+  <testsuite name="src/services/distributed/renderChunk.test.ts" file="src/services/distributed/renderChunk.test.ts" tests="13" assertions="43" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="renderChunk()" file="src/services/distributed/renderChunk.test.ts" line="144" tests="5" assertions="30" failures="0" skipped="0" time="1.114" hostname="c0f3ebdcc432">
+      <testcase name="produces a byte-identical chunk on a second invocation (byte-identical-retry contract)" classname="renderChunk()" time="1.113056" file="src/services/distributed/renderChunk.test.ts" line="150" assertions="19" />
+      <testcase name="rejects an out-of-range chunkIndex with CHUNK_INDEX_OUT_OF_RANGE" classname="renderChunk()" time="0.000378" file="src/services/distributed/renderChunk.test.ts" line="225" assertions="3" />
+      <testcase name="rejects a planDir missing plan.json with MISSING_PLAN_ARTIFACT" classname="renderChunk()" time="0.000272" file="src/services/distributed/renderChunk.test.ts" line="245" assertions="3" />
+      <testcase name="rejects a planDir with a tampered planHash (PLAN_HASH_MISMATCH)" classname="renderChunk()" time="0.001064" file="src/services/distributed/renderChunk.test.ts" line="264" assertions="3" />
+      <testcase name="rejects a planDir whose encoder.json is missing runtimeEnv" classname="renderChunk()" time="0.000976" file="src/services/distributed/renderChunk.test.ts" line="293" assertions="2" />
+    </testsuite>
+    <testsuite name="renderChunk() — variables threading" file="src/services/distributed/renderChunk.test.ts" line="324" tests="1" assertions="3" failures="0" skipped="0" time="1.127" hostname="c0f3ebdcc432">
+      <testcase name="chunks rendered with different variables produce different output fingerprints" classname="renderChunk() — variables threading" time="1.127913" file="src/services/distributed/renderChunk.test.ts" line="352" assertions="3" />
+    </testsuite>
+    <testsuite name="resolvePresetForLockedEncoder" file="src/services/distributed/renderChunk.test.ts" line="421" tests="4" assertions="7" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="flips codec from h264 to h265 when encoder is libx265-software" classname="resolvePresetForLockedEncoder" time="0.000145" file="src/services/distributed/renderChunk.test.ts" line="426" assertions="4" />
+      <testcase name="leaves the preset unchanged for libx264-software" classname="resolvePresetForLockedEncoder" time="0.000059" file="src/services/distributed/renderChunk.test.ts" line="435" assertions="1" />
+      <testcase name="leaves the preset unchanged for prores-software" classname="resolvePresetForLockedEncoder" time="0.000037" file="src/services/distributed/renderChunk.test.ts" line="441" assertions="1" />
+      <testcase name="leaves the preset unchanged for png-sequence" classname="resolvePresetForLockedEncoder" time="0.000017" file="src/services/distributed/renderChunk.test.ts" line="452" assertions="1" />
+    </testsuite>
+    <testsuite name="resolveLockedVp9CpuUsed" file="src/services/distributed/renderChunk.test.ts" line="459" tests="3" assertions="3" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="uses the locked value for new VP9 planDirs" classname="resolveLockedVp9CpuUsed" time="0.000023" file="src/services/distributed/renderChunk.test.ts" line="460" assertions="1" />
+      <testcase name="preserves legacy distributed VP9 replay behavior when the field is absent" classname="resolveLockedVp9CpuUsed" time="0.000033" file="src/services/distributed/renderChunk.test.ts" line="464" assertions="1" />
+      <testcase name="returns undefined for non-VP9 planDirs" classname="resolveLockedVp9CpuUsed" time="0.000055" file="src/services/distributed/renderChunk.test.ts" line="468" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

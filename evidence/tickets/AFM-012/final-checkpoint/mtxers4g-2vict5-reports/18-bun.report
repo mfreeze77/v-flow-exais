@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="55" assertions="126" failures="0" skipped="0" time="1.080053714">
+  <testsuite name="src/services/distributed/planV2.test.ts" file="src/services/distributed/planV2.test.ts" tests="55" assertions="126" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="Plan v2 manifest" file="src/services/distributed/planV2.test.ts" line="169" tests="47" assertions="98" failures="0" skipped="0" time="0.169" hostname="c0f3ebdcc432">
+      <testcase name="is deterministic without changing the manifest or result wire shapes" classname="Plan v2 manifest" time="0.012034" file="src/services/distributed/planV2.test.ts" line="170" assertions="10" />
+      <testcase name="keeps legacy conversion names as byte-identical compatibility aliases" classname="Plan v2 manifest" time="0.007305" file="src/services/distributed/planV2.test.ts" line="219" assertions="4" />
+      <testcase name="accepts and materializes the same bounded timing produced for v1" classname="Plan v2 manifest" time="0.009858" file="src/services/distributed/planV2.test.ts" line="233" assertions="2" />
+      <testcase name="rejects a stale v1 source hash before content-addressing its bytes" classname="Plan v2 manifest" time="0.001102" file="src/services/distributed/planV2.test.ts" line="257" assertions="5" />
+      <testcase name="rejects symlinks instead of silently omitting them from the manifest" classname="Plan v2 manifest" time="0.000966" file="src/services/distributed/planV2.test.ts" line="279" assertions="1" />
+      <testcase name="rejects zero-based extracted-frame filenames before dependency selection" classname="Plan v2 manifest" time="0.001409" file="src/services/distributed/planV2.test.ts" line="291" assertions="1" />
+      <testcase name="omits the extraction-cache completion sentinel from exact frame dependencies" classname="Plan v2 manifest" time="0.004367" file="src/services/distributed/planV2.test.ts" line="302" assertions="3" />
+      <testcase name="omits the extraction-cache completion sentinel from the full-source fallback" classname="Plan v2 manifest" time="0.003712" file="src/services/distributed/planV2.test.ts" line="320" assertions="3" />
+      <testcase name="keeps non-canonical completion-marker paths over-included in full-source mode" classname="Plan v2 manifest" time="0.009051" file="src/services/distributed/planV2.test.ts" line="338" assertions="2" />
+      <testcase name="rejects a non-empty file extraction sentinel in exact-dependency mode" classname="Plan v2 manifest" time="0.001411" file="src/services/distributed/planV2.test.ts" line="359" assertions="1" />
+      <testcase name="rejects a directory extraction sentinel in exact-dependency mode" classname="Plan v2 manifest" time="0.001214" file="src/services/distributed/planV2.test.ts" line="359" assertions="1" />
+      <testcase name="rejects a symlink extraction sentinel in exact-dependency mode" classname="Plan v2 manifest" time="0.001211" file="src/services/distributed/planV2.test.ts" line="359" assertions="1" />
+      <testcase name="rejects a non-empty file extraction sentinel in full-source mode" classname="Plan v2 manifest" time="0.001133" file="src/services/distributed/planV2.test.ts" line="359" assertions="1" />
+      <testcase name="rejects a directory extraction sentinel in full-source mode" classname="Plan v2 manifest" time="0.002126" file="src/services/distributed/planV2.test.ts" line="359" assertions="1" />
+      <testcase name="rejects a symlink extraction sentinel in full-source mode" classname="Plan v2 manifest" time="0.001272" file="src/services/distributed/planV2.test.ts" line="359" assertions="1" />
+      <testcase name="selects audio only for the assembler" classname="Plan v2 manifest" time="0.002855" file="src/services/distributed/planV2.test.ts" line="383" assertions="4" />
+      <testcase name="uses the runtime frame lookup to select exact video frames per chunk" classname="Plan v2 manifest" time="0.003995" file="src/services/distributed/planV2.test.ts" line="396" assertions="5" />
+      <testcase name="materializes empty video directories for chunks where the video is inactive" classname="Plan v2 manifest" time="0.007426" file="src/services/distributed/planV2.test.ts" line="412" assertions="5" />
+      <testcase name="preserves matrix-only video color metadata" classname="Plan v2 manifest" time="0.004786" file="src/services/distributed/planV2.test.ts" line="463" assertions="1" />
+      <testcase name="preserves transfer-only video color metadata" classname="Plan v2 manifest" time="0.004684" file="src/services/distributed/planV2.test.ts" line="463" assertions="1" />
+      <testcase name="preserves primaries-only video color metadata" classname="Plan v2 manifest" time="0.009095" file="src/services/distributed/planV2.test.ts" line="463" assertions="1" />
+      <testcase name="preserves null video color metadata" classname="Plan v2 manifest" time="0.003174" file="src/services/distributed/planV2.test.ts" line="486" assertions="1" />
+      <testcase name="rejects a missing colorTransfer color component" classname="Plan v2 manifest" time="0.001201" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a null colorTransfer color component" classname="Plan v2 manifest" time="0.001407" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a number colorTransfer color component" classname="Plan v2 manifest" time="0.000927" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a object colorTransfer color component" classname="Plan v2 manifest" time="0.001574" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a missing colorPrimaries color component" classname="Plan v2 manifest" time="0.001478" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a null colorPrimaries color component" classname="Plan v2 manifest" time="0.001028" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a number colorPrimaries color component" classname="Plan v2 manifest" time="0.001012" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a object colorPrimaries color component" classname="Plan v2 manifest" time="0.000948" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a missing colorSpace color component" classname="Plan v2 manifest" time="0.001034" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a null colorSpace color component" classname="Plan v2 manifest" time="0.001055" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a number colorSpace color component" classname="Plan v2 manifest" time="0.000967" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="rejects a object colorSpace color component" classname="Plan v2 manifest" time="0.001102" file="src/services/distributed/planV2.test.ts" line="506" assertions="1" />
+      <testcase name="continues to reject an empty video codec" classname="Plan v2 manifest" time="0.001139" file="src/services/distributed/planV2.test.ts" line="547" assertions="1" />
+      <testcase name="continues to reject an empty video identifier" classname="Plan v2 manifest" time="0.00099" file="src/services/distributed/planV2.test.ts" line="547" assertions="1" />
+      <testcase name="continues to reject an empty video source path" classname="Plan v2 manifest" time="0.001291" file="src/services/distributed/planV2.test.ts" line="547" assertions="1" />
+      <testcase name="continues to reject an empty frame pattern" classname="Plan v2 manifest" time="0.000969" file="src/services/distributed/planV2.test.ts" line="547" assertions="1" />
+      <testcase name="rejects an extracted video identifier that escapes the video-frame root" classname="Plan v2 manifest" time="0.001253" file="src/services/distributed/planV2.test.ts" line="557" assertions="1" />
+      <testcase name="falls back to the full source frame pack when video metadata is absent" classname="Plan v2 manifest" time="0.003398" file="src/services/distributed/planV2.test.ts" line="566" assertions="8" />
+      <testcase name="rejects malformed v1 video and chunk metadata at the JSON boundary" classname="Plan v2 manifest" time="0.002678" file="src/services/distributed/planV2.test.ts" line="584" assertions="2" />
+      <testcase name="rejects a fractional v1 fps contract that v2 cannot represent" classname="Plan v2 manifest" time="0.001428" file="src/services/distributed/planV2.test.ts" line="611" assertions="1" />
+      <testcase name="materializes and revalidates strict chunk and assembler subsets" classname="Plan v2 manifest" time="0.006416" file="src/services/distributed/planV2.test.ts" line="617" assertions="7" />
+      <testcase name="uses v2 subset integrity instead of the whole-v1 plan hash" classname="Plan v2 manifest" time="0.054235" file="src/services/distributed/planV2.test.ts" line="650" assertions="1" />
+      <testcase name="rejects missing and corrupted blobs before publishing a destination" classname="Plan v2 manifest" time="0.002746" file="src/services/distributed/planV2.test.ts" line="674" assertions="2" />
+      <testcase name="rejects manifest and post-materialization tampering" classname="Plan v2 manifest" time="0.002768" file="src/services/distributed/planV2.test.ts" line="698" assertions="4" />
+      <testcase name="rejects a missing content-addressed artifact" classname="Plan v2 manifest" time="0.002027" file="src/services/distributed/planV2.test.ts" line="724" assertions="1" />
+    </testsuite>
+    <testsuite name="Plan v2 artifact publisher" file="src/services/distributed/planV2.test.ts" line="747" tests="7" assertions="26" failures="0" skipped="0" time="0.012" hostname="c0f3ebdcc432">
+      <testcase name="publishes the manifest last and hard-links local immutable blobs" classname="Plan v2 artifact publisher" time="0.00237" file="src/services/distributed/planV2.test.ts" line="748" assertions="2" />
+      <testcase name="falls back to an atomic copy when hard-linking is unavailable" classname="Plan v2 artifact publisher" time="0.003324" file="src/services/distributed/planV2.test.ts" line="770" assertions="2" />
+      <testcase name="produces byte-identical local CAS output through both publication paths" classname="Plan v2 artifact publisher" time="0.005489" file="src/services/distributed/planV2.test.ts" line="800" assertions="8" />
+      <testcase name="supports a remote publisher contract with no shared destination filesystem" classname="Plan v2 artifact publisher" time="0.001251" file="src/services/distributed/planV2.test.ts" line="820" assertions="9" />
+      <testcase name="rejects malformed digests before constructing a local CAS path" classname="Plan v2 artifact publisher" time="0.00048" file="src/services/distributed/planV2.test.ts" line="843" assertions="1" />
+      <testcase name="refuses to commit a manifest until every referenced blob is durable" classname="Plan v2 artifact publisher" time="0.000374" file="src/services/distributed/planV2.test.ts" line="855" assertions="1" />
+      <testcase name="aborts without committing a manifest when a blob publish fails" classname="Plan v2 artifact publisher" time="0.001054" file="src/services/distributed/planV2.test.ts" line="866" assertions="3" />
+    </testsuite>
+    <testsuite name="Plan v2 hash schema" file="src/services/distributed/planV2.test.ts" line="890" tests="1" assertions="2" failures="0" skipped="0" time="0.002" hostname="c0f3ebdcc432">
+      <testcase name="does not reuse a raw artifact digest as its manifest hash" classname="Plan v2 hash schema" time="0.002621" file="src/services/distributed/planV2.test.ts" line="891" assertions="2" />
+    </testsuite>
+  </testsuite>
+</testsuites>

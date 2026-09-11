@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="8" assertions="30" failures="0" skipped="0" time="0.584616828">
+  <testsuite name="src/services/animatedGifPrep.test.ts" file="src/services/animatedGifPrep.test.ts" tests="8" assertions="30" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="buildAnimatedGifTranscodeArgs" file="src/services/animatedGifPrep.test.ts" line="69" tests="2" assertions="8" failures="0" skipped="0" time="0.003" hostname="c0f3ebdcc432">
+      <testcase name="builds VP9 WebM args with alpha and finite-loop expansion" classname="buildAnimatedGifTranscodeArgs" time="0.000254" file="src/services/animatedGifPrep.test.ts" line="70" assertions="7" />
+      <testcase name="clone-pads the tail when the clip window outlives the looped source" classname="buildAnimatedGifTranscodeArgs" time="0.003013" file="src/services/animatedGifPrep.test.ts" line="87" assertions="1" />
+    </testsuite>
+    <testsuite name="prepareAnimatedGifInputs" file="src/services/animatedGifPrep.test.ts" line="99" tests="6" assertions="22" failures="0" skipped="0" time="0.008" hostname="c0f3ebdcc432">
+      <testcase name="rewrites animated GIF images to muted looped videos" classname="prepareAnimatedGifInputs" time="0.007265" file="src/services/animatedGifPrep.test.ts" line="100" assertions="12" />
+      <testcase name="leaves single-frame GIF images unchanged" classname="prepareAnimatedGifInputs" time="0.000646" file="src/services/animatedGifPrep.test.ts" line="135" assertions="2" />
+      <testcase name="lets data-loop override infinite GIF metadata" classname="prepareAnimatedGifInputs" time="0.001259" file="src/services/animatedGifPrep.test.ts" line="150" assertions="1" />
+      <testcase name="expands finite loop metadata into the transcoded source" classname="prepareAnimatedGifInputs" time="0.000927" file="src/services/animatedGifPrep.test.ts" line="168" assertions="4" />
+      <testcase name="uses source asset mappings for remote GIF URLs" classname="prepareAnimatedGifInputs" time="0.000992" file="src/services/animatedGifPrep.test.ts" line="188" assertions="2" />
+      <testcase name="propagates actionable transcode failure messages" classname="prepareAnimatedGifInputs" time="0.000772" file="src/services/animatedGifPrep.test.ts" line="213" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

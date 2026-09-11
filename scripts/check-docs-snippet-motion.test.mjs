@@ -1,5 +1,6 @@
 import { strict as assert } from "node:assert";
-import { readFileSync } from "node:fs";
+import { mkdtempSync, readFileSync, rmSync } from "node:fs";
+import { tmpdir } from "node:os";
 import { dirname, join } from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
@@ -133,7 +134,10 @@ test("every autoplaying component in docs/snippets currently satisfies the guard
 // runtime harness for docs snippets (this whole check is source-level for that
 // reason).
 test("ReplicaCompare's control starts both films and does not gate sync on reduced motion", () => {
-  const source = readFileSync(join(here, "../docs/snippets/replica-compare.jsx"), "utf8");
+  const source = readFileSync(
+    join(here, "../docs/upstream/hyperframes/snippets/replica-compare.jsx"),
+    "utf8",
+  );
   // startBoth must play both elements...
   const startBoth = source.match(/const startBoth = \(\) => \{([\s\S]*?)\n {2}\};/);
   assert.ok(startBoth, "found startBoth");
@@ -163,7 +167,10 @@ test("ReplicaCompare's control starts both films and does not gate sync on reduc
 // instead of toggling sound. This bug escaped static review and the gate; it only
 // surfaced by driving the live preview, so pin it.
 test("HoverVideo's control does not bubble its click to a wrapping link", () => {
-  const source = readFileSync(join(here, "../docs/snippets/hover-video.jsx"), "utf8");
+  const source = readFileSync(
+    join(here, "../docs/upstream/hyperframes/snippets/hover-video.jsx"),
+    "utf8",
+  );
   const onClick = source.match(/onClick=\{\(e\) => \{([\s\S]*?)\n {8}\}\}/);
   assert.ok(onClick, "found the control's click handler");
   assert.match(onClick[1], /e\.preventDefault\(\)/, "default navigation is prevented");
@@ -171,5 +178,29 @@ test("HoverVideo's control does not bubble its click to a wrapping link", () => 
     onClick[1],
     /e\.stopPropagation\(\)/,
     "the click does not bubble to a wrapping link",
+  );
+});
+
+// The checker pointed at `docs/snippets/`, the layout of the upstream
+// repository it came from. The import placed those files under docs/upstream/
+// instead, so the check crashed with ENOENT before auditing anything — and
+// since it is the first link in the `bun run lint` chain, every check after it
+// was skipped too. Running oxlint on its own reported a clean repository and
+// concealed the whole thing.
+test("audits the snippets at the path the import actually wrote", () => {
+  const findings = auditSnippets();
+  // The assertion that matters is that it audited something rather than
+  // throwing: a check with nothing to check proves nothing.
+  assert.ok(Array.isArray(findings));
+});
+
+test("refuses to pass when there are no snippets to audit", () => {
+  const empty = mkdtempSync(join(tmpdir(), "snippets-"));
+  assert.throws(() => auditSnippets(empty), /Nothing was audited/);
+  rmSync(empty, { recursive: true, force: true });
+
+  assert.throws(
+    () => auditSnippets(join(empty, "does-not-exist")),
+    /Docs snippets directory not found/,
   );
 });

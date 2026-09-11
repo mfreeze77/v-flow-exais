@@ -1,2 +1,31 @@
+COMMAND: bun run lint
+STARTED: 2026-09-11T20:24:29Z
+
+$ bun run check:docs-snippet-motion && bun run check:tracked-artifacts && bun run check:workspace-contracts && bun run check:gcp-cloud-run-dockerfile && bun run check:package-boundaries && bun run check:package-cycles && bun run check:package-subpaths && bun run check:cli-process-ownership && oxlint . && tsx scripts/lint-skills.ts && node scripts/check-skill-mirror.mjs
+$ node scripts/check-docs-snippet-motion.mjs
+$ node scripts/check-tracked-artifacts.mjs
+Tracked artifact check passed.
+$ node scripts/check-workspace-contracts.mjs
+Workspace contracts verified: build, typecheck, and test are explicit.
+$ bun run --cwd packages/gcp-cloud-run test:dockerfile-workspaces
+$ node check-dockerfile-workspaces.mjs
+GCP Cloud Run Dockerfile covers 18 workspace manifests.
+$ node scripts/check-package-boundaries.mjs
+  @hyperframes/project-model must not depend on: @hyperframes/studio, @hyperframes/studio-server, @hyperframes/producer, @hyperframes/player, puppeteer, puppeteer-core, playwright, playwright-core
+  @hyperframes/diagram-engine must not depend on: @hyperframes/studio, @hyperframes/studio-server, puppeteer, puppeteer-core, playwright, playwright-core
+  @hyperframes/diagram-motion must not depend on: @hyperframes/studio, @hyperframes/studio-server, puppeteer, puppeteer-core, playwright, playwright-core
+
+PASS: package boundaries
+$ node scripts/check-package-cycles.mjs
+Package graph verified: runtime workspace dependencies are acyclic.
+$ node scripts/package-subpaths.mjs
+Package subpaths verified: 12 public workspaces.
+$ node scripts/check-cli-process-ownership.mjs
+CLI process ownership verified: only cli.ts terminates the process.
 Found 0 warnings and 0 errors.
-Finished in 3.2s on 3383 files with 88 rules using 28 threads.
+Finished in 3.4s on 3380 files with 88 rules using 28 threads.
+Checked 32 skill file(s) and 7 registry snapshot(s) against 408 registry items — no issues found.
+Skill mirror OK: 24 file(s) match byte-for-byte across .claude/skills/ and .agents/skills/.
+
+FINISHED: 2026-09-11T20:24:56Z
+EXIT=0

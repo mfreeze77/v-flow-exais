@@ -1,3 +1,6 @@
+COMMAND: bun run check:workspace
+STARTED: 2026-09-11T20:25:24Z
+
 $ bun run tools/build/workspace-cli.ts
 workspace packages: 18
   public   @hyperframes/aws-lambda            packages/aws-lambda
@@ -20,3 +23,6 @@ workspace packages: 18
   public   @hyperframes/studio-server         packages/studio-server
 
 PASS: provenance/workspace-report.json
+
+FINISHED: 2026-09-11T20:25:24Z
+EXIT=0

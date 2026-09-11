@@ -1,6 +1,6 @@
 import { buildProjectApiPath } from "../utils/projectRouting";
 import { useCallback, useRef } from "react";
-import { findUnsafeDomPatchValues } from "@hyperframes/core/studio-api/finite-mutation";
+import { findUnsafeDomPatchValues } from "@hyperframes/studio-server/finite-mutation";
 import { FONT_EXT } from "../utils/mediaTypes";
 
 import { trackStudioEvent } from "../utils/studioTelemetry";

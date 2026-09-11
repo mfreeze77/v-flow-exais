@@ -187,6 +187,9 @@ export function buildLaneReport({
         exitCode: i.exitCode ?? null,
         signal: i.signal ?? null,
         evidence: i.evidenceState ?? EVIDENCE.missing,
+        // Why the evidence was rejected, carried through so a rejected report
+        // can be diagnosed from the record rather than by re-running.
+        evidenceProblems: i.evidenceProblems ?? [],
         error: i.error ?? null,
       })),
     },

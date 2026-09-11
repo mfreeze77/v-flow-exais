@@ -208,7 +208,7 @@ export async function registerCompositionRoute(
   project: ProjectDir,
   autoProxy: boolean,
 ): Promise<void> {
-  const { isSafePath } = await import("@hyperframes/core/studio-api");
+  const { isSafePath } = await import("@hyperframes/studio-server");
 
   // fallow-ignore-next-line complexity
   app.get("/composition/*", async (ctx) => {

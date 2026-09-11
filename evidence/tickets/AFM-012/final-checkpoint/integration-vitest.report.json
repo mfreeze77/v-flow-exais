@@ -1,0 +1,86 @@
+{
+  "schemaVersion": 1,
+  "runId": "mtxevcnf-fy2ro6",
+  "revision": "2290e9c94b3c1da94032e370958108704c6070d4-dirty",
+  "runtime": {
+    "node": "v22.23.2",
+    "bun": null
+  },
+  "lane": "integration",
+  "runner": "vitest",
+  "command": "bun run test:integration:vitest",
+  "status": "complete",
+  "selection": {
+    "count": 9,
+    "files": [
+      "src/services/assetMediaType.test.ts",
+      "src/services/coreRuntimeBrowser.test.ts",
+      "src/services/fileServer.file-race.test.ts",
+      "src/services/healthWorker.test.ts",
+      "src/services/htmlCompiler.mediaType.test.ts",
+      "src/services/hyperframeLint.file-race.test.ts",
+      "src/services/render/stages/compileStage.mediaType.test.ts",
+      "src/utils/audioRegression.test.ts",
+      "src/utils/streamDurationParity.test.ts"
+    ]
+  },
+  "dispatch": {
+    "dispatchedFiles": [
+      "src/services/assetMediaType.test.ts",
+      "src/services/coreRuntimeBrowser.test.ts",
+      "src/services/fileServer.file-race.test.ts",
+      "src/services/healthWorker.test.ts",
+      "src/services/htmlCompiler.mediaType.test.ts",
+      "src/services/hyperframeLint.file-race.test.ts",
+      "src/services/render/stages/compileStage.mediaType.test.ts",
+      "src/utils/audioRegression.test.ts",
+      "src/utils/streamDurationParity.test.ts"
+    ],
+    "undispatchedFiles": [],
+    "invocations": [
+      {
+        "args": [
+          "x",
+          "--no-install",
+          "vitest",
+          "run",
+          "/workspace/packages/producer/src/services/assetMediaType.test.ts",
+          "/workspace/packages/producer/src/services/coreRuntimeBrowser.test.ts",
+          "/workspace/packages/producer/src/services/fileServer.file-race.test.ts",
+          "/workspace/packages/producer/src/services/healthWorker.test.ts",
+          "/workspace/packages/producer/src/services/htmlCompiler.mediaType.test.ts",
+          "/workspace/packages/producer/src/services/hyperframeLint.file-race.test.ts",
+          "/workspace/packages/producer/src/services/render/stages/compileStage.mediaType.test.ts",
+          "/workspace/packages/producer/src/utils/audioRegression.test.ts",
+          "/workspace/packages/producer/src/utils/streamDurationParity.test.ts"
+        ],
+        "files": [
+          "src/services/assetMediaType.test.ts",
+          "src/services/coreRuntimeBrowser.test.ts",
+          "src/services/fileServer.file-race.test.ts",
+          "src/services/healthWorker.test.ts",
+          "src/services/htmlCompiler.mediaType.test.ts",
+          "src/services/hyperframeLint.file-race.test.ts",
+          "src/services/render/stages/compileStage.mediaType.test.ts",
+          "src/utils/audioRegression.test.ts",
+          "src/utils/streamDurationParity.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      }
+    ]
+  },
+  "execution": {
+    "collectedFiles": 9,
+    "casesPassed": 77,
+    "casesFailed": 0,
+    "casesSkipped": 0,
+    "collectionErrors": 0
+  },
+  "evidenceComplete": true,
+  "coverageLimitations": []
+}

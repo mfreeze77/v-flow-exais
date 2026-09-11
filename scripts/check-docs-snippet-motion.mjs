@@ -26,11 +26,25 @@
  * instead, which is what actually regresses.
  */
 
-import { readFileSync, readdirSync } from "node:fs";
-import { dirname, join, resolve } from "node:path";
+import { existsSync, readFileSync, readdirSync } from "node:fs";
+import { dirname, join, relative, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-const SNIPPETS_DIR = resolve(dirname(fileURLToPath(import.meta.url)), "..", "docs", "snippets");
+/**
+ * The import placed the upstream docs snippets under docs/upstream/, per their
+ * `retain-reference-docs` disposition. This constant still named the upstream
+ * repository's own layout, so the check crashed with ENOENT on its first line —
+ * and because it is the FIRST link in the `bun run lint` chain, nothing after it
+ * ever ran. Running oxlint alone looked clean and hid that entirely.
+ */
+const SNIPPETS_DIR = resolve(
+  dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "docs",
+  "upstream",
+  "hyperframes",
+  "snippets",
+);
 
 /**
  * Split a snippet into its exported components.
@@ -119,8 +133,20 @@ export function findMotionGuardViolations(source) {
 }
 
 export function auditSnippets(dir = SNIPPETS_DIR) {
-  return readdirSync(dir)
-    .filter((name) => /\.(?:jsx|tsx)$/.test(name))
+  // An absent or empty directory means the snippets this check exists to audit
+  // are gone. That must fail, and say so — never pass by having nothing to
+  // check. An ENOENT stack trace from readdirSync says the same thing far less
+  // clearly, and reads like a broken script rather than a real finding.
+  const names = existsSync(dir)
+    ? readdirSync(dir).filter((name) => /\.(?:jsx|tsx)$/.test(name))
+    : null;
+  if (names === null) {
+    throw new Error(`Docs snippets directory not found: ${dir}. Nothing was audited.`);
+  }
+  if (names.length === 0) {
+    throw new Error(`No docs snippets found in ${dir}. Nothing was audited.`);
+  }
+  return names
     .flatMap((name) =>
       splitComponents(readFileSync(join(dir, name), "utf8"))
         .filter((component) => autoplays(component.body))
@@ -139,7 +165,9 @@ if (import.meta.url === `file://${process.argv[1]}`) {
     console.error("Docs snippets that autoplay must honour prefers-reduced-motion:\n");
     for (const { name, component, problems } of failures) {
       for (const problem of problems)
-        console.error(`  docs/snippets/${name} → ${component} — ${problem}`);
+        console.error(
+          `  ${relative(process.cwd(), join(SNIPPETS_DIR, name))} → ${component} — ${problem}`,
+        );
     }
     console.error("\nSee the header of scripts/check-docs-snippet-motion.mjs for why.");
     process.exit(1);

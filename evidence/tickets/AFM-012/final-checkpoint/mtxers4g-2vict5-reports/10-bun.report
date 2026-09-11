@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="2" assertions="13" failures="0" skipped="0" time="0.363827558">
+  <testsuite name="src/services/deterministicFonts-bundledSubset.test.ts" file="src/services/deterministicFonts-bundledSubset.test.ts" tests="2" assertions="13" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="bundled subset coverage" file="src/services/deterministicFonts-bundledSubset.test.ts" line="76" tests="1" assertions="8" failures="0" skipped="0" time="0.331" hostname="c0f3ebdcc432">
+      <testcase name="declares the bundle&apos;s subset and keeps the subsets it omits" classname="bundled subset coverage" time="0.331216" file="src/services/deterministicFonts-bundledSubset.test.ts" line="77" assertions="8" />
+    </testsuite>
+    <testsuite name="bundled Latin precedence" file="src/services/deterministicFonts-bundledSubset.test.ts" line="102" tests="1" assertions="5" failures="0" skipped="0" time="0.003" hostname="c0f3ebdcc432">
+      <testcase name="retains text subsets and places bundled Latin after overlapping fetched faces" classname="bundled Latin precedence" time="0.003617" file="src/services/deterministicFonts-bundledSubset.test.ts" line="103" assertions="5" />
+    </testsuite>
+  </testsuite>
+</testsuites>

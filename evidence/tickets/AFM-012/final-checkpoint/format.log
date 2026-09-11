@@ -1,4 +1,11 @@
+COMMAND: bun run format:check
+STARTED: 2026-09-11T20:24:56Z
+
+$ oxfmt --check .
 Checking formatting...
 
 All matched files use the correct format.
-Finished in 8718ms on 5285 files using 28 threads.
+Finished in 10327ms on 5294 files using 28 threads.
+
+FINISHED: 2026-09-11T20:25:06Z
+EXIT=0

@@ -1,443 +1,542 @@
-$ node --test scripts/test-classification.test.mjs scripts/run-test-lane.test.mjs scripts/lane-report.test.mjs && node scripts/check-test-classification.mjs
+COMMAND: bun run --cwd packages/producer test:classification
+STARTED: 2026-09-11T20:28:08Z
+
+$ node --test scripts/test-classification.test.mjs scripts/run-test-lane.test.mjs scripts/lane-report.test.mjs scripts/framework-report.test.mjs && node scripts/check-test-classification.mjs
 TAP version 13
+# Subtest: framework reporting — real Bun runs
+    # Subtest: reads passing totals from Bun's own JUnit output
+    ok 1 - reads passing totals from Bun's own JUnit output
+      ---
+      duration_ms: 49.78123
+      type: 'test'
+      ...
+    # Subtest: reports one collected file for a file containing several describe blocks
+    ok 2 - reports one collected file for a file containing several describe blocks
+      ---
+      duration_ms: 38.248421
+      type: 'test'
+      ...
+    # Subtest: reads a real failure as a failure
+    ok 3 - reads a real failure as a failure
+      ---
+      duration_ms: 39.106277
+      type: 'test'
+      ...
+    # Subtest: counts a skipped case separately from a passing one
+    ok 4 - counts a skipped case separately from a passing one
+      ---
+      duration_ms: 39.282486
+      type: 'test'
+      ...
+    1..4
+ok 1 - framework reporting — real Bun runs
+  ---
+  duration_ms: 167.22327
+  type: 'suite'
+  ...
+# Subtest: framework reporting — real Vitest runs
+    # Subtest: reads passing totals from Vitest's own JSON output
+    ok 1 - reads passing totals from Vitest's own JSON output
+      ---
+      duration_ms: 678.580759
+      type: 'test'
+      ...
+    # Subtest: reports one collected file for a file containing several describe blocks
+    ok 2 - reports one collected file for a file containing several describe blocks
+      ---
+      duration_ms: 630.875071
+      type: 'test'
+      ...
+    # Subtest: reads a real failure as a failure
+    ok 3 - reads a real failure as a failure
+      ---
+      duration_ms: 591.409508
+      type: 'test'
+      ...
+    # Subtest: records a file that throws on import as a collection error, not as zero failures
+    ok 4 - records a file that throws on import as a collection error, not as zero failures
+      ---
+      duration_ms: 651.154236
+      type: 'test'
+      ...
+    1..4
+ok 2 - framework reporting — real Vitest runs
+  ---
+  duration_ms: 2552.387861
+  type: 'suite'
+  ...
+# Subtest: framework reporting — absent and inconsistent evidence
+    # Subtest: treats a report the runner never wrote as missing, never as an empty pass
+    ok 1 - treats a report the runner never wrote as missing, never as an empty pass
+      ---
+      duration_ms: 0.866077
+      type: 'test'
+      ...
+    # Subtest: rejects a report covering more files than were dispatched
+    ok 2 - rejects a report covering more files than were dispatched
+      ---
+      duration_ms: 0.294937
+      type: 'test'
+      ...
+    # Subtest: rejects an exit code that contradicts the reported counts
+    ok 3 - rejects an exit code that contradicts the reported counts
+      ---
+      duration_ms: 0.076273
+      type: 'test'
+      ...
+    # Subtest: rejects an empty report file rather than reading it as a clean run
+    ok 4 - rejects an empty report file rather than reading it as a clean run
+      ---
+      duration_ms: 5.243534
+      type: 'test'
+      ...
+    1..4
+ok 3 - framework reporting — absent and inconsistent evidence
+  ---
+  duration_ms: 6.660917
+  type: 'suite'
+  ...
 # Subtest: lane report — a clean run
     # Subtest: reports complete with framework-confirmed totals
     ok 1 - reports complete with framework-confirmed totals
       ---
-      duration_ms: 1.078764
+      duration_ms: 1.043951
       type: 'test'
       ...
     # Subtest: records the revision, runtime, run identifier and command
     ok 2 - records the revision, runtime, run identifier and command
       ---
-      duration_ms: 0.168514
+      duration_ms: 0.18783
       type: 'test'
       ...
     1..2
-ok 1 - lane report — a clean run
+ok 4 - lane report — a clean run
   ---
-  duration_ms: 1.792923
+  duration_ms: 1.932551
   type: 'suite'
   ...
 # Subtest: lane report — injected failures
     # Subtest: a child process that cannot start invents no execution results
     ok 1 - a child process that cannot start invents no execution results
       ---
-      duration_ms: 0.188531
+      duration_ms: 0.190723
       type: 'test'
       ...
     # Subtest: a collection failure is distinct from an assertion failure
     ok 2 - a collection failure is distinct from an assertion failure
       ---
-      duration_ms: 0.102318
+      duration_ms: 0.108226
       type: 'test'
       ...
     # Subtest: fail-fast records the exact identities of undispatched files
     ok 3 - fail-fast records the exact identities of undispatched files
       ---
-      duration_ms: 0.113112
+      duration_ms: 0.122605
       type: 'test'
       ...
     # Subtest: a process killed before its final report is interrupted, not passing
     ok 4 - a process killed before its final report is interrupted, not passing
       ---
-      duration_ms: 0.082785
+      duration_ms: 0.083045
       type: 'test'
       ...
     # Subtest: a missing framework report fails evidence rather than reporting a clean empty run
     ok 5 - a missing framework report fails evidence rather than reporting a clean empty run
       ---
-      duration_ms: 0.192768
+      duration_ms: 0.181199
       type: 'test'
       ...
     # Subtest: one missing report makes the lane total unknown, not smaller
     ok 6 - one missing report makes the lane total unknown, not smaller
       ---
-      duration_ms: 0.225123
+      duration_ms: 0.270334
       type: 'test'
       ...
     1..6
-ok 2 - lane report — injected failures
+ok 5 - lane report — injected failures
   ---
-  duration_ms: 1.164907
+  duration_ms: 1.24546
   type: 'suite'
   ...
 # Subtest: lane report — evidence validation
     # Subtest: rejects a missing report
     ok 1 - rejects a missing report
       ---
-      duration_ms: 0.198973
+      duration_ms: 0.24532
       type: 'test'
       ...
     # Subtest: rejects a truncated or unparsable report
     ok 2 - rejects a truncated or unparsable report
       ---
-      duration_ms: 0.231345
+      duration_ms: 0.222135
       type: 'test'
       ...
     # Subtest: rejects a report belonging to another run
     ok 3 - rejects a report belonging to another run
       ---
-      duration_ms: 0.0862
+      duration_ms: 0.095144
       type: 'test'
       ...
     # Subtest: accepts a matching report
     ok 4 - accepts a matching report
       ---
-      duration_ms: 0.059479
+      duration_ms: 0.153614
       type: 'test'
       ...
     # Subtest: treats absent counts as unknown rather than zero
     ok 5 - treats absent counts as unknown rather than zero
       ---
-      duration_ms: 0.658063
+      duration_ms: 0.683704
       type: 'test'
       ...
     1..5
-ok 3 - lane report — evidence validation
+ok 6 - lane report — evidence validation
   ---
-  duration_ms: 1.410652
+  duration_ms: 1.61621
   type: 'suite'
   ...
 # Subtest: lane report — skips and coverage limitations
     # Subtest: retains an explicit skip as a skip, never as a pass
     ok 1 - retains an explicit skip as a skip, never as a pass
       ---
-      duration_ms: 0.114459
+      duration_ms: 0.252246
       type: 'test'
       ...
     # Subtest: preserves a framework pass while stating separately what was not exercised
     ok 2 - preserves a framework pass while stating separately what was not exercised
       ---
-      duration_ms: 0.07649
+      duration_ms: 0.112338
       type: 'test'
       ...
     1..2
-ok 4 - lane report — skips and coverage limitations
+ok 7 - lane report — skips and coverage limitations
   ---
-  duration_ms: 0.239133
+  duration_ms: 0.423437
   type: 'suite'
   ...
 # Subtest: lane report — dispatch classification
     # Subtest: separates spawn failure, signal death and ordinary exit
     ok 1 - separates spawn failure, signal death and ordinary exit
       ---
-      duration_ms: 0.082851
+      duration_ms: 0.093475
       type: 'test'
       ...
     1..1
-ok 5 - lane report — dispatch classification
+ok 8 - lane report — dispatch classification
   ---
-  duration_ms: 0.160298
+  duration_ms: 0.184856
   type: 'suite'
   ...
 # Subtest: lane report — the summary is generated, not maintained in parallel
     # Subtest: prints unknown rather than zero when evidence is incomplete
     ok 1 - prints unknown rather than zero when evidence is incomplete
       ---
-      duration_ms: 0.22308
+      duration_ms: 0.254066
       type: 'test'
       ...
     # Subtest: lists undispatched files by name in the summary
     ok 2 - lists undispatched files by name in the summary
       ---
-      duration_ms: 0.113452
+      duration_ms: 0.1208
       type: 'test'
       ...
     1..2
-ok 6 - lane report — the summary is generated, not maintained in parallel
+ok 9 - lane report — the summary is generated, not maintained in parallel
   ---
-  duration_ms: 0.377411
+  duration_ms: 0.421062
   type: 'suite'
   ...
 # Subtest: producer lane arguments
     # Subtest: keeps the no-selector unit/integration interface
     ok 1 - keeps the no-selector unit/integration interface
       ---
-      duration_ms: 1.0885
+      duration_ms: 1.175014
       type: 'test'
       ...
     # Subtest: parses file selection without requiring a runner
     ok 2 - parses file selection without requiring a runner
       ---
-      duration_ms: 0.092307
+      duration_ms: 0.129919
       type: 'test'
       ...
     # Subtest: accepts a separator and list-only planning
     ok 3 - accepts a separator and list-only planning
       ---
-      duration_ms: 0.161726
+      duration_ms: 0.146708
       type: 'test'
       ...
     # Subtest: rejects malformed arguments []
     ok 4 - rejects malformed arguments []
       ---
-      duration_ms: 0.303024
+      duration_ms: 0.30978
       type: 'test'
       ...
     # Subtest: rejects malformed arguments ["browser"]
     ok 5 - rejects malformed arguments ["browser"]
       ---
-      duration_ms: 0.071345
+      duration_ms: 0.077651
       type: 'test'
       ...
     # Subtest: rejects malformed arguments ["unit","--watch"]
     ok 6 - rejects malformed arguments ["unit","--watch"]
       ---
-      duration_ms: 0.062069
+      duration_ms: 0.815562
       type: 'test'
       ...
     # Subtest: rejects malformed arguments ["unit","vitest","--"]
     ok 7 - rejects malformed arguments ["unit","vitest","--"]
       ---
-      duration_ms: 0.056445
+      duration_ms: 0.072371
       type: 'test'
       ...
     # Subtest: rejects malformed arguments ["unit",""]
     ok 8 - rejects malformed arguments ["unit",""]
       ---
-      duration_ms: 0.715974
+      duration_ms: 0.112671
       type: 'test'
       ...
     # Subtest: rejects malformed arguments ["unit","--","--list"]
     ok 9 - rejects malformed arguments ["unit","--","--list"]
       ---
-      duration_ms: 0.150108
+      duration_ms: 0.127784
       type: 'test'
       ...
     1..9
-ok 7 - producer lane arguments
+ok 10 - producer lane arguments
   ---
-  duration_ms: 3.661804
+  duration_ms: 3.997919
   type: 'suite'
   ...
 # Subtest: classified file selection
     # Subtest: selects the requested file instead of the full Vitest lane (original regression)
     ok 1 - selects the requested file instead of the full Vitest lane (original regression)
       ---
-      duration_ms: 0.409527
+      duration_ms: 0.433845
       type: 'test'
       ...
     # Subtest: retains both full-lane and runner-specific defaults
     ok 2 - retains both full-lane and runner-specific defaults
       ---
-      duration_ms: 0.114071
+      duration_ms: 0.124495
       type: 'test'
       ...
     # Subtest: intersects directory selection with the selected lane and runner
     ok 3 - intersects directory selection with the selected lane and runner
       ---
-      duration_ms: 0.16579
+      duration_ms: 0.177041
       type: 'test'
       ...
     # Subtest: deduplicates overlapping selectors without changing inventory order
     ok 4 - deduplicates overlapping selectors without changing inventory order
       ---
-      duration_ms: 0.126764
+      duration_ms: 0.131406
       type: 'test'
       ...
     # Subtest: accepts package-relative, repository-relative, absolute and backslash paths
     ok 5 - accepts package-relative, repository-relative, absolute and backslash paths
       ---
-      duration_ms: 0.409559
+      duration_ms: 0.450923
       type: 'test'
       ...
     # Subtest: accepts paths containing spaces as one argument
     ok 6 - accepts paths containing spaces as one argument
       ---
-      duration_ms: 0.089445
+      duration_ms: 0.090148
       type: 'test'
       ...
     # Subtest: rejects missing, abbreviated and glob selectors rather than falling back
     ok 7 - rejects missing, abbreviated and glob selectors rather than falling back
       ---
-      duration_ms: 0.223185
+      duration_ms: 0.254788
       type: 'test'
       ...
     # Subtest: rejects one invalid selector even if another selector matches
     ok 8 - rejects one invalid selector even if another selector matches
       ---
-      duration_ms: 0.07987
+      duration_ms: 0.099133
       type: 'test'
       ...
     # Subtest: rejects wrong-lane and wrong-runner files
     ok 9 - rejects wrong-lane and wrong-runner files
       ---
-      duration_ms: 0.0921
+      duration_ms: 0.103194
       type: 'test'
       ...
     # Subtest: rejects paths outside the producer package and control characters
     ok 10 - rejects paths outside the producer package and control characters
       ---
-      duration_ms: 0.095306
+      duration_ms: 0.105878
       type: 'test'
       ...
     # Subtest: fails rather than reports green when the requested lane is empty
     ok 11 - fails rather than reports green when the requested lane is empty
       ---
-      duration_ms: 0.069875
+      duration_ms: 0.049613
       type: 'test'
       ...
     # Subtest: does not mutate the inventory
     ok 12 - does not mutate the inventory
       ---
-      duration_ms: 0.10713
+      duration_ms: 0.114534
       type: 'test'
       ...
     1..12
-ok 8 - classified file selection
+ok 11 - classified file selection
   ---
-  duration_ms: 2.21712
+  duration_ms: 2.390326
   type: 'suite'
   ...
 # Subtest: runner invocation contract
     # Subtest: uses absolute Vitest filters and prohibits automatic dependency installation
     ok 1 - uses absolute Vitest filters and prohibits automatic dependency installation
       ---
-      duration_ms: 0.232707
+      duration_ms: 0.293171
       type: 'test'
       ...
     # Subtest: preserves a fresh Bun process and explicit ./ file path for each file
     ok 2 - preserves a fresh Bun process and explicit ./ file path for each file
       ---
-      duration_ms: 0.381469
+      duration_ms: 0.592023
       type: 'test'
       ...
     # Subtest: refuses a Vitest substring collision with any unselected classified file
     ok 3 - refuses a Vitest substring collision with any unselected classified file
       ---
-      duration_ms: 0.222485
+      duration_ms: 0.223687
       type: 'test'
       ...
     # Subtest: lists the selected files without starting a process
     ok 4 - lists the selected files without starting a process
       ---
-      duration_ms: 0.176499
+      duration_ms: 0.840735
       type: 'test'
       ...
     # Subtest: uses the package cwd, preserves environment and overrides only the lane
     ok 5 - uses the package cwd, preserves environment and overrides only the lane
       ---
-      duration_ms: 0.087099
+      duration_ms: 0.202988
       type: 'test'
       ...
     # Subtest: stops after a Vitest failure and reports unlaunched Bun files
     ok 6 - stops after a Vitest failure and reports unlaunched Bun files
       ---
-      duration_ms: 0.567664
+      duration_ms: 0.122428
       type: 'test'
       ...
     # Subtest: stops after a Bun failure without executing subsequent files
     ok 7 - stops after a Bun failure without executing subsequent files
       ---
-      duration_ms: 0.133708
+      duration_ms: 0.101132
       type: 'test'
       ...
     # Subtest: treats a signalled runner as failure
     ok 8 - treats a signalled runner as failure
       ---
-      duration_ms: 0.182096
+      duration_ms: 0.205358
       type: 'test'
       ...
     # Subtest: propagates spawn errors and does not claim the failed launch executed files
     ok 9 - propagates spawn errors and does not claim the failed launch executed files
       ---
-      duration_ms: 0.433865
+      duration_ms: 0.237821
       type: 'test'
       ...
     # Subtest: validates every selector before spawning even one child
     ok 10 - validates every selector before spawning even one child
       ---
-      duration_ms: 0.137937
+      duration_ms: 0.11091
       type: 'test'
       ...
     1..10
-ok 9 - runner invocation contract
+ok 12 - runner invocation contract
   ---
-  duration_ms: 2.721858
+  duration_ms: 3.124045
   type: 'suite'
   ...
 # Subtest: CLI process wiring
     # Subtest: passes exactly one selected file through real process.argv from an unrelated cwd
     ok 1 - passes exactly one selected file through real process.argv from an unrelated cwd
       ---
-      duration_ms: 51.406369
+      duration_ms: 90.449287
       type: 'test'
       ...
     # Subtest: executes a symlinked entry rather than exiting successfully without tests
     ok 2 - executes a symlinked entry rather than exiting successfully without tests
       ---
-      duration_ms: 49.930928
+      duration_ms: 91.095198
       type: 'test'
       ...
     # Subtest: exits nonzero for a typo without launching any runner
     ok 3 - exits nonzero for a typo without launching any runner
       ---
-      duration_ms: 47.869089
+      duration_ms: 83.236231
       type: 'test'
       ...
     # Subtest: list-only CLI does not launch children
     ok 4 - list-only CLI does not launch children
       ---
-      duration_ms: 49.974334
+      duration_ms: 81.198592
       type: 'test'
       ...
     # Subtest: preserves the failing child exit status at the CLI boundary
     ok 5 - preserves the failing child exit status at the CLI boundary
       ---
-      duration_ms: 50.534698
+      duration_ms: 82.296389
       type: 'test'
       ...
     1..5
-ok 10 - CLI process wiring
+ok 13 - CLI process wiring
   ---
-  duration_ms: 249.881943
+  duration_ms: 428.461488
   type: 'suite'
   ...
 # Subtest: runs the new regressions from the existing classification script
-ok 11 - runs the new regressions from the existing classification script
+ok 14 - runs the new regressions from the existing classification script
   ---
-  duration_ms: 1.696074
+  duration_ms: 2.157886
   type: 'test'
   ...
 # Subtest: producer test classification
     # Subtest: classifies each supported runner into one lane
     ok 1 - classifies each supported runner into one lane
       ---
-      duration_ms: 0.984018
+      duration_ms: 1.080959
       type: 'test'
       ...
     # Subtest: rejects missing and ambiguous runner imports
     ok 2 - rejects missing and ambiguous runner imports
       ---
-      duration_ms: 0.344383
+      duration_ms: 0.343633
       type: 'test'
       ...
     # Subtest: classifies every current source test exactly once
     ok 3 - classifies every current source test exactly once
       ---
-      duration_ms: 248.622598
+      duration_ms: 296.268431
       type: 'test'
       ...
     # Subtest: keeps the real-media natural-duration compiler test in the integration lane
     ok 4 - keeps the real-media natural-duration compiler test in the integration lane
       ---
-      duration_ms: 223.469514
+      duration_ms: 304.279434
       type: 'test'
       ...
     1..4
-ok 12 - producer test classification
+ok 15 - producer test classification
   ---
-  duration_ms: 474.726697
+  duration_ms: 603.353333
   type: 'suite'
   ...
-1..12
-# tests 59
-# suites 11
-# pass 59
+1..15
+# tests 71
+# suites 14
+# pass 71
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 533.475476
+# duration_ms 2885.005016
 {"event":"producer_tests_classified","total":103,"unit":{"bun":42,"vitest":42},"integration":{"bun":10,"vitest":9}}
+
+FINISHED: 2026-09-11T20:28:12Z
+EXIT=0

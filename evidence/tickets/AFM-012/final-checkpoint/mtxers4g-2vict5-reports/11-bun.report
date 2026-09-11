@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="20" assertions="50" failures="0" skipped="0" time="0.403308542">
+  <testsuite name="src/services/deterministicFonts-failClosed.test.ts" file="src/services/deterministicFonts-failClosed.test.ts" tests="20" assertions="50" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="injectDeterministicFontFaces — failClosedFontFetch: false (default)" file="src/services/deterministicFonts-failClosed.test.ts" line="89" tests="4" assertions="4" failures="0" skipped="0" time="0.015" hostname="c0f3ebdcc432">
+      <testcase name="swallows a network failure and returns the original HTML (no throw)" classname="injectDeterministicFontFaces — failClosedFontFetch: false (default)" time="0.013086" file="src/services/deterministicFonts-failClosed.test.ts" line="90" assertions="1" />
+      <testcase name="swallows a 404 response and returns the original HTML (no throw)" classname="injectDeterministicFontFaces — failClosedFontFetch: false (default)" time="0.001712" file="src/services/deterministicFonts-failClosed.test.ts" line="101" assertions="1" />
+      <testcase name="swallows a 5xx response and returns the original HTML (no throw)" classname="injectDeterministicFontFaces — failClosedFontFetch: false (default)" time="0.001369" file="src/services/deterministicFonts-failClosed.test.ts" line="110" assertions="1" />
+      <testcase name="preserves legacy behavior when no options object is supplied at all" classname="injectDeterministicFontFaces — failClosedFontFetch: false (default)" time="0.000041" file="src/services/deterministicFonts-failClosed.test.ts" line="119" assertions="1" />
+    </testsuite>
+    <testsuite name="injectDeterministicFontFaces — failClosedFontFetch: true" file="src/services/deterministicFonts-failClosed.test.ts" line="128" tests="15" assertions="41" failures="0" skipped="0" time="0.012" hostname="c0f3ebdcc432">
+      <testcase name="resolves URL-style family DM+Mono through Google Fonts" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.004415" file="src/services/deterministicFonts-failClosed.test.ts" line="134" assertions="5" />
+      <testcase name="resolves URL-style family IBM+Plex+Mono through Google Fonts" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.001691" file="src/services/deterministicFonts-failClosed.test.ts" line="134" assertions="5" />
+      <testcase name="resolves URL-style family Spline+Sans+Mono through Google Fonts" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.001438" file="src/services/deterministicFonts-failClosed.test.ts" line="134" assertions="5" />
+      <testcase name="throws FontFetchUnavailableError after retrying a network failure" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.001339" file="src/services/deterministicFonts-failClosed.test.ts" line="155" assertions="6" />
+      <testcase name="throws on a 4xx response when font is completely unresolvable" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.000791" file="src/services/deterministicFonts-failClosed.test.ts" line="171" assertions="3" />
+      <testcase name="throws on a 404 response when font is completely unresolvable" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.001231" file="src/services/deterministicFonts-failClosed.test.ts" line="189" assertions="2" />
+      <testcase name="fails closed when a secondary family in the authored cascade is unresolved" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.000988" file="src/services/deterministicFonts-failClosed.test.ts" line="201" assertions="2" />
+      <testcase name="throws FontFetchUnavailableError on an exhausted 5xx response" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.001811" file="src/services/deterministicFonts-failClosed.test.ts" line="226" assertions="5" />
+      <testcase name="includes the requested URL in 5xx errors" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.000818" file="src/services/deterministicFonts-failClosed.test.ts" line="241" assertions="2" />
+      <testcase name="does NOT throw when bundled-font Google Fonts supplement returns no extra faces" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.001304" file="src/services/deterministicFonts-failClosed.test.ts" line="253" assertions="1" />
+      <testcase name="does NOT throw when font-family uses unresolved CSS var() references" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.000474" file="src/services/deterministicFonts-failClosed.test.ts" line="270" assertions="1" />
+      <testcase name="does NOT throw when font-family uses a CSS var() reference with a fallback" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.000951" file="src/services/deterministicFonts-failClosed.test.ts" line="281" assertions="1" />
+      <testcase name="resolves simple CSS var() font aliases when injecting deterministic fonts" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.001829" file="src/services/deterministicFonts-failClosed.test.ts" line="292" assertions="1" />
+      <testcase name="still resolves concrete fonts alongside var() in mixed declarations" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.00132" file="src/services/deterministicFonts-failClosed.test.ts" line="307" assertions="1" />
+      <testcase name="does NOT throw when the HTML requests no fonts at all" classname="injectDeterministicFontFaces — failClosedFontFetch: true" time="0.000318" file="src/services/deterministicFonts-failClosed.test.ts" line="320" assertions="1" />
+    </testsuite>
+    <testsuite name="FontFetchError" file="src/services/deterministicFonts-failClosed.test.ts" line="330" tests="1" assertions="5" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="exposes the FONT_FETCH_FAILED typed-failure code" classname="FontFetchError" time="0.000105" file="src/services/deterministicFonts-failClosed.test.ts" line="331" assertions="5" />
+    </testsuite>
+  </testsuite>
+</testsuites>

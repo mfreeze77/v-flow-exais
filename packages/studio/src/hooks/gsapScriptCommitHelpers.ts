@@ -1,4 +1,4 @@
-import { findUnsafeDomPatchValues } from "@hyperframes/core/studio-api/finite-mutation";
+import { findUnsafeDomPatchValues } from "@hyperframes/studio-server/finite-mutation";
 import type { DomEditSelection } from "../components/editor/domEditingTypes";
 
 export { PROPERTY_DEFAULTS } from "./gsapShared";

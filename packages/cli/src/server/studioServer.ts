@@ -1,7 +1,7 @@
 /**
  * Embedded studio server for `hyperframes preview` outside the monorepo.
  *
- * Uses the shared studio API module from @hyperframes/core/studio-api,
+ * Uses the shared studio API module from @hyperframes/studio-server,
  * providing a CLI-specific adapter for single-project, in-process rendering.
  */
 

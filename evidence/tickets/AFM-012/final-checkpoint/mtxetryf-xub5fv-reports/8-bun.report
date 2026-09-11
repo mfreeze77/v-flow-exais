@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="54" assertions="204" failures="0" skipped="0" time="0.610768363">
+  <testsuite name="src/services/fileServer.test.ts" file="src/services/fileServer.test.ts" tests="54" assertions="204" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="closeFileServerSafely" file="src/services/fileServer.test.ts" line="32" tests="2" assertions="6" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="swallows and logs a throwing close instead of propagating" classname="closeFileServerSafely" time="0.000202" file="src/services/fileServer.test.ts" line="33" assertions="4" />
+      <testcase name="closes once and stays quiet on the happy path" classname="closeFileServerSafely" time="0.000074" file="src/services/fileServer.test.ts" line="47" assertions="2" />
+    </testsuite>
+    <testsuite name="injectScriptsIntoHtml" file="src/services/fileServer.test.ts" line="89" tests="3" assertions="7" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="injects the virtual time shim into head content before authored scripts" classname="injectScriptsIntoHtml" time="0.000176" file="src/services/fileServer.test.ts" line="90" assertions="2" />
+      <testcase name="supports iframe html by injecting pre-head scripts without body scripts" classname="injectScriptsIntoHtml" time="0.000086" file="src/services/fileServer.test.ts" line="105" assertions="2" />
+      <testcase name="propagates virtual time seeks into same-origin iframe documents" classname="injectScriptsIntoHtml" time="0.000039" file="src/services/fileServer.test.ts" line="116" assertions="3" />
+    </testsuite>
+    <testsuite name="isPathInside" file="src/services/fileServer.test.ts" line="123" tests="17" assertions="25" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="returns true when the child equals the parent" classname="isPathInside" time="0.000097" file="src/services/fileServer.test.ts" line="124" assertions="1" />
+      <testcase name="returns true for direct children" classname="isPathInside" time="0.000021" file="src/services/fileServer.test.ts" line="128" assertions="1" />
+      <testcase name="returns true for deeply nested descendants" classname="isPathInside" time="0.000013" file="src/services/fileServer.test.ts" line="132" assertions="1" />
+      <testcase name="rejects siblings with a shared name prefix" classname="isPathInside" time="0.000016" file="src/services/fileServer.test.ts" line="136" assertions="2" />
+      <testcase name="rejects paths outside the parent entirely" classname="isPathInside" time="0.000015" file="src/services/fileServer.test.ts" line="144" assertions="2" />
+      <testcase name="rejects path-traversal attempts that escape the parent" classname="isPathInside" time="0.000016" file="src/services/fileServer.test.ts" line="149" assertions="2" />
+      <testcase name="accepts traversal that resolves back inside the parent" classname="isPathInside" time="0.000011" file="src/services/fileServer.test.ts" line="157" assertions="1" />
+      <testcase name="treats parents with and without trailing slashes the same" classname="isPathInside" time="0.000019" file="src/services/fileServer.test.ts" line="161" assertions="2" />
+      <testcase name="resolves relative paths against the current working directory" classname="isPathInside" time="0.000017" file="src/services/fileServer.test.ts" line="166" assertions="2" />
+      <testcase name="rejects symlink escapes when realpath enforcement is enabled" classname="isPathInside" time="0.000526" file="src/services/fileServer.test.ts" line="174" assertions="2" />
+      <testsuite name="with path.win32 (cross-platform pinning tests)" file="src/services/fileServer.test.ts" line="192" tests="7" assertions="9" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+        <testcase name="returns true when the child equals the parent" classname="with path.win32 (cross-platform pinning tests) &amp;gt; isPathInside" time="0.000026" file="src/services/fileServer.test.ts" line="198" assertions="1" />
+        <testcase name="returns true for direct children" classname="with path.win32 (cross-platform pinning tests) &amp;gt; isPathInside" time="0.000039" file="src/services/fileServer.test.ts" line="202" assertions="1" />
+        <testcase name="returns true for deeply nested descendants" classname="with path.win32 (cross-platform pinning tests) &amp;gt; isPathInside" time="0.000027" file="src/services/fileServer.test.ts" line="206" assertions="1" />
+        <testcase name="rejects siblings with a shared name prefix" classname="with path.win32 (cross-platform pinning tests) &amp;gt; isPathInside" time="0.000019" file="src/services/fileServer.test.ts" line="210" assertions="2" />
+        <testcase name="rejects path-traversal attempts that escape the parent" classname="with path.win32 (cross-platform pinning tests) &amp;gt; isPathInside" time="0.000012" file="src/services/fileServer.test.ts" line="215" assertions="1" />
+        <testcase name="treats parents with and without trailing backslashes the same" classname="with path.win32 (cross-platform pinning tests) &amp;gt; isPathInside" time="0.000015" file="src/services/fileServer.test.ts" line="219" assertions="2" />
+        <testcase name="rejects paths on a different drive letter" classname="with path.win32 (cross-platform pinning tests) &amp;gt; isPathInside" time="0.000011" file="src/services/fileServer.test.ts" line="224" assertions="1" />
+      </testsuite>
+    </testsuite>
+    <testsuite name="parseRangeHeader" file="src/services/fileServer.test.ts" line="230" tests="10" assertions="20" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+      <testcase name="returns absent when there is no Range header" classname="parseRangeHeader" time="0.000235" file="src/services/fileServer.test.ts" line="233" assertions="3" />
+      <testcase name="parses a closed range bytes=START-END" classname="parseRangeHeader" time="0.000167" file="src/services/fileServer.test.ts" line="239" assertions="2" />
+      <testcase name="parses an open-ended range bytes=START- as start..EOF" classname="parseRangeHeader" time="0.000044" file="src/services/fileServer.test.ts" line="252" assertions="2" />
+      <testcase name="parses a suffix range bytes=-N as the last N bytes" classname="parseRangeHeader" time="0.000031" file="src/services/fileServer.test.ts" line="265" assertions="2" />
+      <testcase name="clamps the end of a closed range to the last valid byte" classname="parseRangeHeader" time="0.00006" file="src/services/fileServer.test.ts" line="279" assertions="1" />
+      <testcase name="returns unsatisfiable when start &gt;= size" classname="parseRangeHeader" time="0.00003" file="src/services/fileServer.test.ts" line="288" assertions="2" />
+      <testcase name="returns unsatisfiable when end &lt; start in a closed range" classname="parseRangeHeader" time="0.000018" file="src/services/fileServer.test.ts" line="293" assertions="1" />
+      <testcase name="returns unsatisfiable for a suffix request on a zero-byte file" classname="parseRangeHeader" time="0.000012" file="src/services/fileServer.test.ts" line="297" assertions="1" />
+      <testcase name="returns absent for non-bytes units, multi-range, and malformed inputs" classname="parseRangeHeader" time="0.000031" file="src/services/fileServer.test.ts" line="301" assertions="5" />
+      <testcase name="tolerates surrounding whitespace and case" classname="parseRangeHeader" time="0.000256" file="src/services/fileServer.test.ts" line="309" assertions="1" />
+    </testsuite>
+    <testsuite name="createFileServer" file="src/services/fileServer.test.ts" line="318" tests="15" assertions="127" failures="0" skipped="0" time="0.136" hostname="c0f3ebdcc432">
+      <testcase name="serves .avif media with its content type for full and range requests" classname="createFileServer" time="0.01766" file="src/services/fileServer.test.ts" line="325" assertions="7" />
+      <testcase name="serves .flac media with its content type for full and range requests" classname="createFileServer" time="0.006809" file="src/services/fileServer.test.ts" line="325" assertions="7" />
+      <testcase name="serves .M4A media with its content type for full and range requests" classname="createFileServer" time="0.004333" file="src/services/fileServer.test.ts" line="325" assertions="7" />
+      <testcase name="serves .mov media with its content type for full and range requests" classname="createFileServer" time="0.004688" file="src/services/fileServer.test.ts" line="325" assertions="7" />
+      <testcase name="serves .ico media with its content type for full and range requests" classname="createFileServer" time="0.005945" file="src/services/fileServer.test.ts" line="325" assertions="7" />
+      <testcase name="marks producer pages as render capture before the runtime loads" classname="createFileServer" time="0.005622" file="src/services/fileServer.test.ts" line="349" assertions="3" />
+      <testcase name="serves ES modules with a JavaScript MIME type" classname="createFileServer" time="0.00463" file="src/services/fileServer.test.ts" line="376" assertions="2" />
+      <testcase name="injects the requested render fps into the page render config" classname="createFileServer" time="0.00426" file="src/services/fileServer.test.ts" line="435" assertions="8" />
+      <testcase name="injects fractional render fps without rounding" classname="createFileServer" time="0.00369" file="src/services/fileServer.test.ts" line="439" assertions="8" />
+      <testcase name="marks missing render fps as an explicit 30fps default" classname="createFileServer" time="0.004241" file="src/services/fileServer.test.ts" line="446" assertions="8" />
+      <testcase name="marks invalid render fps as an explicit 30fps default" classname="createFileServer" time="0.004054" file="src/services/fileServer.test.ts" line="454" assertions="8" />
+      <testcase name="serves asset files through project-root symlinked directories" classname="createFileServer" time="0.006573" file="src/services/fileServer.test.ts" line="465" assertions="3" />
+      <testcase name="streams binary file content without buffering through readFileSync" classname="createFileServer" time="0.053505" file="src/services/fileServer.test.ts" line="492" assertions="23" />
+      <testcase name="serves Range requests with 206 Partial Content + Accept-Ranges" classname="createFileServer" time="0.008212" file="src/services/fileServer.test.ts" line="549" assertions="27" />
+      <testcase name="decodes percent-encoded reserved characters in URL path segments" classname="createFileServer" time="0.009991" file="src/services/fileServer.test.ts" line="636" assertions="2" />
+    </testsuite>
+    <testsuite name="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" file="src/services/fileServer.test.ts" line="656" tests="7" assertions="19" failures="0" skipped="0" time="0.001" hostname="c0f3ebdcc432">
+      <testcase name="preserves __hf.transitions written by page scripts through bridge upgrade" classname="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" time="0.000485" file="src/services/fileServer.test.ts" line="670" assertions="7" />
+      <testcase name="forwards suppressEvents from __hf.seek to renderSeek" classname="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" time="0.000186" file="src/services/fileServer.test.ts" line="722" assertions="1" />
+      <testcase name="keeps render-time timeline seeks synchronous during large renders" classname="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" time="0.00157" file="src/services/fileServer.test.ts" line="765" assertions="2" />
+      <testcase name="flushes queued construction calls before forwarding timeline children" classname="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" time="0.000357" file="src/services/fileServer.test.ts" line="827" assertions="4" />
+      <testcase name="proxy is non-thenable — Promise.resolve(proxy) resolves immediately" classname="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" time="0.000199" file="src/services/fileServer.test.ts" line="894" assertions="1" />
+      <testcase name="keeps bridge duration at zero until the runtime publishes render readiness" classname="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" time="0.000157" file="src/services/fileServer.test.ts" line="951" assertions="3" />
+      <testcase name="derives duration from sub-composition data-start + data-duration when root has none" classname="HF_EARLY_STUB + HF_BRIDGE_SCRIPT integration" time="0.000248" file="src/services/fileServer.test.ts" line="994" assertions="1" />
+    </testsuite>
+  </testsuite>
+</testsuites>

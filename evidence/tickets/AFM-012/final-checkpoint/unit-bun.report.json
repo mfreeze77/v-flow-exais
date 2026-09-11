@@ -1,0 +1,748 @@
+{
+  "schemaVersion": 1,
+  "runId": "mtxers4g-2vict5",
+  "revision": "2290e9c94b3c1da94032e370958108704c6070d4-dirty",
+  "runtime": {
+    "node": "v22.23.2",
+    "bun": null
+  },
+  "lane": "unit",
+  "runner": "bun",
+  "command": "bun run test:unit:bun",
+  "status": "complete",
+  "selection": {
+    "count": 42,
+    "files": [
+      "src/plan-parity-analysis.test.ts",
+      "src/plan-parity-contract.test.ts",
+      "src/plan-parity-fixture.test.ts",
+      "src/plan-parity-harness.test.ts",
+      "src/regression-harness-distributed.test.ts",
+      "src/regression-harness-parse.test.ts",
+      "src/regression-shard-plan.test.ts",
+      "src/server.test.ts",
+      "src/services/animatedGifPrep.test.ts",
+      "src/services/deterministicFonts-aliasSupplement.test.ts",
+      "src/services/deterministicFonts-bundledSubset.test.ts",
+      "src/services/deterministicFonts-failClosed.test.ts",
+      "src/services/deterministicFonts-googleSubsets.test.ts",
+      "src/services/deterministicFonts-retries.test.ts",
+      "src/services/deterministicFonts-textSubset.test.ts",
+      "src/services/deterministicFonts.test.ts",
+      "src/services/distributed/planFormatBanlist.test.ts",
+      "src/services/distributed/planProtocol.test.ts",
+      "src/services/distributed/planV2.test.ts",
+      "src/services/distributed/publicExports.test.ts",
+      "src/services/distributed/rebuildExtractedFrames.test.ts",
+      "src/services/distributed/renderChunkFallback.test.ts",
+      "src/services/distributed/renderChunkVideoMetadata.test.ts",
+      "src/services/distributed/videoMetadata.test.ts",
+      "src/services/fileServer-seededRandom.test.ts",
+      "src/services/fontCompression.test.ts",
+      "src/services/frameDirCache.test.ts",
+      "src/services/hdrImageTransferCache.test.ts",
+      "src/services/htmlCompiler.animatedGif.test.ts",
+      "src/services/htmlCompiler.test.ts",
+      "src/services/render/audioPadTrim.test.ts",
+      "src/services/render/planValidation.test.ts",
+      "src/services/render/renderFormat.test.ts",
+      "src/services/render/runtimeEnvSnapshot.test.ts",
+      "src/services/render/shared.test.ts",
+      "src/services/render/stages/captureStreamingStage.test.ts",
+      "src/services/render/stages/encodeStage.test.ts",
+      "src/services/render/stages/mutedParity.test.ts",
+      "src/services/render/stages/planHash.test.ts",
+      "src/services/render/stages/probeFailures.test.ts",
+      "src/services/render/stages/probeStage.test.ts",
+      "src/services/renderMediaCollector.test.ts"
+    ]
+  },
+  "dispatch": {
+    "dispatchedFiles": [
+      "src/plan-parity-analysis.test.ts",
+      "src/plan-parity-contract.test.ts",
+      "src/plan-parity-fixture.test.ts",
+      "src/plan-parity-harness.test.ts",
+      "src/regression-harness-distributed.test.ts",
+      "src/regression-harness-parse.test.ts",
+      "src/regression-shard-plan.test.ts",
+      "src/server.test.ts",
+      "src/services/animatedGifPrep.test.ts",
+      "src/services/deterministicFonts-aliasSupplement.test.ts",
+      "src/services/deterministicFonts-bundledSubset.test.ts",
+      "src/services/deterministicFonts-failClosed.test.ts",
+      "src/services/deterministicFonts-googleSubsets.test.ts",
+      "src/services/deterministicFonts-retries.test.ts",
+      "src/services/deterministicFonts-textSubset.test.ts",
+      "src/services/deterministicFonts.test.ts",
+      "src/services/distributed/planFormatBanlist.test.ts",
+      "src/services/distributed/planProtocol.test.ts",
+      "src/services/distributed/planV2.test.ts",
+      "src/services/distributed/publicExports.test.ts",
+      "src/services/distributed/rebuildExtractedFrames.test.ts",
+      "src/services/distributed/renderChunkFallback.test.ts",
+      "src/services/distributed/renderChunkVideoMetadata.test.ts",
+      "src/services/distributed/videoMetadata.test.ts",
+      "src/services/fileServer-seededRandom.test.ts",
+      "src/services/fontCompression.test.ts",
+      "src/services/frameDirCache.test.ts",
+      "src/services/hdrImageTransferCache.test.ts",
+      "src/services/htmlCompiler.animatedGif.test.ts",
+      "src/services/htmlCompiler.test.ts",
+      "src/services/render/audioPadTrim.test.ts",
+      "src/services/render/planValidation.test.ts",
+      "src/services/render/renderFormat.test.ts",
+      "src/services/render/runtimeEnvSnapshot.test.ts",
+      "src/services/render/shared.test.ts",
+      "src/services/render/stages/captureStreamingStage.test.ts",
+      "src/services/render/stages/encodeStage.test.ts",
+      "src/services/render/stages/mutedParity.test.ts",
+      "src/services/render/stages/planHash.test.ts",
+      "src/services/render/stages/probeFailures.test.ts",
+      "src/services/render/stages/probeStage.test.ts",
+      "src/services/renderMediaCollector.test.ts"
+    ],
+    "undispatchedFiles": [],
+    "invocations": [
+      {
+        "args": [
+          "test",
+          "./src/plan-parity-analysis.test.ts"
+        ],
+        "files": [
+          "src/plan-parity-analysis.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/plan-parity-contract.test.ts"
+        ],
+        "files": [
+          "src/plan-parity-contract.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/plan-parity-fixture.test.ts"
+        ],
+        "files": [
+          "src/plan-parity-fixture.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/plan-parity-harness.test.ts"
+        ],
+        "files": [
+          "src/plan-parity-harness.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/regression-harness-distributed.test.ts"
+        ],
+        "files": [
+          "src/regression-harness-distributed.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/regression-harness-parse.test.ts"
+        ],
+        "files": [
+          "src/regression-harness-parse.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/regression-shard-plan.test.ts"
+        ],
+        "files": [
+          "src/regression-shard-plan.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/server.test.ts"
+        ],
+        "files": [
+          "src/server.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/animatedGifPrep.test.ts"
+        ],
+        "files": [
+          "src/services/animatedGifPrep.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts-aliasSupplement.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts-aliasSupplement.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts-bundledSubset.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts-bundledSubset.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts-failClosed.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts-failClosed.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts-googleSubsets.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts-googleSubsets.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts-retries.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts-retries.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts-textSubset.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts-textSubset.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/planFormatBanlist.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/planFormatBanlist.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/planProtocol.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/planProtocol.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/planV2.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/planV2.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/publicExports.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/publicExports.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/rebuildExtractedFrames.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/rebuildExtractedFrames.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/renderChunkFallback.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/renderChunkFallback.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/renderChunkVideoMetadata.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/renderChunkVideoMetadata.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/videoMetadata.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/videoMetadata.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/fileServer-seededRandom.test.ts"
+        ],
+        "files": [
+          "src/services/fileServer-seededRandom.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/fontCompression.test.ts"
+        ],
+        "files": [
+          "src/services/fontCompression.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/frameDirCache.test.ts"
+        ],
+        "files": [
+          "src/services/frameDirCache.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/hdrImageTransferCache.test.ts"
+        ],
+        "files": [
+          "src/services/hdrImageTransferCache.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/htmlCompiler.animatedGif.test.ts"
+        ],
+        "files": [
+          "src/services/htmlCompiler.animatedGif.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/htmlCompiler.test.ts"
+        ],
+        "files": [
+          "src/services/htmlCompiler.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/audioPadTrim.test.ts"
+        ],
+        "files": [
+          "src/services/render/audioPadTrim.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/planValidation.test.ts"
+        ],
+        "files": [
+          "src/services/render/planValidation.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/renderFormat.test.ts"
+        ],
+        "files": [
+          "src/services/render/renderFormat.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/runtimeEnvSnapshot.test.ts"
+        ],
+        "files": [
+          "src/services/render/runtimeEnvSnapshot.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/shared.test.ts"
+        ],
+        "files": [
+          "src/services/render/shared.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/stages/captureStreamingStage.test.ts"
+        ],
+        "files": [
+          "src/services/render/stages/captureStreamingStage.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/stages/encodeStage.test.ts"
+        ],
+        "files": [
+          "src/services/render/stages/encodeStage.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/stages/mutedParity.test.ts"
+        ],
+        "files": [
+          "src/services/render/stages/mutedParity.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/stages/planHash.test.ts"
+        ],
+        "files": [
+          "src/services/render/stages/planHash.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/stages/probeFailures.test.ts"
+        ],
+        "files": [
+          "src/services/render/stages/probeFailures.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/render/stages/probeStage.test.ts"
+        ],
+        "files": [
+          "src/services/render/stages/probeStage.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/renderMediaCollector.test.ts"
+        ],
+        "files": [
+          "src/services/renderMediaCollector.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      }
+    ]
+  },
+  "execution": {
+    "collectedFiles": 42,
+    "casesPassed": 660,
+    "casesFailed": 0,
+    "casesSkipped": 0,
+    "collectionErrors": null
+  },
+  "evidenceComplete": true,
+  "coverageLimitations": []
+}

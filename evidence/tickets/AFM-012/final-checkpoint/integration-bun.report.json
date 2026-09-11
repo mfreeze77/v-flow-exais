@@ -1,0 +1,204 @@
+{
+  "schemaVersion": 1,
+  "runId": "mtxetryf-xub5fv",
+  "revision": "2290e9c94b3c1da94032e370958108704c6070d4-dirty",
+  "runtime": {
+    "node": "v22.23.2",
+    "bun": null
+  },
+  "lane": "integration",
+  "runner": "bun",
+  "command": "bun run test:integration:bun",
+  "status": "complete",
+  "selection": {
+    "count": 10,
+    "files": [
+      "src/regression-harness-psnr.test.ts",
+      "src/services/deterministicFonts-systemCapture.test.ts",
+      "src/services/distributed/assemble.test.ts",
+      "src/services/distributed/chunkBoundary.test.ts",
+      "src/services/distributed/crossWorkerIdempotency.test.ts",
+      "src/services/distributed/plan.test.ts",
+      "src/services/distributed/planSizeCap.test.ts",
+      "src/services/distributed/renderChunk.test.ts",
+      "src/services/fileServer.test.ts",
+      "src/services/htmlCompiler.naturalDuration.test.ts"
+    ]
+  },
+  "dispatch": {
+    "dispatchedFiles": [
+      "src/regression-harness-psnr.test.ts",
+      "src/services/deterministicFonts-systemCapture.test.ts",
+      "src/services/distributed/assemble.test.ts",
+      "src/services/distributed/chunkBoundary.test.ts",
+      "src/services/distributed/crossWorkerIdempotency.test.ts",
+      "src/services/distributed/plan.test.ts",
+      "src/services/distributed/planSizeCap.test.ts",
+      "src/services/distributed/renderChunk.test.ts",
+      "src/services/fileServer.test.ts",
+      "src/services/htmlCompiler.naturalDuration.test.ts"
+    ],
+    "undispatchedFiles": [],
+    "invocations": [
+      {
+        "args": [
+          "test",
+          "./src/regression-harness-psnr.test.ts"
+        ],
+        "files": [
+          "src/regression-harness-psnr.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/deterministicFonts-systemCapture.test.ts"
+        ],
+        "files": [
+          "src/services/deterministicFonts-systemCapture.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/assemble.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/assemble.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/chunkBoundary.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/chunkBoundary.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/crossWorkerIdempotency.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/crossWorkerIdempotency.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/plan.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/plan.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/planSizeCap.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/planSizeCap.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/distributed/renderChunk.test.ts"
+        ],
+        "files": [
+          "src/services/distributed/renderChunk.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/fileServer.test.ts"
+        ],
+        "files": [
+          "src/services/fileServer.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      },
+      {
+        "args": [
+          "test",
+          "./src/services/htmlCompiler.naturalDuration.test.ts"
+        ],
+        "files": [
+          "src/services/htmlCompiler.naturalDuration.test.ts"
+        ],
+        "dispatch": "completed",
+        "exitCode": 0,
+        "signal": null,
+        "evidence": "present",
+        "evidenceProblems": [],
+        "error": null
+      }
+    ]
+  },
+  "execution": {
+    "collectedFiles": 10,
+    "casesPassed": 175,
+    "casesFailed": 0,
+    "casesSkipped": 0,
+    "collectionErrors": null
+  },
+  "evidenceComplete": true,
+  "coverageLimitations": []
+}

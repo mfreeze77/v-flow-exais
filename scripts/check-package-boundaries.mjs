@@ -1,33 +1,45 @@
 #!/usr/bin/env node
 /**
- * AFM-012 — architectural boundary enforcement, by resolved import.
+ * AFM-012 — architectural boundary enforcement, by resolved dependency path.
  *
- * The existing checkers are necessary but cannot close this requirement:
- * `check-package-cycles.mjs` only sees declared runtime dependency fields, and
- * `check-workspace-contracts.mjs` only sees declared scripts. **A dependency can
- * violate a boundary without creating a cycle, and a source import can exist
- * without ever being declared in a manifest.** So this reads actual import
- * syntax and resolves where each import lands.
+ * The existing checkers cannot close this: `check-package-cycles.mjs` only sees
+ * declared runtime dependency fields, and `check-workspace-contracts.mjs` only
+ * sees declared scripts. A dependency can violate a boundary without creating a
+ * cycle, and a source import can exist without ever being declared.
  *
- * It resolves destinations rather than grepping for forbidden words, because an
- * import's target depends on module resolution, package exports and configured
- * mappings — not on how it happens to be spelled. Renaming a bare specifier to
- * a relative path must not slip past the rule, and the word "studio" inside a
- * comment must not trip it.
+ * An earlier version of this file checked only direct imports inside the
+ * protected package. External review demonstrated six ways to cross the same
+ * boundary without tripping it, and one false positive. Each is now covered:
  *
- * Where it cannot resolve an import inside protected code, it reports the
- * uncertainty. Silence would certify a boundary it has not actually checked.
+ *   - a configured tsconfig `paths` alias pointing at forbidden code
+ *   - a chain through another first-party package
+ *   - production code importing a test-scope helper that re-exports it
+ *   - a template-literal dynamic import
+ *   - a `.cts` / `.mts` production file
+ *   - a direct third-party browser-capture dependency
+ *   - import-shaped text inside an ordinary string, reported as a violation
+ *
+ * Where an import inside protected production code cannot be resolved, that is
+ * reported. Silence would certify a boundary that was never checked.
  */
 
 import { existsSync, readFileSync, readdirSync, statSync } from "node:fs";
-import { join, relative, resolve, dirname, sep } from "node:path";
+import { dirname, join, relative, resolve, sep } from "node:path";
 
 const ROOT = join(import.meta.dirname, "..");
 
 /**
- * The policy. Each rule protects one package's production code from depending
- * on another package's implementation.
+ * Browser-capture and editor packages that must not become dependencies of the
+ * authoring contract. Third-party tooling is named explicitly: forbidding only
+ * workspace packages leaves a direct `puppeteer` import unchallenged.
  */
+export const BROWSER_CAPTURE_PACKAGES = [
+  "puppeteer",
+  "puppeteer-core",
+  "playwright",
+  "playwright-core",
+];
+
 export const BOUNDARY_RULES = [
   {
     package: "@hyperframes/project-model",
@@ -37,41 +49,43 @@ export const BOUNDARY_RULES = [
       "@hyperframes/studio-server",
       "@hyperframes/producer",
       "@hyperframes/player",
+      ...BROWSER_CAPTURE_PACKAGES,
     ],
     reason:
       "The shared project model is the authoring contract. Depending on Studio UI or on " +
-      "browser-capture implementation would make the model unusable by the CLI and agents, " +
-      "and would invert the ownership the command/history boundary depends on.",
+      "browser-capture implementation would make it unusable by the CLI and agents, and would " +
+      "invert the ownership the command/history boundary depends on.",
   },
   {
     package: "@hyperframes/diagram-engine",
     directory: "packages/diagram-engine",
-    forbidden: ["@hyperframes/studio", "@hyperframes/studio-server"],
+    forbidden: ["@hyperframes/studio", "@hyperframes/studio-server", ...BROWSER_CAPTURE_PACKAGES],
     reason:
-      "Contract C02 keeps diagram compilation a side-effect-free library. A Studio dependency " +
-      "would make the engine unusable from the CLI and would couple compilation to a UI.",
+      "Contract C02 keeps diagram compilation a side-effect-free library. A Studio or browser " +
+      "dependency would make the engine unusable from the CLI and couple compilation to a UI.",
   },
   {
     package: "@hyperframes/diagram-motion",
     directory: "packages/diagram-motion",
-    forbidden: ["@hyperframes/studio", "@hyperframes/studio-server"],
+    forbidden: ["@hyperframes/studio", "@hyperframes/studio-server", ...BROWSER_CAPTURE_PACKAGES],
     reason:
       "Motion compilation consumes the diagram artifact contract and emits composition timing. " +
-      "It must not reach into the editor.",
+      "It must not reach into the editor or drive a browser.",
   },
 ];
 
 /**
- * Directories inside a protected package whose contents are test scaffolding
- * rather than shipped production code.
+ * Test scaffolding, by location and filename — never by what it imports.
  *
- * A harness may legitimately need browser tooling. What must not happen is a
- * forbidden production import being relocated into a helper and disappearing,
- * so the scope is defined by directory and filename, never by the import itself.
+ * A harness may legitimately use browser tooling. What must not happen is a
+ * forbidden dependency escaping because it was moved behind a helper, so test
+ * scope stops a file being a *violation site*, not a *dependency path*: once
+ * production code imports a test-scope file, the chain is followed regardless.
  */
 const TEST_SCOPE = /(^|\/)(tests?|__tests__|fixtures?)(\/|$)|\.(test|spec|fixture)\.[cm]?[jt]sx?$/;
 
-const SOURCE_EXT = /\.(m?[jt]sx?|cjs)$/;
+/** Includes .cts/.mts — omitting them left a whole production file class unchecked. */
+const SOURCE_EXT = /\.([cm]?[jt]sx?)$/;
 const SKIP_DIRS = new Set(["node_modules", "dist", "build", "coverage", ".git"]);
 
 export function isTestScope(relativePath) {
@@ -79,48 +93,146 @@ export function isTestScope(relativePath) {
 }
 
 /**
- * Extracts import specifiers with their line numbers.
+ * Removes comments and string literals before scanning, so prose and ordinary
+ * strings cannot be read as imports.
  *
- * Comments and ordinary strings are stripped first so forbidden-looking prose
- * cannot be reported as an import. Static imports, re-exports, dynamic
- * `import()` with a literal argument, and `require()` are all recognised —
- * changing the syntax must not bypass the rule.
+ * Newlines are preserved so reported line numbers stay accurate. Quoted strings
+ * are blanked too: an earlier version stripped only template literals, so
+ * `const s = "await import('@hyperframes/studio')"` was reported as a violation.
+ */
+export function stripNonCode(source) {
+  let out = "";
+  let i = 0;
+  const n = source.length;
+  const blank = (text) => text.replace(/[^\n]/g, " ");
+
+  while (i < n) {
+    const two = source.slice(i, i + 2);
+    if (two === "/*") {
+      const end = source.indexOf("*/", i + 2);
+      const stop = end === -1 ? n : end + 2;
+      out += blank(source.slice(i, stop));
+      i = stop;
+      continue;
+    }
+    if (two === "//") {
+      const end = source.indexOf("\n", i);
+      const stop = end === -1 ? n : end;
+      out += blank(source.slice(i, stop));
+      i = stop;
+      continue;
+    }
+    const ch = source[i];
+    if (ch === '"' || ch === "'" || ch === "`") {
+      // Keep the delimiters so an import's specifier position is still findable
+      // when it IS an import; blank only the contents.
+      let j = i + 1;
+      while (j < n) {
+        if (source[j] === "\\") {
+          j += 2;
+          continue;
+        }
+        if (source[j] === ch) break;
+        j += 1;
+      }
+      const stop = Math.min(j + 1, n);
+      out += ch + blank(source.slice(i + 1, stop - 1)) + (source[stop - 1] === ch ? ch : "");
+      i = stop;
+      continue;
+    }
+    out += ch;
+    i += 1;
+  }
+  return out;
+}
+
+/**
+ * Extracts import specifiers with line numbers.
+ *
+ * Specifiers are read from the ORIGINAL source at the offsets located in the
+ * stripped copy, so blanked string contents do not erase the specifier itself.
+ * Template-literal dynamic imports are included: changing the quote style must
+ * not bypass the rule.
  */
 export function extractImports(source) {
-  // Strip block comments, line comments, and template literals, preserving
-  // newlines so reported line numbers stay accurate.
-  const stripped = source
-    .replace(/\/\*[\s\S]*?\*\//g, (m) => m.replace(/[^\n]/g, " "))
-    .replace(/(^|[^:])\/\/[^\n]*/g, (m, p) => p + m.slice(p.length).replace(/[^\n]/g, " "))
-    .replace(/`(?:[^`\\]|\\[\s\S])*`/g, (m) => m.replace(/[^\n]/g, " "));
-
+  const stripped = stripNonCode(source);
   const patterns = [
-    // import ... from "x"  /  export ... from "x"  /  import "x"
-    /(?:^|[\s;}])(?:import|export)\s[^;]*?from\s*["']([^"']+)["']/g,
-    /(?:^|[\s;}])import\s*["']([^"']+)["']/g,
-    // dynamic import with a literal argument
-    /\bimport\s*\(\s*["']([^"']+)["']\s*\)/g,
-    // CommonJS
-    /\brequire\s*\(\s*["']([^"']+)["']\s*\)/g,
+    /(?:^|[\s;})])(?:import|export)\s[^;]*?from\s*(["'`])/g,
+    /(?:^|[\s;})])import\s*(["'`])/g,
+    /\bimport\s*\(\s*(["'`])/g,
+    /\brequire\s*\(\s*(["'`])/g,
   ];
 
-  const found = [];
+  const found = new Map();
   for (const pattern of patterns) {
     let match;
     while ((match = pattern.exec(stripped)) !== null) {
-      // The patterns match a leading delimiter, which may itself be a newline.
-      // Count to the statement keyword rather than to the delimiter, or an
-      // import on its own line is reported one line early.
+      // The quote position in the stripped copy maps 1:1 onto the original.
+      const quoteAt = match.index + match[0].length - 1;
+      const quote = match[1];
+      const close = source.indexOf(quote, quoteAt + 1);
+      if (close === -1) continue;
+      const specifier = source.slice(quoteAt + 1, close);
+      // A template literal with an interpolation is not a static specifier.
+      if (specifier.includes("${")) continue;
       const leading = match[0].length - match[0].replace(/^\s+/, "").length;
       const line = stripped.slice(0, match.index + leading).split("\n").length;
-      found.push({ specifier: match[1], line });
+      found.set(`${line}:${specifier}`, { specifier, line });
     }
   }
-  return found.sort((a, b) => a.line - b.line || a.specifier.localeCompare(b.specifier));
+  return [...found.values()].sort(
+    (a, b) => a.line - b.line || a.specifier.localeCompare(b.specifier),
+  );
 }
 
-/** Maps a workspace package directory to its declared name. */
-function readWorkspacePackages(root) {
+/** Workspace directory to declared package name. */
+/**
+ * Resolves a workspace package subpath to a source file through its manifest.
+ *
+ * Walking to `<dir>/src/index` by convention is wrong twice over: a subpath
+ * import such as `@hyperframes/studio-server/finite-mutation` would be followed
+ * into the package's index instead of the module actually imported, and a
+ * package whose entry is declared elsewhere would not be followed at all — the
+ * walk would stop silently and report the boundary clean.
+ *
+ * Source conditions are preferred over built ones so the check reads the code
+ * in the repository rather than a stale artifact in dist/.
+ */
+export function resolvePackageSubpath(manifest, subpath) {
+  const exports = manifest?.exports;
+  const pick = (value) => {
+    if (typeof value === "string") return value;
+    if (!value || typeof value !== "object") return null;
+    for (const condition of ["bun", "import", "module", "default", "browser", "node", "types"]) {
+      if (condition in value) {
+        const resolved = pick(value[condition]);
+        if (resolved) return resolved;
+      }
+    }
+    return null;
+  };
+
+  if (typeof exports === "string" && subpath === ".") return exports;
+  if (exports && typeof exports === "object") {
+    if (subpath in exports) return pick(exports[subpath]);
+    // Wildcard subpaths, e.g. "./helpers/*": "./src/helpers/*.ts".
+    for (const [pattern, value] of Object.entries(exports)) {
+      if (!pattern.includes("*")) continue;
+      const [head, tail] = pattern.split("*");
+      if (subpath.startsWith(head) && subpath.endsWith(tail)) {
+        const star = subpath.slice(head.length, subpath.length - tail.length);
+        const target = pick(value);
+        if (target) return target.replace("*", star);
+      }
+    }
+    // An exports map that does not list the subpath does not serve it.
+    if (subpath !== ".") return null;
+  }
+  if (subpath === ".") return manifest?.main ?? "src/index";
+  return null;
+}
+
+export function readWorkspacePackages(root, manifests = new Map()) {
   const packagesDir = join(root, "packages");
   const byDir = new Map();
   if (!existsSync(packagesDir)) return byDir;
@@ -128,33 +240,97 @@ function readWorkspacePackages(root) {
     const manifest = join(packagesDir, entry, "package.json");
     if (!existsSync(manifest)) continue;
     try {
-      const name = JSON.parse(readFileSync(manifest, "utf8")).name;
-      if (name) byDir.set(`packages/${entry}`, name);
+      const parsed = JSON.parse(readFileSync(manifest, "utf8"));
+      if (parsed.name) {
+        byDir.set(`packages/${entry}`, parsed.name);
+        // Kept alongside the name so the walk can follow a bare or subpath
+        // import to the file the package actually serves for it.
+        manifests.set(parsed.name, { directory: `packages/${entry}`, manifest: parsed });
+      }
     } catch {
-      // A manifest that will not parse is reported by the workspace checker.
+      // Reported by the workspace checker, not here.
     }
   }
   return byDir;
 }
 
 /**
- * Resolves an import to the workspace package that owns it, or reports why it
- * could not be resolved.
- *
- * Bare specifiers map by package name. Relative specifiers are resolved against
- * the importing file and mapped back by directory, so spelling a forbidden
- * dependency as `../../studio/src/x` is caught exactly like the bare form.
+ * Reads tsconfig `paths` so a configured alias cannot hide a forbidden target.
+ * TypeScript remaps these, so treating every unfamiliar bare specifier as an
+ * ordinary external package cannot establish the boundary.
  */
-export function resolveImportTarget(specifier, importingFile, root, packagesByDir) {
+export function readPathAliases(root) {
+  const aliases = [];
+  for (const name of ["tsconfig.json", "tsconfig.base.json"]) {
+    const file = join(root, name);
+    if (!existsSync(file)) continue;
+    try {
+      // Tolerate comments: tsconfig permits them, JSON.parse does not.
+      const text = readFileSync(file, "utf8")
+        .replace(/\/\*[\s\S]*?\*\//g, "")
+        .replace(/(^|[^:])\/\/[^\n]*/g, "$1");
+      const config = JSON.parse(text);
+      const paths = config?.compilerOptions?.paths ?? {};
+      const baseUrl = config?.compilerOptions?.baseUrl ?? ".";
+      for (const [pattern, targets] of Object.entries(paths)) {
+        for (const target of targets) {
+          aliases.push({ pattern, target, baseUrl });
+        }
+      }
+    } catch {
+      // An unreadable tsconfig is reported as unresolved at use sites.
+    }
+  }
+  return aliases;
+}
+
+function matchAlias(specifier, aliases) {
+  for (const { pattern, target, baseUrl } of aliases) {
+    if (pattern.endsWith("/*")) {
+      const prefix = pattern.slice(0, -1);
+      if (specifier.startsWith(prefix)) {
+        return join(baseUrl, target.slice(0, -1) + specifier.slice(prefix.length));
+      }
+    } else if (specifier === pattern) {
+      return join(baseUrl, target);
+    }
+  }
+  return null;
+}
+
+/** Resolves an import to the workspace package that owns it. */
+export function resolveImportTarget(specifier, importingFile, root, packagesByDir, aliases = []) {
+  const byDirectory = (rel) => {
+    for (const [dir, name] of packagesByDir) {
+      if (rel === dir || rel.startsWith(`${dir}/`))
+        return { kind: "package", package: name, path: rel };
+    }
+    return null;
+  };
+
   if (!specifier.startsWith(".")) {
-    // Bare specifier: match the longest declared package name.
     for (const name of packagesByDir.values()) {
       if (specifier === name || specifier.startsWith(`${name}/`)) {
-        return { kind: "package", package: name };
+        // The subpath is carried through so the walk follows the module the
+        // package actually serves, not whatever happens to sit at its index.
+        const rest = specifier.slice(name.length);
+        return { kind: "package", package: name, path: null, subpath: rest ? `.${rest}` : "." };
       }
     }
-    // node: builtins and third-party packages are outside this policy.
-    return { kind: "external", package: null };
+    const aliased = matchAlias(specifier, aliases);
+    if (aliased) {
+      const rel = relative(root, resolve(root, aliased)).split(sep).join("/");
+      const owned = byDirectory(rel);
+      if (owned) return owned;
+      return {
+        kind: "unresolved",
+        package: null,
+        detail: `alias ${specifier} resolves to ${rel}, outside any package`,
+      };
+    }
+    // Third-party or node builtin. Named third-party packages are matched by
+    // the rule's forbidden list directly.
+    return { kind: "external", package: specifier, path: null };
   }
 
   const absolute = resolve(dirname(join(root, importingFile)), specifier);
@@ -162,15 +338,15 @@ export function resolveImportTarget(specifier, importingFile, root, packagesByDi
   if (rel.startsWith("..")) {
     return { kind: "unresolved", package: null, detail: "resolves outside the repository" };
   }
-  for (const [dir, name] of packagesByDir) {
-    if (rel === dir || rel.startsWith(`${dir}/`)) return { kind: "package", package: name };
-  }
+  const owned = byDirectory(rel);
+  if (owned) return owned;
   return { kind: "unresolved", package: null, detail: `resolves to ${rel}, outside any package` };
 }
 
-function walkSources(root, directory, onFile) {
+function listSources(root, directory) {
   const base = join(root, directory);
-  if (!existsSync(base)) return;
+  const files = [];
+  if (!existsSync(base)) return files;
   const recurse = (dir) => {
     for (const entry of readdirSync(dir)) {
       if (SKIP_DIRS.has(entry)) continue;
@@ -182,66 +358,124 @@ function walkSources(root, directory, onFile) {
         continue;
       }
       if (stats.isDirectory()) recurse(abs);
-      else if (SOURCE_EXT.test(entry)) onFile(relative(root, abs).split(sep).join("/"), abs);
+      else if (SOURCE_EXT.test(entry)) files.push(relative(root, abs).split(sep).join("/"));
     }
   };
   recurse(base);
+  return files;
+}
+
+/** Resolves a repo-relative module path to a real file, trying extensions. */
+function resolveFile(root, rel) {
+  const candidates = [rel];
+  for (const ext of [".ts", ".tsx", ".mts", ".cts", ".js", ".mjs", ".cjs", ".jsx"]) {
+    candidates.push(`${rel}${ext}`, `${rel}/index${ext}`);
+  }
+  for (const candidate of candidates) {
+    const abs = join(root, candidate);
+    if (existsSync(abs) && statSync(abs).isFile()) return candidate;
+  }
+  return null;
 }
 
 /**
- * Checks one rule against real sources.
+ * Follows first-party dependency paths from protected production code.
  *
- * `includeTestScope` is false for the production verdict: a harness may need
- * browser tooling. Violations in test scope are still returned, tagged, so they
- * are visible rather than invisible.
+ * A direct import is only the simplest way to cross a boundary. Reaching
+ * forbidden code through another workspace package, or through a test-scope
+ * helper that production code imports, crosses exactly the same line — so the
+ * chain is walked and the path reported.
  */
-export function checkRule(rule, root, packagesByDir, readFile = readFileSync) {
+export function checkRule(rule, root, packagesByDir, aliases = [], manifests = new Map()) {
   const violations = [];
   const unresolved = [];
+  const seen = new Set();
 
-  walkSources(root, rule.directory, (relPath, abs) => {
-    const scope = isTestScope(relPath) ? "test" : "production";
+  const walk = (file, chain, originScope) => {
+    if (seen.has(file)) return;
+    seen.add(file);
+
     let source;
     try {
-      source = readFile(abs, "utf8");
+      source = readFileSync(join(root, file), "utf8");
     } catch {
       return;
     }
+
     for (const { specifier, line } of extractImports(source)) {
-      const target = resolveImportTarget(specifier, relPath, root, packagesByDir);
-      if (target.kind === "package" && rule.forbidden.includes(target.package)) {
+      const target = resolveImportTarget(specifier, file, root, packagesByDir, aliases);
+
+      if (rule.forbidden.includes(target.package)) {
         violations.push({
           rule: rule.package,
-          scope,
-          file: relPath,
-          line,
+          scope: originScope,
+          file: chain[0],
+          line: chain.length === 1 ? line : null,
+          via: chain.length > 1 ? [...chain.slice(1), `${file}:${line}`] : [],
           specifier,
           target: target.package,
           reason: rule.reason,
         });
-      } else if (target.kind === "unresolved" && scope === "production") {
-        // Reported, not ignored: an unresolvable import inside protected code
-        // means this boundary was not actually verified.
-        unresolved.push({
-          rule: rule.package,
-          file: relPath,
-          line,
-          specifier,
-          detail: target.detail,
-        });
+        continue;
+      }
+
+      if (target.kind === "external") continue;
+
+      // Follow first-party destinations, inside this package or another.
+      if (target.path) {
+        const resolved = resolveFile(root, target.path);
+        if (resolved) {
+          walk(resolved, [...chain, `${file}:${line}`], originScope);
+          continue;
+        }
+      }
+      if (target.kind === "package" && !target.path) {
+        // A workspace import: follow the file the package's manifest serves for
+        // this exact subpath.
+        const owner = manifests.get(target.package);
+        const served = owner ? resolvePackageSubpath(owner.manifest, target.subpath ?? ".") : null;
+        const entry = served
+          ? resolveFile(root, `${owner.directory}/${served.replace(/^\.\//, "")}`)
+          : null;
+        if (entry) {
+          walk(entry, [...chain, `${file}:${line}`], originScope);
+        } else if (originScope === "production") {
+          // Not following it silently: an unresolved first-party entry means
+          // the chain beyond this point was never checked.
+          unresolved.push({
+            rule: rule.package,
+            file,
+            line,
+            specifier,
+            detail: owner
+              ? `${target.package} serves no resolvable file for ${target.subpath ?? "."}`
+              : `${target.package} is not a known workspace package`,
+          });
+        }
+        continue;
+      }
+      if (target.kind === "unresolved" && originScope === "production") {
+        unresolved.push({ rule: rule.package, file, line, specifier, detail: target.detail });
       }
     }
-  });
+  };
+
+  for (const file of listSources(root, rule.directory)) {
+    seen.clear();
+    walk(file, [file], isTestScope(file) ? "test" : "production");
+  }
 
   return { violations, unresolved };
 }
 
 export function checkBoundaries(root = ROOT, rules = BOUNDARY_RULES) {
-  const packagesByDir = readWorkspacePackages(root);
+  const manifests = new Map();
+  const packagesByDir = readWorkspacePackages(root, manifests);
+  const aliases = readPathAliases(root);
   const violations = [];
   const unresolved = [];
   for (const rule of rules) {
-    const result = checkRule(rule, root, packagesByDir);
+    const result = checkRule(rule, root, packagesByDir, aliases, manifests);
     violations.push(...result.violations);
     unresolved.push(...result.unresolved);
   }
@@ -258,10 +492,11 @@ export function checkBoundaries(root = ROOT, rules = BOUNDARY_RULES) {
 if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split(sep).join("/"))) {
   const report = checkBoundaries();
   for (const rule of report.rules) {
-    console.log(`  ${rule.package} must not import: ${rule.forbidden.join(", ")}`);
+    console.log(`  ${rule.package} must not depend on: ${rule.forbidden.join(", ")}`);
   }
   for (const v of report.productionViolations) {
-    console.error(`\n  VIOLATION ${v.file}:${v.line}`);
+    console.error(`\n  VIOLATION ${v.file}${v.line ? `:${v.line}` : ""}`);
+    if (v.via.length > 0) console.error(`    via ${v.via.join(" -> ")}`);
     console.error(`    imports ${JSON.stringify(v.specifier)} -> ${v.target}`);
     console.error(`    ${v.reason}`);
   }
@@ -273,10 +508,8 @@ if (process.argv[1] && import.meta.url.endsWith(process.argv[1].split(sep).join(
   }
   const testScope = report.violations.filter((v) => v.scope === "test");
   if (testScope.length > 0) {
-    console.log(
-      `\n  ${testScope.length} forbidden import(s) in test scope (allowed, listed for visibility):`,
-    );
-    for (const v of testScope) console.log(`    ${v.file}:${v.line} -> ${v.target}`);
+    console.log(`\n  ${testScope.length} forbidden import(s) reached only from test scope:`);
+    for (const v of testScope) console.log(`    ${v.file} -> ${v.target}`);
   }
   console.log(`\n${report.ok ? "PASS" : "FAIL"}: package boundaries`);
   process.exitCode = report.ok ? 0 : 1;

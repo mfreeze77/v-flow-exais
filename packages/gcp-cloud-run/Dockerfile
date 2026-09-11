@@ -97,6 +97,14 @@ COPY packages/parsers/package.json packages/parsers/package.json
 COPY packages/sdk/package.json packages/sdk/package.json
 COPY packages/sdk-playground/package.json packages/sdk-playground/package.json
 COPY packages/studio-server/package.json packages/studio-server/package.json
+# Added by the Archify/HyperFrames merge: the producer now depends on the
+# diagram packages and the shared project model. Their absence here was
+# invisible because the check that catches it is the fourth link of the lint
+# chain, and the first link had been crashing.
+COPY packages/project-model/package.json packages/project-model/package.json
+COPY packages/diagram-viewer/package.json packages/diagram-viewer/package.json
+COPY packages/diagram-engine/package.json packages/diagram-engine/package.json
+COPY packages/diagram-motion/package.json packages/diagram-motion/package.json
 COPY scripts/package-subpaths.mjs scripts/package-subpaths.mjs
 RUN bun install --frozen-lockfile
 
@@ -127,6 +135,10 @@ COPY packages/parsers/ packages/parsers/
 COPY packages/sdk/ packages/sdk/
 COPY packages/sdk-playground/ packages/sdk-playground/
 COPY packages/studio-server/ packages/studio-server/
+COPY packages/project-model/ packages/project-model/
+COPY packages/diagram-viewer/ packages/diagram-viewer/
+COPY packages/diagram-engine/ packages/diagram-engine/
+COPY packages/diagram-motion/ packages/diagram-motion/
 
 # Build workspace dependencies before the producer bundle. The published
 # workspace packages are not prebuilt in a fresh clone, so producer's esbuild
@@ -140,6 +152,10 @@ RUN bun run --cwd packages/parsers build \
     && bun run --cwd packages/sdk build \
     && bun run --cwd packages/sdk-playground build \
     && bun run --cwd packages/engine build \
+    && bun run --cwd packages/project-model build \
+    && bun run --cwd packages/diagram-viewer build \
+    && bun run --cwd packages/diagram-engine build \
+    && bun run --cwd packages/diagram-motion build \
     && (cd packages/producer && bunx tsx scripts/generate-font-data.ts) \
     && bun run --cwd packages/producer build \
     && bun run --cwd packages/gcp-cloud-run build

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="bun test" tests="5" assertions="20" failures="0" skipped="0" time="0.74433066">
+  <testsuite name="src/services/distributed/rebuildExtractedFrames.test.ts" file="src/services/distributed/rebuildExtractedFrames.test.ts" tests="5" assertions="20" failures="0" skipped="0" time="0" hostname="c0f3ebdcc432">
+    <testsuite name="rebuildExtractedFramesFromPlanDir" file="src/services/distributed/rebuildExtractedFrames.test.ts" line="54" tests="5" assertions="20" failures="0" skipped="0" time="0.006" hostname="c0f3ebdcc432">
+      <testcase name="indexes framePaths 0-based (regression guard for HF#1731)" classname="rebuildExtractedFramesFromPlanDir" time="0.006266" file="src/services/distributed/rebuildExtractedFrames.test.ts" line="55" assertions="6" />
+      <testcase name="preserves 0-based indexing across multiple videos in the same planDir" classname="rebuildExtractedFramesFromPlanDir" time="0.000679" file="src/services/distributed/rebuildExtractedFrames.test.ts" line="106" assertions="5" />
+      <testcase name="keeps the historical sorted-position mapping for v1 numeric filenames" classname="rebuildExtractedFramesFromPlanDir" time="0.000518" file="src/services/distributed/rebuildExtractedFrames.test.ts" line="154" assertions="3" />
+      <testcase name="orders mixed-width dense-v1 filenames by numeric ordinal" classname="rebuildExtractedFramesFromPlanDir" time="0.000918" file="src/services/distributed/rebuildExtractedFrames.test.ts" line="181" assertions="2" />
+      <testcase name="preserves original indexes for a sparse v2 chunk materialization" classname="rebuildExtractedFramesFromPlanDir" time="0.00044" file="src/services/distributed/rebuildExtractedFrames.test.ts" line="209" assertions="4" />
+    </testsuite>
+  </testsuite>
+</testsuites>
