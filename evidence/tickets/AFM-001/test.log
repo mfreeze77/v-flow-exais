@@ -1,0 +1,50 @@
+# AFM-001 acceptance run
+# date: 2026-09-11T00:20:52Z
+# bun: 1.3.13  node: v22.23.2
+# cmd: bun run test:acceptance
+
+$ vitest run --config vitest.acceptance.config.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace[39m
+
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22marchify folder scan reproduces the baseline tree digest[33m 2694[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mhyperframes folder scan reproduces the baseline tree digest[33m 44883[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mpreserves the HyperFrames symlink as a link, not as its target's content[33m 44568[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: real source inputs match the pinned baseline[2m > [22mreports PASS for both unmodified inputs and mutates nothing[33m 60850[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22maccepts a renamed folder, and folders with spaces and Unicode[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mdescends one level into a download wrapper directory[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mrefuses a folder with no sentinel[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mrefuses an ambiguous input holding two candidate roots[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: root resolution by sentinel, not by name[2m > [22mresolves a Windows-style path[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mflags a changed lockfile as drift and refuses to pass[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mreports added and removed files separately[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mtreats a file replacing a symlink as drift[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mflags case collisions even where the filesystem allows them[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22mexcludes size from the tree digest but not from change detection[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: drift is reported, never absorbed[2m > [22morders the tree digest by path, not by discovery order[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mrefuses a source input nested inside the destination without a quarantine[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22maccepts it only from the explicitly declared quarantine[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mnever exempts an output repository nested inside a source input[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mrefuses to write its report inside a source input[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: destination and output safety[2m > [22mreports a missing input rather than throwing[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrecords the archive comment as an unverified revision candidate[32m 2[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mreads the real Archify archive to the same digest as the folder[33m 2093[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mclassifies a symlink entry by its unix mode[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mexcludes admin entries from identity comparison[32m 1[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects a malformed archive[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects a truncated central directory[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects an encrypted entry instead of hashing ciphertext[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrejects archive entries that would escape the extraction root[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: archive handling[2m > [22mrefuses an archive with no identifiable source root[32m 0[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: inspection performs no side effects[2m > [22mdoes not shell out, clone, install or reach the network[32m 3[2mms[22m[39m
+ [32m✓[39m tests/acceptance/AFM-001.test.ts[2m > [22mAFM-001: inspection performs no side effects[2m > [22mopens no write handle on a source input during a scan[32m 1[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m1 passed[39m[22m[90m (1)[39m
+[2m      Tests [22m [1m[32m31 passed[39m[22m[90m (31)[39m
+[2m   Start at [22m 00:20:53
+[2m   Duration [22m 155.43s[2m (transform 101ms, setup 0ms, import 202ms, tests 155.12s, environment 0ms)[22m
+
+
+# preflight CLI run
+PASS: provenance/source-preflight.json
+lock: provenance/upstream-lock.json

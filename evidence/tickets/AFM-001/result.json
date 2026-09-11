@@ -1,0 +1,152 @@
+{
+  "ticketId": "AFM-001",
+  "title": "Preflight the two raw source folders",
+  "status": "verified",
+  "commit": "a3feeb1c495028d6011d1cb84264e178aeeea875",
+  "date": "2026-09-10",
+  "environment": {
+    "host": "Windows 11 (authoring only)",
+    "execution": "docker compose run --rm workspace",
+    "image": "v-flow-exais:dev",
+    "bun": "1.3.13",
+    "node": "v22.23.2",
+    "ffmpeg": "5.1.9-0+deb12u1",
+    "chromium": "152.0.7977.82",
+    "chromeHeadlessShell": "148.0.7778.167"
+  },
+  "sourceSnapshotHashes": {
+    "archify": {
+      "archiveSha256": "690a01ccf2da15826cd74d67f3be12fd41b91f29c149500ee36972e518c1a1b2",
+      "treeContentSha256": "f2b43966847330b4e7790b23212317a04017de0d7de1520a2190d7f686d21bcb",
+      "fileEntries": 483,
+      "matchesBaseline": true
+    },
+    "hyperframes": {
+      "archiveSha256": "9f2597068c07f5fe9988da0c4df1d632068ec27420a2ea29a9a3a754584e33e4",
+      "treeContentSha256": "78d8162e089054271d2d86aa9965660b9a79177d32e522815dc0f325eda7c2c9",
+      "fileEntries": 7303,
+      "matchesBaseline": true
+    }
+  },
+  "commands": [
+    {
+      "invocation": "bun run test:acceptance",
+      "cwd": "/workspace",
+      "runtime": "bun 1.3.13 / vitest 4.1.11",
+      "exitCode": 0,
+      "result": "31 passed, 0 failed, 1 test file",
+      "durationSeconds": 143,
+      "logPath": "evidence/tickets/AFM-001/test.log"
+    },
+    {
+      "invocation": "bun run tools/import/preflight-cli.ts --archify _sources/archify-main --hyperframes _sources/hyperframes-main --out provenance/source-preflight.json --lock provenance/upstream-lock.json",
+      "cwd": "/workspace",
+      "runtime": "bun 1.3.13",
+      "exitCode": 0,
+      "result": "PASS",
+      "logPath": "evidence/tickets/AFM-001/test.log"
+    },
+    {
+      "invocation": "py -3 tools/validate_pack.py (planning package, reference check)",
+      "cwd": "_sources/archframe-unified-implementation-v2.0.0",
+      "runtime": "Python 3.11.8",
+      "exitCode": 0,
+      "result": "PASS — 134 tickets, 240 anchors resolve, acyclic DAG"
+    },
+    {
+      "invocation": "py -3 tools/verify_manifest.py --strict-extra (planning package, reference check)",
+      "cwd": "_sources/archframe-unified-implementation-v2.0.0",
+      "runtime": "Python 3.11.8",
+      "exitCode": 0,
+      "result": "PASS — 176 files verified, 0 errors"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "provenance/source-preflight.json",
+      "sha256": "e80fa4669f713b5c1ad40ab04bf561a0b0f2247aab3a8600ddf7c9f5bc4ff2d4",
+      "type": "preflight-report"
+    },
+    {
+      "path": "provenance/upstream-lock.json",
+      "sha256": "6453c73f70d1646cf328296d3b8ba39b8b6e609c1dbea9d4cfccdf34d537c119",
+      "type": "provenance-lock"
+    },
+    {
+      "path": "tools/import/preflight.ts",
+      "sha256": "d6e60bdc1c31ee2a45d55c256de229b229e0e976988ac8d223632d475f6a2b5c",
+      "type": "source"
+    },
+    {
+      "path": "tools/import/zip.ts",
+      "sha256": "9eb313290e5d3f77827d2f2a5ed59a990bf5f88f329946219dd560cada448e06",
+      "type": "source"
+    },
+    {
+      "path": "tools/import/preflight-cli.ts",
+      "sha256": "5f3ad9ab324177e50fbe69eacf8e933cfb98234cd108eef7be38b8416798f03e",
+      "type": "source"
+    },
+    {
+      "path": "evidence/tickets/AFM-001/test.log",
+      "type": "test-log"
+    }
+  ],
+  "acceptanceResults": [
+    {
+      "criterion": "Both unmodified uploads are recognized and hashed without modification.",
+      "met": true,
+      "evidence": "Folder scans reproduce the pinned baseline tree digests exactly for both repositories (483 and 7303 entries). Inputs are chmod a-w on the host and bind-mounted :ro into the container; a repeat scan yields an identical digest."
+    },
+    {
+      "criterion": "New downloads with changed content produce an explicit drift report and block automatic baseline substitution.",
+      "met": true,
+      "evidence": "compareInventory returns missing/extra/changed/caseCollisions and retains the BASELINE value alongside the observed one, so nothing is overwritten by what was found on disk. CLI exits 2 on DRIFT_REQUIRES_REVIEW. Demonstrated live: the Windows-extracted symlink was reported as drift rather than absorbed."
+    },
+    {
+      "criterion": "No Git clone, npm install, hook execution, or remote write occurs during inspection.",
+      "met": true,
+      "evidence": "Structurally enforced and asserted by test: the preflight modules import only node:crypto, node:fs, node:path and node:zlib. A regression introducing child_process, node:http/https/net, fetch, execSync or spawnSync fails the suite."
+    }
+  ],
+  "requirementResults": [
+    {
+      "requirement": "Resolve supplied roots by package/schema sentinels, not only folder names; reject a root nested inside the destination.",
+      "met": true,
+      "note": "Sentinel-based resolution verified against renamed, spaced, Unicode and Windows-separator paths, a download wrapper directory, a missing sentinel and an ambiguous two-candidate input. Destination nesting is rejected in both directions; the in-place layout is permitted only via the explicitly declared quarantine recorded in docs/designs/in-place-source-quarantine.md."
+    },
+    {
+      "requirement": "Calculate raw-byte SHA-256 inventories, detect symlinks and case collisions, and compare with the supplied baseline.",
+      "met": true,
+      "note": "Symlinks are hashed by target string and never followed; a file substituted for a symlink is reported as a kind change. Case collisions are reported even on a case-sensitive filesystem."
+    },
+    {
+      "requirement": "Preserve ZIP comment revision strings as unverified archive metadata; require independent verification before marking an upstream commit verified.",
+      "met": true,
+      "note": "The EOCD comment is surfaced as archiveCommentRevisionCandidate. upstream-lock.json types independentlyVerifiedCommit as null and gitHistoryIncluded as false, so this tool cannot promote a candidate to a verified commit."
+    }
+  ],
+  "skippedTests": [],
+  "blockers": [],
+  "findings": [
+    {
+      "id": "AFM-001-F1",
+      "severity": "resolved",
+      "summary": "Windows extraction destroyed the single upstream symlink.",
+      "detail": "Extracting hyperframes-main.zip with Windows unzip materialised packages/producer/tests/render-symlinked-assets/src/shared as a real directory containing brand.css. Preflight reported 1 missing + 1 extra rather than passing. Re-extracted inside the Linux container, where the Docker Desktop bind mount preserves the link; the tree digest then matched the baseline.",
+      "consequence": "All source extraction must happen inside the container. Recorded so a future re-extract on the host does not silently reintroduce it."
+    },
+    {
+      "id": "AFM-001-F2",
+      "severity": "resolved",
+      "summary": "Ticket requirement conflicts with the chosen in-place build layout.",
+      "detail": "AFM-001 requires rejecting a source root nested inside the destination; _sources/ lives inside the output repository by design. Resolved with a narrow declared quarantine exemption rather than removing the check, per docs/EXECUTION_RULES.md's requirement that conflicts produce an explicit architecture decision.",
+      "consequence": "Exempted inputs appear in quarantinedInputs in every report, so an in-place build is always visible in the provenance trail."
+    }
+  ],
+  "notPerformed": [
+    "Independent verification of the archive comment revision candidates against upstream Git history. The inputs carry no history and no remote access was authorized; both remain candidates.",
+    "Application build, package import or render. Those belong to later tickets."
+  ],
+  "review": null
+}
