@@ -4,11 +4,13 @@ import { assertContainedPath, sha256 } from "@hyperframes/project-model/revision
 import { ProjectBatchService, type ProjectBatch } from "../project/projectBatch";
 import { verifyBuild } from "../project/projectBuild";
 import type { StudioApiAdapter } from "../types";
+import { registerProjectProposalRoutes } from "./projectProposals";
+import { projectApiError } from "../project/projectApiError";
 
 function publicBatch(record: ProjectBatch) {
   return {
     ...record,
-    items: record.items.map(({ build, outputPath, ...item }) => ({
+    items: record.items.map(({ build, outputPath: _outputPath, ...item }) => ({
       ...item,
       build: build
         ? { hash: build.hash, revision: build.revision, receipt: build.receipt }
@@ -30,21 +32,11 @@ export function registerProjectCommandRoutes(api: Hono, adapter: StudioApiAdapte
     try {
       await next();
     } catch (error: any) {
-      const conflict =
-        error?.code === "project/revision-conflict" ||
-        error?.message?.includes("idempotency-conflict");
-      return c.json(
-        {
-          error: error?.message || "Project operation failed.",
-          code: error?.code || "project/invalid",
-          diagnostics: error?.diagnostics || [],
-          expected: error?.expected,
-          actual: error?.actual,
-        },
-        conflict ? 409 : 400,
-      );
+      const result = projectApiError(error);
+      return c.json(result.body, result.status);
     }
   });
+  registerProjectProposalRoutes(api, service);
   api.get("/vflow/sources", (c) => c.json({ roots: service.roots() }));
   api.get("/vflow/projects", (c) => c.json({ projects: service.list() }));
   api.post("/vflow/intakes", async (c) => c.json(await service.intake(await c.req.json())));

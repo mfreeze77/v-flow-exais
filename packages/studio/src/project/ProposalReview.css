@@ -1,0 +1,122 @@
+.vf-proposal-dialog {
+  color: #e5edf5;
+  background: #101923;
+  border: 1px solid #334355;
+  border-radius: 14px;
+  width: min(1200px, 95vw);
+  max-height: 92vh;
+  padding: 24px;
+}
+.vf-proposal-dialog::backdrop {
+  background: #000a;
+}
+.vf-proposal-dialog header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+.vf-proposal-dialog h2 {
+  margin-top: 0;
+}
+.vf-proposal-dialog button:focus-visible,
+.vf-proposal-dialog summary:focus-visible {
+  outline: 2px solid #71eed2;
+  outline-offset: 3px;
+}
+.vf-proposal-layout {
+  display: grid;
+  grid-template-columns: 260px minmax(0, 1fr);
+  gap: 28px;
+}
+.vf-proposal-layout aside {
+  min-width: 0;
+}
+.vf-proposal-layout input[type="file"] {
+  max-width: 100%;
+}
+.vf-proposal-layout textarea {
+  min-height: 90px;
+}
+.vf-proposal-choice {
+  display: block;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 10px;
+}
+.vf-proposal-choice strong,
+.vf-proposal-choice span {
+  display: block;
+}
+.vf-proposal-choice[aria-pressed="true"] {
+  border-color: #71eed2;
+}
+.vf-proposal-detail {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.vf-proposal-detail details {
+  padding: 12px 0;
+  border-bottom: 1px solid #304153;
+}
+.vf-proposal-detail summary {
+  cursor: pointer;
+}
+.vf-proposal-detail pre {
+  overflow: auto;
+  max-height: 260px;
+  padding: 12px;
+  background: #080f16;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-size: 12px;
+}
+.vf-proposal-detail textarea[aria-label="Proposal JSON"] {
+  min-height: 320px;
+  font-family: monospace;
+  font-size: 12px;
+}
+.vf-proposal-claim {
+  background: #192532;
+  padding: 16px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+.vf-proposal-claim p {
+  white-space: pre-wrap;
+  max-height: 240px;
+  overflow: auto;
+}
+.vf-proposal-ack {
+  display: flex !important;
+  gap: 10px;
+  align-items: flex-start;
+  margin-top: 12px;
+}
+.vf-proposal-ack input {
+  flex-shrink: 0;
+  margin: 0 !important;
+}
+.vf-proposal-detail footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 24px;
+}
+.vf-proposal-diff {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 12px;
+}
+@media (max-width: 760px) {
+  .vf-proposal-layout,
+  .vf-proposal-diff {
+    grid-template-columns: 1fr;
+  }
+  .vf-proposal-dialog {
+    padding: 16px;
+  }
+  .vf-proposal-detail footer {
+    flex-wrap: wrap;
+  }
+}

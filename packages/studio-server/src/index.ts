@@ -39,6 +39,19 @@ export {
   createStudioMotionRenderBodyScript,
   type StudioMotionRenderScriptOptions,
 } from "./helpers/studioMotionRenderScript.js";
-export { UnifiedProjectService } from './project/projectService';
-export { ProjectBatchService, probeVideo } from './project/projectBatch';
-export type { RepositoryUnderstanding, SourceObservation, SourceRelationship, SourceExcerpt } from './project/repositoryUnderstanding';
+export { UnifiedProjectService } from "./project/projectService";
+export { ProjectBatchService, probeVideo } from "./project/projectBatch";
+export type {
+  RepositoryUnderstanding,
+  SourceObservation,
+  SourceRelationship,
+  SourceExcerpt,
+} from "./project/repositoryUnderstanding";
+export type {
+  ProposedProjectEdit,
+  ProposalClaim,
+  ProposalRecord,
+  ProposalPreview,
+  ReviewedClaim,
+  ProposalProvider,
+} from "./project/proposalTypes";

@@ -5,6 +5,8 @@ import { useMountEffect } from "../hooks/useMountEffect";
 import { SourceEditor } from "../components/editor/SourceEditor";
 import { projectApi } from "./api";
 import { BatchPanel } from "./BatchPanel";
+import { ProposalReview } from "./ProposalReview";
+import { ProjectAgentTools } from "./ProjectAgentTools";
 
 type ProjectState = {
   snapshot: ProjectSnapshot;
@@ -81,6 +83,7 @@ export function ProjectWorkspace({ id }: { id: string }) {
   const [time, setTime] = useState(0);
   const [previewRevision, setPreviewRevision] = useState<number | null>(null);
   const [batchId, setBatchId] = useState<string | null>(null);
+  const [reviewOpen, setReviewOpen] = useState(false);
   const [drafts, setDrafts] = useState<Record<string, { text: string; revision: number }>>({});
   const canvas = useRef<HTMLDivElement | null>(null);
   const load = async () => {
@@ -145,6 +148,7 @@ export function ProjectWorkspace({ id }: { id: string }) {
     draft?.text ?? (typeof source === "string" ? source : JSON.stringify(source, null, 2));
   return (
     <main className="vf-app vf-workspace">
+      <ProjectAgentTools projectId={id} intakeId={data.evidence?.intakeId} />
       <header className="vf-topbar">
         <a className="vf-brand" href="#">
           <span className="vf-brand-mark">V</span> V-FLOW
@@ -153,6 +157,9 @@ export function ProjectWorkspace({ id }: { id: string }) {
         <strong>{manifest.title}</strong>
         <span className="vf-tag">Saved revision {manifest.revision}</span>
         <div className="vf-spacer" />
+        <button disabled={!!busy} onClick={() => setReviewOpen(true)}>
+          Proposals
+        </button>
         <button disabled={!data.canUndo || !!busy} onClick={() => run(commit([{ type: "undo" }]))}>
           Undo
         </button>
@@ -173,6 +180,15 @@ export function ProjectWorkspace({ id }: { id: string }) {
           Export MP4
         </button>
       </header>
+      {reviewOpen && (
+        <ProposalReview
+          projectId={id}
+          intakeId={data.evidence?.intakeId}
+          currentRevision={manifest.revision}
+          onAccepted={load}
+          onClose={() => setReviewOpen(false)}
+        />
+      )}
       {error && (
         <div className="vf-error" role="alert">
           {error}{" "}

@@ -15,7 +15,7 @@ conditional on configuration and authorization. All execution stays in Docker.
 |---|---|---|---|
 | 1 | Understand implementation, docs, entry points, APIs, data models and workflows; explain interactions with citations and uncertainty | Varied real repositories, pinned excerpts, semantic extraction and factual human review | In progress |
 | 2 | Distinct worthwhile stories; audience, purpose, duration and count; scripts with opening, progression and payoff | Reviewed project-specific plans and finished distinct films | Open |
-| 3 | Configured-agent typed proposals; factual/relationship/wording/edit preview; revise, reject, atomic accept; unavailable/partly invalid handling (096,098,102) | Real tool workflow, rejection invariance, atomic undo and source grounding | Open |
+| 3 | Configured-agent typed proposals; factual/relationship/wording/edit preview; revise, reject, atomic accept; unavailable/partly invalid handling (096,098,102) | Real tool workflow, rejection invariance, atomic undo and source grounding | In progress |
 | 4 | Explanatory scenes, diagrams, excerpts and appropriate footage; typography, pacing, transitions and emphasis | Actual probed films and explicit human usefulness/quality review | Open |
 | 5 | Repository/PR before/head pinning; exact adds/removes/changes; before/change/after scenes retaining removed objects (037,092,093) | Two-revision fixtures, exact delta receipts and rendered review | Open |
 | 6 | One complete Studio for managed diagram/native projects, selection, inspector, timeline, media and history (059-063,072,082,085) | Browser editing of mixed projects with one shared workspace | Open |
@@ -35,7 +35,7 @@ conditional on configuration and authorization. All execution stays in Docker.
 | 20 | Editable bundles, HTML/SVG, stills/share cards, MP4/WebM and consistent dependencies/revisions/builds (038,086,126) | Clean-destination bundle reopen/render and inspected exports | Open |
 | 21 | Import/validate/compile/inspect/compare APIs, diagnostics, nonblocking long jobs, correct thumbnails/cancellation/invalidation/last-valid preview (024,026,051-058,070,077) | API failures, races and browser preview state evidence | Open |
 | 22 | Durable compile/capture/encode cancellation/crash recovery, concurrency/disk/retention; runtime/font cache invalidation (054,055,099,110,118) | Process fault matrix and bounded resource measurements | Open |
-| 23 | Complete CLI/agent/compatibility/semantic/conflict/capability tools, combined skill, doctor and real agent-to-video acceptance (095-102) | Recorded real commands and tool workflow | Open |
+| 23 | Complete CLI/agent/compatibility/semantic/conflict/capability tools, combined skill, doctor and real agent-to-video acceptance (095-102) | Recorded real commands and tool workflow | In progress |
 | 24 | Offline edit/preview/render without account; preserve optional voice/transcription/model/catalog/capture/Figma/publish/cloud interfaces (049,100,103) | Network-disabled local journey; conditional integration receipts | Open |
 | 25 | Clean package paths/runtime/install/build order/root checks/owned CI, both inherited baselines, preservation register, no _sources runtime (007,008,010-016) | Complete clean isolated build/install/test and feature register | Open |
 | 26 | Keyboard/focus/responsive/diagnostics, varied-size performance, long-session resources and declared Windows/macOS/Linux workflows (071,116-118) | Browser accessibility, timings/resources and actual platform matrix | Open |

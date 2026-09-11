@@ -76,3 +76,11 @@
 | CAP-070 | Selective upstream update tooling | AFM-125 |
 
 Conditional network/provider interfaces retain their code and local contract tests. Real hosted or model evidence is separate and must not be inferred from mock results. The full local workflow stays release-required.
+
+2026-09-11 checkpoint: CAP-053/054 are partially implemented. Managed projects
+have typed source-backed proposal submission, claim/diff review, revision,
+rejection, atomic acceptance and undo. CLI and pinned-browser evidence is in
+`evidence/tickets/AFM-098/result.json`. Provider output validation is contract-tested;
+the normal host has no configured model provider. Full semantic tools, useful
+story/video acceptance and the remaining capability gates are open. See
+`docs/designs/proposal-review.md` and the full 28-area product completion contract.

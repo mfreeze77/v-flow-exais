@@ -6,7 +6,6 @@ import {
   assertCommand,
   assertProject,
   migrateRelationshipIds,
-  type ProjectCommand,
   type ProjectSnapshot,
   type DiagramKind,
 } from "@hyperframes/project-model";
@@ -21,23 +20,28 @@ import {
   type SourceRoot,
 } from "./repositoryIntake";
 import { nativeTitle } from "./videoProposals";
+import { ProjectProposalService } from "./projectProposals";
+import type { ProposalProvider } from "./proposalTypes";
 
 const validId = (id: string) => /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,127}$/.test(id);
 export interface ProjectServiceOptions {
   home: string;
   sourceRoots: SourceRoot[];
+  proposalProvider?: ProposalProvider;
 }
 
 export class UnifiedProjectService {
   readonly projectsDir: string;
   readonly intakesDir: string;
   readonly batchesDir: string;
+  readonly proposals: ProjectProposalService;
   constructor(readonly options: ProjectServiceOptions) {
     this.projectsDir = join(options.home, "projects");
     this.intakesDir = join(options.home, "intakes");
     this.batchesDir = join(options.home, "batches");
     for (const dir of [this.projectsDir, this.intakesDir, this.batchesDir])
       mkdirSync(dir, { recursive: true });
+    this.proposals = new ProjectProposalService(this, options.proposalProvider);
   }
   roots() {
     return this.options.sourceRoots.map(({ id, label }) => ({ id, label }));

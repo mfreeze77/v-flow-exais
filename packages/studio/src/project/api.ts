@@ -10,7 +10,12 @@ export async function projectApi<T = any>(path: string, body?: unknown): Promise
         },
   );
   const result = await response.json();
-  if (!response.ok) throw new Error(result.error || `Project request failed (${response.status}).`);
+  if (!response.ok)
+    throw Object.assign(new Error(result.error || `Project request failed (${response.status}).`), {
+      code: result.code,
+      diagnostics: result.diagnostics || [],
+      status: response.status,
+    });
   return result;
 }
 export const openProject = (id: string) => {

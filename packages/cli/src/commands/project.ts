@@ -9,6 +9,7 @@ import {
   type RenderJobState,
 } from "@hyperframes/studio-server";
 import { setCommandExitCode } from "../utils/commandResult";
+import { proposalActions, runProjectProposal } from "./projectProposal";
 
 /** The CLI shares the Studio command validator, immutable store and batch service. */
 export default defineCommand({
@@ -22,7 +23,7 @@ export default defineCommand({
       type: "positional",
       default: "list",
       description:
-        "list | plan | from-source | import | get | command | build | export | resume | batch-status | download",
+        "list | plan | from-source | import | get | command | build | export | resume | batch-status | download | proposal-context | propose | proposals | review-proposal | revise-proposal | accept-proposal | reject-proposal",
     },
     source: {
       type: "string",
@@ -33,6 +34,11 @@ export default defineCommand({
       description: "Unified project data directory; defaults to VFLOW_DATA_HOME.",
     },
     id: { type: "string", description: "Project or batch ID." },
+    intake: { type: "string", description: "Pinned source intake ID for proposal context." },
+    proposal: {
+      type: "string",
+      description: "Saved proposal ID to review, revise, accept or reject.",
+    },
     file: { type: "string", description: "Diagram JSON or revision-aware command JSON file." },
     output: {
       type: "string",
@@ -104,7 +110,8 @@ export default defineCommand({
     process.once("SIGTERM", cancel);
     try {
       let result: any;
-      if (args.action === "list") result = { projects: service.list() };
+      if (proposalActions.has(args.action)) result = await runProjectProposal(service, args);
+      else if (args.action === "list") result = { projects: service.list() };
       else if (args.action === "plan" || args.action === "from-source") {
         const intake = await service.intake(
           /^https:/.test(source)
@@ -173,15 +180,22 @@ export default defineCommand({
           result.downloads.push({ path, sha256: item.sha256 });
         }
       }
-      console.log(JSON.stringify(result, null, 2));
+      await new Promise<void>((resolve, reject) =>
+        process.stdout.write(`${JSON.stringify(result, null, 2)}\n`, (error) =>
+          error ? reject(error) : resolve(),
+        ),
+      );
     } catch (error: any) {
-      console.log(
-        JSON.stringify({
-          ok: false,
-          error: error.message,
-          code: error.code || "project/invalid",
-          diagnostics: error.diagnostics || [],
-        }),
+      await new Promise<void>((resolve, reject) =>
+        process.stdout.write(
+          JSON.stringify({
+            ok: false,
+            error: error.message,
+            code: error.code || "project/invalid",
+            diagnostics: error.diagnostics || [],
+          }) + "\n",
+          (error) => (error ? reject(error) : resolve()),
+        ),
       );
       setCommandExitCode(error.code === "project/revision-conflict" ? 3 : 1);
     } finally {
