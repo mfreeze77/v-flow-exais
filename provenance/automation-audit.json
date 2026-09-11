@@ -1,0 +1,90 @@
+{
+  "scope": "Inherited automation audit. Reports what could execute or publish; does not itself disable anything.",
+  "findings": [
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/aws-lambda/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/aws-lambda; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/core/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/core; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/engine/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/engine; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/gcp-cloud-run/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/gcp-cloud-run; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/lint/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/lint; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/parsers/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/parsers; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/producer/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/producer; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/sdk/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/sdk; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/shader-transitions/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/shader-transitions; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/studio; publication requires explicit authorization"
+    },
+    {
+      "code": "publish-config",
+      "severity": "review",
+      "path": "packages/studio-server/package.json",
+      "detail": "publishConfig.access=public for @hyperframes/studio-server; publication requires explicit authorization"
+    },
+    {
+      "code": "agent-hook-config",
+      "severity": "review",
+      "path": "lefthook.yml",
+      "detail": "Git hook manager config retained for review; hooks are redirected via core.hooksPath"
+    },
+    {
+      "code": "auto-update",
+      "severity": "review",
+      "path": ".github/renovate.json",
+      "detail": "Dependency auto-update config; inert without the app installed on a remote"
+    }
+  ],
+  "summary": {
+    "blocked": 0,
+    "review": 13,
+    "ok": 0
+  },
+  "quarantined": true,
+  "effectiveHooksPath": ".githooks"
+}
