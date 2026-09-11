@@ -1,0 +1,47 @@
+# V-Flow EXAIS — development stack.
+#
+#   docker compose build
+#   docker compose run --rm workspace bun run test:unit
+#   docker compose run --rm workspace bash
+#   docker compose up studio        # Studio dev server on http://localhost:5173
+#
+# node_modules lives in a named volume rather than the bind mount. On Windows a
+# bind-mounted node_modules is punishingly slow and mixes Linux-resolved
+# binaries into the host tree; the volume keeps installs inside the VM.
+
+services:
+  workspace:
+    build:
+      context: .
+      dockerfile: .devcontainer/Dockerfile
+    image: v-flow-exais:dev
+    working_dir: /workspace
+    volumes:
+      - .:/workspace
+      # _sources/ is the frozen provenance baseline. Mounted read-only so no
+      # container process can modify the upstream snapshots.
+      - ./_sources:/workspace/_sources:ro
+      - workspace-node-modules:/workspace/node_modules
+      - bun-cache:/root/.bun/install/cache
+    environment:
+      - CONTAINER=true
+      - PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+      - PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium
+    # Chromium needs more than the default 64MB of shared memory or it will
+    # crash mid-capture on larger frames.
+    shm_size: 1gb
+    init: true
+    stdin_open: true
+    tty: true
+
+  studio:
+    extends:
+      service: workspace
+    command: bun run studio
+    ports:
+      - "5173:5173"
+      - "3000:3000"
+
+volumes:
+  workspace-node-modules:
+  bun-cache:

@@ -1,0 +1,30 @@
+{
+  "generatedBy": "tools/import/preflight.ts",
+  "status": "PASS",
+  "upstreamCommitVerification": "not_performed",
+  "note": "Archive comment revision strings are unverified candidates. These inputs carry no upstream Git history, so no commit may be marked verified from this record alone.",
+  "repositories": {
+    "archify": {
+      "input": "/workspace/_sources/archify-main",
+      "inputType": "folder",
+      "resolvedRoot": "/workspace/_sources/archify-main",
+      "filesChecked": 483,
+      "treeContentSha256": "f2b43966847330b4e7790b23212317a04017de0d7de1520a2190d7f686d21bcb",
+      "matchesBaseline": true,
+      "archiveCommentRevisionCandidate": null,
+      "independentlyVerifiedCommit": null,
+      "gitHistoryIncluded": false
+    },
+    "hyperframes": {
+      "input": "/workspace/_sources/hyperframes-main",
+      "inputType": "folder",
+      "resolvedRoot": "/workspace/_sources/hyperframes-main",
+      "filesChecked": 7303,
+      "treeContentSha256": "78d8162e089054271d2d86aa9965660b9a79177d32e522815dc0f325eda7c2c9",
+      "matchesBaseline": true,
+      "archiveCommentRevisionCandidate": null,
+      "independentlyVerifiedCommit": null,
+      "gitHistoryIncluded": false
+    }
+  }
+}

@@ -1,0 +1,25 @@
+# The repository is authored on Windows but built and tested inside Linux
+# containers. Normalise to LF everywhere so checked-out bytes are identical on
+# both, and so build receipts that hash source files stay comparable.
+* text=auto eol=lf
+
+# Never touch binary payloads.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.webp binary
+*.mp4 binary
+*.webm binary
+*.mp3 binary
+*.wav binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.otf binary
+*.zip binary
+*.pdf binary
+
+# Lockfiles are generated; keep them out of diff noise and merge attempts.
+bun.lock -diff linguist-generated

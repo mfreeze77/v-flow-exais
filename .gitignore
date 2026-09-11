@@ -1,0 +1,46 @@
+# Dependencies & build output
+node_modules/
+dist/
+build/
+coverage/
+*.tgz
+.turbo/
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+__pycache__/
+*.pyc
+.ruff_cache/
+
+# Local secrets & env
+.env
+.env.local
+.npmrc
+
+# Local AI tool / agent workspaces (worktrees, scratch state)
+.claude/
+.worktrees/
+.codebuddy/
+
+# Frozen upstream input snapshots. These are the read-only provenance baseline
+# for drift detection (AFM-001) and source-anchor lookups -- NOTHING imports or
+# builds from them. The product owns its copy of the code under packages/, and
+# per docs/EXECUTION_RULES.md the repo must build with _sources/ absent.
+_sources/
+
+# Retired material, kept locally
+_archive/
+
+# Render and capture output. Regenerable; pinned by build receipts instead.
+out/
+renders/
+*.mp4.tmp
+
+# Evidence: per-ticket receipts and gate results ARE tracked deliverables
+# (docs/DEFINITION_OF_DONE.md requires them in the handoff), but the raw render
+# artifacts they reference are large and regenerable. Track the JSON, not the video.
+evidence/**/*.mp4
+evidence/**/*.webm
+evidence/**/*.png
+evidence/**/frames/
