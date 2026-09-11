@@ -1,0 +1,98 @@
+{
+  "scope": "Workspace manifest, ownership and local-resolution validation (AFM-009, AFM-011)",
+  "packageCount": 18,
+  "packages": [
+    {
+      "dir": "packages/aws-lambda",
+      "name": "@hyperframes/aws-lambda",
+      "private": false
+    },
+    {
+      "dir": "packages/cli",
+      "name": "@hyperframes/cli",
+      "private": false
+    },
+    {
+      "dir": "packages/core",
+      "name": "@hyperframes/core",
+      "private": false
+    },
+    {
+      "dir": "packages/diagram-engine",
+      "name": "@hyperframes/diagram-engine",
+      "private": true
+    },
+    {
+      "dir": "packages/diagram-motion",
+      "name": "@hyperframes/diagram-motion",
+      "private": true
+    },
+    {
+      "dir": "packages/diagram-viewer",
+      "name": "@hyperframes/diagram-viewer",
+      "private": true
+    },
+    {
+      "dir": "packages/engine",
+      "name": "@hyperframes/engine",
+      "private": false
+    },
+    {
+      "dir": "packages/gcp-cloud-run",
+      "name": "@hyperframes/gcp-cloud-run",
+      "private": false
+    },
+    {
+      "dir": "packages/lint",
+      "name": "@hyperframes/lint",
+      "private": false
+    },
+    {
+      "dir": "packages/parsers",
+      "name": "@hyperframes/parsers",
+      "private": false
+    },
+    {
+      "dir": "packages/player",
+      "name": "@hyperframes/player",
+      "private": false
+    },
+    {
+      "dir": "packages/producer",
+      "name": "@hyperframes/producer",
+      "private": false
+    },
+    {
+      "dir": "packages/project-model",
+      "name": "@hyperframes/project-model",
+      "private": true
+    },
+    {
+      "dir": "packages/sdk",
+      "name": "@hyperframes/sdk",
+      "private": false
+    },
+    {
+      "dir": "packages/sdk-playground",
+      "name": "@hyperframes/sdk-playground",
+      "private": true
+    },
+    {
+      "dir": "packages/shader-transitions",
+      "name": "@hyperframes/shader-transitions",
+      "private": false
+    },
+    {
+      "dir": "packages/studio",
+      "name": "@hyperframes/studio",
+      "private": false
+    },
+    {
+      "dir": "packages/studio-server",
+      "name": "@hyperframes/studio-server",
+      "private": false
+    }
+  ],
+  "problems": [],
+  "valid": true
+}

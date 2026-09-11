@@ -1,0 +1,96 @@
+{
+  "date": "2026-09-10",
+  "status": "verified",
+  "environment": {
+    "execution": "docker compose run --rm workspace",
+    "image": "v-flow-exais:dev",
+    "bun": "1.3.13",
+    "node": "v22.23.2"
+  },
+  "skippedTests": [],
+  "blockers": [],
+  "review": null,
+  "ticketId": "AFM-009",
+  "title": "Reconcile workspace manifests and package ownership",
+  "commit": "PENDING",
+  "commands": [
+    {
+      "invocation": "bun install",
+      "exitCode": 0,
+      "result": "19 workspace members resolved locally"
+    },
+    {
+      "invocation": "bun run check:workspace",
+      "exitCode": 0,
+      "result": "PASS - 18 packages, 0 problems"
+    },
+    {
+      "invocation": "bun run test:acceptance",
+      "exitCode": 0,
+      "result": "see test.log",
+      "logPath": "evidence/tickets/AFM-009/test.log"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "tools/build/workspace.ts",
+      "sha256": "bc59406dfc0261916c6d7217cebe4bc6600f584c6286a471bab6538cb6fcb39c",
+      "type": "source"
+    },
+    {
+      "path": "provenance/workspace-report.json",
+      "sha256": "69dac3eda45e74c5b9f2e75ee57acfac67107f89dfce97eb922784c4234701cf",
+      "type": "report"
+    },
+    {
+      "path": "packages/diagram-engine/package.json",
+      "type": "manifest"
+    },
+    {
+      "path": "packages/diagram-viewer/package.json",
+      "type": "manifest"
+    },
+    {
+      "path": "packages/project-model/package.json",
+      "type": "manifest"
+    },
+    {
+      "path": "packages/diagram-motion/package.json",
+      "type": "manifest"
+    }
+  ],
+  "workspaceSummary": {
+    "packages": 18,
+    "privatePackages": 5,
+    "newOwnedPackages": [
+      "@hyperframes/diagram-engine",
+      "@hyperframes/diagram-viewer",
+      "@hyperframes/project-model",
+      "@hyperframes/diagram-motion"
+    ],
+    "nestedPackageManagerRoots": 0,
+    "duplicateNames": 0,
+    "registrySubstitutions": 0
+  },
+  "acceptanceResults": [
+    {
+      "criterion": "One root install resolves every production workspace dependency locally.",
+      "met": true,
+      "evidence": "bun install registers all 19 workspace members with no registry fetch for an internal name, and findUnresolvedWorkspaceDependencies reports zero. Archify's ajv, parse5, saxes and simple-icons were translated from devDependencies to dependencies because the renderers import them at runtime; the fast-uri 3.1.5 override was preserved."
+    },
+    {
+      "criterion": "Duplicate package names, hidden npm fallbacks and accidental published upstream package substitution fail validation.",
+      "met": true,
+      "evidence": "validateWorkspace detects all three, each asserted with a fixture. The inherited packages/diagram-engine/package-lock.json was a real second package-manager root inside a bun workspace member and was relocated to docs/upstream/archify/. An internal dependency declared with a registry range instead of workspace:* is reported as registry-substitution, which is the exact mechanism by which a published upstream package could silently replace an owned one."
+    },
+    {
+      "criterion": "Native HyperFrames packages remain available; no package is removed merely because the diagram slice does not use it.",
+      "met": true,
+      "evidence": "All 14 inherited packages remain registered and are asserted by name, including aws-lambda, gcp-cloud-run, sdk-playground and shader-transitions, none of which the diagram slice touches."
+    }
+  ],
+  "notPerformed": [
+    "The @hyperframes scope was deliberately retained. Contract C11 requires a scope rename to update code, lockfile, exports, build scripts, skills and distribution tests atomically, which is its own ticket.",
+    "project-model and diagram-motion carry manifests and contract declarations only. Their implementations are E03 (AFM-017) and E05 (AFM-039)."
+  ]
+}

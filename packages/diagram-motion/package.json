@@ -1,0 +1,24 @@
+{
+  "name": "@hyperframes/diagram-motion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Compiles guided-view semantic intent into deterministic, seekable motion on the composition timeline (contract C06).",
+  "type": "module",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": "./src/index.ts",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src"
+  ],
+  "dependencies": {
+    "@hyperframes/project-model": "workspace:*"
+  },
+  "scripts": {
+    "build": "echo \"no build step yet (AFM-039)\" && exit 0",
+    "test": "echo \"no tests yet (AFM-039)\" && exit 0",
+    "typecheck": "tsc --noEmit"
+  }
+}

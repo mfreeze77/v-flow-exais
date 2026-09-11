@@ -8,6 +8,7 @@ import { validateEngineeringProfile } from './engineering-profiles.mjs';
 import { resolveOutputPath } from './output-path.mjs';
 import { prepareDiagramBrandMarks } from './brand-marks.mjs';
 import { resolveLocale, translateMessage } from './i18n.mjs';
+import { examplePath, viewerTemplatePath } from '../../src/resolveAssets.mjs';
 
 installRendererDiagnosticBoundary();
 
@@ -17,15 +18,18 @@ const outputPathGuards = new Map();
 // Keep this synchronous because callers also use it to establish the guarded
 // output path before testing a last-moment filesystem alias change.
 export function loadDiagram({ rendererDir, diagramType, defaultExample, argv = process.argv }) {
-  const skillRoot = path.resolve(rendererDir, '../..');
-  const inputPath = path.resolve(argv[2] || path.join(skillRoot, 'examples', defaultExample));
+  // AFM-011: assets are resolved from package-owned paths, not from a assumed
+  // skill root two levels above the renderer. The viewer template now lives in
+  // @hyperframes/diagram-viewer, so `path.resolve(rendererDir, '../..')` no
+  // longer finds it.
+  const inputPath = path.resolve(argv[2] || examplePath(defaultExample));
   const diagram = JSON.parse(fs.readFileSync(inputPath, 'utf8'));
   validateSchema(diagramType, diagram);
   validateGuidedViews(diagramType, diagram);
   validateRelationshipIds(diagramType, diagram);
   validateEngineeringProfile(diagramType, diagram);
   const sourceEvidence = verifyRepositoryEvidence(diagramType, diagram, process.env.ARCHIFY_REPO_ROOT);
-  const template = fs.readFileSync(path.join(skillRoot, 'assets/template.html'), 'utf8');
+  const template = fs.readFileSync(viewerTemplatePath(), 'utf8');
   const outputRequest = {
     requestedOutput: argv[3],
     authoredOutput: diagram.meta?.output,

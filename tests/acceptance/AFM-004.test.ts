@@ -141,14 +141,49 @@ describe("AFM-004: modifications to upstream files are recorded", () => {
     }
   });
 
-  it("records exactly the four deliberate reconciliations", () => {
+  it("records exactly the deliberate reconciliations", () => {
     expect(audit.modifications.map((m) => m.path).sort()).toEqual([
       ".gitattributes",
       ".gitignore",
       "bun.lock",
       "package.json",
+      "packages/diagram-engine/package.json",
+      "packages/diagram-engine/renderers/shared/cli.mjs",
     ]);
   });
+
+  it("tracks a relocated file rather than letting it vanish silently", () => {
+    // A divergence check can only compare files that still exist, so a moved
+    // or deleted import would otherwise pass unnoticed.
+    expect(audit.relocations.map((r) => r.ledgerTargetPath)).toEqual([
+      "packages/diagram-engine/package-lock.json",
+    ]);
+    expect(audit.relocations[0]!.reason).not.toContain("UNEXPLAINED");
+    expect(existsSync("docs/upstream/archify/package-lock.json")).toBe(true);
+  });
+
+  it("flags a ledger target that disappeared with no reason", () => {
+    const result = auditLegal(resolve("."), {
+      ...map,
+      entries: [
+        {
+          repository: "hyperframes",
+          sourcePath: "packages/core/src/vanished.ts",
+          targetPath: "packages/core/src/vanished.ts",
+          kind: "file",
+          size: 1,
+          sha256: "b".repeat(64),
+          mode: "0o644",
+          executable: false,
+          disposition: "retain-relocate-refactor-as-owned",
+          implementationOwners: ["AFM-004"],
+          nonAuthoritative: false,
+        },
+      ],
+    });
+    expect(result.relocations[0]!.reason).toContain("UNEXPLAINED");
+    expect(result.problems.some((p) => p.includes("missing with no recorded reason"))).toBe(true);
+  }, 180_000);
 
   it("flags an undeclared modification", () => {
     const root = mkdtempSync(join(tmpdir(), "afm004-mod-"));

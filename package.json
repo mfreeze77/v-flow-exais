@@ -58,7 +58,8 @@
     "import:plan": "bun run tools/import/plan-cli.ts",
     "import:apply": "bun run tools/import/apply-cli.ts",
     "audit:automation": "bun run tools/import/audit-automation-cli.ts",
-    "audit:assets": "bun run tools/legal/asset-audit-cli.ts"
+    "audit:assets": "bun run tools/legal/asset-audit-cli.ts",
+    "check:workspace": "bun run tools/build/workspace-cli.ts"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",

@@ -1,0 +1,20 @@
+{
+  "name": "@hyperframes/diagram-viewer",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Standalone diagram viewer shell: the HTML template and viewer assets that wrap a compiled diagram artifact.",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.mjs",
+    "./template": "./assets/template.html",
+    "./assets/*": "./assets/*",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "src",
+    "assets"
+  ],
+  "scripts": {
+    "test": "echo \"no tests yet (AFM-030)\" && exit 0"
+  }
+}
