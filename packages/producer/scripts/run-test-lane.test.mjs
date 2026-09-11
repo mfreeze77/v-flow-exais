@@ -254,7 +254,9 @@ function cliFixture(argv, status = 0, symlink = false) {
     const producer = join(fixture, "packages", "producer");
     const directory = join(producer, "scripts");
     mkdirSync(directory, { recursive: true });
-    for (const file of ["run-test-lane.mjs", "test-lane-selection.mjs"])
+    // lane-report.mjs is a real dependency of the runner, so the fixture
+    // workspace has to carry it or the CLI cannot start at all.
+    for (const file of ["run-test-lane.mjs", "test-lane-selection.mjs", "lane-report.mjs"])
       cpSync(join(scripts, file), join(directory, file));
     writeFileSync(
       join(directory, "test-classification.mjs"),
@@ -339,9 +341,19 @@ describe("CLI process wiring", () => {
 });
 
 it("runs the new regressions from the existing classification script", () => {
+  // Asserts each suite is wired in by name rather than pinning one exact
+  // command string. Pinning the whole string made adding a further regression
+  // suite look like a failure, which trains people to edit the guard instead of
+  // reading it. Named membership still fails if a suite is dropped.
   const manifest = JSON.parse(readFileSync(join(root, "package.json"), "utf8"));
-  assert.match(
-    manifest.scripts["test:classification"],
-    /node --test scripts\/test-classification\.test\.mjs scripts\/run-test-lane\.test\.mjs && node scripts\/check-test-classification\.mjs/,
-  );
+  const command = manifest.scripts["test:classification"];
+  for (const suite of [
+    "scripts/test-classification.test.mjs",
+    "scripts/run-test-lane.test.mjs",
+    "scripts/lane-report.test.mjs",
+  ]) {
+    assert.ok(command.includes(suite), `test:classification must run ${suite}`);
+  }
+  assert.match(command, /node --test /);
+  assert.match(command, /&& node scripts\/check-test-classification\.mjs/);
 });

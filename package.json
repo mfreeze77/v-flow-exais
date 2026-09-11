@@ -23,7 +23,7 @@
     "sync-schemas:check": "tsx scripts/sync-schemas.ts --check",
     "sync:package-subpaths": "node scripts/package-subpaths.mjs --write",
     "check:package-subpaths": "node scripts/package-subpaths.mjs",
-    "lint": "bun run check:docs-snippet-motion && bun run check:tracked-artifacts && bun run check:workspace-contracts && bun run check:gcp-cloud-run-dockerfile && bun run check:package-cycles && bun run check:package-subpaths && bun run check:cli-process-ownership && oxlint . && tsx scripts/lint-skills.ts && node scripts/check-skill-mirror.mjs",
+    "lint": "bun run check:docs-snippet-motion && bun run check:tracked-artifacts && bun run check:workspace-contracts && bun run check:gcp-cloud-run-dockerfile && bun run check:package-boundaries && bun run check:package-cycles && bun run check:package-subpaths && bun run check:cli-process-ownership && oxlint . && tsx scripts/lint-skills.ts && node scripts/check-skill-mirror.mjs",
     "check:gcp-cloud-run-dockerfile": "bun run --cwd packages/gcp-cloud-run test:dockerfile-workspaces",
     "lint:skills": "tsx scripts/lint-skills.ts",
     "check:skill-mirror": "node scripts/check-skill-mirror.mjs",
@@ -63,7 +63,8 @@
     "check:workspace": "bun run tools/build/workspace-cli.ts",
     "build:owned-runtimes": "bun run build:hyperframes-runtime && bun run --cwd packages/core build:position-edits-render && bun run --cwd packages/core build:audio-fx-runtime",
     "vflow": "bun run packages/cli/src/cli.ts project",
-    "doctor": "bun run tools/doctor/runtime-cli.ts"
+    "doctor": "bun run tools/doctor/runtime-cli.ts",
+    "check:package-boundaries": "node scripts/check-package-boundaries.mjs"
   },
   "devDependencies": {
     "@commitlint/cli": "^20.5.0",
