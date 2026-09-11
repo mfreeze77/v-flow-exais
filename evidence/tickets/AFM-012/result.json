@@ -1,8 +1,8 @@
 {
   "ticketId": "AFM-012",
   "title": "Reconcile lint, types, tests and package boundaries",
-  "status": "in_progress",
-  "commit": "5899c634a67dea13f85685d6c8f8d401c8b7792b",
+  "status": "complete",
+  "commit": "dfb49aa0f17dde4e04c2475a430346493ea12ac5",
   "date": "2026-09-11",
   "environment": {
     "execution": "docker compose run --rm workspace",
@@ -14,7 +14,7 @@
     "os": "Debian 12.15"
   },
   "producerBaseline": {
-    "scope": "All four producer partitions, each run standalone against the tree including PR #2 and its two follow-up fixes.",
+    "scope": "All four producer partitions, from the single final checkpoint run recorded in final-checkpoint/. Totals are the test frameworks' own, read from Bun's JUnit and Vitest's JSON reports and validated against what the wrapper dispatched -- not parsed from terminal output.",
     "inventory": {
       "total": 103,
       "unit": {
@@ -27,42 +27,47 @@
       }
     },
     "results": {
-      "unit/bun": {
+      "unit-bun": {
         "exit": 0,
-        "files": "42/42",
+        "files": 42,
         "casesPassed": 660,
         "casesFailed": 0,
         "skipped": 0,
-        "unlaunched": 0
+        "unlaunched": 0,
+        "evidenceSource": "framework"
       },
-      "unit/vitest": {
+      "unit-vitest": {
         "exit": 0,
-        "files": "42/42",
+        "files": 42,
         "casesPassed": 672,
         "casesFailed": 0,
         "skipped": 1,
-        "unlaunched": 0
+        "unlaunched": 0,
+        "evidenceSource": "framework"
       },
-      "integration/bun": {
+      "integration-bun": {
         "exit": 0,
-        "files": "10/10",
+        "files": 10,
         "casesPassed": 175,
         "casesFailed": 0,
         "skipped": 0,
-        "unlaunched": 0
+        "unlaunched": 0,
+        "evidenceSource": "framework"
       },
-      "integration/vitest": {
+      "integration-vitest": {
         "exit": 0,
-        "files": "9/9",
+        "files": 9,
         "casesPassed": 77,
         "casesFailed": 0,
         "skipped": 0,
-        "unlaunched": 0
+        "unlaunched": 0,
+        "evidenceSource": "framework"
       }
     },
     "totalCasesPassed": 1584,
-    "logs": "evidence/tickets/AFM-012/producer-baseline/final-pr2/",
-    "totalSkipped": 1
+    "totalSkipped": 1,
+    "totalUnlaunched": 0,
+    "logs": "evidence/tickets/AFM-012/final-checkpoint/"
   },
   "findings": [
     {
@@ -123,6 +128,42 @@
       "summary": "Two follow-up regressions, both caught by existing contracts.",
       "detail": "First, a unit test pinned the exact correction filter string, which PR #2 changed by adding the latency flag. Second, the ffprobe argv contract flagged the new timing fixture. The obvious fix there would have been wrong: the fixture spawns ffmpeg only and never ffprobe. The contract discovers callers by argv shape, deliberately over-including so a dependency-injected runner cannot hide, and an argv literal ending in a spread reads to it as a positional input requiring a terminator. That terminator is an ffprobe idiom - ffmpeg takes inputs via -i and its trailing positional is the output.",
       "consequence": "The stale expectation was updated to the new filter. The fixture builds its argv by push rather than as a spread inside a literal, which states the shape accurately without weakening the contract or adding a meaningless terminator to ffmpeg calls."
+    },
+    {
+      "id": "AFM-012-F8",
+      "severity": "resolved",
+      "classification": "false success in our own evidence tooling",
+      "summary": "The checkpoint generator reported passes it had never observed.",
+      "detail": "evidence/tickets/AFM-012/final-checkpoint/generate-receipt.mjs hard-coded exitCode: 0 for the acceptance suite, decided pass/fail by scanning console prose so an empty log read as a pass, and two of its detector patterns contained literal backspace bytes where word boundaries were intended, so 'FAIL:' was never matched at all. A tool built to stop hand-entered numbers had a success value typed into it.",
+      "consequence": "Replaced by tools/evidence/checkpoint-summary.mjs, whose rule is that a check passes only if it recorded an exit code and that exit code is 0. Absent evidence is 'unknown', never 'pass'. Run against the old evidence directory it returned NOT TRUSTWORTHY with 14 checks flagged 'no exit code recorded' \u2014 the same checks the old generator had called passing. 18 adversarial tests.",
+      "creditedTo": "external review"
+    },
+    {
+      "id": "AFM-012-F9",
+      "severity": "resolved",
+      "classification": "reporting implemented but unconnected",
+      "summary": "Every lane invocation recorded execution as permanently unknown.",
+      "detail": "lane-report.mjs modelled dispatch and execution as distinct correctly, but run-test-lane.mjs passed evidenceState: EVIDENCE.missing and frameworkResults: null for every invocation. No real run could ever produce framework-confirmed totals, so the distinction the module existed to preserve had no data behind it.",
+      "consequence": "framework-report.mjs binds a per-invocation report path before spawn, appends --reporter=junit/--reporter-outfile (bun) or --reporter=json/--outputFile (vitest), then reads the report back and validates it against the invocation. Both runners now report validated totals from real runs. Two parser defects were found only by spawning the real runners: Bun nests a testsuite element per describe block, and Vitest's numTotalTestSuites counts describes, so both overcounted collected files \u2014 which also trips the dispatch cross-check and would have rejected healthy evidence.",
+      "creditedTo": "external review identified this as the largest missing implementation step"
+    },
+    {
+      "id": "AFM-012-F10",
+      "severity": "resolved",
+      "classification": "checker too weak to establish its own claim",
+      "summary": "The boundary checker could be crossed seven ways without tripping.",
+      "detail": "Import extraction was regex-based over raw source and only direct imports inside the protected package were examined. A configured tsconfig paths alias, a chain through another first-party package, a test-scope helper that production code imports, a template-literal dynamic import, a .cts or .mts file, a direct puppeteer dependency, and a bare or subpath workspace import followed by convention to src/index rather than to the module the exports map actually serves \u2014 each reached forbidden code while the checker reported clean. It also reported a false positive on import-shaped text inside an ordinary string.",
+      "consequence": "Comments and string literals are stripped before scanning with line numbers preserved; aliases are read from tsconfig; first-party dependency paths are followed transitively and the full path reported, not just the endpoint; workspace imports resolve through the manifest's exports map with source conditions preferred over dist; browser-capture packages are named in every rule; and an import inside protected production code that cannot be resolved is reported rather than passed over, because silence would certify a boundary that was never checked. 33 tests, including the seven crossings and the false positive.",
+      "creditedTo": "external review supplied the crossings and the false positive"
+    },
+    {
+      "id": "AFM-012-F11",
+      "severity": "resolved",
+      "classification": "confirmed defect, concealed by the previous two",
+      "summary": "bun run lint had never completed; four real defects were hiding behind it.",
+      "detail": "Recording an exit code for every check showed the lint chain failing at its first link: check:docs-snippet-motion crashed with ENOENT because it pointed at docs/snippets/, the upstream repository's layout, while the import placed those files at docs/upstream/hyperframes/snippets/ under their retain-reference-docs disposition. The chain is &&-joined, so the ten checks after it never ran. Reporting oxlint's result alone had made the repository look clean.",
+      "consequence": "Four defects fixed. (1) packages/gcp-cloud-run/Dockerfile was missing project-model, diagram-viewer, diagram-engine and diagram-motion \u2014 manifests, sources and builds \u2014 so a Cloud Run image could not have built; the merge added them as producer dependencies and the Dockerfile was never updated. (2) diagram-engine and diagram-viewer declared no typecheck; the engine now typechecks its contracts.d.ts with skipLibCheck off, since that declaration file is the public type surface diagram-motion and project-model compile against, and the viewer carries a documented opt-out because it has no TypeScript at all. (3) A runtime dependency cycle core -> studio-server -> diagram-motion -> core. The checker carried an exception for the two-package core/studio-server component, to be deleted 'with the forwarding surface in the next breaking release'; the merge grew the component to three and it failed correctly. The exception was removed rather than widened: this repository has no published consumers, and every shim under core/src/studio-api/ re-exported code already living in studio-server, including three test files duplicated verbatim from studio-server's own. Seven import sites were repointed. (4) The skill mirror could not exist because /.claude/ was gitignored whole; the rule is now /.claude/* with the skills directory re-included, since it is tracked content rather than scratch and each CLI reads only its own path. scripts/publish-workflow.test.mjs was removed: it asserted on .github/workflows/publish.yml, which does not exist here because every upstream workflow was imported under quarantine-automation, a quarantine audit:automation already asserts.",
+      "creditedTo": "surfaced by the exit-code recording required by this ticket"
     }
   ],
   "knownCoverageGaps": [
@@ -132,10 +173,9 @@
     "Byte-identical source establishes that those files were not edited, not that every effect of the fork is excluded. Dependencies, helpers, export resolution, configuration and native tool builds can still differ."
   ],
   "remainingAcceptance": [
-    "Package boundaries: executable checks must reject forbidden Studio and browser-capture imports into project-model, and Studio imports into diagram-engine, with negative tests that deliberately introduce violations. Not started.",
-    "Accurate reporting: machine-readable results distinguishing selected, launched, loaded, passed, failed, skipped and unlaunched work, preserving platform-specific coverage limitations. Not started.",
-    "Final checkpoint: relevant checks run against the final commit with receipts identifying precisely what is complete and what remains open.",
-    "Passing the inherited producer suites is not proof that the producer is correct."
+    "Passing the inherited producer suites is not proof that the producer is correct.",
+    "Acceptance re-verifies the whole 7,786-file import on every run (SHA-256 over the tree for AFM-001, full-tree walks for AFM-003/005/006), which is ~10 of the ~15 minute checkpoint over a Windows bind mount. Splitting it into an import-integrity lane gated on _sources/ and provenance/import-map.json is not done.",
+    "packages/diagram-viewer's test script is `echo \"no tests yet (AFM-030)\" && exit 0`. It exits 0 and demonstrates nothing; AFM-030 owns it."
   ],
   "blockers": [],
   "skippedTests": [
@@ -146,5 +186,28 @@
       "reason": "Windows-specific frame staging; skipped on the Linux container. Platform coverage limitation, not a passing case."
     }
   ],
-  "review": null
+  "review": null,
+  "finalCheckpoint": {
+    "generator": "tools/evidence/run-checkpoint.sh + tools/evidence/checkpoint-summary.mjs",
+    "rule": "A check passes only if it recorded an exit code and that exit code is 0. Absent evidence is 'unknown', never 'pass'. Console text may add detail; it may never establish success.",
+    "verdict": "trustworthy",
+    "checks": {
+      "audit-assets": "pass",
+      "audit-automation": "pass",
+      "boundaries-tests": "pass",
+      "check-package-boundaries": "pass",
+      "check-workspace": "pass",
+      "checkpoint-summary-tests": "pass",
+      "classification": "pass",
+      "doctor": "pass",
+      "environment": "pass",
+      "format": "pass",
+      "lint": "pass",
+      "scripts-tests": "pass"
+    },
+    "suites": {
+      "acceptance": "pass"
+    },
+    "problems": []
+  }
 }
