@@ -38,7 +38,8 @@
     {
       "invocation": "bunx vitest run tests/acceptance/AFM-010.test.ts",
       "exitCode": 0,
-      "result": "22/22"
+      "result": "22/22 (historical: this run predates the node-probe and version-equality tests)",
+      "historical": true
     },
     {
       "invocation": "bun run doctor",
@@ -50,6 +51,16 @@
       "exitCode": 0,
       "result": "213 passed across 18 files",
       "logPath": "evidence/tickets/AFM-010/test.log"
+    },
+    {
+      "invocation": "bunx vitest run tests/acceptance/AFM-010.test.ts",
+      "exitCode": 0,
+      "result": "28/28 (current: adds real-node probe, version equality, empty-output probe)"
+    },
+    {
+      "invocation": "bunx vitest run tests/acceptance/AFM-011.project-model-package.test.ts",
+      "exitCode": 0,
+      "result": "6/6 - packed package performs a worker-backed commit under Node"
     }
   ],
   "artifacts": [
@@ -68,6 +79,21 @@
     {
       "path": ".devcontainer/Dockerfile",
       "type": "image-definition"
+    },
+    {
+      "path": "evidence/tickets/AFM-010/clean-install.log",
+      "sha256": "b7960ce610504934af2f74e0362d28ee0bfebe8446edb3fd49ca0c4fec5785c0",
+      "type": "command-log"
+    },
+    {
+      "path": "evidence/tickets/AFM-010/clean-build.log",
+      "sha256": "4f5fdfa955621544c5d61a55f020ce6d2fbed96016ac5256c1124feaeed9fb7e",
+      "type": "command-log"
+    },
+    {
+      "path": "evidence/tickets/AFM-010/stale-lockfile.log",
+      "sha256": "f444cfdf87b60eadab54e8621fb1206f27df862d728c9dbce7135130d212b1f5",
+      "type": "command-log"
     }
   ],
   "acceptanceResults": [
@@ -109,6 +135,14 @@
       "summary": "The clean-checkout build initially failed because the fixes were uncommitted.",
       "detail": "The first clean-checkout run reported 'Script not found: doctor' and a filter miss, because a clone sees committed state only.",
       "consequence": "Confirms the clean-checkout test is meaningful rather than reading the working tree. Re-run after committing: exit 0."
+    },
+    {
+      "id": "AFM-010-F4",
+      "severity": "resolved",
+      "summary": "Two version-validation paths were still too permissive.",
+      "detail": "The headless-shell check used reported.includes(pinned), so '148.0.7778.1670' passed for pin '148.0.7778.167' - a different build. checkExecutable treated a zero-exit probe as ok even when it printed nothing, returning state ok with executedVersion null.",
+      "consequence": "Full dotted versions are now extracted and compared by equality, and a probe that exits zero without parsable output is probe-failed. Both reproduced with real disposable executables before and after.",
+      "creditedTo": "external review"
     }
   ],
   "notPerformed": [

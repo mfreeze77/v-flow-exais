@@ -155,12 +155,45 @@ export function commitWhileLocked(
   return { pointer, replayed: false };
 }
 
+/**
+ * Locates the commit worker in both source and built layouts.
+ *
+ * `new URL("./worker.mjs", import.meta.url)` alone is only correct when this
+ * module runs from source. Once the package exposes a Node condition pointing
+ * at `dist/storage.js`, the same expression resolves to `dist/worker.mjs`,
+ * which tsup does not emit — so the package imported cleanly under Node while
+ * every worker-backed commit failed with "Module not found".
+ *
+ * Copying the worker into `dist` would not fix it either: the worker imports
+ * `./commit.ts`, which does not exist beside the bundled output. Instead the
+ * built entry points back at the shipped source worker. That is sound because
+ * the worker is always spawned under Bun (see the `flock ... bun worker` call
+ * below), and `src` is in the package's `files` list.
+ */
+function resolveCommitWorker(): string {
+  const candidates = [
+    // Source layout: src/storage/commit.ts -> src/storage/worker.mjs
+    new URL("./worker.mjs", import.meta.url),
+    // Built layout: dist/storage.js -> src/storage/worker.mjs
+    new URL("../src/storage/worker.mjs", import.meta.url),
+  ].map((candidate) => fileURLToPath(candidate));
+
+  for (const candidate of candidates) {
+    if (existsSync(candidate)) return candidate;
+  }
+
+  throw new Error(
+    `project/worker-missing: the commit worker was not found. Looked in ${candidates.join(" and ")}. ` +
+      "A package build must ship src/storage/worker.mjs alongside dist/.",
+  );
+}
+
 function runLockedWorker(projectRoot: string, request: CommitRequest): Promise<CommitResult> {
   const root = prepareStore(projectRoot);
   const lockPath = join(root, ".vflow/LOCK");
   assertContainedPath(root, lockPath);
   const fd = openSync(lockPath, constants.O_CREAT | constants.O_RDWR | constants.O_NOFOLLOW, 0o600);
-  const worker = fileURLToPath(new URL("./worker.mjs", import.meta.url));
+  const worker = resolveCommitWorker();
   return new Promise((resolve, reject) => {
     // The lock is held by the kernel and released on process death. There is
     // no stale PID/lease file to guess at after a crash or container restart.

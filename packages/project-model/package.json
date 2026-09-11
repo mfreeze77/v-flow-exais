@@ -29,7 +29,8 @@
   },
   "files": [
     "dist",
-    "src"
+    "src",
+    "schemas"
   ],
   "dependencies": {
     "ajv": "^8.17.1"

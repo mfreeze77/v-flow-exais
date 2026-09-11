@@ -1,0 +1,29 @@
+# AFM-010 clean install + build evidence
+# date: 2026-09-11T16:17:28Z
+# checkout SHA: 8d965b265647c75cd2152064a15dde26d2db8b15
+# image: v-flow-exais:dev  node=v22.23.2 bun=1.3.13
+# fresh BUN_INSTALL_CACHE_DIR, isolated clone, no node_modules or dist
+
+$ git rev-parse HEAD
+8d965b265647c75cd2152064a15dde26d2db8b15
+$ bun install --frozen-lockfile
+bun install v1.3.13 (bf2e2cec)
+
++ @commitlint/cli@20.5.3
++ @commitlint/config-conventional@20.5.3
++ @types/node@25.7.0
++ concurrently@8.2.2
++ fallow@2.75.0
++ happy-dom@20.9.0
++ knip@6.12.2
++ lefthook@2.1.6
++ oxfmt@0.41.0
++ oxlint@1.64.0
++ tsx@4.21.0
++ typescript@5.9.3
++ vitest@4.1.11
++ yaml@2.9.0
+
+1555 packages installed [9.83s]
+exit=0
+bun.lock: UNCHANGED

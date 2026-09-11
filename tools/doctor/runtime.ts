@@ -96,6 +96,18 @@ export function probe(command: string, args: string[], timeoutMs = PROBE_TIMEOUT
   }
 }
 
+/**
+ * Extracts a full dotted version from a tool banner.
+ *
+ * Equality, not substring: "148.0.7778.1670" *contains* "148.0.7778.167" but
+ * is a different build, and golden baselines are build-specific. The substring
+ * check accepted it.
+ */
+export function extractVersion(text: string): string | null {
+  const match = /\b(\d+(?:\.\d+){2,3})\b/.exec(text);
+  return match ? match[1]! : null;
+}
+
 export function majorVersion(text: string | null): number | null {
   if (!text) return null;
   const match = /(\d+)/.exec(text);
@@ -172,12 +184,27 @@ export function checkExecutable(
 ): RuntimeCheck {
   const result = runner(name, args);
   if (result.ok) {
+    // Exiting zero is not the same as answering. A probe that succeeds but
+    // prints nothing is no evidence the tool is usable, so it must not pass
+    // with a null version.
+    const line = result.stdout.split("\n")[0]!.trim();
+    if (line.length === 0) {
+      return {
+        name,
+        severity,
+        state: "probe-failed",
+        discoveredAt: name,
+        executedVersion: null,
+        expected: "present and executable",
+        remediation: `${name} exited successfully but reported no version output. ${remediation}`,
+      };
+    }
     return {
       name,
       severity,
       state: "ok",
       discoveredAt: name,
-      executedVersion: result.stdout.split("\n")[0]!.trim() || null,
+      executedVersion: line,
       expected: "present and executable",
     };
   }
@@ -266,13 +293,14 @@ export function checkHeadlessShell(
   }
 
   const reported = result.stdout.split("\n")[0]!.trim();
-  if (!reported.includes(pinned)) {
+  const parsed = extractVersion(reported);
+  if (parsed !== pinned) {
     return {
       ...base,
       state: "unsupported",
       discoveredAt: candidate,
       executedVersion: reported,
-      remediation: `Expected pinned ${pinned} but the binary reports "${reported}". Golden baselines are version-specific: a different build fails PSNR. Bump the pin and regenerate baselines in one commit, or restore the pinned build.`,
+      remediation: `Expected pinned ${pinned} but the binary reports ${parsed ?? "no parsable version"} (raw: "${reported}"). Golden baselines are version-specific: a different build fails PSNR. Bump the pin and regenerate baselines in one commit, or restore the pinned build.`,
     };
   }
 

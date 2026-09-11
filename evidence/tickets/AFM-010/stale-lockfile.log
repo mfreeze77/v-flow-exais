@@ -1,0 +1,10 @@
+# AFM-010 stale lockfile evidence
+# checkout SHA: 8d965b265647c75cd2152064a15dde26d2db8b15
+$ bun install --frozen-lockfile   # after adding an unlocked dependency
+bun install v1.3.13 (bf2e2cec)
+Resolving dependencies
+Resolved, downloaded and extracted [4]
+error: lockfile had changes, but lockfile is frozen
+note: try re-running without --frozen-lockfile and commit the updated lockfile
+exit=1
+bun.lock: UNCHANGED (refused, not rewritten)

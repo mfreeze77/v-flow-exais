@@ -114,7 +114,6 @@
     "results": {
       "run-test-lane.test.mjs (node --test)": "37/37 pass, 0 skipped",
       "producer test:classification": "0 fail; 103 tests classified (unit bun 42 / vitest 42, integration bun 10 / vitest 9)",
-      "full unit/bun lane": "42 files",
       "focused selection of one file": "1 file",
       "focused run dispatched through bun": "1 file, 4 tests passed",
       "missing file": "exit 1",
@@ -123,7 +122,8 @@
       "selector containing a newline": "exit 1",
       "selector containing a tab": "exit 1",
       "oxlint": "0 warnings, 0 errors",
-      "oxfmt --check": "clean"
+      "oxfmt --check": "clean",
+      "unit/bun selection": "42 files selected; full lane NOT executed"
     }
   },
   "containerFixes": [

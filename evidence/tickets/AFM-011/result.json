@@ -43,7 +43,18 @@
     }
   ],
   "blockers": [
-    "AFM-010 install contract and full clean workspace build acceptance remain open."
+    "AFM-012 package-boundary and producer regression criteria remain unmet."
   ],
-  "gatePassed": false
+  "gatePassed": false,
+  "findings": [
+    {
+      "id": "AFM-011-F3",
+      "severity": "resolved",
+      "summary": "The new Node export made project-model importable while its worker-backed commit was broken.",
+      "detail": "dist/storage.js resolved the worker with new URL('./worker.mjs', import.meta.url), i.e. dist/worker.mjs, which tsup does not emit. Copying the worker into dist would not help: it imports ./commit.ts, absent beside the bundle. Two further layers surfaced only once the first was fixed - the worker needs src/ and schemas/ shipped, and neither was in the package files list.",
+      "consequence": "Added a dual-layout resolver so the built entry points back at the shipped source worker (always spawned under Bun), and files now includes src and schemas. tests/acceptance/AFM-011.project-model-package.test.ts packs, installs and performs a real commit under Node - an import-only assertion passed throughout the broken period.",
+      "creditedTo": "external review"
+    }
+  ],
+  "dependencyNote": "AFM-011 depends on AFM-009 and AFM-010 only. An earlier session summary stated it depended on AFM-012; that is wrong and would invert AFM-012's own dependency on AFM-011. AFM-010 is now verified, so that blocker is cleared."
 }

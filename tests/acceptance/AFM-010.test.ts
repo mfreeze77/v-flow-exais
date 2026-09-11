@@ -22,6 +22,7 @@ import {
   checkExecutable,
   checkHeadlessShell,
   checkNode,
+  extractVersion,
   meetsMinimum,
   probe,
   runtimeReport,
@@ -149,6 +150,21 @@ describe("AFM-010: a located-but-broken binary fails", () => {
     }
   });
 
+  it("fails a probe that exits zero but prints nothing", () => {
+    // Exiting successfully is not answering. This previously reported ok with
+    // executedVersion null - a green result carrying no evidence.
+    const check = checkExecutable(
+      "ffmpeg",
+      ["-version"],
+      "render-only",
+      "hint",
+      stub({ ok: true, stdout: "" }),
+    );
+    expect(check.state).toBe("probe-failed");
+    expect(check.executedVersion).toBeNull();
+    expect(check.remediation).toContain("no version output");
+  });
+
   it("bounds a real probe with a timeout", () => {
     const started = Date.now();
     const result = probe("sleep", ["30"], 1_000);
@@ -212,6 +228,35 @@ describe("AFM-010: the headless shell is verified, not merely located", () => {
     const check = checkHeadlessShell(join(tmp, "explicitly-wrong"));
     expect(check.state).toBe("missing");
     expect(check.remediation).toContain("explicit override is never replaced");
+  });
+
+  it("rejects a longer version that merely contains the pin", () => {
+    // "148.0.7778.1670" contains "148.0.7778.167" but is a different build.
+    // A substring comparison accepted it; golden baselines are build-specific.
+    const file = join(tmp, "longer");
+    writeFileSync(file, "#!/bin/sh");
+    chmodSync(file, 0o755);
+    const check = checkHeadlessShell(
+      file,
+      stub({ ok: true, stdout: "Google Chrome for Testing 148.0.7778.1670" }),
+    );
+    expect(check.state).toBe("unsupported");
+    expect(check.executedVersion).toContain("1670");
+  });
+
+  it("rejects a banner with no parsable version", () => {
+    const file = join(tmp, "nover");
+    writeFileSync(file, "#!/bin/sh");
+    chmodSync(file, 0o755);
+    const check = checkHeadlessShell(file, stub({ ok: true, stdout: "Chrome Headless Shell" }));
+    expect(check.state).toBe("unsupported");
+    expect(check.remediation).toContain("no parsable version");
+  });
+
+  it("extracts full dotted versions and compares by equality", () => {
+    expect(extractVersion("Google Chrome for Testing 148.0.7778.167")).toBe("148.0.7778.167");
+    expect(extractVersion("Google Chrome for Testing 148.0.7778.1670")).toBe("148.0.7778.1670");
+    expect(extractVersion("no digits here")).toBeNull();
   });
 
   it("accepts the pinned version when it actually runs", () => {
