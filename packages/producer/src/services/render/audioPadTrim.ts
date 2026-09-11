@@ -141,8 +141,11 @@ export interface PadTrimAudioPlan {
  * `alimiter` reduces only what exceeds the ceiling, so loudness is preserved.
  * `level=disabled` stops it from normalising the result back up, which would
  * reintroduce the peaks it just removed.
+ * `latency=1` compensates the look-ahead delay and flushes the buffered tail.
+ * Without it, the fixed-duration output can be shifted and lose its last
+ * samples even while its duration, true peak and loudness all pass.
  */
-function buildAacTruePeakCorrectionArgs(
+export function buildAacTruePeakCorrectionArgs(
   inputPath: string,
   outputPath: string,
   targetDurationSeconds: number,
@@ -157,7 +160,7 @@ function buildAacTruePeakCorrectionArgs(
     "0:a:0",
     "-vn",
     "-af",
-    `alimiter=limit=${limitLinear.toFixed(6)}:level=disabled`,
+    `alimiter=limit=${limitLinear.toFixed(6)}:level=disabled:latency=1`,
     "-t",
     formatSeconds(targetDurationSeconds),
     "-c:a",
