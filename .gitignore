@@ -1,8 +1,8 @@
 # Dependencies & build output
 node_modules/
 dist/
-build/
-coverage/
+/build/
+/coverage/
 *.tgz
 .turbo/
 
@@ -18,10 +18,12 @@ __pycache__/
 .env.local
 .npmrc
 
-# Local AI tool / agent workspaces (worktrees, scratch state)
-.claude/
-.worktrees/
-.codebuddy/
+# Local AI tool / agent workspaces (worktrees, scratch state).
+# Anchored to the repository root: an unanchored rule also matches imported
+# upstream material of the same name (docs/upstream/.../.claude/).
+/.claude/
+/.worktrees/
+/.codebuddy/
 
 # Frozen upstream input snapshots. These are the read-only provenance baseline
 # for drift detection (AFM-001) and source-anchor lookups -- NOTHING imports or
@@ -30,11 +32,12 @@ __pycache__/
 _sources/
 
 # Retired material, kept locally
-_archive/
+/_archive/
 
-# Render and capture output. Regenerable; pinned by build receipts instead.
-out/
-renders/
+# Render and capture output at the repository root. Regenerable; pinned by build
+# receipts instead. Anchored: packages/studio/src/components/renders/ is source.
+/out/
+/renders/
 *.mp4.tmp
 
 # Evidence: per-ticket receipts and gate results ARE tracked deliverables
