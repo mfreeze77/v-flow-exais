@@ -1,0 +1,92 @@
+{
+  "ticketId": "AFM-012",
+  "component": "AAC limiter latency regression",
+  "status": "implemented_unverified",
+  "baseCommit": "f961568a53ab3f64954cc4e630875feecacde747",
+  "codeCommit": "73432674f9efa022001c4dfcb0d49d45aaffa7be",
+  "environment": {
+    "execution": "Linux assistant sandbox; not the pinned project image",
+    "node": "v22.16.0",
+    "ffmpeg": "ffmpeg version 7.1.5-0+deb13u1 Copyright (c) 2000-2026 the FFmpeg developers",
+    "bunAvailable": false,
+    "dockerAvailable": false
+  },
+  "sourceMaterialization": "Matched the reconstructed production file and unchanged existing integration test to GitHub blob SHAs; no full checkout or dependency install. All four committed code blobs match local bytes.",
+  "scope": "Adds latency compensation, six timing cases in the existing integration test file, a shared fixture and a standalone diagnostic. Does not close AFM-012 or any gate.",
+  "commands": [
+    {
+      "invocation": "node --experimental-strip-types /mnt/data/vflow-review-f961568/patch/tools/vflow/diagnose-limiter-timing.mjs --source /mnt/data/vflow-review-f961568/audioPadTrim.base.ts --output /mnt/data/vflow-review-f961568/before",
+      "exitCode": 1,
+      "expectedFailure": true
+    },
+    {
+      "invocation": "node --experimental-strip-types /mnt/data/vflow-review-f961568/patch/tools/vflow/diagnose-limiter-timing.mjs --output /mnt/data/vflow-review-f961568/after",
+      "exitCode": 0
+    }
+  ],
+  "checks": {
+    "before": {
+      "passed": 0,
+      "failed": 6
+    },
+    "after": {
+      "passed": 6,
+      "failed": 0
+    },
+    "syntaxChecks": "node --check (with --experimental-strip-types for three .ts files) passed for all four code files.",
+    "scope": "Actual FFmpeg PCM filtering and AAC encoding/decoding using the isolated production argument builder; not full Vitest or the correction loop."
+  },
+  "observations": {
+    "pcm44100DelaySamplesBefore": 219,
+    "pcm48000DelaySamplesBefore": 239,
+    "pcmQuietTailBefore": "lost",
+    "pcmMarkerDelayAfter": 0,
+    "aacMarkerShiftRelativeToControlAfter": 0,
+    "sameFrameCountDoesNotProveTiming": true
+  },
+  "codeFiles": [
+    {
+      "path": "packages/producer/src/services/render/audioLimiterTiming.fixture.ts",
+      "bytes": 5530,
+      "gitBlob": "2d64b6c220255c6ae1fdbd0d8002d47e370b99b3",
+      "sha256": "ae7f42b20f14d052e754a87165315ea04ce5e1c1090eb4a12562dca4629eaa81"
+    },
+    {
+      "path": "packages/producer/src/services/render/audioPadTrim.integration.test.ts",
+      "bytes": 6886,
+      "gitBlob": "e63ab2f75a5abe0c7dfd70e43a630fb20613c62c",
+      "sha256": "74db23dea91b4cdf301d863d2c081268d1e8f0a8c81db94a2abf226fab2188e4"
+    },
+    {
+      "path": "packages/producer/src/services/render/audioPadTrim.ts",
+      "bytes": 24655,
+      "gitBlob": "5c5baad6ff117203ce4e3a747c03ec2644e2f460",
+      "sha256": "2e9b7070a977e4a9ae43044fd44e8b6de173a524d041574e449b22d26365a968"
+    },
+    {
+      "path": "tools/vflow/diagnose-limiter-timing.mjs",
+      "bytes": 3990,
+      "gitBlob": "1f8d3b506da2a4749583b20f0970c006d90889fd",
+      "sha256": "7807a2cb6509706cc6ec3b5e4bc09df10a1ce645652548c1c19368b079035e8b"
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "path": "evidence/tickets/AFM-012/limiter-latency/before-after.json",
+      "sha256": "bb990d8988a6ce4e63d5fe5910dbe5e1c3088529251130d0e872bfbcd43e6ccd",
+      "bytes": 2120
+    },
+    {
+      "path": "evidence/tickets/AFM-012/limiter-latency/test.log",
+      "sha256": "a217d2fa095d72af156776e5f3cbb8cd2ffbdb9ddc94896590c9b3e97a7b97c0",
+      "bytes": 4079
+    }
+  ],
+  "notRun": [
+    "Pinned Node/Bun/FFmpeg 5.1.9 Docker execution.",
+    "The existing full audio integration file, including its true-peak and loudness assertions, under Vitest.",
+    "Full producer partitions, build, package typechecks and repository formatter/linter.",
+    "End-to-end movie export and human perceptual audio review."
+  ],
+  "gatePassed": false
+}
