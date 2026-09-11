@@ -1,0 +1,38 @@
+{
+  "scope": "Real CLI processes; synthetic classified inventory and recorded (not executed) Bun/Vitest child boundary.",
+  "base": {
+    "requested": [
+      "src/services/renderOrchestrator.test.ts"
+    ],
+    "selected": [
+      "src/logger.test.ts",
+      "src/services/renderOrchestrator.test.ts"
+    ],
+    "status": 0,
+    "stdout": "",
+    "childArgs": [
+      "x",
+      "vitest",
+      "run",
+      "src/logger.test.ts",
+      "src/services/renderOrchestrator.test.ts"
+    ]
+  },
+  "work": {
+    "requested": [
+      "src/services/renderOrchestrator.test.ts"
+    ],
+    "selected": [
+      "src/services/renderOrchestrator.test.ts"
+    ],
+    "status": 0,
+    "stdout": "[producer:unit/vitest] Selected 1 test files.\n  vitest src/services/renderOrchestrator.test.ts\n",
+    "childArgs": [
+      "x",
+      "--no-install",
+      "vitest",
+      "run",
+      "<fixture-root>/src/services/renderOrchestrator.test.ts"
+    ]
+  }
+}
