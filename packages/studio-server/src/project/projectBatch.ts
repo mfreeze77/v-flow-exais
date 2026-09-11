@@ -35,7 +35,10 @@ export function probeVideo(path: string, build: PinnedBuild) {
   const probe = JSON.parse(
     execFileSync(
       "ffprobe",
-      ["-v", "error", "-count_frames", "-show_streams", "-show_format", "-of", "json", path],
+      // "--" immediately before the input, per the ffprobe argv contract: a
+      // media file whose name begins with "-" would otherwise be parsed as an
+      // option rather than as the file to probe.
+      ["-v", "error", "-count_frames", "-show_streams", "-show_format", "-of", "json", "--", path],
       { encoding: "utf8", timeout: 60_000, maxBuffer: 2_000_000 },
     ),
   );

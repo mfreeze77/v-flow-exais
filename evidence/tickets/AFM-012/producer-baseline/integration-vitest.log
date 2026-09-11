@@ -1,0 +1,47 @@
+# producer partition: integration / vitest
+# commit: 81ae028adfdce3a56f78cfa53e9833c08308f0d4
+# command: bun run test:integration:vitest
+# date: 2026-09-11T16:43:04Z
+
+$ node scripts/run-test-lane.mjs integration vitest
+[producer:integration/vitest] Selected 9 test files.
+  vitest src/services/assetMediaType.test.ts
+  vitest src/services/coreRuntimeBrowser.test.ts
+  vitest src/services/fileServer.file-race.test.ts
+  vitest src/services/healthWorker.test.ts
+  vitest src/services/htmlCompiler.mediaType.test.ts
+  vitest src/services/hyperframeLint.file-race.test.ts
+  vitest src/services/render/stages/compileStage.mediaType.test.ts
+  vitest src/utils/audioRegression.test.ts
+  vitest src/utils/streamDurationParity.test.ts
+
+[1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/workspace/packages/producer[39m
+
+ [32m✓[39m src/services/hyperframeLint.file-race.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 37[2mms[22m[39m
+ [32m✓[39m src/utils/audioRegression.test.ts [2m([22m[2m4 tests[22m[2m)[22m[33m 777[2mms[22m[39m
+ [32m✓[39m src/services/healthWorker.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1011[2mms[22m[39m
+     [33m[2m✓[22m[39m stays responsive while the main thread is blocked on a sync task [33m 631[2mms[22m[39m
+ [32m✓[39m src/services/coreRuntimeBrowser.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 3913[2mms[22m[39m
+[90mstderr[2m | src/services/fileServer.file-race.test.ts[2m > [22m[2mproducer file server checked reads[2m > [22m[2mkeeps missing files and directories at 404
+[22m[39m[FileServer] 404 Not Found: /missing
+
+[90mstderr[2m | src/services/fileServer.file-race.test.ts[2m > [22m[2mproducer file server checked reads[2m > [22m[2mkeeps missing files and directories at 404
+[22m[39m[FileServer] 404 Not Found: /folder
+
+[90mstderr[2m | src/services/fileServer.file-race.test.ts[2m > [22m[2mproducer file server checked reads[2m > [22m[2mkeeps missing files and directories at 404
+[22m[39m[FileServer] 404 Not Found: /missing/child
+
+ [32m✓[39m src/services/fileServer.file-race.test.ts [2m([22m[2m27 tests[22m[2m)[22m[33m 721[2mms[22m[39m
+ [32m✓[39m src/services/render/stages/compileStage.mediaType.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 158[2mms[22m[39m
+ [32m✓[39m src/services/assetMediaType.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 719[2mms[22m[39m
+ [32m✓[39m src/services/htmlCompiler.mediaType.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 374[2mms[22m[39m
+ [32m✓[39m src/utils/streamDurationParity.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 771[2mms[22m[39m
+     [33m[2m✓[22m[39m passes when video and audio durations match [33m 329[2mms[22m[39m
+     [33m[2m✓[22m[39m fails when video is truncated relative to audio (regression #1648) [33m 335[2mms[22m[39m
+
+[2m Test Files [22m [1m[32m9 passed[39m[22m[90m (9)[39m
+[2m      Tests [22m [1m[32m77 passed[39m[22m[90m (77)[39m
+[2m   Start at [22m 16:43:05
+[2m   Duration [22m 9.52s[2m (transform 29.30s, setup 0ms, import 35.94s, tests 8.48s, environment 1ms)[22m
+
+EXIT=0

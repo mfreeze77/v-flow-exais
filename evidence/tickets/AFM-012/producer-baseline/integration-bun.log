@@ -1,0 +1,110 @@
+# producer partition: integration / bun
+# commit: 81ae028adfdce3a56f78cfa53e9833c08308f0d4
+# command: bun run test:integration:bun
+# date: 2026-09-11T16:42:55Z
+
+$ node scripts/run-test-lane.mjs integration bun
+[producer:integration/bun] Selected 10 test files.
+  bun src/regression-harness-psnr.test.ts
+  bun src/services/deterministicFonts-systemCapture.test.ts
+  bun src/services/distributed/assemble.test.ts
+  bun src/services/distributed/chunkBoundary.test.ts
+  bun src/services/distributed/crossWorkerIdempotency.test.ts
+  bun src/services/distributed/plan.test.ts
+  bun src/services/distributed/planSizeCap.test.ts
+  bun src/services/distributed/renderChunk.test.ts
+  bun src/services/fileServer.test.ts
+  bun src/services/htmlCompiler.naturalDuration.test.ts
+bun test v1.3.13 (bf2e2cec)
+
+src/regression-harness-psnr.test.ts:
+(pass) psnrAtFrames() > returns exactly the frames asked for [99.45ms]
+(pass) psnrAtFrames() > matches the per-checkpoint ffmpeg method it replaced [612.48ms]
+(pass) psnrAtFrames() > pairs by frame index even when the two videos carry different timelines [621.33ms]
+(pass) psnrAtFrames() > deduplicates repeated frame indices without losing alignment [348.88ms]
+(pass) psnrAtFrames() > is insensitive to the order frame indices are supplied in [182.39ms]
+(pass) psnrAtFrames() > reports identical video as infinite PSNR, as the legacy method did [195.30ms]
+(pass) psnrAtFrames() > throws rather than mis-pairing when a frame is past the end of both videos [84.91ms]
+(pass) psnrAtFrames() > throws when only one input runs out of frames [93.42ms]
+(pass) psnrAtFrames() > still compares every requested frame when one input is merely shorter than the last index [92.73ms]
+(pass) psnrAtFrames() > returns an empty map when asked for nothing [0.09ms]
+(pass) psnrAtCheckpoint() > maps a checkpoint time to the same frame index the legacy code used [92.93ms]
+(pass) psnrAtCheckpoint() > throws when the requested frame was not among those compared [92.71ms]
+
+ 12 pass
+ 0 fail
+ 40 expect() calls
+Ran 12 tests across 1 file. [3.96s]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/deterministicFonts-systemCapture.test.ts:
+(pass) system font capture — allowSystemFontCapture option > uses the CSS collection hint for raw TTC data URIs [0.12ms]
+[WARN] [Compiler] No deterministic font mapping for: NotARealFontFamilyForTest
+  Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
+  To fix, pick one:
+    1. Use a mapped font name instead (see list above)
+    2. Add a @font-face block in your HTML with a local or hosted font file
+    3. Install the font locally on the render machine (Docker: add to Dockerfile)
+    4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
+  Docs: https://hyperframes.heygen.com/docs/fonts
+(pass) system font capture — allowSystemFontCapture option > does not attempt system font capture when allowSystemFontCapture is false [18.03ms]
+[WARN] [Compiler] No deterministic font mapping for: ZZZDefinitelyNotInstalledAnywhere
+  Mapped fonts: andale mono → jetbrains-mono, archivo black → archivo-black, arial black → montserrat, arial → inter, avenir next → inter, avenir → inter, bebas neue → league-gothic, book antiqua → eb-garamond, calibri → inter, cambria → eb-garamond, candara → inter, consolas → jetbrains-mono, corbel → inter, courier new → jetbrains-mono, courier → jetbrains-mono, dejavu sans mono → jetbrains-mono, dejavu sans → inter, dejavu serif → eb-garamond, din alternate → montserrat, eb garamond → eb-garamond, futura → montserrat, garamond → eb-garamond, geneva → inter, georgia → eb-garamond, helvetica bold → inter, helvetica neue → inter, helvetica → inter, ibm plex mono → ibm-plex-mono, inter, jetbrains mono → jetbrains-mono, lato, league gothic → league-gothic, liberation mono → jetbrains-mono, liberation sans → inter, liberation serif → eb-garamond, lucida console → jetbrains-mono, lucida grande → inter, lucida sans typewriter → jetbrains-mono, lucida sans unicode → inter, lucida sans → inter, menlo → jetbrains-mono, monaco → jetbrains-mono, montserrat, noto sans japanese → noto-sans-jp, noto sans jp → noto-sans-jp, noto sans → inter, nunito, open sans → open-sans, optima → inter, oswald, outfit, palatino linotype → eb-garamond, palatino → eb-garamond, playfair display → playfair-display, poppins, roboto, segoe ui → roboto, sf mono → jetbrains-mono, sf pro display → inter, sf pro rounded → inter, sf pro text → inter, sf pro → inter, source code pro → source-code-pro, space mono → space-mono, tahoma → inter, times new roman → eb-garamond, times → eb-garamond, trebuchet ms → inter, verdana → inter
+  To fix, pick one:
+    1. Use a mapped font name instead (see list above)
+    2. Add a @font-face block in your HTML with a local or hosted font file
+    3. Install the font locally on the render machine (Docker: add to Dockerfile)
+    4. Add an alias to FONT_ALIAS_MAP in packages/core/src/fonts/aliases.ts (for contributors)
+  Docs: https://hyperframes.heygen.com/docs/fonts
+(pass) system font capture — allowSystemFontCapture option > defaults allowSystemFontCapture to true when omitted [33.19ms]
+Skipping: /System/Library/Fonts/Supplemental/Impact.ttf not available
+(pass) system font capture — integration (macOS only) > embeds a local system font when Google Fonts returns 400 [0.35ms]
+Skipping: /System/Library/Fonts/Supplemental/Impact.ttf not available
+(pass) system font capture — integration (macOS only) > skips system font capture when allowSystemFontCapture is false even if font exists locally [0.24ms]
+[INFO] [Compiler] Injected deterministic @font-face rules for 1 requested font families
+(pass) system font capture — integration (macOS only) > still resolves alias-mapped fonts via embedded bundle regardless of allowSystemFontCapture [3.74ms]
+
+ 6 pass
+ 0 fail
+ 6 expect() calls
+Ran 6 tests across 1 file. [545.00ms]
+bun test v1.3.13 (bf2e2cec)
+
+src/services/distributed/assemble.test.ts:
+287 |       // ── ffprobe: exact framerate + duration equivalence ────────────────
+288 |       // The container's `r_frame_rate` must match the planDir's exact
+289 |       // rational (30/1 here) — not a PTS-averaged fraction like
+290 |       // `360000/12001`. This guards the `-r` flag on the concat /
+291 |       // mux / faststart steps from regressing.
+292 |       expect(videoStream?.r_frame_rate).toBe("30/1");
+                                              ^
+error: expect(received).toBe(expected)
+
+Expected: "30/1"
+Received: "30000/1001"
+
+      at <anonymous> (/workspace/packages/producer/src/services/distributed/assemble.test.ts:292:41)
+(fail) assemble() > concat-copies two mp4 chunks and applies faststart [285.31ms]
+(pass) assemble() > cleans private staging after a failed concat without deleting existing scratch data [47.75ms]
+(pass) assemble() > single-chunk render stamps exact r_frame_rate on the output container [206.05ms]
+[INFO] [assemble] audio normalized for mux {"operation":"trim","targetDurationSeconds":0.4,"sourceDurationSeconds":0.9386666666666666}
+(pass) assemble() > muxes audio with frame-count-derived duration when audio.m4a is present [627.15ms]
+[INFO] [assemble] audio normalized for mux {"operation":"pad","targetDurationSeconds":0.4,"sourceDurationSeconds":0.23466666666666666}
+(pass) assemble() > muxes padded short audio without shifting the first video frame [633.54ms]
+[INFO] [assemble] cfr re-encode applied {"format":"mp4","fpsNum":30,"fpsDen":1}
+(pass) assemble() > cfr:true re-encodes for exact avg_frame_rate matching r_frame_rate [348.98ms]
+(pass) assemble() > cfr:true rejects non-mp4 formats with a clear error [188.77ms]
+(pass) assemble() > cfr:true rejects h265 chunks with a clear error [112.58ms]
+(pass) assemble() > merges png-sequence chunk directories with continuous global numbering [1.63ms]
+(pass) assemble() > keeps render provenance on a no-audio mov render [271.36ms]
+(pass) assemble() > keeps render provenance on a no-audio webm render [302.12ms]
+(pass) assemble() > rejects when chunkPaths.length does not match chunks.json length [0.87ms]
+(pass) assemble() > rejects a planDir missing plan.json [0.34ms]
+
+ 12 pass
+ 1 fail
+ 64 expect() calls
+Ran 13 tests across 1 file. [3.90s]
+[producer:integration/bun] Runner exited 1; 7 selected files not launched.
+error: script "test:integration:bun" exited with code 1
+EXIT=1
