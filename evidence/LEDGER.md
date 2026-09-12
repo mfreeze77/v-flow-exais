@@ -297,3 +297,25 @@ Measured baseline: clean main 11 failed / 4942; with the pinned-preview work
 11 failed / 4955 — thirteen more tests, all passing, and no new failure. The
 count is a property of running ~4,950 DOM tests in parallel in this container,
 so quote it against a stated suite scope rather than as a bare number.
+
+**Cause established (previously only correlated).** Earlier notes compared
+failure totals between trees, which cannot distinguish a defect from
+contention. Measured on one tree, varying only parallelism:
+
+| Parallelism            | Failures / 5020 | Timeline.virtualization |
+| ---------------------- | --------------- | ----------------------- |
+| ~28 workers (default)  | 2 or 11         | 0 or 9                  |
+| 4 workers              | 1               | 0                       |
+| that file in isolation | 0 (9/9 x 3)     | 0                       |
+
+The container reports 28 threads and vitest defaults to one worker per thread
+over ~443 files. `Timeline.virtualization` measures layout, so it starves rather
+than breaks; its assertions read `expected 0 to be greater than 0` and
+`expected null not to be null`, which is what a measurement returns when the
+render never got scheduled. Vitest isolates files by default, so this is not
+cross-file state leaking.
+
+The same tree produced 2 failures and 11 failures on consecutive full runs, so a
+single total is not reproducible evidence either way. When comparing trees,
+compare failure identities at a fixed worker count, or run the file alone.
+Raising timeouts would hide the starvation rather than resolve it.

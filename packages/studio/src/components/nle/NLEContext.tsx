@@ -1,3 +1,8 @@
+import type { ManagedCompositionNavigationOptions } from "./useManagedCompositionStack";
+import {
+  assertDisplayedManagedView,
+  previewSecondsFromFrame,
+} from "../../project/managedPreviewNavigation";
 import { buildProjectApiPath } from "../../utils/projectRouting";
 import { useContext, useState, useCallback, useRef, useEffect, type ReactNode } from "react";
 import { useTimelinePlayer, usePlayerStore } from "../../player";
@@ -21,6 +26,8 @@ export function shouldDisableTimelineWhileCompositionLoading(compositionLoading:
 
 export interface NLEContextValue {
   projectId: string;
+  previewMode?: "native" | "managed";
+  managedPreviewWaiting?: boolean;
   // player (from useTimelinePlayer — single instance for the whole shell)
   iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;
   togglePlay: () => void;
@@ -59,6 +66,7 @@ export function useNLEContext(): NLEContextValue {
 
 export interface NLEProviderProps {
   projectId: string;
+  managedNavigation?: ManagedCompositionNavigationOptions;
   refreshKey?: number;
   activeCompositionPath?: string | null;
   onIframeRef?: (iframe: HTMLIFrameElement | null) => void;
@@ -70,6 +78,7 @@ export interface NLEProviderProps {
 
 export function NLEProvider({
   projectId,
+  managedNavigation,
   refreshKey,
   activeCompositionPath,
   onIframeRef,
@@ -117,15 +126,6 @@ export function NLEProvider({
     refreshPlayer();
   }, [refreshKey, refreshPlayer]);
 
-  const onIframeLoad = useCallback(() => {
-    baseOnIframeLoad();
-    // Pre-load + register MotionPathPlugin once so adding a motion path in the
-    // studio doesn't take the async plugin-load flash path on the first soft
-    // reload (the comp may not ship the plugin until it actually uses one).
-    ensureMotionPathPluginLoaded(iframeRef.current);
-    onIframeRef?.(iframeRef.current);
-  }, [baseOnIframeLoad, iframeRef, onIframeRef]);
-
   const {
     compositionStack,
     updateCompositionStack,
@@ -133,16 +133,61 @@ export function NLEProvider({
     handleDrillDown: drillDown,
     compIdToSrc,
     setCompIdToSrc,
+    managedState,
   } = useCompositionStack({
     projectId,
     activeCompositionPath,
     onCompositionChange,
+    managedNavigation,
   });
+  const [managedLoadedView, setManagedLoadedView] = useState<string | null>(null);
+  const onIframeLoad = useCallback(() => {
+    if (managedNavigation !== undefined) {
+      try {
+        if (!managedState?.token) return;
+        const iframe = iframeRef.current;
+        assertDisplayedManagedView(
+          iframe?.contentDocument?.documentElement ?? null,
+          managedState.token,
+          iframe?.src ?? "",
+          managedState.levels.at(-1)?.previewUrl ?? "",
+        );
+        setManagedLoadedView(managedState.viewKey);
+      } catch (error) {
+        managedNavigation.onError?.(error instanceof Error ? error : new Error(String(error)));
+        return;
+      }
+    }
+    baseOnIframeLoad();
+    if (managedNavigation !== undefined && managedState?.session) {
+      // Overrides a pending seek belonging to an outgoing composition. If the
+      // adapter is not ready yet, the retained player queues this target itself.
+      seek(previewSecondsFromFrame(managedState.session, managedState.frame));
+    }
+    // Managed preview dependencies come from its pinned build, not a live CDN fallback.
+    if (managedNavigation === undefined) ensureMotionPathPluginLoaded(iframeRef.current);
+    onIframeRef?.(iframeRef.current);
+  }, [baseOnIframeLoad, iframeRef, onIframeRef, managedNavigation, managedState, seek]);
 
   // Wrap handleDrillDown to also scan the iframe DOM for data-composition-src
   const iframeRef_ = iframeRef;
   const handleDrillDown = useCallback(
     (element: TimelineElement) => {
+      if (managedNavigation !== undefined) {
+        try {
+          if (!managedState?.token) throw new Error("Managed preview is not ready.");
+          assertDisplayedManagedView(
+            iframeRef_.current?.contentDocument?.documentElement ?? null,
+            managedState.token,
+            iframeRef_.current?.src ?? "",
+            managedState.levels.at(-1)?.previewUrl ?? "",
+          );
+          drillDown(element);
+        } catch (error) {
+          managedNavigation.onError?.(error instanceof Error ? error : new Error(String(error)));
+        }
+        return;
+      }
       if (!element.compositionSrc) return;
       usePlayerStore.getState().setSelectedElementId(null);
       // Check compIdToSrc map first; then scan iframe DOM; then fall through to drillDown
@@ -169,8 +214,16 @@ export function NLEProvider({
         compositionSrc: resolvedPath ?? element.compositionSrc,
       });
     },
-    [compIdToSrc, drillDown, iframeRef_],
+    // `managedState.levels` is read inside at call time and deliberately absent:
+    // depending on it would rebuild this handler on every navigation step, which
+    // is what the identity checks inside it exist to tolerate.
+    // oxlint-disable-next-line react-hooks/exhaustive-deps
+    [compIdToSrc, drillDown, iframeRef_, managedNavigation, managedState?.token],
   );
+
+  // Named so dependency arrays contain an identifier rather than an expression
+  // re-evaluated on every render, which the rule cannot compare between renders.
+  const isManaged = managedNavigation !== undefined;
 
   // Composition ID → file path map from raw index.html
   const compIdToSrcRef = useRef(compIdToSrc);
@@ -178,7 +231,25 @@ export function NLEProvider({
   const onCompIdToSrcChangeRef = useRef(onCompIdToSrcChange);
   onCompIdToSrcChangeRef.current = onCompIdToSrcChange;
 
+  /**
+   * Managed mode: publish the pinned scene map as it changes.
+   *
+   * Split from the native fetch below rather than branching inside one effect.
+   * The native branch's own fetch calls setCompIdToSrc, so an effect that both
+   * fetched and depended on `compIdToSrc` would re-fetch on every map update —
+   * which is why the dependency was omitted, and why the rule was right to
+   * object. Separated, each branch can depend on exactly what it reads.
+   */
   useEffect(() => {
+    if (!isManaged) return;
+    // Never ask /files/index.html for a compiler-managed project. The pinned
+    // scene map is already available, and contains only native authoring paths.
+    setCompositionSourceMap(compIdToSrc);
+    onCompIdToSrcChangeRef.current?.(compIdToSrc);
+  }, [isManaged, compIdToSrc]);
+
+  useEffect(() => {
+    if (isManaged) return;
     const controller = new AbortController();
     let current = true;
     const emptyMap = new Map<string, string>();
@@ -221,7 +292,7 @@ export function NLEProvider({
       current = false;
       controller.abort();
     };
-  }, [projectId, setCompIdToSrc]);
+  }, [projectId, setCompIdToSrc, isManaged, managedState?.session]);
 
   // Patch elements with compositionSrc whenever elements or compIdToSrc change.
   // eslint-disable-next-line no-restricted-syntax
@@ -233,7 +304,9 @@ export function NLEProvider({
       let patched = false;
       const updated = elements.map((el) => {
         if (el.compositionSrc) return el;
-        const src = map.get(el.id) ?? map.get(el.id.replace(/-(host|comp|layer)$/, ""));
+        const src =
+          map.get(el.id) ??
+          (isManaged ? undefined : map.get(el.id.replace(/-(host|comp|layer)$/, "")));
         if (src) {
           patched = true;
           return { ...el, compositionSrc: src };
@@ -254,7 +327,7 @@ export function NLEProvider({
       if (result) state.setElements(result);
       patching = false;
     });
-  }, [compIdToSrc]);
+  }, [compIdToSrc, isManaged]);
 
   // Resizable timeline height — persisted alongside zoom/pan so the user's
   // workspace layout survives reloads.
@@ -292,7 +365,13 @@ export function NLEProvider({
     if (loading && hasLoadedOnceRef.current) return;
     setCompositionLoadingRaw(loading);
   }, []);
-  const timelineDisabled = shouldDisableTimelineWhileCompositionLoading(compositionLoading);
+  const runtimeTimelineReady = usePlayerStore((state) => state.timelineReady);
+  const timelineDisabled =
+    managedNavigation === undefined
+      ? shouldDisableTimelineWhileCompositionLoading(compositionLoading)
+      : !managedState?.session ||
+        managedLoadedView !== managedState.viewKey ||
+        !runtimeTimelineReady;
   const timelineSessionEpoch = usePlayerStore((state) => state.timelineSessionEpoch);
 
   useEffect(() => {
@@ -307,6 +386,8 @@ export function NLEProvider({
 
   const value: NLEContextValue = {
     projectId,
+    previewMode: managedNavigation === undefined ? "native" : "managed",
+    managedPreviewWaiting: managedNavigation !== undefined && !managedState?.session,
     iframeRef,
     togglePlay,
     seek,

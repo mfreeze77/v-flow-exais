@@ -1,3 +1,4 @@
+import type { ManagedCompositionNavigationOptions } from "./nle/useManagedCompositionStack";
 import { useCallback, type ReactNode } from "react";
 import { PreviewPane } from "./nle/PreviewPane";
 import { TimelinePane } from "./nle/TimelinePane";
@@ -26,6 +27,8 @@ type TimelineDropPlacement = Pick<TimelineElement, "start" | "track">;
 // The seven move/resize/split/razor handlers come from TimelineEditCallbackDeps
 // (shared with useTimelineEditCallbacks); the rest are drop + wiring props.
 export interface EditorShellProps extends TimelineEditCallbackDeps {
+  /** Managed playback navigation only; this does not grant native write capabilities. */
+  managedNavigation?: ManagedCompositionNavigationOptions;
   /** Left sidebar (media/library), rendered in the top row. */
   left: ReactNode;
   /** Right panel (inspector/design) or null when collapsed, in the top row. */
@@ -70,6 +73,7 @@ export interface EditorShellProps extends TimelineEditCallbackDeps {
 // full-width timeline spanning the bottom. Owns the shared player +
 // composition-stack state via NLEProvider so both rows share one player.
 export function EditorShell({
+  managedNavigation,
   left,
   right,
   hidden,
@@ -153,6 +157,7 @@ export function EditorShell({
       <TimelineEditProvider value={timelineEditCallbacks}>
         <NLEProvider
           projectId={projectId}
+          managedNavigation={managedNavigation}
           refreshKey={refreshKey}
           activeCompositionPath={activeCompPath}
           onIframeRef={handlePreviewIframeRef}

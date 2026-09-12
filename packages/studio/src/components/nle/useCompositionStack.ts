@@ -1,3 +1,7 @@
+import {
+  useManagedCompositionStack,
+  type ManagedCompositionNavigationOptions,
+} from "./useManagedCompositionStack";
 import { buildProjectApiPath } from "../../utils/projectRouting";
 // Composition drill-down stack management for NLEContext/EditorShell
 import { useState, useCallback, useRef, useEffect } from "react";
@@ -7,6 +11,7 @@ import { encodePreviewPath } from "../../player/components/thumbnailUtils";
 
 interface UseCompositionStackOptions {
   projectId: string;
+  managedNavigation?: ManagedCompositionNavigationOptions;
   activeCompositionPath?: string | null;
   onCompositionChange?: (compositionPath: string | null) => void;
 }
@@ -21,16 +26,28 @@ interface UseCompositionStackResult {
   setCompIdToSrc: React.Dispatch<React.SetStateAction<Map<string, string>>>;
 }
 
-export function useCompositionStack({
+export function useCompositionStack(options: UseCompositionStackOptions) {
+  // Both hook calls are unconditional. Only the native branch is permitted to
+  // construct native URLs, and managed-waiting is not unmanaged fallback.
+  const native = useNativeCompositionStack({
+    ...options,
+    enabled: options.managedNavigation === undefined,
+  });
+  const managed = useManagedCompositionStack(options);
+  return options.managedNavigation === undefined ? { ...native, managedState: null } : managed;
+}
+
+function useNativeCompositionStack({
   projectId,
   activeCompositionPath,
   onCompositionChange,
-}: UseCompositionStackOptions): UseCompositionStackResult {
+  enabled,
+}: UseCompositionStackOptions & { enabled: boolean }): UseCompositionStackResult {
   const [compositionStack, setCompositionStack] = useState<CompositionLevel[]>([
     {
       id: "master",
       label: "Master",
-      previewUrl: buildProjectApiPath(projectId, `/preview`),
+      previewUrl: enabled ? buildProjectApiPath(projectId, `/preview`) : "about:blank",
     },
   ]);
 
@@ -54,6 +71,7 @@ export function useCompositionStack({
 
   const handleNavigateComposition = useCallback(
     (index: number) => {
+      if (!enabled) return;
       if (index === 0 && masterSeekRef.current > 0) {
         usePlayerStore.getState().setCurrentTime(masterSeekRef.current);
       }
@@ -61,12 +79,12 @@ export function useCompositionStack({
       updateCompositionStack((prev) => prev.slice(0, index + 1));
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [],
+    [enabled],
   );
 
   const handleDrillDown = useCallback(
     (element: { id: string; compositionSrc?: string }) => {
-      if (!element.compositionSrc) return;
+      if (!enabled || !element.compositionSrc) return;
       masterSeekRef.current = usePlayerStore.getState().currentTime;
 
       const compId = element.id;
@@ -98,16 +116,17 @@ export function useCompositionStack({
       });
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [projectId],
+    [projectId, enabled],
   );
 
   // Navigate to a composition when activeCompositionPath changes.
   // eslint-disable-next-line no-restricted-syntax
   useEffect(() => {
+    if (!enabled) return;
     const master: CompositionLevel = {
       id: "master",
       label: "Master",
-      previewUrl: buildProjectApiPath(projectId, `/preview`),
+      previewUrl: enabled ? buildProjectApiPath(projectId, `/preview`) : "about:blank",
     };
     if (activeCompositionPath === "index.html") {
       usePlayerStore.getState().setElements([]);
@@ -133,7 +152,7 @@ export function useCompositionStack({
       usePlayerStore.getState().setElements([]);
       updateCompositionStack([master]);
     }
-  }, [activeCompositionPath, projectId, updateCompositionStack]);
+  }, [activeCompositionPath, projectId, updateCompositionStack, enabled]);
 
   return {
     compositionStack,

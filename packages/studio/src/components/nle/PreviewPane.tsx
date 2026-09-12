@@ -55,6 +55,8 @@ export function PreviewPane({
 }: PreviewPaneProps) {
   const {
     projectId,
+    previewMode,
+    managedPreviewWaiting,
     iframeRef,
     togglePlay,
     seek,
@@ -102,7 +104,8 @@ export function PreviewPane({
   }, []);
 
   const currentLevel = compositionStack[compositionStack.length - 1];
-  const directUrl = compositionStack.length > 1 ? currentLevel.previewUrl : undefined;
+  const directUrl =
+    compositionStack.length > 1 || previewMode === "managed" ? currentLevel.previewUrl : undefined;
 
   return (
     <div
@@ -126,17 +129,21 @@ export function PreviewPane({
         onDrop={handlePreviewDrop}
       >
         <div className="absolute inset-0 overflow-hidden">
-          <NLEPreview
-            projectId={projectId}
-            iframeRef={iframeRef}
-            onIframeLoad={onIframeLoad}
-            onCompositionLoadingChange={setCompositionLoading}
-            portrait={portrait}
-            directUrl={directUrl}
-            suppressLoadingOverlay={hasLoadedOnceRef.current}
-            onStageRef={handleStageRef}
-            onCompositionSizeChange={setPreviewCompositionSize}
-          />
+          {managedPreviewWaiting ? (
+            <p role="status">Preparing managed preview…</p>
+          ) : (
+            <NLEPreview
+              projectId={projectId}
+              iframeRef={iframeRef}
+              onIframeLoad={onIframeLoad}
+              onCompositionLoadingChange={setCompositionLoading}
+              portrait={portrait}
+              directUrl={directUrl}
+              suppressLoadingOverlay={hasLoadedOnceRef.current}
+              onStageRef={handleStageRef}
+              onCompositionSizeChange={setPreviewCompositionSize}
+            />
+          )}
           {previewDragOver && (
             <div className="absolute inset-2 z-40 rounded-lg border-2 border-dashed border-studio-accent/50 bg-studio-accent/[0.04] pointer-events-none" />
           )}

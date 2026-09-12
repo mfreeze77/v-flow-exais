@@ -1,11 +1,13 @@
-import { createElement, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import "@hyperframes/player";
 import {
-  editorPreviewUrl,
   type EditorPreviewSession,
   type ProjectSnapshot,
   type ProjectOperation,
 } from "@hyperframes/project-model";
+import { useManagedPreviewNavigation } from "./useManagedPreviewNavigation";
+import { ManagedPreviewPlayer } from "./ManagedPreviewPlayer";
+import { managedMasterTime, previewSecondsFromFrame } from "./managedPreviewNavigation";
 import { createManagedEditorReader } from "./editorReadClient";
 import { createEditorPreviewClient, createPreviewPublicationGate } from "./editorPreviewClient";
 import { useMountEffect } from "../hooks/useMountEffect";
@@ -43,52 +45,19 @@ const edgeCollections: Record<string, string> = {
   lifecycle: "transitions",
 };
 
-function Preview({
-  src,
-  width,
-  height,
-  onTime,
-  initialTime,
-}: {
-  src: string;
-  width: number;
-  height: number;
-  onTime: (time: number) => void;
-  initialTime: number;
-}) {
-  const player = useRef<PlayerElement | null>(null);
-  useMountEffect(() => {
-    const element = player.current!;
-    const time = () => onTime(element.currentTime);
-    const ready = () => {
-      if (initialTime) element.seek(Math.min(initialTime, element.duration - 0.04));
-    };
-    element.addEventListener("timeupdate", time);
-    element.addEventListener("ready", ready);
-    return () => {
-      element.removeEventListener("timeupdate", time);
-      element.removeEventListener("ready", ready);
-    };
-  });
-  return createElement("hyperframes-player", {
-    ref: player,
-    src,
-    "runtime-src": "/api/runtime.js",
-    controls: "",
-    width,
-    height,
-    style: { width: "100%", aspectRatio: `${width}/${height}`, display: "block" },
-  });
-}
-
 export function ProjectWorkspace({ id }: { id: string }) {
   const [data, setData] = useState<ProjectState | null>(null);
-  const [selected, setSelected] = useState(0);
+  const [selected, setSelected] = useState<string | null>(null);
   const [tab, setTab] = useState<"scene" | "source">("scene");
   const [error, setError] = useState("");
   const [busy, setBusy] = useState("");
-  const [time, setTime] = useState(0);
   const [previewSession, setPreviewSession] = useState<EditorPreviewSession | null>(null);
+  const { navigation, state: navigationState } = useManagedPreviewNavigation(
+    id,
+    previewSession,
+    (failure) => setError(failure.message),
+  );
+  const time = managedMasterTime(navigationState);
   const publicationGate = useRef(createPreviewPublicationGate());
   const mounted = useRef(true);
   const [batchId, setBatchId] = useState<string | null>(null);
@@ -102,6 +71,11 @@ export function ProjectWorkspace({ id }: { id: string }) {
       const result = await projectApi<ProjectState>(`/projects/${id}`);
       if (!gate.isCurrent(epoch)) return;
       setData(result);
+      setSelected((current) =>
+        result.snapshot.manifest.scenes.some((item) => item.id === current)
+          ? current
+          : (result.snapshot.manifest.scenes[0]?.id ?? null),
+      );
       // Never label a newer build with the revision of an earlier GET.
       const view = await createManagedEditorReader(id).view();
       if (!gate.isCurrent(epoch)) return;
@@ -156,8 +130,19 @@ export function ProjectWorkspace({ id }: { id: string }) {
     void action.catch(() => {});
   };
   const seek = (next: number) => {
-    (canvas.current?.querySelector("hyperframes-player") as PlayerElement | null)?.seek(next);
-    setTime(next);
+    if (!navigationState.token || !navigationState.session) return;
+    try {
+      const wasMaster = navigationState.scene === null;
+      navigation.seekMaster(next, navigationState.token);
+      // Switching out of a standalone scene remounts the one player. Its ready
+      // handler restores this desired position; do not seek the outgoing frame.
+      if (wasMaster)
+        (canvas.current?.querySelector("hyperframes-player") as PlayerElement | null)?.seek(
+          previewSecondsFromFrame(navigationState.session, navigation.snapshot().frame),
+        );
+    } catch (reason) {
+      setError(reason instanceof Error ? reason.message : String(reason));
+    }
   };
   if (!data)
     return (
@@ -167,7 +152,7 @@ export function ProjectWorkspace({ id }: { id: string }) {
       </div>
     );
   const { manifest, sources } = data.snapshot;
-  const scene = manifest.scenes[selected] || manifest.scenes[0]!;
+  const scene = manifest.scenes.find((item) => item.id === selected) || manifest.scenes[0]!;
   const doc = manifest.documents.find((item) => item.id === scene.documentId)!;
   const source = sources[doc.id]!;
   const objects: any[] =
@@ -175,9 +160,12 @@ export function ProjectWorkspace({ id }: { id: string }) {
   const edges: any[] =
     typeof source === "string" ? [] : (source[edgeCollections[doc.kind]!] as any[]) || [];
   const fps = manifest.output.fps.numerator / manifest.output.fps.denominator;
-  const totalFrames = Math.max(
-    ...manifest.scenes.map((item) => item.startFrame + item.durationFrames),
-  );
+  const previewFps = navigationState.session
+    ? navigationState.session.output.fps.numerator / navigationState.session.output.fps.denominator
+    : fps;
+  const totalFrames =
+    navigationState.session?.durationFrames ??
+    Math.max(...manifest.scenes.map((item) => item.startFrame + item.durationFrames));
   const draft = drafts[doc.id];
   const text =
     draft?.text ?? (typeof source === "string" ? source : JSON.stringify(source, null, 2));
@@ -244,11 +232,15 @@ export function ProjectWorkspace({ id }: { id: string }) {
           </div>
           {manifest.scenes.map((item, index) => (
             <button
-              className={`vf-scene-card ${index === selected ? "selected" : ""}`}
+              className={`vf-scene-card ${item.id === scene.id ? "selected" : ""}`}
               key={item.id}
               onClick={() => {
-                setSelected(index);
-                seek(item.startFrame / fps + 0.6);
+                setSelected(item.id);
+                const appearance = navigationState.session?.scenes.find(
+                  (binding) => binding.sceneId === item.id,
+                );
+                if (appearance)
+                  seek(previewSecondsFromFrame(navigationState.session!, appearance.startFrame));
               }}
             >
               <span>
@@ -274,7 +266,9 @@ export function ProjectWorkspace({ id }: { id: string }) {
         <section className="vf-canvas-panel">
           <div className="vf-canvas-label">
             <span>
-              {manifest.output.width} × {manifest.output.height} · {fps.toFixed(2)} fps
+              {navigationState.session?.output.width ?? manifest.output.width} ×{" "}
+              {navigationState.session?.output.height ?? manifest.output.height} ·{" "}
+              {previewFps.toFixed(2)} fps
             </span>
             <span>
               {busy ||
@@ -283,25 +277,28 @@ export function ProjectWorkspace({ id }: { id: string }) {
                   : "Showing last valid preview")}
             </span>
           </div>
-          {previewSession && previewSession.scenes.some((item) => item.sceneId === scene.id) && (
-            <a
-              href={editorPreviewUrl(previewSession, scene.id)}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Open pinned preview for ${scene.presentation.title}`}
+          {navigationState.session?.scenes.some((item) => item.sceneId === scene.id) && (
+            <button
+              disabled={!!busy || !navigationState.token}
+              onClick={() => {
+                try {
+                  navigation.open({ sceneId: scene.id }, navigationState.token!);
+                } catch (reason) {
+                  setError(reason instanceof Error ? reason.message : String(reason));
+                }
+              }}
+              aria-label={`Preview scene ${scene.presentation.title} in this editor`}
             >
-              Open selected scene preview · revision {previewSession.revision}
-            </a>
+              Preview selected scene here
+            </button>
           )}
           <div className="vf-canvas" ref={canvas}>
-            {previewSession !== null && (
-              <Preview
-                key={previewSession.buildHash}
-                src={editorPreviewUrl(previewSession)}
-                width={previewSession.output.width}
-                height={previewSession.output.height}
-                onTime={setTime}
-                initialTime={time}
+            {navigationState.session && (
+              <ManagedPreviewPlayer
+                key={navigationState.viewKey}
+                state={navigationState}
+                navigation={navigation}
+                onError={(failure) => setError(failure.message)}
               />
             )}
           </div>
@@ -309,26 +306,33 @@ export function ProjectWorkspace({ id }: { id: string }) {
             <div className="vf-row">
               <strong>{time.toFixed(2)}s</strong>
               <span>{totalFrames} frames</span>
-              <span>{(totalFrames / fps).toFixed(1)}s total</span>
+              <span>{(totalFrames / previewFps).toFixed(1)}s total</span>
             </div>
             <input
               type="range"
               aria-label="Timeline position"
+              disabled={!navigationState.token}
               min={0}
               max={totalFrames - 1}
               step={1}
-              value={Math.min(totalFrames - 1, Math.round(time * fps))}
-              onChange={(event) => seek(Number(event.target.value) / fps)}
+              value={Math.min(totalFrames - 1, Math.round(time * previewFps))}
+              onChange={(event) => seek(Number(event.target.value) / previewFps)}
             />
             <div className="vf-timeline-clips">
-              {manifest.scenes.map((item, index) => (
+              {manifest.scenes.map((item) => (
                 <button
                   key={item.id}
                   style={{ flex: item.durationFrames }}
-                  aria-pressed={selected === index}
+                  aria-pressed={scene.id === item.id}
                   onClick={() => {
-                    setSelected(index);
-                    seek(item.startFrame / fps + 0.6);
+                    setSelected(item.id);
+                    const appearance = navigationState.session?.scenes.find(
+                      (binding) => binding.sceneId === item.id,
+                    );
+                    if (appearance)
+                      seek(
+                        previewSecondsFromFrame(navigationState.session!, appearance.startFrame),
+                      );
                   }}
                 >
                   {item.presentation.title}
