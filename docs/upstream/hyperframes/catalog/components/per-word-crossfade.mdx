@@ -144,12 +144,12 @@ That writes one file: `compositions/components/per-word-crossfade.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `Create once reuse everywhere` | string | The line to animate. It is split on whitespace and every word gets its own span, so the stagger picks up the new words. |
-| `drift` | `standard` | `close`, `standard`, `far` | Scales the vertical offset, so the words cover a shorter or longer run in the same time. |
-| `blur` | `standard` | `soft`, `standard`, `heavy` | Scales the blur radius the timeline drives, from a light haze to a full smear. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Word colour: ink for light frames, paper for dark ones, accent rides --brand. |
+| Variable | Default                        | Accepts                     | What it does                                                                                                            |
+| -------- | ------------------------------ | --------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
+| `text`   | `Create once reuse everywhere` | string                      | The line to animate. It is split on whitespace and every word gets its own span, so the stagger picks up the new words. |
+| `drift`  | `standard`                     | `close`, `standard`, `far`  | Scales the vertical offset, so the words cover a shorter or longer run in the same time.                                |
+| `blur`   | `standard`                     | `soft`, `standard`, `heavy` | Scales the blur radius the timeline drives, from a light haze to a full smear.                                          |
+| `tone`   | `ink`                          | `ink`, `paper`, `accent`    | Word colour: ink for light frames, paper for dark ones, accent rides --brand.                                           |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

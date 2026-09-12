@@ -20,10 +20,7 @@ npm install @hyperframes/producer
 job, the project directory, and the output path.
 
 ```ts
-import {
-  createRenderJob,
-  executeRenderJob,
-} from "@hyperframes/producer";
+import { createRenderJob, executeRenderJob } from "@hyperframes/producer";
 
 const job = createRenderJob({
   fps: 30,
@@ -36,9 +33,7 @@ await executeRenderJob(
   "./my-hyperframes-project",
   "./renders/video.mp4",
   (currentJob, message) => {
-    console.log(
-      `${Math.round(currentJob.progress)}% ${message}`,
-    );
+    console.log(`${Math.round(currentJob.progress)}% ${message}`);
   },
 );
 ```
@@ -56,13 +51,13 @@ const job = createRenderJob({
 
 ## Choose an output
 
-| Format | Best for | Audio |
-| --- | --- | --- |
-| `mp4` | Default delivery and web playback | AAC |
-| `webm` | Transparent video for the web | Opus |
-| `mov` | Transparent ProRes 4444 for an editor | AAC |
-| `gif` | Small silent previews | None |
-| `png-sequence` | Lossless frames for another pipeline | AAC sidecar when needed |
+| Format         | Best for                              | Audio                   |
+| -------------- | ------------------------------------- | ----------------------- |
+| `mp4`          | Default delivery and web playback     | AAC                     |
+| `webm`         | Transparent video for the web         | Opus                    |
+| `mov`          | Transparent ProRes 4444 for an editor | AAC                     |
+| `gif`          | Small silent previews                 | None                    |
+| `png-sequence` | Lossless frames for another pipeline  | AAC sidecar when needed |
 
 HDR output is available for MP4 through `hdrMode`. Transparent formats render
 in SDR because HDR and alpha are not one supported output path.

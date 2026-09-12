@@ -149,12 +149,12 @@ That writes one file: `compositions/components/page-slide.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `label_a` | `Dashboard` | string | Label printed on the page that slides out. |
-| `label_b` | `Analytics` | string | Label printed on the page that slides in. |
-| `accent` | `green` | `green`, `blue`, `violet` | Gradient family painted on the incoming page. The outgoing page stays slate. |
-| `corner` | `round` | `square`, `soft`, `round` | Corner radius of the frame the pages slide inside. |
+| Variable  | Default     | Accepts                   | What it does                                                                 |
+| --------- | ----------- | ------------------------- | ---------------------------------------------------------------------------- |
+| `label_a` | `Dashboard` | string                    | Label printed on the page that slides out.                                   |
+| `label_b` | `Analytics` | string                    | Label printed on the page that slides in.                                    |
+| `accent`  | `green`     | `green`, `blue`, `violet` | Gradient family painted on the incoming page. The outgoing page stays slate. |
+| `corner`  | `round`     | `square`, `soft`, `round` | Corner radius of the frame the pages slide inside.                           |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

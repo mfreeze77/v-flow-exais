@@ -845,14 +845,12 @@ export const VariablesExplorer = ({
       radiusY *= grow;
     }
 
-    const denominator =
-      radiusX * radiusX * primeY * primeY + radiusY * radiusY * primeX * primeX;
+    const denominator = radiusX * radiusX * primeY * primeY + radiusY * radiusY * primeX * primeX;
     const numerator =
       radiusX * radiusX * radiusY * radiusY -
       radiusX * radiusX * primeY * primeY -
       radiusY * radiusY * primeX * primeX;
-    const factor =
-      (largeArc === sweep ? -1 : 1) * Math.sqrt(Math.max(0, numerator) / denominator);
+    const factor = (largeArc === sweep ? -1 : 1) * Math.sqrt(Math.max(0, numerator) / denominator);
     const centrePrimeX = (factor * radiusX * primeY) / radiusY;
     const centrePrimeY = (-factor * radiusY * primeX) / radiusX;
     const centreX = cosPhi * centrePrimeX - sinPhi * centrePrimeY + (x1 + x2) / 2;
@@ -1614,7 +1612,9 @@ export const VariablesExplorer = ({
   useEffect(() => {
     if (typeof window === "undefined") return;
     const changed = Object.fromEntries(
-      Object.entries(values).filter(([id, value]) => JSON.stringify(value) !== JSON.stringify(defaults[id])),
+      Object.entries(values).filter(
+        ([id, value]) => JSON.stringify(value) !== JSON.stringify(defaults[id]),
+      ),
     );
     const url = new URL(window.location.href);
     if (Object.keys(changed).length === 0) url.searchParams.delete(urlKey);
@@ -1693,7 +1693,7 @@ export const VariablesExplorer = ({
     "    var json = JSON.stringify(values);",
     "    var attr = json.replace(/'/g, '&#39;');",
     "    var out = source.replace(/\\sdata-variable-values=(?:\"[^\"]*\"|'[^']*')/gi, '');",
-    "    out = out.replace(/(data-composition-src=)/gi, \"data-variable-values='\" + attr + \"' $1\");",
+    '    out = out.replace(/(data-composition-src=)/gi, "data-variable-values=\'" + attr + "\' $1");',
     "    var tag = '<' + 'script>window.__hfVariables=' + json + ';<' + '/script>';",
     "    return /<head[^>]*>/i.test(out)",
     "      ? out.replace(/<head([^>]*)>/i, '<head$1>' + tag)",
@@ -1772,13 +1772,26 @@ export const VariablesExplorer = ({
   // One entry per rendered line, each a list of [style, text] tokens — the
   // shape a shiki fence emits. Built rather than written out because an
   // indented value spans several lines and each one needs its own `line` span.
-  const snippetLines = [[[SHIKI.punct, "<"], [SHIKI.tag, "div"]]];
+  const snippetLines = [
+    [
+      [SHIKI.punct, "<"],
+      [SHIKI.tag, "div"],
+    ],
+  ];
   for (const [name, literal] of attributes) {
     const [head, ...rest] = literal.split("\n");
-    snippetLines.push([[SHIKI.attr, `  ${name}`], [SHIKI.equals, "="], [SHIKI.value, head]]);
+    snippetLines.push([
+      [SHIKI.attr, `  ${name}`],
+      [SHIKI.equals, "="],
+      [SHIKI.value, head],
+    ]);
     for (const line of rest) snippetLines.push([[SHIKI.value, line]]);
   }
-  snippetLines.push([[SHIKI.punct, "></"], [SHIKI.tag, "div"], [SHIKI.punct, ">"]]);
+  snippetLines.push([
+    [SHIKI.punct, "></"],
+    [SHIKI.tag, "div"],
+    [SHIKI.punct, ">"],
+  ]);
 
   const dirty = variables.some((v) => values[v.id] !== defaults[v.id]);
 
@@ -1790,7 +1803,8 @@ export const VariablesExplorer = ({
     if (!dirty) return base;
     const changed = {};
     for (const v of variables) {
-      if (JSON.stringify(values[v.id]) !== JSON.stringify(defaults[v.id])) changed[v.id] = values[v.id];
+      if (JSON.stringify(values[v.id]) !== JSON.stringify(defaults[v.id]))
+        changed[v.id] = values[v.id];
     }
     return `${base} --vars '${JSON.stringify(changed)}'`;
   })();

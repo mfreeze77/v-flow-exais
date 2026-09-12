@@ -19,9 +19,9 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 That writes `compositions/liquid-glass-widgets.html`, plus 2 supporting files under `compositions/assets/` and `compositions/lib/`.
 
 <Danger>
-  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on.
-  Without it this item's screen renders black. Rendering from the CLI switches
-  it on for you. [How it works](/guides/html-in-canvas)
+  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on. Without it this
+  item's screen renders black. Rendering from the CLI switches it on for you. [How it
+  works](/guides/html-in-canvas)
 </Danger>
 
 ## Source
@@ -797,7 +797,15 @@ That writes `compositions/liquid-glass-widgets.html`, plus 2 supporting files un
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="liquid-glass-widgets" data-composition-src="compositions/liquid-glass-widgets.html" data-start="0" data-duration="8" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="liquid-glass-widgets"
+  data-composition-src="compositions/liquid-glass-widgets.html"
+  data-start="0"
+  data-duration="8"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

@@ -40,16 +40,12 @@ import {
 } from "@hyperframes/engine";
 
 const fps = { num: 30, den: 1 };
-const session = await createCaptureSession(
-  serverUrl,
-  "./frames",
-  {
-    width: 1920,
-    height: 1080,
-    fps,
-    format: "jpeg",
-  },
-);
+const session = await createCaptureSession(serverUrl, "./frames", {
+  width: 1920,
+  height: 1080,
+  fps,
+  format: "jpeg",
+});
 
 try {
   await initializeSession(session);
@@ -70,13 +66,13 @@ instead of a file.
 
 ## What else the package exposes
 
-| Surface | Use it for |
-| --- | --- |
-| Browser management | Launching, pooling, and releasing Chrome |
-| Encoders | MP4, WebM, MOV, GIF, PNG-sequence, muxing, and faststart |
-| Media extraction | Preparing source video frames and audio tracks |
-| Parallel capture | Distributing frame ranges across workers |
-| Diagnostics | Capture performance, media metadata, and GPU parity |
+| Surface            | Use it for                                               |
+| ------------------ | -------------------------------------------------------- |
+| Browser management | Launching, pooling, and releasing Chrome                 |
+| Encoders           | MP4, WebM, MOV, GIF, PNG-sequence, muxing, and faststart |
+| Media extraction   | Preparing source video frames and audio tracks           |
+| Parallel capture   | Distributing frame ranges across workers                 |
+| Diagnostics        | Capture performance, media metadata, and GPU parity      |
 
 These are rendering internals. Their result and error conventions differ by
 operation: browser and capture orchestration throws, FFmpeg wrappers generally

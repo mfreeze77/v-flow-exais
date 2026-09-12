@@ -345,14 +345,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `line_a` | `Everyone promised you AI.` | string | First line; holds center inside the mask, then exits up on the swap beat. |
-| `line_b` | `Almost nobody promised you control.` | string | Replacement line; enters bottom-up on the swap beat and holds. |
-| `swap_at` | `1.5` | number | Second (from mount start) of the beat replacement. Clamped so the swap and underline complete before any exit. |
-| `underline_word` | `control` | string | First case-insensitive substring match in line B gets the accent underline after landing. Empty disables it. |
-| `accent` | `green` | `green`, `blue`, `violet` | Underline color from the contract token map. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the landed line holds until the frame cuts. |
+| Variable         | Default                               | Accepts                   | What it does                                                                                                   |
+| ---------------- | ------------------------------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `line_a`         | `Everyone promised you AI.`           | string                    | First line; holds center inside the mask, then exits up on the swap beat.                                      |
+| `line_b`         | `Almost nobody promised you control.` | string                    | Replacement line; enters bottom-up on the swap beat and holds.                                                 |
+| `swap_at`        | `1.5`                                 | number                    | Second (from mount start) of the beat replacement. Clamped so the swap and underline complete before any exit. |
+| `underline_word` | `control`                             | string                    | First case-insensitive substring match in line B gets the accent underline after landing. Empty disables it.   |
+| `accent`         | `green`                               | `green`, `blue`, `violet` | Underline color from the contract token map.                                                                   |
+| `exit`           | `none`                                | `none`, `fade`, `up`      | Optional departure. Default none: the landed line holds until the frame cuts.                                  |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

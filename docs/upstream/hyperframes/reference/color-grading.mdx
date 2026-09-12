@@ -75,27 +75,15 @@ property and verify that it moves before relying on it.
 Grading selects pixels by value, not position. To treat one region, isolate it
 as its own media layer:
 
-| Result | Layer stack |
-| --- | --- |
-| Grade the subject only | Clean original plate, then a graded subject cutout |
-| Grade the background only | Graded original plate, then a clean subject cutout |
+| Result                          | Layer stack                                                     |
+| ------------------------------- | --------------------------------------------------------------- |
+| Grade the subject only          | Clean original plate, then a graded subject cutout              |
+| Grade the background only       | Graded original plate, then a clean subject cutout              |
 | Grade one region of the subject | Clean cutout, then a second graded cutout clipped to the region |
 
 ```html
-<video
-  src="media/room.mp4"
-  muted
-  data-start="0"
-  data-duration="4"
-  data-track-index="2"
-></video>
-<video
-  src="media/subject.webm"
-  muted
-  data-start="0"
-  data-duration="4"
-  data-track-index="3"
-></video>
+<video src="media/room.mp4" muted data-start="0" data-duration="4" data-track-index="2"></video>
+<video src="media/subject.webm" muted data-start="0" data-duration="4" data-track-index="3"></video>
 <video
   src="media/subject.webm"
   muted

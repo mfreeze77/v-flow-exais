@@ -8,6 +8,7 @@ import { operationForWrite } from "./commandWriter";
 import { BatchPanel } from "./BatchPanel";
 import { ProposalReview } from "./ProposalReview";
 import { ProjectAgentTools } from "./ProjectAgentTools";
+import { RegenerationConflictPanel } from "./RegenerationConflictPanel";
 
 type ProjectState = {
   snapshot: ProjectSnapshot;
@@ -198,6 +199,11 @@ export function ProjectWorkspace({ id }: { id: string }) {
           </button>
         </div>
       )}
+      <RegenerationConflictPanel
+        snapshot={data.snapshot}
+        busy={!!busy}
+        onResolve={(operation) => run(commit([operation]))}
+      />
       <div className="vf-editor-grid">
         <aside className="vf-story-panel">
           <div className="vf-panel-heading">

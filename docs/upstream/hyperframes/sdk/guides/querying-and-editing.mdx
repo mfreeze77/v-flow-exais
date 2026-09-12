@@ -21,19 +21,19 @@ const timed = elements.filter((el) => el.start !== null);
 
 Each `ElementSnapshot` (aliased from `HyperFramesElement`) carries:
 
-| Field | Type | Notes |
-|-------|------|-------|
-| `id` | `string` | Leaf `hf-id` — unique within its sub-composition scope |
-| `scopedId` | `string` | Canonical dispatch target (see below) |
-| `tag` | `string` | Lowercase HTML tag name |
-| `text` | `string \| null` | Direct text content of the element |
-| `inlineStyles` | `Record<string, string>` | camelCase property names |
-| `attributes` | `Record<string, string>` | All attributes except `style`, `class`, and `data-hf-*` |
-| `classNames` | `string[]` | |
-| `start` | `number \| null` | Seconds — null when `data-start` is absent |
-| `duration` | `number \| null` | Seconds — null when neither `data-duration` nor `data-end` is present |
-| `trackIndex` | `number \| null` | |
-| `animationIds` | `string[]` | GSAP tween IDs targeting this element |
+| Field          | Type                     | Notes                                                                 |
+| -------------- | ------------------------ | --------------------------------------------------------------------- |
+| `id`           | `string`                 | Leaf `hf-id` — unique within its sub-composition scope                |
+| `scopedId`     | `string`                 | Canonical dispatch target (see below)                                 |
+| `tag`          | `string`                 | Lowercase HTML tag name                                               |
+| `text`         | `string \| null`         | Direct text content of the element                                    |
+| `inlineStyles` | `Record<string, string>` | camelCase property names                                              |
+| `attributes`   | `Record<string, string>` | All attributes except `style`, `class`, and `data-hf-*`               |
+| `classNames`   | `string[]`               |                                                                       |
+| `start`        | `number \| null`         | Seconds — null when `data-start` is absent                            |
+| `duration`     | `number \| null`         | Seconds — null when neither `data-duration` nor `data-end` is present |
+| `trackIndex`   | `number \| null`         |                                                                       |
+| `animationIds` | `string[]`               | GSAP tween IDs targeting this element                                 |
 
 ### `getElement(id)`
 
@@ -76,12 +76,12 @@ const [targetId] = comp.find({ tag: "h1", track: 0 });
 
 `FindQuery` fields:
 
-| Field | Type | Matches |
-|-------|------|---------|
-| `tag` | `string` | Exact tag name |
-| `text` | `string` | Substring of `el.text` |
-| `name` | `string` | Exact value of the `data-name` attribute |
-| `track` | `number` | Exact `trackIndex` |
+| Field         | Type     | Matches                                              |
+| ------------- | -------- | ---------------------------------------------------- |
+| `tag`         | `string` | Exact tag name                                       |
+| `text`        | `string` | Substring of `el.text`                               |
+| `name`        | `string` | Exact value of the `data-name` attribute             |
+| `track`       | `number` | Exact `trackIndex`                                   |
 | `composition` | `string` | Elements whose `scopedId` starts with `"<host-id>/"` |
 
 ### `scopedId` for sub-composition elements
@@ -216,7 +216,7 @@ The handle holds only the `id` string — there is no stale DOM reference hazard
 
 ### `comp.selection()` → `SelectionProxy`
 
-Returns a proxy that resolves the *current* selection at call time and applies mutations to every selected id in one batch.
+Returns a proxy that resolves the _current_ selection at call time and applies mutations to every selected id in one batch.
 
 ```typescript
 comp.setSelection(["hf-title", "hf-subtitle"]);
@@ -237,7 +237,9 @@ comp.setSelection([]); // clear
 ```
 
 <Note>
-  `SelectionProxy` and `ElementHandle` expose the same five methods: `setStyle`, `setText`, `setAttribute`, `setTiming`, and `removeElement`. They are intentionally symmetric — switch between them freely without rethinking your call site.
+  `SelectionProxy` and `ElementHandle` expose the same five methods: `setStyle`, `setText`,
+  `setAttribute`, `setTiming`, and `removeElement`. They are intentionally symmetric — switch
+  between them freely without rethinking your call site.
 </Note>
 
 ## Related
@@ -249,8 +251,11 @@ comp.setSelection([]); // clear
   <Card title="Types reference" icon="brackets-curly" href="/sdk/reference/types">
     HyperFramesElement, FindQuery, ElementHandle, SelectionProxy, and more.
   </Card>
-  <Card title="Edit Operations reference" icon="pen-to-square" href="/sdk/reference/edit-operations">
+  <Card
+    title="Edit Operations reference"
+    icon="pen-to-square"
+    href="/sdk/reference/edit-operations"
+  >
     Every EditOp variant — for the dispatch() and can() layers.
   </Card>
 </CardGroup>
-

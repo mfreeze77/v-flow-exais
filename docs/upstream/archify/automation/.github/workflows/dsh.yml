@@ -3,25 +3,25 @@ name: DSH integration
 on:
   pull_request:
     paths:
-      - 'integrations/deepseek-harness/**'
-      - '.github/workflows/dsh.yml'
-      - 'scripts/stage-clean-skill.mjs'
-      - 'scripts/third-party-notices-contract.mjs'
+      - "integrations/deepseek-harness/**"
+      - ".github/workflows/dsh.yml"
+      - "scripts/stage-clean-skill.mjs"
+      - "scripts/third-party-notices-contract.mjs"
   push:
     branches: [main]
     paths:
-      - 'integrations/deepseek-harness/**'
-      - '.github/workflows/dsh.yml'
-      - 'scripts/stage-clean-skill.mjs'
-      - 'scripts/third-party-notices-contract.mjs'
+      - "integrations/deepseek-harness/**"
+      - ".github/workflows/dsh.yml"
+      - "scripts/stage-clean-skill.mjs"
+      - "scripts/third-party-notices-contract.mjs"
     tags:
-      - 'archify-dsh-v*'
+      - "archify-dsh-v*"
   schedule:
-    - cron: '17 6 * * 1'
+    - cron: "17 6 * * 1"
   workflow_dispatch:
     inputs:
       adapter_release:
-        description: 'Run the three-platform adapter release gate'
+        description: "Run the three-platform adapter release gate"
         type: boolean
         default: false
 

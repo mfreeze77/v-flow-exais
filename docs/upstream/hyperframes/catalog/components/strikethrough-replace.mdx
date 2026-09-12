@@ -142,12 +142,12 @@ That writes one file: `compositions/components/strikethrough-replace.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `origin` | `left` | `left`, `center`, `right` | Edge the strike grows out of as the timeline runs its scale from 0 to 1. |
-| `thickness` | `standard` | `thin`, `standard`, `thick` | Height of the strike line, from a hairline rule to a heavy bar. |
-| `tint` | `red` | `red`, `amber`, `blue`, `violet` | Strike colour. Blue and violet ride --accent and --accent-2. |
-| `tone` | `ink` | `ink`, `paper` | Colour of both words: ink for light frames, paper for dark ones. |
+| Variable    | Default    | Accepts                          | What it does                                                             |
+| ----------- | ---------- | -------------------------------- | ------------------------------------------------------------------------ |
+| `origin`    | `left`     | `left`, `center`, `right`        | Edge the strike grows out of as the timeline runs its scale from 0 to 1. |
+| `thickness` | `standard` | `thin`, `standard`, `thick`      | Height of the strike line, from a hairline rule to a heavy bar.          |
+| `tint`      | `red`      | `red`, `amber`, `blue`, `violet` | Strike colour. Blue and violet ride --accent and --accent-2.             |
+| `tone`      | `ink`      | `ink`, `paper`                   | Colour of both words: ink for light frames, paper for dark ones.         |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

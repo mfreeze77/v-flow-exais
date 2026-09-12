@@ -28,9 +28,6 @@
   "source_identity_checks": {
     "uploaded_zip_inputs": "PASS",
     "extracted_raw_folder_inputs": "PASS",
-    "reports": [
-      "provenance/UPLOADED_SOURCE_CHECK.json",
-      "provenance/FOLDER_SOURCE_CHECK.json"
-    ]
+    "reports": ["provenance/UPLOADED_SOURCE_CHECK.json", "provenance/FOLDER_SOURCE_CHECK.json"]
   }
 }

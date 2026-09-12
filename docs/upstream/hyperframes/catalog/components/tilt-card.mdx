@@ -185,12 +185,12 @@ That writes one file: `compositions/components/tilt-card.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `eyebrow` | `Primitive` | string | Small uppercase kicker above the headline. |
-| `headline` | `Agent-ready motion` | string | Large card headline. |
-| `glow` | `standard` | `tight`, `standard`, `wide` | How far the corner glow reaches past the card edges, which sets both its spread at rest and how far the timeline drift carries it. |
-| `accent` | `indigo` | `indigo`, `emerald`, `violet` | Colour family of the card gradient, corner glow, eyebrow and drop shadow. |
+| Variable   | Default              | Accepts                       | What it does                                                                                                                       |
+| ---------- | -------------------- | ----------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `eyebrow`  | `Primitive`          | string                        | Small uppercase kicker above the headline.                                                                                         |
+| `headline` | `Agent-ready motion` | string                        | Large card headline.                                                                                                               |
+| `glow`     | `standard`           | `tight`, `standard`, `wide`   | How far the corner glow reaches past the card edges, which sets both its spread at rest and how far the timeline drift carries it. |
+| `accent`   | `indigo`             | `indigo`, `emerald`, `violet` | Colour family of the card gradient, corner glow, eyebrow and drop shadow.                                                          |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

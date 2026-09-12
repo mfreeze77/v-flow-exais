@@ -184,11 +184,11 @@ That writes one file: `compositions/components/input-feedback.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `status` | `valid` | `valid`, `error` | Whether the field reads as accepted or rejected, colouring the border, chip and hint. |
-| `value` | `mia@example.com` | string | Text held by the field. |
-| `hint` | `Looks good.` | string | Helper line under the field. |
+| Variable | Default           | Accepts          | What it does                                                                          |
+| -------- | ----------------- | ---------------- | ------------------------------------------------------------------------------------- |
+| `status` | `valid`           | `valid`, `error` | Whether the field reads as accepted or rejected, colouring the border, chip and hint. |
+| `value`  | `mia@example.com` | string           | Text held by the field.                                                               |
+| `hint`   | `Looks good.`     | string           | Helper line under the field.                                                          |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

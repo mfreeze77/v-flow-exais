@@ -223,10 +223,7 @@
           "title": "Web Runtime Architecture",
           "subtitle": "Production web application with CDN, auth, caching, and async workers",
           "output": "web-runtime.html",
-          "viewBox": [
-            1100,
-            650
-          ]
+          "viewBox": [1100, 650]
         },
         "components": [
           {
@@ -234,164 +231,92 @@
             "type": "external",
             "label": "Users",
             "sublabel": "Browser",
-            "pos": [
-              40,
-              310
-            ],
-            "size": [
-              120,
-              60
-            ]
+            "pos": [40, 310],
+            "size": [120, 60]
           },
           {
             "id": "cdn",
             "type": "cloud",
             "label": "CDN",
             "sublabel": "HTTPS edge",
-            "pos": [
-              250,
-              310
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [250, 310],
+            "size": [130, 60]
           },
           {
             "id": "lb",
             "type": "cloud",
             "label": "Load Balancer",
             "sublabel": "TLS :443",
-            "pos": [
-              460,
-              310
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [460, 310],
+            "size": [130, 60]
           },
           {
             "id": "api",
             "type": "backend",
             "label": "API Server",
             "sublabel": "application",
-            "pos": [
-              670,
-              310
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [670, 310],
+            "size": [130, 60]
           },
           {
             "id": "db",
             "type": "database",
             "label": "PostgreSQL",
             "sublabel": "primary",
-            "pos": [
-              880,
-              310
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [880, 310],
+            "size": [130, 60]
           },
           {
             "id": "auth",
             "type": "security",
             "label": "Auth Provider",
             "sublabel": "OAuth 2.0 / JWT",
-            "pos": [
-              40,
-              120
-            ],
-            "size": [
-              120,
-              64
-            ]
+            "pos": [40, 120],
+            "size": [120, 64]
           },
           {
             "id": "cache",
             "type": "database",
             "label": "Redis",
             "sublabel": "cache",
-            "pos": [
-              670,
-              120
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [670, 120],
+            "size": [130, 60]
           },
           {
             "id": "storage",
             "type": "cloud",
             "label": "Object Storage",
             "sublabel": "static assets",
-            "pos": [
-              250,
-              460
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [250, 460],
+            "size": [130, 60]
           },
           {
             "id": "queue",
             "type": "messagebus",
             "label": "Queue",
             "sublabel": "job queue",
-            "pos": [
-              670,
-              460
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [670, 460],
+            "size": [130, 60]
           },
           {
             "id": "worker",
             "type": "backend",
             "label": "Worker",
             "sublabel": "async jobs",
-            "pos": [
-              880,
-              460
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [880, 460],
+            "size": [130, 60]
           }
         ],
         "boundaries": [
           {
             "kind": "region",
             "label": "Production Environment",
-            "wraps": [
-              "cdn",
-              "lb",
-              "api",
-              "db",
-              "cache",
-              "storage",
-              "queue",
-              "worker"
-            ]
+            "wraps": ["cdn", "lb", "api", "db", "cache", "storage", "queue", "worker"]
           },
           {
             "kind": "security-group",
             "label": "Application Security Group",
-            "wraps": [
-              "lb",
-              "api"
-            ]
+            "wraps": ["lb", "api"]
           }
         ],
         "connections": [
@@ -493,9 +418,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": "codex-browser-visual-audit-2026-07-26-postfix",
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -536,9 +459,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": "codex-browser-visual-audit-2026-07-26-postfix",
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -834,10 +755,7 @@
             "to": "logger",
             "label": "trace + context",
             "variant": "dashed",
-            "labelAt": [
-              365,
-              724
-            ]
+            "labelAt": [365, 724]
           }
         ],
         "cards": [
@@ -939,10 +857,7 @@
         "meta": {
           "title": "Dashboard Request: Cache Miss Sequence",
           "subtitle": "Browser-to-API lifecycle with JWT auth, Redis cache miss, PostgreSQL fallback, and async trace",
-          "viewBox": [
-            920,
-            800
-          ]
+          "viewBox": [920, 800]
         },
         "participants": [
           {
@@ -1207,10 +1122,7 @@
           "title": "Product Analytics Data Flow",
           "subtitle": "Events, consent, PII isolation, warehouse sync, and downstream consumers",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            1080,
-            760
-          ]
+          "viewBox": [1080, 760]
         },
         "stages": [
           {
@@ -1331,19 +1243,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                184,
-                157
-              ],
-              [
-                184,
-                271
-              ]
+              [184, 157],
+              [184, 271]
             ],
-            "labelAt": [
-              204,
-              190
-            ]
+            "labelAt": [204, 190]
           },
           {
             "from": "mobile-app",
@@ -1354,19 +1257,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                222,
-                385
-              ],
-              [
-                222,
-                271
-              ]
+              [222, 385],
+              [222, 271]
             ],
-            "labelAt": [
-              220,
-              342
-            ]
+            "labelAt": [220, 342]
           },
           {
             "from": "ingestion-api",
@@ -1377,23 +1271,11 @@
             "fromSide": "top",
             "toSide": "left",
             "via": [
-              [
-                315,
-                112
-              ],
-              [
-                450,
-                112
-              ],
-              [
-                450,
-                157
-              ]
+              [315, 112],
+              [450, 112],
+              [450, 157]
             ],
-            "labelAt": [
-              382,
-              100
-            ]
+            "labelAt": [382, 100]
           },
           {
             "from": "ingestion-api",
@@ -1404,19 +1286,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                420,
-                271
-              ],
-              [
-                420,
-                385
-              ]
+              [420, 271],
+              [420, 385]
             ],
-            "labelAt": [
-              438,
-              324
-            ]
+            "labelAt": [438, 324]
           },
           {
             "from": "consent-check",
@@ -1425,10 +1298,7 @@
             "classification": "encrypted PII",
             "variant": "security",
             "route": "straight",
-            "labelAt": [
-              638,
-              144
-            ]
+            "labelAt": [638, 144]
           },
           {
             "from": "event-bus",
@@ -1437,10 +1307,7 @@
             "classification": "non-PII",
             "variant": "emphasis",
             "route": "straight",
-            "labelAt": [
-              638,
-              372
-            ]
+            "labelAt": [638, 372]
           },
           {
             "from": "fact-warehouse",
@@ -1451,10 +1318,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              745,
-              496
-            ]
+            "labelAt": [745, 496]
           },
           {
             "from": "fact-warehouse",
@@ -1465,19 +1329,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                852,
-                385
-              ],
-              [
-                852,
-                271
-              ]
+              [852, 385],
+              [852, 271]
             ],
-            "labelAt": [
-              830,
-              326
-            ]
+            "labelAt": [830, 326]
           },
           {
             "from": "feature-store",
@@ -1486,10 +1341,7 @@
             "classification": "derived",
             "variant": "dashed",
             "route": "straight",
-            "labelAt": [
-              852,
-              598
-            ]
+            "labelAt": [852, 598]
           },
           {
             "from": "pii-vault",
@@ -1500,23 +1352,11 @@
             "fromSide": "right",
             "toSide": "top",
             "via": [
-              [
-                878,
-                157
-              ],
-              [
-                878,
-                212
-              ],
-              [
-                960,
-                212
-              ]
+              [878, 157],
+              [878, 212],
+              [960, 212]
             ],
-            "labelAt": [
-              880,
-              198
-            ]
+            "labelAt": [880, 198]
           }
         ],
         "cards": [
@@ -1558,9 +1398,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": null,
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -1602,9 +1440,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": null,
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -1623,10 +1459,7 @@
           "title": "Agent Run Lifecycle",
           "subtitle": "Ordered phases, interruptions, recovery, and distinct terminal outcomes",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            980,
-            660
-          ]
+          "viewBox": [980, 660]
         },
         "lanes": [
           {
@@ -1773,10 +1606,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              402,
-              202
-            ]
+            "labelAt": [402, 202]
           },
           {
             "from": "needs_approval",
@@ -1795,10 +1625,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              556,
-              202
-            ]
+            "labelAt": [556, 202]
           },
           {
             "from": "blocked",
@@ -1817,19 +1644,10 @@
             "fromSide": "left",
             "toSide": "top",
             "via": [
-              [
-                340,
-                342
-              ],
-              [
-                402,
-                342
-              ]
+              [340, 342],
+              [402, 342]
             ],
-            "labelAt": [
-              371,
-              350
-            ]
+            "labelAt": [371, 350]
           },
           {
             "from": "failed",
@@ -1839,23 +1657,11 @@
             "fromSide": "right",
             "toSide": "bottom",
             "via": [
-              [
-                475,
-                385
-              ],
-              [
-                475,
-                220
-              ],
-              [
-                402,
-                220
-              ]
+              [475, 385],
+              [475, 220],
+              [402, 220]
             ],
-            "labelAt": [
-              475,
-              350
-            ]
+            "labelAt": [475, 350]
           },
           {
             "from": "blocked",
@@ -1865,10 +1671,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              556,
-              350
-            ]
+            "labelAt": [556, 350]
           },
           {
             "from": "needs_approval",
@@ -1878,23 +1681,11 @@
             "fromSide": "right",
             "toSide": "top",
             "via": [
-              [
-                475,
-                307
-              ],
-              [
-                475,
-                435
-              ],
-              [
-                402,
-                435
-              ]
+              [475, 307],
+              [475, 435],
+              [402, 435]
             ],
-            "labelAt": [
-              475,
-              428
-            ]
+            "labelAt": [475, 428]
           },
           {
             "from": "failed",
@@ -1904,10 +1695,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              402,
-              428
-            ]
+            "labelAt": [402, 428]
           }
         ],
         "cards": [
@@ -1950,9 +1738,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": null,
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -1996,9 +1782,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": null,
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -2024,28 +1808,16 @@
             "type": "external",
             "label": "Browser Clients",
             "sublabel": "End users",
-            "pos": [
-              40,
-              320
-            ],
-            "size": [
-              130,
-              64
-            ]
+            "pos": [40, 320],
+            "size": [130, 64]
           },
           {
             "id": "cdn",
             "type": "cloud",
             "label": "CDN Edge",
             "sublabel": "Cloudflare",
-            "pos": [
-              260,
-              320
-            ],
-            "size": [
-              130,
-              64
-            ],
+            "pos": [260, 320],
+            "size": [130, 64],
             "tag": "HTTPS termination"
           },
           {
@@ -2053,28 +1825,16 @@
             "type": "cloud",
             "label": "Load Balancer",
             "sublabel": "NGINX :443",
-            "pos": [
-              480,
-              320
-            ],
-            "size": [
-              140,
-              64
-            ]
+            "pos": [480, 320],
+            "size": [140, 64]
           },
           {
             "id": "api",
             "type": "backend",
             "label": "Application API",
             "sublabel": "Node.js :3000",
-            "pos": [
-              700,
-              320
-            ],
-            "size": [
-              150,
-              64
-            ],
+            "pos": [700, 320],
+            "size": [150, 64],
             "tag": "REST endpoints"
           },
           {
@@ -2082,14 +1842,8 @@
             "type": "security",
             "label": "Auth Provider",
             "sublabel": "OAuth 2.0",
-            "pos": [
-              700,
-              100
-            ],
-            "size": [
-              150,
-              64
-            ],
+            "pos": [700, 100],
+            "size": [150, 64],
             "tag": "JWT validation"
           },
           {
@@ -2097,14 +1851,8 @@
             "type": "database",
             "label": "Redis",
             "sublabel": "Cache :6379",
-            "pos": [
-              480,
-              100
-            ],
-            "size": [
-              140,
-              64
-            ],
+            "pos": [480, 100],
+            "size": [140, 64],
             "tag": "Read-through"
           },
           {
@@ -2112,14 +1860,8 @@
             "type": "database",
             "label": "PostgreSQL",
             "sublabel": "Primary :5432",
-            "pos": [
-              920,
-              320
-            ],
-            "size": [
-              150,
-              64
-            ],
+            "pos": [920, 320],
+            "size": [150, 64],
             "tag": "ACID transactions"
           },
           {
@@ -2127,14 +1869,8 @@
             "type": "messagebus",
             "label": "Message Queue",
             "sublabel": "RabbitMQ",
-            "pos": [
-              700,
-              520
-            ],
-            "size": [
-              150,
-              64
-            ],
+            "pos": [700, 520],
+            "size": [150, 64],
             "tag": "Job enqueue"
           },
           {
@@ -2142,28 +1878,16 @@
             "type": "backend",
             "label": "Background Worker",
             "sublabel": "Async processor",
-            "pos": [
-              920,
-              520
-            ],
-            "size": [
-              150,
-              64
-            ]
+            "pos": [920, 520],
+            "size": [150, 64]
           },
           {
             "id": "storage",
             "type": "cloud",
             "label": "Object Storage",
             "sublabel": "S3 bucket",
-            "pos": [
-              260,
-              520
-            ],
-            "size": [
-              130,
-              64
-            ],
+            "pos": [260, 520],
+            "size": [130, 64],
             "tag": "Static assets"
           }
         ],
@@ -2171,22 +1895,12 @@
           {
             "kind": "region",
             "label": "Application Runtime Environment",
-            "wraps": [
-              "lb",
-              "api",
-              "cache",
-              "db",
-              "queue",
-              "worker"
-            ]
+            "wraps": ["lb", "api", "cache", "db", "queue", "worker"]
           },
           {
             "kind": "security-group",
             "label": "Authentication Boundary",
-            "wraps": [
-              "auth",
-              "api"
-            ]
+            "wraps": ["auth", "api"]
           }
         ],
         "connections": [
@@ -2371,28 +2085,17 @@
             {
               "id": "denied-flow",
               "label": "Denied or blocked",
-              "focus": [
-                "consent-gate",
-                "denied-action",
-                "retry-queue"
-              ],
+              "focus": ["consent-gate", "denied-action", "retry-queue"],
               "note": "When approval is withheld the request enters a blocked state with optional retry."
             },
             {
               "id": "observability",
               "label": "Trace and context",
-              "focus": [
-                "ext-api",
-                "trace-store",
-                "context-cache"
-              ],
+              "focus": ["ext-api", "trace-store", "context-cache"],
               "note": "External results and context snapshots are recorded for auditing and future planning."
             }
           ],
-          "viewBox": [
-            720,
-            960
-          ]
+          "viewBox": [720, 960]
         },
         "lanes": [
           {
@@ -2610,10 +2313,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "drop",
-            "labelAt": [
-              465,
-              415
-            ]
+            "labelAt": [465, 415]
           },
           {
             "id": "denied-to-retry",
@@ -2654,10 +2354,7 @@
             "to": "trace-store",
             "label": "persist context",
             "variant": "dashed",
-            "labelAt": [
-              360,
-              740
-            ]
+            "labelAt": [360, 740]
           }
         ],
         "cards": [
@@ -2992,9 +2689,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": null,
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -3035,9 +2730,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": null,
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -3056,10 +2749,7 @@
           "title": "Product Analytics Data Flow",
           "subtitle": "Client events, consent-gated identity handling, warehouse analytics, and ML consumption",
           "output": "benchmark-product-analytics.html",
-          "viewBox": [
-            1100,
-            760
-          ]
+          "viewBox": [1100, 760]
         },
         "stages": [
           {
@@ -3180,19 +2870,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                200,
-                157
-              ],
-              [
-                200,
-                271
-              ]
+              [200, 157],
+              [200, 271]
             ],
-            "labelAt": [
-              178,
-              200
-            ]
+            "labelAt": [178, 200]
           },
           {
             "from": "app-sdk",
@@ -3203,19 +2884,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                200,
-                385
-              ],
-              [
-                200,
-                271
-              ]
+              [200, 385],
+              [200, 271]
             ],
-            "labelAt": [
-              178,
-              340
-            ]
+            "labelAt": [178, 340]
           },
           {
             "from": "collector",
@@ -3226,23 +2898,11 @@
             "fromSide": "top",
             "toSide": "left",
             "via": [
-              [
-                315,
-                110
-              ],
-              [
-                470,
-                110
-              ],
-              [
-                470,
-                157
-              ]
+              [315, 110],
+              [470, 110],
+              [470, 157]
             ],
-            "labelAt": [
-              392,
-              98
-            ]
+            "labelAt": [392, 98]
           },
           {
             "from": "collector",
@@ -3253,19 +2913,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                420,
-                271
-              ],
-              [
-                420,
-                385
-              ]
+              [420, 271],
+              [420, 385]
             ],
-            "labelAt": [
-              438,
-              320
-            ]
+            "labelAt": [438, 320]
           },
           {
             "from": "consent-gate",
@@ -3274,10 +2925,7 @@
             "classification": "encrypted PII",
             "variant": "security",
             "route": "straight",
-            "labelAt": [
-              638,
-              144
-            ]
+            "labelAt": [638, 144]
           },
           {
             "from": "event-bus",
@@ -3286,10 +2934,7 @@
             "classification": "non-PII",
             "variant": "emphasis",
             "route": "straight",
-            "labelAt": [
-              638,
-              372
-            ]
+            "labelAt": [638, 372]
           },
           {
             "from": "analytics-dw",
@@ -3300,10 +2945,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              745,
-              498
-            ]
+            "labelAt": [745, 498]
           },
           {
             "from": "analytics-dw",
@@ -3314,19 +2956,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                852,
-                385
-              ],
-              [
-                852,
-                271
-              ]
+              [852, 385],
+              [852, 271]
             ],
-            "labelAt": [
-              830,
-              320
-            ]
+            "labelAt": [830, 320]
           },
           {
             "from": "feat-store",
@@ -3335,10 +2968,7 @@
             "classification": "derived",
             "variant": "dashed",
             "route": "straight",
-            "labelAt": [
-              852,
-              600
-            ]
+            "labelAt": [852, 600]
           },
           {
             "from": "id-vault",
@@ -3349,23 +2979,11 @@
             "fromSide": "right",
             "toSide": "top",
             "via": [
-              [
-                878,
-                157
-              ],
-              [
-                878,
-                212
-              ],
-              [
-                960,
-                212
-              ]
+              [878, 157],
+              [878, 212],
+              [960, 212]
             ],
-            "labelAt": [
-              880,
-              198
-            ]
+            "labelAt": [880, 198]
           }
         ],
         "cards": [
@@ -3407,9 +3025,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": null,
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -3451,9 +3067,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": null,
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -3472,10 +3086,7 @@
           "title": "Agent Run Lifecycle",
           "subtitle": "Phases, interruptions, recovery, and terminal outcomes for a single agent run",
           "output": "agent-run-lifecycle.html",
-          "viewBox": [
-            980,
-            660
-          ]
+          "viewBox": [980, 660]
         },
         "lanes": [
           {
@@ -3712,9 +3323,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": null,
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -3765,9 +3374,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": null,
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -3791,35 +3398,19 @@
             {
               "id": "edge-to-database",
               "label": "Edge to database",
-              "focus": [
-                "browser",
-                "cdn",
-                "loadbalancer",
-                "appapi",
-                "postgres"
-              ],
+              "focus": ["browser", "cdn", "loadbalancer", "appapi", "postgres"],
               "note": "Follow the primary user request from the browser through the CDN and load balancer to durable state."
             },
             {
               "id": "identity-and-cache",
               "label": "Identity and cache",
-              "focus": [
-                "identity",
-                "appapi",
-                "cache"
-              ],
+              "focus": ["identity", "appapi", "cache"],
               "note": "See how authentication and the read-through cache sit alongside the request path."
             },
             {
               "id": "static-and-async",
               "label": "Static and async work",
-              "focus": [
-                "cdn",
-                "objectstore",
-                "appapi",
-                "jobqueue",
-                "worker"
-              ],
+              "focus": ["cdn", "objectstore", "appapi", "jobqueue", "worker"],
               "note": "Trace the static-asset path and the asynchronous background job pipeline."
             }
           ]
@@ -3830,28 +3421,16 @@
             "type": "external",
             "label": "Browser Users",
             "sublabel": "Edge clients",
-            "pos": [
-              40,
-              320
-            ],
-            "size": [
-              140,
-              64
-            ]
+            "pos": [40, 320],
+            "size": [140, 64]
           },
           {
             "id": "identity",
             "type": "security",
             "label": "Identity Provider",
             "sublabel": "OIDC issuer",
-            "pos": [
-              40,
-              120
-            ],
-            "size": [
-              140,
-              68
-            ],
+            "pos": [40, 120],
+            "size": [140, 68],
             "tag": "JWT verification"
           },
           {
@@ -3859,14 +3438,8 @@
             "type": "cloud",
             "label": "CDN",
             "sublabel": "TLS termination",
-            "pos": [
-              260,
-              320
-            ],
-            "size": [
-              140,
-              64
-            ],
+            "pos": [260, 320],
+            "size": [140, 64],
             "tag": "HTTPS"
           },
           {
@@ -3874,70 +3447,40 @@
             "type": "cloud",
             "label": "Load Balancer",
             "sublabel": "L7 routing",
-            "pos": [
-              480,
-              320
-            ],
-            "size": [
-              140,
-              64
-            ]
+            "pos": [480, 320],
+            "size": [140, 64]
           },
           {
             "id": "appapi",
             "type": "backend",
             "label": "Application API",
             "sublabel": "HTTPS :8000",
-            "pos": [
-              700,
-              320
-            ],
-            "size": [
-              150,
-              64
-            ]
+            "pos": [700, 320],
+            "size": [150, 64]
           },
           {
             "id": "cache",
             "type": "database",
             "label": "Redis",
             "sublabel": "read-through :6379",
-            "pos": [
-              700,
-              140
-            ],
-            "size": [
-              150,
-              64
-            ]
+            "pos": [700, 140],
+            "size": [150, 64]
           },
           {
             "id": "postgres",
             "type": "database",
             "label": "PostgreSQL",
             "sublabel": "primary :5432",
-            "pos": [
-              930,
-              320
-            ],
-            "size": [
-              150,
-              64
-            ]
+            "pos": [930, 320],
+            "size": [150, 64]
           },
           {
             "id": "objectstore",
             "type": "cloud",
             "label": "Object Storage",
             "sublabel": "static assets bucket",
-            "pos": [
-              400,
-              500
-            ],
-            "size": [
-              150,
-              64
-            ],
+            "pos": [400, 500],
+            "size": [150, 64],
             "tag": "origin-shielded"
           },
           {
@@ -3945,28 +3488,16 @@
             "type": "messagebus",
             "label": "Job Queue",
             "sublabel": "async work",
-            "pos": [
-              700,
-              500
-            ],
-            "size": [
-              150,
-              64
-            ]
+            "pos": [700, 500],
+            "size": [150, 64]
           },
           {
             "id": "worker",
             "type": "backend",
             "label": "Background Worker",
             "sublabel": "job consumer",
-            "pos": [
-              930,
-              500
-            ],
-            "size": [
-              150,
-              64
-            ]
+            "pos": [930, 500],
+            "size": [150, 64]
           }
         ],
         "boundaries": [
@@ -3987,10 +3518,7 @@
           {
             "kind": "security-group",
             "label": "sg-edge :443 ingress",
-            "wraps": [
-              "loadbalancer",
-              "appapi"
-            ]
+            "wraps": ["loadbalancer", "appapi"]
           }
         ],
         "connections": [
@@ -4020,18 +3548,9 @@
             "fromSide": "right",
             "toSide": "top",
             "via": [
-              [
-                650,
-                154
-              ],
-              [
-                650,
-                270
-              ],
-              [
-                775,
-                270
-              ]
+              [650, 154],
+              [650, 270],
+              [775, 270]
             ]
           },
           {
@@ -4171,10 +3690,7 @@
           "title": "AI Agent Tool-Call Lifecycle",
           "subtitle": "Plan, policy gate, execute against an external provider, record trace",
           "output": "benchmark-agent-tool-call.html",
-          "viewBox": [
-            720,
-            940
-          ],
+          "viewBox": [720, 940],
           "quality_profile": "showcase"
         },
         "lanes": [
@@ -4387,10 +3903,7 @@
             "variant": "emphasis",
             "fromSide": "bottom",
             "toSide": "top",
-            "labelAt": [
-              465,
-              425
-            ]
+            "labelAt": [465, 425]
           },
           {
             "from": "approval_gate",
@@ -4445,10 +3958,7 @@
             "variant": "dashed",
             "fromSide": "left",
             "toSide": "right",
-            "labelAt": [
-              400,
-              565
-            ]
+            "labelAt": [400, 565]
           }
         ],
         "cards": [
@@ -4551,10 +4061,7 @@
           "title": "Dashboard Cache-Miss Request",
           "subtitle": "Browser → API → JWT validation → Redis miss → PostgreSQL fallback → backfill → trace emission → render",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            820,
-            980
-          ],
+          "viewBox": [820, 980],
           "animation": "none",
           "visual_preset": "signal-flow",
           "quality_profile": "showcase",
@@ -4562,22 +4069,13 @@
             {
               "id": "cache-miss-path",
               "label": "Cold-cache fallback",
-              "focus": [
-                "browser",
-                "edge_api",
-                "redis",
-                "postgres"
-              ],
+              "focus": ["browser", "edge_api", "redis", "postgres"],
               "note": "Follow the cold-cache path: JWT validation, miss, profile + metric read, backfill."
             },
             {
               "id": "observability-handoff",
               "label": "Trace and render",
-              "focus": [
-                "edge_api",
-                "tracer",
-                "browser"
-              ],
+              "focus": ["edge_api", "tracer", "browser"],
               "note": "After the JSON payload is built, the API emits a span and the browser renders the dashboard."
             }
           ]
@@ -4874,43 +4372,26 @@
           "title": "Product Analytics Data Flow",
           "subtitle": "Edge ingest, consent boundary, warehouse facts, and downstream consumers",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            1080,
-            760
-          ],
+          "viewBox": [1080, 760],
           "animation": "trace",
           "quality_profile": "showcase",
           "views": [
             {
               "id": "collection",
               "label": "Event collection",
-              "focus": [
-                "web",
-                "mobile",
-                "edge"
-              ],
+              "focus": ["web", "mobile", "edge"],
               "note": "Follow product events from clients into the edge ingestion API."
             },
             {
               "id": "privacy",
               "label": "Privacy boundary",
-              "focus": [
-                "edge",
-                "consent",
-                "pii",
-                "quarantine"
-              ],
+              "focus": ["edge", "consent", "pii", "quarantine"],
               "note": "Isolate the consent gate, the encrypted identity vault, and the rejected-payload quarantine."
             },
             {
               "id": "consumers",
               "label": "Curated consumers",
-              "focus": [
-                "warehouse",
-                "dashboards",
-                "experiments",
-                "features"
-              ],
+              "focus": ["warehouse", "dashboards", "experiments", "features"],
               "note": "See curated warehouse facts and the dashboards, experimentation, and feature store consumers."
             }
           ]
@@ -5044,14 +4525,8 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                200,
-                157
-              ],
-              [
-                200,
-                271
-              ]
+              [200, 157],
+              [200, 271]
             ]
           },
           {
@@ -5064,14 +4539,8 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                230,
-                385
-              ],
-              [
-                230,
-                271
-              ]
+              [230, 385],
+              [230, 271]
             ]
           },
           {
@@ -5104,14 +4573,8 @@
             "fromSide": "bottom",
             "toSide": "top",
             "via": [
-              [
-                530,
-                186
-              ],
-              [
-                530,
-                356
-              ]
+              [530, 186],
+              [530, 356]
             ]
           },
           {
@@ -5124,27 +4587,12 @@
             "fromSide": "left",
             "toSide": "right",
             "via": [
-              [
-                474,
-                90
-              ],
-              [
-                1050,
-                90
-              ],
-              [
-                1050,
-                670
-              ],
-              [
-                586,
-                670
-              ]
+              [474, 90],
+              [1050, 90],
+              [1050, 670],
+              [586, 670]
             ],
-            "labelAt": [
-              810,
-              100
-            ]
+            "labelAt": [810, 100]
           },
           {
             "id": "identity-map",
@@ -5178,10 +4626,7 @@
             "fromSide": "top",
             "toSide": "bottom",
             "route": "straight",
-            "labelAt": [
-              745,
-              200
-            ]
+            "labelAt": [745, 200]
           },
           {
             "id": "metrics-query",
@@ -5193,14 +4638,8 @@
             "fromSide": "top",
             "toSide": "bottom",
             "via": [
-              [
-                745,
-                240
-              ],
-              [
-                960,
-                240
-              ]
+              [745, 240],
+              [960, 240]
             ]
           },
           {
@@ -5213,10 +4652,7 @@
             "fromSide": "right",
             "toSide": "left",
             "route": "straight",
-            "labelAt": [
-              852,
-              320
-            ]
+            "labelAt": [852, 320]
           },
           {
             "id": "daily-aggregates",
@@ -5329,10 +4765,7 @@
           "title": "Agent Run Lifecycle",
           "subtitle": "Ordered phases, pause conditions, recoverable failure, and distinct terminal exits",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            1020,
-            700
-          ],
+          "viewBox": [1020, 700],
           "animation": "trace",
           "visual_preset": "blueprint",
           "quality_profile": "showcase",
@@ -5340,24 +4773,13 @@
             {
               "id": "ordered-phases",
               "label": "Ordered phases",
-              "focus": [
-                "queued",
-                "planning",
-                "executing",
-                "reviewing",
-                "completed"
-              ],
+              "focus": ["queued", "planning", "executing", "reviewing", "completed"],
               "note": "Five ordered phases carry the run from accepted request to final response."
             },
             {
               "id": "human-gates",
               "label": "Pause conditions",
-              "focus": [
-                "executing",
-                "approval_pending",
-                "reviewing",
-                "awaiting_input"
-              ],
+              "focus": ["executing", "approval_pending", "reviewing", "awaiting_input"],
               "note": "Pause without becoming terminal; the originating phase resumes when input arrives."
             },
             {
@@ -5534,14 +4956,8 @@
             "fromSide": "left",
             "toSide": "left",
             "via": [
-              [
-                320,
-                157
-              ],
-              [
-                320,
-                307
-              ]
+              [320, 157],
+              [320, 307]
             ]
           },
           {
@@ -5561,14 +4977,8 @@
             "fromSide": "bottom",
             "toSide": "top",
             "via": [
-              [
-                402,
-                265
-              ],
-              [
-                556,
-                265
-              ]
+              [402, 265],
+              [556, 265]
             ]
           },
           {

@@ -1066,21 +1066,21 @@ Move it in time with `data-start`. Put it on a different timeline row with
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `botName` | `Assistant` | string | Name of the assistant answering in this mock chat. It belongs to the host product, never to the brand this video promotes. |
-| `userMessage` | `How do I turn my HTML into real video?` | string | The question typed on the keyboard and sent. Around 40 characters keeps the measured pacing. |
-| `answer1` | `You do not need an editor. HyperFrames renders the HTML you already write into deterministic, pixel-perfect video.` | string | First streamed paragraph. It names the brand this video promotes and says what that brand does. |
-| `answer2` | `It is markup, not magic.` | string | Short second beat. |
-| `answer3` | `What you get out of the box:` | string | Lead-in to the list. |
-| `bullet1` | `A catalog of motion primitives you install and own` | string | First list item. |
-| `bullet2` | `GSAP timelines that seek to any frame` | string | Second list item. |
-| `bullet3` | `4K renders from a single CLI command` | string | Third list item. |
-| `ecHeadline` | `It's not magic.|It's HTML.` | string | Closing card headline. A | breaks the line. |
-| `ecSub` | `Open-source video rendering — write HTML, ship pixel-perfect video.` | string | Positioning sentence of the brand this video promotes, on the closing card. |
-| `ecCta` | `Try HyperFrames` | string | Closing-card button label, which names the brand this video promotes. Use the real name of that brand. |
-| `ecFooter` | `HYPERFRAMES.HEYGEN.COM` | string | Domain of the brand this video promotes, letter-spaced at the very bottom. Use the real domain. |
-| `brandLogo` | `assets/hyperframes-logo-white.svg` | image | Transparent mark of the brand this video promotes, in the closing-card header. |
+| Variable      | Default                                                                                                              | Accepts     | What it does                                                                                                               |
+| ------------- | -------------------------------------------------------------------------------------------------------------------- | ----------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------ | ---------------- |
+| `botName`     | `Assistant`                                                                                                          | string      | Name of the assistant answering in this mock chat. It belongs to the host product, never to the brand this video promotes. |
+| `userMessage` | `How do I turn my HTML into real video?`                                                                             | string      | The question typed on the keyboard and sent. Around 40 characters keeps the measured pacing.                               |
+| `answer1`     | `You do not need an editor. HyperFrames renders the HTML you already write into deterministic, pixel-perfect video.` | string      | First streamed paragraph. It names the brand this video promotes and says what that brand does.                            |
+| `answer2`     | `It is markup, not magic.`                                                                                           | string      | Short second beat.                                                                                                         |
+| `answer3`     | `What you get out of the box:`                                                                                       | string      | Lead-in to the list.                                                                                                       |
+| `bullet1`     | `A catalog of motion primitives you install and own`                                                                 | string      | First list item.                                                                                                           |
+| `bullet2`     | `GSAP timelines that seek to any frame`                                                                              | string      | Second list item.                                                                                                          |
+| `bullet3`     | `4K renders from a single CLI command`                                                                               | string      | Third list item.                                                                                                           |
+| `ecHeadline`  | `It's not magic.                                                                                                     | It's HTML.` | string                                                                                                                     | Closing card headline. A | breaks the line. |
+| `ecSub`       | `Open-source video rendering — write HTML, ship pixel-perfect video.`                                                | string      | Positioning sentence of the brand this video promotes, on the closing card.                                                |
+| `ecCta`       | `Try HyperFrames`                                                                                                    | string      | Closing-card button label, which names the brand this video promotes. Use the real name of that brand.                     |
+| `ecFooter`    | `HYPERFRAMES.HEYGEN.COM`                                                                                             | string      | Domain of the brand this video promotes, letter-spaced at the very bottom. Use the real domain.                            |
+| `brandLogo`   | `assets/hyperframes-logo-white.svg`                                                                                  | image       | Transparent mark of the brand this video promotes, in the closing-card header.                                             |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

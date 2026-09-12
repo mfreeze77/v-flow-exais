@@ -30,15 +30,15 @@ The last one matters most. It is what lets an agent judge a change instead of gu
 
 ## Turning it on
 
-The tools register automatically when Studio loads. Whether an agent can *reach* them depends on the browser.
+The tools register automatically when Studio loads. Whether an agent can _reach_ them depends on the browser.
 
-| Browser | Status |
-| --- | --- |
-| Chrome 149 | Origin Trial |
-| Edge 150 | Origin Trial |
-| ChatGPT Desktop | Shipped |
-| Brave (Leo) | Experimental |
-| Firefox, Safari | Not yet |
+| Browser         | Status       |
+| --------------- | ------------ |
+| Chrome 149      | Origin Trial |
+| Edge 150        | Origin Trial |
+| ChatGPT Desktop | Shipped      |
+| Brave (Leo)     | Experimental |
+| Firefox, Safari | Not yet      |
 
 For local development in Chrome, enable the flag and restart:
 
@@ -55,13 +55,13 @@ console.log(tools.map((tool) => tool.name));
 ```
 
 <Note>
-  Registration is asynchronous, so a caller that reads `getTools()` the instant Studio loads can
-  see a partial list. Wait for the `toolchange` event, or poll until the count settles at twelve.
+  Registration is asynchronous, so a caller that reads `getTools()` the instant Studio loads can see
+  a partial list. Wait for the `toolchange` event, or poll until the count settles at twelve.
 </Note>
 
 <Warning>
-  The API is `document.modelContext`, not `navigator.modelContext`. Many published examples use
-  the second one. It is a compatibility shim some polyfills add, not part of the specification, so
+  The API is `document.modelContext`, not `navigator.modelContext`. Many published examples use the
+  second one. It is a compatibility shim some polyfills add, not part of the specification, so
   feature-detecting it will mislead you.
 </Warning>
 
@@ -73,11 +73,11 @@ preference is disabled, it registers no tools.
 
 ### Read
 
-| Tool | Answers |
-| --- | --- |
-| `studio_look` | The open project and composition, the playhead, selection, undo state, and a bounded source-backed scene in nested order |
-| `studio_inspect` | One element in full: resolved styles, text fields, box, animations, and what it will accept |
-| `studio_frame` | A PNG of the composition at any time |
+| Tool             | Answers                                                                                                                  |
+| ---------------- | ------------------------------------------------------------------------------------------------------------------------ |
+| `studio_look`    | The open project and composition, the playhead, selection, undo state, and a bounded source-backed scene in nested order |
+| `studio_inspect` | One element in full: resolved styles, text fields, box, animations, and what it will accept                              |
+| `studio_frame`   | A PNG of the composition at any time                                                                                     |
 
 Each element returned by `studio_look` has a **handle**. It also reports `sourceFile`, `parentHandle`,
 `depth`, and `childCount`, so an agent can distinguish the same authored ID in two nested scene
@@ -86,17 +86,17 @@ CSS selectors.
 
 ### Change
 
-| Tool | Does |
-| --- | --- |
-| `studio_select` | Selects an element, exactly as clicking it does |
-| `studio_seek` | Moves the playhead |
-| `studio_set_text` | Rewrites text |
-| `studio_set_style` | Sets inline styles |
-| `studio_transform` | Moves, resizes or rotates |
-| `studio_add_animation` | Adds a GSAP animation at the playhead |
-| `studio_update_animation` | Changes a duration, ease or position |
-| `studio_add_keyframe` | Adds a keyframe to an animation |
-| `studio_delete_animation` | Removes an animation |
+| Tool                      | Does                                            |
+| ------------------------- | ----------------------------------------------- |
+| `studio_select`           | Selects an element, exactly as clicking it does |
+| `studio_seek`             | Moves the playhead                              |
+| `studio_set_text`         | Rewrites text                                   |
+| `studio_set_style`        | Sets inline styles                              |
+| `studio_transform`        | Moves, resizes or rotates                       |
+| `studio_add_animation`    | Adds a GSAP animation at the playhead           |
+| `studio_update_animation` | Changes a duration, ease or position            |
+| `studio_add_keyframe`     | Adds a keyframe to an animation                 |
+| `studio_delete_animation` | Removes an animation                            |
 
 Element writes run through the same commit actors Studio uses. When that actor forwards versioned
 durability evidence, the receipt names the source file and content version, and the edit enters the
@@ -112,13 +112,13 @@ from `studio_look`, so a later human click cannot redirect an already-addressed 
 
 **Read the receipt stage.** A write result separates acceptance from proof:
 
-| Stage | What it proves |
-| --- | --- |
-| `refused` | No commit actor ran. Fix the handle, input, capability, or Studio state before retrying. |
+| Stage        | What it proves                                                                                                                               |
+| ------------ | -------------------------------------------------------------------------------------------------------------------------------------------- |
+| `refused`    | No commit actor ran. Fix the handle, input, capability, or Studio state before retrying.                                                     |
 | `dispatched` | The actor accepted the request, but the tool has no durable version or independent readback. Follow with `studio_inspect` or `studio_frame`. |
-| `saved` | Studio received versioned evidence that the named source file persisted the write. |
-| `verified` | The write was saved and an independent readback observed the result. |
-| `failed` | A commit actor ran and then failed. Inspect `kind`, `reason`, and any `hint`. |
+| `saved`      | Studio received versioned evidence that the named source file persisted the write.                                                           |
+| `verified`   | The write was saved and an independent readback observed the result.                                                                         |
+| `failed`     | A commit actor ran and then failed. Inspect `kind`, `reason`, and any `hint`.                                                                |
 
 `changed` is separate from the stage. A saved no-op is still truthful: the file accepted the request,
 but the value was already present. Style writes include a receipt per property and can be partial.

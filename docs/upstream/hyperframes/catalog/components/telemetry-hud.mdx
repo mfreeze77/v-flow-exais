@@ -589,13 +589,13 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `readouts` | `fps:59.94,latency:11.8 ms,gpu:38%,heap:1.2 GB` | string | Comma-separated label:value pairs, up to 8. The first colon splits label from value. |
-| `emphasize` | `0` | -1 to 7, step 1 | Index of the readout rendered in the accent color. -1 disables. |
-| `cues` | `` | string | Comma-separated seconds relative to mount start; cue N starts readout N value tick. Empty uses the authored rhythm. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color of the emphasized readout. |
-| `exit` | `none` | `none`, `fade`, `up` | Outgoing transition. Frame roots own transitions; none holds the end frame. |
+| Variable    | Default                                         | Accepts                   | What it does                                                                                                        |
+| ----------- | ----------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `readouts`  | `fps:59.94,latency:11.8 ms,gpu:38%,heap:1.2 GB` | string                    | Comma-separated label:value pairs, up to 8. The first colon splits label from value.                                |
+| `emphasize` | `0`                                             | -1 to 7, step 1           | Index of the readout rendered in the accent color. -1 disables.                                                     |
+| `cues`      | ``                                              | string                    | Comma-separated seconds relative to mount start; cue N starts readout N value tick. Empty uses the authored rhythm. |
+| `accent`    | `green`                                         | `green`, `blue`, `violet` | Color of the emphasized readout.                                                                                    |
+| `exit`      | `none`                                          | `none`, `fade`, `up`      | Outgoing transition. Frame roots own transitions; none holds the end frame.                                         |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

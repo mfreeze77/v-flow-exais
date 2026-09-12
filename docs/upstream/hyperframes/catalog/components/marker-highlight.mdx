@@ -394,14 +394,14 @@ That writes one file: `compositions/components/marker-highlight.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `Ship it with confidence` | string | Full line of display text. |
-| `emphasis_word` | `confidence` | string | First case-insensitive substring match in text receives the marker. Empty or unmatched draws no marker. |
-| `style` | `highlight` | `highlight`, `circle`, `underline`, `scribble` | Shape of the hand-drawn marker stroke. |
-| `draw_at` | `0.9` | number | Second (from mount start) the marker starts drawing. Clamped so the stroke completes before any exit. |
-| `accent` | `green` | `green`, `blue`, `violet` | Marker ink color from the contract token map. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the lockup holds until the frame cuts. |
+| Variable        | Default                   | Accepts                                        | What it does                                                                                            |
+| --------------- | ------------------------- | ---------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `text`          | `Ship it with confidence` | string                                         | Full line of display text.                                                                              |
+| `emphasis_word` | `confidence`              | string                                         | First case-insensitive substring match in text receives the marker. Empty or unmatched draws no marker. |
+| `style`         | `highlight`               | `highlight`, `circle`, `underline`, `scribble` | Shape of the hand-drawn marker stroke.                                                                  |
+| `draw_at`       | `0.9`                     | number                                         | Second (from mount start) the marker starts drawing. Clamped so the stroke completes before any exit.   |
+| `accent`        | `green`                   | `green`, `blue`, `violet`                      | Marker ink color from the contract token map.                                                           |
+| `exit`          | `none`                    | `none`, `fade`, `up`                           | Optional departure. Default none: the lockup holds until the frame cuts.                                |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

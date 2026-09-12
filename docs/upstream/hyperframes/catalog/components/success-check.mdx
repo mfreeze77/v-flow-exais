@@ -164,12 +164,12 @@ That writes one file: `compositions/components/success-check.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `tint` | `green` | `green`, `blue`, `violet`, `amber` | Colour pair, a pale halo behind a saturated mark. green and amber are literal state colours; blue and violet ride the composition theme tokens. |
-| `size` | `standard` | `small`, `standard`, `large` | Diameter of the halo and of the mark inside it. |
-| `ring` | `standard` | `subtle`, `standard`, `bold` | Opacity of the circle the tick sits in. |
-| `spin` | `standard` | `subtle`, `standard`, `bold` | Multiplies the rotation the timeline drives, so the mark swings less or more into place. |
+| Variable | Default    | Accepts                            | What it does                                                                                                                                    |
+| -------- | ---------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `tint`   | `green`    | `green`, `blue`, `violet`, `amber` | Colour pair, a pale halo behind a saturated mark. green and amber are literal state colours; blue and violet ride the composition theme tokens. |
+| `size`   | `standard` | `small`, `standard`, `large`       | Diameter of the halo and of the mark inside it.                                                                                                 |
+| `ring`   | `standard` | `subtle`, `standard`, `bold`       | Opacity of the circle the tick sits in.                                                                                                         |
+| `spin`   | `standard` | `subtle`, `standard`, `bold`       | Multiplies the rotation the timeline drives, so the mark swings less or more into place.                                                        |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

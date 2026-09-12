@@ -514,14 +514,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `label_a` | `Before` | string | Chip shown on the base before panel. Blank hides the chip. |
-| `label_b` | `After` | string | Chip shown on the revealed after panel. Blank hides the chip. |
-| `rest_split` | `50` | 0% to 100%, step 1% | Divider resting position after the wipe lands. |
-| `wipe_at` | `0.25` | 0s to 8s, step 0.05s | Seconds after mount start when the wipe begins. |
-| `accent` | `green` | `green`, `blue`, `violet` | Divider handle and after chip color. |
-| `exit` | `none` | `none`, `fade`, `up` | Outgoing transition. None holds the final comparison frame. |
+| Variable     | Default  | Accepts                   | What it does                                                  |
+| ------------ | -------- | ------------------------- | ------------------------------------------------------------- |
+| `label_a`    | `Before` | string                    | Chip shown on the base before panel. Blank hides the chip.    |
+| `label_b`    | `After`  | string                    | Chip shown on the revealed after panel. Blank hides the chip. |
+| `rest_split` | `50`     | 0% to 100%, step 1%       | Divider resting position after the wipe lands.                |
+| `wipe_at`    | `0.25`   | 0s to 8s, step 0.05s      | Seconds after mount start when the wipe begins.               |
+| `accent`     | `green`  | `green`, `blue`, `violet` | Divider handle and after chip color.                          |
+| `exit`       | `none`   | `none`, `fade`, `up`      | Outgoing transition. None holds the final comparison frame.   |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

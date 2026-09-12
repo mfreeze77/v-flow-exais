@@ -265,12 +265,12 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `path` | `M 92 328 C 178 142 292 138 366 276 C 430 396 500 414 558 262 C 622 94 724 112 786 274 C 836 406 894 376 930 194` | string | SVG path data for the authored mark. |
-| `stroke_width` | `12` | 2 to 32, step 1 | Width of the traced stroke in SVG viewBox units. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color used by the trace and optional fill. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the finished mark holds until the frame cuts. |
+| Variable       | Default                                                                                                           | Accepts                   | What it does                                                                    |
+| -------------- | ----------------------------------------------------------------------------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------- |
+| `path`         | `M 92 328 C 178 142 292 138 366 276 C 430 396 500 414 558 262 C 622 94 724 112 786 274 C 836 406 894 376 930 194` | string                    | SVG path data for the authored mark.                                            |
+| `stroke_width` | `12`                                                                                                              | 2 to 32, step 1           | Width of the traced stroke in SVG viewBox units.                                |
+| `accent`       | `green`                                                                                                           | `green`, `blue`, `violet` | Color used by the trace and optional fill.                                      |
+| `exit`         | `none`                                                                                                            | `none`, `fade`, `up`      | Optional departure. Default none: the finished mark holds until the frame cuts. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

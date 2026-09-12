@@ -14,7 +14,10 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 
 ## Install
 
-<InstallCommand command="npx hyperframes add transitions-mechanical" item="transitions-mechanical" />
+<InstallCommand
+  command="npx hyperframes add transitions-mechanical"
+  item="transitions-mechanical"
+/>
 
 That writes one file: `compositions/transitions-mechanical.html`.
 
@@ -455,7 +458,15 @@ That writes one file: `compositions/transitions-mechanical.html`.
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="transitions-mechanical" data-composition-src="compositions/transitions-mechanical.html" data-start="0" data-duration="15" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="transitions-mechanical"
+  data-composition-src="compositions/transitions-mechanical.html"
+  data-start="0"
+  data-duration="15"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

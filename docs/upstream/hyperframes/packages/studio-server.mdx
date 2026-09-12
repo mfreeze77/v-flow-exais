@@ -22,15 +22,9 @@ between Studio and your project storage, bundler, linter, and renderer.
 
 ```ts
 import type { Hono } from "hono";
-import {
-  createStudioApi,
-  type StudioApiAdapter,
-} from "@hyperframes/studio-server";
+import { createStudioApi, type StudioApiAdapter } from "@hyperframes/studio-server";
 
-export function mountStudioApi(
-  app: Hono,
-  adapter: StudioApiAdapter,
-) {
+export function mountStudioApi(app: Hono, adapter: StudioApiAdapter) {
   app.route("/api", createStudioApi(adapter));
 }
 ```
@@ -47,15 +41,15 @@ changes as Studio gains capabilities.
 
 ## Other entry points
 
-| Import | Purpose |
-| --- | --- |
-| `@hyperframes/studio-server/source-mutation` | Apply guarded changes to composition source |
-| `@hyperframes/studio-server/screenshot-clip` | Calculate element screenshot geometry |
-| `@hyperframes/studio-server/manual-edits-render-script` | Reapply Studio manual edits during render |
-| `@hyperframes/studio-server/studio-motion-render-script` | Reapply Studio motion edits during render |
-| `@hyperframes/studio-server/draft-markers` | Work with draft gesture markers |
-| `@hyperframes/studio-server/finite-mutation` | Guard source mutations against non-finite values |
-| `@hyperframes/studio-server/media-proxy-preview` | Support proxied media in preview |
+| Import                                                   | Purpose                                          |
+| -------------------------------------------------------- | ------------------------------------------------ |
+| `@hyperframes/studio-server/source-mutation`             | Apply guarded changes to composition source      |
+| `@hyperframes/studio-server/screenshot-clip`             | Calculate element screenshot geometry            |
+| `@hyperframes/studio-server/manual-edits-render-script`  | Reapply Studio manual edits during render        |
+| `@hyperframes/studio-server/studio-motion-render-script` | Reapply Studio motion edits during render        |
+| `@hyperframes/studio-server/draft-markers`               | Work with draft gesture markers                  |
+| `@hyperframes/studio-server/finite-mutation`             | Guard source mutations against non-finite values |
+| `@hyperframes/studio-server/media-proxy-preview`         | Support proxied media in preview                 |
 
 `@hyperframes/core/studio-api` remains a deprecated compatibility re-export.
 New integrations should import from `@hyperframes/studio-server`.

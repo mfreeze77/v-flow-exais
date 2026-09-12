@@ -8,15 +8,15 @@ Every rendering path starts with the same HyperFrames project. The difference is
 who operates Chrome and FFmpeg, how the request is submitted, and how much of the
 pipeline your application needs to control.
 
-| Need | Start with | You operate |
-| --- | --- | --- |
-| Render while creating or in CI | **CLI** | The machine running the command |
-| Render from a Node application | **Producer** | The Node service and its runtime |
-| Control exact frame capture | **Engine** | Capture, encoding, and orchestration |
-| Submit a render without managing infrastructure | **HyperFrames Cloud** | Nothing beyond the request and result |
-| Run distributed renders in your AWS account | **AWS Lambda** | The deployed AWS stack |
-| Run distributed renders in your Google Cloud account | **Cloud Run** | The deployed GCP resources |
-| Deploy a preview and render API from a template | **Hosted templates** | The selected hosting account |
+| Need                                                 | Start with            | You operate                           |
+| ---------------------------------------------------- | --------------------- | ------------------------------------- |
+| Render while creating or in CI                       | **CLI**               | The machine running the command       |
+| Render from a Node application                       | **Producer**          | The Node service and its runtime      |
+| Control exact frame capture                          | **Engine**            | Capture, encoding, and orchestration  |
+| Submit a render without managing infrastructure      | **HyperFrames Cloud** | Nothing beyond the request and result |
+| Run distributed renders in your AWS account          | **AWS Lambda**        | The deployed AWS stack                |
+| Run distributed renders in your Google Cloud account | **Cloud Run**         | The deployed GCP resources            |
+| Deploy a preview and render API from a template      | **Hosted templates**  | The selected hosting account          |
 
 ## Local or CI: use the CLI
 

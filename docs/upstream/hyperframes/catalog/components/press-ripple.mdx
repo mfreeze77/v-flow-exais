@@ -409,15 +409,15 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `label` | `Get started` | string | Text inside the default pill target. |
-| `target_x` | `50` | 8% to 92%, step 1% | Zone center, percent of host width. |
-| `target_y` | `50` | 8% to 92%, step 1% | Zone center, percent of host height. |
-| `press_at` | `1.4` | 0.9s to 10s, step 0.1s | Seconds from mount start when the press begins. |
-| `cursor` | `light` | `light`, `dark` | Pointer tone. |
-| `accent` | `green` | `green`, `blue`, `violet` | Contract color for the ripple ink and pressed fill. |
-| `exit` | `none` | `none`, `fade`, `up` | How the frame leaves. None holds the pressed state. |
+| Variable   | Default       | Accepts                   | What it does                                        |
+| ---------- | ------------- | ------------------------- | --------------------------------------------------- |
+| `label`    | `Get started` | string                    | Text inside the default pill target.                |
+| `target_x` | `50`          | 8% to 92%, step 1%        | Zone center, percent of host width.                 |
+| `target_y` | `50`          | 8% to 92%, step 1%        | Zone center, percent of host height.                |
+| `press_at` | `1.4`         | 0.9s to 10s, step 0.1s    | Seconds from mount start when the press begins.     |
+| `cursor`   | `light`       | `light`, `dark`           | Pointer tone.                                       |
+| `accent`   | `green`       | `green`, `blue`, `violet` | Contract color for the ripple ink and pressed fill. |
+| `exit`     | `none`        | `none`, `fade`, `up`      | How the frame leaves. None holds the pressed state. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

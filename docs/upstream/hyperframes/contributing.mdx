@@ -56,18 +56,18 @@ The pre-commit hooks format staged files and run checks for the files you change
 
 ## Work in the right package
 
-| Surface | Package or directory |
-| --- | --- |
-| Composition parsing, runtime, types | `packages/core` and `packages/parsers` |
-| Browser frame capture | `packages/engine` |
-| Encoding and audio/render orchestration | `packages/producer` |
-| Command line | `packages/cli` |
-| Browser editor | `packages/studio` and `packages/studio-server` |
-| Embeddable player | `packages/player` |
-| Headless editing API | `packages/sdk` |
-| AWS and GCP distributed rendering | `packages/aws-lambda` and `packages/gcp-cloud-run` |
-| Reusable blocks and snippets | `registry` |
-| Agent instructions | `skills` |
+| Surface                                 | Package or directory                               |
+| --------------------------------------- | -------------------------------------------------- |
+| Composition parsing, runtime, types     | `packages/core` and `packages/parsers`             |
+| Browser frame capture                   | `packages/engine`                                  |
+| Encoding and audio/render orchestration | `packages/producer`                                |
+| Command line                            | `packages/cli`                                     |
+| Browser editor                          | `packages/studio` and `packages/studio-server`     |
+| Embeddable player                       | `packages/player`                                  |
+| Headless editing API                    | `packages/sdk`                                     |
+| AWS and GCP distributed rendering       | `packages/aws-lambda` and `packages/gcp-cloud-run` |
+| Reusable blocks and snippets            | `registry`                                         |
+| Agent instructions                      | `skills`                                           |
 
 For Studio changes, verify the behavior in the browser and preserve the source-patching and capability-gate contracts described in the [Studio docs](/studio/index).
 

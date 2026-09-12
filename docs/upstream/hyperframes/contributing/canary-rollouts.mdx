@@ -8,10 +8,9 @@ canary is the rung in between — the same change, enabled for a stable slice of
 installs, ramped as the signal holds.
 
 <Note>
-  A canary is a *measured* rollout: a slice is enrolled so it can be compared
-  against everyone else. So **opting out of telemetry opts you out of
-  canaries** — an opted-out install is never bucketed at all. See the
-  [`telemetry` command](/packages/cli#telemetry) for the opt-out routes.
+  A canary is a *measured* rollout: a slice is enrolled so it can be compared against everyone else.
+  So **opting out of telemetry opts you out of canaries** — an opted-out install is never bucketed
+  at all. See the [`telemetry` command](/packages/cli#telemetry) for the opt-out routes.
 </Note>
 
 ## Add one
@@ -50,7 +49,7 @@ Widening is inclusive — everyone already in the 10 stays in the 25, so a
 before/after comparison survives the ramp. Do not rename a live canary: the
 name is part of the bucket hash, so renaming reshuffles the cohort mid-rollout.
 
-**4. Delete it** at 100 and holding — the registry entry *and* the branch it
+**4. Delete it** at 100 and holding — the registry entry _and_ the branch it
 guarded. The scheduled **Canary sunset** workflow enforces this: it runs weekly
 and fails once `sunsetAfter` passes, naming the overdue rollout and its owner in
 the run log. It notifies nobody, so watch it if you own a canary. Run it
@@ -68,7 +67,7 @@ dogfooding, bisects, a panic-off. It is also the way to exercise a canary with
 telemetry off.
 
 Everything else fails closed below 100%: no bucket seed, an unregistered name,
-or a CI machine all resolve to *not enrolled*. At exactly 100% those exclusions
+or a CI machine all resolve to _not enrolled_. At exactly 100% those exclusions
 stop applying, so nothing takes the new path for the first time at deletion.
 
 ## Remove one from your machine
@@ -86,11 +85,11 @@ delete them individually. Nothing canary-related is stored anywhere else.
 
 ## Where it lives
 
-| File | Role |
-| --- | --- |
-| `packages/core/src/canaryRegistry.ts` | Every rollout, with owner and sunset date |
-| `packages/core/src/canary.ts` | Pure evaluator — no fs, no network, browser-safe |
-| `packages/cli/src/telemetry/canary.ts` | CLI binding: bucket seed, env override, CI detection |
+| File                                      | Role                                                 |
+| ----------------------------------------- | ---------------------------------------------------- |
+| `packages/core/src/canaryRegistry.ts`     | Every rollout, with owner and sunset date            |
+| `packages/core/src/canary.ts`             | Pure evaluator — no fs, no network, browser-safe     |
+| `packages/cli/src/telemetry/canary.ts`    | CLI binding: bucket seed, env override, CI detection |
 | `packages/studio/src/telemetry/canary.ts` | Studio binding: adopts the CLI's published decisions |
 
 The evaluator is dependency-free so Studio and the embeddable player can use it

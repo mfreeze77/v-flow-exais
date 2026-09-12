@@ -886,8 +886,5 @@
       "sha256": "40c42fc9d0503f31b60ae9761ade27daf877ecac66c76ff4539c279639815649"
     }
   ],
-  "manifest_exclusions": [
-    "PACKAGE_MANIFEST.json",
-    "SHA256SUMS"
-  ]
+  "manifest_exclusions": ["PACKAGE_MANIFEST.json", "SHA256SUMS"]
 }

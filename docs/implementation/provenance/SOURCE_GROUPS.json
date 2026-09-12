@@ -14,11 +14,7 @@
     "id": "A-LICENSE",
     "repository": "archify",
     "purpose": "Attribution and third-party asset constraints",
-    "paths": [
-      "LICENSE",
-      "THIRD_PARTY_NOTICES.md",
-      "archify/THIRD_PARTY_NOTICES.md"
-    ]
+    "paths": ["LICENSE", "THIRD_PARTY_NOTICES.md", "archify/THIRD_PARTY_NOTICES.md"]
   },
   "A-ROOT": {
     "id": "A-ROOT",
@@ -229,12 +225,7 @@
     "id": "H-LICENSE",
     "repository": "hyperframes",
     "purpose": "License, contribution and security records",
-    "paths": [
-      "LICENSE",
-      "CREDITS.md",
-      "SECURITY.md",
-      "CONTRIBUTING.md"
-    ]
+    "paths": ["LICENSE", "CREDITS.md", "SECURITY.md", "CONTRIBUTING.md"]
   },
   "H-CORE": {
     "id": "H-CORE",

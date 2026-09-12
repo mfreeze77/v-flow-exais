@@ -1,4 +1,8 @@
 import Ajv from "ajv";
+import {
+  regenerationConflictProblems,
+  type PreservedRegenerationConflict,
+} from "./regenerationConflicts";
 import schema from "../schemas/project.schema.json";
 import assetSchema from "../schemas/asset.schema.json";
 import { projectAssetRegistryProblems, type ProjectAsset } from "./assets";
@@ -35,6 +39,8 @@ export interface ProjectManifest {
   scenes: ProjectScene[];
   /** Optional for existing v1 projects; added only by an asset-registration command. */
   assets?: ProjectAsset[];
+  /** Optional v1 extension. Omitted legacy state is not rewritten on read. */
+  regenerationConflicts?: PreservedRegenerationConflict[];
   output: { width: number; height: number; fps: { numerator: number; denominator: number } };
   policy: { sourceSharing: "private" | "approved-public"; htmlTrust: "blocked" | "trusted-local" };
 }
@@ -272,7 +278,15 @@ export function validateProject(snapshot: unknown): ProjectDiagnostic[] {
     project.manifest.assets,
     project.manifest.documents.map((document) => document.path),
   ).map((message) => problem("asset/invalid", "/assets", message));
-  return [...documentProblems(project), ...sceneProblems(project), ...assetDiagnostics];
+  const conflictDiagnostics = regenerationConflictProblems(project).map((message) =>
+    problem("regeneration/invalid-conflict", "/regenerationConflicts", message),
+  );
+  return [
+    ...documentProblems(project),
+    ...sceneProblems(project),
+    ...assetDiagnostics,
+    ...conflictDiagnostics,
+  ];
 }
 
 export function assertProject(snapshot: unknown): asserts snapshot is ProjectSnapshot {

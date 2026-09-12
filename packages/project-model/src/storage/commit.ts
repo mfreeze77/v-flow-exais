@@ -19,6 +19,7 @@ import {
   type ProjectCommand,
 } from "../commands";
 import { assertProject, type ProjectSnapshot, type RegenerationConflict } from "../project";
+import { outcomeForCommand } from "../regenerationConflicts";
 import {
   assertContainedPath,
   canonicalJson,
@@ -107,7 +108,11 @@ export function commitWhileLocked(
     sources: Object.create(null),
     previous: current?.pointer ?? null,
     commands: { ...current?.index.commands },
-    command: { commandId: request.commandId, fingerprint: request.fingerprint },
+    command: {
+      commandId: request.commandId,
+      fingerprint: request.fingerprint,
+      outcome: outcomeForCommand(request.snapshot, request.commandId),
+    },
     history: current
       ? { undo: [...(current.index.history?.undo || []), current.pointer], redo: [] }
       : { undo: [], redo: [] },
@@ -249,14 +254,7 @@ export async function executeProjectCommand(
   projectRoot: string,
   command: ProjectCommand,
   validate?: (snapshot: ProjectSnapshot) => void | Promise<void>,
-  /**
-   * Optional collector for intent this execution orphaned.
-   *
-   * An opt-in parameter rather than a field on CommitResult, so a replayed
-   * command still returns a byte-identical result — replaying applies nothing,
-   * and reporting an empty conflict list for it would misstate what happened.
-   * Conflicts describe this execution, not the command's history.
-   */
+  /** Filled only from the committed original outcome, including idempotent replay. */
   conflicts?: RegenerationConflict[],
 ): Promise<CommitResult> {
   assertCommand(command);
@@ -266,6 +264,7 @@ export async function executeProjectCommand(
   if (replay) {
     if (replay.fingerprint !== fingerprint)
       throw new Error("project/idempotency-conflict: command ID reused with a different payload.");
+    collectCommittedConflicts(projectRoot, replay.pointer, conflicts);
     return { pointer: replay.pointer, replayed: true };
   }
   const operation = command.operations[0]!;
@@ -281,13 +280,26 @@ export async function executeProjectCommand(
     if (!pointer) throw new Error(`Nothing to ${historyAction}.`);
     snapshot = readRevision(projectRoot, pointer).snapshot;
     snapshot.manifest.revision = current.pointer.revision + 1;
-  } else snapshot = applyProjectCommand(current.snapshot, command, conflicts);
+  } else snapshot = applyProjectCommand(current.snapshot, command);
   await validate?.(snapshot);
-  return runLockedWorker(projectRoot, {
+  const result = await runLockedWorker(projectRoot, {
     snapshot,
     expectedRevision: command.expectedRevision,
     commandId: command.commandId,
     fingerprint,
     historyAction,
   });
+  // Also covers a concurrent duplicate whose worker returned the first commit.
+  collectCommittedConflicts(projectRoot, result.pointer, conflicts);
+  return result;
+}
+
+function collectCommittedConflicts(
+  root: string,
+  pointer: RevisionPointer,
+  collector?: RegenerationConflict[],
+): void {
+  if (!collector) return;
+  const recorded = readRevision(root, pointer).index.command.outcome;
+  if (recorded) collector.push(...structuredClone(recorded.conflicts));
 }

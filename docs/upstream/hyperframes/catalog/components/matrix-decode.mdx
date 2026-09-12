@@ -157,12 +157,12 @@ That writes one file: `compositions/components/matrix-decode.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `HYPERFRAMES` | string | Word the scramble resolves into. One scrambling cell per character, up to 32. |
-| `accent` | `green` | `green`, `blue`, `violet` | Colour family of the cells and their glow. |
-| `size` | `64` | 24px to 160px, step 4px | Type size of the cells in pixels. Cell width follows it. |
-| `glow` | `standard` | `none`, `standard`, `strong` | Strength of the halo behind the cells, from none to a heavy bloom. |
+| Variable | Default       | Accepts                      | What it does                                                                  |
+| -------- | ------------- | ---------------------------- | ----------------------------------------------------------------------------- |
+| `text`   | `HYPERFRAMES` | string                       | Word the scramble resolves into. One scrambling cell per character, up to 32. |
+| `accent` | `green`       | `green`, `blue`, `violet`    | Colour family of the cells and their glow.                                    |
+| `size`   | `64`          | 24px to 160px, step 4px      | Type size of the cells in pixels. Cell width follows it.                      |
+| `glow`   | `standard`    | `none`, `standard`, `strong` | Strength of the halo behind the cells, from none to a heavy bloom.            |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

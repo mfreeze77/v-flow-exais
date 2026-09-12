@@ -27,9 +27,8 @@ explainer from pasted text:
 />
 *Rendered from the prompt above, unedited.*
 
-
 Note the `~`. When you supply a script, the runtime follows the spoken words. So
-ask for *about* a minute, not exactly one. See the
+ask for _about_ a minute, not exactly one. See the
 [anatomy](/prompting/anatomy) for the rest of the skeleton.
 
 ## What this makes
@@ -58,21 +57,20 @@ Pick a different workflow when you do have something to show:
 You can steer all of these from the prompt, before you have learned any
 technique.
 
-| Knob | What to say | Why it matters |
-| --- | --- | --- |
-| **Verbatim vs summarized** | "use my wording verbatim" or "restructure it freely" | The workflow asks once. Verbatim keeps your voice but locks the word count. Summarized lets it cut and reorder for pace. |
-| **Duration** | "~60 seconds", never "60 seconds" | With a script, the narration sets the real length. A hard number forces the agent to trim or pad the words. |
-| **Scene density** | "one idea per scene" | A faceless scene has one invented focal to animate. Two ideas leave nothing to build the motion around. It reads as a text dump. |
-| **Angle** | "concept" / "how-to" / "listicle" / "story" | The angle decides the story shape. The workflow reshapes your text into it instead of reading your paragraphs in order. |
-| **Caption style** | "embedded captions, keywords highlighted in the accent color" | Captions are burned in. Naming the highlight color ties them to your palette instead of a default pill. |
-| **Palette** | "brand color #FF5533 on off-black" | There is no site to borrow from, so the preset supplies a full palette. A named accent and ground personalize it. |
-| **Voice** | "male TTS voice, calm" / "warm female voice" | Gender and tone are prompt words. The provider is a workflow decision. |
+| Knob                       | What to say                                                   | Why it matters                                                                                                                   |
+| -------------------------- | ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| **Verbatim vs summarized** | "use my wording verbatim" or "restructure it freely"          | The workflow asks once. Verbatim keeps your voice but locks the word count. Summarized lets it cut and reorder for pace.         |
+| **Duration**               | "~60 seconds", never "60 seconds"                             | With a script, the narration sets the real length. A hard number forces the agent to trim or pad the words.                      |
+| **Scene density**          | "one idea per scene"                                          | A faceless scene has one invented focal to animate. Two ideas leave nothing to build the motion around. It reads as a text dump. |
+| **Angle**                  | "concept" / "how-to" / "listicle" / "story"                   | The angle decides the story shape. The workflow reshapes your text into it instead of reading your paragraphs in order.          |
+| **Caption style**          | "embedded captions, keywords highlighted in the accent color" | Captions are burned in. Naming the highlight color ties them to your palette instead of a default pill.                          |
+| **Palette**                | "brand color #FF5533 on off-black"                            | There is no site to borrow from, so the preset supplies a full palette. A named accent and ground personalize it.                |
+| **Voice**                  | "male TTS voice, calm" / "warm female voice"                  | Gender and tone are prompt words. The provider is a workflow decision.                                                           |
 
 <Tip>
-  Scene density is the single biggest quality lever here. "One idea per scene"
-  turns a dense paragraph into a paced sequence. The workflow reorders and
-  compresses your text to hit it. That is what makes an explainer teach instead
-  of recite.
+  Scene density is the single biggest quality lever here. "One idea per scene" turns a dense
+  paragraph into a paced sequence. The workflow reorders and compresses your text to hit it. That is
+  what makes an explainer teach instead of recite.
 </Tip>
 
 ## Variants
@@ -89,7 +87,8 @@ technique.
   src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/variant-explainer-landscape.mp4#t=0.1"
   loop
 />
-*Rendered from this prompt with the topic swapped to HTTP caching (cache diagram as the metaphor), unedited — 26s, because the narration sets the length.*
+*Rendered from this prompt with the topic swapped to HTTP caching (cache diagram as the metaphor),
+unedited — 26s, because the narration sets the length.*
 
   </Accordion>
   <Accordion title="Listicle">
@@ -98,6 +97,7 @@ technique.
     The listicle angle gives each item its own scene. Every scene reuses the same
     number-and-label shape. The result reads as a countdown, not a wall of
     points.
+
   </Accordion>
   <Accordion title="How-to with diagrams">
     > /faceless-explainer Make a ~60-second 1920x1080 how-to on setting up a CI pipeline, for developers. How-to angle: one step per scene, each built around a simple node-and-arrow diagram that draws on as the narration explains it. Charcoal with a teal accent. Calm male TTS voice. Embedded captions, the step name highlighted.
@@ -105,6 +105,7 @@ technique.
     A how-to leans on diagrams as the load-bearing visual. Describe the diagram
     *shape* per step — "node-and-arrow", or "a pipeline that fills left to
     right". Let the workflow invent the specifics.
+
   </Accordion>
 </AccordionGroup>
 
@@ -139,4 +140,4 @@ the preset picks the palette. If you have colors, name them.
 
 The workflow this level rides is documented at [Faceless explainer](/guides/faceless-explainer) — what it takes as input, what it asks you before it builds, and what it returns.
 
-*Next: [Code changes and PRs](/prompting/code-and-prs) — point a workflow at a merged GitHub PR instead of a blank page.*
+_Next: [Code changes and PRs](/prompting/code-and-prs) — point a workflow at a merged GitHub PR instead of a blank page._

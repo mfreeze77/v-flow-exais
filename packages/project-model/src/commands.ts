@@ -1,5 +1,6 @@
 import {
   OBJECT_COLLECTIONS,
+  RELATIONSHIP_COLLECTIONS,
   assertProject,
   collection,
   quarantineOrphanedTargets,
@@ -9,11 +10,14 @@ import {
   type ScenePresentation,
 } from "./project";
 import { problem, ProjectValidationError } from "./diagnostics";
+import { rememberOrphanedIntents, restoredTargetOrder } from "./regenerationConflicts";
 import { projectAssetProblems, type ProjectAsset } from "./assets";
 
 export type ProjectOperation =
   | { type: "undo" }
   | { type: "redo" }
+  | { type: "discard-regeneration-conflict"; conflictId: string }
+  | { type: "restore-regeneration-conflict"; conflictId: string }
   | { type: "register-asset"; asset: ProjectAsset }
   | { type: "rename-object"; documentId: string; objectId: string; label: string }
   | { type: "replace-diagram-source"; documentId: string; source: DiagramSource }
@@ -43,6 +47,8 @@ function assertOperation(value: unknown, pointer: string): asserts value is Proj
   const allowed: Record<string, string[]> = {
     undo: ["type"],
     redo: ["type"],
+    "discard-regeneration-conflict": ["type", "conflictId"],
+    "restore-regeneration-conflict": ["type", "conflictId"],
     "register-asset": ["type", "asset"],
     "rename-object": ["type", "documentId", "objectId", "label"],
     "replace-diagram-source": ["type", "documentId", "source"],
@@ -58,6 +64,8 @@ function assertOperation(value: unknown, pointer: string): asserts value is Proj
     keys.some((key) => !Object.hasOwn(value, key))
   )
     invalid(pointer, "Unknown operation or fields.");
+  if ("conflictId" in value && !text(value.conflictId, 128))
+    invalid(`${pointer}/conflictId`, "Conflict ID is required.");
   if (value.type === "register-asset") {
     const issues = projectAssetProblems(value.asset);
     if (issues.length) invalid(`${pointer}/asset`, issues.join(" "));
@@ -148,7 +156,37 @@ export function applyProjectCommand(
     const at = `/operations/${index}`;
     if (operation.type === "undo" || operation.type === "redo")
       invalid(at, "History commands require the committed project journal.");
-    if (operation.type === "register-asset") {
+    if (
+      operation.type === "discard-regeneration-conflict" ||
+      operation.type === "restore-regeneration-conflict"
+    ) {
+      const records = next.manifest.regenerationConflicts ?? [];
+      const conflict = records.find((item) => item.id === operation.conflictId);
+      if (!conflict) invalid(`${at}/conflictId`, "Unresolved conflict does not exist.");
+      if (operation.type === "restore-regeneration-conflict") {
+        const scene = next.manifest.scenes.find((item) => item.id === conflict.sceneId);
+        const doc = next.manifest.documents.find((item) => item.id === conflict.documentId);
+        if (!scene || !doc || doc.kind === "native")
+          invalid(at, "Original scene/document is unavailable.");
+        const source = next.sources[doc.id] as DiagramSource;
+        const name =
+          conflict.field === "focusObjectIds"
+            ? OBJECT_COLLECTIONS[doc.kind]
+            : RELATIONSHIP_COLLECTIONS[doc.kind];
+        if (!collection(source, name).some((item) => item.id === conflict.targetId))
+          invalid(
+            at,
+            "Restore the original authored target before restoring its presentation intent.",
+          );
+        scene.presentation[conflict.field] = restoredTargetOrder(
+          scene.presentation[conflict.field],
+          conflict.originalTargets,
+          conflict.targetId,
+        );
+      }
+      // Discard is explicit and undoable; neither operation fabricates source targets.
+      next.manifest.regenerationConflicts = records.filter((item) => item.id !== conflict.id);
+    } else if (operation.type === "register-asset") {
       const assets = next.manifest.assets ?? [];
       if (assets.some((asset) => asset.id === operation.asset.id))
         invalid(`${at}/asset`, "Asset is already registered; use its existing identity.");
@@ -199,8 +237,35 @@ export function applyProjectCommand(
   // Orphaned intent is removed and reported before validation, so deleting an
   // object or relationship an override referenced is an edit with a conflict
   // rather than an edit that is refused outright. Nothing is reassigned.
+  const requestedScenes = structuredClone(next.manifest.scenes);
   const orphaned = quarantineOrphanedTargets(next);
-  conflicts?.push(...orphaned);
+  // Only a real source removal is a recoverable regeneration conflict. A typo
+  // in a requested focus/edge remains invalid rather than being silently dropped.
+  for (const event of orphaned) {
+    const scene = next.manifest.scenes.find((item) => item.id === event.sceneId)!;
+    const doc = next.manifest.documents.find((item) => item.id === scene.documentId)!;
+    const replaced = command.operations.some(
+      (op) => op.type === "replace-diagram-source" && op.documentId === doc.id,
+    );
+    const original = current.sources[doc.id];
+    const name =
+      doc.kind === "native"
+        ? ""
+        : event.field === "focusObjectIds"
+          ? OBJECT_COLLECTIONS[doc.kind]
+          : RELATIONSHIP_COLLECTIONS[doc.kind];
+    if (
+      !replaced ||
+      typeof original !== "object" ||
+      !collection(original, name).some((item) => item.id === event.targetId)
+    )
+      invalid(
+        "/operations",
+        "Presentation references an unauthored target; no removal can be recorded.",
+      );
+  }
+  rememberOrphanedIntents(next, orphaned, requestedScenes, command.commandId);
   assertProject(next);
+  conflicts?.push(...orphaned);
   return next;
 }

@@ -139,11 +139,11 @@ That writes one file: `compositions/components/rgb-glitch-text.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `GLITCH` | string | The word shown on all three stacked copies. |
-| `intensity` | `standard` | `subtle`, `standard`, `extreme` | Scales the red and cyan offsets the timeline drives, so the split reads as a hairline or a hard tear. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Colour of the solid copy the two ghosts split away from: ink for light frames, paper for dark ones, accent rides --brand. |
+| Variable    | Default    | Accepts                         | What it does                                                                                                              |
+| ----------- | ---------- | ------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `text`      | `GLITCH`   | string                          | The word shown on all three stacked copies.                                                                               |
+| `intensity` | `standard` | `subtle`, `standard`, `extreme` | Scales the red and cyan offsets the timeline drives, so the split reads as a hairline or a hard tear.                     |
+| `tone`      | `ink`      | `ink`, `paper`, `accent`        | Colour of the solid copy the two ghosts split away from: ink for light frames, paper for dark ones, accent rides --brand. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -28,12 +28,12 @@ Use [the PR template](.github/PULL_REQUEST_TEMPLATE.md); link existing receipts 
 
 ## Choose evidence by impact
 
-| Impact | Typical change | Evidence to prepare |
-| --- | --- | --- |
-| Text or review policy | Explanatory prose, links, contributor/reviewer procedure | Content, links, affected documentation checks; exercise changed procedure branches. No local renderer suite for repository-only prose. |
-| Local behavior | One CLI path, focused test correction | Reproduction or rationale, affected tests, and relevant failure/compatibility cases. |
-| Shared behavior | Geometry, text measurement, shared Viewer, evidence or delivery helpers | Trace callers; identify affected modes and contracts; compare fixed representative inputs on base and candidate, including relevant historical failures. |
-| Contract change | Schema, defaults, validation acceptance, Skill or authoring instructions | Agreed scope and explicit allowed/preserved behavior, plus local/shared evidence appropriate to the implementation. |
+| Impact                | Typical change                                                           | Evidence to prepare                                                                                                                                      |
+| --------------------- | ------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Text or review policy | Explanatory prose, links, contributor/reviewer procedure                 | Content, links, affected documentation checks; exercise changed procedure branches. No local renderer suite for repository-only prose.                   |
+| Local behavior        | One CLI path, focused test correction                                    | Reproduction or rationale, affected tests, and relevant failure/compatibility cases.                                                                     |
+| Shared behavior       | Geometry, text measurement, shared Viewer, evidence or delivery helpers  | Trace callers; identify affected modes and contracts; compare fixed representative inputs on base and candidate, including relevant historical failures. |
+| Contract change       | Schema, defaults, validation acceptance, Skill or authoring instructions | Agreed scope and explicit allowed/preserved behavior, plus local/shared evidence appropriate to the implementation.                                      |
 
 Skill instructions, authored examples, build inputs, and generated-site sources are behavioral inputs even when they look like documentation. Policy changes need process review; runtime evidence depends on whether they affect runtime inputs.
 
@@ -118,12 +118,12 @@ settle disputed scope and acceptance requirements.
 Use these [review commands](https://docs.coderabbit.ai/reference/review-commands)
 instead of pushing an empty commit to retrigger the bot:
 
-| Situation | PR comment |
-| --- | --- |
-| Review new commits when automatic review did not run | `@coderabbitai review` |
-| Updated only the PR description, evidence links, or completed CI | `@coderabbitai run pre-merge checks` |
-| A fresh review of the entire PR is needed | `@coderabbitai full review` |
-| Several rapid revisions are in progress | `@coderabbitai pause`, then `@coderabbitai resume` when ready |
+| Situation                                                        | PR comment                                                    |
+| ---------------------------------------------------------------- | ------------------------------------------------------------- |
+| Review new commits when automatic review did not run             | `@coderabbitai review`                                        |
+| Updated only the PR description, evidence links, or completed CI | `@coderabbitai run pre-merge checks`                          |
+| A fresh review of the entire PR is needed                        | `@coderabbitai full review`                                   |
+| Several rapid revisions are in progress                          | `@coderabbitai pause`, then `@coderabbitai resume` when ready |
 
 Check the updated summary for results; a command acknowledgment is not completion.
 If fork CI needs approval, a maintainer must inspect the proposed workflow/code

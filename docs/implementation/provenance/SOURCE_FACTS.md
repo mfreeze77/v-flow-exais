@@ -26,7 +26,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 37:   outputPathGuards.set(outPath, outputRequest);
 38:   return { diagram, template, outPath, sourceEvidence };
 39: }
-40: 
+40:
 41: // Brand URL capture is the only asynchronous authoring step. Typed renderers
 42: // opt into it through this wrapper without changing loadDiagram's long-lived
 43: // synchronous safety contract.
@@ -35,9 +35,9 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 46:   await prepareDiagramBrandMarks(options.diagramType, loaded.diagram);
 47:   return loaded;
 48: }
-49: 
+49:
 50: const START_TYPES = new Set(['architecture', 'workflow', 'sequence', 'dataflow', 'lifecycle']);
-51: 
+51:
 52: // Common CLI tail: fill the template and write the standalone HTML file.
 53: export function writeDiagram({ outPath, template, diagramType, meta, svg, cards, sourceEvidence = null }) {
 54:   if (!START_TYPES.has(diagramType)) throw new Error(`writeDiagram: unknown diagram type ${JSON.stringify(diagramType)}`);
@@ -66,7 +66,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 94:   const relationships = collection && Array.isArray(diagram[collection]) ? diagram[collection] : [];
 95:   const seen = new Set();
 96:   const problems = [];
-97: 
+97:
 98:   relationships.forEach((relationship, index) => {
 99:     if (relationship.id === undefined || relationship.id === null || relationship.id === '') return;
 100:     if (seen.has(relationship.id)) {
@@ -74,7 +74,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 102:     }
 103:     seen.add(relationship.id);
 104:   });
-105: 
+105:
 106:   if (problems.length) {
 107:     throwDiagnosticProblems('Relationship identity validation failed', problems, {
 108:       code: 'relationship/duplicate-id',
@@ -82,7 +82,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 110:     });
 111:   }
 112: }
-113: 
+113:
 114: // JSON Schema keeps the view object bounded; this pass checks facts that span
 115: // collections. Keeping it here makes the same contract apply to all five
 116: // renderers, including the zero-install standalone-validator path.
@@ -93,7 +93,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 ```text
 49:   tagMinimum: 6,
 50: };
-51: 
+51:
 52: const __dirname = path.dirname(fileURLToPath(import.meta.url));
 53: const layoutJsonMode = process.argv.includes('--layout-json');
 54: const cliArgs = process.argv.filter((arg) => arg !== '--layout-json');
@@ -103,9 +103,9 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 58:   defaultExample: 'web-app.architecture.json',
 59:   argv: cliArgs,
 60: });
-61: 
+61:
 62: const grid = gridLayout(arch);
-63: 
+63:
 64: const layout = {
 65:   defaultW: 120,
 66:   defaultH: 60,
@@ -129,7 +129,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 13: import { registerSelectionRoutes } from "./routes/selection.js";
 14: import { registerMediaRoutes } from "./routes/media.js";
 15: import { registerGlobalAssetRoutes } from "./routes/globalAssets.js";
-16: 
+16:
 17: /**
 18:  * Create a Hono sub-app with all studio API routes.
 19:  *
@@ -138,7 +138,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 22:  */
 23: export function createStudioApi(adapter: StudioApiAdapter): Hono {
 24:   const api = new Hono();
-25: 
+25:
 26:   registerProjectRoutes(api, adapter);
 27:   registerStoryboardRoutes(api, adapter);
 28:   registerFileRoutes(api, adapter);
@@ -152,7 +152,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 36:   registerFontRoutes(api);
 37:   registerRegistryRoutes(api, adapter);
 38:   registerGlobalAssetRoutes(api);
-39: 
+39:
 40:   return api;
 41: }
 ```
@@ -167,7 +167,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 862:   // Single parse: parseMutable stamps hf-ids + builds the live linkedom DOM;
 863:   // the query API derives element snapshots from it lazily.
 864:   const parsed = parseMutable(html);
-865: 
+865:
 866:   // Pre-override declared defaults — applyOverrideSet below folds `var.<id>`
 867:   // overrides destructively into the declarations, so this is the last moment
 868:   // the authored base values are readable. getVariableValue({ base: true })
@@ -175,15 +175,15 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 870:   const baseVariableDefaults = readDeclaredDefaults(
 871:     declarationElement(parsed.document, parsed.wrapped),
 872:   );
-873: 
+873:
 874:   // T3 embedded: replay the stored override-set onto the base in one pass,
 875:   // so the session exposes the user's exact edited state — not the template.
 876:   if (opts?.overrides) applyOverrideSet(parsed, opts.overrides);
-877: 
+877:
 878:   const session = new CompositionImpl(parsed, opts ?? {}, baseVariableDefaults);
-879: 
+879:
 880:   const isEmbedded = opts?.overrides !== undefined;
-881: 
+881:
 882:   if (!isEmbedded) {
 883:     // history:false opts out of the SDK undo stack ONLY. Persist (auto-save) is
 884:     // independent — gating it on the history flag too would silently drop every
@@ -195,7 +195,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 890:       });
 891:       session.attachHistory(history);
 892:     }
-893: 
+893:
 894:     if (opts?.persist) {
 895:       const pq = createPersistQueue(session, opts.persist, {
 896:         path: opts.persistPath,
@@ -204,7 +204,7 @@ These are excerpts from the uploaded snapshots, not new APIs or proof of a built
 899:       session.attachPersistQueue(pq);
 900:     }
 901:   }
-902: 
+902:
 903:   return session;
 904: }
 ```

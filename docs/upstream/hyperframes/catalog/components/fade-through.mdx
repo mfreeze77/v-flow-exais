@@ -125,11 +125,11 @@ That writes one file: `compositions/components/fade-through.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `wash` | `paper` | `paper`, `white`, `ink`, `accent` | Colour of the mid-transition frame. Paper resolves through --hf-fade-through-wash, accent rides --accent. |
-| `strength` | `1` | 0.1 to 1, step 0.05 | How far the wash covers at its peak. 1 is a full flash, 0.3 a light veil. |
-| `shape` | `flat` | `flat`, `bloom` | Flat fills the frame evenly, bloom concentrates the wash in the centre. |
+| Variable   | Default | Accepts                           | What it does                                                                                              |
+| ---------- | ------- | --------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| `wash`     | `paper` | `paper`, `white`, `ink`, `accent` | Colour of the mid-transition frame. Paper resolves through --hf-fade-through-wash, accent rides --accent. |
+| `strength` | `1`     | 0.1 to 1, step 0.05               | How far the wash covers at its peak. 1 is a full flash, 0.3 a light veil.                                 |
+| `shape`    | `flat`  | `flat`, `bloom`                   | Flat fills the frame evenly, bloom concentrates the wash in the centre.                                   |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

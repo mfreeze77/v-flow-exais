@@ -476,7 +476,10 @@ import { VariablesExplorer } from "/snippets/variables-explorer.jsx";
 
 ## Install
 
-<InstallCommand command="npx hyperframes add native-notification-pop" item="native-notification-pop" />
+<InstallCommand
+  command="npx hyperframes add native-notification-pop"
+  item="native-notification-pop"
+/>
 
 That writes one file: `compositions/components/native-notification-pop.html`.
 
@@ -492,15 +495,15 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `title` | `Render complete` | string | The notification title line. |
-| `body` | `launch-cut.mp4 is ready to preview` | string | One body line. Long lines truncate with an ellipsis. |
-| `app_label` | `HyperFrames` | string | Small-caps app name row beside the app dot. |
-| `os` | `ios` | `ios`, `macos` | Banner geometry and placement: wide centered iOS or compact top-right macOS. |
-| `at` | `0.3` | 0s to 8s, step 0.05s | Seconds after mount start when the banner drops in. |
-| `accent` | `green` | `green`, `blue`, `violet` | App dot color. |
-| `exit` | `none` | `none`, `fade`, `up` | None holds the banner; up tucks it back off the top; fade fades it in place. |
+| Variable    | Default                              | Accepts                   | What it does                                                                 |
+| ----------- | ------------------------------------ | ------------------------- | ---------------------------------------------------------------------------- |
+| `title`     | `Render complete`                    | string                    | The notification title line.                                                 |
+| `body`      | `launch-cut.mp4 is ready to preview` | string                    | One body line. Long lines truncate with an ellipsis.                         |
+| `app_label` | `HyperFrames`                        | string                    | Small-caps app name row beside the app dot.                                  |
+| `os`        | `ios`                                | `ios`, `macos`            | Banner geometry and placement: wide centered iOS or compact top-right macOS. |
+| `at`        | `0.3`                                | 0s to 8s, step 0.05s      | Seconds after mount start when the banner drops in.                          |
+| `accent`    | `green`                              | `green`, `blue`, `violet` | App dot color.                                                               |
+| `exit`      | `none`                               | `none`, `fade`, `up`      | None holds the banner; up tucks it back off the top; fade fades it in place. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

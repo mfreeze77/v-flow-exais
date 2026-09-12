@@ -198,12 +198,12 @@ That writes one file: `compositions/components/tabs-slide-indicator.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `accent` | `ink` | `ink`, `green`, `blue`, `violet` | Fill of the sliding pill. ink is literal; the rest ride the composition theme tokens. |
-| `width` | `standard` | `compact`, `standard`, `wide` | Width of one tab. The slide the timeline drives is scaled to match, so the pill still lands on the next tab. |
-| `shape` | `pill` | `pill`, `rounded`, `square` | Corner radius of the track and the pill. |
-| `labels` | `Plan,Debug,Ask` | string | The tab names, separated by commas. Two or more names rebuild the row. |
+| Variable | Default          | Accepts                          | What it does                                                                                                 |
+| -------- | ---------------- | -------------------------------- | ------------------------------------------------------------------------------------------------------------ |
+| `accent` | `ink`            | `ink`, `green`, `blue`, `violet` | Fill of the sliding pill. ink is literal; the rest ride the composition theme tokens.                        |
+| `width`  | `standard`       | `compact`, `standard`, `wide`    | Width of one tab. The slide the timeline drives is scaled to match, so the pill still lands on the next tab. |
+| `shape`  | `pill`           | `pill`, `rounded`, `square`      | Corner radius of the track and the pill.                                                                     |
+| `labels` | `Plan,Debug,Ask` | string                           | The tab names, separated by commas. Two or more names rebuild the row.                                       |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

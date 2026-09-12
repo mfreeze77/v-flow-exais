@@ -42,25 +42,28 @@ A translation that "looks right" in preview can still measure meaningfully below
 
 ## The knobs that matter
 
-| Knob | What to say | Why it matters |
-| --- | --- | --- |
-| **Exact source file** | "the composition at `src/HeroReveal.tsx`" | A Remotion project can register several `<Composition>`s — name the one you mean |
-| **Preserve exact timing** | "keep the same duration, fps, and dimensions" | The default; state it anyway so the agent doesn't round or resize |
-| **Gap documentation** | "write `TRANSLATION_NOTES.md` for anything that doesn't translate cleanly" | Approximated fonts, dropped volume ramps, and substituted presentations get recorded, not silently absorbed |
-| **Validation** | "report the SSIM diff against the original" | Makes the fidelity check part of the deliverable instead of an optional afterthought |
+| Knob                      | What to say                                                                | Why it matters                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| **Exact source file**     | "the composition at `src/HeroReveal.tsx`"                                  | A Remotion project can register several `<Composition>`s — name the one you mean                            |
+| **Preserve exact timing** | "keep the same duration, fps, and dimensions"                              | The default; state it anyway so the agent doesn't round or resize                                           |
+| **Gap documentation**     | "write `TRANSLATION_NOTES.md` for anything that doesn't translate cleanly" | Approximated fonts, dropped volume ramps, and substituted presentations get recorded, not silently absorbed |
+| **Validation**            | "report the SSIM diff against the original"                                | Makes the fidelity check part of the deliverable instead of an optional afterthought                        |
 
 ## Common failure modes
 
 **Asking for a fresh build with Remotion as inspiration.** If you don't have an actual Remotion source to translate, this isn't the workflow — it's a normal build.
+
 - ❌ `/remotion-to-hyperframes make something like my Remotion intro`
 - ✅ `/general-video make an intro like this: [description]` — no Remotion source, no migration
 
 **Asking it to push past a lint blocker.** A `useState`-driven composition isn't a "translate it anyway, best effort" situation — it's a different problem (runtime interop), and forcing a translation produces something that looks plausible but isn't frame-accurate.
+
 - ❌ `just convert it, don't worry about the state stuff`
 - ✅ let the agent recommend the interop pattern, then decide whether that fits your case
 
 **Skipping validation on a non-trivial port.** A visual-only check misses timing/easing drift that only shows up in a frame-by-frame SSIM diff.
-- ❌ *(no request to validate — accepting on "looks right")*
+
+- ❌ _(no request to validate — accepting on "looks right")_
 - ✅ `render both and report the SSIM diff`
 
-*Next: [Capstone](/prompting/capstone) — one prompt, one film, every technique in this guide, dissected frame by frame.*
+_Next: [Capstone](/prompting/capstone) — one prompt, one film, every technique in this guide, dissected frame by frame._

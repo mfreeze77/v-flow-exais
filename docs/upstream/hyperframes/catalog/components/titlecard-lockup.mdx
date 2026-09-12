@@ -357,14 +357,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `wordmark` | `HYPERFRAMES` | string | Display wordmark that settles dead-center. |
-| `label` | `WRITE HTML. RENDER VIDEO.` | string | Mono caption under the rule. Empty hides it. |
-| `kicker` | `INTRODUCING` | string | Small mono label above the wordmark. Empty hides it. |
-| `rule` | `show` | `show`, `hide` | Hairline rule drawn left to right under the wordmark. |
-| `accent` | `green` | `green`, `blue`, `violet` | Contract color carried by the hairline rule. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Frame roots own transitions, so none is the default. |
+| Variable   | Default                     | Accepts                   | What it does                                                             |
+| ---------- | --------------------------- | ------------------------- | ------------------------------------------------------------------------ |
+| `wordmark` | `HYPERFRAMES`               | string                    | Display wordmark that settles dead-center.                               |
+| `label`    | `WRITE HTML. RENDER VIDEO.` | string                    | Mono caption under the rule. Empty hides it.                             |
+| `kicker`   | `INTRODUCING`               | string                    | Small mono label above the wordmark. Empty hides it.                     |
+| `rule`     | `show`                      | `show`, `hide`            | Hairline rule drawn left to right under the wordmark.                    |
+| `accent`   | `green`                     | `green`, `blue`, `violet` | Contract color carried by the hairline rule.                             |
+| `exit`     | `none`                      | `none`, `fade`, `up`      | Optional departure. Frame roots own transitions, so none is the default. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -141,11 +141,11 @@ That writes one file: `compositions/components/top-down-letters.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `CASCADE` | string | Word that cascades in. Every character becomes one letter span, in source order. |
+| Variable   | Default    | Accepts                    | What it does                                                                                            |
+| ---------- | ---------- | -------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `text`     | `CASCADE`  | string                     | Word that cascades in. Every character becomes one letter span, in source order.                        |
 | `distance` | `standard` | `close`, `standard`, `far` | Multiplies the drop the timeline drives, so the letters cover a shorter or longer run in the same time. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Letter colour: ink for light frames, paper for dark ones, accent rides --brand. |
+| `tone`     | `ink`      | `ink`, `paper`, `accent`   | Letter colour: ink for light frames, paper for dark ones, accent rides --brand.                         |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

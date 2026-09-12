@@ -513,13 +513,13 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `angle` | `115` | 60deg to 160deg, step 1deg | Band and highlight gradient angle in degrees. |
-| `sweep_at` | `0.9` | 0s to 8s, step 0.05s | Seconds after mount start when the band starts crossing. |
-| `strength` | `standard` | `subtle`, `standard` | Band opacity and highlight bloom multiplier. |
-| `accent` | `green` | `green`, `blue`, `violet` | Tint inside the band and the highlight blooms. |
-| `exit` | `none` | `none`, `fade`, `up` | Outgoing transition. None holds the settled key. |
+| Variable   | Default    | Accepts                    | What it does                                             |
+| ---------- | ---------- | -------------------------- | -------------------------------------------------------- |
+| `angle`    | `115`      | 60deg to 160deg, step 1deg | Band and highlight gradient angle in degrees.            |
+| `sweep_at` | `0.9`      | 0s to 8s, step 0.05s       | Seconds after mount start when the band starts crossing. |
+| `strength` | `standard` | `subtle`, `standard`       | Band opacity and highlight bloom multiplier.             |
+| `accent`   | `green`    | `green`, `blue`, `violet`  | Tint inside the band and the highlight blooms.           |
+| `exit`     | `none`     | `none`, `fade`, `up`       | Outgoing transition. None holds the settled key.         |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

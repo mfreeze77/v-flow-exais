@@ -74,6 +74,44 @@
         }
       }
     },
+    "regenerationConflicts": {
+      "type": "array",
+      "maxItems": 30000,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "kind",
+          "documentId",
+          "sceneId",
+          "targetId",
+          "field",
+          "detail",
+          "createdByCommandId",
+          "detectedRevision",
+          "originalTargets"
+        ],
+        "properties": {
+          "id": { "$ref": "#/$defs/id" },
+          "kind": { "const": "orphaned-target" },
+          "documentId": { "$ref": "#/$defs/id" },
+          "sceneId": { "$ref": "#/$defs/id" },
+          "targetId": { "$ref": "#/$defs/id" },
+          "field": { "enum": ["focusObjectIds", "relationshipIds"] },
+          "detail": { "type": "string", "minLength": 1, "maxLength": 1000 },
+          "createdByCommandId": { "type": "string", "minLength": 1, "maxLength": 128 },
+          "detectedRevision": { "type": "integer", "minimum": 1 },
+          "originalTargets": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 200,
+            "uniqueItems": true,
+            "items": { "$ref": "#/$defs/id" }
+          }
+        }
+      }
+    },
     "assets": {
       "type": "array",
       "maxItems": 128,

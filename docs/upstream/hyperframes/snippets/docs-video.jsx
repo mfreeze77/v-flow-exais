@@ -371,7 +371,6 @@ export const DocsVideo = ({
           </>
         )}
       </div>
-
     </div>
   );
 };
@@ -497,7 +496,6 @@ export const ShowcaseWall = () => {
       </div>
     );
   }
-
 
   return (
     <div

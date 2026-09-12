@@ -139,12 +139,12 @@ That writes one file: `compositions/components/blur-out-up.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `direction` | `up` | `up`, `down`, `left`, `right` | Where the offset the timeline drives points. |
-| `distance` | `standard` | `close`, `standard`, `far` | Scales the travel offset, so the words cover a shorter or longer run in the same time. |
-| `blur` | `standard` | `soft`, `standard`, `heavy` | Scales the blur radius the timeline drives, from a light haze to a full smear. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Word colour: ink for light frames, paper for dark ones, accent rides --brand. |
+| Variable    | Default    | Accepts                       | What it does                                                                           |
+| ----------- | ---------- | ----------------------------- | -------------------------------------------------------------------------------------- |
+| `direction` | `up`       | `up`, `down`, `left`, `right` | Where the offset the timeline drives points.                                           |
+| `distance`  | `standard` | `close`, `standard`, `far`    | Scales the travel offset, so the words cover a shorter or longer run in the same time. |
+| `blur`      | `standard` | `soft`, `standard`, `heavy`   | Scales the blur radius the timeline drives, from a light haze to a full smear.         |
+| `tone`      | `ink`      | `ink`, `paper`, `accent`      | Word colour: ink for light frames, paper for dark ones, accent rides --brand.          |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

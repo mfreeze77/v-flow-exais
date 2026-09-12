@@ -340,13 +340,13 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `FLEX` | string | The word whose variable-font axes flex. |
-| `axis` | `both` | `weight`, `width`, `both` | Which variable-font axes animate: weight, width, or both. |
-| `stagger` | `0.06` | number | Seconds between per-character flex starts, clamped 0 to 0.25. |
-| `accent` | `green` | `green`, `blue`, `violet` | Word color: green rides --brand, blue rides --accent, violet rides --accent-2. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the carved word holds until the frame cuts. |
+| Variable  | Default | Accepts                   | What it does                                                                   |
+| --------- | ------- | ------------------------- | ------------------------------------------------------------------------------ |
+| `text`    | `FLEX`  | string                    | The word whose variable-font axes flex.                                        |
+| `axis`    | `both`  | `weight`, `width`, `both` | Which variable-font axes animate: weight, width, or both.                      |
+| `stagger` | `0.06`  | number                    | Seconds between per-character flex starts, clamped 0 to 0.25.                  |
+| `accent`  | `green` | `green`, `blue`, `violet` | Word color: green rides --brand, blue rides --accent, violet rides --accent-2. |
+| `exit`    | `none`  | `none`, `fade`, `up`      | Optional departure. Default none: the carved word holds until the frame cuts.  |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

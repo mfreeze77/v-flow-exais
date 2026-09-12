@@ -6,7 +6,7 @@ description: "Ask for the parts that should change to become named slots, then r
 import { DocsVideo } from "/snippets/docs-video.jsx";
 
 [Design systems](/prompting/design-systems) covered the parts of a video that
-should *never* change per render — the brand. This page covers the parts that
+should _never_ change per render — the brand. This page covers the parts that
 should. A card per customer. A stat per quarter. A name per recipient.
 
 When you know a composition will be reused, say so in the prompt. Name the parts
@@ -29,9 +29,8 @@ The trigger phrase is simple. Call out the slots:
   src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/validate-variables-variant.mp4#t=0.1"
   loop
 />
-*The same composition re-rendered with `--variables` overrides — different name, logo, and accent, zero re-prompting.*
-
-
+*The same composition re-rendered with `--variables` overrides — different name, logo, and accent,
+zero re-prompting.*
 
 The agent declares `data-composition-variables` on the composition root, with
 the right type for each slot. The name is a `string`. The accent is a `color`.
@@ -168,7 +167,7 @@ A few inputs are read once at compile time, and no variable can move them:
 So this doesn't do what it reads like:
 
 - ❌ `make the video length a variable so each render can be a different duration`
-- ✅ `author one composition per target length` — or vary a *clip's* duration,
+- ✅ `author one composition per target length` — or vary a _clip's_ duration,
   which is re-read from the live DOM
 
 If total length must differ per output, that is a different root `data-duration`
@@ -203,11 +202,10 @@ full list and the compile-time-vs-live-DOM rule behind it.
 </CardGroup>
 
 <Note>
-**Capstone thread** — the [Level 7 film](/prompting/capstone) is a working
-template. One single-file composition, one variable scope. Its second render is
-nothing but one `--variables` flag: navy ground, acid-green ink, every region
-re-skinned including the generated mural. Both full renders are embedded on the
-capstone page.
+  **Capstone thread** — the [Level 7 film](/prompting/capstone) is a working template. One
+  single-file composition, one variable scope. Its second render is nothing but one `--variables`
+  flag: navy ground, acid-green ink, every region re-skinned including the generated mural. Both
+  full renders are embedded on the capstone page.
 </Note>
 
 This is the clause in the [full capstone prompt](/prompting/capstone#the-prompt-word-for-word)
@@ -217,4 +215,4 @@ that buys the piece — prompt language you can lift for your own video:
 >
 > **Architecture constraint (technical):** single composition file — one `index.html`, one variable scope. […] No `data-composition-src` sub-files.
 
-*Next: [Storyboards](/prompting/storyboards) — for multi-scene work, prompt the plan a frame-by-frame build fills in, not the scenes one by one.*
+_Next: [Storyboards](/prompting/storyboards) — for multi-scene work, prompt the plan a frame-by-frame build fills in, not the scenes one by one._

@@ -53,30 +53,15 @@
         "groups": [
           {
             "group": "Start here",
-            "pages": [
-              "introduction",
-              "quickstart",
-              "go-further",
-              "developers/index"
-            ]
+            "pages": ["introduction", "quickstart", "go-further", "developers/index"]
           },
           {
             "group": "Explore",
-            "pages": [
-              "examples",
-              "thirty-days",
-              "product-updates",
-              "weekly-updates",
-              "changelog"
-            ]
+            "pages": ["examples", "thirty-days", "product-updates", "weekly-updates", "changelog"]
           },
           {
             "group": "Choose where to create",
-            "pages": [
-              "guides/choose-creation-path",
-              "guides/mcp",
-              "guides/design-tools"
-            ]
+            "pages": ["guides/choose-creation-path", "guides/mcp", "guides/design-tools"]
           },
           {
             "group": "Prompt Guide",
@@ -105,10 +90,7 @@
               },
               {
                 "group": "Level 3 — Life",
-                "pages": [
-                  "prompting/motion",
-                  "prompting/transitions"
-                ]
+                "pages": ["prompting/motion", "prompting/transitions"]
               },
               {
                 "group": "Level 4 — Substance",
@@ -125,10 +107,7 @@
               },
               {
                 "group": "Level 5 — Voice and sound",
-                "pages": [
-                  "prompting/media-and-audio",
-                  "prompting/audio-effects"
-                ]
+                "pages": ["prompting/media-and-audio", "prompting/audio-effects"]
               },
               {
                 "group": "Level 6 — Scale",
@@ -145,15 +124,11 @@
               },
               {
                 "group": "Level 7 — Capstone",
-                "pages": [
-                  "prompting/capstone"
-                ]
+                "pages": ["prompting/capstone"]
               },
               {
                 "group": "Appendix",
-                "pages": [
-                  "prompting/rules-and-anti-patterns"
-                ]
+                "pages": ["prompting/rules-and-anti-patterns"]
               }
             ]
           },
@@ -188,11 +163,7 @@
           },
           {
             "group": "Help",
-            "pages": [
-              "help",
-              "guides/troubleshooting",
-              "guides/feedback"
-            ]
+            "pages": ["help", "guides/troubleshooting", "guides/feedback"]
           }
         ]
       },
@@ -202,19 +173,11 @@
         "groups": [
           {
             "group": "Start in Studio",
-            "pages": [
-              "studio/index",
-              "studio/storyboard"
-            ]
+            "pages": ["studio/index", "studio/storyboard"]
           },
           {
             "group": "Edit",
-            "pages": [
-              "studio/canvas",
-              "studio/timeline",
-              "studio/animation",
-              "studio/captions"
-            ]
+            "pages": ["studio/canvas", "studio/timeline", "studio/animation", "studio/captions"]
           },
           {
             "group": "Audio",
@@ -227,25 +190,15 @@
           },
           {
             "group": "Build and reuse",
-            "pages": [
-              "studio/assets-and-blocks",
-              "studio/variables",
-              "studio/slideshows"
-            ]
+            "pages": ["studio/assets-and-blocks", "studio/variables", "studio/slideshows"]
           },
           {
             "group": "Finish and recover",
-            "pages": [
-              "studio/export",
-              "studio/troubleshooting"
-            ]
+            "pages": ["studio/export", "studio/troubleshooting"]
           },
           {
             "group": "Reference",
-            "pages": [
-              "studio/source",
-              "studio/shortcuts"
-            ]
+            "pages": ["studio/source", "studio/shortcuts"]
           }
         ]
       },
@@ -255,9 +208,7 @@
         "groups": [
           {
             "group": "Overview",
-            "pages": [
-              "catalog/index"
-            ]
+            "pages": ["catalog/index"]
           },
           {
             "group": "Text & captions",
@@ -806,17 +757,11 @@
         "groups": [
           {
             "group": "Start here",
-            "pages": [
-              "developers/overview"
-            ]
+            "pages": ["developers/overview"]
           },
           {
             "group": "Command line",
-            "pages": [
-              "developers/cli",
-              "packages/cli",
-              "packages/lint"
-            ]
+            "pages": ["developers/cli", "packages/cli", "packages/lint"]
           },
           {
             "group": "SDK guides",
@@ -857,20 +802,11 @@
           },
           {
             "group": "Composition reference",
-            "pages": [
-              "reference/html-schema",
-              "reference/color-grading",
-              "reference/audio-effects"
-            ]
+            "pages": ["reference/html-schema", "reference/color-grading", "reference/audio-effects"]
           },
           {
             "group": "Rendering paths",
-            "pages": [
-              "guides/rendering",
-              "deploy/overview",
-              "deploy/cloud",
-              "guides/deploy"
-            ]
+            "pages": ["guides/rendering", "deploy/overview", "deploy/cloud", "guides/deploy"]
           },
           {
             "group": "Cloud infrastructure",
@@ -885,11 +821,7 @@
           },
           {
             "group": "Advanced rendering",
-            "pages": [
-              "guides/4k-rendering",
-              "guides/hdr",
-              "guides/performance"
-            ]
+            "pages": ["guides/4k-rendering", "guides/hdr", "guides/performance"]
           },
           {
             "group": "Packages",
@@ -907,11 +839,7 @@
           },
           {
             "group": "Agent setup",
-            "pages": [
-              "guides/authentication",
-              "guides/skills",
-              "guides/webmcp"
-            ]
+            "pages": ["guides/authentication", "guides/skills", "guides/webmcp"]
           },
           {
             "group": "Contributing & community",

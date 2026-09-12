@@ -482,12 +482,12 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `look` | `warm-cinematic` | `warm-cinematic`, `cool-teal`, `bleach-bypass` | Grade carried by the upper copy, and the label printed over it. All three are real grading blocks handed to the shader, not CSS filters. |
-| `split` | `62` | 25% to 85%, step 1% | How far across the plate the edge stops to hold the comparison, before it commits and takes the rest. |
-| `edge` | `hairline` | `hairline`, `bold`, `hidden` | The divider line riding the wipe. Hidden drops it entirely so the grade arrives with no seam. |
-| `labels` | `on` | `on`, `off` | Show or hide the two captions naming each half of the plate. |
+| Variable | Default          | Accepts                                        | What it does                                                                                                                             |
+| -------- | ---------------- | ---------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `look`   | `warm-cinematic` | `warm-cinematic`, `cool-teal`, `bleach-bypass` | Grade carried by the upper copy, and the label printed over it. All three are real grading blocks handed to the shader, not CSS filters. |
+| `split`  | `62`             | 25% to 85%, step 1%                            | How far across the plate the edge stops to hold the comparison, before it commits and takes the rest.                                    |
+| `edge`   | `hairline`       | `hairline`, `bold`, `hidden`                   | The divider line riding the wipe. Hidden drops it entirely so the grade arrives with no seam.                                            |
+| `labels` | `on`             | `on`, `off`                                    | Show or hide the two captions naming each half of the plate.                                                                             |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

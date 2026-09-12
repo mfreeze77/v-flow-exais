@@ -18,13 +18,14 @@ comp.setText("hf-title", "Draft A");
 comp.setText("hf-title", "Draft B");
 
 comp.canUndo(); // true
-comp.undo();    // reverts "Draft B" → "Draft A"
-comp.redo();    // reapplies "Draft B"
+comp.undo(); // reverts "Draft B" → "Draft A"
+comp.redo(); // reapplies "Draft B"
 comp.canRedo(); // false — already at tip
 ```
 
 <Tip>
-  `canUndo()` and `canRedo()` return `false` when the stack is empty and also when `history: false` was passed to `openComposition`. Check them before showing undo/redo controls.
+  `canUndo()` and `canRedo()` return `false` when the stack is empty and also when `history: false`
+  was passed to `openComposition`. Check them before showing undo/redo controls.
 </Tip>
 
 ### Opting out of the built-in history
@@ -40,7 +41,8 @@ const comp = await openComposition(html, {
 ```
 
 <Note>
-  `history: false` only disables the SDK undo stack. Persistence (auto-save) is independent — passing `history: false` does not suppress disk writes.
+  `history: false` only disables the SDK undo stack. Persistence (auto-save) is independent —
+  passing `history: false` does not suppress disk writes.
 </Note>
 
 ### Coalescing rapid edits
@@ -76,7 +78,8 @@ off();
 ### PatchEvent fields
 
 <ResponseField name="formatVersion" type="1">
-  Always `1` in the current SDK. Check this and reject unknown versions — a bump means a breaking change.
+  Always `1` in the current SDK. Check this and reject unknown versions — a bump means a breaking
+  change.
 </ResponseField>
 <ResponseField name="patches" type="JsonPatchOp[]">
   Forward patches that were applied: the add/remove/replace ops describing how the document changed.
@@ -88,7 +91,8 @@ off();
   The origin tag that was passed to `dispatch()` or `batch()`. Use it to route or filter events.
 </ResponseField>
 <ResponseField name="opTypes" type="string[]">
-  Semantic names of the operations that produced this event (e.g. `["setStyle"]`). Useful for analytics and history labels. Not versioned — treat as informational.
+  Semantic names of the operations that produced this event (e.g. `["setStyle"]`). Useful for
+  analytics and history labels. Not versioned — treat as informational.
 </ResponseField>
 
 ### JsonPatchOp
@@ -98,7 +102,7 @@ The SDK emits and accepts only the add/remove/replace subset of RFC 6902:
 ```typescript
 interface JsonPatchOp {
   op: "add" | "remove" | "replace";
-  path: string;   // JSON Pointer (RFC 6901), e.g. "/elements/hf-title/style/color"
+  path: string; // JSON Pointer (RFC 6901), e.g. "/elements/hf-title/style/color"
   value?: unknown;
 }
 ```
@@ -111,10 +115,10 @@ The SDK never emits `move`, `copy`, or `test` ops, and `applyPatches()` ignores 
 
 Every mutation is tagged with an origin string. The SDK defines two built-in origins:
 
-| Constant | Value | When used |
-|----------|-------|-----------|
-| `ORIGIN_LOCAL` | `"local"` | Default for all `dispatch()` and `batch()` calls |
-| `ORIGIN_APPLY_PATCHES` | `"@hyperframes/sdk:applyPatches"` | Automatically applied by `applyPatches()` |
+| Constant               | Value                             | When used                                        |
+| ---------------------- | --------------------------------- | ------------------------------------------------ |
+| `ORIGIN_LOCAL`         | `"local"`                         | Default for all `dispatch()` and `batch()` calls |
+| `ORIGIN_APPLY_PATCHES` | `"@hyperframes/sdk:applyPatches"` | Automatically applied by `applyPatches()`        |
 
 Both are exported from `@hyperframes/sdk`.
 
@@ -130,10 +134,13 @@ comp.dispatch(
   { origin: "ui:color-picker" },
 );
 
-comp.batch(() => {
-  comp.setText("hf-cta", "Buy Now");
-  comp.setStyle("hf-cta", { backgroundColor: "#22C55E" });
-}, { origin: "template-wizard" });
+comp.batch(
+  () => {
+    comp.setText("hf-cta", "Buy Now");
+    comp.setStyle("hf-cta", { backgroundColor: "#22C55E" });
+  },
+  { origin: "template-wizard" },
+);
 ```
 
 ---
@@ -178,7 +185,9 @@ comp.on("patch", ({ patches, inversePatches, origin }) => {
 ```
 
 <Warning>
-  Omitting the `ORIGIN_APPLY_PATCHES` guard causes every `applyPatches()` call to push a new entry onto the host stack, which triggers another `applyPatches()`, and so on. Always check `origin` first.
+  Omitting the `ORIGIN_APPLY_PATCHES` guard causes every `applyPatches()` call to push a new entry
+  onto the host stack, which triggers another `applyPatches()`, and so on. Always check `origin`
+  first.
 </Warning>
 
 `ORIGIN_APPLY_PATCHES` is a namespaced string (`"@hyperframes/sdk:applyPatches"`) rather than a `Symbol` so it survives `postMessage`, structured clone, and JSON round-trips — important when the host forwards patch events across frames or workers.
@@ -228,7 +237,8 @@ See [Embedded Override Mode](/sdk/guides/embedded-override-mode) for the full T3
 
 <CardGroup cols={2}>
   <Card title="Composition API" icon="code" href="/sdk/reference/composition">
-    Full method signatures for `undo`, `redo`, `canUndo`, `canRedo`, `on`, `applyPatches`, `dispatch`, and `batch`.
+    Full method signatures for `undo`, `redo`, `canUndo`, `canRedo`, `on`, `applyPatches`,
+    `dispatch`, and `batch`.
   </Card>
   <Card title="Types" icon="brackets-curly" href="/sdk/reference/types">
     `PatchEvent`, `JsonPatchOp`, `ORIGIN_APPLY_PATCHES`, `ORIGIN_LOCAL`, and related types.
@@ -240,4 +250,3 @@ See [Embedded Override Mode](/sdk/guides/embedded-override-mode) for the full T3
     Full T3 embedded integration with host-owned history.
   </Card>
 </CardGroup>
-

@@ -14,7 +14,10 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 
 ## Install
 
-<InstallCommand command="npx hyperframes add chromatic-radial-split" item="chromatic-radial-split" />
+<InstallCommand
+  command="npx hyperframes add chromatic-radial-split"
+  item="chromatic-radial-split"
+/>
 
 That writes one file: `compositions/chromatic-radial-split.html`.
 
@@ -398,7 +401,15 @@ That writes one file: `compositions/chromatic-radial-split.html`.
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="chromatic-radial-split" data-composition-src="compositions/chromatic-radial-split.html" data-start="0" data-duration="4" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="chromatic-radial-split"
+  data-composition-src="compositions/chromatic-radial-split.html"
+  data-start="0"
+  data-duration="4"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

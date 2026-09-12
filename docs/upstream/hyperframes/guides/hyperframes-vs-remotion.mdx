@@ -46,13 +46,36 @@ declares how they move. Both live in one file.
 
 ```html
 <style>
-  #stage { position: relative; width: 1280px; height: 720px; overflow: hidden; background: #0a0a0a; }
-  .clip  { position: absolute; inset: 0; display: grid; place-items: center; }
-  #title { font-size: 160px; font-weight: 800; color: #fff; opacity: 0; }
+  #stage {
+    position: relative;
+    width: 1280px;
+    height: 720px;
+    overflow: hidden;
+    background: #0a0a0a;
+  }
+  .clip {
+    position: absolute;
+    inset: 0;
+    display: grid;
+    place-items: center;
+  }
+  #title {
+    font-size: 160px;
+    font-weight: 800;
+    color: #fff;
+    opacity: 0;
+  }
 </style>
 
-<div id="stage" data-composition-id="title-card" data-start="0"
-     data-width="1280" data-height="720" data-duration="3" data-fps="30">
+<div
+  id="stage"
+  data-composition-id="title-card"
+  data-start="0"
+  data-width="1280"
+  data-height="720"
+  data-duration="3"
+  data-fps="30"
+>
   <div id="card" class="clip" data-start="0" data-duration="3" data-track-index="0">
     <div id="title">HELLO</div>
   </div>
@@ -86,12 +109,12 @@ browser and inspect with devtools.
 
 ## Where they actually differ
 
-| | HyperFrames | Remotion |
-| --- | --- | --- |
-| What you write | HTML, CSS, and JavaScript | React and TypeScript |
-| How motion is timed | The renderer pauses your animation and *seeks* it — jumps it to an exact moment — before capturing each frame | Your code reads the frame number and returns the values for that frame |
-| Existing web material | HTML, CSS, and a GSAP or Lottie animation usually drop in close to as-is | Rewritten as React components |
-| License | [Apache 2.0](https://github.com/heygen-com/hyperframes/blob/main/LICENSE) | Its own license — free for individuals and companies up to three people, paid above that. Check the [current terms](https://www.remotion.pro/license) |
+|                       | HyperFrames                                                                                                   | Remotion                                                                                                                                              |
+| --------------------- | ------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------- |
+| What you write        | HTML, CSS, and JavaScript                                                                                     | React and TypeScript                                                                                                                                  |
+| How motion is timed   | The renderer pauses your animation and _seeks_ it — jumps it to an exact moment — before capturing each frame | Your code reads the frame number and returns the values for that frame                                                                                |
+| Existing web material | HTML, CSS, and a GSAP or Lottie animation usually drop in close to as-is                                      | Rewritten as React components                                                                                                                         |
+| License               | [Apache 2.0](https://github.com/heygen-com/hyperframes/blob/main/LICENSE)                                     | Its own license — free for individuals and companies up to three people, paid above that. Check the [current terms](https://www.remotion.pro/license) |
 
 The seeking model is the interesting one. Because HyperFrames drives the
 animation rather than watching a clock, GSAP, Web Animations, Lottie, and other

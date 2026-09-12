@@ -3,26 +3,33 @@ title: Vocabulary that changes output
 description: "Natural-language adjectives the skills map to specific framework settings — easing, captions, transitions, audio, voices."
 ---
 
-[The dial](/prompting/specification-dial) told you *how much* to specify; this page is the word list for the cheap-precision setting — style tokens that cost you nothing to say and remove real ambiguity. The skills map natural-language adjectives to specific framework settings. Using the right word gets you the right result without specifying technical details.
+[The dial](/prompting/specification-dial) told you _how much_ to specify; this page is the word list for the cheap-precision setting — style tokens that cost you nothing to say and remove real ambiguity. The skills map natural-language adjectives to specific framework settings. Using the right word gets you the right result without specifying technical details.
 
 ## Motion & easing
 
-Describe how motion should *feel* and the agent picks the matching GSAP ease:
+Describe how motion should _feel_ and the agent picks the matching GSAP ease:
 
-| Say this    | Agent uses       | Feels like                     |
-| ----------- | ---------------- | ------------------------------ |
-| smooth      | `power2.out`     | Natural deceleration           |
-| snappy      | `power4.out`     | Quick and decisive             |
-| bouncy      | `back.out`       | Overshoots then settles        |
-| springy     | `elastic.out`    | Oscillates into place          |
-| dramatic    | `expo.out`       | Fast start, long glide         |
-| dreamy      | `sine.inOut`     | Slow, symmetrical              |
+| Say this | Agent uses    | Feels like              |
+| -------- | ------------- | ----------------------- |
+| smooth   | `power2.out`  | Natural deceleration    |
+| snappy   | `power4.out`  | Quick and decisive      |
+| bouncy   | `back.out`    | Overshoots then settles |
+| springy  | `elastic.out` | Oscillates into place   |
+| dramatic | `expo.out`    | Fast start, long glide  |
+| dreamy   | `sine.inOut`  | Slow, symmetrical       |
 
 **Timing shorthand:** fast (0.2s) = energy, medium (0.4s) = professional, slow (0.6s) = luxury, very slow (1–2s) = cinematic.
 
 Each word, rendered — the same move, only the ease changes:
 
-<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", margin: "1.25rem 0" }}>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "1rem",
+    margin: "1.25rem 0",
+  }}
+>
   <figure style={{ margin: 0 }}>
     <video
       src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/ease-power2-out.mp4#t=0.1"
@@ -115,24 +122,30 @@ Each word, rendered — the same move, only the ease changes:
   </figure>
 </div>
 
-
 ## Camera language
 
 Compositions have no physical camera, but camera words translate directly into scene transforms (or real camera moves in Three.js scenes):
 
-| Say this            | Agent builds                                              |
-| ------------------- | --------------------------------------------------------- |
-| slow push-in        | 4–8% scale increase across the scene, gentle ease          |
-| pull back / widen   | scale decrease, often paired with elements entering        |
-| pan across          | horizontal translate of the scene layer                    |
-| drone orbit         | continuous camera orbit (Three.js scenes)                  |
-| crane down/up       | vertical camera drift combined with a look-at shift        |
-| whip to             | fast blurred slide into the next framing                   |
-| parallax            | layers translating at different rates for depth            |
+| Say this          | Agent builds                                        |
+| ----------------- | --------------------------------------------------- |
+| slow push-in      | 4–8% scale increase across the scene, gentle ease   |
+| pull back / widen | scale decrease, often paired with elements entering |
+| pan across        | horizontal translate of the scene layer             |
+| drone orbit       | continuous camera orbit (Three.js scenes)           |
+| crane down/up     | vertical camera drift combined with a look-at shift |
+| whip to           | fast blurred slide into the next framing            |
+| parallax          | layers translating at different rates for depth     |
 
 The same scene under each camera word:
 
-<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", margin: "1.25rem 0" }}>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "1rem",
+    margin: "1.25rem 0",
+  }}
+>
   <figure style={{ margin: 0 }}>
     <video
       src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/camera-push-in.mp4#t=0.1"
@@ -240,39 +253,38 @@ The same scene under each camera word:
   </figure>
 </div>
 
-
 ## Depth language
 
-| Say this               | Agent builds                                             |
-| ---------------------- | -------------------------------------------------------- |
+| Say this                     | Agent builds                                             |
+| ---------------------------- | -------------------------------------------------------- |
 | near-lens / foreground bokeh | large, heavily-blurred elements drifting close to camera |
-| depth planes           | 2–3 layers moving at different speeds                     |
-| out-of-focus background | blurred, slower-moving back layer                        |
-| shallow depth of field | sharp subject, blurred everything-else                    |
+| depth planes                 | 2–3 layers moving at different speeds                    |
+| out-of-focus background      | blurred, slower-moving back layer                        |
+| shallow depth of field       | sharp subject, blurred everything-else                   |
 
 ## Pacing language
 
-| Say this          | Agent builds                                        |
-| ----------------- | --------------------------------------------------- |
-| punchy cuts       | 1.5–4s per idea, hard cuts, overlapping entrances    |
-| cinematic holds   | longer beats with ambient idle motion                |
-| beat-synced       | cuts and accents on the music's beat grid            |
-| breathing room    | a held moment before the next beat starts            |
-| ambient idle      | 1–2% breathing scale + slow drift during holds       |
+| Say this        | Agent builds                                      |
+| --------------- | ------------------------------------------------- |
+| punchy cuts     | 1.5–4s per idea, hard cuts, overlapping entrances |
+| cinematic holds | longer beats with ambient idle motion             |
+| beat-synced     | cuts and accents on the music's beat grid         |
+| breathing room  | a held moment before the next beat starts         |
+| ambient idle    | 1–2% breathing scale + slow drift during holds    |
 
 ## Caption tones
 
-*The full chapter: [Caption styles](/prompting/captions-catalog).*
+_The full chapter: [Caption styles](/prompting/captions-catalog)._
 
-Describe the *energy* of your captions and the agent picks matching typography, size, and animation:
+Describe the _energy_ of your captions and the agent picks matching typography, size, and animation:
 
-| Tone         | Typography             | Animation    | Size range |
-| ------------ | ---------------------- | ------------ | ---------- |
-| Hype         | Heavy weight fonts     | Scale-pop    | 72–96px    |
-| Corporate    | Clean sans-serif       | Fade + slide | 56–72px    |
-| Tutorial     | Monospace              | Typewriter   | 48–64px    |
-| Storytelling | Serif                  | Slow fade    | 44–56px    |
-| Social       | Rounded, playful       | Bounce       | 56–80px    |
+| Tone         | Typography         | Animation    | Size range |
+| ------------ | ------------------ | ------------ | ---------- |
+| Hype         | Heavy weight fonts | Scale-pop    | 72–96px    |
+| Corporate    | Clean sans-serif   | Fade + slide | 56–72px    |
+| Tutorial     | Monospace          | Typewriter   | 48–64px    |
+| Storytelling | Serif              | Slow fade    | 44–56px    |
+| Social       | Rounded, playful   | Bounce       | 56–80px    |
 
 ```
 "Hype-style captions with scale-pop"
@@ -290,15 +302,15 @@ Per-word styling also works:
 
 ## Transitions
 
-*The full chapter: [Transitions](/prompting/transitions).*
+_The full chapter: [Transitions](/prompting/transitions)._
 
 Every multi-scene composition benefits from transitions. Describe the energy level:
 
-| Energy  | CSS option       | Shader option       |
-| ------- | ---------------- | ------------------- |
-| Calm    | Blur crossfade   | Cross-warp morph    |
-| Medium  | Push slide       | Whip pan            |
-| High    | Zoom through     | Glitch, ridged burn |
+| Energy | CSS option     | Shader option       |
+| ------ | -------------- | ------------------- |
+| Calm   | Blur crossfade | Cross-warp morph    |
+| Medium | Push slide     | Whip pan            |
+| High   | Zoom through   | Glitch, ridged burn |
 
 Or describe by mood:
 
@@ -311,16 +323,16 @@ Or describe by mood:
 
 ## Audio-reactive animation
 
-*The full chapter: [Media and audio](/prompting/media-and-audio).*
+_The full chapter: [Media and audio](/prompting/media-and-audio)._
 
 Map audio frequency bands to visual properties. The agent uses these defaults:
 
-| Audio band | Maps to   | Visual effect       |
-| ---------- | --------- | ------------------- |
-| Bass       | `scale`   | Pulse on the beat   |
-| Treble     | `glow`    | Shimmer intensity   |
-| Amplitude  | `opacity` | Breathing           |
-| Mids       | `shape`   | Morphing            |
+| Audio band | Maps to   | Visual effect     |
+| ---------- | --------- | ----------------- |
+| Bass       | `scale`   | Pulse on the beat |
+| Treble     | `glow`    | Shimmer intensity |
+| Amplitude  | `opacity` | Breathing         |
+| Mids       | `shape`   | Morphing          |
 
 ```
 "Make the text pulse with the beat"
@@ -336,13 +348,13 @@ Map audio frequency bands to visual properties. The agent uses these defaults:
 
 Hand-drawn emphasis effects for text:
 
-| Mode        | Effect             | Best for      |
-| ----------- | ------------------ | ------------- |
-| `highlight` | Marker sweep       | Key phrases   |
-| `circle`    | Hand-drawn ellipse | Single words  |
-| `burst`     | Radiating lines    | Hype moments  |
-| `scribble`  | Chaotic scratch    | Crossing out  |
-| `sketchout` | Rectangle outline  | Callouts      |
+| Mode        | Effect             | Best for     |
+| ----------- | ------------------ | ------------ |
+| `highlight` | Marker sweep       | Key phrases  |
+| `circle`    | Hand-drawn ellipse | Single words |
+| `burst`     | Radiating lines    | Hype moments |
+| `scribble`  | Chaotic scratch    | Crossing out |
+| `sketchout` | Rectangle outline  | Callouts     |
 
 ```
 "Add a marker highlight sweep on 'revolutionary'"
@@ -352,7 +364,14 @@ Hand-drawn emphasis effects for text:
 
 The five modes on the same sentence:
 
-<div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: "1rem", margin: "1.25rem 0" }}>
+<div
+  style={{
+    display: "grid",
+    gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
+    gap: "1rem",
+    margin: "1.25rem 0",
+  }}
+>
   <figure style={{ margin: 0 }}>
     <video
       src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/marker-highlight.mp4#t=0.1"
@@ -434,11 +453,11 @@ The five modes on the same sentence:
 
 TTS runs locally via Kokoro (no API key needed). Describe the content and the agent picks a voice, or request one directly:
 
-| Content type  | Recommended voices         |
-| ------------- | -------------------------- |
-| Product demo  | `af_heart`, `af_nova`      |
-| Tutorial      | `am_adam`, `bf_emma`       |
-| Marketing     | `af_sky`, `am_michael`     |
+| Content type | Recommended voices     |
+| ------------ | ---------------------- |
+| Product demo | `af_heart`, `af_nova`  |
+| Tutorial     | `am_adam`, `bf_emma`   |
+| Marketing    | `af_sky`, `am_michael` |
 
 ```
 "Generate narration for this script"
@@ -448,13 +467,13 @@ TTS runs locally via Kokoro (no API key needed). Describe the content and the ag
 
 ## Rendering quality
 
-*The full chapter: [Rendering and output](/prompting/rendering-and-output).*
+_The full chapter: [Rendering and output](/prompting/rendering-and-output)._
 
-| Quality    | Use for                  |
-| ---------- | ------------------------ |
-| `draft`    | Fast iteration           |
-| `standard` | Review and feedback      |
-| `high`     | Final delivery           |
+| Quality    | Use for             |
+| ---------- | ------------------- |
+| `draft`    | Fast iteration      |
+| `standard` | Review and feedback |
+| `high`     | Final delivery      |
 
 ```
 "Quick draft render"
@@ -462,4 +481,4 @@ TTS runs locally via Kokoro (no API key needed). Describe the content and the ag
 "Export as transparent WebM"
 ```
 
-*Next: [High-fidelity looks](/prompting/visual-specs) — past single words, into full visual specs that carry an entire look.*
+_Next: [High-fidelity looks](/prompting/visual-specs) — past single words, into full visual specs that carry an entire look._

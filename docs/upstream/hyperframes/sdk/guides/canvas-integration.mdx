@@ -6,7 +6,9 @@ description: "Connect a same-origin composition iframe to the SDK for hit-testin
 The SDK's `PreviewAdapter` interface decouples the editing model from the visual surface. For browser-based editors, `createIframePreviewAdapter` bridges the SDK to a same-origin `<iframe>` containing the composition, giving you synchronous hit-testing, 60fps drag preview, and selection management — all without touching the model until the user commits.
 
 <Note>
-  The iframe must be same-origin (e.g. `srcdoc` or a `blob:` URL). Cross-origin iframe access throws a `DOMException`; the adapter does not guard this, so enforcing same-origin is the caller's responsibility.
+  The iframe must be same-origin (e.g. `srcdoc` or a `blob:` URL). Cross-origin iframe access throws
+  a `DOMException`; the adapter does not guard this, so enforcing same-origin is the caller's
+  responsibility.
 </Note>
 
 ## Embedding the composition
@@ -46,7 +48,8 @@ detach();
 `attachSync` does an immediate full sync of `comp`'s current state first (so re-opening a composition with existing overrides isn't a blank iframe), then subscribes to the same `patch` event your other listeners use. You don't need to write your own mirroring code, and you don't need a separate mechanism for undo/redo — both flow through the same subscription. Script-tag edits (GSAP script rewrites) are the one thing it never mirrors, since replaying a live `<script>` tag doesn't re-execute it.
 
 <Note>
-  Calling `attachSync` again with a different `comp` detaches the previous subscription first — useful if your editor swaps which composition an iframe is bound to without remounting it.
+  Calling `attachSync` again with a different `comp` detaches the previous subscription first —
+  useful if your editor swaps which composition an iframe is bound to without remounting it.
 </Note>
 
 ## Hit-testing: finding what the user clicked
@@ -83,14 +86,11 @@ import { resolveNearestHfElement } from "@hyperframes/sdk";
 
 // Inside the iframe's own document context:
 iframeDoc.addEventListener("click", (e) => {
-  const result = resolveNearestHfElement(
-    e.target as Element | null,
-    (el) => {
-      // Return false to treat this element as invisible and continue the walk.
-      const style = el.ownerDocument.defaultView?.getComputedStyle(el);
-      return style ? parseFloat(style.opacity) !== 0 : true;
-    },
-  );
+  const result = resolveNearestHfElement(e.target as Element | null, (el) => {
+    // Return false to treat this element as invisible and continue the walk.
+    const style = el.ownerDocument.defaultView?.getComputedStyle(el);
+    return style ? parseFloat(style.opacity) !== 0 : true;
+  });
   if (result) {
     // result.id, result.tag
   }
@@ -128,29 +128,37 @@ function updatePassThrough(clientX: number, clientY: number, altKey: boolean) {
   // Alt is the escape hatch for grabbing the composition itself in an empty region.
   // Every uncertain case — no point, still loading, adapter without the method — is
   // falsy here, so the composition stays clickable rather than vanishing.
-  const passThrough =
-    !!point && !altKey && !!preview.isProvablyEmptyAt?.(point.x, point.y);
+  const passThrough = !!point && !altKey && !!preview.isProvablyEmptyAt?.(point.x, point.y);
   wrapper.style.pointerEvents = passThrough ? "none" : "";
 }
 ```
 
 <Warning>
-  Listen on the **host document**, not on the wrapper or the iframe. The first time this
-  sets `pointer-events: none` the wrapper stops receiving events, so a listener attached
-  there can never turn it back on — the pass-through state sticks.
+  Listen on the **host document**, not on the wrapper or the iframe. The first time this sets
+  `pointer-events: none` the wrapper stops receiving events, so a listener attached there can never
+  turn it back on — the pass-through state sticks.
 </Warning>
 
 Three things are easy to get wrong here:
 
 <Steps>
   <Step title="Decide before the press, not during it">
-    The browser picks an event's target before any handler runs, so flipping `pointer-events` inside `mousedown` cannot retarget the click already in flight. Sample the pointer position on `mousemove` and keep the decision current.
+    The browser picks an event's target before any handler runs, so flipping `pointer-events` inside
+    `mousedown` cannot retarget the click already in flight. Sample the pointer position on
+    `mousemove` and keep the decision current.
   </Step>
   <Step title="Re-evaluate on every frame, not only on movement">
-    Animated artwork moves under a stationary cursor. Anything that can change the answer — pointer movement, the Alt key, and the playhead — has to re-run the query from the last known position. Coalesce those triggers into one `requestAnimationFrame` query rather than answering each separately, and short-circuit before the query when the pointer is outside the composition's box: it is a walk over the document, so it does not belong on an ungated per-event path.
+    Animated artwork moves under a stationary cursor. Anything that can change the answer — pointer
+    movement, the Alt key, and the playhead — has to re-run the query from the last known position.
+    Coalesce those triggers into one `requestAnimationFrame` query rather than answering each
+    separately, and short-circuit before the query when the pointer is outside the composition's
+    box: it is a walk over the document, so it does not belong on an ungated per-event path.
   </Step>
   <Step title="Let the polarity do the work">
-    `isProvablyEmptyAt` is true only when it has established there is no ink. A document that hasn't loaded, an adapter without the method, and a point you couldn't map all come back falsy — which keeps the composition clickable. Don't invert it into a "does it paint" variable; that reintroduces the bug the polarity removes.
+    `isProvablyEmptyAt` is true only when it has established there is no ink. A document that hasn't
+    loaded, an adapter without the method, and a point you couldn't map all come back falsy — which
+    keeps the composition clickable. Don't invert it into a "does it paint" variable; that
+    reintroduces the bug the polarity removes.
   </Step>
 </Steps>
 

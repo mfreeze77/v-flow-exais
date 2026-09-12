@@ -304,7 +304,10 @@ import { VariablesExplorer } from "/snippets/variables-explorer.jsx";
 
 ## Install
 
-<InstallCommand command="npx hyperframes add zoom-through-transition" item="zoom-through-transition" />
+<InstallCommand
+  command="npx hyperframes add zoom-through-transition"
+  item="zoom-through-transition"
+/>
 
 That writes one file: `compositions/components/zoom-through-transition.html`.
 
@@ -313,12 +316,12 @@ That writes one file: `compositions/components/zoom-through-transition.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `from-label` | `Before` | string | Caption on the outgoing scene, the one on screen when the transition starts. |
-| `to-label` | `Zoom Through Transition` | string | Caption on the incoming scene, the one the timeline wipes into frame. |
-| `depth` | `standard` | `close`, `standard`, `far` | Multiplies how far both scenes travel and how hard the outgoing one blurs, so the push covers a shorter or longer run in the same time. |
-| `accent` | `blue` | `blue`, `green`, `violet` | Theme token for the ring marking the incoming scene. Blue rides --accent, green --brand, violet --accent-2; each falls back to a neutral hairline. |
+| Variable     | Default                   | Accepts                    | What it does                                                                                                                                       |
+| ------------ | ------------------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `from-label` | `Before`                  | string                     | Caption on the outgoing scene, the one on screen when the transition starts.                                                                       |
+| `to-label`   | `Zoom Through Transition` | string                     | Caption on the incoming scene, the one the timeline wipes into frame.                                                                              |
+| `depth`      | `standard`                | `close`, `standard`, `far` | Multiplies how far both scenes travel and how hard the outgoing one blurs, so the push covers a shorter or longer run in the same time.            |
+| `accent`     | `blue`                    | `blue`, `green`, `violet`  | Theme token for the ring marking the incoming scene. Blue rides --accent, green --brand, violet --accent-2; each falls back to a neutral hairline. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -106,12 +106,16 @@ Update a composition variable. Font variables require a `FontValue` object `{ na
 
 ```typescript
 comp.setVariableValue("brandColor", "#6C5CE7");
-comp.setVariableValue("brandFont", { name: "Inter", source: "https://fonts.googleapis.com/css2?family=Inter" });
+comp.setVariableValue("brandFont", {
+  name: "Inter",
+  source: "https://fonts.googleapis.com/css2?family=Inter",
+});
 comp.setVariableValue("heroImage", { url: "/assets/hero.jpg", fit: "cover" });
 ```
 
 <Note>
-  `setVariableValue` only updates a variable's current value — it refuses to create an undeclared variable. Use `declareVariable` to create one.
+  `setVariableValue` only updates a variable's current value — it refuses to create an undeclared
+  variable. Use `declareVariable` to create one.
 </Note>
 
 ### `getVariableValue`
@@ -172,7 +176,12 @@ composition root element", not necessarily "add an `<html>`".)
 
 ```typescript
 comp.declareVariable({ id: "title", type: "string", label: "Title", default: "Hello" });
-comp.updateVariableDeclaration("title", { id: "title", type: "string", label: "Headline", default: "Hello" });
+comp.updateVariableDeclaration("title", {
+  id: "title",
+  type: "string",
+  label: "Headline",
+  default: "Hello",
+});
 comp.removeVariableDeclaration("title");
 ```
 
@@ -234,9 +243,9 @@ Apply a sparse timing map in one batch. All entries are dispatched inside a sing
 
 ```typescript
 comp.setElementTiming({
-  "hf-title":   { start: 0,   duration: 2   },
+  "hf-title": { start: 0, duration: 2 },
   "hf-caption": { start: 1.5, duration: 1.5 },
-  "hf-cta":     { start: 3,   duration: 2   },
+  "hf-cta": { start: 3, duration: 2 },
 });
 ```
 
@@ -314,8 +323,8 @@ const animId = comp.addWithKeyframes(
   0.5,
   1.2,
   [
-    { percentage: 0,   properties: { opacity: 0, scale: 0.8 } },
-    { percentage: 100, properties: { opacity: 1, scale: 1   } },
+    { percentage: 0, properties: { opacity: 0, scale: 0.8 } },
+    { percentage: 100, properties: { opacity: 1, scale: 1 } },
   ],
   "power2.out",
 );
@@ -337,16 +346,10 @@ replaceWithKeyframes(
 Atomically remove an existing tween and add a replacement keyframed tween. Returns the replacement's `animationId`. Because position-derived IDs renumber after the removal, the returned ID may differ from the input `animationId` — treat the return value as the new canonical ID.
 
 ```typescript
-const newId = comp.replaceWithKeyframes(
-  oldAnimId,
-  "#hf-card",
-  1.0,
-  0.8,
-  [
-    { percentage: 0,   properties: { x: -100 } },
-    { percentage: 100, properties: { x: 0     } },
-  ],
-);
+const newId = comp.replaceWithKeyframes(oldAnimId, "#hf-card", 1.0, 0.8, [
+  { percentage: 0, properties: { x: -100 } },
+  { percentage: 100, properties: { x: 0 } },
+]);
 ```
 
 ### `undo` / `redo`
@@ -396,7 +399,8 @@ const images = elements.filter((el) => el.tag === "img");
 ```
 
 <Note>
-  For elements inside inlined sub-compositions, use `scopedId` (e.g. `"hf-host/hf-leaf"`) as the dispatch target, not `id`. Top-level elements have `scopedId === id`.
+  For elements inside inlined sub-compositions, use `scopedId` (e.g. `"hf-host/hf-leaf"`) as the
+  dispatch target, not `id`. Top-level elements have `scopedId === id`.
 </Note>
 
 ### `getRootElements`
@@ -434,18 +438,18 @@ find(query: FindQuery): string[]
 
 Search elements by structured query. Returns an array of `scopedId` strings for matching elements. All fields in `FindQuery` are optional and combined with AND logic.
 
-| Field | Type | Description |
-|-------|------|-------------|
-| `tag` | `string` | Exact HTML tag name, lowercase (`"div"`, `"img"`). |
-| `text` | `string` | Substring match against the element's `text` field. |
-| `name` | `string` | Exact match against `data-name` attribute. |
-| `track` | `number` | Exact track index (`data-track-index`). |
+| Field         | Type     | Description                                                               |
+| ------------- | -------- | ------------------------------------------------------------------------- |
+| `tag`         | `string` | Exact HTML tag name, lowercase (`"div"`, `"img"`).                        |
+| `text`        | `string` | Substring match against the element's `text` field.                       |
+| `name`        | `string` | Exact match against `data-name` attribute.                                |
+| `track`       | `number` | Exact track index (`data-track-index`).                                   |
 | `composition` | `string` | Filter to elements inside a specific sub-composition host by its `hf-id`. |
 
 ```typescript
 const headlineIds = comp.find({ name: "headline" });
-const allImages   = comp.find({ tag: "img" });
-const track1Ids   = comp.find({ track: 1 });
+const allImages = comp.find({ tag: "img" });
+const track1Ids = comp.find({ track: 1 });
 ```
 
 ### `getAllAnimationIds`
@@ -638,7 +642,9 @@ comp.on("patch", ({ patches, inversePatches, origin, opTypes }) => {
 ```
 
 <Warning>
-  Always guard against `ORIGIN_APPLY_PATCHES` in `patch` listeners. Failing to skip that origin causes an infinite loop when your host replays inverse patches back into the SDK via `applyPatches()`.
+  Always guard against `ORIGIN_APPLY_PATCHES` in `patch` listeners. Failing to skip that origin
+  causes an infinite loop when your host replays inverse patches back into the SDK via
+  `applyPatches()`.
 </Warning>
 
 ### `persist:error`
@@ -734,7 +740,8 @@ comp.dispose();
 ```
 
 <Note>
-  Always call `dispose()` when you are done with a session. Skipping it leaks listeners attached to the preview adapter.
+  Always call `dispose()` when you are done with a session. Skipping it leaks listeners attached to
+  the preview adapter.
 </Note>
 
 ---
@@ -751,10 +758,18 @@ comp.dispose();
   <Card title="Types reference" icon="file-code" href="/sdk/reference/types">
     All exported TypeScript types — ElementSnapshot, PatchEvent, GsapTweenSpec, and more.
   </Card>
-  <Card title="Querying and editing" icon="magnifying-glass" href="/sdk/guides/querying-and-editing">
+  <Card
+    title="Querying and editing"
+    icon="magnifying-glass"
+    href="/sdk/guides/querying-and-editing"
+  >
     Practical guide to find, getElements, and typed edits.
   </Card>
-  <Card title="Undo, redo, and patches" icon="arrow-uturn-left" href="/sdk/guides/undo-redo-and-patches">
+  <Card
+    title="Undo, redo, and patches"
+    icon="arrow-uturn-left"
+    href="/sdk/guides/undo-redo-and-patches"
+  >
     History, patch events, ORIGIN_APPLY_PATCHES guard.
   </Card>
   <Card title="Embedded override mode" icon="layers" href="/sdk/guides/embedded-override-mode">

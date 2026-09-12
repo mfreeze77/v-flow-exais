@@ -21,8 +21,6 @@
     "tree_content_sha256": "78d8162e089054271d2d86aa9965660b9a79177d32e522815dc0f325eda7c2c9",
     "tree_digest_algorithm": "sha256(concat sorted path + NUL + kind + NUL + raw_file_sha256 + LF)",
     "bytes_uncompressed_files": 199075279,
-    "symlinks": [
-      "packages/producer/tests/render-symlinked-assets/src/shared"
-    ]
+    "symlinks": ["packages/producer/tests/render-symlinked-assets/src/shared"]
   }
 }

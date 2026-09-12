@@ -14,6 +14,7 @@ Start with the symptom you can see. Keep the exact error and note whether the pr
     ```
 
     This checks the runtime, browser, FFmpeg, and other local requirements.
+
   </Step>
   <Step title="Check the project">
     ```bash
@@ -27,6 +28,7 @@ Start with the symptom you can see. Keep the exact error and note whether the pr
     ```bash
     npx hyperframes snapshot --at 0,3,8
     ```
+
   </Step>
   <Step title="Give the agent useful context">
     Copy the complete error and add what you did, what you expected, and what must not change.
@@ -68,6 +70,7 @@ sudo apt install ffmpeg
 # https://ffmpeg.org/download.html#build-windows
 # Then add its bin directory to PATH.
 ```
+
 </CodeGroup>
 
 Verify with `ffmpeg -version`, then rerun `npx hyperframes doctor`.
@@ -149,9 +152,7 @@ A short animation timeline can make a project end before the underlying media. E
 Timed visible elements need `class="clip"` as well as their timing attributes.
 
 ```html
-<h1 class="clip" data-start="2" data-duration="5" data-track-index="0">
-  Hello
-</h1>
+<h1 class="clip" data-start="2" data-duration="5" data-track-index="0">Hello</h1>
 ```
 
 `npx hyperframes lint` normally catches this.

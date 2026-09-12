@@ -1671,29 +1671,29 @@ Move it in time with `data-start`. Put it on a different timeline row with
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `contactName` | `Rachel` | string | Name pill in the chat header; the avatar shows its first letter. |
-| `questionMessage` | `what r u using for the launch video??` | string | First incoming message that establishes what the conversation is about. |
-| `teaserMessage` | `wait look 👀` | string | First typed outgoing reply before the shared link card. |
-| `cardImage` | `assets/card-image.jpg` | image | Preview image on the shared link card. |
-| `cardTitle` | `HyperFrames | Write HTML, render pixel-perfect video` | string | Title of the shared link card. It leads with the real name of the brand this video promotes. |
-| `cardDomain` | `hyperframes.heygen.com` | string | Domain of the brand this video promotes, under the card title. Use the real domain. |
-| `reactionMessage` | `OMG IT'S HTML` | string | Incoming reaction immediately after the shared link. |
-| `reactionEmoji` | `🤯🤯🤯` | string | Emoji-only reaction after the shared link. |
-| `benefitMessage` | `renders in 4K. no editor` | string | Typed outgoing reply that names the primary benefit. |
-| `discoveryMessage` | `where did u find this` | string | Incoming question asking where the product was found. |
-| `sourceMessage` | `on heygen` | string | Typed outgoing reply naming where to find the brand this video promotes. |
-| `workflowMessage` | `u just write plain html tags` | string | Typed outgoing reply describing how the product works. |
-| `ownershipMessage` | `the code is yours forever` | string | Typed outgoing reply that closes the product explanation. |
-| `installMessage` | `installing rn` | string | Incoming message expressing intent to try the product. |
-| `thanksMessage` | `ty bestie 💚` | string | Final incoming message in the conversation. |
-| `brandLogo` | `assets/hyperframes-logo-black.svg` | image | Transparent horizontal wordmark of the brand this video promotes, on the closing card. |
-| `ecProof` | `12,000+ creators` | string | Social-proof line under the stars. Claim only a figure the brand itself publishes; use neutral copy when there is none. |
-| `ecFeature1` | `Write|plain HTML` | string | First two-line benefit; use | to break the line. |
-| `ecFeature2` | `Render|pixel-perfect` | string | Second two-line benefit; use | to break the line. |
-| `ecFeature3` | `Own|every line` | string | Third two-line benefit; use | to break the line. |
-| `ecCta` | `Start rendering free` | string | Label on the closing card button. |
+| Variable           | Default                                 | Accepts                                 | What it does                                                                                                            |
+| ------------------ | --------------------------------------- | --------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- | ------------------ |
+| `contactName`      | `Rachel`                                | string                                  | Name pill in the chat header; the avatar shows its first letter.                                                        |
+| `questionMessage`  | `what r u using for the launch video??` | string                                  | First incoming message that establishes what the conversation is about.                                                 |
+| `teaserMessage`    | `wait look 👀`                          | string                                  | First typed outgoing reply before the shared link card.                                                                 |
+| `cardImage`        | `assets/card-image.jpg`                 | image                                   | Preview image on the shared link card.                                                                                  |
+| `cardTitle`        | `HyperFrames                            | Write HTML, render pixel-perfect video` | string                                                                                                                  | Title of the shared link card. It leads with the real name of the brand this video promotes. |
+| `cardDomain`       | `hyperframes.heygen.com`                | string                                  | Domain of the brand this video promotes, under the card title. Use the real domain.                                     |
+| `reactionMessage`  | `OMG IT'S HTML`                         | string                                  | Incoming reaction immediately after the shared link.                                                                    |
+| `reactionEmoji`    | `🤯🤯🤯`                                | string                                  | Emoji-only reaction after the shared link.                                                                              |
+| `benefitMessage`   | `renders in 4K. no editor`              | string                                  | Typed outgoing reply that names the primary benefit.                                                                    |
+| `discoveryMessage` | `where did u find this`                 | string                                  | Incoming question asking where the product was found.                                                                   |
+| `sourceMessage`    | `on heygen`                             | string                                  | Typed outgoing reply naming where to find the brand this video promotes.                                                |
+| `workflowMessage`  | `u just write plain html tags`          | string                                  | Typed outgoing reply describing how the product works.                                                                  |
+| `ownershipMessage` | `the code is yours forever`             | string                                  | Typed outgoing reply that closes the product explanation.                                                               |
+| `installMessage`   | `installing rn`                         | string                                  | Incoming message expressing intent to try the product.                                                                  |
+| `thanksMessage`    | `ty bestie 💚`                          | string                                  | Final incoming message in the conversation.                                                                             |
+| `brandLogo`        | `assets/hyperframes-logo-black.svg`     | image                                   | Transparent horizontal wordmark of the brand this video promotes, on the closing card.                                  |
+| `ecProof`          | `12,000+ creators`                      | string                                  | Social-proof line under the stars. Claim only a figure the brand itself publishes; use neutral copy when there is none. |
+| `ecFeature1`       | `Write                                  | plain HTML`                             | string                                                                                                                  | First two-line benefit; use                                                                  | to break the line. |
+| `ecFeature2`       | `Render                                 | pixel-perfect`                          | string                                                                                                                  | Second two-line benefit; use                                                                 | to break the line. |
+| `ecFeature3`       | `Own                                    | every line`                             | string                                                                                                                  | Third two-line benefit; use                                                                  | to break the line. |
+| `ecCta`            | `Start rendering free`                  | string                                  | Label on the closing card button.                                                                                       |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

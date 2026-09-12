@@ -27,6 +27,7 @@ Accept downloaded folders or ZIPs without requiring either upstream Git history 
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### H-PKG — Workspace, runtime and build baseline
 
 - `hyperframes-main/package.json`
@@ -69,7 +70,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-001/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-002 — Create a complete source disposition and import ledger
@@ -94,6 +94,7 @@ Account for every source file before copying or retiring anything.
 - `archify-main/scripts/stage-clean-skill.mjs`
 - `archify-main/scripts/write-deterministic-zip.mjs`
 - `archify-main/scripts/package-smoke.mjs`
+
 ### H-PKG — Workspace, runtime and build baseline
 
 - `hyperframes-main/package.json`
@@ -101,6 +102,7 @@ Account for every source file before copying or retiring anything.
 - `hyperframes-main/packages/cli/package.json`
 - `hyperframes-main/packages/producer/package.json`
 - `hyperframes-main/packages/sdk-playground/package.json`
+
 ### H-CI — Existing build/release workflows and checks
 
 - `hyperframes-main/.github/workflows/ci.yml`
@@ -143,7 +145,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-002/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-003 — Initialize and populate the new owned monorepo
@@ -167,6 +168,7 @@ Produce one self-contained working repository from snapshots while keeping the i
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -174,6 +176,7 @@ Produce one self-contained working repository from snapshots while keeping the i
 - `archify-main/scripts/stage-clean-skill.mjs`
 - `archify-main/scripts/write-deterministic-zip.mjs`
 - `archify-main/scripts/package-smoke.mjs`
+
 ### H-PKG — Workspace, runtime and build baseline
 
 - `hyperframes-main/package.json`
@@ -217,7 +220,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-003/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-004 — Retain licenses, notices and asset-rights provenance
@@ -240,12 +242,14 @@ Preserve original attribution while establishing a deliberate license policy for
 - `archify-main/LICENSE`
 - `archify-main/THIRD_PARTY_NOTICES.md`
 - `archify-main/archify/THIRD_PARTY_NOTICES.md`
+
 ### H-LICENSE — License, contribution and security records
 
 - `hyperframes-main/LICENSE`
 - `hyperframes-main/CREDITS.md`
 - `hyperframes-main/SECURITY.md`
 - `hyperframes-main/CONTRIBUTING.md`
+
 ### A-THEME — Brand registry, locale and presets
 
 - `archify-main/archify/renderers/shared/brand-marks.mjs`
@@ -290,7 +294,6 @@ Licensing metadata is a release gate, not a legal clearance claim; unresolved ri
 - `evidence/tickets/AFM-004/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-005 — Quarantine inherited publication, hooks and deployment
@@ -315,6 +318,7 @@ Prevent a raw source import from executing or publishing under upstream identiti
 - `hyperframes-main/.github/workflows/windows-render.yml`
 - `hyperframes-main/scripts/check-workspace-contracts.mjs`
 - `hyperframes-main/scripts/check-package-cycles.mjs`
+
 ### H-SKILL — Coding agent instructions and bundled skills
 
 - `hyperframes-main/AGENTS.md`
@@ -322,6 +326,7 @@ Prevent a raw source import from executing or publishing under upstream identiti
 - `hyperframes-main/skills/pr-to-video/SKILL.md`
 - `hyperframes-main/skills-manifest.json`
 - `hyperframes-main/scripts/check-skill-mirror.mjs`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -365,7 +370,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-005/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-006 — Preserve source paths, modes and cross-platform filesystem behavior
@@ -390,11 +394,13 @@ Keep source movement safe across Windows, macOS and Linux.
 - `archify-main/scripts/stage-clean-skill.mjs`
 - `archify-main/scripts/write-deterministic-zip.mjs`
 - `archify-main/scripts/package-smoke.mjs`
+
 ### A-SHARED — Current IO boundary and semantic hooks
 
 - `archify-main/archify/renderers/shared/cli.mjs`
 - `archify-main/archify/renderers/shared/output-path.mjs`
 - `archify-main/archify/renderers/shared/diagnostics.mjs`
+
 ### H-FILES — File edit ingress and safe path resolution
 
 - `hyperframes-main/packages/studio-server/src/routes/files.ts`
@@ -437,7 +443,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-006/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-007 — Record upstream baselines and selective-update procedure
@@ -461,6 +466,7 @@ Maintain two upstream ancestries as provenance without making them separate runt
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -504,7 +510,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-007/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-008 — Create feature-preservation and baseline-failure registers
@@ -529,6 +534,7 @@ Make source retention, functionality and actual integration separately measurabl
 - `archify-main/archify/test/share-card-export.test.mjs`
 - `archify-main/archify/test/webm-artifact.smoke.mjs`
 - `archify-main/archify/test/golden.mjs`
+
 ### A-REACH — Authored graph inspection and sharing
 
 - `archify-main/archify/test/authored-reachability.test.mjs`
@@ -536,12 +542,14 @@ Make source retention, functionality and actual integration separately measurabl
 - `archify-main/archify/test/relationship-direct-explorer.test.mjs`
 - `archify-main/archify/test/relationship-permalink.test.mjs`
 - `archify-main/archify/test/reach-share-card.test.mjs`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-EXTERNAL — Existing optional capture, Figma and publishing commands
 
 - `hyperframes-main/packages/cli/src/commands/capture.ts`
@@ -583,7 +591,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-008/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E02 — Unified workspace and verified baselines
@@ -609,6 +616,7 @@ Build both inherited engines and the shared authoring system in one workspace.
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### H-PKG — Workspace, runtime and build baseline
 
 - `hyperframes-main/package.json`
@@ -616,6 +624,7 @@ Build both inherited engines and the shared authoring system in one workspace.
 - `hyperframes-main/packages/cli/package.json`
 - `hyperframes-main/packages/producer/package.json`
 - `hyperframes-main/packages/sdk-playground/package.json`
+
 ### H-CI — Existing build/release workflows and checks
 
 - `hyperframes-main/.github/workflows/ci.yml`
@@ -661,7 +670,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-009/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-010 — Pin runtime, lockfile and installation prerequisites
@@ -685,6 +693,7 @@ Provide a tested installation contract rather than inheriting Archify's lower No
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### H-PKG — Workspace, runtime and build baseline
 
 - `hyperframes-main/package.json`
@@ -692,6 +701,7 @@ Provide a tested installation contract rather than inheriting Archify's lower No
 - `hyperframes-main/packages/cli/package.json`
 - `hyperframes-main/packages/producer/package.json`
 - `hyperframes-main/packages/sdk-playground/package.json`
+
 ### H-CI — Existing build/release workflows and checks
 
 - `hyperframes-main/.github/workflows/ci.yml`
@@ -736,7 +746,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-010/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-011 — Repair build order, exports and asset relocation
@@ -761,11 +770,13 @@ Eliminate assumptions that Archify still lives next to its original scripts and 
 - `archify-main/scripts/stage-clean-skill.mjs`
 - `archify-main/scripts/write-deterministic-zip.mjs`
 - `archify-main/scripts/package-smoke.mjs`
+
 ### A-SHARED — Current IO boundary and semantic hooks
 
 - `archify-main/archify/renderers/shared/cli.mjs`
 - `archify-main/archify/renderers/shared/output-path.mjs`
 - `archify-main/archify/renderers/shared/diagnostics.mjs`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -809,7 +820,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-011/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-012 — Reconcile lint, types, tests and package boundaries
@@ -834,6 +844,7 @@ Keep existing .mjs implementations while enforcing explicit new module boundarie
 - `hyperframes-main/.github/workflows/windows-render.yml`
 - `hyperframes-main/scripts/check-workspace-contracts.mjs`
 - `hyperframes-main/scripts/check-package-cycles.mjs`
+
 ### H-PKG — Workspace, runtime and build baseline
 
 - `hyperframes-main/package.json`
@@ -841,6 +852,7 @@ Keep existing .mjs implementations while enforcing explicit new module boundarie
 - `hyperframes-main/packages/cli/package.json`
 - `hyperframes-main/packages/producer/package.json`
 - `hyperframes-main/packages/sdk-playground/package.json`
+
 ### A-SCHEMA — Typed diagram schemas and generated validators
 
 - `archify-main/archify/schemas/common.schema.json`
@@ -884,7 +896,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-012/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-013 — Re-run and preserve the Archify source baseline
@@ -909,6 +920,7 @@ Characterize Archify behavior before extracting its engine.
 - `archify-main/scripts/stage-clean-skill.mjs`
 - `archify-main/scripts/write-deterministic-zip.mjs`
 - `archify-main/scripts/package-smoke.mjs`
+
 ### A-EXPORT — Artifact and visual validation / export behavior
 
 - `archify-main/archify/scripts/check-render-output.mjs`
@@ -916,12 +928,14 @@ Characterize Archify behavior before extracting its engine.
 - `archify-main/archify/test/share-card-export.test.mjs`
 - `archify-main/archify/test/webm-artifact.smoke.mjs`
 - `archify-main/archify/test/golden.mjs`
+
 ### A-SCHEMA — Typed diagram schemas and generated validators
 
 - `archify-main/archify/schemas/common.schema.json`
 - `archify-main/archify/renderers/shared/validator.mjs`
 - `archify-main/archify/renderers/shared/generated-validators.mjs`
 - `archify-main/archify/scripts/generate-validators.mjs`
+
 ### A-ARCH — Architecture layout, source schema and example
 
 - `archify-main/archify/renderers/architecture/render-architecture.mjs`
@@ -963,7 +977,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-013/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-014 — Re-run the HyperFrames source baseline
@@ -987,6 +1000,7 @@ Know what the inherited editor and renderer actually do before modifying them.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-PKG — Workspace, runtime and build baseline
 
 - `hyperframes-main/package.json`
@@ -994,6 +1008,7 @@ Know what the inherited editor and renderer actually do before modifying them.
 - `hyperframes-main/packages/cli/package.json`
 - `hyperframes-main/packages/producer/package.json`
 - `hyperframes-main/packages/sdk-playground/package.json`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -1036,7 +1051,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-014/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-015 — Install destination-owned CI and evidence collection
@@ -1061,12 +1075,14 @@ Provide reproducible checks without consuming expensive render resources on ever
 - `hyperframes-main/.github/workflows/windows-render.yml`
 - `hyperframes-main/scripts/check-workspace-contracts.mjs`
 - `hyperframes-main/scripts/check-package-cycles.mjs`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -1110,7 +1126,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-015/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-016 — Remove transitional wrappers and certify one-repo baseline
@@ -1134,6 +1149,7 @@ Prove source integration is real before deeper product editing begins.
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### H-CLI — Main CLI, init, preview and doctor
 
 - `hyperframes-main/packages/cli/src/cli.ts`
@@ -1141,6 +1157,7 @@ Prove source integration is real before deeper product editing begins.
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### H-CI — Existing build/release workflows and checks
 
 - `hyperframes-main/.github/workflows/ci.yml`
@@ -1183,7 +1200,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-016/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E03 — Shared project model and atomic authoring
@@ -1209,6 +1225,7 @@ Model one project with typed diagrams, native compositions, stories and assets.
 - `hyperframes-main/packages/parsers/src/compositionContract.ts`
 - `hyperframes-main/packages/parsers/src/composition.ts`
 - `hyperframes-main/packages/parsers/src/subCompositionValidity.ts`
+
 ### A-SCHEMA — Typed diagram schemas and generated validators
 
 - `archify-main/archify/schemas/common.schema.json`
@@ -1250,7 +1267,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-017/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-018 — Implement durable document, object and scene-instance identities
@@ -1273,12 +1289,14 @@ Keep edits attached to the intended object across reorder, rename and repeated s
 - `archify-main/archify/renderers/shared/cli.mjs`
 - `archify-main/archify/renderers/shared/output-path.mjs`
 - `archify-main/archify/renderers/shared/diagnostics.mjs`
+
 ### A-SCHEMA — Typed diagram schemas and generated validators
 
 - `archify-main/archify/schemas/common.schema.json`
 - `archify-main/archify/renderers/shared/validator.mjs`
 - `archify-main/archify/renderers/shared/generated-validators.mjs`
 - `archify-main/archify/scripts/generate-validators.mjs`
+
 ### H-PARSER — DOM identities, GSAP and roundtrip editing
 
 - `hyperframes-main/packages/parsers/src/hfIds.ts`
@@ -1321,7 +1339,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-018/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-019 — Specify shared commands, revision checks and idempotency
@@ -1346,6 +1363,7 @@ Use one validated mutation protocol from UI, CLI and agent tools.
 - `hyperframes-main/packages/sdk/src/engine/apply-patches.ts`
 - `hyperframes-main/packages/sdk/src/editing/affordances.ts`
 - `hyperframes-main/packages/sdk/src/types.ts`
+
 ### H-SERVER — Existing API host and project resolution
 
 - `hyperframes-main/packages/studio-server/src/createStudioApi.ts`
@@ -1387,7 +1405,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-019/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-020 — Build atomic filesystem revisions and recovery
@@ -1411,6 +1428,7 @@ Persist multi-document edits as coherent revisions instead of unrelated file wri
 - `hyperframes-main/packages/sdk/src/adapters/fs.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/backupJournal.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/fileVersion.ts`
+
 ### H-FILES — File edit ingress and safe path resolution
 
 - `hyperframes-main/packages/studio-server/src/routes/files.ts`
@@ -1452,7 +1470,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-020/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-021 — Implement one project undo/redo command journal
@@ -1477,6 +1494,7 @@ Restore semantic and presentation state together for each user action.
 - `hyperframes-main/packages/sdk/src/engine/apply-patches.ts`
 - `hyperframes-main/packages/sdk/src/editing/affordances.ts`
 - `hyperframes-main/packages/sdk/src/types.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -1519,7 +1537,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-021/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-022 — Implement backup-first import and project migrations
@@ -1544,6 +1561,7 @@ Import raw diagram JSON and existing HyperFrames projects without destructive co
 - `archify-main/archify/migrations/workflow-v2.mjs`
 - `archify-main/archify/schemas/workflow.schema.json`
 - `archify-main/archify/examples/agent-tool-call.workflow.json`
+
 ### H-CLI — Main CLI, init, preview and doctor
 
 - `hyperframes-main/packages/cli/src/cli.ts`
@@ -1551,6 +1569,7 @@ Import raw diagram JSON and existing HyperFrames projects without destructive co
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### H-CORE — Composition compiler and standard composition contracts
 
 - `hyperframes-main/packages/core/src/compiler/compositionScoping.ts`
@@ -1593,7 +1612,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-022/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-023 — Create a shared asset registry and reference contract
@@ -1618,6 +1636,7 @@ Give media, fonts, diagrams and native compositions stable local asset reference
 - `hyperframes-main/packages/studio-server/src/helpers/mediaValidation.ts`
 - `hyperframes-main/packages/parsers/src/assetResolution.ts`
 - `hyperframes-main/packages/parsers/src/assetPaths.ts`
+
 ### H-FONTS — Font readiness and localization code (not binary redistribution)
 
 - `hyperframes-main/packages/producer/src/services/deterministicFonts.ts`
@@ -1659,7 +1678,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-023/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-024 — Define diagnostics, evidence and redaction contracts
@@ -1683,11 +1701,13 @@ Carry actionable errors and source provenance through every editing and export s
 - `archify-main/archify/renderers/shared/repository-location.mjs`
 - `archify-main/archify/renderers/shared/engineering-profiles.mjs`
 - `archify-main/archify/test/repository-evidence.test.mjs`
+
 ### A-SHARED — Current IO boundary and semantic hooks
 
 - `archify-main/archify/renderers/shared/cli.mjs`
 - `archify-main/archify/renderers/shared/output-path.mjs`
 - `archify-main/archify/renderers/shared/diagnostics.mjs`
+
 ### H-ROUTES — Storyboard, preview, lint and selection endpoints
 
 - `hyperframes-main/packages/studio-server/src/routes/storyboard.ts`
@@ -1729,7 +1749,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-024/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-025 — Version story timing, animation intents and presentation overrides
@@ -1753,6 +1772,7 @@ Persist editable video intent separately from generated composition HTML.
 - `hyperframes-main/packages/core/src/adapters/types.ts`
 - `hyperframes-main/packages/player/src/direct-timeline-clock.ts`
 - `hyperframes-main/packages/player/src/timeline-adapters.ts`
+
 ### H-SDK — Headless edits, capability checks and patch history
 
 - `hyperframes-main/packages/sdk/src/session.ts`
@@ -1796,7 +1816,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-025/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-026 — Implement build hashes, dependency graph and garbage collection policy
@@ -1820,6 +1839,7 @@ Know exactly which documents and assets produced each preview or video.
 - `hyperframes-main/packages/producer/src/renderRequest.ts`
 - `hyperframes-main/packages/producer/src/services/renderOrchestrator.ts`
 - `hyperframes-main/packages/producer/src/services/compilationRunner.ts`
+
 ### A-SHARED — Current IO boundary and semantic hooks
 
 - `archify-main/archify/renderers/shared/cli.mjs`
@@ -1860,7 +1880,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-026/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E04 — Callable diagram engine and preserved viewer
@@ -1885,12 +1904,14 @@ Replace CLI-oriented imports with a real library shared by the CLI, Studio serve
 - `archify-main/archify/renderers/shared/cli.mjs`
 - `archify-main/archify/renderers/shared/output-path.mjs`
 - `archify-main/archify/renderers/shared/diagnostics.mjs`
+
 ### A-SCHEMA — Typed diagram schemas and generated validators
 
 - `archify-main/archify/schemas/common.schema.json`
 - `archify-main/archify/renderers/shared/validator.mjs`
 - `archify-main/archify/renderers/shared/generated-validators.mjs`
 - `archify-main/archify/scripts/generate-validators.mjs`
+
 ### A-ARCH — Architecture layout, source schema and example
 
 - `archify-main/archify/renderers/architecture/render-architecture.mjs`
@@ -1932,7 +1953,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-027/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-028 — Preserve schemas, generated validators and compatibility
@@ -1956,6 +1976,7 @@ Retain source validation as an enforceable engine contract, including legacy mig
 - `archify-main/archify/renderers/shared/validator.mjs`
 - `archify-main/archify/renderers/shared/generated-validators.mjs`
 - `archify-main/archify/scripts/generate-validators.mjs`
+
 ### A-WORK — Workflow compile, migrate, and branch semantics
 
 - `archify-main/archify/renderers/workflow/render-workflow.mjs`
@@ -1998,7 +2019,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-028/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-029 — Refactor architecture layout and emit native geometry
@@ -2022,6 +2042,7 @@ Expose the real architecture drawing and relationships without scraping a comple
 - `archify-main/archify/renderers/architecture/grid.mjs`
 - `archify-main/archify/schemas/architecture.schema.json`
 - `archify-main/archify/examples/production-deployment.architecture.json`
+
 ### A-GEOM — Geometry, text fit, layout diagnostics
 
 - `archify-main/archify/renderers/shared/geometry.mjs`
@@ -2064,7 +2085,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-029/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-030 — Refactor workflow layout and migration into the engine
@@ -2089,6 +2109,7 @@ Keep workflow-specific routing, lanes and branches intact in the shared engine.
 - `archify-main/archify/migrations/workflow-v2.mjs`
 - `archify-main/archify/schemas/workflow.schema.json`
 - `archify-main/archify/examples/agent-tool-call.workflow.json`
+
 ### A-GEOM — Geometry, text fit, layout diagnostics
 
 - `archify-main/archify/renderers/shared/geometry.mjs`
@@ -2131,7 +2152,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-030/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-031 — Refactor sequence compilation with ordered message identity
@@ -2155,6 +2175,7 @@ Preserve temporal ordering rather than interpreting a sequence diagram as an ord
 - `archify-main/archify/schemas/sequence.schema.json`
 - `archify-main/archify/examples/cache-miss-request.sequence.json`
 - `archify-main/archify/test/sequence-column-fit.test.mjs`
+
 ### A-GEOM — Geometry, text fit, layout diagnostics
 
 - `archify-main/archify/renderers/shared/geometry.mjs`
@@ -2197,7 +2218,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-031/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-032 — Refactor dataflow compilation and boundary semantics
@@ -2221,6 +2241,7 @@ Retain dataflow nodes, flows and supported boundaries as typed source.
 - `archify-main/archify/schemas/dataflow.schema.json`
 - `archify-main/archify/examples/product-analytics.dataflow.json`
 - `archify-main/archify/examples/event-stream.dataflow.json`
+
 ### A-GEOM — Geometry, text fit, layout diagnostics
 
 - `archify-main/archify/renderers/shared/geometry.mjs`
@@ -2263,7 +2284,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-032/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-033 — Refactor lifecycle compilation and transition semantics
@@ -2287,6 +2307,7 @@ Keep states, transition labels and supported lifecycle semantics intact.
 - `archify-main/archify/schemas/lifecycle.schema.json`
 - `archify-main/archify/examples/agent-run.lifecycle.json`
 - `archify-main/archify/examples/deployment-release.lifecycle.json`
+
 ### A-GEOM — Geometry, text fit, layout diagnostics
 
 - `archify-main/archify/renderers/shared/geometry.mjs`
@@ -2329,7 +2350,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-033/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-034 — Extract reusable themes, presets, locale and brand resolution
@@ -2354,12 +2374,14 @@ Preserve visual identity without hidden network or global-document dependencies.
 - `archify-main/archify/renderers/shared/i18n.mjs`
 - `archify-main/archify/test/preset-tryon.test.mjs`
 - `archify-main/archify/test/i18n.test.mjs`
+
 ### A-VIEW — Standalone artifact and guided presentation
 
 - `archify-main/archify/assets/template.html`
 - `archify-main/archify/test/guided-views.test.mjs`
 - `archify-main/archify/test/story-follow-camera.test.mjs`
 - `archify-main/archify/test/semantic-camera.test.mjs`
+
 ### H-STYLE — Existing themes and native animated graph reference
 
 - `hyperframes-main/themes/CONTRACT.md`
@@ -2401,7 +2423,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-034/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-035 — Extract the standalone diagram viewer as a product module
@@ -2425,6 +2446,7 @@ Preserve interactive diagram output without embedding a second authoritative edi
 - `archify-main/archify/test/guided-views.test.mjs`
 - `archify-main/archify/test/story-follow-camera.test.mjs`
 - `archify-main/archify/test/semantic-camera.test.mjs`
+
 ### A-EXPORT — Artifact and visual validation / export behavior
 
 - `archify-main/archify/scripts/check-render-output.mjs`
@@ -2468,7 +2490,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-035/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-036 — Retain authored reachability, route inspection and deep links
@@ -2493,6 +2514,7 @@ Preserve graph exploration while maintaining the distinction between authored co
 - `archify-main/archify/test/relationship-direct-explorer.test.mjs`
 - `archify-main/archify/test/relationship-permalink.test.mjs`
 - `archify-main/archify/test/reach-share-card.test.mjs`
+
 ### A-VIEW — Standalone artifact and guided presentation
 
 - `archify-main/archify/assets/template.html`
@@ -2534,7 +2556,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-036/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-037 — Integrate source evidence and exact architecture deltas
@@ -2558,6 +2579,7 @@ Expose validated source references and authored before/after changes as reusable
 - `archify-main/archify/renderers/shared/repository-location.mjs`
 - `archify-main/archify/renderers/shared/engineering-profiles.mjs`
 - `archify-main/archify/test/repository-evidence.test.mjs`
+
 ### A-DELTA — Before/after receipts and geometry
 
 - `archify-main/archify/delta/architecture-delta.mjs`
@@ -2599,7 +2621,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-037/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-038 — Expose artifact checks and thin compatibility commands
@@ -2623,6 +2644,7 @@ Keep useful upstream validation/export commands while routing them through owned
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### A-EXPORT — Artifact and visual validation / export behavior
 
 - `archify-main/archify/scripts/check-render-output.mjs`
@@ -2630,6 +2652,7 @@ Keep useful upstream validation/export commands while routing them through owned
 - `archify-main/archify/test/share-card-export.test.mjs`
 - `archify-main/archify/test/webm-artifact.smoke.mjs`
 - `archify-main/archify/test/golden.mjs`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -2672,7 +2695,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-038/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E05 — Native diagram scenes and deterministic motion
@@ -2698,6 +2720,7 @@ Make a diagram a native scene in the standard composition pipeline.
 - `hyperframes-main/packages/parsers/src/compositionContract.ts`
 - `hyperframes-main/packages/parsers/src/composition.ts`
 - `hyperframes-main/packages/parsers/src/subCompositionValidity.ts`
+
 ### H-PARSER — DOM identities, GSAP and roundtrip editing
 
 - `hyperframes-main/packages/parsers/src/hfIds.ts`
@@ -2705,6 +2728,7 @@ Make a diagram a native scene in the standard composition pipeline.
 - `hyperframes-main/packages/parsers/src/gsapParser.ts`
 - `hyperframes-main/packages/parsers/src/gsapSerialize.ts`
 - `hyperframes-main/packages/parsers/src/htmlParser.ts`
+
 ### A-SHARED — Current IO boundary and semantic hooks
 
 - `archify-main/archify/renderers/shared/cli.mjs`
@@ -2745,7 +2769,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-039/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-040 — Namespace SVG, CSS and composition-instance identities
@@ -2769,6 +2792,7 @@ Prevent repeated diagrams from corrupting one another's markers, filters, labels
 - `hyperframes-main/packages/parsers/src/compositionContract.ts`
 - `hyperframes-main/packages/parsers/src/composition.ts`
 - `hyperframes-main/packages/parsers/src/subCompositionValidity.ts`
+
 ### H-PARSER — DOM identities, GSAP and roundtrip editing
 
 - `hyperframes-main/packages/parsers/src/hfIds.ts`
@@ -2776,6 +2800,7 @@ Prevent repeated diagrams from corrupting one another's markers, filters, labels
 - `hyperframes-main/packages/parsers/src/gsapParser.ts`
 - `hyperframes-main/packages/parsers/src/gsapSerialize.ts`
 - `hyperframes-main/packages/parsers/src/htmlParser.ts`
+
 ### A-VIEW — Standalone artifact and guided presentation
 
 - `archify-main/archify/assets/template.html`
@@ -2817,7 +2842,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-040/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-041 — Build scene framing and camera geometry
@@ -2842,12 +2866,14 @@ Turn semantic focus into readable scene framing rather than blind screenshot sca
 - `archify-main/archify/renderers/shared/desktop-readability.mjs`
 - `archify-main/archify/renderers/shared/layout-report.mjs`
 - `archify-main/archify/test/geometry.test.mjs`
+
 ### A-VIEW — Standalone artifact and guided presentation
 
 - `archify-main/archify/assets/template.html`
 - `archify-main/archify/test/guided-views.test.mjs`
 - `archify-main/archify/test/story-follow-camera.test.mjs`
 - `archify-main/archify/test/semantic-camera.test.mjs`
+
 ### H-TIME — Seek adapter and playback time
 
 - `hyperframes-main/packages/core/src/adapters/gsap.ts`
@@ -2889,7 +2915,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-041/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-042 — Compile paused seekable focus and reveal animations
@@ -2913,12 +2938,14 @@ Give HyperFrames sole control of video time.
 - `hyperframes-main/packages/core/src/adapters/types.ts`
 - `hyperframes-main/packages/player/src/direct-timeline-clock.ts`
 - `hyperframes-main/packages/player/src/timeline-adapters.ts`
+
 ### H-STYLE — Existing themes and native animated graph reference
 
 - `hyperframes-main/themes/CONTRACT.md`
 - `hyperframes-main/themes/editorial.css`
 - `hyperframes-main/registry/blocks/flowchart/flowchart.html`
 - `hyperframes-main/registry/blocks/flowchart-vertical/flowchart-vertical.html`
+
 ### A-VIEW — Standalone artifact and guided presentation
 
 - `archify-main/archify/assets/template.html`
@@ -2960,7 +2987,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-042/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-043 — Animate only authored relationships and valid routes
@@ -2985,6 +3011,7 @@ Prevent visually attractive but false connection animations.
 - `archify-main/archify/test/relationship-direct-explorer.test.mjs`
 - `archify-main/archify/test/relationship-permalink.test.mjs`
 - `archify-main/archify/test/reach-share-card.test.mjs`
+
 ### A-SHARED — Current IO boundary and semantic hooks
 
 - `archify-main/archify/renderers/shared/cli.mjs`
@@ -3025,7 +3052,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-043/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-044 — Map nested-scene time and overlapping composition windows
@@ -3049,12 +3075,14 @@ Keep local scene time, project time and media windows consistent.
 - `hyperframes-main/packages/core/src/adapters/types.ts`
 - `hyperframes-main/packages/player/src/direct-timeline-clock.ts`
 - `hyperframes-main/packages/player/src/timeline-adapters.ts`
+
 ### H-CORE — Composition compiler and standard composition contracts
 
 - `hyperframes-main/packages/core/src/compiler/compositionScoping.ts`
 - `hyperframes-main/packages/parsers/src/compositionContract.ts`
 - `hyperframes-main/packages/parsers/src/composition.ts`
 - `hyperframes-main/packages/parsers/src/subCompositionValidity.ts`
+
 ### H-PLAYER — Player and slideshow compatibility
 
 - `hyperframes-main/packages/player/src/hyperframes-player.ts`
@@ -3096,7 +3124,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-044/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-045 — Generate editable story drafts from guided views
@@ -3120,12 +3147,14 @@ Use existing guided views as story input while leaving timing and wording editab
 - `archify-main/archify/test/guided-views.test.mjs`
 - `archify-main/archify/test/story-follow-camera.test.mjs`
 - `archify-main/archify/test/semantic-camera.test.mjs`
+
 ### A-ARCH — Architecture layout, source schema and example
 
 - `archify-main/archify/renderers/architecture/render-architecture.mjs`
 - `archify-main/archify/renderers/architecture/grid.mjs`
 - `archify-main/archify/schemas/architecture.schema.json`
 - `archify-main/archify/examples/production-deployment.architecture.json`
+
 ### H-ROUTES — Storyboard, preview, lint and selection endpoints
 
 - `hyperframes-main/packages/studio-server/src/routes/storyboard.ts`
@@ -3166,7 +3195,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-045/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-046 — Bind semantic animation intents to editable timeline tracks
@@ -3190,11 +3218,13 @@ Expose node, edge and camera motion as meaningful editable tracks.
 - `hyperframes-main/packages/studio/src/components/editor/MotionPathOverlay.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/EaseCurveSection.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/KeyframeNavigation.tsx`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
 - `hyperframes-main/packages/studio/src/player/store/playerStore.ts`
 - `hyperframes-main/packages/studio/src/components/TimelineToolbar.tsx`
+
 ### H-SDK — Headless edits, capability checks and patch history
 
 - `hyperframes-main/packages/sdk/src/session.ts`
@@ -3237,7 +3267,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-046/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-047 — Validate multi-instance scenes and mixed native compositions
@@ -3261,6 +3290,7 @@ Exercise interaction defects before the UI relies on managed scenes.
 - `hyperframes-main/packages/parsers/src/compositionContract.ts`
 - `hyperframes-main/packages/parsers/src/composition.ts`
 - `hyperframes-main/packages/parsers/src/subCompositionValidity.ts`
+
 ### H-PARSER — DOM identities, GSAP and roundtrip editing
 
 - `hyperframes-main/packages/parsers/src/hfIds.ts`
@@ -3268,6 +3298,7 @@ Exercise interaction defects before the UI relies on managed scenes.
 - `hyperframes-main/packages/parsers/src/gsapParser.ts`
 - `hyperframes-main/packages/parsers/src/gsapSerialize.ts`
 - `hyperframes-main/packages/parsers/src/htmlParser.ts`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
@@ -3309,7 +3340,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-047/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-048 — Implement managed regeneration and binding conflict reports
@@ -3334,6 +3364,7 @@ Rebuild only owned output while preserving valid authoring intent.
 - `hyperframes-main/packages/sdk/src/engine/apply-patches.ts`
 - `hyperframes-main/packages/sdk/src/editing/affordances.ts`
 - `hyperframes-main/packages/sdk/src/types.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -3376,7 +3407,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-048/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-049 — Enforce asset readiness and offline frame capture
@@ -3400,6 +3430,7 @@ Prevent captures with missing fonts, late images or mid-render fetches.
 - `hyperframes-main/packages/cli/src/fontLocalize.ts`
 - `hyperframes-main/packages/studio-server/src/routes/fonts.ts`
 - `hyperframes-main/packages/cli/src/capture/captureFontValidation.ts`
+
 ### H-ASSETS — Media validation, probing and asset resolution
 
 - `hyperframes-main/packages/studio-server/src/routes/media.ts`
@@ -3407,6 +3438,7 @@ Prevent captures with missing fonts, late images or mid-render fetches.
 - `hyperframes-main/packages/studio-server/src/helpers/mediaValidation.ts`
 - `hyperframes-main/packages/parsers/src/assetResolution.ts`
 - `hyperframes-main/packages/parsers/src/assetPaths.ts`
+
 ### H-PRODUCER — Retained render pipeline
 
 - `hyperframes-main/packages/producer/src/index.ts`
@@ -3448,7 +3480,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-049/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-050 — Create an arbitrary-seek conformance harness
@@ -3472,6 +3503,7 @@ Prove correctness beyond a single uninterrupted playback demonstration.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-CAPTURE — Frame capture and encoding
 
 - `hyperframes-main/packages/engine/src/services/frameCapture.ts`
@@ -3513,7 +3545,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-050/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E06 — One API, preview and production job system
@@ -3539,6 +3570,7 @@ Expose one service boundary for diagram, story and native-composition mutations.
 - `hyperframes-main/packages/studio-server/src/types.ts`
 - `hyperframes-main/packages/studio-server/src/routes/projects.ts`
 - `hyperframes-main/packages/cli/src/server/studioServer.ts`
+
 ### H-ROUTES — Storyboard, preview, lint and selection endpoints
 
 - `hyperframes-main/packages/studio-server/src/routes/storyboard.ts`
@@ -3581,7 +3613,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-051/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-052 — Add diagram import, compile, inspect and compare endpoints
@@ -3605,12 +3636,14 @@ Make engine capabilities usable within the single application.
 - `hyperframes-main/packages/studio-server/src/types.ts`
 - `hyperframes-main/packages/studio-server/src/routes/projects.ts`
 - `hyperframes-main/packages/cli/src/server/studioServer.ts`
+
 ### H-ROUTES — Storyboard, preview, lint and selection endpoints
 
 - `hyperframes-main/packages/studio-server/src/routes/storyboard.ts`
 - `hyperframes-main/packages/studio-server/src/routes/preview.ts`
 - `hyperframes-main/packages/studio-server/src/routes/lint.ts`
 - `hyperframes-main/packages/studio-server/src/routes/selection.ts`
+
 ### A-DELTA — Before/after receipts and geometry
 
 - `archify-main/archify/delta/architecture-delta.mjs`
@@ -3651,7 +3684,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-052/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-053 — Integrate file watchers, external edits and revision events
@@ -3675,6 +3707,7 @@ Handle edits from coding tools without silently overwriting Studio work.
 - `hyperframes-main/packages/studio-server/src/helpers/safePath.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/sourceMutation.ts`
 - `hyperframes-main/packages/cli/src/server/fileWatcher.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -3717,7 +3750,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-053/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-054 — Run immutable mixed-project renders through the producer
@@ -3740,12 +3772,14 @@ Render owned diagram scenes and ordinary video content using the retained produc
 - `hyperframes-main/packages/studio-server/src/routes/render.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnail.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnailGenerationCoordinator.ts`
+
 ### H-PRODUCER — Retained render pipeline
 
 - `hyperframes-main/packages/producer/src/index.ts`
 - `hyperframes-main/packages/producer/src/renderRequest.ts`
 - `hyperframes-main/packages/producer/src/services/renderOrchestrator.ts`
 - `hyperframes-main/packages/producer/src/services/compilationRunner.ts`
+
 ### H-CAPTURE — Frame capture and encoding
 
 - `hyperframes-main/packages/engine/src/services/frameCapture.ts`
@@ -3787,7 +3821,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-054/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-055 — Implement render cancellation, retries and artifact lifecycle
@@ -3810,6 +3843,7 @@ Keep long jobs recoverable without orphaned processes or misleading status.
 - `hyperframes-main/packages/studio-server/src/routes/render.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnail.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnailGenerationCoordinator.ts`
+
 ### H-PROCESS — Worker lifecycle, resource and process tracking
 
 - `hyperframes-main/packages/engine/src/utils/managedChildProcess.ts`
@@ -3851,7 +3885,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-055/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-056 — Serve revision-correct previews and thumbnails
@@ -3875,11 +3908,13 @@ Show the same compiled source in preview that the render job will use.
 - `hyperframes-main/packages/studio-server/src/routes/preview.ts`
 - `hyperframes-main/packages/studio-server/src/routes/lint.ts`
 - `hyperframes-main/packages/studio-server/src/routes/selection.ts`
+
 ### H-JOBS — Render and thumbnail operations
 
 - `hyperframes-main/packages/studio-server/src/routes/render.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnail.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnailGenerationCoordinator.ts`
+
 ### H-PLAYER — Player and slideshow compatibility
 
 - `hyperframes-main/packages/player/src/hyperframes-player.ts`
@@ -3922,7 +3957,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-056/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-057 — Enforce managed ownership on every mutation ingress
@@ -3946,6 +3980,7 @@ Prevent raw APIs and SDK paths from bypassing semantic source validation.
 - `hyperframes-main/packages/studio-server/src/helpers/safePath.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/sourceMutation.ts`
 - `hyperframes-main/packages/cli/src/server/fileWatcher.ts`
+
 ### H-SDK — Headless edits, capability checks and patch history
 
 - `hyperframes-main/packages/sdk/src/session.ts`
@@ -3953,6 +3988,7 @@ Prevent raw APIs and SDK paths from bypassing semantic source validation.
 - `hyperframes-main/packages/sdk/src/engine/apply-patches.ts`
 - `hyperframes-main/packages/sdk/src/editing/affordances.ts`
 - `hyperframes-main/packages/sdk/src/types.ts`
+
 ### H-TOOLS — Studio agent tool registration and write coordination
 
 - `hyperframes-main/packages/studio/src/webmcp/StudioAgentTools.tsx`
@@ -3994,7 +4030,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-057/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-058 — Verify API consistency, errors and recovery contracts
@@ -4018,12 +4053,14 @@ Lock the shared backend behavior before broad UI adoption.
 - `hyperframes-main/packages/studio-server/src/types.ts`
 - `hyperframes-main/packages/studio-server/src/routes/projects.ts`
 - `hyperframes-main/packages/cli/src/server/studioServer.ts`
+
 ### H-PERSIST — SDK persistence and project file writes
 
 - `hyperframes-main/packages/sdk/src/persist-queue.ts`
 - `hyperframes-main/packages/sdk/src/adapters/fs.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/backupJournal.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/fileVersion.ts`
+
 ### H-JOBS — Render and thumbnail operations
 
 - `hyperframes-main/packages/studio-server/src/routes/render.ts`
@@ -4064,7 +4101,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-058/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E07 — Fully integrated Studio editing experience
@@ -4091,12 +4127,14 @@ Open diagram and native-video work in one Studio project lifecycle.
 - `hyperframes-main/packages/studio/src/components/StudioLeftSidebar.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioRightPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioHeader.tsx`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-CLI — Main CLI, init, preview and doctor
 
 - `hyperframes-main/packages/cli/src/cli.ts`
@@ -4140,7 +4178,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-059/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-060 — Implement document outline and diagram-aware scene browser
@@ -4165,6 +4202,7 @@ Show source documents, semantic objects and their scene appearances together.
 - `hyperframes-main/packages/studio/src/components/StudioLeftSidebar.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioRightPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioHeader.tsx`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
@@ -4206,7 +4244,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-060/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-061 — Unify selection between canvas, inspector and timeline
@@ -4230,17 +4267,20 @@ Select the same underlying object consistently throughout the product.
 - `hyperframes-main/packages/studio/src/components/editor/domEditing.ts`
 - `hyperframes-main/packages/studio/src/components/editor/groupDragMove.ts`
 - `hyperframes-main/packages/sdk/src/adapters/iframe.ts`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
 - `hyperframes-main/packages/studio/src/player/store/playerStore.ts`
 - `hyperframes-main/packages/studio/src/components/TimelineToolbar.tsx`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-ROUTES — Storyboard, preview, lint and selection endpoints
 
 - `hyperframes-main/packages/studio-server/src/routes/storyboard.ts`
@@ -4282,7 +4322,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-061/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-062 — Add schema-aware semantic property editing
@@ -4306,12 +4345,14 @@ Edit real diagram data rather than mutating generated SVG text.
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### A-SCHEMA — Typed diagram schemas and generated validators
 
 - `archify-main/archify/schemas/common.schema.json`
 - `archify-main/archify/renderers/shared/validator.mjs`
 - `archify-main/archify/renderers/shared/generated-validators.mjs`
 - `archify-main/archify/scripts/generate-validators.mjs`
+
 ### A-ARCH — Architecture layout, source schema and example
 
 - `archify-main/archify/renderers/architecture/render-architecture.mjs`
@@ -4353,7 +4394,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-062/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-063 — Create guided-view scenes and render the first vertical slice
@@ -4378,11 +4418,13 @@ Deliver a complete early workflow through the same application.
 - `hyperframes-main/packages/studio/src/components/StudioLeftSidebar.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioRightPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioHeader.tsx`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
 - `hyperframes-main/packages/studio/src/player/store/playerStore.ts`
 - `hyperframes-main/packages/studio/src/components/TimelineToolbar.tsx`
+
 ### A-VIEW — Standalone artifact and guided presentation
 
 - `archify-main/archify/assets/template.html`
@@ -4424,7 +4466,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-063/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-064 — Implement schema-valid node and relationship creation/deletion
@@ -4448,12 +4489,14 @@ Allow meaningful structural editing with explicit impact handling.
 - `archify-main/archify/renderers/shared/validator.mjs`
 - `archify-main/archify/renderers/shared/generated-validators.mjs`
 - `archify-main/archify/scripts/generate-validators.mjs`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-GESTURE — Canvas transforms, hit-testing and DOM mutation
 
 - `hyperframes-main/packages/studio/src/components/editor/DomEditOverlay.tsx`
@@ -4495,7 +4538,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-064/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-065 — Implement editable layout, grouping and drag gestures
@@ -4520,12 +4562,14 @@ Make diagram movement persistent without untracked SVG transforms.
 - `archify-main/archify/renderers/shared/desktop-readability.mjs`
 - `archify-main/archify/renderers/shared/layout-report.mjs`
 - `archify-main/archify/test/geometry.test.mjs`
+
 ### A-ARCH — Architecture layout, source schema and example
 
 - `archify-main/archify/renderers/architecture/render-architecture.mjs`
 - `archify-main/archify/renderers/architecture/grid.mjs`
 - `archify-main/archify/schemas/architecture.schema.json`
 - `archify-main/archify/examples/production-deployment.architecture.json`
+
 ### H-GESTURE — Canvas transforms, hit-testing and DOM mutation
 
 - `hyperframes-main/packages/studio/src/components/editor/DomEditOverlay.tsx`
@@ -4567,7 +4611,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-065/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-066 — Add guided-view, route and evidence authoring panels
@@ -4591,12 +4634,14 @@ Expose Archify explanatory features inside the unified Studio.
 - `archify-main/archify/test/guided-views.test.mjs`
 - `archify-main/archify/test/story-follow-camera.test.mjs`
 - `archify-main/archify/test/semantic-camera.test.mjs`
+
 ### A-EVID — Source references and engineering metadata
 
 - `archify-main/archify/renderers/shared/repository-evidence.mjs`
 - `archify-main/archify/renderers/shared/repository-location.mjs`
 - `archify-main/archify/renderers/shared/engineering-profiles.mjs`
 - `archify-main/archify/test/repository-evidence.test.mjs`
+
 ### A-REACH — Authored graph inspection and sharing
 
 - `archify-main/archify/test/authored-reachability.test.mjs`
@@ -4604,6 +4649,7 @@ Expose Archify explanatory features inside the unified Studio.
 - `archify-main/archify/test/relationship-direct-explorer.test.mjs`
 - `archify-main/archify/test/relationship-permalink.test.mjs`
 - `archify-main/archify/test/reach-share-card.test.mjs`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
@@ -4645,7 +4691,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-066/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-067 — Add diagram-aware timeline lanes and trim/reorder controls
@@ -4668,6 +4713,7 @@ Edit scene, camera, node and relationship timing using meaningful tracks.
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
 - `hyperframes-main/packages/studio/src/player/store/playerStore.ts`
 - `hyperframes-main/packages/studio/src/components/TimelineToolbar.tsx`
+
 ### H-ANIMUI — Animation, paths, easing and keyframe controls
 
 - `hyperframes-main/packages/studio/src/components/editor/GsapAnimationSection.tsx`
@@ -4709,7 +4755,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-067/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-068 — Expose camera, emphasis, edge and callout animation controls
@@ -4733,6 +4778,7 @@ Customize diagrams as video scenes without handing agents arbitrary semantic DOM
 - `hyperframes-main/packages/studio/src/components/editor/MotionPathOverlay.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/EaseCurveSection.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/KeyframeNavigation.tsx`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
@@ -4774,7 +4820,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-068/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-069 — Integrate source editing, diagnostics and safe scene detachment
@@ -4798,6 +4843,7 @@ Keep code editing powerful without creating a hidden second source of truth.
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -4840,7 +4886,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-069/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-070 — Add truthful save, regeneration, conflict and job UX
@@ -4865,6 +4910,7 @@ Make failures and stale views visible instead of silently losing work.
 - `hyperframes-main/packages/studio/src/utils/studioFileMutationCoordinator.ts`
 - `hyperframes-main/packages/studio/src/components/ExternalFileConflictBanner.tsx`
 - `hyperframes-main/packages/studio/src/components/SaveQueuePausedBanner.tsx`
+
 ### H-SHELL — Application shell, project browser and panels
 
 - `hyperframes-main/packages/studio/src/App.tsx`
@@ -4908,7 +4954,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-070/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-071 — Complete Studio accessibility and keyboard interaction
@@ -4933,17 +4978,20 @@ Make the unified editor usable without relying exclusively on mouse gestures or 
 - `hyperframes-main/packages/studio/src/components/StudioLeftSidebar.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioRightPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioHeader.tsx`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
 - `hyperframes-main/packages/studio/src/player/store/playerStore.ts`
 - `hyperframes-main/packages/studio/src/components/TimelineToolbar.tsx`
+
 ### A-THEME — Brand registry, locale and presets
 
 - `archify-main/archify/renderers/shared/brand-marks.mjs`
@@ -4986,7 +5034,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-071/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E08 — Shared history, regeneration and recovery
@@ -5013,12 +5060,14 @@ Avoid two undo stacks or independent autosave queues mutating the same project.
 - `hyperframes-main/packages/sdk/src/engine/apply-patches.ts`
 - `hyperframes-main/packages/sdk/src/editing/affordances.ts`
 - `hyperframes-main/packages/sdk/src/types.ts`
+
 ### H-PERSIST — SDK persistence and project file writes
 
 - `hyperframes-main/packages/sdk/src/persist-queue.ts`
 - `hyperframes-main/packages/sdk/src/adapters/fs.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/backupJournal.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/fileVersion.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -5061,7 +5110,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-072/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-073 — Rebase presentation overrides by stable identity
@@ -5086,6 +5134,7 @@ Preserve valid customizations after source changes without positional retargetin
 - `hyperframes-main/packages/sdk/src/engine/apply-patches.ts`
 - `hyperframes-main/packages/sdk/src/editing/affordances.ts`
 - `hyperframes-main/packages/sdk/src/types.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -5128,7 +5177,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-073/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-074 — Handle source deletion, duplication and cross-scene impact
@@ -5151,6 +5199,7 @@ Keep references consistent when a semantic change affects many scenes.
 - `archify-main/archify/renderers/shared/cli.mjs`
 - `archify-main/archify/renderers/shared/output-path.mjs`
 - `archify-main/archify/renderers/shared/diagnostics.mjs`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -5193,7 +5242,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-074/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-075 — Implement external-edit conflict reconciliation
@@ -5218,6 +5266,7 @@ Let users and coding agents edit files without last-writer-wins data loss.
 - `hyperframes-main/packages/studio/src/utils/studioFileMutationCoordinator.ts`
 - `hyperframes-main/packages/studio/src/components/ExternalFileConflictBanner.tsx`
 - `hyperframes-main/packages/studio/src/components/SaveQueuePausedBanner.tsx`
+
 ### H-FILES — File edit ingress and safe path resolution
 
 - `hyperframes-main/packages/studio-server/src/routes/files.ts`
@@ -5259,7 +5308,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-075/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-076 — Add crash recovery, revision restore and retention controls
@@ -5283,6 +5331,7 @@ Recover coherent user work after failures and support deliberate restoration.
 - `hyperframes-main/packages/sdk/src/adapters/fs.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/backupJournal.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/fileVersion.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -5325,7 +5374,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-076/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-077 — Optimize incremental rebuild and stale result cancellation
@@ -5348,6 +5396,7 @@ Keep interactive edits responsive while preserving correctness.
 - `hyperframes-main/packages/studio-server/src/routes/render.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnail.ts`
 - `hyperframes-main/packages/studio-server/src/routes/thumbnailGenerationCoordinator.ts`
+
 ### H-PRODUCER — Retained render pipeline
 
 - `hyperframes-main/packages/producer/src/index.ts`
@@ -5389,7 +5438,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-077/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-078 — Prove coherent undo, regeneration and reopen end to end
@@ -5413,6 +5461,7 @@ Validate the hardest integration behavior through the actual application.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -5454,7 +5503,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-078/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E09 — Assets, narration, captions and native video parity
@@ -5481,6 +5529,7 @@ Import local media once and make it reliably available to diagram and native sce
 - `hyperframes-main/packages/studio-server/src/helpers/mediaValidation.ts`
 - `hyperframes-main/packages/parsers/src/assetResolution.ts`
 - `hyperframes-main/packages/parsers/src/assetPaths.ts`
+
 ### H-PRODUCER — Retained render pipeline
 
 - `hyperframes-main/packages/producer/src/index.ts`
@@ -5522,7 +5571,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-079/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-080 — Integrate narration clips and optional synthesis providers
@@ -5547,12 +5595,14 @@ Add editable narration without making a paid upstream service mandatory.
 - `hyperframes-main/packages/cli/src/commands/transcribe.ts`
 - `hyperframes-main/packages/cli/src/tts/synthesize.ts`
 - `hyperframes-main/packages/cli/src/whisper/transcribe.ts`
+
 ### H-AUDIO — Audio mixer, timing and effects
 
 - `hyperframes-main/packages/producer/src/services/audioMixer.ts`
 - `hyperframes-main/packages/engine/src/services/audioMixer.ts`
 - `hyperframes-main/packages/core/src/audioFx.ts`
 - `hyperframes-main/packages/engine/src/services/audioVolumeEnvelope.ts`
+
 ### H-AUTH — Optional hosted authentication and secret scrubbing
 
 - `hyperframes-main/packages/cli/src/auth/resolver.ts`
@@ -5594,7 +5644,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-080/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-081 — Unify caption import, editing and frame-accurate export
@@ -5618,6 +5667,7 @@ Keep captions synchronized with story and media edits in the shared project.
 - `hyperframes-main/packages/studio/src/captions/generator.ts`
 - `hyperframes-main/packages/studio/src/captions/components/CaptionTimeline.tsx`
 - `hyperframes-main/packages/studio/src/captions/hooks/useCaptionSync.ts`
+
 ### H-PROVIDERS — Optional speech, transcription and local model adapters
 
 - `hyperframes-main/packages/cli/src/audio/providers.ts`
@@ -5660,7 +5710,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-081/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-082 — Preserve native media transforms, audio effects and color controls
@@ -5684,18 +5733,21 @@ Ensure diagram integration expands rather than removes native editing capabiliti
 - `hyperframes-main/packages/engine/src/services/audioMixer.ts`
 - `hyperframes-main/packages/core/src/audioFx.ts`
 - `hyperframes-main/packages/engine/src/services/audioVolumeEnvelope.ts`
+
 ### H-GESTURE — Canvas transforms, hit-testing and DOM mutation
 
 - `hyperframes-main/packages/studio/src/components/editor/DomEditOverlay.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/domEditing.ts`
 - `hyperframes-main/packages/studio/src/components/editor/groupDragMove.ts`
 - `hyperframes-main/packages/sdk/src/adapters/iframe.ts`
+
 ### H-ANIMUI — Animation, paths, easing and keyframe controls
 
 - `hyperframes-main/packages/studio/src/components/editor/GsapAnimationSection.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/MotionPathOverlay.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/EaseCurveSection.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/KeyframeNavigation.tsx`
+
 ### H-PLAYER — Player and slideshow compatibility
 
 - `hyperframes-main/packages/player/src/hyperframes-player.ts`
@@ -5737,7 +5789,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-082/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-083 — Unify templates, local catalog and asset provenance
@@ -5762,12 +5813,14 @@ Provide reusable starting projects while keeping remote catalogs optional.
 - `hyperframes-main/packages/cli/src/registry/resolver.ts`
 - `hyperframes-main/packages/studio-server/src/routes/registry.ts`
 - `hyperframes-main/packages/cli/src/templates/remote.ts`
+
 ### H-STYLE — Existing themes and native animated graph reference
 
 - `hyperframes-main/themes/CONTRACT.md`
 - `hyperframes-main/themes/editorial.css`
 - `hyperframes-main/registry/blocks/flowchart/flowchart.html`
 - `hyperframes-main/registry/blocks/flowchart-vertical/flowchart-vertical.html`
+
 ### A-THEME — Brand registry, locale and presets
 
 - `archify-main/archify/renderers/shared/brand-marks.mjs`
@@ -5812,7 +5865,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-083/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-084 — Support readable output presets and theme customization
@@ -5836,12 +5888,14 @@ Produce deliberate widescreen, square and portrait compositions.
 - `hyperframes-main/themes/editorial.css`
 - `hyperframes-main/registry/blocks/flowchart/flowchart.html`
 - `hyperframes-main/registry/blocks/flowchart-vertical/flowchart-vertical.html`
+
 ### H-FONTS — Font readiness and localization code (not binary redistribution)
 
 - `hyperframes-main/packages/producer/src/services/deterministicFonts.ts`
 - `hyperframes-main/packages/cli/src/fontLocalize.ts`
 - `hyperframes-main/packages/studio-server/src/routes/fonts.ts`
 - `hyperframes-main/packages/cli/src/capture/captureFontValidation.ts`
+
 ### H-CAPTURE — Frame capture and encoding
 
 - `hyperframes-main/packages/engine/src/services/frameCapture.ts`
@@ -5883,7 +5937,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-084/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-085 — Preserve player, slideshow and external native-project compatibility
@@ -5907,12 +5960,14 @@ Keep the inherited composition ecosystem usable in the custom repo.
 - `hyperframes-main/packages/player/src/slideshow/hyperframes-slideshow.ts`
 - `hyperframes-main/packages/player/src/runtime-message-handler.ts`
 - `hyperframes-main/packages/player/src/media-element-guards.ts`
+
 ### H-CORE — Composition compiler and standard composition contracts
 
 - `hyperframes-main/packages/core/src/compiler/compositionScoping.ts`
 - `hyperframes-main/packages/parsers/src/compositionContract.ts`
 - `hyperframes-main/packages/parsers/src/composition.ts`
 - `hyperframes-main/packages/parsers/src/subCompositionValidity.ts`
+
 ### H-PARSER — DOM identities, GSAP and roundtrip editing
 
 - `hyperframes-main/packages/parsers/src/hfIds.ts`
@@ -5955,7 +6010,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-085/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-086 — Provide one export surface for project, diagram, still and video
@@ -5980,6 +6034,7 @@ Export all supported outputs from one authoritative project revision.
 - `archify-main/archify/test/share-card-export.test.mjs`
 - `archify-main/archify/test/webm-artifact.smoke.mjs`
 - `archify-main/archify/test/golden.mjs`
+
 ### H-CLI — Main CLI, init, preview and doctor
 
 - `hyperframes-main/packages/cli/src/cli.ts`
@@ -5987,6 +6042,7 @@ Export all supported outputs from one authoritative project revision.
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### H-JOBS — Render and thumbnail operations
 
 - `hyperframes-main/packages/studio-server/src/routes/render.ts`
@@ -6027,7 +6083,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-086/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E10 — All diagram families and architecture-change reviews
@@ -6054,12 +6109,14 @@ Make workflow diagrams fully editable and animatable inside the unified product.
 - `archify-main/archify/migrations/workflow-v2.mjs`
 - `archify-main/archify/schemas/workflow.schema.json`
 - `archify-main/archify/examples/agent-tool-call.workflow.json`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
@@ -6100,7 +6157,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-087/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-088 — Complete sequence authoring and ordered message motion
@@ -6124,12 +6180,14 @@ Expose sequence-specific editing and timing rather than generic graph traversal.
 - `archify-main/archify/schemas/sequence.schema.json`
 - `archify-main/archify/examples/cache-miss-request.sequence.json`
 - `archify-main/archify/test/sequence-column-fit.test.mjs`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
@@ -6170,7 +6228,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-088/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-089 — Complete dataflow authoring and flow-motion integration
@@ -6194,12 +6251,14 @@ Integrate typed dataflow semantics into Studio and exports.
 - `archify-main/archify/schemas/dataflow.schema.json`
 - `archify-main/archify/examples/product-analytics.dataflow.json`
 - `archify-main/archify/examples/event-stream.dataflow.json`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
@@ -6240,7 +6299,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-089/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-090 — Complete lifecycle authoring and transition-motion integration
@@ -6264,12 +6322,14 @@ Integrate states and transitions while avoiding invented execution histories.
 - `archify-main/archify/schemas/lifecycle.schema.json`
 - `archify-main/archify/examples/agent-run.lifecycle.json`
 - `archify-main/archify/examples/deployment-release.lifecycle.json`
+
 ### H-INSPECT — Inspector and source editing UI
 
 - `hyperframes-main/packages/studio/src/components/editor/PropertyPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/SourceEditor.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/LayersPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/FileTree.tsx`
+
 ### H-TIMELINE — Timeline controls and selection store
 
 - `hyperframes-main/packages/studio/src/player/components/Timeline.tsx`
@@ -6310,7 +6370,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-090/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-091 — Complete viewer features and deep-link continuity in Studio
@@ -6334,6 +6393,7 @@ Preserve diagram exploration capabilities as part of the custom product.
 - `archify-main/archify/test/guided-views.test.mjs`
 - `archify-main/archify/test/story-follow-camera.test.mjs`
 - `archify-main/archify/test/semantic-camera.test.mjs`
+
 ### A-REACH — Authored graph inspection and sharing
 
 - `archify-main/archify/test/authored-reachability.test.mjs`
@@ -6341,6 +6401,7 @@ Preserve diagram exploration capabilities as part of the custom product.
 - `archify-main/archify/test/relationship-direct-explorer.test.mjs`
 - `archify-main/archify/test/relationship-permalink.test.mjs`
 - `archify-main/archify/test/reach-share-card.test.mjs`
+
 ### A-THEME — Brand registry, locale and presets
 
 - `archify-main/archify/renderers/shared/brand-marks.mjs`
@@ -6383,7 +6444,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-091/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-092 — Build exact before/delta/after review scenes
@@ -6407,6 +6467,7 @@ Turn validated structural diffs into editable change-review videos.
 - `archify-main/archify/test/architecture-delta.test.mjs`
 - `archify-main/archify/examples/checkout-platform.base.architecture.json`
 - `archify-main/archify/examples/checkout-platform.head.architecture.json`
+
 ### H-STYLE — Existing themes and native animated graph reference
 
 - `hyperframes-main/themes/CONTRACT.md`
@@ -6448,7 +6509,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-092/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-093 — Integrate repository/PR evidence into review workflows
@@ -6473,12 +6533,14 @@ Reuse source-change storytelling while keeping architecture evidence explicit.
 - `hyperframes-main/skills/pr-to-video/SKILL.md`
 - `hyperframes-main/skills-manifest.json`
 - `hyperframes-main/scripts/check-skill-mirror.mjs`
+
 ### A-EVID — Source references and engineering metadata
 
 - `archify-main/archify/renderers/shared/repository-evidence.mjs`
 - `archify-main/archify/renderers/shared/repository-location.mjs`
 - `archify-main/archify/renderers/shared/engineering-profiles.mjs`
 - `archify-main/archify/test/repository-evidence.test.mjs`
+
 ### A-DELTA — Before/after receipts and geometry
 
 - `archify-main/archify/delta/architecture-delta.mjs`
@@ -6520,7 +6582,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-093/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-094 — Certify all five diagram families and native scenes together
@@ -6545,6 +6606,7 @@ Prevent the architecture-only milestone from being mislabeled as the finished pr
 - `archify-main/archify/test/share-card-export.test.mjs`
 - `archify-main/archify/test/webm-artifact.smoke.mjs`
 - `archify-main/archify/test/golden.mjs`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
@@ -6586,7 +6648,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-094/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E11 — Unified CLI, skills and agent tools
@@ -6613,6 +6674,7 @@ Provide a single local command surface for the merged application.
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### A-PKG — Package, CLI, release identity
 
 - `archify-main/archify/package.json`
@@ -6655,7 +6717,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-095/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-096 — Expose revision-aware diagram and story agent tools
@@ -6679,6 +6740,7 @@ Allow coding/browser agents to operate on semantic identities instead of fragile
 - `hyperframes-main/packages/studio/src/webmcp/registrar.ts`
 - `hyperframes-main/packages/studio/src/webmcp/writeCoordinator.ts`
 - `hyperframes-main/packages/studio/src/webmcp/tools/contentTools.ts`
+
 ### H-SDK — Headless edits, capability checks and patch history
 
 - `hyperframes-main/packages/sdk/src/session.ts`
@@ -6721,7 +6783,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-096/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-097 — Create one combined skill and reconcile agent instructions
@@ -6745,6 +6806,7 @@ Make the coding-agent workflow describe one product rather than two competing to
 - `archify-main/archify/recipes/scenarios.mjs`
 - `archify-main/archify/scripts/check-update.mjs`
 - `archify-main/archify/scripts/update-contract.mjs`
+
 ### H-SKILL — Coding agent instructions and bundled skills
 
 - `hyperframes-main/AGENTS.md`
@@ -6789,7 +6851,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-097/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-098 — Implement source-grounded AI proposal review
@@ -6813,6 +6874,7 @@ Let AI propose useful changes without bypassing architecture validation or user 
 - `archify-main/archify/renderers/shared/repository-location.mjs`
 - `archify-main/archify/renderers/shared/engineering-profiles.mjs`
 - `archify-main/archify/test/repository-evidence.test.mjs`
+
 ### H-SKILL — Coding agent instructions and bundled skills
 
 - `hyperframes-main/AGENTS.md`
@@ -6820,6 +6882,7 @@ Let AI propose useful changes without bypassing architecture validation or user 
 - `hyperframes-main/skills/pr-to-video/SKILL.md`
 - `hyperframes-main/skills-manifest.json`
 - `hyperframes-main/scripts/check-skill-mirror.mjs`
+
 ### H-TOOLS — Studio agent tool registration and write coordination
 
 - `hyperframes-main/packages/studio/src/webmcp/StudioAgentTools.tsx`
@@ -6861,7 +6924,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-098/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-099 — Support headless batch generation and resumable jobs
@@ -6886,6 +6948,7 @@ Generate multiple outputs reliably from the same owned repo.
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### H-PRODUCER — Retained render pipeline
 
 - `hyperframes-main/packages/producer/src/index.ts`
@@ -6927,7 +6990,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-099/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-100 — Preserve optional capture, Figma, cloud and publishing interfaces
@@ -6951,6 +7013,7 @@ Retain existing external capabilities without making them required for local aut
 - `hyperframes-main/packages/cli/src/commands/figma.ts`
 - `hyperframes-main/packages/cli/src/commands/publish.ts`
 - `hyperframes-main/packages/cli/src/commands/remove-background.ts`
+
 ### H-CLOUD — Optional deployment adapters and container packaging
 
 - `hyperframes-main/packages/aws-lambda/src/index.ts`
@@ -6958,6 +7021,7 @@ Retain existing external capabilities without making them required for local aut
 - `hyperframes-main/packages/cli/src/docker/Dockerfile.render`
 - `hyperframes-main/packages/cli/src/commands/cloudrun.ts`
 - `hyperframes-main/packages/cli/src/commands/lambda.ts`
+
 ### H-AUTH — Optional hosted authentication and secret scrubbing
 
 - `hyperframes-main/packages/cli/src/auth/resolver.ts`
@@ -6999,7 +7063,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-100/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-101 — Add project, media and runtime diagnostics to doctor
@@ -7024,12 +7087,14 @@ Give users actionable local setup and project health feedback.
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### A-PKG — Package, CLI, release identity
 
 - `archify-main/archify/package.json`
 - `archify-main/archify/package-lock.json`
 - `archify-main/archify/bin/archify.mjs`
 - `archify-main/archify/skill-release.json`
+
 ### H-NET — Update, telemetry and outbound network controls
 
 - `hyperframes-main/packages/cli/src/telemetry/policy.ts`
@@ -7072,7 +7137,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-101/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-102 — Run real agent and CLI end-to-end acceptance
@@ -7096,12 +7160,14 @@ Prove tool-driven authoring reaches the same product result as the UI.
 - `hyperframes-main/packages/studio/src/webmcp/registrar.ts`
 - `hyperframes-main/packages/studio/src/webmcp/writeCoordinator.ts`
 - `hyperframes-main/packages/studio/src/webmcp/tools/contentTools.ts`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### A-SKILL — Agent guidance and recipes
 
 - `archify-main/archify/SKILL.md`
@@ -7143,7 +7209,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-102/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E12 — Local-first security and resilient execution
@@ -7169,6 +7234,7 @@ Make local-first behavior real rather than assuming both upstream repos are offl
 - `archify-main/archify/recipes/scenarios.mjs`
 - `archify-main/archify/scripts/check-update.mjs`
 - `archify-main/archify/scripts/update-contract.mjs`
+
 ### H-NET — Update, telemetry and outbound network controls
 
 - `hyperframes-main/packages/cli/src/telemetry/policy.ts`
@@ -7176,6 +7242,7 @@ Make local-first behavior real rather than assuming both upstream repos are offl
 - `hyperframes-main/packages/cli/src/utils/autoUpdate.ts`
 - `hyperframes-main/packages/cli/src/utils/updateCheck.ts`
 - `hyperframes-main/packages/engine/src/utils/urlDownloader.ts`
+
 ### H-CATALOG — Registry install, local resolution and template access
 
 - `hyperframes-main/packages/cli/src/registry/installer.ts`
@@ -7183,6 +7250,7 @@ Make local-first behavior real rather than assuming both upstream repos are offl
 - `hyperframes-main/packages/cli/src/registry/resolver.ts`
 - `hyperframes-main/packages/studio-server/src/routes/registry.ts`
 - `hyperframes-main/packages/cli/src/templates/remote.ts`
+
 ### H-AUTH — Optional hosted authentication and secret scrubbing
 
 - `hyperframes-main/packages/cli/src/auth/resolver.ts`
@@ -7224,7 +7292,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-103/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-104 — Harden project paths, archives and file operations
@@ -7248,11 +7315,13 @@ Protect local files even when imported projects or media are malicious.
 - `hyperframes-main/packages/studio-server/src/helpers/safePath.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/sourceMutation.ts`
 - `hyperframes-main/packages/cli/src/server/fileWatcher.ts`
+
 ### A-SHARED — Current IO boundary and semantic hooks
 
 - `archify-main/archify/renderers/shared/cli.mjs`
 - `archify-main/archify/renderers/shared/output-path.mjs`
 - `archify-main/archify/renderers/shared/diagnostics.mjs`
+
 ### H-CATALOG — Registry install, local resolution and template access
 
 - `hyperframes-main/packages/cli/src/registry/installer.ts`
@@ -7295,7 +7364,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-104/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-105 — Isolate imported HTML and preview messaging
@@ -7319,12 +7387,14 @@ Treat native HTML compositions as active untrusted content.
 - `hyperframes-main/packages/player/src/slideshow/hyperframes-slideshow.ts`
 - `hyperframes-main/packages/player/src/runtime-message-handler.ts`
 - `hyperframes-main/packages/player/src/media-element-guards.ts`
+
 ### H-GESTURE — Canvas transforms, hit-testing and DOM mutation
 
 - `hyperframes-main/packages/studio/src/components/editor/DomEditOverlay.tsx`
 - `hyperframes-main/packages/studio/src/components/editor/domEditing.ts`
 - `hyperframes-main/packages/studio/src/components/editor/groupDragMove.ts`
 - `hyperframes-main/packages/sdk/src/adapters/iframe.ts`
+
 ### H-ROUTES — Storyboard, preview, lint and selection endpoints
 
 - `hyperframes-main/packages/studio-server/src/routes/storyboard.ts`
@@ -7366,7 +7436,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-105/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-106 — Constrain asset fetching and prevent internal-network access
@@ -7391,6 +7460,7 @@ Keep remote asset resolution from becoming an unrestricted network proxy.
 - `hyperframes-main/packages/studio-server/src/helpers/mediaValidation.ts`
 - `hyperframes-main/packages/parsers/src/assetResolution.ts`
 - `hyperframes-main/packages/parsers/src/assetPaths.ts`
+
 ### H-NET — Update, telemetry and outbound network controls
 
 - `hyperframes-main/packages/cli/src/telemetry/policy.ts`
@@ -7398,6 +7468,7 @@ Keep remote asset resolution from becoming an unrestricted network proxy.
 - `hyperframes-main/packages/cli/src/utils/autoUpdate.ts`
 - `hyperframes-main/packages/cli/src/utils/updateCheck.ts`
 - `hyperframes-main/packages/engine/src/utils/urlDownloader.ts`
+
 ### H-CATALOG — Registry install, local resolution and template access
 
 - `hyperframes-main/packages/cli/src/registry/installer.ts`
@@ -7440,7 +7511,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-106/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-107 — Protect secrets, source privacy and exported evidence
@@ -7464,12 +7534,14 @@ Keep source-backed authoring useful without leaking private repository or provid
 - `hyperframes-main/packages/cli/src/auth/store.ts`
 - `hyperframes-main/packages/cli/src/auth/scrub.ts`
 - `hyperframes-main/packages/cli/src/cloud/auth.ts`
+
 ### A-EVID — Source references and engineering metadata
 
 - `archify-main/archify/renderers/shared/repository-evidence.mjs`
 - `archify-main/archify/renderers/shared/repository-location.mjs`
 - `archify-main/archify/renderers/shared/engineering-profiles.mjs`
 - `archify-main/archify/test/repository-evidence.test.mjs`
+
 ### H-NET — Update, telemetry and outbound network controls
 
 - `hyperframes-main/packages/cli/src/telemetry/policy.ts`
@@ -7512,7 +7584,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-107/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-108 — Enforce render worker and process isolation
@@ -7536,12 +7607,14 @@ Bound browser/encoder jobs without granting them the application's privileges.
 - `hyperframes-main/packages/engine/src/utils/processTracker.ts`
 - `hyperframes-main/packages/engine/src/services/browserManager.ts`
 - `hyperframes-main/packages/engine/src/services/systemMemory.ts`
+
 ### H-CAPTURE — Frame capture and encoding
 
 - `hyperframes-main/packages/engine/src/services/frameCapture.ts`
 - `hyperframes-main/packages/engine/src/services/chunkEncoder.ts`
 - `hyperframes-main/packages/engine/src/services/streamingEncoder.ts`
 - `hyperframes-main/packages/engine/src/utils/renderProvenance.ts`
+
 ### H-CLOUD — Optional deployment adapters and container packaging
 
 - `hyperframes-main/packages/aws-lambda/src/index.ts`
@@ -7584,7 +7657,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-108/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-109 — Secure the local API and deny accidental public hosting
@@ -7608,6 +7680,7 @@ Protect the default local application from browser-origin and network misuse.
 - `hyperframes-main/packages/studio-server/src/types.ts`
 - `hyperframes-main/packages/studio-server/src/routes/projects.ts`
 - `hyperframes-main/packages/cli/src/server/studioServer.ts`
+
 ### H-AUTH — Optional hosted authentication and secret scrubbing
 
 - `hyperframes-main/packages/cli/src/auth/resolver.ts`
@@ -7649,7 +7722,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-109/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-110 — Handle concurrency, quotas and filesystem exhaustion
@@ -7673,12 +7745,14 @@ Keep one overloaded project from making the application lose work.
 - `hyperframes-main/packages/engine/src/utils/processTracker.ts`
 - `hyperframes-main/packages/engine/src/services/browserManager.ts`
 - `hyperframes-main/packages/engine/src/services/systemMemory.ts`
+
 ### H-PERSIST — SDK persistence and project file writes
 
 - `hyperframes-main/packages/sdk/src/persist-queue.ts`
 - `hyperframes-main/packages/sdk/src/adapters/fs.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/backupJournal.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/fileVersion.ts`
+
 ### H-JOBS — Render and thumbnail operations
 
 - `hyperframes-main/packages/studio-server/src/routes/render.ts`
@@ -7719,7 +7793,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-110/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-111 — Produce software and asset provenance/security inventories
@@ -7743,11 +7816,13 @@ Make release composition and dependency risk auditable.
 - `hyperframes-main/CREDITS.md`
 - `hyperframes-main/SECURITY.md`
 - `hyperframes-main/CONTRIBUTING.md`
+
 ### A-LICENSE — Attribution and third-party asset constraints
 
 - `archify-main/LICENSE`
 - `archify-main/THIRD_PARTY_NOTICES.md`
 - `archify-main/archify/THIRD_PARTY_NOTICES.md`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -7791,7 +7866,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-111/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-112 — Run adversarial and offline security acceptance
@@ -7815,12 +7889,14 @@ Validate the actual cross-system security boundaries.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-FILES — File edit ingress and safe path resolution
 
 - `hyperframes-main/packages/studio-server/src/routes/files.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/safePath.ts`
 - `hyperframes-main/packages/studio-server/src/helpers/sourceMutation.ts`
 - `hyperframes-main/packages/cli/src/server/fileWatcher.ts`
+
 ### H-NET — Update, telemetry and outbound network controls
 
 - `hyperframes-main/packages/cli/src/telemetry/policy.ts`
@@ -7864,7 +7940,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-112/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E13 — Regression, performance and platform certification
@@ -7890,6 +7965,7 @@ Cover semantic and presentation edge cases without relying on only one happy-pat
 - `archify-main/archify/renderers/architecture/grid.mjs`
 - `archify-main/archify/schemas/architecture.schema.json`
 - `archify-main/archify/examples/production-deployment.architecture.json`
+
 ### A-WORK — Workflow compile, migrate, and branch semantics
 
 - `archify-main/archify/renderers/workflow/render-workflow.mjs`
@@ -7897,24 +7973,28 @@ Cover semantic and presentation edge cases without relying on only one happy-pat
 - `archify-main/archify/migrations/workflow-v2.mjs`
 - `archify-main/archify/schemas/workflow.schema.json`
 - `archify-main/archify/examples/agent-tool-call.workflow.json`
+
 ### A-SEQ — Ordered messages and participants
 
 - `archify-main/archify/renderers/sequence/render-sequence.mjs`
 - `archify-main/archify/schemas/sequence.schema.json`
 - `archify-main/archify/examples/cache-miss-request.sequence.json`
 - `archify-main/archify/test/sequence-column-fit.test.mjs`
+
 ### A-DATA — Dataflow renderer, schema and examples
 
 - `archify-main/archify/renderers/dataflow/render-dataflow.mjs`
 - `archify-main/archify/schemas/dataflow.schema.json`
 - `archify-main/archify/examples/product-analytics.dataflow.json`
 - `archify-main/archify/examples/event-stream.dataflow.json`
+
 ### A-LIFE — Lifecycle states and transitions
 
 - `archify-main/archify/renderers/lifecycle/render-lifecycle.mjs`
 - `archify-main/archify/schemas/lifecycle.schema.json`
 - `archify-main/archify/examples/agent-run.lifecycle.json`
 - `archify-main/archify/examples/deployment-release.lifecycle.json`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
@@ -7956,7 +8036,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-113/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-114 — Add schema, identity and property-based semantic tests
@@ -7980,6 +8059,7 @@ Find relationship and timing corruption beyond hand-authored examples.
 - `archify-main/archify/renderers/shared/validator.mjs`
 - `archify-main/archify/renderers/shared/generated-validators.mjs`
 - `archify-main/archify/scripts/generate-validators.mjs`
+
 ### A-REACH — Authored graph inspection and sharing
 
 - `archify-main/archify/test/authored-reachability.test.mjs`
@@ -7987,6 +8067,7 @@ Find relationship and timing corruption beyond hand-authored examples.
 - `archify-main/archify/test/relationship-direct-explorer.test.mjs`
 - `archify-main/archify/test/relationship-permalink.test.mjs`
 - `archify-main/archify/test/reach-share-card.test.mjs`
+
 ### H-PARSER — DOM identities, GSAP and roundtrip editing
 
 - `hyperframes-main/packages/parsers/src/hfIds.ts`
@@ -8029,7 +8110,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-114/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-115 — Gate visual correctness and preview/render parity
@@ -8053,12 +8133,14 @@ Catch blank/clipped/wrong-state frames in real output.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-CAPTURE — Frame capture and encoding
 
 - `hyperframes-main/packages/engine/src/services/frameCapture.ts`
 - `hyperframes-main/packages/engine/src/services/chunkEncoder.ts`
 - `hyperframes-main/packages/engine/src/services/streamingEncoder.ts`
 - `hyperframes-main/packages/engine/src/utils/renderProvenance.ts`
+
 ### A-EXPORT — Artifact and visual validation / export behavior
 
 - `archify-main/archify/scripts/check-render-output.mjs`
@@ -8101,7 +8183,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-115/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-116 — Define and enforce realistic performance budgets
@@ -8125,12 +8206,14 @@ Keep the unified editor usable on documented hardware without invented benchmark
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-PROCESS — Worker lifecycle, resource and process tracking
 
 - `hyperframes-main/packages/engine/src/utils/managedChildProcess.ts`
 - `hyperframes-main/packages/engine/src/utils/processTracker.ts`
 - `hyperframes-main/packages/engine/src/services/browserManager.ts`
 - `hyperframes-main/packages/engine/src/services/systemMemory.ts`
+
 ### A-GEOM — Geometry, text fit, layout diagnostics
 
 - `archify-main/archify/renderers/shared/geometry.mjs`
@@ -8173,7 +8256,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-116/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-117 — Certify Windows, macOS and Linux developer workflows
@@ -8198,6 +8280,7 @@ Ensure the user can move between Windows and Mac without relying on Unix-only as
 - `hyperframes-main/.github/workflows/windows-render.yml`
 - `hyperframes-main/scripts/check-workspace-contracts.mjs`
 - `hyperframes-main/scripts/check-package-cycles.mjs`
+
 ### H-CLI — Main CLI, init, preview and doctor
 
 - `hyperframes-main/packages/cli/src/cli.ts`
@@ -8205,6 +8288,7 @@ Ensure the user can move between Windows and Mac without relying on Unix-only as
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### H-CLOUD — Optional deployment adapters and container packaging
 
 - `hyperframes-main/packages/aws-lambda/src/index.ts`
@@ -8212,6 +8296,7 @@ Ensure the user can move between Windows and Mac without relying on Unix-only as
 - `hyperframes-main/packages/cli/src/docker/Dockerfile.render`
 - `hyperframes-main/packages/cli/src/commands/cloudrun.ts`
 - `hyperframes-main/packages/cli/src/commands/lambda.ts`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -8254,7 +8339,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-117/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-118 — Test long-session durability and resource cleanup
@@ -8278,6 +8362,7 @@ Catch leaks and state corruption from repeated editing and rendering.
 - `hyperframes-main/packages/engine/src/utils/processTracker.ts`
 - `hyperframes-main/packages/engine/src/services/browserManager.ts`
 - `hyperframes-main/packages/engine/src/services/systemMemory.ts`
+
 ### H-HISTORY — Studio history and SDK session glue
 
 - `hyperframes-main/packages/studio/src/hooks/useStudioSdkSessions.ts`
@@ -8285,6 +8370,7 @@ Catch leaks and state corruption from repeated editing and rendering.
 - `hyperframes-main/packages/studio/src/utils/studioFileMutationCoordinator.ts`
 - `hyperframes-main/packages/studio/src/components/ExternalFileConflictBanner.tsx`
 - `hyperframes-main/packages/studio/src/components/SaveQueuePausedBanner.tsx`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
@@ -8326,7 +8412,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-118/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-119 — Automate capability evidence and no-drift validation
@@ -8350,6 +8435,7 @@ Prevent file counts, mocks or retained source from being mistaken for integrated
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -8357,6 +8443,7 @@ Prevent file counts, mocks or retained source from being mistaken for integrated
 - `hyperframes-main/scripts/verify-packed-manifests.mjs`
 - `hyperframes-main/scripts/studio-runtime-smoke.mjs`
 - `hyperframes-main/scripts/package-subpaths.mjs`
+
 ### A-EXPORT — Artifact and visual validation / export behavior
 
 - `archify-main/archify/scripts/check-render-output.mjs`
@@ -8399,7 +8486,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-119/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-120 — Run final end-to-end product acceptance scenarios
@@ -8423,6 +8509,7 @@ Prove the fully unified product from clean source to deliverable outputs.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### A-EXPORT — Artifact and visual validation / export behavior
 
 - `archify-main/archify/scripts/check-render-output.mjs`
@@ -8465,7 +8552,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-120/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E14 — Custom-product release and complete repo handoff
@@ -8492,6 +8578,7 @@ Present a genuinely custom product without destroying provenance or compatibilit
 - `hyperframes-main/packages/studio/src/components/StudioLeftSidebar.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioRightPanel.tsx`
 - `hyperframes-main/packages/studio/src/components/StudioHeader.tsx`
+
 ### H-CLI — Main CLI, init, preview and doctor
 
 - `hyperframes-main/packages/cli/src/cli.ts`
@@ -8499,6 +8586,7 @@ Present a genuinely custom product without destroying provenance or compatibilit
 - `hyperframes-main/packages/cli/src/commands/preview.ts`
 - `hyperframes-main/packages/cli/src/commands/doctor.ts`
 - `hyperframes-main/packages/cli/src/help.ts`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -8506,6 +8594,7 @@ Present a genuinely custom product without destroying provenance or compatibilit
 - `hyperframes-main/scripts/verify-packed-manifests.mjs`
 - `hyperframes-main/scripts/studio-runtime-smoke.mjs`
 - `hyperframes-main/scripts/package-subpaths.mjs`
+
 ### A-PKG — Package, CLI, release identity
 
 - `archify-main/archify/package.json`
@@ -8549,7 +8638,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-121/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-122 — Package local development and self-hosted single-user deployment
@@ -8574,6 +8662,7 @@ Ship one repo with a clear local and controlled self-hosted execution path.
 - `hyperframes-main/packages/cli/src/docker/Dockerfile.render`
 - `hyperframes-main/packages/cli/src/commands/cloudrun.ts`
 - `hyperframes-main/packages/cli/src/commands/lambda.ts`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -8581,6 +8670,7 @@ Ship one repo with a clear local and controlled self-hosted execution path.
 - `hyperframes-main/scripts/verify-packed-manifests.mjs`
 - `hyperframes-main/scripts/studio-runtime-smoke.mjs`
 - `hyperframes-main/scripts/package-subpaths.mjs`
+
 ### H-CLI — Main CLI, init, preview and doctor
 
 - `hyperframes-main/packages/cli/src/cli.ts`
@@ -8625,7 +8715,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-122/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-123 — Write developer contracts and migration/runbook documentation
@@ -8650,6 +8739,7 @@ Enable another engineer or coding agent to maintain the merged product without r
 - `hyperframes-main/skills/pr-to-video/SKILL.md`
 - `hyperframes-main/skills-manifest.json`
 - `hyperframes-main/scripts/check-skill-mirror.mjs`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -8657,6 +8747,7 @@ Enable another engineer or coding agent to maintain the merged product without r
 - `archify-main/scripts/stage-clean-skill.mjs`
 - `archify-main/scripts/write-deterministic-zip.mjs`
 - `archify-main/scripts/package-smoke.mjs`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -8701,7 +8792,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-123/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-124 — Create demo projects and human-verifiable acceptance evidence
@@ -8725,12 +8815,14 @@ Make the finished product demonstrable beyond screenshots of copied source.
 - `archify-main/archify/renderers/architecture/grid.mjs`
 - `archify-main/archify/schemas/architecture.schema.json`
 - `archify-main/archify/examples/production-deployment.architecture.json`
+
 ### A-DELTA — Before/after receipts and geometry
 
 - `archify-main/archify/delta/architecture-delta.mjs`
 - `archify-main/archify/test/architecture-delta.test.mjs`
 - `archify-main/archify/examples/checkout-platform.base.architecture.json`
 - `archify-main/archify/examples/checkout-platform.head.architecture.json`
+
 ### H-STYLE — Existing themes and native animated graph reference
 
 - `hyperframes-main/themes/CONTRACT.md`
@@ -8773,7 +8865,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-124/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-125 — Finalize upstream update and patch maintenance tooling
@@ -8798,6 +8889,7 @@ Keep ownership sustainable after both upstream forks evolve.
 - `hyperframes-main/scripts/verify-packed-manifests.mjs`
 - `hyperframes-main/scripts/studio-runtime-smoke.mjs`
 - `hyperframes-main/scripts/package-subpaths.mjs`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -8841,7 +8933,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-125/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-126 — Prepare source and runnable release artifacts
@@ -8866,6 +8957,7 @@ Deliver a complete new repository plus verifiable build outputs.
 - `hyperframes-main/scripts/verify-packed-manifests.mjs`
 - `hyperframes-main/scripts/studio-runtime-smoke.mjs`
 - `hyperframes-main/scripts/package-subpaths.mjs`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -8909,7 +9001,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-126/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-127 — Run an independent release-candidate review and defect closure
@@ -8933,6 +9024,7 @@ Challenge the merged product against the specification before final delivery.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-PACK — Release preparation and packed package verification
 
 - `hyperframes-main/scripts/release-prepare.ts`
@@ -8975,7 +9067,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-127/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-128 — Finalize the new repository and handoff without unauthorized publication
@@ -9000,6 +9091,7 @@ Hand over the complete owned repo with truthful completion and deployment status
 - `hyperframes-main/scripts/verify-packed-manifests.mjs`
 - `hyperframes-main/scripts/studio-runtime-smoke.mjs`
 - `hyperframes-main/scripts/package-subpaths.mjs`
+
 ### H-CI — Existing build/release workflows and checks
 
 - `hyperframes-main/.github/workflows/ci.yml`
@@ -9043,7 +9135,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-128/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # E15 — Milestone acceptance gates
@@ -9070,6 +9161,7 @@ Block deeper integration claims until raw folder import and baseline evidence ar
 - `hyperframes-main/.github/workflows/windows-render.yml`
 - `hyperframes-main/scripts/check-workspace-contracts.mjs`
 - `hyperframes-main/scripts/check-package-cycles.mjs`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -9111,7 +9203,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-129/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-130 — G1: Accept the first native architecture vertical slice
@@ -9135,6 +9226,7 @@ Prove one real integrated workflow early without calling it full parity.
 - `archify-main/archify/renderers/architecture/grid.mjs`
 - `archify-main/archify/schemas/architecture.schema.json`
 - `archify-main/archify/examples/production-deployment.architecture.json`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
@@ -9175,7 +9267,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-130/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-131 — G2: Accept regeneration-safe mixed-content editing
@@ -9200,6 +9291,7 @@ Prove shared history and media integration do not lose source or presentation wo
 - `hyperframes-main/packages/studio/src/utils/studioFileMutationCoordinator.ts`
 - `hyperframes-main/packages/studio/src/components/ExternalFileConflictBanner.tsx`
 - `hyperframes-main/packages/studio/src/components/SaveQueuePausedBanner.tsx`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
@@ -9240,7 +9332,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-131/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-132 — G3: Accept all diagram families and exact change reviews
@@ -9264,6 +9355,7 @@ Prevent release scope from quietly stopping at architecture diagrams.
 - `archify-main/archify/test/architecture-delta.test.mjs`
 - `archify-main/archify/examples/checkout-platform.base.architecture.json`
 - `archify-main/archify/examples/checkout-platform.head.architecture.json`
+
 ### H-PARITY — Existing producer conformance and regressions
 
 - `hyperframes-main/packages/producer/src/runtime-conformance.ts`
@@ -9304,7 +9396,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-132/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-133 — G4: Accept security, platform and release-candidate quality
@@ -9328,6 +9419,7 @@ Establish the declared local product quality envelope before packaging.
 - `hyperframes-main/packages/producer/src/parity-harness.ts`
 - `hyperframes-main/packages/producer/src/regression-harness.ts`
 - `hyperframes-main/packages/producer/src/perf-gate.ts`
+
 ### H-CI — Existing build/release workflows and checks
 
 - `hyperframes-main/.github/workflows/ci.yml`
@@ -9369,7 +9461,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-133/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
 
-
 ---
 
 # AFM-134 — G5: Accept and verify the complete new repository
@@ -9394,6 +9485,7 @@ Authorize the final completion claim only for a complete tested local product.
 - `hyperframes-main/scripts/verify-packed-manifests.mjs`
 - `hyperframes-main/scripts/studio-runtime-smoke.mjs`
 - `hyperframes-main/scripts/package-subpaths.mjs`
+
 ### A-ROOT — Root build and test scripts with relative-path assumptions
 
 - `archify-main/scripts/run-tests.mjs`
@@ -9435,7 +9527,6 @@ Source and presentation must remain coherent; failed changes must preserve the l
 - `evidence/tickets/AFM-134/result.json`
 - `evidence/tickets/AFM-134/test.log`
 - Commit SHA, exact commands/exit codes, source/build versions, actual/expected results, remaining blockers and output hashes where applicable.
-
 
 ---
 

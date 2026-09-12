@@ -5,7 +5,15 @@ description: "Organic liquid simulation with vertex displacement on a subdivided
 
 import { InstallCommand } from "/snippets/install-command.jsx";
 
-<video className="w-full aspect-video rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800" src="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-background.mp4" poster="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-background.png" autoPlay muted loop playsInline />
+<video
+  className="w-full aspect-video rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800"
+  src="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-background.mp4"
+  poster="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-liquid-background.png"
+  autoPlay
+  muted
+  loop
+  playsInline
+/>
 
 ## Install
 
@@ -14,9 +22,9 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 That writes one file: `compositions/vfx-liquid-background.html`.
 
 <Danger>
-  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on.
-  Without it this item's screen renders black. Rendering from the CLI switches
-  it on for you. [How it works](/guides/html-in-canvas)
+  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on. Without it this
+  item's screen renders black. Rendering from the CLI switches it on for you. [How it
+  works](/guides/html-in-canvas)
 </Danger>
 
 ## Change the colors
@@ -62,20 +70,20 @@ Set these CSS variables on the block:
         "
       >
         <div
-          style="
+          style='
             width: 100%;
             height: 100%;
             background: #0a0e17;
             color: #e2e8f0;
             font-family:
-              &quot;Inter&quot;,
+              "Inter",
               -apple-system,
               BlinkMacSystemFont,
               sans-serif;
             padding: 60px 80px;
             display: flex;
             flex-direction: column;
-          "
+          '
         >
           <!-- Top bar -->
           <div
@@ -367,20 +375,20 @@ Set these CSS variables on the block:
         "
       >
         <div
-          style="
+          style='
             width: 100%;
             height: 100%;
             background: #0f1419;
             color: #e7e9ea;
             font-family:
-              &quot;Inter&quot;,
+              "Inter",
               -apple-system,
               BlinkMacSystemFont,
               sans-serif;
             padding: 60px 80px;
             display: flex;
             flex-direction: column;
-          "
+          '
         >
           <!-- Profile header -->
           <div
@@ -1284,7 +1292,15 @@ Set these CSS variables on the block:
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="vfx-liquid-background" data-composition-src="compositions/vfx-liquid-background.html" data-start="0" data-duration="12" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="vfx-liquid-background"
+  data-composition-src="compositions/vfx-liquid-background.html"
+  data-start="0"
+  data-duration="12"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

@@ -142,12 +142,12 @@ That writes one file: `compositions/components/text-state-swap.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `from-text` | `Saving draft` | string | The outgoing label, on screen before the swap. |
-| `to-text` | `Saved` | string | The incoming label, on screen after the swap. It rests hidden until the timeline reveals it. |
-| `distance` | `standard` | `close`, `standard`, `far` | Scales the vertical offset the timeline drives, so each label covers a shorter or longer run in the same time. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Label colour: ink for light frames, paper for dark ones, accent rides --brand. |
+| Variable    | Default        | Accepts                    | What it does                                                                                                   |
+| ----------- | -------------- | -------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| `from-text` | `Saving draft` | string                     | The outgoing label, on screen before the swap.                                                                 |
+| `to-text`   | `Saved`        | string                     | The incoming label, on screen after the swap. It rests hidden until the timeline reveals it.                   |
+| `distance`  | `standard`     | `close`, `standard`, `far` | Scales the vertical offset the timeline drives, so each label covers a shorter or longer run in the same time. |
+| `tone`      | `ink`          | `ink`, `paper`, `accent`   | Label colour: ink for light frames, paper for dark ones, accent rides --brand.                                 |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

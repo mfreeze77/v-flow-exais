@@ -140,70 +140,40 @@
             "type": "external",
             "label": "Users",
             "sublabel": "Browser",
-            "pos": [
-              40,
-              320
-            ],
-            "size": [
-              120,
-              60
-            ]
+            "pos": [40, 320],
+            "size": [120, 60]
           },
           {
             "id": "cdn",
             "type": "cloud",
             "label": "CDN",
             "sublabel": "CloudFront",
-            "pos": [
-              230,
-              320
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [230, 320],
+            "size": [130, 60]
           },
           {
             "id": "lb",
             "type": "cloud",
             "label": "Load Balancer",
             "sublabel": "HTTPS :443",
-            "pos": [
-              440,
-              320
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [440, 320],
+            "size": [130, 60]
           },
           {
             "id": "api",
             "type": "backend",
             "label": "API Server",
             "sublabel": "FastAPI :8000",
-            "pos": [
-              640,
-              320
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [640, 320],
+            "size": [130, 60]
           },
           {
             "id": "auth",
             "type": "security",
             "label": "Auth Provider",
             "sublabel": "OAuth 2.0",
-            "pos": [
-              40,
-              100
-            ],
-            "size": [
-              130,
-              64
-            ],
+            "pos": [40, 100],
+            "size": [130, 64],
             "tag": "JWT + PKCE"
           },
           {
@@ -211,70 +181,40 @@
             "type": "database",
             "label": "Redis",
             "sublabel": "cache :6379",
-            "pos": [
-              640,
-              130
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [640, 130],
+            "size": [130, 60]
           },
           {
             "id": "postgres",
             "type": "database",
             "label": "PostgreSQL",
             "sublabel": "primary :5432",
-            "pos": [
-              860,
-              320
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [860, 320],
+            "size": [130, 60]
           },
           {
             "id": "queue",
             "type": "messagebus",
             "label": "Queue",
             "sublabel": "job queue",
-            "pos": [
-              640,
-              510
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [640, 510],
+            "size": [130, 60]
           },
           {
             "id": "worker",
             "type": "backend",
             "label": "Worker",
             "sublabel": "async jobs",
-            "pos": [
-              860,
-              510
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [860, 510],
+            "size": [130, 60]
           },
           {
             "id": "s3",
             "type": "cloud",
             "label": "Object Storage",
             "sublabel": "static assets",
-            "pos": [
-              230,
-              510
-            ],
-            "size": [
-              130,
-              60
-            ],
+            "pos": [230, 510],
+            "size": [130, 60],
             "tag": "OAI protected"
           }
         ],
@@ -282,24 +222,12 @@
           {
             "kind": "region",
             "label": "Cloud Region",
-            "wraps": [
-              "cdn",
-              "lb",
-              "api",
-              "redis",
-              "postgres",
-              "s3",
-              "queue",
-              "worker"
-            ]
+            "wraps": ["cdn", "lb", "api", "redis", "postgres", "s3", "queue", "worker"]
           },
           {
             "kind": "security-group",
             "label": "sg-api :443/:8000",
-            "wraps": [
-              "lb",
-              "api"
-            ]
+            "wraps": ["lb", "api"]
           }
         ],
         "connections": [
@@ -382,10 +310,7 @@
           {
             "dot": "rose",
             "title": "Security",
-            "items": [
-              "OAuth 2.0 with JWT + PKCE",
-              "API and LB isolated in a security group"
-            ]
+            "items": ["OAuth 2.0 with JWT + PKCE", "API and LB isolated in a security group"]
           }
         ]
       },
@@ -534,16 +459,7 @@
             "variant": "security"
           }
         ],
-        "mainPath": [
-          "user",
-          "chat",
-          "planner",
-          "router",
-          "approval",
-          "tool",
-          "external",
-          "final"
-        ],
+        "mainPath": ["user", "chat", "planner", "router", "approval", "tool", "external", "final"],
         "nodes": [
           {
             "id": "user",
@@ -833,10 +749,7 @@
           "title": "Dashboard Cache Miss Sequence",
           "subtitle": "Browser → API → Auth → Redis → Postgres → Trace → Response",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            920,
-            760
-          ]
+          "viewBox": [920, 760]
         },
         "participants": [
           {
@@ -1096,10 +1009,7 @@
           "title": "Product Analytics Data Flow",
           "subtitle": "Event ingestion, consent gating, PII isolation, warehouse facts, and downstream consumers",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            1100,
-            760
-          ]
+          "viewBox": [1100, 760]
         },
         "stages": [
           {
@@ -1220,19 +1130,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                184,
-                157
-              ],
-              [
-                184,
-                271
-              ]
+              [184, 157],
+              [184, 271]
             ],
-            "labelAt": [
-              204,
-              190
-            ]
+            "labelAt": [204, 190]
           },
           {
             "from": "mobile",
@@ -1243,19 +1144,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                184,
-                385
-              ],
-              [
-                184,
-                271
-              ]
+              [184, 385],
+              [184, 271]
             ],
-            "labelAt": [
-              204,
-              342
-            ]
+            "labelAt": [204, 342]
           },
           {
             "from": "edge",
@@ -1266,19 +1158,10 @@
             "fromSide": "top",
             "toSide": "left",
             "via": [
-              [
-                315,
-                112
-              ],
-              [
-                474,
-                112
-              ]
+              [315, 112],
+              [474, 112]
             ],
-            "labelAt": [
-              394,
-              100
-            ]
+            "labelAt": [394, 100]
           },
           {
             "from": "edge",
@@ -1289,19 +1172,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                399,
-                271
-              ],
-              [
-                399,
-                385
-              ]
+              [399, 271],
+              [399, 385]
             ],
-            "labelAt": [
-              418,
-              324
-            ]
+            "labelAt": [418, 324]
           },
           {
             "from": "consent",
@@ -1310,10 +1184,7 @@
             "classification": "encrypted PII",
             "variant": "security",
             "route": "straight",
-            "labelAt": [
-              638,
-              144
-            ]
+            "labelAt": [638, 144]
           },
           {
             "from": "stream",
@@ -1322,10 +1193,7 @@
             "classification": "non-PII",
             "variant": "emphasis",
             "route": "straight",
-            "labelAt": [
-              638,
-              372
-            ]
+            "labelAt": [638, 372]
           },
           {
             "from": "warehouse",
@@ -1336,19 +1204,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                829,
-                385
-              ],
-              [
-                829,
-                271
-              ]
+              [829, 385],
+              [829, 271]
             ],
-            "labelAt": [
-              808,
-              326
-            ]
+            "labelAt": [808, 326]
           },
           {
             "from": "warehouse",
@@ -1359,10 +1218,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              745,
-              504
-            ]
+            "labelAt": [745, 504]
           },
           {
             "from": "feature-store",
@@ -1371,10 +1227,7 @@
             "classification": "derived",
             "variant": "dashed",
             "route": "straight",
-            "labelAt": [
-              852,
-              598
-            ]
+            "labelAt": [852, 598]
           },
           {
             "from": "pii-vault",
@@ -1385,23 +1238,11 @@
             "fromSide": "right",
             "toSide": "top",
             "via": [
-              [
-                829,
-                157
-              ],
-              [
-                829,
-                212
-              ],
-              [
-                904,
-                212
-              ]
+              [829, 157],
+              [829, 212],
+              [904, 212]
             ],
-            "labelAt": [
-              830,
-              198
-            ]
+            "labelAt": [830, 198]
           }
         ],
         "cards": [
@@ -1505,45 +1346,25 @@
           "title": "Agent Run Lifecycle",
           "subtitle": "Ordered phases, interruptions, recovery, and terminal exits",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            980,
-            660
-          ],
+          "viewBox": [980, 660],
           "quality_profile": "showcase",
           "views": [
             {
               "id": "main-lifecycle",
               "label": "Main lifecycle",
-              "focus": [
-                "queued",
-                "planning",
-                "executing",
-                "reviewing",
-                "completed"
-              ],
+              "focus": ["queued", "planning", "executing", "reviewing", "completed"],
               "note": "The five ordered phases from queued request to completed response."
             },
             {
               "id": "interruptions",
               "label": "Interruptions and waits",
-              "focus": [
-                "executing",
-                "approval",
-                "reviewing",
-                "blocked"
-              ],
+              "focus": ["executing", "approval", "reviewing", "blocked"],
               "note": "Human approval pauses execution; review blocks on missing input."
             },
             {
               "id": "recovery-and-exits",
               "label": "Recovery and terminal exits",
-              "focus": [
-                "executing",
-                "failed",
-                "blocked",
-                "cancelled",
-                "expired"
-              ],
+              "focus": ["executing", "failed", "blocked", "cancelled", "expired"],
               "note": "Recoverable failure loops back; blocked and approval can become terminal."
             }
           ]
@@ -1720,14 +1541,8 @@
             "toSide": "right",
             "label": "missing input",
             "via": [
-              [
-                640,
-                157
-              ],
-              [
-                640,
-                307
-              ]
+              [640, 157],
+              [640, 307]
             ]
           },
           {
@@ -1748,14 +1563,8 @@
             "toSide": "left",
             "label": "error",
             "via": [
-              [
-                310,
-                157
-              ],
-              [
-                310,
-                385
-              ]
+              [310, 157],
+              [310, 385]
             ],
             "labelDx": 35,
             "labelDy": 6
@@ -1769,23 +1578,11 @@
             "fromSide": "left",
             "toSide": "bottom",
             "via": [
-              [
-                320,
-                385
-              ],
-              [
-                320,
-                270
-              ],
-              [
-                248,
-                270
-              ]
+              [320, 385],
+              [320, 270],
+              [248, 270]
             ],
-            "labelAt": [
-              350,
-              430
-            ]
+            "labelAt": [350, 430]
           },
           {
             "id": "block-expired",
@@ -1805,27 +1602,12 @@
             "toSide": "top",
             "label": "cancelled",
             "via": [
-              [
-                402,
-                350
-              ],
-              [
-                490,
-                350
-              ],
-              [
-                490,
-                450
-              ],
-              [
-                402,
-                450
-              ]
+              [402, 350],
+              [490, 350],
+              [490, 450],
+              [402, 450]
             ],
-            "labelAt": [
-              402,
-              432
-            ]
+            "labelAt": [402, 432]
           }
         ],
         "cards": [
@@ -1934,36 +1716,19 @@
             {
               "id": "primary-request-path",
               "label": "Primary request path",
-              "focus": [
-                "browser-users",
-                "cdn-edge",
-                "alb",
-                "app-api",
-                "pg-primary"
-              ],
+              "focus": ["browser-users", "cdn-edge", "alb", "app-api", "pg-primary"],
               "note": "Follow a user request from the browser through the edge to the database."
             },
             {
               "id": "identity-and-cache",
               "label": "Identity and cache layer",
-              "focus": [
-                "auth-oidc",
-                "app-api",
-                "redis-cache",
-                "pg-primary"
-              ],
+              "focus": ["auth-oidc", "app-api", "redis-cache", "pg-primary"],
               "note": "Isolate authentication and the read-through cache alongside the data tier."
             },
             {
               "id": "async-and-static",
               "label": "Async work and static assets",
-              "focus": [
-                "cdn-edge",
-                "obj-store",
-                "app-api",
-                "job-queue",
-                "bg-worker"
-              ],
+              "focus": ["cdn-edge", "obj-store", "app-api", "job-queue", "bg-worker"],
               "note": "See background job processing and static asset delivery without request-path noise."
             }
           ]
@@ -1974,28 +1739,16 @@
             "type": "external",
             "label": "Browser Users",
             "sublabel": "HTTPS clients",
-            "pos": [
-              30,
-              255
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [30, 255],
+            "size": [130, 60]
           },
           {
             "id": "cdn-edge",
             "type": "cloud",
             "label": "CDN Edge",
             "sublabel": "global PoP",
-            "pos": [
-              245,
-              175
-            ],
-            "size": [
-              130,
-              60
-            ],
+            "pos": [245, 175],
+            "size": [130, 60],
             "tag": "TLS termination"
           },
           {
@@ -2003,42 +1756,24 @@
             "type": "cloud",
             "label": "Load Balancer",
             "sublabel": "L7 :443",
-            "pos": [
-              460,
-              255
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [460, 255],
+            "size": [130, 60]
           },
           {
             "id": "app-api",
             "type": "backend",
             "label": "Application API",
             "sublabel": "REST :8080",
-            "pos": [
-              680,
-              255
-            ],
-            "size": [
-              140,
-              60
-            ]
+            "pos": [680, 255],
+            "size": [140, 60]
           },
           {
             "id": "auth-oidc",
             "type": "security",
             "label": "Auth Provider",
             "sublabel": "OIDC / OAuth 2.0",
-            "pos": [
-              520,
-              50
-            ],
-            "size": [
-              135,
-              60
-            ],
+            "pos": [520, 50],
+            "size": [135, 60],
             "tag": "token verify"
           },
           {
@@ -2046,42 +1781,24 @@
             "type": "database",
             "label": "Redis Cache",
             "sublabel": "read-through :6379",
-            "pos": [
-              720,
-              50
-            ],
-            "size": [
-              135,
-              60
-            ]
+            "pos": [720, 50],
+            "size": [135, 60]
           },
           {
             "id": "pg-primary",
             "type": "database",
             "label": "PostgreSQL",
             "sublabel": "primary :5432",
-            "pos": [
-              910,
-              255
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [910, 255],
+            "size": [130, 60]
           },
           {
             "id": "obj-store",
             "type": "cloud",
             "label": "Object Storage",
             "sublabel": "static assets",
-            "pos": [
-              245,
-              395
-            ],
-            "size": [
-              130,
-              60
-            ],
+            "pos": [245, 395],
+            "size": [130, 60],
             "tag": "origin bucket"
           },
           {
@@ -2089,28 +1806,16 @@
             "type": "messagebus",
             "label": "Job Queue",
             "sublabel": "background work",
-            "pos": [
-              685,
-              415
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [685, 415],
+            "size": [130, 60]
           },
           {
             "id": "bg-worker",
             "type": "backend",
             "label": "Worker",
             "sublabel": "async processor",
-            "pos": [
-              910,
-              415
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [910, 415],
+            "size": [130, 60]
           }
         ],
         "boundaries": [
@@ -2133,10 +1838,7 @@
           {
             "kind": "security-group",
             "label": "sg-app :443/:8080",
-            "wraps": [
-              "alb",
-              "app-api"
-            ],
+            "wraps": ["alb", "app-api"],
             "pad": 16
           }
         ],
@@ -2704,10 +2406,7 @@
           "title": "Dashboard Cache Miss Sequence",
           "subtitle": "Browser request with JWT validation, cache miss, database fallback, and async trace",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            920,
-            800
-          ]
+          "viewBox": [920, 800]
         },
         "participants": [
           {
@@ -2994,10 +2693,7 @@
           "title": "Product Analytics Pipeline",
           "subtitle": "Event ingestion, consent-gated PII isolation, warehouse analytics, and ML feature derivation",
           "output": "product-analytics-pipeline.html",
-          "viewBox": [
-            1100,
-            740
-          ]
+          "viewBox": [1100, 740]
         },
         "stages": [
           {
@@ -3117,10 +2813,7 @@
             "variant": "emphasis",
             "fromSide": "right",
             "toSide": "left",
-            "labelAt": [
-              207,
-              260
-            ]
+            "labelAt": [207, 260]
           },
           {
             "from": "mobile-app",
@@ -3131,19 +2824,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                200,
-                499
-              ],
-              [
-                200,
-                271
-              ]
+              [200, 499],
+              [200, 271]
             ],
-            "labelAt": [
-              198,
-              385
-            ]
+            "labelAt": [198, 385]
           },
           {
             "from": "edge-gateway",
@@ -3154,10 +2838,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              330,
-              385
-            ]
+            "labelAt": [330, 385]
           },
           {
             "from": "edge-gateway",
@@ -3166,10 +2847,7 @@
             "classification": "non-PII",
             "variant": "emphasis",
             "route": "straight",
-            "labelAt": [
-              428,
-              260
-            ]
+            "labelAt": [428, 260]
           },
           {
             "from": "consent-svc",
@@ -3178,10 +2856,7 @@
             "classification": "encrypted PII",
             "variant": "security",
             "route": "straight",
-            "labelAt": [
-              428,
-              488
-            ]
+            "labelAt": [428, 488]
           },
           {
             "from": "event-bus",
@@ -3191,10 +2866,7 @@
             "variant": "emphasis",
             "fromSide": "right",
             "toSide": "left",
-            "labelAt": [
-              637,
-              316
-            ]
+            "labelAt": [637, 316]
           },
           {
             "from": "pii-vault",
@@ -3204,10 +2876,7 @@
             "variant": "security",
             "fromSide": "right",
             "toSide": "left",
-            "labelAt": [
-              637,
-              452
-            ]
+            "labelAt": [637, 452]
           },
           {
             "from": "warehouse",
@@ -3218,19 +2887,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                852,
-                385
-              ],
-              [
-                852,
-                157
-              ]
+              [852, 385],
+              [852, 157]
             ],
-            "labelAt": [
-              860,
-              271
-            ]
+            "labelAt": [860, 271]
           },
           {
             "from": "warehouse",
@@ -3239,10 +2899,7 @@
             "classification": "batch",
             "variant": "dashed",
             "route": "straight",
-            "labelAt": [
-              852,
-              374
-            ]
+            "labelAt": [852, 374]
           },
           {
             "from": "feat-store",
@@ -3253,10 +2910,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              975,
-              499
-            ]
+            "labelAt": [975, 499]
           }
         ],
         "cards": [
@@ -3298,9 +2952,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": "codex-browser-visual-audit-2026-07-26",
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -3342,9 +2994,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": "codex-browser-visual-audit-2026-07-26",
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -3363,10 +3013,7 @@
           "title": "Agent Run Lifecycle",
           "subtitle": "Phases, interruptions, recovery, and terminal exits",
           "output": "agent-run-lifecycle.html",
-          "viewBox": [
-            980,
-            660
-          ]
+          "viewBox": [980, 660]
         },
         "lanes": [
           {
@@ -3512,14 +3159,8 @@
             "fromSide": "bottom",
             "toSide": "top",
             "via": [
-              [
-                480,
-                210
-              ],
-              [
-                710,
-                210
-              ]
+              [480, 210],
+              [710, 210]
             ],
             "labelDy": 24
           },
@@ -3531,14 +3172,8 @@
             "fromSide": "left",
             "toSide": "bottom",
             "via": [
-              [
-                647,
-                230
-              ],
-              [
-                248,
-                230
-              ]
+              [647, 230],
+              [248, 230]
             ]
           },
           {
@@ -3601,9 +3236,7 @@
         "visual_review": {
           "status": "skipped",
           "reviewer": "codex-browser-visual-audit-2026-07-26",
-          "defects": [
-            "deterministic-validation-blocked-render"
-          ]
+          "defects": ["deterministic-validation-blocked-render"]
         }
       },
       "receipt": {
@@ -3646,9 +3279,7 @@
           "visualReview": {
             "status": "skipped",
             "reviewer": "codex-browser-visual-audit-2026-07-26",
-            "defects": [
-              "deterministic-validation-blocked-render"
-            ]
+            "defects": ["deterministic-validation-blocked-render"]
           }
         },
         "firstPassUsable": false
@@ -3675,140 +3306,80 @@
             "type": "external",
             "label": "Browser Users",
             "sublabel": "HTTPS clients",
-            "pos": [
-              40,
-              270
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [40, 270],
+            "size": [130, 60]
           },
           {
             "id": "edge-cdn",
             "type": "cloud",
             "label": "CDN",
             "sublabel": "HTTPS edge",
-            "pos": [
-              235,
-              245
-            ],
-            "size": [
-              130,
-              60
-            ]
+            "pos": [235, 245],
+            "size": [130, 60]
           },
           {
             "id": "traffic-balancer",
             "type": "cloud",
             "label": "Load Balancer",
             "sublabel": "traffic distribution",
-            "pos": [
-              430,
-              270
-            ],
-            "size": [
-              140,
-              60
-            ]
+            "pos": [430, 270],
+            "size": [140, 60]
           },
           {
             "id": "application-api",
             "type": "backend",
             "label": "Application API",
             "sublabel": "request handlers",
-            "pos": [
-              635,
-              245
-            ],
-            "size": [
-              140,
-              60
-            ]
+            "pos": [635, 245],
+            "size": [140, 60]
           },
           {
             "id": "identity-provider",
             "type": "security",
             "label": "Auth Provider",
             "sublabel": "identity verification",
-            "pos": [
-              635,
-              105
-            ],
-            "size": [
-              140,
-              60
-            ]
+            "pos": [635, 105],
+            "size": [140, 60]
           },
           {
             "id": "redis-cache",
             "type": "database",
             "label": "Redis Cache",
             "sublabel": "read-through cache",
-            "pos": [
-              635,
-              465
-            ],
-            "size": [
-              140,
-              60
-            ]
+            "pos": [635, 465],
+            "size": [140, 60]
           },
           {
             "id": "postgres-primary",
             "type": "database",
             "label": "PostgreSQL Primary",
             "sublabel": "durable relational state",
-            "pos": [
-              850,
-              270
-            ],
-            "size": [
-              155,
-              60
-            ]
+            "pos": [850, 270],
+            "size": [155, 60]
           },
           {
             "id": "object-storage",
             "type": "cloud",
             "label": "Object Storage",
             "sublabel": "static assets",
-            "pos": [
-              235,
-              465
-            ],
-            "size": [
-              140,
-              60
-            ]
+            "pos": [235, 465],
+            "size": [140, 60]
           },
           {
             "id": "job-queue",
             "type": "messagebus",
             "label": "Background Queue",
             "sublabel": "durable jobs",
-            "pos": [
-              850,
-              465
-            ],
-            "size": [
-              155,
-              60
-            ]
+            "pos": [850, 465],
+            "size": [155, 60]
           },
           {
             "id": "background-worker",
             "type": "backend",
             "label": "Worker",
             "sublabel": "background processing",
-            "pos": [
-              850,
-              585
-            ],
-            "size": [
-              155,
-              60
-            ]
+            "pos": [850, 585],
+            "size": [155, 60]
           }
         ],
         "boundaries": [
@@ -3995,31 +3566,18 @@
             {
               "id": "consent-decision",
               "label": "Consent decision",
-              "focus": [
-                "router",
-                "consent_gate",
-                "blocker",
-                "requeue"
-              ],
+              "focus": ["router", "consent_gate", "blocker", "requeue"],
               "note": "See where the gate rejects risky work, blocks the call, or returns it for revision."
             },
             {
               "id": "evidence-trail",
               "label": "Evidence and tracing",
-              "focus": [
-                "context_archive",
-                "journal",
-                "provider",
-                "reply"
-              ],
+              "focus": ["context_archive", "journal", "provider", "reply"],
               "note": "Inspect the durable trace and context archive that sit behind the visible answer."
             }
           ],
           "output": "examples/workflow-agent-tool-call-rendered.html",
-          "viewBox": [
-            820,
-            880
-          ]
+          "viewBox": [820, 880]
         },
         "lanes": [
           {
@@ -4264,10 +3822,7 @@
             "toSide": "top",
             "route": "drop",
             "labelSegment": 0,
-            "labelAt": [
-              365,
-              520
-            ]
+            "labelAt": [365, 520]
           },
           {
             "id": "requeue-ask",
@@ -4303,24 +3858,12 @@
             "toSide": "bottom",
             "route": "auto",
             "via": [
-              [
-                720,
-                517
-              ],
-              [
-                720,
-                660
-              ],
-              [
-                500,
-                660
-              ]
+              [720, 517],
+              [720, 660],
+              [500, 660]
             ],
             "labelSegment": 1,
-            "labelAt": [
-              600,
-              652
-            ]
+            "labelAt": [600, 652]
           },
           {
             "id": "archive-context",
@@ -4328,10 +3871,7 @@
             "to": "journal",
             "label": "trace + memory",
             "variant": "dashed",
-            "labelAt": [
-              400,
-              760
-            ]
+            "labelAt": [400, 760]
           }
         ],
         "cards": [
@@ -4436,10 +3976,7 @@
         "meta": {
           "title": "Dashboard Cache-Miss Request",
           "subtitle": "JWT validation, cache fallback, profile data, and asynchronous tracing",
-          "viewBox": [
-            820,
-            760
-          ],
+          "viewBox": [820, 760],
           "animation": "none",
           "quality_profile": "showcase"
         },
@@ -4690,10 +4227,7 @@
           "title": "Product Analytics Data Flow",
           "subtitle": "Consent-aware collection, protected identity, curated facts, and derived intelligence",
           "output": "product-analytics.html",
-          "viewBox": [
-            1080,
-            760
-          ],
+          "viewBox": [1080, 760],
           "visual_preset": "signal-flow",
           "quality_profile": "showcase",
           "views": [
@@ -4713,21 +4247,13 @@
             {
               "id": "privacy-route",
               "label": "Privacy boundary",
-              "focus": [
-                "edge-ingest",
-                "consent-check",
-                "pii-vault"
-              ],
+              "focus": ["edge-ingest", "consent-check", "pii-vault"],
               "note": "Identity data crosses the protected boundary only after consent is checked."
             },
             {
               "id": "model-path",
               "label": "Derived intelligence",
-              "focus": [
-                "warehouse-facts",
-                "feature-store",
-                "product-model"
-              ],
+              "focus": ["warehouse-facts", "feature-store", "product-model"],
               "note": "Aggregated, non-identity warehouse data produces reusable features for the model."
             }
           ]
@@ -4852,19 +4378,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                205,
-                157
-              ],
-              [
-                205,
-                271
-              ]
+              [205, 157],
+              [205, 271]
             ],
-            "labelAt": [
-              204,
-              190
-            ]
+            "labelAt": [204, 190]
           },
           {
             "id": "mobile-events",
@@ -4876,19 +4393,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                222,
-                385
-              ],
-              [
-                222,
-                271
-              ]
+              [222, 385],
+              [222, 271]
             ],
-            "labelAt": [
-              220,
-              342
-            ]
+            "labelAt": [220, 342]
           },
           {
             "id": "consent-request",
@@ -4900,23 +4408,11 @@
             "fromSide": "top",
             "toSide": "left",
             "via": [
-              [
-                315,
-                112
-              ],
-              [
-                450,
-                112
-              ],
-              [
-                450,
-                157
-              ]
+              [315, 112],
+              [450, 112],
+              [450, 157]
             ],
-            "labelAt": [
-              382,
-              100
-            ]
+            "labelAt": [382, 100]
           },
           {
             "id": "accepted-stream",
@@ -4928,19 +4424,10 @@
             "fromSide": "right",
             "toSide": "left",
             "via": [
-              [
-                420,
-                271
-              ],
-              [
-                420,
-                385
-              ]
+              [420, 271],
+              [420, 385]
             ],
-            "labelAt": [
-              438,
-              324
-            ]
+            "labelAt": [438, 324]
           },
           {
             "id": "protected-identity",
@@ -4950,10 +4437,7 @@
             "classification": "encrypted PII",
             "variant": "security",
             "route": "straight",
-            "labelAt": [
-              638,
-              144
-            ]
+            "labelAt": [638, 144]
           },
           {
             "id": "fact-normalization",
@@ -4963,10 +4447,7 @@
             "classification": "pseudonymous",
             "variant": "emphasis",
             "route": "straight",
-            "labelAt": [
-              638,
-              372
-            ]
+            "labelAt": [638, 372]
           },
           {
             "id": "dashboard-feed",
@@ -4976,10 +4457,7 @@
             "classification": "read-only",
             "variant": "emphasis",
             "route": "straight",
-            "labelAt": [
-              852,
-              372
-            ]
+            "labelAt": [852, 372]
           },
           {
             "id": "feature-derivation",
@@ -4991,10 +4469,7 @@
             "fromSide": "bottom",
             "toSide": "top",
             "route": "straight",
-            "labelAt": [
-              745,
-              496
-            ]
+            "labelAt": [745, 496]
           },
           {
             "id": "model-features",
@@ -5004,10 +4479,7 @@
             "classification": "derived",
             "variant": "dashed",
             "route": "straight",
-            "labelAt": [
-              852,
-              598
-            ]
+            "labelAt": [852, 598]
           }
         ],
         "cards": [
@@ -5110,10 +4582,7 @@
           "title": "Coding agent run lifecycle",
           "subtitle": "Accepted request moves through planning, execution, and review; waits, retries, cancellations, and timeouts are kept off the spine",
           "output": "benchmark-candidate.html",
-          "viewBox": [
-            1020,
-            720
-          ],
+          "viewBox": [1020, 720],
           "animation": "trace",
           "visual_preset": "editorial",
           "quality_profile": "showcase",
@@ -5121,35 +4590,19 @@
             {
               "id": "happy-path",
               "label": "Happy path",
-              "focus": [
-                "accepted",
-                "planning_run",
-                "executing_run",
-                "reviewing_run",
-                "delivered"
-              ],
+              "focus": ["accepted", "planning_run", "executing_run", "reviewing_run", "delivered"],
               "note": "Five ordered phases from a queued request to a shipped response."
             },
             {
               "id": "human-and-input-gates",
               "label": "Human and input gates",
-              "focus": [
-                "executing_run",
-                "approval_hold",
-                "input_blocked",
-                "reviewing_run"
-              ],
+              "focus": ["executing_run", "approval_hold", "input_blocked", "reviewing_run"],
               "note": "Where the run pauses without terminating."
             },
             {
               "id": "recovery-and-terminal-exits",
               "label": "Recovery and exits",
-              "focus": [
-                "executing_run",
-                "retry_run",
-                "cancelled_run",
-                "expired_run"
-              ],
+              "focus": ["executing_run", "retry_run", "cancelled_run", "expired_run"],
               "note": "Recoverable failure loops back to execution; user cancellation and timeout are terminal exits."
             }
           ]
@@ -5299,10 +4752,7 @@
             "toSide": "top",
             "route": "straight",
             "label": "needs approval",
-            "labelAt": [
-              402,
-              233
-            ]
+            "labelAt": [402, 233]
           },
           {
             "id": "approval-cancelled",
@@ -5313,10 +4763,7 @@
             "toSide": "top",
             "route": "straight",
             "label": "user cancels",
-            "labelAt": [
-              402,
-              393
-            ]
+            "labelAt": [402, 393]
           },
           {
             "id": "review-to-input-blocked",
@@ -5327,10 +4774,7 @@
             "toSide": "top",
             "route": "straight",
             "label": "needs input",
-            "labelAt": [
-              556,
-              233
-            ]
+            "labelAt": [556, 233]
           },
           {
             "id": "input-blocked-to-expired",
@@ -5341,10 +4785,7 @@
             "toSide": "top",
             "route": "straight",
             "label": "no reply",
-            "labelAt": [
-              556,
-              393
-            ]
+            "labelAt": [556, 393]
           },
           {
             "id": "execute-to-retry",
@@ -5354,24 +4795,12 @@
             "fromSide": "top",
             "toSide": "right",
             "via": [
-              [
-                402,
-                108
-              ],
-              [
-                790,
-                108
-              ],
-              [
-                790,
-                307
-              ]
+              [402, 108],
+              [790, 108],
+              [790, 307]
             ],
             "label": "transient fail",
-            "labelAt": [
-              600,
-              100
-            ]
+            "labelAt": [600, 100]
           },
           {
             "id": "retry-to-execute",
@@ -5381,24 +4810,12 @@
             "fromSide": "right",
             "toSide": "top",
             "via": [
-              [
-                820,
-                307
-              ],
-              [
-                820,
-                80
-              ],
-              [
-                402,
-                80
-              ]
+              [820, 307],
+              [820, 80],
+              [402, 80]
             ],
             "label": "retry",
-            "labelAt": [
-              600,
-              72
-            ]
+            "labelAt": [600, 72]
           }
         ],
         "cards": [

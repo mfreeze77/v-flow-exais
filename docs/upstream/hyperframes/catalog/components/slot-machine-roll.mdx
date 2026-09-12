@@ -165,12 +165,12 @@ That writes one file: `compositions/components/slot-machine-roll.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `result` | `A7K` | string | Characters the reels land on, one reel column per character. Whitespace is stripped and every reel starts on a zero. |
-| `direction` | `up` | `up`, `down` | Which way the reels roll: up lifts the zero out through the top, down drops it out through the bottom. |
-| `size` | `standard` | `small`, `standard`, `large` | Reel height and type size. The roll distance scales with it so the reel always lands exactly one row on. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Character colour: ink for light frames, paper for dark ones, accent rides --brand. |
+| Variable    | Default    | Accepts                      | What it does                                                                                                         |
+| ----------- | ---------- | ---------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `result`    | `A7K`      | string                       | Characters the reels land on, one reel column per character. Whitespace is stripped and every reel starts on a zero. |
+| `direction` | `up`       | `up`, `down`                 | Which way the reels roll: up lifts the zero out through the top, down drops it out through the bottom.               |
+| `size`      | `standard` | `small`, `standard`, `large` | Reel height and type size. The roll distance scales with it so the reel always lands exactly one row on.             |
+| `tone`      | `ink`      | `ink`, `paper`, `accent`     | Character colour: ink for light frames, paper for dark ones, accent rides --brand.                                   |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -32,14 +32,14 @@ Do not force this structure where it makes a page worse. Reference pages may sta
 
 One component per job. If two components on a page render the same list, delete one.
 
-| The job | Use | Never use |
-| --- | --- | --- |
-| Choose between destinations | `CardGroup` + `Card`, max 2 columns, linking to the real page | An accordion, or cards pointing at anchors on the same page |
-| Ordered instructions | `Steps` | A flow diagram that repeats the same steps |
-| Parallel variants of one instruction (source type, OS, language) | `Tabs` | Repeating the whole block per variant |
-| Compare attributes across items | A table | Prose paragraphs per item |
-| Static image | `Frame` with a caption that says what it is | A bare `img` with no context |
-| Genuinely out-of-band aside | One `Note`, `Tip`, or `Warning` per page | Stacked callouts, or a callout for ordinary prose |
+| The job                                                          | Use                                                           | Never use                                                   |
+| ---------------------------------------------------------------- | ------------------------------------------------------------- | ----------------------------------------------------------- |
+| Choose between destinations                                      | `CardGroup` + `Card`, max 2 columns, linking to the real page | An accordion, or cards pointing at anchors on the same page |
+| Ordered instructions                                             | `Steps`                                                       | A flow diagram that repeats the same steps                  |
+| Parallel variants of one instruction (source type, OS, language) | `Tabs`                                                        | Repeating the whole block per variant                       |
+| Compare attributes across items                                  | A table                                                       | Prose paragraphs per item                                   |
+| Static image                                                     | `Frame` with a caption that says what it is                   | A bare `img` with no context                                |
+| Genuinely out-of-band aside                                      | One `Note`, `Tip`, or `Warning` per page                      | Stacked callouts, or a callout for ordinary prose           |
 
 **Do not use accordions for journeys, choices, instructions, or troubleshooting.** They hide the thing the reader needs, cost a click, and weaken `Cmd+F`, printing, and deep linking. A dense optional reference or example gallery may keep accordions when showing every item at once would make the page unusable. Two patterns in the Prompt Guide are the standing exceptions: its verified-example gallery, and the per-page `## Variants` blocks. Those hold long alternative prompts rather than parallel instructions, so the `Tabs` row above does not apply — a reader picks one to read in full, not one of several ways to do the same step. Long symptom or task lists become visible `##` sections instead — they get anchors the support team can link directly, and they appear in the page contents.
 

@@ -12,6 +12,7 @@ npm install @hyperframes/aws-lambda
 ## When to Use
 
 **Use `@hyperframes/aws-lambda` when you need to:**
+
 - Render large compositions on AWS Lambda instead of one local machine
 - Fan out `plan`, `renderChunk`, and `assemble` through Step Functions
 - Store render inputs, intermediate chunks, and outputs in S3
@@ -19,22 +20,24 @@ npm install @hyperframes/aws-lambda
 - Provision the render topology from a CDK app
 
 **Use a different package if you want to:**
+
 - Render locally or inside your own Node process - use the [CLI](/packages/cli) or [producer](/packages/producer)
 - Run the same distributed model on Google Cloud - use [gcp-cloud-run](/packages/gcp-cloud-run)
 - Build or edit composition HTML - use [studio](/packages/studio), [sdk](/packages/sdk), or [core](/packages/core)
 
 <Warning>
-  This package is deployment glue for AWS infrastructure. It assumes you control an AWS account, S3 bucket, Step Functions state machine, and Lambda runtime configuration.
+  This package is deployment glue for AWS infrastructure. It assumes you control an AWS account, S3
+  bucket, Step Functions state machine, and Lambda runtime configuration.
 </Warning>
 
 ## Package Exports
 
-| Import | Description |
-|--------|-------------|
-| `@hyperframes/aws-lambda` | Handler types, runtime helpers, S3 transport, and client SDK exports |
-| `@hyperframes/aws-lambda/handler` | Lambda handler entry point for Step Functions dispatch |
-| `@hyperframes/aws-lambda/sdk` | Lightweight Node SDK for deploying sites, starting renders, polling progress, and estimating cost |
-| `@hyperframes/aws-lambda/cdk` | Optional CDK construct for provisioning the render bucket, Lambda, and Step Functions stack |
+| Import                            | Description                                                                                       |
+| --------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `@hyperframes/aws-lambda`         | Handler types, runtime helpers, S3 transport, and client SDK exports                              |
+| `@hyperframes/aws-lambda/handler` | Lambda handler entry point for Step Functions dispatch                                            |
+| `@hyperframes/aws-lambda/sdk`     | Lightweight Node SDK for deploying sites, starting renders, polling progress, and estimating cost |
+| `@hyperframes/aws-lambda/cdk`     | Optional CDK construct for provisioning the render bucket, Lambda, and Step Functions stack       |
 
 `aws-cdk-lib` and `constructs` are optional peer dependencies. SDK-only consumers do not need them unless they import from `@hyperframes/aws-lambda/cdk`.
 
@@ -44,13 +47,16 @@ The Lambda adapter wraps the distributed producer primitives behind one dispatch
 
 <Steps>
   <Step title="Plan">
-    Downloads the project archive from S3, runs the producer planner, and uploads the plan directory.
+    Downloads the project archive from S3, runs the producer planner, and uploads the plan
+    directory.
   </Step>
   <Step title="Render chunks">
-    Step Functions fans out chunk jobs. Each Lambda invocation downloads the plan assets, renders one chunk, and uploads the result.
+    Step Functions fans out chunk jobs. Each Lambda invocation downloads the plan assets, renders
+    one chunk, and uploads the result.
   </Step>
   <Step title="Assemble">
-    Downloads all rendered chunks plus audio assets, assembles the final output, and writes the finished file to S3.
+    Downloads all rendered chunks plus audio assets, assembles the final output, and writes the
+    finished file to S3.
   </Step>
 </Steps>
 
@@ -93,10 +99,9 @@ omitted. Deprecated v1 compatibility remains available by passing
 `planProtocol: "v1"`.
 
 <Warning>
-  For an existing installation, pause new renders and drain active Step
-  Functions executions. Redeploy the Lambda handler and SAM/CDK state machine
-  from the same package version before upgrading the application SDK. Older
-  infrastructure may default omission to v1 or lack v2 support.
+  For an existing installation, pause new renders and drain active Step Functions executions.
+  Redeploy the Lambda handler and SAM/CDK state machine from the same package version before
+  upgrading the application SDK. Older infrastructure may default omission to v1 or lack v2 support.
 </Warning>
 
 `renderToLambda()` validates the distributed render config before starting the Step Functions execution, so invalid dimensions, formats, chunk sizes, or payload sizes fail synchronously.

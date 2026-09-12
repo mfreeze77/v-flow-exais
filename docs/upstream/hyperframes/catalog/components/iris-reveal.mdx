@@ -514,14 +514,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `iris_x` | `50` | 0% to 100%, step 1% | Horizontal iris origin as a percent of the frame width. |
-| `iris_y` | `50` | 0% to 100%, step 1% | Vertical iris origin as a percent of the frame height. |
-| `open_at` | `0.35` | 0s to 8s, step 0.05s | Seconds after mount start when the iris begins opening. |
-| `register` | `color` | `color`, `plain` | Color dims and desaturates the before state so the after state lands in full color. Plain leaves both untouched. |
-| `accent` | `green` | `green`, `blue`, `violet` | Iris rim ring and default after art tint. |
-| `exit` | `none` | `none`, `fade`, `up` | Outgoing transition. None holds the final revealed frame. |
+| Variable   | Default | Accepts                   | What it does                                                                                                     |
+| ---------- | ------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| `iris_x`   | `50`    | 0% to 100%, step 1%       | Horizontal iris origin as a percent of the frame width.                                                          |
+| `iris_y`   | `50`    | 0% to 100%, step 1%       | Vertical iris origin as a percent of the frame height.                                                           |
+| `open_at`  | `0.35`  | 0s to 8s, step 0.05s      | Seconds after mount start when the iris begins opening.                                                          |
+| `register` | `color` | `color`, `plain`          | Color dims and desaturates the before state so the after state lands in full color. Plain leaves both untouched. |
+| `accent`   | `green` | `green`, `blue`, `violet` | Iris rim ring and default after art tint.                                                                        |
+| `exit`     | `none`  | `none`, `fade`, `up`      | Outgoing transition. None holds the final revealed frame.                                                        |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -14,11 +14,11 @@ Use these templates for a small hosted application. For managed rendering,
 distributed infrastructure, or a Node backend, start with
 [Choose a rendering path](/deploy/overview).
 
-| Template | Rendering runtime | Output storage | Best fit |
-| --- | --- | --- | --- |
-| [Vercel](https://github.com/heygen-com/hyperframes-vercel-template) | Vercel Sandbox | Vercel Blob | A Next.js application already deployed on Vercel |
-| [Cloudflare](https://github.com/heygen-com/hyperframes-cloudflare-template) | Cloudflare Container | R2 | A Workers application that needs a containerized renderer |
-| [Modal](https://github.com/heygen-com/hyperframes-modal-template) | Spawned Modal Function | Modal Volume | A Python service with render jobs that run outside the web request |
+| Template                                                                    | Rendering runtime      | Output storage | Best fit                                                           |
+| --------------------------------------------------------------------------- | ---------------------- | -------------- | ------------------------------------------------------------------ |
+| [Vercel](https://github.com/heygen-com/hyperframes-vercel-template)         | Vercel Sandbox         | Vercel Blob    | A Next.js application already deployed on Vercel                   |
+| [Cloudflare](https://github.com/heygen-com/hyperframes-cloudflare-template) | Cloudflare Container   | R2             | A Workers application that needs a containerized renderer          |
+| [Modal](https://github.com/heygen-com/hyperframes-modal-template)           | Spawned Modal Function | Modal Volume   | A Python service with render jobs that run outside the web request |
 
 <DocsVideo
   title="The four places a render can run, and what each one changes"
@@ -80,11 +80,11 @@ npx hyperframes check
 
 Then replace the bundled composition in the selected template:
 
-| Template | Composition folder | Select the composition |
-| --- | --- | --- |
-| Vercel | `public/compositions/<name>/` | Update `PREVIEW_COMPOSITION_DIR` in `lib/preview.ts` |
+| Template   | Composition folder            | Select the composition                                                       |
+| ---------- | ----------------------------- | ---------------------------------------------------------------------------- |
+| Vercel     | `public/compositions/<name>/` | Update `PREVIEW_COMPOSITION_DIR` in `lib/preview.ts`                         |
 | Cloudflare | `public/compositions/<name>/` | Set `PREVIEW_COMPOSITION_DIR=compositions/<name>` when building or deploying |
-| Modal | `compositions/<name>/` | Update `PREVIEW_COMPOSITION` in `src/app.py` |
+| Modal      | `compositions/<name>/`        | Update `PREVIEW_COMPOSITION` in `src/app.py`                                 |
 
 If the authored canvas is not 1920×1080, also update the player dimensions in
 the template. Each repository README names the current file.
@@ -102,10 +102,18 @@ For infrastructure designed around distributed jobs, use
 ## Source
 
 <CardGroup cols={2}>
-  <Card title="Vercel" icon="github" href="https://github.com/heygen-com/hyperframes-vercel-template">
+  <Card
+    title="Vercel"
+    icon="github"
+    href="https://github.com/heygen-com/hyperframes-vercel-template"
+  >
     Next.js, Sandbox, and Blob
   </Card>
-  <Card title="Cloudflare" icon="github" href="https://github.com/heygen-com/hyperframes-cloudflare-template">
+  <Card
+    title="Cloudflare"
+    icon="github"
+    href="https://github.com/heygen-com/hyperframes-cloudflare-template"
+  >
     TanStack Start, Containers, and R2
   </Card>
   <Card title="Modal" icon="github" href="https://github.com/heygen-com/hyperframes-modal-template">

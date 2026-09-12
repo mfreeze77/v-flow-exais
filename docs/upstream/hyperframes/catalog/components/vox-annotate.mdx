@@ -513,15 +513,15 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `Ship the story, not the spec` | string | Full line of display text. |
-| `keyword` | `story` | string | First case-insensitive substring match in text receives the marker and annotation. Empty or unmatched draws nothing. |
-| `note` | `the annotate beat` | string | Mono callout label at the end of the connector. Empty draws the marker only. |
-| `style` | `highlight` | `highlight`, `circle`, `underline`, `scribble` | Shape of the hand-drawn marker stroke. |
-| `draw_at` | `0.9` | number | Second (from mount start) the annotate gesture starts. Clamped so the gesture completes before any exit. |
-| `accent` | `green` | `green`, `blue`, `violet` | Annotation ink color from the contract token map. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the lockup holds until the frame cuts. |
+| Variable  | Default                        | Accepts                                        | What it does                                                                                                         |
+| --------- | ------------------------------ | ---------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| `text`    | `Ship the story, not the spec` | string                                         | Full line of display text.                                                                                           |
+| `keyword` | `story`                        | string                                         | First case-insensitive substring match in text receives the marker and annotation. Empty or unmatched draws nothing. |
+| `note`    | `the annotate beat`            | string                                         | Mono callout label at the end of the connector. Empty draws the marker only.                                         |
+| `style`   | `highlight`                    | `highlight`, `circle`, `underline`, `scribble` | Shape of the hand-drawn marker stroke.                                                                               |
+| `draw_at` | `0.9`                          | number                                         | Second (from mount start) the annotate gesture starts. Clamped so the gesture completes before any exit.             |
+| `accent`  | `green`                        | `green`, `blue`, `violet`                      | Annotation ink color from the contract token map.                                                                    |
+| `exit`    | `none`                         | `none`, `fade`, `up`                           | Optional departure. Default none: the lockup holds until the frame cuts.                                             |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

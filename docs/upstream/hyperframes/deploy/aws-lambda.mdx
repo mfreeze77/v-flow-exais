@@ -42,13 +42,13 @@ The Lambda handler is a thin dispatch: parse the Step Functions event, download 
 
 ## Prerequisites
 
-| Tool | Why | Install |
-|------|-----|---------|
-| AWS credentials | The CLI and the deploy step both call AWS APIs. | Env vars, `~/.aws/credentials`, SSO, or IMDS — any chain the AWS SDK for JavaScript v3 would resolve. |
-| AWS SAM CLI | `hyperframes lambda deploy/destroy` shells out to `sam deploy`/`sam delete`. | [Install guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html) |
-| `bun` | Used to build `packages/aws-lambda/dist/handler.zip` at deploy time. | `npm install -g bun` or [bun.sh](https://bun.sh) |
-| Lambda adapter | The published CLI loads the AWS adapter only for Lambda commands. | `npm install -g @hyperframes/aws-lambda` alongside the CLI |
-| HyperFrames repo checkout | `lambda deploy` builds the Lambda handler ZIP from source. Adopters who deploy outside a checkout can set `HYPERFRAMES_REPO_ROOT` to point at one. | `git clone https://github.com/heygen-com/hyperframes` |
+| Tool                      | Why                                                                                                                                                | Install                                                                                                              |
+| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| AWS credentials           | The CLI and the deploy step both call AWS APIs.                                                                                                    | Env vars, `~/.aws/credentials`, SSO, or IMDS — any chain the AWS SDK for JavaScript v3 would resolve.                |
+| AWS SAM CLI               | `hyperframes lambda deploy/destroy` shells out to `sam deploy`/`sam delete`.                                                                       | [Install guide](https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/install-sam-cli.html) |
+| `bun`                     | Used to build `packages/aws-lambda/dist/handler.zip` at deploy time.                                                                               | `npm install -g bun` or [bun.sh](https://bun.sh)                                                                     |
+| Lambda adapter            | The published CLI loads the AWS adapter only for Lambda commands.                                                                                  | `npm install -g @hyperframes/aws-lambda` alongside the CLI                                                           |
+| HyperFrames repo checkout | `lambda deploy` builds the Lambda handler ZIP from source. Adopters who deploy outside a checkout can set `HYPERFRAMES_REPO_ROOT` to point at one. | `git clone https://github.com/heygen-com/hyperframes`                                                                |
 
 ## Three deployment paths
 
@@ -117,7 +117,10 @@ The template emits three CloudFormation outputs you'll need to invoke renders:
 - `RenderFunctionArn` — the single Lambda function the state machine dispatches against.
 
 <Warning>
-The SAM template's own default for `ReservedConcurrency` is `-1` (unreserved, account-default). The Path 1 CLI overrides it to `8` to keep first-time spend bounded; if you drop `ReservedConcurrency` from `--parameter-overrides` here, you get the unreserved default. Set it explicitly unless you've already sized your typical render's fan-out.
+  The SAM template's own default for `ReservedConcurrency` is `-1` (unreserved, account-default).
+  The Path 1 CLI overrides it to `8` to keep first-time spend bounded; if you drop
+  `ReservedConcurrency` from `--parameter-overrides` here, you get the unreserved default. Set it
+  explicitly unless you've already sized your typical render's fan-out.
 </Warning>
 
 ### Path 3 — CDK construct

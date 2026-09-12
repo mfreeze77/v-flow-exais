@@ -14,7 +14,11 @@ Prompt the **plan** once instead — the throughline, the job each frame does, t
 This narrative vocabulary is a writing discipline, not extra `STORYBOARD.md` schema. The workflow translates your plan into the smaller machine-readable shape the build consumes.
 
 <Note>
-"Storyboard" is also a question the agent asks in the [opening interview](/prompting/overview#the-interview-what-the-agent-asks-first). Say yes there and the plan, the sketches, and the build all get reviewed with you pass by pass on a live board. That answer changes the review process, not the route. Either way, the plan this page teaches is what the build works from.
+  "Storyboard" is also a question the agent asks in the [opening
+  interview](/prompting/overview#the-interview-what-the-agent-asks-first). Say yes there and the
+  plan, the sketches, and the build all get reviewed with you pass by pass on a live board. That
+  answer changes the review process, not the route. Either way, the plan this page teaches is what
+  the build works from.
 </Note>
 
 ## Prompt the plan, not the scenes
@@ -25,7 +29,7 @@ A storyboard is a short, structured document that sits above the individual fram
 - one direction block that every frame inherits
 - a light per-frame spec — not a full description — for each key moment
 
-The workflow reads the plan and builds each frame's HTML sub-composition against it. Be precise about the *shape* of the film, and the frames come out already agreeing with each other on pacing, palette, and payoff. You never restate any of that per frame.
+The workflow reads the plan and builds each frame's HTML sub-composition against it. Be precise about the _shape_ of the film, and the frames come out already agreeing with each other on pacing, palette, and payoff. You never restate any of that per frame.
 
 The trigger is naming the arc and asking for a storyboard rather than a single scene:
 
@@ -53,7 +57,7 @@ A storyboard's direction block is the set of rules every frame obeys without res
 - ❌ `use the brand colors, plus a highlight color for the important bits`
 - ✅ `ground: deep navy; ink: warm white. Emphasis = invert, scale up, or go denser — never a third color.`
 
-**VO-paced reveals.** The rule itself lives in [Media and audio](/prompting/media-and-audio#pace-reveals-to-the-narration). A storyboard is where you *apply* it per frame. At t=0, only what the narrator is saying is on screen, and each part arrives on its spoken cue.
+**VO-paced reveals.** The rule itself lives in [Media and audio](/prompting/media-and-audio#pace-reveals-to-the-narration). A storyboard is where you _apply_ it per frame. At t=0, only what the narrator is saying is on screen, and each part arrives on its spoken cue.
 
 Pair it with a hold behavior. Say whether a held frame stays fully still or gets a subtle idle. Never ask for a slow drift or "breathing" — that reads as unfinished, not as a choice.
 
@@ -67,7 +71,7 @@ Naming it prevents two failures. The build won't over-animate the one frame that
 
 > no purple-blue AI gradients, no bokeh, no browser chrome, no drop-shadow cards, no infinite loops or randomness
 
-Swap in whatever clichés are wrong for *your* film. The point is naming them before a frame drifts into one.
+Swap in whatever clichés are wrong for _your_ film. The point is naming them before a frame drifts into one.
 
 ## Give each frame a job
 
@@ -81,7 +85,7 @@ The direction block covers everything shared. So each frame's own prompt only ne
 [roles]       what's foreground / supporting / background, assigned explicitly
 ```
 
-Never skip `persuasion` and `beat`. Without them, a frame is "a scene that shows the stat." With them, it becomes "a scene that proves the stat, and here's how it *feels* to land."
+Never skip `persuasion` and `beat`. Without them, a frame is "a scene that shows the stat." With them, it becomes "a scene that proves the stat, and here's how it _feels_ to land."
 
 A frame with a named persuasion device and beat gives the build a reason for every choice. A frame with only a visual description gives it none.
 
@@ -93,12 +97,14 @@ Say both halves in the plan — where the motif is planted, and how it changes w
 
 > A single thin accent dot appears top-right in frame 1 at low weight. In the landing frame, that same dot expands and fills into the full logo lockup — same motif, now complete.
 
-State the return explicitly. Otherwise a rebuild is free to treat the early motif as throwaway texture. The callback only works if the plan says the second appearance is the *same* element, not a new one that resembles it.
+State the return explicitly. Otherwise a rebuild is free to treat the early motif as throwaway texture. The callback only works if the plan says the second appearance is the _same_ element, not a new one that resembles it.
 
 ## Worked example: a silent 3-frame storyboard
 
 <Tip>
-  `storyboard-mini` below is deliberately small and silent: three frames, ~15 seconds, no narration. That makes the whole pattern checkable in one cheap render — arc, direction block, per-frame job, one breather, one callback. Do this before you write a longer, narrated storyboard.
+  `storyboard-mini` below is deliberately small and silent: three frames, ~15 seconds, no narration.
+  That makes the whole pattern checkable in one cheap render — arc, direction block, per-frame job,
+  one breather, one callback. Do this before you write a longer, narrated storyboard.
 </Tip>
 
 > Storyboard a 3-frame, ~15-second, 1920x1080 piece. Silent — no narration, no VO track. Message: "Fernwell gives you back the hours other tools take." Arc: Hook → Substance → Landing. Audience: small-team operators evaluating a new tool. Mood: tense synth pulse resolving to warm.
@@ -131,7 +137,8 @@ State the return explicitly. Otherwise a rebuild is free to treat the early moti
     The two-color discipline and brand tokens a storyboard's direction block draws from.
   </Card>
   <Card title="How a HyperFrames project works" icon="route" href="/concepts">
-    `STORYBOARD.md` as a production artifact — where this chapter's plans land, downstream of `BRIEF.md`.
+    `STORYBOARD.md` as a production artifact — where this chapter's plans land, downstream of
+    `BRIEF.md`.
   </Card>
 </CardGroup>
 
@@ -148,6 +155,7 @@ This is the clause in the [full capstone prompt](/prompting/capstone#the-prompt-
   src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/capstone-region-render.mp4#t=0.1"
   loop
 />
-*That clause paying off, rendered — the protagonist chip arriving at the render slot after a full minute on the wire.*
+*That clause paying off, rendered — the protagonist chip arriving at the render slot after a full
+minute on the wire.*
 
-*Next: [Editing existing videos](/prompting/editing-existing-videos) — the editor verbs that turn a first render, storyboard or not, into the twenty edits after it.*
+_Next: [Editing existing videos](/prompting/editing-existing-videos) — the editor verbs that turn a first render, storyboard or not, into the twenty edits after it._

@@ -19,10 +19,10 @@ to prevent.
 
 The import ledger classified assets separately from code:
 
-| Disposition | Count | Meaning |
-|---|---|---|
-| `rights-review-media` | 473 | Images, video, audio and 3D models needing a decision |
-| `rights-review-font-no-binary-in-ticket-pack` | 102 | Font payloads |
+| Disposition                                   | Count | Meaning                                               |
+| --------------------------------------------- | ----- | ----------------------------------------------------- |
+| `rights-review-media`                         | 473   | Images, video, audio and 3D models needing a decision |
+| `rights-review-font-no-binary-in-ticket-pack` | 102   | Font payloads                                         |
 
 Across the whole tree that is roughly 164 font files and several hundred media
 files, including PNG (263), MP4 (91), JPG (61) and MP3 (24).

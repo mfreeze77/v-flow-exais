@@ -273,12 +273,12 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `Ship it today` | string | Text displayed as the headline. |
-| `accent_word_index` | `1` | number | Zero-based word index to color. Out of range leaves the headline unaccented. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color applied to the selected word. |
-| `shadow` | `true` | boolean | Drop shadow cast under the headline. On by default; set false for a flat matte look. |
+| Variable            | Default         | Accepts                   | What it does                                                                         |
+| ------------------- | --------------- | ------------------------- | ------------------------------------------------------------------------------------ |
+| `text`              | `Ship it today` | string                    | Text displayed as the headline.                                                      |
+| `accent_word_index` | `1`             | number                    | Zero-based word index to color. Out of range leaves the headline unaccented.         |
+| `accent`            | `green`         | `green`, `blue`, `violet` | Color applied to the selected word.                                                  |
+| `shadow`            | `true`          | boolean                   | Drop shadow cast under the headline. On by default; set false for a flat matte look. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

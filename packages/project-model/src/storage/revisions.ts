@@ -11,6 +11,7 @@ import {
 } from "node:fs";
 import { join, relative, isAbsolute } from "node:path";
 import { assertProject, type ProjectSnapshot } from "../project";
+import { assertCommandOutcome, type ProjectCommandOutcome } from "../regenerationConflicts";
 
 export interface RevisionPointer {
   revision: number;
@@ -27,7 +28,7 @@ export interface RevisionIndex {
   manifest: { path: string; sha256: string };
   sources: Record<string, { path: string; sha256: string }>;
   previous: RevisionPointer | null;
-  command: { commandId: string; fingerprint: string };
+  command: { commandId: string; fingerprint: string; outcome?: ProjectCommandOutcome };
   commands: Record<string, CommandReceipt>;
 }
 export interface CommittedProject {
@@ -110,7 +111,12 @@ export function readRevision(projectRoot: string, pointer: RevisionPointer): Com
   assertProject(snapshot);
   if (manifest.revision !== pointer.revision)
     throw new Error("Manifest and pointer revisions disagree.");
-  index.commands[sha256(index.command.commandId)] = { ...index.command, pointer };
+  if (index.command.outcome !== undefined) assertCommandOutcome(index.command.outcome);
+  index.commands[sha256(index.command.commandId)] = {
+    commandId: index.command.commandId,
+    fingerprint: index.command.fingerprint,
+    pointer,
+  };
   return { snapshot, pointer, index };
 }
 

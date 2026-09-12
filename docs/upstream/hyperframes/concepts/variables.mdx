@@ -88,21 +88,21 @@ ignored by rendering, and it tells an editing agent which slots carry identity
 and must not be filled with invented copy:
 
 ```html compositions/card.html
-{"id":"appName","type":"string","label":"App name",
- "description":"Name of the brand this video promotes, credited in the corner of every banner.",
- "portrays":["subject_name"],"default":"HyperFrames"}
+{"id":"appName","type":"string","label":"App name", "description":"Name of the brand this video
+promotes, credited in the corner of every banner.",
+"portrays":["subject_name"],"default":"HyperFrames"}
 ```
 
-| Value                  | The slot stands for                                                        |
-| ---------------------- | -------------------------------------------------------------------------- |
-| `subject_name`         | The promoted brand's own name                                              |
-| `subject_domain`       | Its domain, URL, or handle                                                 |
-| `subject_tagline`      | Its own positioning line                                                   |
-| `subject_logo`         | Its mark or wordmark                                                       |
+| Value                  | The slot stands for                                                         |
+| ---------------------- | --------------------------------------------------------------------------- |
+| `subject_name`         | The promoted brand's own name                                               |
+| `subject_domain`       | Its domain, URL, or handle                                                  |
+| `subject_tagline`      | Its own positioning line                                                    |
+| `subject_logo`         | Its mark or wordmark                                                        |
 | `recommended_position` | The winning or featured slot in a ranking, so the promoted brand goes there |
-| `competitor_name`      | A real product other than the promoted brand                               |
-| `authority_badge`      | A claim of endorsement, ranking authority, rating, or source               |
-| `host_identity`        | The depicted application's own identity, which a remix leaves alone        |
+| `competitor_name`      | A real product other than the promoted brand                                |
+| `authority_badge`      | A claim of endorsement, ranking authority, rating, or source                |
+| `host_identity`        | The depicted application's own identity, which a remix leaves alone         |
 
 `portrays` is orthogonal to `role`: `role` says which aspect of the composition a
 knob affects (`content`, `style`, `timing`, `motion`, `layout`), while `portrays`
@@ -148,7 +148,7 @@ A parent can reuse the same composition several times:
   data-start="0"
   data-duration="3"
   data-track-index="1"
-data-variable-values='{"title":"Pro","accent":"#ff4d4f"}'
+  data-variable-values='{"title":"Pro","accent":"#ff4d4f"}'
 ></div>
 
 <div
@@ -157,7 +157,7 @@ data-variable-values='{"title":"Pro","accent":"#ff4d4f"}'
   data-start="card-pro"
   data-duration="3"
   data-track-index="1"
-data-variable-values='{"title":"Enterprise","accent":"#22c55e"}'
+  data-variable-values='{"title":"Enterprise","accent":"#22c55e"}'
 ></div>
 ```
 

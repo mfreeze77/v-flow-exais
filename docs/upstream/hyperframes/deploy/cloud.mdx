@@ -40,13 +40,13 @@ See [Authentication and API keys](/guides/authentication) for credential precede
 
 ## Choose the output
 
-| Option | Values | Default |
-| --- | --- | --- |
-| `--fps` | 1–240 | `30` |
-| `--quality` | `draft`, `standard`, `high` | `standard` |
-| `--format` | `mp4`, `webm`, `mov` | `mp4` |
-| `--resolution` | `1080p`, `4k` | `1080p` |
-| `--aspect-ratio` | `16:9`, `9:16`, `1:1` | detected from a local composition when possible |
+| Option           | Values                      | Default                                         |
+| ---------------- | --------------------------- | ----------------------------------------------- |
+| `--fps`          | 1–240                       | `30`                                            |
+| `--quality`      | `draft`, `standard`, `high` | `standard`                                      |
+| `--format`       | `mp4`, `webm`, `mov`        | `mp4`                                           |
+| `--resolution`   | `1080p`, `4k`               | `1080p`                                         |
+| `--aspect-ratio` | `16:9`, `9:16`, `1:1`       | detected from a local composition when possible |
 
 ```bash
 hyperframes cloud render --quality high --fps 60
@@ -54,7 +54,8 @@ hyperframes cloud render --resolution 4k
 ```
 
 <Warning>
-  4K is billed at 1.5× and supports MP4 only. WebM and MOV use the alpha-capable path, which does not support 4K supersampling.
+  4K is billed at 1.5× and supports MP4 only. WebM and MOV use the alpha-capable path, which does
+  not support 4K supersampling.
 </Warning>
 
 ## Check what will upload

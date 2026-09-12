@@ -45,7 +45,11 @@ interface HyperFramesElement {
 </ResponseField>
 
 <ResponseField name="scopedId" type="string">
-  Fully-qualified scoped identifier: `host-chain-prefix/leaf`, separated by `/`. For top-level elements `scopedId === id`. For elements inside inlined sub-compositions the format is `"hf-HOST/hf-LEAF"` (any depth). Use `scopedId` — not `id` — as the canonical key in `dispatch()` targets, `getElement()`, `find()`, and `OverrideSet` keys when addressing sub-composition elements.
+  Fully-qualified scoped identifier: `host-chain-prefix/leaf`, separated by `/`. For top-level
+  elements `scopedId === id`. For elements inside inlined sub-compositions the format is
+  `"hf-HOST/hf-LEAF"` (any depth). Use `scopedId` — not `id` — as the canonical key in `dispatch()`
+  targets, `getElement()`, `find()`, and `OverrideSet` keys when addressing sub-composition
+  elements.
 </ResponseField>
 
 <ResponseField name="tag" type="string">
@@ -57,7 +61,8 @@ interface HyperFramesElement {
 </ResponseField>
 
 <ResponseField name="inlineStyles" type="Readonly<Record<string, string>>">
-  Inline CSS properties in camelCase, mirroring `CSSStyleDeclaration` convention (`fontSize`, not `font-size`).
+  Inline CSS properties in camelCase, mirroring `CSSStyleDeclaration` convention (`fontSize`, not
+  `font-size`).
 </ResponseField>
 
 <ResponseField name="classNames" type="readonly string[]">
@@ -65,11 +70,13 @@ interface HyperFramesElement {
 </ResponseField>
 
 <ResponseField name="attributes" type="Readonly<Record<string, string>>">
-  All HTML attributes except `style`, `class`, and `data-hf-*` (those are represented elsewhere in the model).
+  All HTML attributes except `style`, `class`, and `data-hf-*` (those are represented elsewhere in
+  the model).
 </ResponseField>
 
 <ResponseField name="text" type="string | null">
-  The element's direct text content, intended as the `setText` target. Not a full descendant-text snapshot.
+  The element's direct text content, intended as the `setText` target. Not a full descendant-text
+  snapshot.
 </ResponseField>
 
 <ResponseField name="start" type="number | null">
@@ -141,7 +148,8 @@ interface SdkDocument {
 </ResponseField>
 
 <ResponseField name="html" type="string">
-  Build-time snapshot of the `ensureHfIds`-stamped HTML. This value is **never updated** after mutations — call `comp.serialize()` to get the current document state.
+  Build-time snapshot of the `ensureHfIds`-stamped HTML. This value is **never updated** after
+  mutations — call `comp.serialize()` to get the current document state.
 </ResponseField>
 
 ---
@@ -149,10 +157,7 @@ interface SdkDocument {
 ## OverrideSet
 
 ```typescript
-type OverrideSet = Record<
-  string,
-  string | number | boolean | Record<string, unknown> | null
->;
+type OverrideSet = Record<string, string | number | boolean | Record<string, unknown> | null>;
 ```
 
 A sparse map of overrides layered on top of a base composition template. Used in embedded override mode (T3) — pass as `overrides` to `openComposition()`, or read the accumulated delta with `comp.getOverrides()`.
@@ -172,8 +177,9 @@ const overrides: OverrideSet = {
   "hf-title.text": "Customer headline",
   "hf-logo.attr.src": "/customers/acme/logo.png",
   "hf-title.style.color": "#0EA5E9",
-  "hf-old-badge": null,                         // element removed
-  "var.brand-font": {                            // font variable
+  "hf-old-badge": null, // element removed
+  "var.brand-font": {
+    // font variable
     name: "Inter",
     source: "https://fonts.googleapis.com/css2?family=Inter",
   },
@@ -205,7 +211,8 @@ interface FindQuery {
 </ResponseField>
 
 <ResponseField name="text" type="string">
-  Match by the element's direct text content (case-sensitive substring match — implemented with `String.includes`).
+  Match by the element's direct text content (case-sensitive substring match — implemented with
+  `String.includes`).
 </ResponseField>
 
 <ResponseField name="name" type="string">
@@ -217,7 +224,8 @@ interface FindQuery {
 </ResponseField>
 
 <ResponseField name="composition" type="string">
-  Restrict results to elements inside a specific sub-composition, identified by the host element's hf-id.
+  Restrict results to elements inside a specific sub-composition, identified by the host element's
+  hf-id.
 </ResponseField>
 
 All fields are optional; non-null fields are ANDed.
@@ -252,11 +260,14 @@ interface GsapTweenSpec {
 ```
 
 <ResponseField name="method" type='"from" | "to" | "fromTo" | "set"'>
-  GSAP tween method. `"from"` animates from the given values to the computed values; `"to"` animates toward the given values; `"fromTo"` animates from `fromProperties` to `toProperties`; `"set"` snaps without interpolation.
+  GSAP tween method. `"from"` animates from the given values to the computed values; `"to"` animates
+  toward the given values; `"fromTo"` animates from `fromProperties` to `toProperties`; `"set"`
+  snaps without interpolation.
 </ResponseField>
 
 <ResponseField name="position" type="number | string">
-  Timeline insertion position. A number is seconds from the timeline start. A string is a label-relative offset such as `"intro"` or `"outro-=0.5"`. Omit to append.
+  Timeline insertion position. A number is seconds from the timeline start. A string is a
+  label-relative offset such as `"intro"` or `"outro-=0.5"`. Omit to append.
 </ResponseField>
 
 <ResponseField name="duration" type="number">
@@ -420,7 +431,8 @@ type CompositionVariable =
 ```
 
 <ResponseField name="id" type="string">
-  Stable identifier, referenced by `setVariableValue`, `getVariableValue`, `removeVariable`, and `var.{id}` override-set keys.
+  Stable identifier, referenced by `setVariableValue`, `getVariableValue`, `removeVariable`, and
+  `var.{id}` override-set keys.
 </ResponseField>
 
 <ResponseField name="type" type="string">
@@ -432,7 +444,9 @@ type CompositionVariable =
 </ResponseField>
 
 <ResponseField name="default" type="string | number | boolean">
-  The variable's fallback value. `font` and `image` variants store their fallback as a plain string here (a font-family name / image URL) — the richer `FontValue`/`ImageValue` object shapes are only used as `setVariableValue`'s runtime argument, not as `default`'s stored type.
+  The variable's fallback value. `font` and `image` variants store their fallback as a plain string
+  here (a font-family name / image URL) — the richer `FontValue`/`ImageValue` object shapes are only
+  used as `setVariableValue`'s runtime argument, not as `default`'s stored type.
 </ResponseField>
 
 <ResponseField name="brandRole" type="string (color, image)">
@@ -521,7 +535,8 @@ interface JsonPatchOp {
 </ResponseField>
 
 <Warning>
-  Hosts feeding patches back into `applyPatches()` must restrict themselves to `add`, `remove`, and `replace`. Other RFC 6902 op types are silently ignored.
+  Hosts feeding patches back into `applyPatches()` must restrict themselves to `add`, `remove`, and
+  `replace`. Other RFC 6902 op types are silently ignored.
 </Warning>
 
 ---
@@ -541,7 +556,8 @@ interface PatchEvent {
 ```
 
 <ResponseField name="formatVersion" type="1">
-  Always `1`. A bump in `formatVersion` is a breaking change. Hosts should check this value once on startup and reject unknown versions.
+  Always `1`. A bump in `formatVersion` is a breaking change. Hosts should check this value once on
+  startup and reject unknown versions.
 </ResponseField>
 
 <ResponseField name="patches" type="readonly JsonPatchOp[]">
@@ -549,15 +565,18 @@ interface PatchEvent {
 </ResponseField>
 
 <ResponseField name="inversePatches" type="readonly JsonPatchOp[]">
-  Inverse patches that undo this change — apply to the new state to return to the previous state. Store these for host-side undo stacks.
+  Inverse patches that undo this change — apply to the new state to return to the previous state.
+  Store these for host-side undo stacks.
 </ResponseField>
 
 <ResponseField name="origin" type="unknown">
-  Re-emitted verbatim from the mutation entry. Identify automated patches by checking `origin === ORIGIN_APPLY_PATCHES`.
+  Re-emitted verbatim from the mutation entry. Identify automated patches by checking `origin ===
+  ORIGIN_APPLY_PATCHES`.
 </ResponseField>
 
 <ResponseField name="opTypes" type="readonly string[]">
-  Semantic op names from the `EditOp.type` field (e.g. `["setStyle", "setText"]`). Intended for analytics and history labels. **Not versioned** — do not use in branching logic.
+  Semantic op names from the `EditOp.type` field (e.g. `["setStyle", "setText"]`). Intended for
+  analytics and history labels. **Not versioned** — do not use in branching logic.
 </ResponseField>
 
 **Loop prevention.** When a host mirrors patch events into the SDK via `applyPatches()`, it must skip events that originated from that call to avoid infinite loops:
@@ -576,9 +595,7 @@ comp.on("patch", ({ patches, inversePatches, origin }) => {
 Returned by `comp.can(op)`. See [`Edit Operations`](/sdk/reference/edit-operations) for the full usage pattern.
 
 ```typescript
-type CanResult =
-  | { ok: true }
-  | { ok: false; code: string; message: string; hint?: string };
+type CanResult = { ok: true } | { ok: false; code: string; message: string; hint?: string };
 ```
 
 <ResponseField name="ok" type="boolean">
@@ -586,7 +603,8 @@ type CanResult =
 </ResponseField>
 
 <ResponseField name="code" type="string">
-  Stable error code for `ok: false` — safe to use in `switch` statements. See the code table in [Edit Operations](/sdk/reference/edit-operations#dispatch-batch-and-can).
+  Stable error code for `ok: false` — safe to use in `switch` statements. See the code table in
+  [Edit Operations](/sdk/reference/edit-operations#dispatch-batch-and-can).
 </ResponseField>
 
 <ResponseField name="message" type="string">
@@ -612,7 +630,8 @@ interface ElementTimingSnapshot {
 ```
 
 <ResponseField name="enterAt" type="number">
-  Time in seconds when the element enters. Derived from `data-duration` (preferred) or `data-end − data-start` as fallback, using the same logic as `setTiming`.
+  Time in seconds when the element enters. Derived from `data-duration` (preferred) or `data-end −
+  data-start` as fallback, using the same logic as `setTiming`.
 </ResponseField>
 
 <ResponseField name="exitAt" type="number">
@@ -620,7 +639,8 @@ interface ElementTimingSnapshot {
 </ResponseField>
 
 <ResponseField name="labels" type="string[]">
-  GSAP `addLabel` names whose numeric position falls within `[enterAt, exitAt]` for this element. Parsed fresh from the GSAP script on every `getElementTimings()` call — never cached.
+  GSAP `addLabel` names whose numeric position falls within `[enterAt, exitAt]` for this element.
+  Parsed fresh from the GSAP script on every `getElementTimings()` call — never cached.
 </ResponseField>
 
 ---
@@ -681,7 +701,13 @@ title.setTiming({ start: 0.5, duration: 3 });
 
 ```typescript
 type CompositionVariableType =
-  | "string" | "number" | "color" | "boolean" | "enum" | "font" | "image";
+  | "string"
+  | "number"
+  | "color"
+  | "boolean"
+  | "enum"
+  | "font"
+  | "image";
 ```
 
 The declared type of a composition variable. Re-exported from
@@ -736,7 +762,13 @@ type EditOp =
   | { type: "setStyle"; target: HfId | HfId[]; styles: Record<string, string | null> }
   | { type: "setText"; target: HfId | HfId[]; value: string }
   | { type: "setAttribute"; target: HfId | HfId[]; name: string; value: string | null }
-  | { type: "setTiming"; target: HfId | HfId[]; start?: number; duration?: number; trackIndex?: number }
+  | {
+      type: "setTiming";
+      target: HfId | HfId[];
+      start?: number;
+      duration?: number;
+      trackIndex?: number;
+    }
   | { type: "setHold"; target: HfId | HfId[]; hold: ElasticHold }
   | { type: "moveElement"; target: HfId | HfId[]; x: number; y: number }
   | { type: "removeElement"; target: HfId | HfId[] }
@@ -744,29 +776,110 @@ type EditOp =
   | { type: "reorderElements"; entries: Array<{ target: HfId; zIndex: number }> }
   | { type: "setClassStyle"; selector: string; styles: Record<string, string | null> }
   | { type: "setCompositionMetadata"; width?: number; height?: number; duration?: number }
-  | { type: "setVariableValue"; id: string; value: string | number | boolean | FontValue | ImageValue }
+  | {
+      type: "setVariableValue";
+      id: string;
+      value: string | number | boolean | FontValue | ImageValue;
+    }
   | { type: "declareVariable"; declaration: CompositionVariable }
   | { type: "removeVariable"; id: string }
   | { type: "addGsapTween"; target: HfId; tween: GsapTweenSpec }
   | { type: "setGsapTween"; animationId: string; properties: Partial<GsapTweenSpec> }
   | { type: "removeGsapTween"; animationId: string }
   | { type: "removeGsapProperty"; animationId: string; property: string; from?: boolean }
-  | { type: "setGsapKeyframe"; animationId: string; keyframeIndex: number; position?: number; value?: Record<string, unknown>; ease?: string }
-  | { type: "addGsapKeyframe"; animationId: string; position: number; value: Record<string, unknown> }
+  | {
+      type: "setGsapKeyframe";
+      animationId: string;
+      keyframeIndex: number;
+      position?: number;
+      value?: Record<string, unknown>;
+      ease?: string;
+    }
+  | {
+      type: "addGsapKeyframe";
+      animationId: string;
+      position: number;
+      value: Record<string, unknown>;
+    }
   | { type: "removeGsapKeyframe"; animationId: string; percentage: number }
   | { type: "removeAllKeyframes"; animationId: string }
-  | { type: "convertToKeyframes"; animationId: string; resolvedFromValues?: Record<string, number | string> }
-  | { type: "materializeKeyframes"; animationId: string; keyframes: Array<{ percentage: number; properties: Record<string, number | string>; ease?: string }>; easeEach?: string; resolvedSelector?: string }
+  | {
+      type: "convertToKeyframes";
+      animationId: string;
+      resolvedFromValues?: Record<string, number | string>;
+    }
+  | {
+      type: "materializeKeyframes";
+      animationId: string;
+      keyframes: Array<{
+        percentage: number;
+        properties: Record<string, number | string>;
+        ease?: string;
+      }>;
+      easeEach?: string;
+      resolvedSelector?: string;
+    }
   | { type: "splitIntoPropertyGroups"; animationId: string }
-  | { type: "splitAnimations"; originalId: string; newId: string; splitTime: number; elementStart: number; elementDuration: number }
+  | {
+      type: "splitAnimations";
+      originalId: string;
+      newId: string;
+      splitTime: number;
+      elementStart: number;
+      elementDuration: number;
+    }
   | { type: "addLabel"; name: string; position: number }
   | { type: "removeLabel"; name: string }
-  | { type: "setArcPath"; animationId: string; config: { enabled: boolean; autoRotate: boolean | number; segments: Array<{ curviness?: number; cp1?: { x: number; y: number }; cp2?: { x: number; y: number } }> } }
-  | { type: "updateArcSegment"; animationId: string; segmentIndex: number; update: { curviness?: number; cp1?: { x: number; y: number }; cp2?: { x: number; y: number } } }
+  | {
+      type: "setArcPath";
+      animationId: string;
+      config: {
+        enabled: boolean;
+        autoRotate: boolean | number;
+        segments: Array<{
+          curviness?: number;
+          cp1?: { x: number; y: number };
+          cp2?: { x: number; y: number };
+        }>;
+      };
+    }
+  | {
+      type: "updateArcSegment";
+      animationId: string;
+      segmentIndex: number;
+      update: {
+        curviness?: number;
+        cp1?: { x: number; y: number };
+        cp2?: { x: number; y: number };
+      };
+    }
   | { type: "removeArcPath"; animationId: string }
-  | { type: "unrollDynamicAnimations"; animationId: string; elements: Array<{ selector: string; keyframes: Array<{ percentage: number; properties: Record<string, number | string> }>; easeEach?: string }> }
-  | { type: "addWithKeyframes"; targetSelector: string; position: number; duration: number; keyframes: KeyframeSpec[]; ease?: string }
-  | { type: "replaceWithKeyframes"; animationId: string; targetSelector: string; position: number; duration: number; keyframes: KeyframeSpec[]; ease?: string }
+  | {
+      type: "unrollDynamicAnimations";
+      animationId: string;
+      elements: Array<{
+        selector: string;
+        keyframes: Array<{ percentage: number; properties: Record<string, number | string> }>;
+        easeEach?: string;
+      }>;
+    }
+  | {
+      type: "addWithKeyframes";
+      targetSelector: string;
+      position: number;
+      duration: number;
+      keyframes: KeyframeSpec[];
+      ease?: string;
+    }
+  | {
+      type: "replaceWithKeyframes";
+      animationId: string;
+      targetSelector: string;
+      position: number;
+      duration: number;
+      keyframes: KeyframeSpec[];
+      ease?: string;
+    }
   | { type: "deleteAllForSelector"; selector: string };
 ```
 

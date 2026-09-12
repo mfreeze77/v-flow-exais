@@ -44,7 +44,7 @@ here:
    and its presence is now explicit in every preflight report rather than
    inferred.
 
-What the rule protects is the *direction of derivation*, not filesystem
+What the rule protects is the _direction of derivation_, not filesystem
 containment. Quarantine keeps the derivation one-way.
 
 ## Cost

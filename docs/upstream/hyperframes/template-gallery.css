@@ -20,6 +20,6 @@
   left: 0;
   right: 0;
   padding: 2.5rem 0.75rem 0.75rem;
-  background: linear-gradient(transparent, rgba(0,0,0,0.75));
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
   pointer-events: none;
 }

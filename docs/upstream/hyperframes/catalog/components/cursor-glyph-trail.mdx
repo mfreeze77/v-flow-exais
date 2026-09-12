@@ -426,14 +426,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `glyphs` | `░▒▓+·×` | string | Stamp charset; one glyph per stamp is chosen deterministically. |
-| `density` | `med` | `low`, `med`, `high` | Arc-length spacing between stamps along the path. |
-| `path` | `sweep` | `sweep`, `arc`, `zigzag` | Authored travel path preset. |
-| `fade` | `0.8` | number | Per-stamp decay window in seconds, clamped 0.3 to 1.5. |
-| `accent` | `green` | `green`, `blue`, `violet` | Trail and actor color: green rides --brand, blue rides --accent, violet rides --accent-2. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the settled actor holds until the frame cuts. |
+| Variable  | Default  | Accepts                   | What it does                                                                              |
+| --------- | -------- | ------------------------- | ----------------------------------------------------------------------------------------- |
+| `glyphs`  | `░▒▓+·×` | string                    | Stamp charset; one glyph per stamp is chosen deterministically.                           |
+| `density` | `med`    | `low`, `med`, `high`      | Arc-length spacing between stamps along the path.                                         |
+| `path`    | `sweep`  | `sweep`, `arc`, `zigzag`  | Authored travel path preset.                                                              |
+| `fade`    | `0.8`    | number                    | Per-stamp decay window in seconds, clamped 0.3 to 1.5.                                    |
+| `accent`  | `green`  | `green`, `blue`, `violet` | Trail and actor color: green rides --brand, blue rides --accent, violet rides --accent-2. |
+| `exit`    | `none`   | `none`, `fade`, `up`      | Optional departure. Default none: the settled actor holds until the frame cuts.           |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

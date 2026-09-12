@@ -698,14 +698,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `contact` | `Rachel` | string | Name in the thread header; the avatar shows its first letter. |
-| `unread` | `12` | 0 to 99, step 1 | Count in the back-button badge. 0 hides it. |
-| `messages` | `recv:what r u using for the launch video??|sent:wait look 👀|card:HyperFrames — Write HTML, render pixel-perfect video~hyperframes.heygen.com|recv:OMG IT&#39;S HTML|emoji:🤯🤯🤯|sent:renders in 4K. no editor` | string | Pipe-separated thread. Each entry picks its type by prefix: recv: or sent: for a text bubble, emoji: for a large emoji row, img for a media placeholder, card:Title~domain for a link card. Example: recv:hey|sent:look 👀|card:HyperFrames~hyperframes.heygen.com|emoji:🤯🤯🤯 |
-| `beat` | `1.7` | 0.8 to 3, step 0.1 | Seconds between message arrivals. |
-| `dots` | `on` | `on`, `off` | Show the three-dot indicator before received messages. |
-| `receipt` | `on` | `on`, `off` | Show Delivered under the last sent bubble, as iMessage does. |
+| Variable   | Default                                     | Accepts            | What it does                                                                     |
+| ---------- | ------------------------------------------- | ------------------ | -------------------------------------------------------------------------------- | ---------------------- | ------------ | ------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | --------------------------------------- | ------------ |
+| `contact`  | `Rachel`                                    | string             | Name in the thread header; the avatar shows its first letter.                    |
+| `unread`   | `12`                                        | 0 to 99, step 1    | Count in the back-button badge. 0 hides it.                                      |
+| `messages` | `recv:what r u using for the launch video?? | sent:wait look 👀  | card:HyperFrames — Write HTML, render pixel-perfect video~hyperframes.heygen.com | recv:OMG IT&#39;S HTML | emoji:🤯🤯🤯 | sent:renders in 4K. no editor` | string | Pipe-separated thread. Each entry picks its type by prefix: recv: or sent: for a text bubble, emoji: for a large emoji row, img for a media placeholder, card:Title~domain for a link card. Example: recv:hey | sent:look 👀 | card:HyperFrames~hyperframes.heygen.com | emoji:🤯🤯🤯 |
+| `beat`     | `1.7`                                       | 0.8 to 3, step 0.1 | Seconds between message arrivals.                                                |
+| `dots`     | `on`                                        | `on`, `off`        | Show the three-dot indicator before received messages.                           |
+| `receipt`  | `on`                                        | `on`, `off`        | Show Delivered under the last sent bubble, as iMessage does.                     |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

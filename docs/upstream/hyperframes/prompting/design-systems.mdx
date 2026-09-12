@@ -7,7 +7,7 @@ import { DocsVideo } from "/snippets/docs-video.jsx";
 
 Everything so far was one scene at a time. This level is about videos as systems. Design that persists across scenes. Edits that don't regress. Output that ships. It starts with the most systemic thing a video has: its brand.
 
-"Make it on-brand" is the vaguest thing you can ask. The agent has no way to know what your brand *is*, so it invents one.
+"Make it on-brand" is the vaguest thing you can ask. The agent has no way to know what your brand _is_, so it invents one.
 
 The fix never changes. Give the agent a **source of brand truth**, and name it in the prompt. That source is a design spec, a live site, or a Figma file. Every section below is one way to do it.
 
@@ -28,7 +28,7 @@ If your brand lives somewhere else, attach it. A PDF brand guide, a screenshot, 
 
 ## Brand is truth for color and type — not for layout
 
-A design spec says what the brand *looks like*. It does **not** say how to compose a video frame. Name what's sacred and let the agent stage the rest:
+A design spec says what the brand _looks like_. It does **not** say how to compose a video frame. Name what's sacred and let the agent stage the rest:
 
 > Colors and fonts are locked to the brand — keep the exact hexes and the display/body pairing. Layout, spacing, and motion are yours to compose for video.
 
@@ -51,7 +51,7 @@ For a well-known brand, naming it is often enough. The agent researches the pale
 
 One caveat is worth stating. A single-page-app homepage often returns a near-empty shell. If the palette comes back thin, point the agent at a blog, press, or docs page instead.
 
-This is the same brand-truth move. The *site* is the source instead of a file.
+This is the same brand-truth move. The _site_ is the source instead of a file.
 
 ## Bringing in a Figma frame, brand, or logo
 
@@ -66,7 +66,7 @@ If the brand lives in Figma, ask for it directly. The agent imports it rather th
 Two things are worth knowing when you phrase the ask:
 
 - **Import tokens before components.** Say "brand tokens first, then the components." That's what lets imported component colors link to your brand variables instead of baking in duplicate hexes.
-- **Storyboard frames are states, not slides.** If you point at a strip of scene frames, ask the agent to *reconstruct the motion between them*. A frame showing an element at four positions is one element animating, not four stills to flip through.
+- **Storyboard frames are states, not slides.** If you point at a strip of scene frames, ask the agent to _reconstruct the motion between them_. A frame showing an element at four positions is one element animating, not four stills to flip through.
 
 ## Keeping a multi-video series consistent
 
@@ -99,7 +99,7 @@ Each creation workflow comes with a designed look — `/product-launch-video`, `
 - ❌ `run /product-launch-video, then restyle every scene to my colors afterward`
 - ✅ `run /product-launch-video with my palette, fonts, and logo as inputs up front`
 
-Why this works: a workflow's preset is a coherent, tested system. Its colors, spacing, motion, and component treatments hang together. Supply your brand inputs at the start and it applies your palette and type *within* that system.
+Why this works: a workflow's preset is a coherent, tested system. Its colors, spacing, motion, and component treatments hang together. Supply your brand inputs at the start and it applies your palette and type _within_ that system.
 
 Restyling scene by scene afterward pulls threads out of a design that was balanced as a whole. You spend more effort fighting the preset than handing it a spec would have cost.
 
@@ -121,7 +121,10 @@ Restyling scene by scene afterward pulls threads out of a design that was balanc
 </CardGroup>
 
 <Note>
-**Capstone thread** — the entire [Level 7 film](/prompting/capstone) obeys a supplied `frame.md`: the real HyperFrames brand. The closing lockup is where the system shows most. ABC Solar Display carries the display type, and the mint→cyan CTA gradient makes its single sanctioned appearance (cut from the film, below).
+  **Capstone thread** — the entire [Level 7 film](/prompting/capstone) obeys a supplied `frame.md`:
+  the real HyperFrames brand. The closing lockup is where the system shows most. ABC Solar Display
+  carries the display type, and the mint→cyan CTA gradient makes its single sanctioned appearance
+  (cut from the film, below).
 </Note>
 
 This is the clause in the [full capstone prompt](/prompting/capstone#the-prompt-word-for-word) that buys the piece. It's prompt language you can lift for your own video:
@@ -133,6 +136,7 @@ This is the clause in the [full capstone prompt](/prompting/capstone#the-prompt-
   src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/capstone-region-render.mp4#t=0.1"
   loop
 />
-*That clause paying off, rendered. The closing lockup is where the brand file's display face and its one sanctioned gradient finally appear together.*
+*That clause paying off, rendered. The closing lockup is where the brand file's display face and its
+one sanctioned gradient finally appear together.*
 
-*Next: [Variables and templating](/prompting/variables-and-templating) — turn the brand tokens that repeat across a series into named slots you fill per render.*
+_Next: [Variables and templating](/prompting/variables-and-templating) — turn the brand tokens that repeat across a series into named slots you fill per render._

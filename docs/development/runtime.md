@@ -7,20 +7,20 @@ Check a live environment with `bun run doctor`.
 
 Everything runs in the container defined by `.devcontainer/Dockerfile`.
 
-| Component | Tested version |
-|---|---|
-| Base image | `node:22-bookworm-slim@sha256:d649c27d…cc6436` |
-| OS | Debian GNU/Linux 12.15 (bookworm) |
-| Node | v22.23.2 |
-| Bun | 1.3.13 |
-| ffmpeg / ffprobe | 5.1.9-0+deb12u1 |
-| chrome-headless-shell | 148.0.7778.167 (pinned) |
-| Chromium | 152.0.7977.82 |
+| Component             | Tested version                                 |
+| --------------------- | ---------------------------------------------- |
+| Base image            | `node:22-bookworm-slim@sha256:d649c27d…cc6436` |
+| OS                    | Debian GNU/Linux 12.15 (bookworm)              |
+| Node                  | v22.23.2                                       |
+| Bun                   | 1.3.13                                         |
+| ffmpeg / ffprobe      | 5.1.9-0+deb12u1                                |
+| chrome-headless-shell | 148.0.7778.167 (pinned)                        |
+| Chromium              | 152.0.7977.82                                  |
 
 The base is pinned **by digest**, because a tag moves between builds and
 `node:22-bookworm-slim` alone does not identify a reproducible environment.
 Pinning the base does not freeze the `apt` and `npm` downloads layered on top,
-so those versions are recorded as *observed*, not guaranteed.
+so those versions are recorded as _observed_, not guaranteed.
 
 ## Untested, which is not the same as unsupported
 
@@ -41,7 +41,7 @@ Bumping the pin and regenerating the baselines belong in the same commit.
 
 ## Engine fields are not the contract
 
-Each package's `engines` field describes *that package*. The binding statement
+Each package's `engines` field describes _that package_. The binding statement
 for the combined product is `provenance/runtime-contract.json`.
 
 `diagram-engine` inherited `>=18` from Archify — true of Archify alone, false of

@@ -587,12 +587,12 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `forms` | `blob,mark,badge` | string | Comma-separated silhouette sequence from blob, mark, badge. |
-| `hold_last` | `true` | boolean | True settles dead still on the final silhouette; false keeps the mass slowly breathing through the hold. |
-| `accent` | `green` | `green`, `blue`, `violet` | Tint of the lit facets. |
-| `exit` | `none` | `none`, `fade`, `up` | Outgoing transition. None holds the settled mass. |
+| Variable    | Default           | Accepts                   | What it does                                                                                             |
+| ----------- | ----------------- | ------------------------- | -------------------------------------------------------------------------------------------------------- |
+| `forms`     | `blob,mark,badge` | string                    | Comma-separated silhouette sequence from blob, mark, badge.                                              |
+| `hold_last` | `true`            | boolean                   | True settles dead still on the final silhouette; false keeps the mass slowly breathing through the hold. |
+| `accent`    | `green`           | `green`, `blue`, `violet` | Tint of the lit facets.                                                                                  |
+| `exit`      | `none`            | `none`, `fade`, `up`      | Outgoing transition. None holds the settled mass.                                                        |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

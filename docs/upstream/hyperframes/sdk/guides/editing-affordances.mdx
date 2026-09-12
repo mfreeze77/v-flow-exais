@@ -6,7 +6,9 @@ description: "Resolve capability flags and inspector sections for a selected ele
 `resolveElementAffordances` answers the question "what can the user do with this element right now?" given a live DOM element and its SDK model entry. It returns two objects: `capabilities` (boolean flags for each edit action) and `sections` (which inspector panels apply). You use these to conditionally render controls in your editor's detail panel rather than showing a fixed field set for all elements.
 
 <Note>
-  This API lives on the `@hyperframes/sdk/editing` subpath, available since `@hyperframes/sdk@0.7.22`. If the import fails to resolve, upgrade: `npm install @hyperframes/sdk@latest`.
+  This API lives on the `@hyperframes/sdk/editing` subpath, available since
+  `@hyperframes/sdk@0.7.22`. If the import fails to resolve, upgrade: `npm install
+  @hyperframes/sdk@latest`.
 </Note>
 
 ## Import
@@ -22,7 +24,7 @@ function resolveElementAffordances(
   liveEl: HTMLElement,
   modelEl: Pick<HyperFramesElement, "text" | "animationIds" | "start"> | null,
   ctx?: AffordanceContext,
-): EditingAffordances
+): EditingAffordances;
 ```
 
 - `liveEl` — a live, laid-out `HTMLElement` from the composition iframe. The resolver calls `getComputedStyle` on it, so it must be attached to a rendered document.
@@ -33,10 +35,10 @@ function resolveElementAffordances(
 
 ```typescript
 interface AffordanceContext {
-  isCompositionHost?: boolean;      // default false
-  isCompositionRoot?: boolean;      // default false
+  isCompositionHost?: boolean; // default false
+  isCompositionRoot?: boolean; // default false
   isInsideLockedComposition?: boolean; // default false
-  isMasterView?: boolean;           // default false
+  isMasterView?: boolean; // default false
 }
 ```
 
@@ -73,20 +75,22 @@ interface DomEditCapabilities {
 ```
 
 <Warning>
-  `canMove` and `canResize` indicate that the element has authored `left`/`top`/`width`/`height` style values that can be directly edited as fields. A canvas drag operation maps to `canApplyManualOffset`, not `canMove`. Do not gate drag handles on `canMove`.
+  `canMove` and `canResize` indicate that the element has authored `left`/`top`/`width`/`height`
+  style values that can be directly edited as fields. A canvas drag operation maps to
+  `canApplyManualOffset`, not `canMove`. Do not gate drag handles on `canMove`.
 </Warning>
 
 ### `sections`
 
 ```typescript
 interface EditingSectionApplicability {
-  text: boolean;         // true when the element has editable text content
-  media: boolean;        // true for <video> and <audio>
+  text: boolean; // true when the element has editable text content
+  media: boolean; // true for <video> and <audio>
   colorGrading: boolean; // true for <video> and <img> — element-level only
-  timing: boolean;       // true when data-start is present or animationCount > 0
-  animation: boolean;    // true when animationCount > 0
-  layout: boolean;       // position, size, rotation, and stacking controls apply
-  style: boolean;        // fill, radius, stroke, shadow, blend, and clip controls apply
+  timing: boolean; // true when data-start is present or animationCount > 0
+  animation: boolean; // true when animationCount > 0
+  layout: boolean; // position, size, rotation, and stacking controls apply
+  style: boolean; // fill, radius, stroke, shadow, blend, and clip controls apply
 }
 ```
 
@@ -104,9 +108,7 @@ const comp = await openComposition(compositionHtml, { preview });
 
 function onElementSelected(hfId: string) {
   // 1. Get the live DOM element from the iframe.
-  const liveEl = iframe.contentDocument?.querySelector<HTMLElement>(
-    `[data-hf-id="${hfId}"]`,
-  );
+  const liveEl = iframe.contentDocument?.querySelector<HTMLElement>(`[data-hf-id="${hfId}"]`);
   if (!liveEl) return;
 
   // 2. Get the SDK model element — null for script-generated elements.

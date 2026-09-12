@@ -13,11 +13,11 @@ HyperFrames keeps the composition's layout unchanged and captures it at a higher
 
 Use the matching preset for portrait or square work:
 
-| Preset | Output |
-| --- | --- |
+| Preset                 | Output    |
+| ---------------------- | --------- |
 | `4k` or `landscape-4k` | 3840×2160 |
-| `portrait-4k` | 2160×3840 |
-| `square-4k` | 2160×2160 |
+| `portrait-4k`          | 2160×3840 |
+| `square-4k`            | 2160×2160 |
 
 ## Author a project at 4K
 
@@ -31,12 +31,12 @@ Choose this when canvas or WebGL code, fixed-resolution media, or layout decisio
 
 ## What gets sharper
 
-| Content | Result when supersampled |
-| --- | --- |
-| HTML text, SVG, CSS shapes, gradients | Re-rasterized at 4K |
-| High-resolution images | Use their available source detail |
-| 1080p images and video | Scaled up; no new source detail |
-| `<canvas>` and WebGL | Limited by the canvas's intrinsic dimensions |
+| Content                               | Result when supersampled                     |
+| ------------------------------------- | -------------------------------------------- |
+| HTML text, SVG, CSS shapes, gradients | Re-rasterized at 4K                          |
+| High-resolution images                | Use their available source detail            |
+| 1080p images and video                | Scaled up; no new source detail              |
+| `<canvas>` and WebGL                  | Limited by the canvas's intrinsic dimensions |
 
 For a fully sharp 4K result, use 4K source media and size canvas/WebGL buffers for the target resolution.
 

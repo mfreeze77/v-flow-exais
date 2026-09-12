@@ -2,12 +2,19 @@
   "name": "@tt-a1i/archify-dsh",
   "version": "0.2.0",
   "description": "Opt-in DeepSeek Harness Skill-only bundle for the Archify architecture-diagram skill.",
+  "keywords": [
+    "agent-skill",
+    "architecture-diagram",
+    "deepseek-harness",
+    "dsh-plugin"
+  ],
+  "homepage": "https://github.com/tt-a1i/archify/tree/main/integrations/deepseek-harness",
+  "bugs": "https://github.com/tt-a1i/archify/issues",
   "license": "MIT",
-  "type": "module",
-  "main": "./lib/index.js",
-  "exports": {
-    ".": "./lib/index.js",
-    "./package.json": "./package.json"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tt-a1i/archify.git",
+    "directory": "integrations/deepseek-harness"
   },
   "files": [
     "lib",
@@ -17,24 +24,17 @@
     "LICENSE",
     "release.json"
   ],
-  "keywords": [
-    "dsh-plugin",
-    "deepseek-harness",
-    "agent-skill",
-    "architecture-diagram"
-  ],
-  "engines": {
-    "node": "^22.19.0 || >=24.0.0"
+  "type": "module",
+  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/index.js",
+    "./package.json": "./package.json"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/tt-a1i/archify.git",
-    "directory": "integrations/deepseek-harness"
-  },
-  "homepage": "https://github.com/tt-a1i/archify/tree/main/integrations/deepseek-harness",
-  "bugs": "https://github.com/tt-a1i/archify/issues",
   "publishConfig": {
     "access": "public"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0"
   },
   "dsh": {
     "bundle": {

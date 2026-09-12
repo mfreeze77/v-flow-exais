@@ -12,6 +12,7 @@ npm install @hyperframes/gcp-cloud-run
 ## When to Use
 
 **Use `@hyperframes/gcp-cloud-run` when you need to:**
+
 - Render large compositions on Google Cloud infrastructure
 - Orchestrate `plan`, `renderChunk`, and `assemble` through Cloud Workflows
 - Store project archives, chunk outputs, and final videos in GCS
@@ -19,21 +20,23 @@ npm install @hyperframes/gcp-cloud-run
 - Drive renders from CI, a backend service, or custom internal tooling
 
 **Use a different package if you want to:**
+
 - Render locally or inside a single Node process - use the [CLI](/packages/cli) or [producer](/packages/producer)
 - Run the same distributed model on AWS - use [aws-lambda](/packages/aws-lambda)
 - Build or edit composition HTML - use [studio](/packages/studio), [sdk](/packages/sdk), or [core](/packages/core)
 
 <Tip>
-  Cloud Run uses a container image, so it avoids Lambda ZIP-size pressure and can install the same pinned `chrome-headless-shell` runtime used by the standard renderer.
+  Cloud Run uses a container image, so it avoids Lambda ZIP-size pressure and can install the same
+  pinned `chrome-headless-shell` runtime used by the standard renderer.
 </Tip>
 
 ## Package Exports
 
-| Import | Description |
-|--------|-------------|
-| `@hyperframes/gcp-cloud-run` | Server handler, event types, GCS transport, and client SDK exports |
-| `@hyperframes/gcp-cloud-run/server` | Cloud Run HTTP service entry point |
-| `@hyperframes/gcp-cloud-run/sdk` | Lightweight Node SDK for deploying sites, starting renders, polling progress, and estimating cost |
+| Import                              | Description                                                                                       |
+| ----------------------------------- | ------------------------------------------------------------------------------------------------- |
+| `@hyperframes/gcp-cloud-run`        | Server handler, event types, GCS transport, and client SDK exports                                |
+| `@hyperframes/gcp-cloud-run/server` | Cloud Run HTTP service entry point                                                                |
+| `@hyperframes/gcp-cloud-run/sdk`    | Lightweight Node SDK for deploying sites, starting renders, polling progress, and estimating cost |
 
 The published package also includes `terraform/` and a `Dockerfile` for deployment.
 
@@ -43,10 +46,12 @@ Cloud Workflows invokes one Cloud Run service with different `Action` values:
 
 <Steps>
   <Step title="Plan">
-    Downloads the project archive from GCS, runs the producer planner, and uploads the plan directory.
+    Downloads the project archive from GCS, runs the producer planner, and uploads the plan
+    directory.
   </Step>
   <Step title="Render chunks">
-    Cloud Workflows runs parallel `renderChunk` calls against the Cloud Run service. Each request renders one chunk and uploads it to GCS.
+    Cloud Workflows runs parallel `renderChunk` calls against the Cloud Run service. Each request
+    renders one chunk and uploads it to GCS.
   </Step>
   <Step title="Assemble">
     Downloads all chunks and audio assets, assembles the deliverable, and uploads the final file.
@@ -102,10 +107,9 @@ omitted. Deprecated v1 compatibility remains available by passing
 `planProtocol: "v1"`.
 
 <Warning>
-  For an existing installation, pause new renders and drain active workflow
-  executions. Redeploy the Cloud Run image and Cloud Workflows definition from
-  the same package version before upgrading the application SDK. Older
-  workflows may default omission to v1 or lack v2 support.
+  For an existing installation, pause new renders and drain active workflow executions. Redeploy the
+  Cloud Run image and Cloud Workflows definition from the same package version before upgrading the
+  application SDK. Older workflows may default omission to v1 or lack v2 support.
 </Warning>
 
 Pass `projectDir` for one-shot uploads, or call `deploySite()` separately and reuse the returned site handle across many renders.

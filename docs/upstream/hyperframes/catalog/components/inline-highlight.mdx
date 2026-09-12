@@ -121,11 +121,11 @@ That writes one file: `compositions/components/inline-highlight.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `tint` | `yellow` | `yellow`, `green`, `blue`, `violet` | Marker colour. Green, blue and violet ride --brand, --accent and --accent-2. |
-| `thickness` | `standard` | `thin`, `standard`, `thick` | Height of the marker band behind the text, as a share of the font size. |
-| `origin` | `left` | `left`, `right`, `center` | Edge the marker grows out of as the scale variable runs from 0 to 1. |
+| Variable    | Default    | Accepts                             | What it does                                                                 |
+| ----------- | ---------- | ----------------------------------- | ---------------------------------------------------------------------------- |
+| `tint`      | `yellow`   | `yellow`, `green`, `blue`, `violet` | Marker colour. Green, blue and violet ride --brand, --accent and --accent-2. |
+| `thickness` | `standard` | `thin`, `standard`, `thick`         | Height of the marker band behind the text, as a share of the font size.      |
+| `origin`    | `left`     | `left`, `right`, `center`           | Edge the marker grows out of as the scale variable runs from 0 to 1.         |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -49,11 +49,11 @@ On the next session open, pass `nextOverrides` as `overrides` again — the user
 
 Keys follow the pattern `hfId.prop.path`. The common forms are:
 
-| Key | Meaning |
-|-----|---------|
-| `"hf-title.text"` | Inner text of element `hf-title` |
-| `"hf-logo.attr.src"` | `src` attribute on `hf-logo` |
-| `"hf-x.style.fontSize"` | Inline `fontSize` style on `hf-x` |
+| Key                           | Meaning                              |
+| ----------------------------- | ------------------------------------ |
+| `"hf-title.text"`             | Inner text of element `hf-title`     |
+| `"hf-logo.attr.src"`          | `src` attribute on `hf-logo`         |
+| `"hf-x.style.fontSize"`       | Inline `fontSize` style on `hf-x`    |
 | `"hf-card"` with value `null` | Removal marker — element was deleted |
 
 A `null` value is a removal marker. When the SDK serializes the composition it omits that element entirely. This lets the host distinguish "never touched" (key absent) from "user deleted" (key present, value `null`).
@@ -104,7 +104,9 @@ const comp = await openComposition(templateHtml, {
 ```
 
 <Note>
-  `history: false` only disables the SDK's internal undo stack. Persistence (the `persist` adapter, if you supply one) is independent — omitting it does not affect autosave. In embedded mode, however, the host typically owns both undo and persistence, so you usually pass neither.
+  `history: false` only disables the SDK's internal undo stack. Persistence (the `persist` adapter,
+  if you supply one) is independent — omitting it does not affect autosave. In embedded mode,
+  however, the host typically owns both undo and persistence, so you usually pass neither.
 </Note>
 
 ## Host-owned undo via `applyPatches()`
@@ -136,11 +138,11 @@ See [Undo, Redo, and Patches](/sdk/guides/undo-redo-and-patches) for the full pa
 import { openComposition, ORIGIN_APPLY_PATCHES } from "@hyperframes/sdk";
 import type { JsonPatchOp, OverrideSet } from "@hyperframes/sdk";
 
-async function openUserSession(
-  templateHtml: string,
-  storedOverrides: OverrideSet,
-) {
-  const hostHistory: Array<{ patches: readonly JsonPatchOp[]; inversePatches: readonly JsonPatchOp[] }> = [];
+async function openUserSession(templateHtml: string, storedOverrides: OverrideSet) {
+  const hostHistory: Array<{
+    patches: readonly JsonPatchOp[];
+    inversePatches: readonly JsonPatchOp[];
+  }> = [];
   let historyIndex = hostHistory.length;
 
   const comp = await openComposition(templateHtml, {
@@ -187,11 +189,14 @@ async function openUserSession(
   <Card title="Types reference" icon="shapes" href="/sdk/reference/types">
     `OverrideSet`, `FontValue`, `ImageValue`, `PatchEvent`, and `ORIGIN_APPLY_PATCHES`.
   </Card>
-  <Card title="Undo, Redo, and Patches" icon="clock-rotate-left" href="/sdk/guides/undo-redo-and-patches">
+  <Card
+    title="Undo, Redo, and Patches"
+    icon="clock-rotate-left"
+    href="/sdk/guides/undo-redo-and-patches"
+  >
     Patch event format, inverse patch contract, and undo loop prevention.
   </Card>
   <Card title="Canvas integration" icon="browsers" href="/sdk/guides/canvas-integration">
     Wiring the SDK to a live preview iframe inside an editor canvas.
   </Card>
 </CardGroup>
-

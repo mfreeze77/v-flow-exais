@@ -5,7 +5,15 @@ description: "Real GLTF iPhone 15 Pro Max and MacBook Pro models with live HTML-
 
 import { InstallCommand } from "/snippets/install-command.jsx";
 
-<video className="w-full aspect-video rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800" src="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-iphone-device.mp4" poster="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-iphone-device.png" autoPlay muted loop playsInline />
+<video
+  className="w-full aspect-video rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800"
+  src="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-iphone-device.mp4"
+  poster="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-iphone-device.png"
+  autoPlay
+  muted
+  loop
+  playsInline
+/>
 
 ## Install
 
@@ -14,9 +22,9 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 That writes `compositions/vfx-iphone-device.html`, plus 4 supporting files under `models/`.
 
 <Danger>
-  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on.
-  Without it this item's screen renders black. Rendering from the CLI switches
-  it on for you. [How it works](/guides/html-in-canvas)
+  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on. Without it this
+  item's screen renders black. Rendering from the CLI switches it on for you. [How it
+  works](/guides/html-in-canvas)
 </Danger>
 
 ## Source
@@ -865,7 +873,15 @@ That writes `compositions/vfx-iphone-device.html`, plus 4 supporting files under
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="vfx-iphone-device" data-composition-src="compositions/vfx-iphone-device.html" data-start="0" data-duration="15" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="vfx-iphone-device"
+  data-composition-src="compositions/vfx-iphone-device.html"
+  data-start="0"
+  data-duration="15"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

@@ -35,7 +35,7 @@ install git hooks.
 ### Dependency-installed git hooks — neutralised via `core.hooksPath`
 
 **Removing the `prepare` script was not sufficient.** The `lefthook` package
-installs `pre-commit` and `commit-msg` into `.git/hooks/` from its *own*
+installs `pre-commit` and `commit-msg` into `.git/hooks/` from its _own_
 postinstall during `bun install`. They appeared anyway and fired on the next
 commit (`Can't find lefthook in PATH`). The generated hooks hardcode
 `/workspace/node_modules/...`, so they fail on the host and would run an

@@ -288,15 +288,9 @@ Paste the snippet into your composition, then call `attachMotionBlur()` after yo
 
 ```html
 <!-- Extend the timeline to data-duration before calling attachMotionBlur -->
-tl.set(document.body, {}, DATA_DURATION);
-
-attachMotionBlur("#my-box", tl, {
-  axis: "x",      // "x" | "y" | "both"
-  blurMax: 40,    // max blur radius in px (default 20)
-});
-
-window.__timelines = window.__timelines || {};
-window.__timelines["my-composition"] = tl;
+tl.set(document.body, {}, DATA_DURATION); attachMotionBlur("#my-box", tl, { axis: "x", // "x" | "y"
+| "both" blurMax: 40, // max blur radius in px (default 20) }); window.__timelines =
+window.__timelines || {}; window.__timelines["my-composition"] = tl;
 ```
 
 ## How it works
@@ -310,13 +304,13 @@ Blur scales linearly with velocity up to `blurMax`. Both the ghost trail and top
 
 ## Options
 
-| Option | Default | Description |
-| --- | --- | --- |
-| `axis` | `"both"` | Motion axis — `"x"`, `"y"`, or `"both"` |
-| `blurScale` | `0.008` | Blur per px/s of velocity |
-| `blurMax` | `20` | Max blur radius on the motion axis (px) |
+| Option         | Default  | Description                                         |
+| -------------- | -------- | --------------------------------------------------- |
+| `axis`         | `"both"` | Motion axis — `"x"`, `"y"`, or `"both"`             |
+| `blurScale`    | `0.008`  | Blur per px/s of velocity                           |
+| `blurMax`      | `20`     | Max blur radius on the motion axis (px)             |
 | `stretchScale` | `0.0002` | scaleX/Y added per px/s (requires `stretchMax > 0`) |
-| `stretchMax` | `0` | Max stretch above 1.0 — disabled by default |
+| `stretchMax`   | `0`      | Max stretch above 1.0 — disabled by default         |
 
 {/* hf:generated-footer */}
 

@@ -340,14 +340,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `type` | `sent` | `recv`, `sent`, `emoji`, `img`, `card` | Which message form arrives. |
-| `text` | `wait look 👀` | string | Bubble text, or the emoji row for the Emoji type. |
-| `cardTitle` | `HyperFrames — Write HTML, render pixel-perfect video` | string | Link-card title (Link card type only). |
-| `cardDomain` | `hyperframes.heygen.com` | string | Link-card domain line (Link card type only). |
-| `tail` | `on` | `on`, `off` | The bubble tail anchoring the message to its side. |
-| `delivered` | `on` | `on`, `off` | The receipt under a sent message. |
+| Variable     | Default                                                | Accepts                                | What it does                                       |
+| ------------ | ------------------------------------------------------ | -------------------------------------- | -------------------------------------------------- |
+| `type`       | `sent`                                                 | `recv`, `sent`, `emoji`, `img`, `card` | Which message form arrives.                        |
+| `text`       | `wait look 👀`                                         | string                                 | Bubble text, or the emoji row for the Emoji type.  |
+| `cardTitle`  | `HyperFrames — Write HTML, render pixel-perfect video` | string                                 | Link-card title (Link card type only).             |
+| `cardDomain` | `hyperframes.heygen.com`                               | string                                 | Link-card domain line (Link card type only).       |
+| `tail`       | `on`                                                   | `on`, `off`                            | The bubble tail anchoring the message to its side. |
+| `delivered`  | `on`                                                   | `on`, `off`                            | The receipt under a sent message.                  |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

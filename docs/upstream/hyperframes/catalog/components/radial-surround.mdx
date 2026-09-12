@@ -468,14 +468,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `center_label` | `Your team` | string | Label on the default center token card. |
-| `chips` | `Docs,Tickets,Dashboards,Inbox,Chat,Sheets` | string | Comma-separated chip labels that surround the center (up to 12). |
-| `close_in` | `true` | boolean | Converge the ring inward with a subtle edge dim after assembly. The center never moves. |
-| `cues` | `` | string | Comma-separated per-chip entrance times in seconds. Blank entries use the default cascade. |
-| `accent` | `green` | `green`, `blue`, `violet` | Accent token family used by the center card tint. |
-| `exit` | `none` | `none`, `fade`, `up` | How the surrounded stage leaves the frame. Default none: the crowded hold ends the film. |
+| Variable       | Default                                     | Accepts                   | What it does                                                                               |
+| -------------- | ------------------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------ |
+| `center_label` | `Your team`                                 | string                    | Label on the default center token card.                                                    |
+| `chips`        | `Docs,Tickets,Dashboards,Inbox,Chat,Sheets` | string                    | Comma-separated chip labels that surround the center (up to 12).                           |
+| `close_in`     | `true`                                      | boolean                   | Converge the ring inward with a subtle edge dim after assembly. The center never moves.    |
+| `cues`         | ``                                          | string                    | Comma-separated per-chip entrance times in seconds. Blank entries use the default cascade. |
+| `accent`       | `green`                                     | `green`, `blue`, `violet` | Accent token family used by the center card tint.                                          |
+| `exit`         | `none`                                      | `none`, `fade`, `up`      | How the surrounded stage leaves the frame. Default none: the crowded hold ends the film.   |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

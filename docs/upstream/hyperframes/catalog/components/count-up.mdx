@@ -333,15 +333,15 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `start` | `0` | number | First value shown by the count. |
-| `end` | `100` | number | Final value where the count lands. |
-| `prefix` | `` | string | Optional text shown before the value. |
-| `suffix` | `%` | string | Optional text shown after the value. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color used by the count. |
-| `glow` | `false` | boolean | Optional soft accent glow under the count. Off by default. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the landed value holds until the frame cuts. |
+| Variable | Default | Accepts                   | What it does                                                                   |
+| -------- | ------- | ------------------------- | ------------------------------------------------------------------------------ |
+| `start`  | `0`     | number                    | First value shown by the count.                                                |
+| `end`    | `100`   | number                    | Final value where the count lands.                                             |
+| `prefix` | ``      | string                    | Optional text shown before the value.                                          |
+| `suffix` | `%`     | string                    | Optional text shown after the value.                                           |
+| `accent` | `green` | `green`, `blue`, `violet` | Color used by the count.                                                       |
+| `glow`   | `false` | boolean                   | Optional soft accent glow under the count. Off by default.                     |
+| `exit`   | `none`  | `none`, `fade`, `up`      | Optional departure. Default none: the landed value holds until the frame cuts. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

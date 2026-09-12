@@ -185,7 +185,10 @@ import { VariablesExplorer } from "/snippets/variables-explorer.jsx";
 
 ## Install
 
-<InstallCommand command="npx hyperframes add chromatic-aberration-wipe" item="chromatic-aberration-wipe" />
+<InstallCommand
+  command="npx hyperframes add chromatic-aberration-wipe"
+  item="chromatic-aberration-wipe"
+/>
 
 That writes one file: `compositions/components/chromatic-aberration-wipe.html`.
 
@@ -194,11 +197,11 @@ That writes one file: `compositions/components/chromatic-aberration-wipe.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `direction` | `left` | `left`, `right`, `up`, `down` | The direction the reveal travels; both scenes slide the same way and the wipe edge follows. |
-| `accent` | `blue` | `blue`, `green`, `violet` | Colour family of the incoming scene's gradient. |
-| `aberration` | `1` | 0x to 2x, step 0.1x | Multiplies the red/cyan channel split: 0 removes it, 1 is the stock strength, 2 doubles the offset and saturates the flash. |
+| Variable     | Default | Accepts                       | What it does                                                                                                                |
+| ------------ | ------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `direction`  | `left`  | `left`, `right`, `up`, `down` | The direction the reveal travels; both scenes slide the same way and the wipe edge follows.                                 |
+| `accent`     | `blue`  | `blue`, `green`, `violet`     | Colour family of the incoming scene's gradient.                                                                             |
+| `aberration` | `1`     | 0x to 2x, step 0.1x           | Multiplies the red/cyan channel split: 0 removes it, 1 is the stock strength, 2 doubles the offset and saturates the flash. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

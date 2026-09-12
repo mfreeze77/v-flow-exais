@@ -165,12 +165,12 @@ That writes one file: `compositions/components/perspective-marquee.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `tilt` | `standard` | `flat`, `standard`, `steep` | How far the marquee plane leans back toward the horizon. |
-| `travel` | `standard` | `short`, `standard`, `long` | Scales the offset the timeline drives, so the strip covers a shorter or longer run in the same time. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Pill colour: ink for light frames, paper for dark ones, accent rides the brand token. |
-| `words` | `COMPONENTS, PRIMITIVES, TRANSITIONS, AGENTS` | string | Comma separated pill labels. The list is laid down twice so the strip still reads as a continuous loop. |
+| Variable | Default                                       | Accepts                     | What it does                                                                                            |
+| -------- | --------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------------------------------- |
+| `tilt`   | `standard`                                    | `flat`, `standard`, `steep` | How far the marquee plane leans back toward the horizon.                                                |
+| `travel` | `standard`                                    | `short`, `standard`, `long` | Scales the offset the timeline drives, so the strip covers a shorter or longer run in the same time.    |
+| `tone`   | `ink`                                         | `ink`, `paper`, `accent`    | Pill colour: ink for light frames, paper for dark ones, accent rides the brand token.                   |
+| `words`  | `COMPONENTS, PRIMITIVES, TRANSITIONS, AGENTS` | string                      | Comma separated pill labels. The list is laid down twice so the strip still reads as a continuous loop. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

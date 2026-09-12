@@ -120,11 +120,11 @@ That writes one file: `compositions/components/focus-blur-resolve.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Word colour: ink for light frames, paper for dark ones, accent rides --brand. |
-| `size` | `standard` | `compact`, `standard`, `display` | Type size of the words, from a caption-scale line to a full display card. |
-| `blur` | `standard` | `soft`, `standard`, `heavy` | Scales the blur radius the timeline drives, so the focus pull starts as a light haze or a full smear. |
+| Variable | Default    | Accepts                          | What it does                                                                                          |
+| -------- | ---------- | -------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| `tone`   | `ink`      | `ink`, `paper`, `accent`         | Word colour: ink for light frames, paper for dark ones, accent rides --brand.                         |
+| `size`   | `standard` | `compact`, `standard`, `display` | Type size of the words, from a caption-scale line to a full display card.                             |
+| `blur`   | `standard` | `soft`, `standard`, `heavy`      | Scales the blur radius the timeline drives, so the focus pull starts as a light haze or a full smear. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

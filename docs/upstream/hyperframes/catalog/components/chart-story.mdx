@@ -775,15 +775,15 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `type` | `bars` | `bars`, `line`, `donut`, `progress` | Chart form the data builds into. |
-| `data` | `12, 28, 45, 64` | string | Comma-separated numbers; the chart lands exactly on these values. |
-| `labels` | `Q1, Q2, Q3, Q4` | string | Comma-separated labels, one per datum. |
-| `emphasize` | `3` | number | Index of the datum that takes the accent and the value callout. Clamped to the data range. |
-| `unit` | `%` | string | Suffix appended to every displayed value. |
-| `accent` | `green` | `green`, `blue`, `violet` | Contract color used by the emphasized datum and its callout. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Proof stats end on the still hold, so the default is none. |
+| Variable    | Default          | Accepts                             | What it does                                                                               |
+| ----------- | ---------------- | ----------------------------------- | ------------------------------------------------------------------------------------------ |
+| `type`      | `bars`           | `bars`, `line`, `donut`, `progress` | Chart form the data builds into.                                                           |
+| `data`      | `12, 28, 45, 64` | string                              | Comma-separated numbers; the chart lands exactly on these values.                          |
+| `labels`    | `Q1, Q2, Q3, Q4` | string                              | Comma-separated labels, one per datum.                                                     |
+| `emphasize` | `3`              | number                              | Index of the datum that takes the accent and the value callout. Clamped to the data range. |
+| `unit`      | `%`              | string                              | Suffix appended to every displayed value.                                                  |
+| `accent`    | `green`          | `green`, `blue`, `violet`           | Contract color used by the emphasized datum and its callout.                               |
+| `exit`      | `none`           | `none`, `fade`, `up`                | Optional departure. Proof stats end on the still hold, so the default is none.             |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

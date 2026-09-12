@@ -19,7 +19,7 @@ The agent already has the composition open and the skills loaded — small targe
 
 ## The gates can't tell you it's good
 
-Before the loop: know what you are iterating *against*. `lint` and `check` are necessary and not sufficient — they verify structure, not quality. `lint` reads the HTML, `check` runs the composition in a headless browser and reports runtime errors, layout collisions, motion problems, and contrast failures. Every one of those is a fact about whether the composition is *well-formed*. None of them is an opinion about whether the video is *good*.
+Before the loop: know what you are iterating _against_. `lint` and `check` are necessary and not sufficient — they verify structure, not quality. `lint` reads the HTML, `check` runs the composition in a headless browser and reports runtime errors, layout collisions, motion problems, and contrast failures. Every one of those is a fact about whether the composition is _well-formed_. None of them is an opinion about whether the video is _good_.
 
 So the failure mode to expect is: **passes every automated gate, fails human review.** Both earlier builds of this guide's [capstone](/prompting/capstone) did exactly that — one came back clean and read as sparse elements floating in empty frames, the next came back clean and read as a well-dressed slideshow. No linter has an opinion about either.
 
@@ -46,11 +46,14 @@ When you're dialing in a look, relative corrections oscillate — "make the dots
 And freeze what already works: "the framing and motion are right — don't touch them; only change the dot size." Without the freeze clause, a rebuild can drift on axes you'd already settled.
 
 <Note>
-**Capstone thread** — several clauses in the [Level 7 film](/prompting/capstone)'s prompt exist only because frame review caught the builder drifting — the chip's hard bind to the wire, the pinned mural, the Depth region's occlusion contract. Each catch was folded back into the prompt so the next run can't regress: this chapter's loop, applied to the prompt itself.
+  **Capstone thread** — several clauses in the [Level 7 film](/prompting/capstone)'s prompt exist
+  only because frame review caught the builder drifting — the chip's hard bind to the wire, the
+  pinned mural, the Depth region's occlusion contract. Each catch was folded back into the prompt so
+  the next run can't regress: this chapter's loop, applied to the prompt itself.
 </Note>
 
 This is the clause in the [full capstone prompt](/prompting/capstone#the-prompt-word-for-word) that buys the piece — prompt language you can lift for your own video:
 
 > **The chip sits ON the wire at every moment: bind its position to the wire's actual path geometry (sample the drawn path, seek-safe), never keyframe it independently — through every bend, arc, waveform, and dive, the chip visibly hugs the line. A chip floating off-path breaks the story.**
 
-*Next: [Recreating something you saw](/prompting/recreating-references) — the same absolute-target discipline, applied to matching a specific reference frame by frame.*
+_Next: [Recreating something you saw](/prompting/recreating-references) — the same absolute-target discipline, applied to matching a specific reference frame by frame._

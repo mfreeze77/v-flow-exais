@@ -101,6 +101,7 @@ export class UnifiedProjectService {
     const current = readCommittedProject(root);
     return {
       snapshot: current.snapshot,
+      unresolvedConflicts: current.snapshot.manifest.regenerationConflicts ?? [],
       canUndo: !!current.index.history?.undo.length,
       canRedo: !!current.index.history?.redo.length,
       evidence: existsSync(join(root, ".vflow/source-evidence.json"))
@@ -126,7 +127,14 @@ export class UnifiedProjectService {
       conflicts,
     );
     // Return this command's own committed snapshot, even if another client committed meanwhile.
-    return { ...result, conflicts, snapshot: readRevision(root, result.pointer).snapshot };
+    const committed = readRevision(root, result.pointer);
+    return {
+      ...result,
+      conflicts,
+      // Legacy receipts did not store outcomes. Do not claim [] proves none occurred.
+      conflictOutcomeRecorded: committed.index.command.outcome !== undefined,
+      snapshot: committed.snapshot,
+    };
   }
   /**
    * Trusted in-process local import. Do not expose inputPath as an HTTP field.

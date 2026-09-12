@@ -576,13 +576,13 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `sketch` | `bulb` | `bulb`, `flow`, `rocket` | Authored preset sketch to draw. Ignored when the strokes slot holds custom paths. |
-| `caption` | `Draw the idea` | string | Short line shown after the sketch completes. |
-| `pen` | `show` | `show`, `hide` | Show or hide the pen nib actor. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color used by strokes marked data-ink=accent (one highlight stroke in each preset). |
-| `exit` | `none` | `none`, `fade`, `up` | How the completed lockup leaves. none holds the final frame. |
+| Variable  | Default         | Accepts                   | What it does                                                                        |
+| --------- | --------------- | ------------------------- | ----------------------------------------------------------------------------------- |
+| `sketch`  | `bulb`          | `bulb`, `flow`, `rocket`  | Authored preset sketch to draw. Ignored when the strokes slot holds custom paths.   |
+| `caption` | `Draw the idea` | string                    | Short line shown after the sketch completes.                                        |
+| `pen`     | `show`          | `show`, `hide`            | Show or hide the pen nib actor.                                                     |
+| `accent`  | `green`         | `green`, `blue`, `violet` | Color used by strokes marked data-ink=accent (one highlight stroke in each preset). |
+| `exit`    | `none`          | `none`, `fade`, `up`      | How the completed lockup leaves. none holds the final frame.                        |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -420,16 +420,16 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `text` | `Generate a product launch video` | string | The prompt that gets typed. |
-| `prompt_glyph` | `>` | string | Leading glyph before the typed line. Empty string hides it. |
-| `cadence` | `human` | `uniform`, `human` | Keystroke rhythm: uniform fixed steps or seeded human chunks. |
-| `caret` | `blink` | `blink`, `solid` | Blink runs integer sine cycles during typing then goes solid. |
-| `correction` | `` | string | Mistyped word typed in place of the final word, then backspaced and corrected. Empty disables. |
-| `cues` | `` | string | Comma-separated seconds relative to mount start; cue N anchors the start of word N. Empty uses the authored rhythm. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color of the prompt glyph and caret. |
-| `exit` | `none` | `none`, `fade`, `up` | Outgoing transition. Frame roots own transitions; none holds the end frame. |
+| Variable       | Default                           | Accepts                   | What it does                                                                                                        |
+| -------------- | --------------------------------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `text`         | `Generate a product launch video` | string                    | The prompt that gets typed.                                                                                         |
+| `prompt_glyph` | `>`                               | string                    | Leading glyph before the typed line. Empty string hides it.                                                         |
+| `cadence`      | `human`                           | `uniform`, `human`        | Keystroke rhythm: uniform fixed steps or seeded human chunks.                                                       |
+| `caret`        | `blink`                           | `blink`, `solid`          | Blink runs integer sine cycles during typing then goes solid.                                                       |
+| `correction`   | ``                                | string                    | Mistyped word typed in place of the final word, then backspaced and corrected. Empty disables.                      |
+| `cues`         | ``                                | string                    | Comma-separated seconds relative to mount start; cue N anchors the start of word N. Empty uses the authored rhythm. |
+| `accent`       | `green`                           | `green`, `blue`, `violet` | Color of the prompt glyph and caret.                                                                                |
+| `exit`         | `none`                            | `none`, `fade`, `up`      | Outgoing transition. Frame roots own transitions; none holds the end frame.                                         |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -34,8 +34,8 @@ const history = createHistory(comp, { coalesceMs: 500, maxEntries: 50 });
 comp.setText("hf-title", "Draft v1");
 
 history.canUndo(); // true
-history.undo();    // reverts to original
-history.redo();    // re-applies
+history.undo(); // reverts to original
+history.redo(); // re-applies
 
 history.dispose(); // unsubscribes from patch events
 ```
@@ -53,11 +53,14 @@ interface HistoryModule {
 ```
 
 <ParamField path="undo" type="() => boolean">
-  Pops the top entry from the undo stack and applies its inverse patches via `session.applyPatches()` tagged with `ORIGIN_APPLY_PATCHES`. Returns `true` when an entry was popped, `false` when the stack was empty.
+  Pops the top entry from the undo stack and applies its inverse patches via
+  `session.applyPatches()` tagged with `ORIGIN_APPLY_PATCHES`. Returns `true` when an entry was
+  popped, `false` when the stack was empty.
 </ParamField>
 
 <ParamField path="redo" type="() => boolean">
-  Pops the top entry from the redo stack and re-applies its forward patches. Returns `true` when an entry was popped, `false` when the stack was empty. Any new op clears the redo stack.
+  Pops the top entry from the redo stack and re-applies its forward patches. Returns `true` when an
+  entry was popped, `false` when the stack was empty. Any new op clears the redo stack.
 </ParamField>
 
 <ParamField path="canUndo" type="() => boolean">
@@ -69,7 +72,8 @@ interface HistoryModule {
 </ParamField>
 
 <ParamField path="dispose" type="() => void">
-  Unsubscribes from the session's `"patch"` event and clears both stacks. Call when the session is closed.
+  Unsubscribes from the session's `"patch"` event and clears both stacks. Call when the session is
+  closed.
 </ParamField>
 
 ### HistoryOptions
@@ -83,15 +87,21 @@ interface HistoryOptions {
 ```
 
 <ParamField path="trackedOrigins" type="unknown[]">
-  Only ops whose `origin` value appears in this array enter the undo stack. When omitted, all origins are tracked except `ORIGIN_APPLY_PATCHES` (which is always excluded to prevent undo loops). Use this to restrict the undo stack to UI-driven edits while letting programmatic patches pass through silently.
+  Only ops whose `origin` value appears in this array enter the undo stack. When omitted, all
+  origins are tracked except `ORIGIN_APPLY_PATCHES` (which is always excluded to prevent undo
+  loops). Use this to restrict the undo stack to UI-driven edits while letting programmatic patches
+  pass through silently.
 </ParamField>
 
 <ParamField path="coalesceMs" type="number">
-  Window in milliseconds within which same-operation bursts on the same paths are merged into a single undo entry. The timestamp slides forward on each coalesced event, so continuous editing keeps merging until there is a gap longer than `coalesceMs`. Default: `300`.
+  Window in milliseconds within which same-operation bursts on the same paths are merged into a
+  single undo entry. The timestamp slides forward on each coalesced event, so continuous editing
+  keeps merging until there is a gap longer than `coalesceMs`. Default: `300`.
 </ParamField>
 
 <ParamField path="maxEntries" type="number">
-  Maximum depth of the undo stack. Oldest entries are dropped when the limit is exceeded. Default: `100`.
+  Maximum depth of the undo stack. Oldest entries are dropped when the limit is exceeded. Default:
+  `100`.
 </ParamField>
 
 ### HistoryEntry
@@ -162,11 +172,13 @@ interface PersistQueueModule {
 ```
 
 <ParamField path="flush" type="() => Promise<void>">
-  Cancels any pending debounced write and immediately writes the current serialized HTML to the adapter. Resolves when the write commits. Use before app close or page unload.
+  Cancels any pending debounced write and immediately writes the current serialized HTML to the
+  adapter. Resolves when the write commits. Use before app close or page unload.
 </ParamField>
 
 <ParamField path="dispose" type="() => void">
-  Cancels any pending write and unsubscribes from the session's `"change"` event. Does not flush — call `flush()` first if you need to ensure the final state is written.
+  Cancels any pending write and unsubscribes from the session's `"change"` event. Does not flush —
+  call `flush()` first if you need to ensure the final state is written.
 </ParamField>
 
 ### PersistQueueOptions
@@ -179,7 +191,8 @@ interface PersistQueueOptions {
 ```
 
 <ParamField path="path" type="string">
-  The adapter path to write to. Passed directly to `adapter.write(path, content)`. Default: `"composition.html"`.
+  The adapter path to write to. Passed directly to `adapter.write(path, content)`. Default:
+  `"composition.html"`.
 </ParamField>
 
 <ParamField path="onError" type="(e: PersistErrorEvent) => void">
@@ -301,7 +314,7 @@ already have the declaration element.
 
 ## Constants
 
-### ORIGIN\_APPLY\_PATCHES
+### ORIGIN_APPLY_PATCHES
 
 ```typescript
 import { ORIGIN_APPLY_PATCHES } from "@hyperframes/sdk";
@@ -320,7 +333,7 @@ comp.on("patch", ({ origin, patches }) => {
 
 The value is a namespaced string rather than a `Symbol` so it survives realm boundaries — `postMessage`, structured clone, and JSON serialization all preserve it correctly. T3 embedded hosts that forward patch events across frames or workers rely on this property. The namespace prefix (`@hyperframes/sdk:`) makes accidental collision with a host-chosen origin string negligible.
 
-### ORIGIN\_LOCAL
+### ORIGIN_LOCAL
 
 ```typescript
 import { ORIGIN_LOCAL } from "@hyperframes/sdk";
@@ -351,7 +364,11 @@ class UnsupportedOpError extends Error {
 Feature-detect before dispatching optional ops with `comp.can(op)` to avoid this error in the hot path:
 
 ```typescript
-const result = comp.can({ type: "setGsapTween", animationId: id, properties: { ease: "power2.out" } });
+const result = comp.can({
+  type: "setGsapTween",
+  animationId: id,
+  properties: { ease: "power2.out" },
+});
 if (!result.ok) {
   console.warn(result.message);
   return;
@@ -389,7 +406,11 @@ Determines which editing operations are available for a live element given its c
 ---
 
 <CardGroup cols={2}>
-  <Card title="Undo, Redo & Patches" icon="clock-rotate-left" href="/sdk/guides/undo-redo-and-patches">
+  <Card
+    title="Undo, Redo & Patches"
+    icon="clock-rotate-left"
+    href="/sdk/guides/undo-redo-and-patches"
+  >
     How the history module, ORIGIN_APPLY_PATCHES, and applyPatches() work together.
   </Card>
   <Card title="Persistence" icon="floppy-disk" href="/sdk/guides/persistence">

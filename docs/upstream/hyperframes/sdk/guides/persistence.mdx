@@ -23,11 +23,13 @@ comp.setText("hf-title", "Draft title");
 ## Options
 
 <ParamField path="persist" type="PersistAdapter">
-  The storage adapter. The SDK calls `adapter.write(persistPath, html)` after every change. Omit to skip persistence (headless / agent use).
+  The storage adapter. The SDK calls `adapter.write(persistPath, html)` after every change. Omit to
+  skip persistence (headless / agent use).
 </ParamField>
 
 <ParamField path="persistPath" type="string">
-  The path key passed to the adapter on every write. Default: `"composition.html"`. Immutable for the session lifetime — changing the path mid-session is not supported.
+  The path key passed to the adapter on every write. Default: `"composition.html"`. Immutable for
+  the session lifetime — changing the path mid-session is not supported.
 </ParamField>
 
 ## Flushing pending writes
@@ -88,20 +90,24 @@ const v1Html = await adapter.loadFrom("composition.html", versions[1].key);
 Writes to the filesystem and keeps a rolling version history under `.hf-versions/`. Node.js only — do not use in browser builds.
 
 <Note>
-  `createFsAdapter` is imported from the `@hyperframes/sdk/adapters/fs` **subpath**, not the main barrel like `createMemoryAdapter`. The fs adapter pulls in Node's `fs` module, so keeping it on a separate subpath lets browser bundles tree-shake it away — importing it from the root would drag `node:fs` into a browser build.
+  `createFsAdapter` is imported from the `@hyperframes/sdk/adapters/fs` **subpath**, not the main
+  barrel like `createMemoryAdapter`. The fs adapter pulls in Node's `fs` module, so keeping it on a
+  separate subpath lets browser bundles tree-shake it away — importing it from the root would drag
+  `node:fs` into a browser build.
 </Note>
 
 ```typescript
 import { createFsAdapter } from "@hyperframes/sdk/adapters/fs";
 
 const adapter = createFsAdapter({
-  root: "./project",   // required — directory for composition files
-  maxVersions: 20,     // optional — versions to retain per file (default: 20)
+  root: "./project", // required — directory for composition files
+  maxVersions: 20, // optional — versions to retain per file (default: 20)
 });
 ```
 
 <ParamField path="root" type="string">
-  Root directory. The adapter writes `{root}/{persistPath}` and keeps version files under `{root}/.hf-versions/{persistPath}/`.
+  Root directory. The adapter writes `{root}/{persistPath}` and keeps version files under `{root}
+  /.hf-versions/{persistPath}/`.
 </ParamField>
 
 <ParamField path="maxVersions" type="number">
@@ -205,7 +211,9 @@ export function createHttpAdapter(baseUrl: string): PersistAdapter {
 ```
 
 <Note>
-  `write()` must never throw — catch errors and emit them through `on('persist:error', …)` instead. The SDK trusts that writes are fire-and-forget from its side; thrown exceptions break the internal persist queue.
+  `write()` must never throw — catch errors and emit them through `on('persist:error', …)` instead.
+  The SDK trusts that writes are fire-and-forget from its side; thrown exceptions break the internal
+  persist queue.
 </Note>
 
 <CardGroup cols={2}>
@@ -213,7 +221,7 @@ export function createHttpAdapter(baseUrl: string): PersistAdapter {
     Full `PersistAdapter`, `PersistVersionEntry`, and `PreviewAdapter` type definitions.
   </Card>
   <Card title="openComposition reference" icon="code" href="/sdk/reference/open-composition">
-    All `OpenCompositionOptions` fields including `persist`, `persistPath`, `preview`, and `overrides`.
+    All `OpenCompositionOptions` fields including `persist`, `persistPath`, `preview`, and
+    `overrides`.
   </Card>
 </CardGroup>
-

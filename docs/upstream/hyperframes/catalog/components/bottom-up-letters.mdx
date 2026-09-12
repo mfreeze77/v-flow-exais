@@ -134,11 +134,11 @@ That writes one file: `compositions/components/bottom-up-letters.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `unit` | `letter` | `letter`, `word` | What each animated span holds. Letter staggers glyph by glyph, word keeps whole words intact. |
-| `direction` | `up` | `up`, `down` | Where each span starts. Up starts below the baseline and rises, down starts above and drops. |
-| `travel` | `standard` | `close`, `standard`, `far` | How far each span starts from its resting position, from 0.45em to 1.5em. |
+| Variable    | Default    | Accepts                    | What it does                                                                                  |
+| ----------- | ---------- | -------------------------- | --------------------------------------------------------------------------------------------- |
+| `unit`      | `letter`   | `letter`, `word`           | What each animated span holds. Letter staggers glyph by glyph, word keeps whole words intact. |
+| `direction` | `up`       | `up`, `down`               | Where each span starts. Up starts below the baseline and rises, down starts above and drops.  |
+| `travel`    | `standard` | `close`, `standard`, `far` | How far each span starts from its resting position, from 0.45em to 1.5em.                     |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

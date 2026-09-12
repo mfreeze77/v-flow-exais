@@ -11,14 +11,8 @@
       "scope": "required-local",
       "priority": "P0",
       "dependencies": [],
-      "source_groups": [
-        "A-PKG",
-        "H-PKG"
-      ],
-      "target_paths": [
-        "tools/import/preflight.ts",
-        "provenance/upstream-lock.json"
-      ],
+      "source_groups": ["A-PKG", "H-PKG"],
+      "target_paths": ["tools/import/preflight.ts", "provenance/upstream-lock.json"],
       "goal": "Accept downloaded folders or ZIPs without requiring either upstream Git history or installed global tools.",
       "implementation": [
         "Resolve supplied roots by package/schema sentinels, not only folder names; reject a root nested inside the destination.",
@@ -49,18 +43,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-001"
-      ],
-      "source_groups": [
-        "A-ROOT",
-        "H-PKG",
-        "H-CI"
-      ],
-      "target_paths": [
-        "provenance/import-map.json",
-        "tools/import/plan.ts"
-      ],
+      "dependencies": ["AFM-001"],
+      "source_groups": ["A-ROOT", "H-PKG", "H-CI"],
+      "target_paths": ["provenance/import-map.json", "tools/import/plan.ts"],
       "goal": "Account for every source file before copying or retiring anything.",
       "implementation": [
         "Assign every archive entry a retained, relocated, quarantined-generated, external-asset-review, or retired-with-reason disposition.",
@@ -91,19 +76,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-002"
-      ],
-      "source_groups": [
-        "A-PKG",
-        "A-ROOT",
-        "H-PKG"
-      ],
-      "target_paths": [
-        "tools/import/apply.ts",
-        "provenance/import-receipt.json",
-        ".gitignore"
-      ],
+      "dependencies": ["AFM-002"],
+      "source_groups": ["A-PKG", "A-ROOT", "H-PKG"],
+      "target_paths": ["tools/import/apply.ts", "provenance/import-receipt.json", ".gitignore"],
       "goal": "Produce one self-contained working repository from snapshots while keeping the input folders read-only.",
       "implementation": [
         "Use HyperFrames as the initial root layout and apply the reviewed Archify relocation ledger into owned workspace packages.",
@@ -134,14 +109,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-002"
-      ],
-      "source_groups": [
-        "A-LICENSE",
-        "H-LICENSE",
-        "A-THEME"
-      ],
+      "dependencies": ["AFM-002"],
+      "source_groups": ["A-LICENSE", "H-LICENSE", "A-THEME"],
       "target_paths": [
         "licenses/",
         "THIRD_PARTY_NOTICES.md",
@@ -178,14 +147,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-002"
-      ],
-      "source_groups": [
-        "H-CI",
-        "H-SKILL",
-        "A-ROOT"
-      ],
+      "dependencies": ["AFM-002"],
+      "source_groups": ["H-CI", "H-SKILL", "A-ROOT"],
       "target_paths": [
         "tools/import/audit-automation.ts",
         "docs/upstream/disabled-automation.md",
@@ -221,19 +184,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-003"
-      ],
-      "source_groups": [
-        "A-ROOT",
-        "A-SHARED",
-        "H-FILES"
-      ],
-      "target_paths": [
-        "tools/import/path-policy.ts",
-        ".gitattributes",
-        "tests/fixtures/import/"
-      ],
+      "dependencies": ["AFM-003"],
+      "source_groups": ["A-ROOT", "A-SHARED", "H-FILES"],
+      "target_paths": ["tools/import/path-policy.ts", ".gitattributes", "tests/fixtures/import/"],
       "goal": "Keep source movement safe across Windows, macOS and Linux.",
       "implementation": [
         "Retain executable scripts and normalize only documented source line-ending policy while preserving raw baseline hashes.",
@@ -264,14 +217,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-001",
-        "AFM-002"
-      ],
-      "source_groups": [
-        "A-PKG",
-        "H-PACK"
-      ],
+      "dependencies": ["AFM-001", "AFM-002"],
+      "source_groups": ["A-PKG", "H-PACK"],
       "target_paths": [
         "provenance/upstream-lock.json",
         "docs/upstream/maintenance.md",
@@ -307,19 +254,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-002"
-      ],
-      "source_groups": [
-        "A-EXPORT",
-        "A-REACH",
-        "H-PARITY",
-        "H-EXTERNAL"
-      ],
-      "target_paths": [
-        "docs/quality/capabilities.json",
-        "docs/quality/baseline-failures.json"
-      ],
+      "dependencies": ["AFM-002"],
+      "source_groups": ["A-EXPORT", "A-REACH", "H-PARITY", "H-EXTERNAL"],
+      "target_paths": ["docs/quality/capabilities.json", "docs/quality/baseline-failures.json"],
       "goal": "Make source retention, functionality and actual integration separately measurable.",
       "implementation": [
         "Enumerate all five diagram types, viewer functions, native video/editing/media functions, CLI commands and optional external adapters.",
@@ -350,15 +287,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-003",
-        "AFM-005"
-      ],
-      "source_groups": [
-        "A-PKG",
-        "H-PKG",
-        "H-CI"
-      ],
+      "dependencies": ["AFM-003", "AFM-005"],
+      "source_groups": ["A-PKG", "H-PKG", "H-CI"],
       "target_paths": [
         "package.json",
         "packages/diagram-engine/package.json",
@@ -396,14 +326,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-009"
-      ],
-      "source_groups": [
-        "A-PKG",
-        "H-PKG",
-        "H-CI"
-      ],
+      "dependencies": ["AFM-009"],
+      "source_groups": ["A-PKG", "H-PKG", "H-CI"],
       "target_paths": [
         "package.json",
         "bun.lock",
@@ -440,15 +364,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-009",
-        "AFM-010"
-      ],
-      "source_groups": [
-        "A-ROOT",
-        "A-SHARED",
-        "H-PACK"
-      ],
+      "dependencies": ["AFM-009", "AFM-010"],
+      "source_groups": ["A-ROOT", "A-SHARED", "H-PACK"],
       "target_paths": [
         "package.json",
         "tools/build/workspace.ts",
@@ -484,15 +401,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-009",
-        "AFM-011"
-      ],
-      "source_groups": [
-        "H-CI",
-        "H-PKG",
-        "A-SCHEMA"
-      ],
+      "dependencies": ["AFM-009", "AFM-011"],
+      "source_groups": ["H-CI", "H-PKG", "A-SCHEMA"],
       "target_paths": [
         "tools/quality/workspace.ts",
         "tsconfig.json",
@@ -529,21 +439,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-010",
-        "AFM-011",
-        "AFM-012"
-      ],
-      "source_groups": [
-        "A-ROOT",
-        "A-EXPORT",
-        "A-SCHEMA",
-        "A-ARCH"
-      ],
-      "target_paths": [
-        "tests/upstream/archify/",
-        "evidence/baseline/archify/"
-      ],
+      "dependencies": ["AFM-010", "AFM-011", "AFM-012"],
+      "source_groups": ["A-ROOT", "A-EXPORT", "A-SCHEMA", "A-ARCH"],
+      "target_paths": ["tests/upstream/archify/", "evidence/baseline/archify/"],
       "goal": "Characterize Archify behavior before extracting its engine.",
       "implementation": [
         "Run its complete available source test entrypoints, generated-validator checks, golden examples and applicable browser/export tests.",
@@ -574,20 +472,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-010",
-        "AFM-011",
-        "AFM-012"
-      ],
-      "source_groups": [
-        "H-PARITY",
-        "H-PKG",
-        "H-PACK"
-      ],
-      "target_paths": [
-        "tests/upstream/hyperframes/",
-        "evidence/baseline/hyperframes/"
-      ],
+      "dependencies": ["AFM-010", "AFM-011", "AFM-012"],
+      "source_groups": ["H-PARITY", "H-PKG", "H-PACK"],
+      "target_paths": ["tests/upstream/hyperframes/", "evidence/baseline/hyperframes/"],
       "goal": "Know what the inherited editor and renderer actually do before modifying them.",
       "implementation": [
         "Run root scripts, package unit suites and selected integration/runtime conformance suites with the imported versions.",
@@ -618,15 +505,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-005",
-        "AFM-012"
-      ],
-      "source_groups": [
-        "H-CI",
-        "H-PARITY",
-        "A-ROOT"
-      ],
+      "dependencies": ["AFM-005", "AFM-012"],
+      "source_groups": ["H-CI", "H-PARITY", "A-ROOT"],
       "target_paths": [
         ".github/workflows/ci.yml",
         "tools/quality/write-receipt.ts",
@@ -662,20 +542,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-013",
-        "AFM-014",
-        "AFM-015"
-      ],
-      "source_groups": [
-        "A-PKG",
-        "H-CLI",
-        "H-CI"
-      ],
-      "target_paths": [
-        "tools/quality/no-sibling-runtime.ts",
-        "docs/quality/M0-baseline.md"
-      ],
+      "dependencies": ["AFM-013", "AFM-014", "AFM-015"],
+      "source_groups": ["A-PKG", "H-CLI", "H-CI"],
+      "target_paths": ["tools/quality/no-sibling-runtime.ts", "docs/quality/M0-baseline.md"],
       "goal": "Prove source integration is real before deeper product editing begins.",
       "implementation": [
         "Scan runtime imports, subprocess calls and scripts for references to raw source directories or global Archify/HyperFrames executables.",
@@ -706,13 +575,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-009"
-      ],
-      "source_groups": [
-        "H-CORE",
-        "A-SCHEMA"
-      ],
+      "dependencies": ["AFM-009"],
+      "source_groups": ["H-CORE", "A-SCHEMA"],
       "target_paths": [
         "packages/project-model/src/project.ts",
         "packages/project-model/schemas/project.schema.json"
@@ -747,14 +611,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-017"
-      ],
-      "source_groups": [
-        "A-SHARED",
-        "A-SCHEMA",
-        "H-PARSER"
-      ],
+      "dependencies": ["AFM-017"],
+      "source_groups": ["A-SHARED", "A-SCHEMA", "H-PARSER"],
       "target_paths": [
         "packages/project-model/src/identity.ts",
         "packages/project-model/src/migrations/relationshipIds.ts"
@@ -789,14 +647,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-017",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "H-SDK",
-        "H-SERVER"
-      ],
+      "dependencies": ["AFM-017", "AFM-018"],
+      "source_groups": ["H-SDK", "H-SERVER"],
       "target_paths": [
         "packages/project-model/src/commands.ts",
         "packages/project-model/schemas/command.schema.json"
@@ -831,13 +683,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-019"
-      ],
-      "source_groups": [
-        "H-PERSIST",
-        "H-FILES"
-      ],
+      "dependencies": ["AFM-019"],
+      "source_groups": ["H-PERSIST", "H-FILES"],
       "target_paths": [
         "packages/project-model/src/storage/revisions.ts",
         "packages/project-model/src/storage/commit.ts"
@@ -872,14 +719,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-019",
-        "AFM-020"
-      ],
-      "source_groups": [
-        "H-SDK",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-019", "AFM-020"],
+      "source_groups": ["H-SDK", "H-HISTORY"],
       "target_paths": [
         "packages/project-model/src/history.ts",
         "packages/project-model/src/commandJournal.ts"
@@ -914,16 +755,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-017",
-        "AFM-018",
-        "AFM-020"
-      ],
-      "source_groups": [
-        "A-WORK",
-        "H-CLI",
-        "H-CORE"
-      ],
+      "dependencies": ["AFM-017", "AFM-018", "AFM-020"],
+      "source_groups": ["A-WORK", "H-CLI", "H-CORE"],
       "target_paths": [
         "packages/project-model/src/importers/",
         "packages/project-model/src/migrations/",
@@ -959,14 +792,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-017",
-        "AFM-020"
-      ],
-      "source_groups": [
-        "H-ASSETS",
-        "H-FONTS"
-      ],
+      "dependencies": ["AFM-017", "AFM-020"],
+      "source_groups": ["H-ASSETS", "H-FONTS"],
       "target_paths": [
         "packages/project-model/src/assets.ts",
         "packages/project-model/schemas/assets.schema.json"
@@ -1001,15 +828,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-017",
-        "AFM-019"
-      ],
-      "source_groups": [
-        "A-EVID",
-        "A-SHARED",
-        "H-ROUTES"
-      ],
+      "dependencies": ["AFM-017", "AFM-019"],
+      "source_groups": ["A-EVID", "A-SHARED", "H-ROUTES"],
       "target_paths": [
         "packages/project-model/src/diagnostics.ts",
         "packages/project-model/src/evidence.ts"
@@ -1044,15 +864,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-017",
-        "AFM-018",
-        "AFM-023"
-      ],
-      "source_groups": [
-        "H-TIME",
-        "H-SDK"
-      ],
+      "dependencies": ["AFM-017", "AFM-018", "AFM-023"],
+      "source_groups": ["H-TIME", "H-SDK"],
       "target_paths": [
         "packages/project-model/src/story.ts",
         "packages/project-model/src/presentation.ts",
@@ -1088,15 +901,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P0",
-      "dependencies": [
-        "AFM-020",
-        "AFM-023",
-        "AFM-025"
-      ],
-      "source_groups": [
-        "H-PRODUCER",
-        "A-SHARED"
-      ],
+      "dependencies": ["AFM-020", "AFM-023", "AFM-025"],
+      "source_groups": ["H-PRODUCER", "A-SHARED"],
       "target_paths": [
         "packages/project-model/src/buildGraph.ts",
         "packages/project-model/src/buildReceipt.ts"
@@ -1131,16 +937,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-011",
-        "AFM-017",
-        "AFM-024"
-      ],
-      "source_groups": [
-        "A-SHARED",
-        "A-SCHEMA",
-        "A-ARCH"
-      ],
+      "dependencies": ["AFM-011", "AFM-017", "AFM-024"],
+      "source_groups": ["A-SHARED", "A-SCHEMA", "A-ARCH"],
       "target_paths": [
         "packages/diagram-engine/src/index.mjs",
         "packages/diagram-engine/src/contracts.d.ts"
@@ -1175,14 +973,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-013",
-        "AFM-027"
-      ],
-      "source_groups": [
-        "A-SCHEMA",
-        "A-WORK"
-      ],
+      "dependencies": ["AFM-013", "AFM-027"],
+      "source_groups": ["A-SCHEMA", "A-WORK"],
       "target_paths": [
         "packages/diagram-engine/schemas/",
         "packages/diagram-engine/scripts/generate-validators.mjs"
@@ -1217,15 +1009,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-028",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "A-ARCH",
-        "A-GEOM"
-      ],
+      "dependencies": ["AFM-027", "AFM-028", "AFM-018"],
+      "source_groups": ["A-ARCH", "A-GEOM"],
       "target_paths": [
         "packages/diagram-engine/src/architecture/compile.mjs",
         "packages/diagram-engine/src/architecture/artifact.mjs"
@@ -1260,15 +1045,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-028",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "A-WORK",
-        "A-GEOM"
-      ],
+      "dependencies": ["AFM-027", "AFM-028", "AFM-018"],
+      "source_groups": ["A-WORK", "A-GEOM"],
       "target_paths": [
         "packages/diagram-engine/src/workflow/compile.mjs",
         "packages/diagram-engine/src/workflow/migrate.mjs"
@@ -1303,15 +1081,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-028",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "A-SEQ",
-        "A-GEOM"
-      ],
+      "dependencies": ["AFM-027", "AFM-028", "AFM-018"],
+      "source_groups": ["A-SEQ", "A-GEOM"],
       "target_paths": [
         "packages/diagram-engine/src/sequence/compile.mjs",
         "packages/diagram-engine/src/sequence/artifact.mjs"
@@ -1346,15 +1117,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-028",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "A-DATA",
-        "A-GEOM"
-      ],
+      "dependencies": ["AFM-027", "AFM-028", "AFM-018"],
+      "source_groups": ["A-DATA", "A-GEOM"],
       "target_paths": [
         "packages/diagram-engine/src/dataflow/compile.mjs",
         "packages/diagram-engine/src/dataflow/artifact.mjs"
@@ -1389,15 +1153,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-028",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "A-LIFE",
-        "A-GEOM"
-      ],
+      "dependencies": ["AFM-027", "AFM-028", "AFM-018"],
+      "source_groups": ["A-LIFE", "A-GEOM"],
       "target_paths": [
         "packages/diagram-engine/src/lifecycle/compile.mjs",
         "packages/diagram-engine/src/lifecycle/artifact.mjs"
@@ -1432,20 +1189,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-028",
-        "AFM-004"
-      ],
-      "source_groups": [
-        "A-THEME",
-        "A-VIEW",
-        "H-STYLE"
-      ],
-      "target_paths": [
-        "packages/diagram-engine/src/theme/",
-        "packages/diagram-viewer/src/theme/"
-      ],
+      "dependencies": ["AFM-027", "AFM-028", "AFM-004"],
+      "source_groups": ["A-THEME", "A-VIEW", "H-STYLE"],
+      "target_paths": ["packages/diagram-engine/src/theme/", "packages/diagram-viewer/src/theme/"],
       "goal": "Preserve visual identity without hidden network or global-document dependencies.",
       "implementation": [
         "Extract theme variables, presets, locale strings, brand lookup and icon resolution behind explicit options/adapters.",
@@ -1476,19 +1222,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-029",
-        "AFM-030",
-        "AFM-031",
-        "AFM-032",
-        "AFM-033",
-        "AFM-034"
-      ],
-      "source_groups": [
-        "A-VIEW",
-        "A-EXPORT"
-      ],
+      "dependencies": ["AFM-027", "AFM-029", "AFM-030", "AFM-031", "AFM-032", "AFM-033", "AFM-034"],
+      "source_groups": ["A-VIEW", "A-EXPORT"],
       "target_paths": [
         "packages/diagram-viewer/src/index.mjs",
         "packages/diagram-viewer/src/template/",
@@ -1524,15 +1259,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-029",
-        "AFM-035",
-        "AFM-024"
-      ],
-      "source_groups": [
-        "A-REACH",
-        "A-VIEW"
-      ],
+      "dependencies": ["AFM-029", "AFM-035", "AFM-024"],
+      "source_groups": ["A-REACH", "A-VIEW"],
       "target_paths": [
         "packages/diagram-viewer/src/graphInspection.mjs",
         "packages/diagram-engine/src/relationships.mjs"
@@ -1567,15 +1295,8 @@
       "status": "in_progress",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-029",
-        "AFM-024",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "A-EVID",
-        "A-DELTA"
-      ],
+      "dependencies": ["AFM-029", "AFM-024", "AFM-018"],
+      "source_groups": ["A-EVID", "A-DELTA"],
       "target_paths": [
         "packages/diagram-engine/src/evidence/",
         "packages/diagram-engine/src/delta/"
@@ -1616,20 +1337,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-029",
-        "AFM-030",
-        "AFM-031",
-        "AFM-032",
-        "AFM-033",
-        "AFM-035",
-        "AFM-037"
-      ],
-      "source_groups": [
-        "A-PKG",
-        "A-EXPORT",
-        "A-ROOT"
-      ],
+      "dependencies": ["AFM-029", "AFM-030", "AFM-031", "AFM-032", "AFM-033", "AFM-035", "AFM-037"],
+      "source_groups": ["A-PKG", "A-EXPORT", "A-ROOT"],
       "target_paths": [
         "packages/diagram-engine/src/checks/",
         "packages/cli/src/commands/diagramCompatibility.ts"
@@ -1664,16 +1373,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-025",
-        "AFM-029",
-        "AFM-026"
-      ],
-      "source_groups": [
-        "H-CORE",
-        "H-PARSER",
-        "A-SHARED"
-      ],
+      "dependencies": ["AFM-025", "AFM-029", "AFM-026"],
+      "source_groups": ["H-CORE", "H-PARSER", "A-SHARED"],
       "target_paths": [
         "packages/diagram-motion/src/scene.ts",
         "packages/diagram-motion/src/compiler.ts"
@@ -1708,15 +1409,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-039",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "H-CORE",
-        "H-PARSER",
-        "A-VIEW"
-      ],
+      "dependencies": ["AFM-039", "AFM-018"],
+      "source_groups": ["H-CORE", "H-PARSER", "A-VIEW"],
       "target_paths": [
         "packages/diagram-motion/src/namespaceSvg.ts",
         "packages/diagram-motion/src/scopeStyles.ts"
@@ -1751,15 +1445,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-039",
-        "AFM-025"
-      ],
-      "source_groups": [
-        "A-GEOM",
-        "A-VIEW",
-        "H-TIME"
-      ],
+      "dependencies": ["AFM-039", "AFM-025"],
+      "source_groups": ["A-GEOM", "A-VIEW", "H-TIME"],
       "target_paths": [
         "packages/diagram-motion/src/camera.ts",
         "packages/diagram-motion/src/framing.ts"
@@ -1794,16 +1481,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-039",
-        "AFM-040",
-        "AFM-041"
-      ],
-      "source_groups": [
-        "H-TIME",
-        "H-STYLE",
-        "A-VIEW"
-      ],
+      "dependencies": ["AFM-039", "AFM-040", "AFM-041"],
+      "source_groups": ["H-TIME", "H-STYLE", "A-VIEW"],
       "target_paths": [
         "packages/diagram-motion/src/timeline.ts",
         "packages/diagram-motion/src/intents/"
@@ -1838,15 +1517,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-039",
-        "AFM-042",
-        "AFM-036"
-      ],
-      "source_groups": [
-        "A-REACH",
-        "A-SHARED"
-      ],
+      "dependencies": ["AFM-039", "AFM-042", "AFM-036"],
+      "source_groups": ["A-REACH", "A-SHARED"],
       "target_paths": [
         "packages/diagram-motion/src/routeIntents.ts",
         "packages/diagram-motion/src/edgeMotion.ts"
@@ -1881,15 +1553,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-042",
-        "AFM-025"
-      ],
-      "source_groups": [
-        "H-TIME",
-        "H-CORE",
-        "H-PLAYER"
-      ],
+      "dependencies": ["AFM-042", "AFM-025"],
+      "source_groups": ["H-TIME", "H-CORE", "H-PLAYER"],
       "target_paths": [
         "packages/diagram-motion/src/timeMapping.ts",
         "packages/diagram-motion/src/sceneWindows.ts"
@@ -1924,19 +1589,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-025",
-        "AFM-039",
-        "AFM-043"
-      ],
-      "source_groups": [
-        "A-VIEW",
-        "A-ARCH",
-        "H-ROUTES"
-      ],
-      "target_paths": [
-        "packages/diagram-motion/src/storyFromViews.ts"
-      ],
+      "dependencies": ["AFM-025", "AFM-039", "AFM-043"],
+      "source_groups": ["A-VIEW", "A-ARCH", "H-ROUTES"],
+      "target_paths": ["packages/diagram-motion/src/storyFromViews.ts"],
       "goal": "Use existing guided views as story input while leaving timing and wording editable.",
       "implementation": [
         "Translate view titles, descriptions and focus sets into scene drafts with documented default frame durations.",
@@ -1967,16 +1622,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-039",
-        "AFM-042",
-        "AFM-025"
-      ],
-      "source_groups": [
-        "H-ANIMUI",
-        "H-TIMELINE",
-        "H-SDK"
-      ],
+      "dependencies": ["AFM-039", "AFM-042", "AFM-025"],
+      "source_groups": ["H-ANIMUI", "H-TIMELINE", "H-SDK"],
       "target_paths": [
         "packages/diagram-motion/src/bindings.ts",
         "packages/diagram-motion/src/trackModel.ts"
@@ -2011,16 +1658,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-040",
-        "AFM-044",
-        "AFM-046"
-      ],
-      "source_groups": [
-        "H-CORE",
-        "H-PARSER",
-        "H-PARITY"
-      ],
+      "dependencies": ["AFM-040", "AFM-044", "AFM-046"],
+      "source_groups": ["H-CORE", "H-PARSER", "H-PARITY"],
       "target_paths": [
         "packages/diagram-motion/src/validateComposition.ts",
         "tests/fixtures/mixed-project/"
@@ -2055,15 +1694,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-026",
-        "AFM-039",
-        "AFM-046"
-      ],
-      "source_groups": [
-        "H-SDK",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-026", "AFM-039", "AFM-046"],
+      "source_groups": ["H-SDK", "H-HISTORY"],
       "target_paths": [
         "packages/diagram-motion/src/regenerate.ts",
         "packages/diagram-motion/src/conflicts.ts"
@@ -2098,16 +1730,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-039",
-        "AFM-023",
-        "AFM-042"
-      ],
-      "source_groups": [
-        "H-FONTS",
-        "H-ASSETS",
-        "H-PRODUCER"
-      ],
+      "dependencies": ["AFM-039", "AFM-023", "AFM-042"],
+      "source_groups": ["H-FONTS", "H-ASSETS", "H-PRODUCER"],
       "target_paths": [
         "packages/diagram-motion/src/readiness.ts",
         "packages/diagram-motion/src/assetManifest.ts"
@@ -2142,17 +1766,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-042",
-        "AFM-043",
-        "AFM-044",
-        "AFM-047",
-        "AFM-049"
-      ],
-      "source_groups": [
-        "H-PARITY",
-        "H-CAPTURE"
-      ],
+      "dependencies": ["AFM-042", "AFM-043", "AFM-044", "AFM-047", "AFM-049"],
+      "source_groups": ["H-PARITY", "H-CAPTURE"],
       "target_paths": [
         "tests/integration/diagram-motion-conformance.test.ts",
         "tools/quality/compareFrames.ts"
@@ -2187,16 +1802,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-019",
-        "AFM-020",
-        "AFM-024",
-        "AFM-027"
-      ],
-      "source_groups": [
-        "H-SERVER",
-        "H-ROUTES"
-      ],
+      "dependencies": ["AFM-019", "AFM-020", "AFM-024", "AFM-027"],
+      "source_groups": ["H-SERVER", "H-ROUTES"],
       "target_paths": [
         "packages/studio-server/src/routes/projectCommands.ts",
         "packages/studio-server/src/types.ts",
@@ -2232,21 +1839,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-051",
-        "AFM-029",
-        "AFM-037",
-        "AFM-038",
-        "AFM-022"
-      ],
-      "source_groups": [
-        "H-SERVER",
-        "H-ROUTES",
-        "A-DELTA"
-      ],
-      "target_paths": [
-        "packages/studio-server/src/routes/diagrams.ts"
-      ],
+      "dependencies": ["AFM-051", "AFM-029", "AFM-037", "AFM-038", "AFM-022"],
+      "source_groups": ["H-SERVER", "H-ROUTES", "A-DELTA"],
+      "target_paths": ["packages/studio-server/src/routes/diagrams.ts"],
       "goal": "Make engine capabilities usable within the single application.",
       "implementation": [
         "Add authorized import/validate/compile/inspect/compare routes using owned library APIs.",
@@ -2277,15 +1872,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-020",
-        "AFM-026",
-        "AFM-051"
-      ],
-      "source_groups": [
-        "H-FILES",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-020", "AFM-026", "AFM-051"],
+      "source_groups": ["H-FILES", "H-HISTORY"],
       "target_paths": [
         "packages/studio-server/src/projectEvents.ts",
         "packages/cli/src/server/fileWatcher.ts"
@@ -2320,17 +1908,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-026",
-        "AFM-047",
-        "AFM-049",
-        "AFM-051"
-      ],
-      "source_groups": [
-        "H-JOBS",
-        "H-PRODUCER",
-        "H-CAPTURE"
-      ],
+      "dependencies": ["AFM-026", "AFM-047", "AFM-049", "AFM-051"],
+      "source_groups": ["H-JOBS", "H-PRODUCER", "H-CAPTURE"],
       "target_paths": [
         "packages/studio-server/src/services/projectRender.ts",
         "packages/studio-server/src/routes/render.ts"
@@ -2365,13 +1944,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-054"
-      ],
-      "source_groups": [
-        "H-JOBS",
-        "H-PROCESS"
-      ],
+      "dependencies": ["AFM-054"],
+      "source_groups": ["H-JOBS", "H-PROCESS"],
       "target_paths": [
         "packages/studio-server/src/services/renderJobLifecycle.ts",
         "packages/studio-server/src/routes/render.ts"
@@ -2406,16 +1980,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-026",
-        "AFM-049",
-        "AFM-051"
-      ],
-      "source_groups": [
-        "H-ROUTES",
-        "H-JOBS",
-        "H-PLAYER"
-      ],
+      "dependencies": ["AFM-026", "AFM-049", "AFM-051"],
+      "source_groups": ["H-ROUTES", "H-JOBS", "H-PLAYER"],
       "target_paths": [
         "packages/studio-server/src/services/projectPreview.ts",
         "packages/studio-server/src/routes/preview.ts",
@@ -2451,17 +2017,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-019",
-        "AFM-051",
-        "AFM-053",
-        "AFM-039"
-      ],
-      "source_groups": [
-        "H-FILES",
-        "H-SDK",
-        "H-TOOLS"
-      ],
+      "dependencies": ["AFM-019", "AFM-051", "AFM-053", "AFM-039"],
+      "source_groups": ["H-FILES", "H-SDK", "H-TOOLS"],
       "target_paths": [
         "packages/studio-server/src/services/mutationPolicy.ts",
         "packages/studio-server/src/helpers/sourceMutation.ts"
@@ -2496,24 +2053,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-051",
-        "AFM-052",
-        "AFM-053",
-        "AFM-054",
-        "AFM-055",
-        "AFM-056",
-        "AFM-057"
-      ],
-      "source_groups": [
-        "H-SERVER",
-        "H-PERSIST",
-        "H-JOBS"
-      ],
-      "target_paths": [
-        "tests/integration/project-api.test.ts",
-        "docs/api/project-commands.md"
-      ],
+      "dependencies": ["AFM-051", "AFM-052", "AFM-053", "AFM-054", "AFM-055", "AFM-056", "AFM-057"],
+      "source_groups": ["H-SERVER", "H-PERSIST", "H-JOBS"],
+      "target_paths": ["tests/integration/project-api.test.ts", "docs/api/project-commands.md"],
       "goal": "Lock the shared backend behavior before broad UI adoption.",
       "implementation": [
         "Write route contracts and executable tests for command idempotency, validation, conflicts, event ordering and job state transitions.",
@@ -2544,16 +2086,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-022",
-        "AFM-051",
-        "AFM-056"
-      ],
-      "source_groups": [
-        "H-SHELL",
-        "H-INSPECT",
-        "H-CLI"
-      ],
+      "dependencies": ["AFM-022", "AFM-051", "AFM-056"],
+      "source_groups": ["H-SHELL", "H-INSPECT", "H-CLI"],
       "target_paths": [
         "packages/studio/src/project/ProjectProvider.tsx",
         "packages/studio/src/project/ProjectLauncher.tsx",
@@ -2589,15 +2123,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-059",
-        "AFM-018",
-        "AFM-056"
-      ],
-      "source_groups": [
-        "H-SHELL",
-        "H-INSPECT"
-      ],
+      "dependencies": ["AFM-059", "AFM-018", "AFM-056"],
+      "source_groups": ["H-SHELL", "H-INSPECT"],
       "target_paths": [
         "packages/studio/src/diagrams/DiagramOutline.tsx",
         "packages/studio/src/diagrams/SceneBrowser.tsx"
@@ -2632,17 +2159,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-060",
-        "AFM-046",
-        "AFM-056"
-      ],
-      "source_groups": [
-        "H-GESTURE",
-        "H-TIMELINE",
-        "H-INSPECT",
-        "H-ROUTES"
-      ],
+      "dependencies": ["AFM-060", "AFM-046", "AFM-056"],
+      "source_groups": ["H-GESTURE", "H-TIMELINE", "H-INSPECT", "H-ROUTES"],
       "target_paths": [
         "packages/studio/src/diagrams/selectionBridge.ts",
         "packages/studio/src/project/selection.ts"
@@ -2677,17 +2195,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-061",
-        "AFM-051",
-        "AFM-057",
-        "AFM-029"
-      ],
-      "source_groups": [
-        "H-INSPECT",
-        "A-SCHEMA",
-        "A-ARCH"
-      ],
+      "dependencies": ["AFM-061", "AFM-051", "AFM-057", "AFM-029"],
+      "source_groups": ["H-INSPECT", "A-SCHEMA", "A-ARCH"],
       "target_paths": [
         "packages/studio/src/diagrams/SemanticInspector.tsx",
         "packages/studio/src/diagrams/fieldAdapters.ts"
@@ -2722,18 +2231,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-059",
-        "AFM-062",
-        "AFM-045",
-        "AFM-054",
-        "AFM-042"
-      ],
-      "source_groups": [
-        "H-SHELL",
-        "H-TIMELINE",
-        "A-VIEW"
-      ],
+      "dependencies": ["AFM-059", "AFM-062", "AFM-045", "AFM-054", "AFM-042"],
+      "source_groups": ["H-SHELL", "H-TIMELINE", "A-VIEW"],
       "target_paths": [
         "packages/studio/src/diagrams/GuidedViewSceneAction.tsx",
         "tests/e2e/architecture-slice.spec.ts"
@@ -2768,17 +2267,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-062",
-        "AFM-018",
-        "AFM-019",
-        "AFM-057"
-      ],
-      "source_groups": [
-        "A-SCHEMA",
-        "H-INSPECT",
-        "H-GESTURE"
-      ],
+      "dependencies": ["AFM-062", "AFM-018", "AFM-019", "AFM-057"],
+      "source_groups": ["A-SCHEMA", "H-INSPECT", "H-GESTURE"],
       "target_paths": [
         "packages/studio/src/diagrams/GraphActions.tsx",
         "packages/project-model/src/commands/diagramObjects.ts"
@@ -2813,17 +2303,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-062",
-        "AFM-064",
-        "AFM-029",
-        "AFM-030"
-      ],
-      "source_groups": [
-        "A-GEOM",
-        "A-ARCH",
-        "H-GESTURE"
-      ],
+      "dependencies": ["AFM-062", "AFM-064", "AFM-029", "AFM-030"],
+      "source_groups": ["A-GEOM", "A-ARCH", "H-GESTURE"],
       "target_paths": [
         "packages/studio/src/diagrams/LayoutEditor.tsx",
         "packages/project-model/src/commands/layout.ts"
@@ -2858,18 +2339,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-062",
-        "AFM-036",
-        "AFM-037",
-        "AFM-045"
-      ],
-      "source_groups": [
-        "A-VIEW",
-        "A-EVID",
-        "A-REACH",
-        "H-INSPECT"
-      ],
+      "dependencies": ["AFM-062", "AFM-036", "AFM-037", "AFM-045"],
+      "source_groups": ["A-VIEW", "A-EVID", "A-REACH", "H-INSPECT"],
       "target_paths": [
         "packages/studio/src/diagrams/GuidedViewEditor.tsx",
         "packages/studio/src/diagrams/EvidenceInspector.tsx"
@@ -2904,16 +2375,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-061",
-        "AFM-046",
-        "AFM-025",
-        "AFM-051"
-      ],
-      "source_groups": [
-        "H-TIMELINE",
-        "H-ANIMUI"
-      ],
+      "dependencies": ["AFM-061", "AFM-046", "AFM-025", "AFM-051"],
+      "source_groups": ["H-TIMELINE", "H-ANIMUI"],
       "target_paths": [
         "packages/studio/src/diagrams/DiagramTimelineTracks.tsx",
         "packages/studio/src/player/components/Timeline.tsx"
@@ -2948,17 +2411,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-067",
-        "AFM-042",
-        "AFM-043",
-        "AFM-046",
-        "AFM-057"
-      ],
-      "source_groups": [
-        "H-ANIMUI",
-        "H-INSPECT"
-      ],
+      "dependencies": ["AFM-067", "AFM-042", "AFM-043", "AFM-046", "AFM-057"],
+      "source_groups": ["H-ANIMUI", "H-INSPECT"],
       "target_paths": [
         "packages/studio/src/diagrams/MotionInspector.tsx",
         "packages/studio/src/diagrams/CameraControls.tsx"
@@ -2993,15 +2447,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-057",
-        "AFM-053",
-        "AFM-062"
-      ],
-      "source_groups": [
-        "H-INSPECT",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-057", "AFM-053", "AFM-062"],
+      "source_groups": ["H-INSPECT", "H-HISTORY"],
       "target_paths": [
         "packages/studio/src/diagrams/ManagedSourceEditor.tsx",
         "packages/studio/src/diagrams/DetachSceneDialog.tsx"
@@ -3036,16 +2483,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-059",
-        "AFM-053",
-        "AFM-055",
-        "AFM-048"
-      ],
-      "source_groups": [
-        "H-HISTORY",
-        "H-SHELL"
-      ],
+      "dependencies": ["AFM-059", "AFM-053", "AFM-055", "AFM-048"],
+      "source_groups": ["H-HISTORY", "H-SHELL"],
       "target_paths": [
         "packages/studio/src/project/SaveStatus.tsx",
         "packages/studio/src/project/ConflictPanel.tsx",
@@ -3081,19 +2520,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-060",
-        "AFM-061",
-        "AFM-062",
-        "AFM-067",
-        "AFM-070"
-      ],
-      "source_groups": [
-        "H-SHELL",
-        "H-INSPECT",
-        "H-TIMELINE",
-        "A-THEME"
-      ],
+      "dependencies": ["AFM-060", "AFM-061", "AFM-062", "AFM-067", "AFM-070"],
+      "source_groups": ["H-SHELL", "H-INSPECT", "H-TIMELINE", "A-THEME"],
       "target_paths": [
         "packages/studio/src/diagrams/a11y.ts",
         "tests/e2e/diagram-keyboard.spec.ts"
@@ -3128,17 +2556,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-021",
-        "AFM-057",
-        "AFM-062",
-        "AFM-067"
-      ],
-      "source_groups": [
-        "H-SDK",
-        "H-PERSIST",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-021", "AFM-057", "AFM-062", "AFM-067"],
+      "source_groups": ["H-SDK", "H-PERSIST", "H-HISTORY"],
       "target_paths": [
         "packages/studio/src/project/sdkCommandAdapter.ts",
         "packages/studio/src/hooks/useStudioSdkSessions.ts"
@@ -3173,15 +2592,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-048",
-        "AFM-072",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "H-SDK",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-048", "AFM-072", "AFM-018"],
+      "source_groups": ["H-SDK", "H-HISTORY"],
       "target_paths": [
         "packages/project-model/src/overrideRebase.ts",
         "packages/diagram-motion/src/regenerate.ts"
@@ -3216,15 +2628,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-064",
-        "AFM-073",
-        "AFM-021"
-      ],
-      "source_groups": [
-        "A-SHARED",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-064", "AFM-073", "AFM-021"],
+      "source_groups": ["A-SHARED", "H-HISTORY"],
       "target_paths": [
         "packages/project-model/src/impactAnalysis.ts",
         "packages/studio/src/diagrams/ImpactResolution.tsx"
@@ -3259,15 +2664,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-053",
-        "AFM-072",
-        "AFM-073"
-      ],
-      "source_groups": [
-        "H-HISTORY",
-        "H-FILES"
-      ],
+      "dependencies": ["AFM-053", "AFM-072", "AFM-073"],
+      "source_groups": ["H-HISTORY", "H-FILES"],
       "target_paths": [
         "packages/project-model/src/mergeExternal.ts",
         "packages/studio/src/project/ExternalConflictResolver.tsx"
@@ -3302,16 +2700,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-020",
-        "AFM-021",
-        "AFM-072",
-        "AFM-026"
-      ],
-      "source_groups": [
-        "H-PERSIST",
-        "H-HISTORY"
-      ],
+      "dependencies": ["AFM-020", "AFM-021", "AFM-072", "AFM-026"],
+      "source_groups": ["H-PERSIST", "H-HISTORY"],
       "target_paths": [
         "packages/project-model/src/recovery.ts",
         "packages/studio/src/project/RevisionHistory.tsx"
@@ -3346,16 +2736,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-026",
-        "AFM-048",
-        "AFM-056",
-        "AFM-073"
-      ],
-      "source_groups": [
-        "H-JOBS",
-        "H-PRODUCER"
-      ],
+      "dependencies": ["AFM-026", "AFM-048", "AFM-056", "AFM-073"],
+      "source_groups": ["H-JOBS", "H-PRODUCER"],
       "target_paths": [
         "packages/diagram-motion/src/buildScheduler.ts",
         "packages/studio-server/src/services/projectBuilds.ts"
@@ -3390,22 +2772,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-072",
-        "AFM-073",
-        "AFM-074",
-        "AFM-075",
-        "AFM-076",
-        "AFM-077",
-        "AFM-070"
-      ],
-      "source_groups": [
-        "H-PARITY",
-        "H-HISTORY"
-      ],
-      "target_paths": [
-        "tests/e2e/regeneration-history.spec.ts"
-      ],
+      "dependencies": ["AFM-072", "AFM-073", "AFM-074", "AFM-075", "AFM-076", "AFM-077", "AFM-070"],
+      "source_groups": ["H-PARITY", "H-HISTORY"],
+      "target_paths": ["tests/e2e/regeneration-history.spec.ts"],
       "goal": "Validate the hardest integration behavior through the actual application.",
       "implementation": [
         "Build a mixed project, add scene overrides, rename/add/delete semantic objects, undo/redo and resolve orphan conflicts.",
@@ -3436,15 +2805,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-023",
-        "AFM-051",
-        "AFM-049"
-      ],
-      "source_groups": [
-        "H-ASSETS",
-        "H-PRODUCER"
-      ],
+      "dependencies": ["AFM-023", "AFM-051", "AFM-049"],
+      "source_groups": ["H-ASSETS", "H-PRODUCER"],
       "target_paths": [
         "packages/studio-server/src/services/projectAssets.ts",
         "packages/studio/src/project/AssetBrowser.tsx"
@@ -3479,16 +2841,8 @@
       "status": "planned",
       "scope": "required-interface",
       "priority": "P1",
-      "dependencies": [
-        "AFM-079",
-        "AFM-025",
-        "AFM-072"
-      ],
-      "source_groups": [
-        "H-PROVIDERS",
-        "H-AUDIO",
-        "H-AUTH"
-      ],
+      "dependencies": ["AFM-079", "AFM-025", "AFM-072"],
+      "source_groups": ["H-PROVIDERS", "H-AUDIO", "H-AUTH"],
       "target_paths": [
         "packages/studio/src/project/NarrationPanel.tsx",
         "packages/studio-server/src/services/narration.ts"
@@ -3523,19 +2877,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-079",
-        "AFM-080",
-        "AFM-025"
-      ],
-      "source_groups": [
-        "H-CAPTIONS",
-        "H-PROVIDERS"
-      ],
-      "target_paths": [
-        "packages/studio/src/captions/",
-        "packages/project-model/src/captions.ts"
-      ],
+      "dependencies": ["AFM-079", "AFM-080", "AFM-025"],
+      "source_groups": ["H-CAPTIONS", "H-PROVIDERS"],
+      "target_paths": ["packages/studio/src/captions/", "packages/project-model/src/captions.ts"],
       "goal": "Keep captions synchronized with story and media edits in the shared project.",
       "implementation": [
         "Reuse caption parsing/generation/editor facilities with local SRT/VTT or supported transcript inputs.",
@@ -3566,17 +2910,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-079",
-        "AFM-072",
-        "AFM-047"
-      ],
-      "source_groups": [
-        "H-AUDIO",
-        "H-GESTURE",
-        "H-ANIMUI",
-        "H-PLAYER"
-      ],
+      "dependencies": ["AFM-079", "AFM-072", "AFM-047"],
+      "source_groups": ["H-AUDIO", "H-GESTURE", "H-ANIMUI", "H-PLAYER"],
       "target_paths": [
         "tests/regression/native-media-capabilities.test.ts",
         "docs/quality/native-media-matrix.md"
@@ -3611,17 +2946,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-079",
-        "AFM-034",
-        "AFM-045",
-        "AFM-005"
-      ],
-      "source_groups": [
-        "H-CATALOG",
-        "H-STYLE",
-        "A-THEME"
-      ],
+      "dependencies": ["AFM-079", "AFM-034", "AFM-045", "AFM-005"],
+      "source_groups": ["H-CATALOG", "H-STYLE", "A-THEME"],
       "target_paths": [
         "packages/cli/src/registry/",
         "templates/architecture-explainer/",
@@ -3658,17 +2984,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-041",
-        "AFM-034",
-        "AFM-079",
-        "AFM-081"
-      ],
-      "source_groups": [
-        "H-STYLE",
-        "H-FONTS",
-        "H-CAPTURE"
-      ],
+      "dependencies": ["AFM-041", "AFM-034", "AFM-079", "AFM-081"],
+      "source_groups": ["H-STYLE", "H-FONTS", "H-CAPTURE"],
       "target_paths": [
         "packages/studio/src/project/OutputPresetPanel.tsx",
         "packages/diagram-motion/src/outputPresets.ts"
@@ -3703,17 +3020,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-022",
-        "AFM-047",
-        "AFM-072",
-        "AFM-082"
-      ],
-      "source_groups": [
-        "H-PLAYER",
-        "H-CORE",
-        "H-PARSER"
-      ],
+      "dependencies": ["AFM-022", "AFM-047", "AFM-072", "AFM-082"],
+      "source_groups": ["H-PLAYER", "H-CORE", "H-PARSER"],
       "target_paths": [
         "tests/regression/native-project-compatibility.test.ts",
         "docs/migration/native-hyperframes.md"
@@ -3748,18 +3056,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-038",
-        "AFM-054",
-        "AFM-081",
-        "AFM-084",
-        "AFM-085"
-      ],
-      "source_groups": [
-        "A-EXPORT",
-        "H-CLI",
-        "H-JOBS"
-      ],
+      "dependencies": ["AFM-038", "AFM-054", "AFM-081", "AFM-084", "AFM-085"],
+      "source_groups": ["A-EXPORT", "H-CLI", "H-JOBS"],
       "target_paths": [
         "packages/studio/src/project/ExportPanel.tsx",
         "packages/studio-server/src/services/projectExport.ts"
@@ -3794,18 +3092,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-030",
-        "AFM-064",
-        "AFM-065",
-        "AFM-068",
-        "AFM-073"
-      ],
-      "source_groups": [
-        "A-WORK",
-        "H-INSPECT",
-        "H-TIMELINE"
-      ],
+      "dependencies": ["AFM-030", "AFM-064", "AFM-065", "AFM-068", "AFM-073"],
+      "source_groups": ["A-WORK", "H-INSPECT", "H-TIMELINE"],
       "target_paths": [
         "packages/studio/src/diagrams/adapters/workflow.ts",
         "packages/diagram-motion/src/adapters/workflow.ts"
@@ -3840,17 +3128,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-031",
-        "AFM-064",
-        "AFM-068",
-        "AFM-073"
-      ],
-      "source_groups": [
-        "A-SEQ",
-        "H-INSPECT",
-        "H-TIMELINE"
-      ],
+      "dependencies": ["AFM-031", "AFM-064", "AFM-068", "AFM-073"],
+      "source_groups": ["A-SEQ", "H-INSPECT", "H-TIMELINE"],
       "target_paths": [
         "packages/studio/src/diagrams/adapters/sequence.ts",
         "packages/diagram-motion/src/adapters/sequence.ts"
@@ -3885,18 +3164,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-032",
-        "AFM-064",
-        "AFM-065",
-        "AFM-068",
-        "AFM-073"
-      ],
-      "source_groups": [
-        "A-DATA",
-        "H-INSPECT",
-        "H-TIMELINE"
-      ],
+      "dependencies": ["AFM-032", "AFM-064", "AFM-065", "AFM-068", "AFM-073"],
+      "source_groups": ["A-DATA", "H-INSPECT", "H-TIMELINE"],
       "target_paths": [
         "packages/studio/src/diagrams/adapters/dataflow.ts",
         "packages/diagram-motion/src/adapters/dataflow.ts"
@@ -3931,17 +3200,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-033",
-        "AFM-064",
-        "AFM-068",
-        "AFM-073"
-      ],
-      "source_groups": [
-        "A-LIFE",
-        "H-INSPECT",
-        "H-TIMELINE"
-      ],
+      "dependencies": ["AFM-033", "AFM-064", "AFM-068", "AFM-073"],
+      "source_groups": ["A-LIFE", "H-INSPECT", "H-TIMELINE"],
       "target_paths": [
         "packages/studio/src/diagrams/adapters/lifecycle.ts",
         "packages/diagram-motion/src/adapters/lifecycle.ts"
@@ -3976,20 +3236,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-035",
-        "AFM-036",
-        "AFM-066",
-        "AFM-087",
-        "AFM-088",
-        "AFM-089",
-        "AFM-090"
-      ],
-      "source_groups": [
-        "A-VIEW",
-        "A-REACH",
-        "A-THEME"
-      ],
+      "dependencies": ["AFM-035", "AFM-036", "AFM-066", "AFM-087", "AFM-088", "AFM-089", "AFM-090"],
+      "source_groups": ["A-VIEW", "A-REACH", "A-THEME"],
       "target_paths": [
         "packages/studio/src/diagrams/ExplorePanel.tsx",
         "packages/diagram-viewer/src/links.mjs"
@@ -4024,16 +3272,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-037",
-        "AFM-073",
-        "AFM-045",
-        "AFM-068"
-      ],
-      "source_groups": [
-        "A-DELTA",
-        "H-STYLE"
-      ],
+      "dependencies": ["AFM-037", "AFM-073", "AFM-045", "AFM-068"],
+      "source_groups": ["A-DELTA", "H-STYLE"],
       "target_paths": [
         "packages/diagram-motion/src/deltaScenes.ts",
         "templates/architecture-change-review/"
@@ -4068,16 +3308,8 @@
       "status": "in_progress",
       "scope": "required-interface",
       "priority": "P1",
-      "dependencies": [
-        "AFM-092",
-        "AFM-024",
-        "AFM-051"
-      ],
-      "source_groups": [
-        "H-SKILL",
-        "A-EVID",
-        "A-DELTA"
-      ],
+      "dependencies": ["AFM-092", "AFM-024", "AFM-051"],
+      "source_groups": ["H-SKILL", "A-EVID", "A-DELTA"],
       "target_paths": [
         "packages/studio-server/src/services/changeReview.ts",
         "skills/archframe/change-review.md"
@@ -4128,10 +3360,7 @@
         "AFM-086",
         "AFM-078"
       ],
-      "source_groups": [
-        "A-EXPORT",
-        "H-PARITY"
-      ],
+      "source_groups": ["A-EXPORT", "H-PARITY"],
       "target_paths": [
         "tests/e2e/all-diagram-families.spec.ts",
         "docs/quality/all-family-acceptance.md"
@@ -4166,17 +3395,8 @@
       "status": "in_progress",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-051",
-        "AFM-052",
-        "AFM-057",
-        "AFM-022",
-        "AFM-086"
-      ],
-      "source_groups": [
-        "H-CLI",
-        "A-PKG"
-      ],
+      "dependencies": ["AFM-051", "AFM-052", "AFM-057", "AFM-022", "AFM-086"],
+      "source_groups": ["H-CLI", "A-PKG"],
       "target_paths": [
         "packages/cli/src/cli.ts",
         "packages/cli/src/commands/project.ts",
@@ -4218,16 +3438,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-051",
-        "AFM-057",
-        "AFM-061",
-        "AFM-095"
-      ],
-      "source_groups": [
-        "H-TOOLS",
-        "H-SDK"
-      ],
+      "dependencies": ["AFM-051", "AFM-057", "AFM-061", "AFM-095"],
+      "source_groups": ["H-TOOLS", "H-SDK"],
       "target_paths": [
         "packages/studio/src/webmcp/tools/diagramTools.ts",
         "packages/studio/src/webmcp/tools/projectTools.ts"
@@ -4262,15 +3474,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-095",
-        "AFM-096",
-        "AFM-005"
-      ],
-      "source_groups": [
-        "A-SKILL",
-        "H-SKILL"
-      ],
+      "dependencies": ["AFM-095", "AFM-096", "AFM-005"],
+      "source_groups": ["A-SKILL", "H-SKILL"],
       "target_paths": [
         "skills/archframe/SKILL.md",
         "AGENTS.md",
@@ -4307,16 +3512,8 @@
       "status": "planned",
       "scope": "required-interface",
       "priority": "P1",
-      "dependencies": [
-        "AFM-096",
-        "AFM-024",
-        "AFM-037"
-      ],
-      "source_groups": [
-        "A-EVID",
-        "H-SKILL",
-        "H-TOOLS"
-      ],
+      "dependencies": ["AFM-096", "AFM-024", "AFM-037"],
+      "source_groups": ["A-EVID", "H-SKILL", "H-TOOLS"],
       "target_paths": [
         "packages/studio-server/src/services/proposals.ts",
         "packages/studio/src/project/ProposalReview.tsx"
@@ -4351,15 +3548,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-095",
-        "AFM-026",
-        "AFM-055"
-      ],
-      "source_groups": [
-        "H-CLI",
-        "H-PRODUCER"
-      ],
+      "dependencies": ["AFM-095", "AFM-026", "AFM-055"],
+      "source_groups": ["H-CLI", "H-PRODUCER"],
       "target_paths": [
         "packages/cli/src/commands/projectBatch.ts",
         "packages/project-model/src/batchReceipt.ts"
@@ -4394,16 +3584,8 @@
       "status": "planned",
       "scope": "required-interface",
       "priority": "P1",
-      "dependencies": [
-        "AFM-005",
-        "AFM-095",
-        "AFM-079"
-      ],
-      "source_groups": [
-        "H-EXTERNAL",
-        "H-CLOUD",
-        "H-AUTH"
-      ],
+      "dependencies": ["AFM-005", "AFM-095", "AFM-079"],
+      "source_groups": ["H-EXTERNAL", "H-CLOUD", "H-AUTH"],
       "target_paths": [
         "docs/integrations/compatibility.md",
         "tests/contracts/optional-integrations.test.ts"
@@ -4438,17 +3620,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-095",
-        "AFM-010",
-        "AFM-024",
-        "AFM-049"
-      ],
-      "source_groups": [
-        "H-CLI",
-        "A-PKG",
-        "H-NET"
-      ],
+      "dependencies": ["AFM-095", "AFM-010", "AFM-024", "AFM-049"],
+      "source_groups": ["H-CLI", "A-PKG", "H-NET"],
       "target_paths": [
         "packages/cli/src/commands/doctor.ts",
         "packages/studio/src/project/DiagnosticsPanel.tsx"
@@ -4483,23 +3656,9 @@
       "status": "planned",
       "scope": "required-interface",
       "priority": "P1",
-      "dependencies": [
-        "AFM-096",
-        "AFM-097",
-        "AFM-098",
-        "AFM-099",
-        "AFM-101",
-        "AFM-094"
-      ],
-      "source_groups": [
-        "H-TOOLS",
-        "H-PARITY",
-        "A-SKILL"
-      ],
-      "target_paths": [
-        "tests/e2e/agent-authoring.spec.ts",
-        "evidence/agent-acceptance/"
-      ],
+      "dependencies": ["AFM-096", "AFM-097", "AFM-098", "AFM-099", "AFM-101", "AFM-094"],
+      "source_groups": ["H-TOOLS", "H-PARITY", "A-SKILL"],
+      "target_paths": ["tests/e2e/agent-authoring.spec.ts", "evidence/agent-acceptance/"],
       "goal": "Prove tool-driven authoring reaches the same product result as the UI.",
       "implementation": [
         "Use a configured coding agent or an explicitly recorded manual tool invocation sequence to create and edit a mixed project.",
@@ -4530,18 +3689,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-005",
-        "AFM-010",
-        "AFM-079",
-        "AFM-100"
-      ],
-      "source_groups": [
-        "A-SKILL",
-        "H-NET",
-        "H-CATALOG",
-        "H-AUTH"
-      ],
+      "dependencies": ["AFM-005", "AFM-010", "AFM-079", "AFM-100"],
+      "source_groups": ["A-SKILL", "H-NET", "H-CATALOG", "H-AUTH"],
       "target_paths": [
         "packages/project-model/src/networkPolicy.ts",
         "docs/security/network-inventory.json"
@@ -4576,17 +3725,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-006",
-        "AFM-020",
-        "AFM-051",
-        "AFM-079"
-      ],
-      "source_groups": [
-        "H-FILES",
-        "A-SHARED",
-        "H-CATALOG"
-      ],
+      "dependencies": ["AFM-006", "AFM-020", "AFM-051", "AFM-079"],
+      "source_groups": ["H-FILES", "A-SHARED", "H-CATALOG"],
       "target_paths": [
         "packages/studio-server/src/security/projectPaths.ts",
         "tools/import/archivePolicy.ts"
@@ -4621,16 +3761,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-057",
-        "AFM-056",
-        "AFM-104"
-      ],
-      "source_groups": [
-        "H-PLAYER",
-        "H-GESTURE",
-        "H-ROUTES"
-      ],
+      "dependencies": ["AFM-057", "AFM-056", "AFM-104"],
+      "source_groups": ["H-PLAYER", "H-GESTURE", "H-ROUTES"],
       "target_paths": [
         "packages/studio-server/src/security/previewIsolation.ts",
         "packages/studio/src/project/previewBridge.ts"
@@ -4665,16 +3797,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-103",
-        "AFM-104",
-        "AFM-049"
-      ],
-      "source_groups": [
-        "H-ASSETS",
-        "H-NET",
-        "H-CATALOG"
-      ],
+      "dependencies": ["AFM-103", "AFM-104", "AFM-049"],
+      "source_groups": ["H-ASSETS", "H-NET", "H-CATALOG"],
       "target_paths": [
         "packages/studio-server/src/security/assetFetch.ts",
         "packages/engine/src/utils/urlDownloader.ts"
@@ -4709,17 +3833,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-024",
-        "AFM-004",
-        "AFM-080",
-        "AFM-098"
-      ],
-      "source_groups": [
-        "H-AUTH",
-        "A-EVID",
-        "H-NET"
-      ],
+      "dependencies": ["AFM-024", "AFM-004", "AFM-080", "AFM-098"],
+      "source_groups": ["H-AUTH", "A-EVID", "H-NET"],
       "target_paths": [
         "packages/studio-server/src/security/secrets.ts",
         "packages/project-model/src/redaction.ts"
@@ -4754,17 +3869,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-055",
-        "AFM-104",
-        "AFM-105",
-        "AFM-106"
-      ],
-      "source_groups": [
-        "H-PROCESS",
-        "H-CAPTURE",
-        "H-CLOUD"
-      ],
+      "dependencies": ["AFM-055", "AFM-104", "AFM-105", "AFM-106"],
+      "source_groups": ["H-PROCESS", "H-CAPTURE", "H-CLOUD"],
       "target_paths": [
         "packages/studio-server/src/security/renderWorker.ts",
         "packages/cli/src/docker/Dockerfile.render"
@@ -4799,15 +3905,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-051",
-        "AFM-105",
-        "AFM-107"
-      ],
-      "source_groups": [
-        "H-SERVER",
-        "H-AUTH"
-      ],
+      "dependencies": ["AFM-051", "AFM-105", "AFM-107"],
+      "source_groups": ["H-SERVER", "H-AUTH"],
       "target_paths": [
         "packages/studio-server/src/security/localAccess.ts",
         "docs/security/deployment-modes.md"
@@ -4842,17 +3941,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-020",
-        "AFM-055",
-        "AFM-077",
-        "AFM-108"
-      ],
-      "source_groups": [
-        "H-PROCESS",
-        "H-PERSIST",
-        "H-JOBS"
-      ],
+      "dependencies": ["AFM-020", "AFM-055", "AFM-077", "AFM-108"],
+      "source_groups": ["H-PROCESS", "H-PERSIST", "H-JOBS"],
       "target_paths": [
         "packages/studio-server/src/services/resourcePolicy.ts",
         "packages/project-model/src/storage/spaceBudget.ts"
@@ -4887,17 +3977,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-004",
-        "AFM-009",
-        "AFM-103",
-        "AFM-107"
-      ],
-      "source_groups": [
-        "H-LICENSE",
-        "A-LICENSE",
-        "H-PACK"
-      ],
+      "dependencies": ["AFM-004", "AFM-009", "AFM-103", "AFM-107"],
+      "source_groups": ["H-LICENSE", "A-LICENSE", "H-PACK"],
       "target_paths": [
         "tools/quality/sbom.ts",
         "docs/security/dependency-review.json",
@@ -4944,16 +4025,8 @@
         "AFM-110",
         "AFM-111"
       ],
-      "source_groups": [
-        "H-PARITY",
-        "H-FILES",
-        "H-NET"
-      ],
-      "target_paths": [
-        "tests/security/",
-        "docs/security/threat-model.md",
-        "evidence/security/"
-      ],
+      "source_groups": ["H-PARITY", "H-FILES", "H-NET"],
+      "target_paths": ["tests/security/", "docs/security/threat-model.md", "evidence/security/"],
       "goal": "Validate the actual cross-system security boundaries.",
       "implementation": [
         "Execute traversal/archive, HTML isolation, local API, SSRF, secrets, worker resource and offline-network tests.",
@@ -4984,24 +4057,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-008",
-        "AFM-013",
-        "AFM-014",
-        "AFM-018"
-      ],
-      "source_groups": [
-        "A-ARCH",
-        "A-WORK",
-        "A-SEQ",
-        "A-DATA",
-        "A-LIFE",
-        "H-PARITY"
-      ],
-      "target_paths": [
-        "tests/fixtures/unified/",
-        "docs/quality/fixtures.json"
-      ],
+      "dependencies": ["AFM-008", "AFM-013", "AFM-014", "AFM-018"],
+      "source_groups": ["A-ARCH", "A-WORK", "A-SEQ", "A-DATA", "A-LIFE", "H-PARITY"],
+      "target_paths": ["tests/fixtures/unified/", "docs/quality/fixtures.json"],
       "goal": "Cover semantic and presentation edge cases without relying on only one happy-path example.",
       "implementation": [
         "Create fixtures for branches, parallel/reverse edges, loops, repeated messages, long labels, multiple instances and mixed native media.",
@@ -5032,18 +4090,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-028",
-        "AFM-018",
-        "AFM-025",
-        "AFM-043",
-        "AFM-113"
-      ],
-      "source_groups": [
-        "A-SCHEMA",
-        "A-REACH",
-        "H-PARSER"
-      ],
+      "dependencies": ["AFM-028", "AFM-018", "AFM-025", "AFM-043", "AFM-113"],
+      "source_groups": ["A-SCHEMA", "A-REACH", "H-PARSER"],
       "target_paths": [
         "tests/properties/diagram-identities.test.ts",
         "tests/properties/story-topology.test.ts"
@@ -5078,21 +4126,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-050",
-        "AFM-084",
-        "AFM-094",
-        "AFM-113"
-      ],
-      "source_groups": [
-        "H-PARITY",
-        "H-CAPTURE",
-        "A-EXPORT"
-      ],
-      "target_paths": [
-        "tests/regression/unified-visual.test.ts",
-        "tools/quality/visualReceipt.ts"
-      ],
+      "dependencies": ["AFM-050", "AFM-084", "AFM-094", "AFM-113"],
+      "source_groups": ["H-PARITY", "H-CAPTURE", "A-EXPORT"],
+      "target_paths": ["tests/regression/unified-visual.test.ts", "tools/quality/visualReceipt.ts"],
       "goal": "Catch blank/clipped/wrong-state frames in real output.",
       "implementation": [
         "Capture selected frames from preview and producer under pinned browser/assets/output settings.",
@@ -5123,20 +4159,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-077",
-        "AFM-110",
-        "AFM-113"
-      ],
-      "source_groups": [
-        "H-PARITY",
-        "H-PROCESS",
-        "A-GEOM"
-      ],
-      "target_paths": [
-        "tools/quality/performance.ts",
-        "docs/quality/performance-budgets.json"
-      ],
+      "dependencies": ["AFM-077", "AFM-110", "AFM-113"],
+      "source_groups": ["H-PARITY", "H-PROCESS", "A-GEOM"],
+      "target_paths": ["tools/quality/performance.ts", "docs/quality/performance-budgets.json"],
       "goal": "Keep the unified editor usable on documented hardware without invented benchmarks.",
       "implementation": [
         "Measure initial compile, incremental edit latency, selection/outline response, memory and render throughput across small/medium/large fixtures.",
@@ -5167,23 +4192,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-010",
-        "AFM-016",
-        "AFM-086",
-        "AFM-104",
-        "AFM-113"
-      ],
-      "source_groups": [
-        "H-CI",
-        "H-CLI",
-        "H-CLOUD",
-        "A-ROOT"
-      ],
-      "target_paths": [
-        ".github/workflows/platform-smoke.yml",
-        "docs/quality/platform-support.md"
-      ],
+      "dependencies": ["AFM-010", "AFM-016", "AFM-086", "AFM-104", "AFM-113"],
+      "source_groups": ["H-CI", "H-CLI", "H-CLOUD", "A-ROOT"],
+      "target_paths": [".github/workflows/platform-smoke.yml", "docs/quality/platform-support.md"],
       "goal": "Ensure the user can move between Windows and Mac without relying on Unix-only assumptions.",
       "implementation": [
         "Test supported Node/Bun versions, path quoting, line endings, file watching, safe saves and local browser/FFmpeg discovery on each declared platform.",
@@ -5214,21 +4225,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-076",
-        "AFM-077",
-        "AFM-110",
-        "AFM-117"
-      ],
-      "source_groups": [
-        "H-PROCESS",
-        "H-HISTORY",
-        "H-PARITY"
-      ],
-      "target_paths": [
-        "tests/soak/unified-session.test.ts",
-        "docs/quality/soak-results.json"
-      ],
+      "dependencies": ["AFM-076", "AFM-077", "AFM-110", "AFM-117"],
+      "source_groups": ["H-PROCESS", "H-HISTORY", "H-PARITY"],
+      "target_paths": ["tests/soak/unified-session.test.ts", "docs/quality/soak-results.json"],
       "goal": "Catch leaks and state corruption from repeated editing and rendering.",
       "implementation": [
         "Exercise many edit/undo/regenerate/open/close/render/cancel cycles with a seeded operation log.",
@@ -5259,24 +4258,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-008",
-        "AFM-094",
-        "AFM-102",
-        "AFM-112",
-        "AFM-115",
-        "AFM-117",
-        "AFM-118"
-      ],
-      "source_groups": [
-        "H-PARITY",
-        "H-PACK",
-        "A-EXPORT"
-      ],
-      "target_paths": [
-        "tools/quality/capabilityGate.ts",
-        "docs/quality/capabilities.json"
-      ],
+      "dependencies": ["AFM-008", "AFM-094", "AFM-102", "AFM-112", "AFM-115", "AFM-117", "AFM-118"],
+      "source_groups": ["H-PARITY", "H-PACK", "A-EXPORT"],
+      "target_paths": ["tools/quality/capabilityGate.ts", "docs/quality/capabilities.json"],
       "goal": "Prevent file counts, mocks or retained source from being mistaken for integrated functionality.",
       "implementation": [
         "Join capabilities to tickets, test receipts, actual artifact hashes and declared support modes.",
@@ -5317,10 +4301,7 @@
         "AFM-117",
         "AFM-119"
       ],
-      "source_groups": [
-        "H-PARITY",
-        "A-EXPORT"
-      ],
+      "source_groups": ["H-PARITY", "A-EXPORT"],
       "target_paths": [
         "tests/e2e/release-acceptance.spec.ts",
         "docs/quality/release-acceptance.md"
@@ -5355,18 +4336,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-095",
-        "AFM-097",
-        "AFM-004",
-        "AFM-016"
-      ],
-      "source_groups": [
-        "H-SHELL",
-        "H-CLI",
-        "H-PACK",
-        "A-PKG"
-      ],
+      "dependencies": ["AFM-095", "AFM-097", "AFM-004", "AFM-016"],
+      "source_groups": ["H-SHELL", "H-CLI", "H-PACK", "A-PKG"],
       "target_paths": [
         "packages/studio/src/components/StudioHeader.tsx",
         "packages/cli/package.json",
@@ -5403,17 +4374,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-117",
-        "AFM-108",
-        "AFM-109",
-        "AFM-121"
-      ],
-      "source_groups": [
-        "H-CLOUD",
-        "H-PACK",
-        "H-CLI"
-      ],
+      "dependencies": ["AFM-117", "AFM-108", "AFM-109", "AFM-121"],
+      "source_groups": ["H-CLOUD", "H-PACK", "H-CLI"],
       "target_paths": [
         "Dockerfile",
         "compose.yaml",
@@ -5450,24 +4412,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-027",
-        "AFM-051",
-        "AFM-072",
-        "AFM-095",
-        "AFM-122"
-      ],
-      "source_groups": [
-        "H-SKILL",
-        "A-ROOT",
-        "H-PACK"
-      ],
-      "target_paths": [
-        "docs/development/",
-        "docs/api/",
-        "docs/migration/",
-        "docs/operations/"
-      ],
+      "dependencies": ["AFM-027", "AFM-051", "AFM-072", "AFM-095", "AFM-122"],
+      "source_groups": ["H-SKILL", "A-ROOT", "H-PACK"],
+      "target_paths": ["docs/development/", "docs/api/", "docs/migration/", "docs/operations/"],
       "goal": "Enable another engineer or coding agent to maintain the merged product without rediscovering ownership rules.",
       "implementation": [
         "Document package boundaries, source-to-artifact compilation, project commands/history, revision storage and render time contracts.",
@@ -5498,22 +4445,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-086",
-        "AFM-094",
-        "AFM-120",
-        "AFM-123"
-      ],
-      "source_groups": [
-        "A-ARCH",
-        "A-DELTA",
-        "H-STYLE"
-      ],
-      "target_paths": [
-        "examples/unified/",
-        "docs/demos/",
-        "evidence/demo-manifest.json"
-      ],
+      "dependencies": ["AFM-086", "AFM-094", "AFM-120", "AFM-123"],
+      "source_groups": ["A-ARCH", "A-DELTA", "H-STYLE"],
+      "target_paths": ["examples/unified/", "docs/demos/", "evidence/demo-manifest.json"],
       "goal": "Make the finished product demonstrable beyond screenshots of copied source.",
       "implementation": [
         "Ship source projects for architecture, workflow, sequence, dataflow, lifecycle, mixed media and architecture-change review.",
@@ -5544,16 +4478,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-007",
-        "AFM-011",
-        "AFM-111",
-        "AFM-123"
-      ],
-      "source_groups": [
-        "H-PACK",
-        "A-ROOT"
-      ],
+      "dependencies": ["AFM-007", "AFM-011", "AFM-111", "AFM-123"],
+      "source_groups": ["H-PACK", "A-ROOT"],
       "target_paths": [
         "tools/upstream/",
         "docs/upstream/maintenance.md",
@@ -5589,18 +4515,8 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-111",
-        "AFM-120",
-        "AFM-121",
-        "AFM-122",
-        "AFM-123",
-        "AFM-124"
-      ],
-      "source_groups": [
-        "H-PACK",
-        "A-ROOT"
-      ],
+      "dependencies": ["AFM-111", "AFM-120", "AFM-121", "AFM-122", "AFM-123", "AFM-124"],
+      "source_groups": ["H-PACK", "A-ROOT"],
       "target_paths": [
         "tools/release/package.ts",
         "tools/release/verify.ts",
@@ -5636,19 +4552,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-126",
-        "AFM-119",
-        "AFM-112"
-      ],
-      "source_groups": [
-        "H-PARITY",
-        "H-PACK"
-      ],
-      "target_paths": [
-        "docs/quality/release-review.md",
-        "docs/quality/open-defects.json"
-      ],
+      "dependencies": ["AFM-126", "AFM-119", "AFM-112"],
+      "source_groups": ["H-PARITY", "H-PACK"],
+      "target_paths": ["docs/quality/release-review.md", "docs/quality/open-defects.json"],
       "goal": "Challenge the merged product against the specification before final delivery.",
       "implementation": [
         "Review code, capability matrix, migration paths, actual artifacts and unverified modes with a separate reviewer process or clearly documented independent pass.",
@@ -5679,20 +4585,9 @@
       "status": "planned",
       "scope": "required-local",
       "priority": "P1",
-      "dependencies": [
-        "AFM-127",
-        "AFM-126",
-        "AFM-125"
-      ],
-      "source_groups": [
-        "H-PACK",
-        "H-CI"
-      ],
-      "target_paths": [
-        "README.md",
-        "DELIVERY_MANIFEST.json",
-        "docs/releases/1.0.0.md"
-      ],
+      "dependencies": ["AFM-127", "AFM-126", "AFM-125"],
+      "source_groups": ["H-PACK", "H-CI"],
+      "target_paths": ["README.md", "DELIVERY_MANIFEST.json", "docs/releases/1.0.0.md"],
       "goal": "Hand over the complete owned repo with truthful completion and deployment status.",
       "implementation": [
         "Finalize product version metadata, source history, clean working tree, build instructions and known limitations.",
@@ -5741,13 +4636,8 @@
         "AFM-015",
         "AFM-016"
       ],
-      "source_groups": [
-        "H-CI",
-        "A-ROOT"
-      ],
-      "target_paths": [
-        "evidence/gates/G0.json"
-      ],
+      "source_groups": ["H-CI", "A-ROOT"],
+      "target_paths": ["evidence/gates/G0.json"],
       "goal": "Block deeper integration claims until raw folder import and baseline evidence are trustworthy.",
       "implementation": [
         "Check intake/relocation notices, one lockfile, disabled upstream publishing and baseline source hashes.",
@@ -5793,13 +4683,8 @@
         "AFM-057",
         "AFM-063"
       ],
-      "source_groups": [
-        "A-ARCH",
-        "H-PARITY"
-      ],
-      "target_paths": [
-        "evidence/gates/G1.json"
-      ],
+      "source_groups": ["A-ARCH", "H-PARITY"],
+      "target_paths": ["evidence/gates/G1.json"],
       "goal": "Prove one real integrated workflow early without calling it full parity.",
       "implementation": [
         "Import deployment architecture, edit a component in Studio and create guided-view scenes plus a native title.",
@@ -5844,13 +4729,8 @@
         "AFM-082",
         "AFM-085"
       ],
-      "source_groups": [
-        "H-HISTORY",
-        "H-PARITY"
-      ],
-      "target_paths": [
-        "evidence/gates/G2.json"
-      ],
+      "source_groups": ["H-HISTORY", "H-PARITY"],
+      "target_paths": ["evidence/gates/G2.json"],
       "goal": "Prove shared history and media integration do not lose source or presentation work.",
       "implementation": [
         "Edit source plus native media/captions, undo/redo, regenerate and reopen.",
@@ -5892,13 +4772,8 @@
         "AFM-093",
         "AFM-094"
       ],
-      "source_groups": [
-        "A-DELTA",
-        "H-PARITY"
-      ],
-      "target_paths": [
-        "evidence/gates/G3.json"
-      ],
+      "source_groups": ["A-DELTA", "H-PARITY"],
+      "target_paths": ["evidence/gates/G3.json"],
       "goal": "Prevent release scope from quietly stopping at architecture diagrams.",
       "implementation": [
         "Run UI/source/history/render acceptance separately for all five diagram kinds.",
@@ -5942,13 +4817,8 @@
         "AFM-122",
         "AFM-123"
       ],
-      "source_groups": [
-        "H-PARITY",
-        "H-CI"
-      ],
-      "target_paths": [
-        "evidence/gates/G4.json"
-      ],
+      "source_groups": ["H-PARITY", "H-CI"],
+      "target_paths": ["evidence/gates/G4.json"],
       "goal": "Establish the declared local product quality envelope before packaging.",
       "implementation": [
         "Run offline/security, platform, performance and end-to-end suites with exact environment metadata.",
@@ -6114,14 +4984,8 @@
         "AFM-132",
         "AFM-133"
       ],
-      "source_groups": [
-        "H-PACK",
-        "A-ROOT"
-      ],
-      "target_paths": [
-        "evidence/gates/G5.json",
-        "DELIVERY_MANIFEST.json"
-      ],
+      "source_groups": ["H-PACK", "A-ROOT"],
+      "target_paths": ["evidence/gates/G5.json", "DELIVERY_MANIFEST.json"],
       "goal": "Authorize the final completion claim only for a complete tested local product.",
       "implementation": [
         "Check every required ticket, predecessor gate and capability evidence reference.",

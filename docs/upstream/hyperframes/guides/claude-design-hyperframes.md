@@ -369,14 +369,14 @@ The skeleton handles most structural rules. These are the runtime rules the skel
 
 ### Determinism (non-negotiable)
 
-| Never                             | Use instead                                    |
-| --------------------------------- | ---------------------------------------------- |
-| `Math.random()`                   | Seeded PRNG (only if you need randomness)      |
-| `Date.now()`, `performance.now()` | Hard-coded timing or `tl.time()` in `onUpdate` |
-| `setInterval`, `setTimeout`       | Timeline tweens + `onUpdate`                   |
+| Never                             | Use instead                                             |
+| --------------------------------- | ------------------------------------------------------- |
+| `Math.random()`                   | Seeded PRNG (only if you need randomness)               |
+| `Date.now()`, `performance.now()` | Hard-coded timing or `tl.time()` in `onUpdate`          |
+| `setInterval`, `setTimeout`       | Timeline tweens + `onUpdate`                            |
 | `repeat: -1`                      | `repeat: Math.max(0, Math.floor(duration / cycle) - 1)` |
-| `stagger: { from: "random" }`     | `from: "start"`, `"center"`, `"end"`           |
-| Async timeline construction       | Synchronous at page load                       |
+| `stagger: { from: "random" }`     | `from: "start"`, `"center"`, `"end"`                    |
+| Async timeline construction       | Synchronous at page load                                |
 
 ### Media rules
 

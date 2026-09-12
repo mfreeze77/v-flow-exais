@@ -14,7 +14,10 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 
 ## Install
 
-<InstallCommand command="npx hyperframes add transitions-distortion" item="transitions-distortion" />
+<InstallCommand
+  command="npx hyperframes add transitions-distortion"
+  item="transitions-distortion"
+/>
 
 That writes one file: `compositions/transitions-distortion.html`.
 
@@ -417,7 +420,15 @@ That writes one file: `compositions/transitions-distortion.html`.
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="transitions-distortion" data-composition-src="compositions/transitions-distortion.html" data-start="0" data-duration="21" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="transitions-distortion"
+  data-composition-src="compositions/transitions-distortion.html"
+  data-start="0"
+  data-duration="21"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

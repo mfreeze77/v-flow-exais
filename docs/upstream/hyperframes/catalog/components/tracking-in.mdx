@@ -124,11 +124,11 @@ That writes one file: `compositions/components/tracking-in.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `tracking` | `standard` | `tight`, `standard`, `wide` | Multiplies the letter-spacing the timeline drives, so the reveal starts and settles proportionally wider or tighter. |
-| `rise` | `standard` | `subtle`, `standard`, `bold` | Vertical offset the text starts from, which the timeline reads as the start of its travel and eases to zero. |
-| `tone` | `inherit` | `inherit`, `ink`, `paper`, `accent` | Text colour: inherit keeps the surrounding page colour, ink suits light frames, paper dark ones, accent rides --brand. |
+| Variable   | Default    | Accepts                             | What it does                                                                                                           |
+| ---------- | ---------- | ----------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `tracking` | `standard` | `tight`, `standard`, `wide`         | Multiplies the letter-spacing the timeline drives, so the reveal starts and settles proportionally wider or tighter.   |
+| `rise`     | `standard` | `subtle`, `standard`, `bold`        | Vertical offset the text starts from, which the timeline reads as the start of its travel and eases to zero.           |
+| `tone`     | `inherit`  | `inherit`, `ink`, `paper`, `accent` | Text colour: inherit keeps the surrounding page colour, ink suits light frames, paper dark ones, accent rides --brand. |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

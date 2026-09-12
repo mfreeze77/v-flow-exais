@@ -20,16 +20,16 @@ npm install -g hyperframes
 
 ## Find your command
 
-| You want to              | Use                                                                                                                                                                                            |
-| ------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Start a project          | [`init`](#init), [`add`](#add), [`catalog`](#catalog)                                                                                                                                          |
+| You want to              | Use                                                                                                                                                                                                           |
+| ------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Start a project          | [`init`](#init), [`add`](#add), [`catalog`](#catalog)                                                                                                                                                         |
 | Bring in source material | [`capture`](#capture), [`transcribe`](#transcribe), [`tts`](#tts), [`remove-background`](#remove-background), [`media-treatment`](#media-treatment), [`beats`](#beats), [`normalize-audio`](#normalize-audio) |
-| Look at it, or share it  | [`preview`](#preview), [`present`](#present-and-play), [`play`](#present-and-play), [`publish`](#publish)                                                                                       |
-| Find problems            | [`lint`](#lint), [`check`](#check), [`snapshot`](#snapshot), [`keyframes`](#keyframes), [`compare`](#compare-and-grade-compare), [`grade-compare`](#compare-and-grade-compare)                  |
-| Make a file              | [`render`](#render), [`benchmark`](#benchmark)                                                                                                                                                  |
-| Render somewhere else    | [`cloud`](#hyperframes-cloud), [`lambda`](#hyperframes-lambda), [`cloudrun`](#hyperframes-cloudrun)                                                                                             |
-| Fix your setup           | [`doctor`](#doctor), [`browser`](#browser), [`upgrade`](#upgrade), [`docs`](#docs), [`info`](#info-and-compositions), [`compositions`](#info-and-compositions)                                  |
-| Connect other tools      | [`auth`](#hyperframes-auth), [`skills`](#skills), [`figma`](#figma-and-events), [`telemetry`](#telemetry), [`feedback`](#feedback)                                                              |
+| Look at it, or share it  | [`preview`](#preview), [`present`](#present-and-play), [`play`](#present-and-play), [`publish`](#publish)                                                                                                     |
+| Find problems            | [`lint`](#lint), [`check`](#check), [`snapshot`](#snapshot), [`keyframes`](#keyframes), [`compare`](#compare-and-grade-compare), [`grade-compare`](#compare-and-grade-compare)                                |
+| Make a file              | [`render`](#render), [`benchmark`](#benchmark)                                                                                                                                                                |
+| Render somewhere else    | [`cloud`](#hyperframes-cloud), [`lambda`](#hyperframes-lambda), [`cloudrun`](#hyperframes-cloudrun)                                                                                                           |
+| Fix your setup           | [`doctor`](#doctor), [`browser`](#browser), [`upgrade`](#upgrade), [`docs`](#docs), [`info`](#info-and-compositions), [`compositions`](#info-and-compositions)                                                |
+| Connect other tools      | [`auth`](#hyperframes-auth), [`skills`](#skills), [`figma`](#figma-and-events), [`telemetry`](#telemetry), [`feedback`](#feedback)                                                                            |
 
 `validate`, `inspect`, and `layout` still work but are
 [deprecated](#deprecated-validate-inspect-and-layout). Use `check` instead.
@@ -101,16 +101,16 @@ npx hyperframes init my-video
 
 | Flag                | Description                                                                                                                                                                                                                                                                          |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--example, -e`     | Example to scaffold. Required with `--non-interactive`. See [Examples](/examples) for the full list.                                                                                                                                                                                  |
+| `--example, -e`     | Example to scaffold. Required with `--non-interactive`. See [Examples](/examples) for the full list.                                                                                                                                                                                 |
 | `--resolution`      | Canvas preset: `landscape` (1920×1080), `portrait` (1080×1920), `landscape-4k` (3840×2160), `portrait-4k` (2160×3840), `square` (1080×1080), `square-4k` (2160×2160). Aliases: `1080p`, `4k`, `uhd`, `1080p-square`, `square-1080p`, `4k-square`. Default: keep template dimensions. |
 | `--video, -v`       | Path to a video file (MP4, WebM, MOV)                                                                                                                                                                                                                                                |
 | `--audio, -a`       | Path to an audio file (MP3, WAV, M4A)                                                                                                                                                                                                                                                |
 | `--tailwind`        | Add Tailwind CSS browser-runtime support to the scaffolded HTML                                                                                                                                                                                                                      |
 | `--non-interactive` | Never prompt. For agents and CI.                                                                                                                                                                                                                                                     |
 | `--skip-transcribe` | Skip the automatic Whisper transcription                                                                                                                                                                                                                                             |
-| `--model`           | Whisper model for that transcription (for example `small.en`, `medium.en`, `large`)                                                                                                                                                                                                   |
-| `--language`        | Language code for transcription (`en`, `es`, `ja`, …). Filters out speech in other languages.                                                                                                                                                                                         |
-| `--skip-skills`     | Currently ignored. Set `HYPERFRAMES_SKIP_SKILLS=1` to opt out in CI or tests.                                                                                                                                                                                                         |
+| `--model`           | Whisper model for that transcription (for example `small.en`, `medium.en`, `large`)                                                                                                                                                                                                  |
+| `--language`        | Language code for transcription (`en`, `es`, `ja`, …). Filters out speech in other languages.                                                                                                                                                                                        |
+| `--skip-skills`     | Currently ignored. Set `HYPERFRAMES_SKIP_SKILLS=1` to opt out in CI or tests.                                                                                                                                                                                                        |
 
 Pass `--video` or `--audio` and the CLI transcribes the audio with Whisper and
 patches the captions into the composition for you. `--skip-transcribe` turns
@@ -205,10 +205,10 @@ way to tell them apart is to open the page yourself.
 
 | Reason             | What it means                                                                                          |
 | ------------------ | ------------------------------------------------------------------------------------------------------ |
-| `size-floor`       | Fetched, then judged too small to be a real asset rather than a spacer or tracking pixel.               |
-| `budget-exhausted` | `--capture-budget` ran out before this one was reached. Raise it, or pass `--skip-vision` to buy time.  |
-| `cap-reached`      | A per-run or per-family limit was already met: 30 inline SVGs, 30 fonts, 6 faces per family.            |
-| `unavailable`      | The request or the write failed: network error, timeout, refused address, bad status, disk.             |
+| `size-floor`       | Fetched, then judged too small to be a real asset rather than a spacer or tracking pixel.              |
+| `budget-exhausted` | `--capture-budget` ran out before this one was reached. Raise it, or pass `--skip-vision` to buy time. |
+| `cap-reached`      | A per-run or per-family limit was already met: 30 inline SVGs, 30 fonts, 6 faces per family.           |
+| `unavailable`      | The request or the write failed: network error, timeout, refused address, bad status, disk.            |
 
 Three of those are decisions the capture made and one is a failure it hit, so a
 run that is thin with an all-zero `dropped` is a thin page, and a run that is
@@ -221,16 +221,16 @@ thin with counts on it was cut short.
 }
 ```
 
-| Flag                | Description                                                                                                                                       |
-| ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--output, -o`      | Output directory. Default `./capture`, then `./capture-2/`, `./capture-3/`, … if that name is taken.                                               |
-| `--timeout`         | Page load timeout in ms (default 120000)                                                                                                          |
-| `--capture-budget`  | Budget in ms for everything after the page loads (default 120000). Cooperative — it stops new work, but cannot interrupt work already running.     |
-| `--skip-assets`     | Do not download images and SVGs                                                                                                                   |
-| `--skip-vision`     | Do not run AI image captioning                                                                                                                    |
-| `--max-screenshots` | Accepted, but has no effect — capture picks its own scroll positions.                                                                              |
-| `--json`            | Structured output for programmatic use                                                                                                             |
-| `--video <folder>`  | Switch to video-download mode against a captured folder's manifest. Pair with `--list`, `--index`, or `--video-url`.                               |
+| Flag                | Description                                                                                                                                    |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--output, -o`      | Output directory. Default `./capture`, then `./capture-2/`, `./capture-3/`, … if that name is taken.                                           |
+| `--timeout`         | Page load timeout in ms (default 120000)                                                                                                       |
+| `--capture-budget`  | Budget in ms for everything after the page loads (default 120000). Cooperative — it stops new work, but cannot interrupt work already running. |
+| `--skip-assets`     | Do not download images and SVGs                                                                                                                |
+| `--skip-vision`     | Do not run AI image captioning                                                                                                                 |
+| `--max-screenshots` | Accepted, but has no effect — capture picks its own scroll positions.                                                                          |
+| `--json`            | Structured output for programmatic use                                                                                                         |
+| `--video <folder>`  | Switch to video-download mode against a captured folder's manifest. Pair with `--list`, `--index`, or `--video-url`.                           |
 
 You get `AGENTS.md`, `CLAUDE.md`, `meta.json`, scroll screenshots, extracted
 HTML and CSS, visible text, design tokens, font files, images, SVGs, animation
@@ -264,18 +264,18 @@ npx hyperframes transcribe openai-response.json
 npx hyperframes transcribe transcript.json --to srt
 ```
 
-| Flag              | Description                                                                                                                                                                                       |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--dir, -d`       | Project directory (default: current directory)                                                                                                                                                     |
-| `--engine, -e`    | ASR engine: `auto` (default — Parakeet if installed, else whisper), `parakeet`, or `whisper`                                                                                                        |
-| `--model, -m`     | Whisper model (default `small.en`): `tiny.en`, `base.en`, `small.en`, `medium.en`, `large-v3`                                                                                                       |
-| `--language, -l`  | Language code (`en`, `es`, `ja`, …). Filters out speech in other languages.                                                                                                                        |
-| `--to`            | Export a sidecar instead: `srt` or `vtt`                                                                                                                                                           |
-| `--output, -o`    | Where the exported SRT/VTT goes                                                                                                                                                                    |
-| `--preserve-cues` | Keep each transcript entry as its own caption cue, skipping word-level grouping                                                                                                                    |
-| `--optional`      | Skip and exit 0 when whisper-cpp is unavailable, instead of failing. For pipelines that can carry on without captions.                                                                              |
+| Flag              | Description                                                                                                                                                                                                                                            |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--dir, -d`       | Project directory (default: current directory)                                                                                                                                                                                                         |
+| `--engine, -e`    | ASR engine: `auto` (default — Parakeet if installed, else whisper), `parakeet`, or `whisper`                                                                                                                                                           |
+| `--model, -m`     | Whisper model (default `small.en`): `tiny.en`, `base.en`, `small.en`, `medium.en`, `large-v3`                                                                                                                                                          |
+| `--language, -l`  | Language code (`en`, `es`, `ja`, …). Filters out speech in other languages.                                                                                                                                                                            |
+| `--to`            | Export a sidecar instead: `srt` or `vtt`                                                                                                                                                                                                               |
+| `--output, -o`    | Where the exported SRT/VTT goes                                                                                                                                                                                                                        |
+| `--preserve-cues` | Keep each transcript entry as its own caption cue, skipping word-level grouping                                                                                                                                                                        |
+| `--optional`      | Skip and exit 0 when whisper-cpp is unavailable, instead of failing. For pipelines that can carry on without captions.                                                                                                                                 |
 | `--timeout`       | Whisper spawn timeout in ms, overriding the auto-scaled default. Raise it on slow or emulated CPUs where large models take many seconds per audio second. Whisper only — Parakeet has its own. Minimum 5000. Env: `HYPERFRAMES_TRANSCRIBE_TIMEOUT_MS`. |
-| `--json`          | Output the result as JSON                                                                                                                                                                          |
+| `--json`          | Output the result as JSON                                                                                                                                                                                                                              |
 
 The command works out what you gave it. Audio and video are transcribed
 locally — Parakeet when it is installed (`uv pip install parakeet-mlx`; faster
@@ -291,9 +291,8 @@ Add `--preserve-cues` when the source `transcript.json` already holds finished
 cues with no internal spaces — single-word or CJK captions.
 
 <Tip>
-  For music or noisy audio, `--model medium.en` is noticeably more accurate. For
-  production content, transcribe through the OpenAI or Groq Whisper API and import
-  the JSON.
+  For music or noisy audio, `--model medium.en` is noticeably more accurate. For production content,
+  transcribe through the OpenAI or Groq Whisper API and import the JSON.
 </Tip>
 
 ### `tts`
@@ -309,14 +308,14 @@ npx hyperframes tts script.txt
 npx hyperframes tts --list
 ```
 
-| Flag           | Description                                                                                                                             |
-| -------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `--output, -o` | Output path (default `speech.wav` in the current directory)                                                                              |
-| `--voice, -v`  | Voice ID. Run `--list` to see them all.                                                                                                 |
-| `--speed, -s`  | Speed multiplier (default 1.0)                                                                                                          |
-| `--lang, -l`   | Phonemizer locale: `en-us`, `en-gb`, `es`, `fr-fr`, `hi`, `it`, `pt-br`, `ja`, `zh`. Inferred from the voice ID when you leave it out.   |
-| `--list`       | List the voices and exit                                                                                                                |
-| `--json`       | Output the result as JSON                                                                                                               |
+| Flag           | Description                                                                                                                            |
+| -------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| `--output, -o` | Output path (default `speech.wav` in the current directory)                                                                            |
+| `--voice, -v`  | Voice ID. Run `--list` to see them all.                                                                                                |
+| `--speed, -s`  | Speed multiplier (default 1.0)                                                                                                         |
+| `--lang, -l`   | Phonemizer locale: `en-us`, `en-gb`, `es`, `fr-fr`, `hi`, `it`, `pt-br`, `ja`, `zh`. Inferred from the voice ID when you leave it out. |
+| `--list`       | List the voices and exit                                                                                                               |
+| `--json`       | Output the result as JSON                                                                                                              |
 
 A voice ID's first letter is its language: `a` American, `b` British,
 `e` Spanish, `f` French, `h` Hindi, `i` Italian, `j` Japanese, `p` Brazilian
@@ -325,8 +324,8 @@ Portuguese, `z` Mandarin. So `--voice ef_dora` already speaks Spanish. Reach for
 phonemizer, for a stylized accent.
 
 <Tip>
-  To get narration *and* caption timing in one pass: generate the audio with `tts`,
-  then run [`transcribe`](#transcribe) on the result.
+  To get narration *and* caption timing in one pass: generate the audio with `tts`, then run
+  [`transcribe`](#transcribe) on the result.
 </Tip>
 
 ### `remove-background`
@@ -352,14 +351,14 @@ npx hyperframes remove-background avatar.mp4 -o subject.webm --background-output
 npx hyperframes remove-background --info
 ```
 
-| Flag                      | Description                                                                                                                                                                                                                            |
-| ------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--output, -o`            | Output path. The format follows the extension: `.webm` (default), `.mov`, `.png`.                                                                                                                                                       |
-| `--background-output, -b` | Second output: the inverse-alpha plate, with the subject region transparent and its surroundings opaque. Must be `.webm` or `.mov`. It is a hole cut, not inpainted — composite something underneath.                                    |
-| `--device`                | Execution provider: `auto` (default), `cpu`, `coreml`, `cuda`                                                                                                                                                                            |
-| `--quality`               | WebM preset: `fast` (crf 30), `balanced` (crf 18, default), `best` (crf 12). Higher keeps the cutout's RGB closer to the source, which matters when you overlay it on its own footage. `.webm` only. |
-| `--info`                  | Print the detected execution providers and exit                                                                                                                                                                                         |
-| `--json`                  | Output the result as JSON                                                                                                                                                                                                                |
+| Flag                      | Description                                                                                                                                                                                           |
+| ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--output, -o`            | Output path. The format follows the extension: `.webm` (default), `.mov`, `.png`.                                                                                                                     |
+| `--background-output, -b` | Second output: the inverse-alpha plate, with the subject region transparent and its surroundings opaque. Must be `.webm` or `.mov`. It is a hole cut, not inpainted — composite something underneath. |
+| `--device`                | Execution provider: `auto` (default), `cpu`, `coreml`, `cuda`                                                                                                                                         |
+| `--quality`               | WebM preset: `fast` (crf 30), `balanced` (crf 18, default), `best` (crf 12). Higher keeps the cutout's RGB closer to the source, which matters when you overlay it on its own footage. `.webm` only.  |
+| `--info`                  | Print the detected execution providers and exit                                                                                                                                                       |
+| `--json`                  | Output the result as JSON                                                                                                                                                                             |
 
 Which format do you want?
 
@@ -407,21 +406,21 @@ npx hyperframes media-treatment --file compositions/scene.html --selector 'video
 npx hyperframes media-treatment --selector '#hero' --clear
 ```
 
-| Flag                   | Description                                                           |
-| ---------------------- | --------------------------------------------------------------------- |
-| `--capabilities`       | Print the concise capability overview                                 |
-| `--capability <id>`    | Inspect one family, control, effect, preset, or palette               |
-| `--all`                | Print the exhaustive capability catalog                               |
-| `--project <dir>`      | Project directory (default: current directory)                        |
-| `--file <path>`        | Composition file (default `index.html`)                               |
-| `--selector <css>`     | CSS selector for one `<img>` or `<video>`                             |
-| `--selector-index <n>` | Zero-based match index when the selector is not unique                |
-| `--grading <json>`     | Validated colour-grading patch                                        |
-| `--apply`              | Apply the patch                                                       |
-| `--analyze`            | Measure the selected local media and suggest a bounded correction     |
-| `--clear`              | Remove colour grading from the target                                 |
-| `--dry-run`            | Validate and report without writing                                   |
-| `--json`               | Agent-readable JSON                                                   |
+| Flag                   | Description                                                       |
+| ---------------------- | ----------------------------------------------------------------- |
+| `--capabilities`       | Print the concise capability overview                             |
+| `--capability <id>`    | Inspect one family, control, effect, preset, or palette           |
+| `--all`                | Print the exhaustive capability catalog                           |
+| `--project <dir>`      | Project directory (default: current directory)                    |
+| `--file <path>`        | Composition file (default `index.html`)                           |
+| `--selector <css>`     | CSS selector for one `<img>` or `<video>`                         |
+| `--selector-index <n>` | Zero-based match index when the selector is not unique            |
+| `--grading <json>`     | Validated colour-grading patch                                    |
+| `--apply`              | Apply the patch                                                   |
+| `--analyze`            | Measure the selected local media and suggest a bounded correction |
+| `--clear`              | Remove colour grading from the target                             |
+| `--dry-run`            | Validate and report without writing                               |
+| `--json`               | Agent-readable JSON                                               |
 
 The command writes `data-color-grading` — the same contract Studio, preview, and
 render all read, so the two can never disagree. It does not recognise subjects
@@ -505,10 +504,10 @@ npx hyperframes preview --list           # every running preview
 | `--open` / `--no-open`               | Open a browser, or leave it closed                                                                        |
 | `--background`                       | Keep an embedded preview running after the command exits                                                  |
 | `--foreground`                       | Keep the preview attached even when the shell is non-interactive                                          |
-| `--json`                             | Emit one versioned JSON result for managed start, status, stop, list, and kill-all operations              |
-| `--browser-gpu` / `--no-browser-gpu` | Hardware GPU for Studio thumbnails and frame capture, or deterministic SwiftShader (default: auto-detect)  |
-| `--proxy` / `--no-proxy`             | Auto-transcode browser-hostile codecs (HEVC, ProRes, AV1) to a cached authoring proxy (default: on)        |
-| `--browser-path`                     | Open a specific browser. `--user-data-dir`, `--remote-debugging-port`, and `--browser-no-gpu` require it.  |
+| `--json`                             | Emit one versioned JSON result for managed start, status, stop, list, and kill-all operations             |
+| `--browser-gpu` / `--no-browser-gpu` | Hardware GPU for Studio thumbnails and frame capture, or deterministic SwiftShader (default: auto-detect) |
+| `--proxy` / `--no-proxy`             | Auto-transcode browser-hostile codecs (HEVC, ProRes, AV1) to a cached authoring proxy (default: on)       |
+| `--browser-path`                     | Open a specific browser. `--user-data-dir`, `--remote-debugging-port`, and `--browser-no-gpu` require it. |
 
 To manage running servers: `--status` and `--stop` act on this project's
 background preview, `--list` and `--kill-all` act on all of them, and
@@ -537,11 +536,10 @@ The server picks one of three modes by itself: **embedded** (the default for
 `--background` works with the embedded server only.
 
 <Note>
-  Preview plays in real time, so paint-heavy compositions can stutter on your
-  machine. Render seeks and captures one frame at a time, so the same work usually
-  means a longer render rather than dropped frames. Browser, font, and GPU
-  differences still move exact pixels — judge the rendered file. See
-  [Performance](/guides/performance).
+  Preview plays in real time, so paint-heavy compositions can stutter on your machine. Render seeks
+  and captures one frame at a time, so the same work usually means a longer render rather than
+  dropped frames. Browser, font, and GPU differences still move exact pixels — judge the rendered
+  file. See [Performance](/guides/performance).
 </Note>
 
 ### `present` and `play`
@@ -573,13 +571,13 @@ npx hyperframes publish --update <url-or-id>
 npx hyperframes publish --space <space-id>
 ```
 
-| Flag                     | Description                                                        |
-| ------------------------ | ------------------------------------------------------------------ |
-| `--yes, -y`              | Skip the confirmation prompt                                       |
-| `--public`               | Make the claimed project visible to anyone                         |
-| `--update <url-or-id>`   | Update an existing project in place. Requires sign-in.             |
-| `--space <space-id>`     | Publish into a shared team space. Requires sign-in.                |
-| `--proxy` / `--no-proxy` | Bake H.264 proxies for browser-hostile codecs, or skip them        |
+| Flag                     | Description                                                 |
+| ------------------------ | ----------------------------------------------------------- |
+| `--yes, -y`              | Skip the confirmation prompt                                |
+| `--public`               | Make the claimed project visible to anyone                  |
+| `--update <url-or-id>`   | Update an existing project in place. Requires sign-in.      |
+| `--space <space-id>`     | Publish into a shared team space. Requires sign-in.         |
+| `--proxy` / `--no-proxy` | Bake H.264 proxies for browser-hostile codecs, or skip them |
 
 `publish` zips the project, uploads it, and prints a URL that resolves to stored
 content — so it keeps working after the CLI exits. No local server stays alive,
@@ -642,25 +640,25 @@ running every audit at every sample: runtime console errors and failed requests,
 layout defects (overflow, clipping, held overlaps, occlusion, coordinate-frame
 drift), `*.motion.json` assertions, and WCAG AA contrast.
 
-| Flag                                         | Description                                                                                                                 |
-| -------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| `--json`                                     | One aggregated envelope. Every finding carries a selector, `data-*` identity, source file, bbox, and sample time.           |
-| `--snapshots`                                | Save the five audited frames under `snapshots/`, plus a `finding-NN-<code>.png` crop per finding                             |
-| `--samples`                                  | Midpoint samples across the duration (default 9)                                                                            |
-| `--at`                                       | Explicit timestamps in seconds, comma-separated                                                                             |
-| `--at-transitions`                           | Also sample every tween start and end, to catch transient overlaps at transition seams                                       |
-| `--max-transition-samples`                   | Cap the transition-derived samples. When it truncates, the omitted count is reported. Default: unlimited.                    |
-| `--max-issues`                               | Findings to print or return after static collapse (default 80)                                                              |
-| `--collapse-static` / `--no-collapse-static` | Fold a repeated static finding into one row (default: on)                                                                    |
-| `--tolerance`                                | Allowed overflow in px before reporting (default 2)                                                                         |
-| `--timeout`                                  | Render-ready budget in ms; also raises page navigation above its 10s floor (default 3000)                                   |
-| `--no-contrast`                              | Skip the WCAG pass while iterating                                                                                         |
-| `--strict`                                   | Exit non-zero on warnings too (default: errors only)                                                                        |
-| `--caption-zone "<x0=..;y0=..;x1=..;y1=..>"` | Opt-in band gate. Flags a text element's DOM box that overlaps the fractional band. Optional `severity` and `seek`.         |
-| `--frame-check`                              | Opt-in out-of-frame detection for `img`, `svg`, `video`, and `canvas`                                                       |
-| `--layout`                                   | Layout knobs, currently `proseCoverageFloor=0.05` (0–1, default 0.15)                                                       |
-| `--browser-gpu` / `--no-browser-gpu`         | Hardware GPU capture, or deterministic SwiftShader (default: auto-detect)                                                   |
-| `--proxy` / `--no-proxy`                     | Auto-transcode browser-hostile codecs before checking (default: on)                                                        |
+| Flag                                         | Description                                                                                                         |
+| -------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `--json`                                     | One aggregated envelope. Every finding carries a selector, `data-*` identity, source file, bbox, and sample time.   |
+| `--snapshots`                                | Save the five audited frames under `snapshots/`, plus a `finding-NN-<code>.png` crop per finding                    |
+| `--samples`                                  | Midpoint samples across the duration (default 9)                                                                    |
+| `--at`                                       | Explicit timestamps in seconds, comma-separated                                                                     |
+| `--at-transitions`                           | Also sample every tween start and end, to catch transient overlaps at transition seams                              |
+| `--max-transition-samples`                   | Cap the transition-derived samples. When it truncates, the omitted count is reported. Default: unlimited.           |
+| `--max-issues`                               | Findings to print or return after static collapse (default 80)                                                      |
+| `--collapse-static` / `--no-collapse-static` | Fold a repeated static finding into one row (default: on)                                                           |
+| `--tolerance`                                | Allowed overflow in px before reporting (default 2)                                                                 |
+| `--timeout`                                  | Render-ready budget in ms; also raises page navigation above its 10s floor (default 3000)                           |
+| `--no-contrast`                              | Skip the WCAG pass while iterating                                                                                  |
+| `--strict`                                   | Exit non-zero on warnings too (default: errors only)                                                                |
+| `--caption-zone "<x0=..;y0=..;x1=..;y1=..>"` | Opt-in band gate. Flags a text element's DOM box that overlaps the fractional band. Optional `severity` and `seek`. |
+| `--frame-check`                              | Opt-in out-of-frame detection for `img`, `svg`, `video`, and `canvas`                                               |
+| `--layout`                                   | Layout knobs, currently `proseCoverageFloor=0.05` (0–1, default 0.15)                                               |
+| `--browser-gpu` / `--no-browser-gpu`         | Hardware GPU capture, or deterministic SwiftShader (default: auto-detect)                                           |
+| `--proxy` / `--no-proxy`                     | Auto-transcode browser-hostile codecs before checking (default: on)                                                 |
 
 Contrast failures are errors, and each one reports the sampled foreground and
 background colours, the measured ratio against the required one, and a
@@ -708,12 +706,12 @@ HTML. Without a sidecar, nothing changes.
 }
 ```
 
-| Assertion                      | Catches                                                                                                        |
-| ------------------------------ | -------------------------------------------------------------------------------------------------------------- |
-| `appearsBy(selector, bySec)`   | A reveal the seek lands past — the element must reach opacity ≥ 0.5 by `bySec` (`motion_appears_late`)          |
-| `before(a, b)`                 | Broken stagger order — `a` must first appear strictly before `b` (`motion_out_of_order`)                        |
-| `staysInFrame(selector)`       | Off-frame drift — once visible, the box never leaves the canvas (`motion_off_frame`)                            |
-| `keepsMoving(withinSelector?)` | A frozen shot — no fully static window longer than `maxStaticSec`, default 2s (`motion_frozen`)                 |
+| Assertion                      | Catches                                                                                                |
+| ------------------------------ | ------------------------------------------------------------------------------------------------------ |
+| `appearsBy(selector, bySec)`   | A reveal the seek lands past — the element must reach opacity ≥ 0.5 by `bySec` (`motion_appears_late`) |
+| `before(a, b)`                 | Broken stagger order — `a` must first appear strictly before `b` (`motion_out_of_order`)               |
+| `staysInFrame(selector)`       | Off-frame drift — once visible, the box never leaves the canvas (`motion_off_frame`)                   |
+| `keepsMoving(withinSelector?)` | A frozen shot — no fully static window longer than `maxStaticSec`, default 2s (`motion_frozen`)        |
 
 `duration`, `keepsMoving.withinSelector`, and `keepsMoving.maxStaticSec` are
 optional. Findings use the same shape and envelope as layout findings and are
@@ -740,19 +738,19 @@ npx hyperframes snapshot my-project --at 1.5,4.3 --against ref.mp4
    snapshots/frame-02-at-18.7s.png
 ```
 
-| Flag                    | Description                                                                                                                                                        |
-| ----------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `--at`                  | Timestamps in seconds, comma-separated (`3.0,10.5,18.0`)                                                                                                           |
-| `--frames`              | Evenly spaced frames instead (default 5)                                                                                                                            |
-| `--output, -o`          | Where the PNGs go (default `<project>/snapshots`)                                                                                                                   |
-| `--end` / `--no-end`    | Always add a readable end-of-timeline frame (default: on). `--no-end` captures only your `--at` times.                                                              |
-| `--zoom`                | Crop to a CSS selector or an exact `x,y,w,h` region, using a raised device scale factor. Layout is untouched — never CSS zoom or a resized viewport. A selector that matches nothing is an error. |
-| `--against`             | A reference video, such as footage you are rebuilding. For every captured time also saves its frame-exact frame (`ref-XX-…png`) and a labelled render / reference pair (`pair-XX-…jpg`). |
-| `--zoom-scale`          | Pixel density for `--zoom` crops (default 3)                                                                                                                        |
-| `--angle`               | Orthogonal 3D camera for depth and occlusion checks: `front`, `iso`, `top`, `side`, or `yaw,pitch` in degrees. Tilts the whole stage, so you get real pixels.        |
-| `--describe`            | Gemini vision analysis of each frame. Runs by default when `GEMINI_API_KEY` is set. Pass a question to override the prompt, or `--describe false` to opt out.        |
-| `--timeout`             | Ms to wait for the runtime (default 5000)                                                                                                                           |
-| `--browser-gpu`, `--proxy` | Same meaning as on [`check`](#check)                                                                                                                             |
+| Flag                       | Description                                                                                                                                                                                       |
+| -------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--at`                     | Timestamps in seconds, comma-separated (`3.0,10.5,18.0`)                                                                                                                                          |
+| `--frames`                 | Evenly spaced frames instead (default 5)                                                                                                                                                          |
+| `--output, -o`             | Where the PNGs go (default `<project>/snapshots`)                                                                                                                                                 |
+| `--end` / `--no-end`       | Always add a readable end-of-timeline frame (default: on). `--no-end` captures only your `--at` times.                                                                                            |
+| `--zoom`                   | Crop to a CSS selector or an exact `x,y,w,h` region, using a raised device scale factor. Layout is untouched — never CSS zoom or a resized viewport. A selector that matches nothing is an error. |
+| `--against`                | A reference video, such as footage you are rebuilding. For every captured time also saves its frame-exact frame (`ref-XX-…png`) and a labelled render / reference pair (`pair-XX-…jpg`).          |
+| `--zoom-scale`             | Pixel density for `--zoom` crops (default 3)                                                                                                                                                      |
+| `--angle`                  | Orthogonal 3D camera for depth and occlusion checks: `front`, `iso`, `top`, `side`, or `yaw,pitch` in degrees. Tilts the whole stage, so you get real pixels.                                     |
+| `--describe`               | Gemini vision analysis of each frame. Runs by default when `GEMINI_API_KEY` is set. Pass a question to override the prompt, or `--describe false` to opt out.                                     |
+| `--timeout`                | Ms to wait for the runtime (default 5000)                                                                                                                                                         |
+| `--browser-gpu`, `--proxy` | Same meaning as on [`check`](#check)                                                                                                                                                              |
 
 Each snapshot is a 1920×1080 PNG taken by bundling the project, serving it,
 launching headless Chrome, and seeking. Useful for visual verification during
@@ -768,20 +766,20 @@ npx hyperframes keyframes [dir]
 npx hyperframes keyframes [dir] --selector "#card" --shot card-motion.png
 ```
 
-| Flag                 | Description                                                                                                                    |
-| -------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| `--selector`         | Only keyframes matching this CSS selector                                                                                       |
-| `--runtime`          | Filter hint: `gsap`, `css`, `anime`, or `all`                                                                                   |
-| `--json`             | Machine-readable results                                                                                                        |
-| `--shot`             | Write an onion-skin PNG of the real element sampled over the timeline. Pair with `--selector` to focus one element.             |
-| `--samples`          | Onion samples at equal time steps (default 9)                                                                                   |
-| `--layout`           | `path` — ghosts at real positions plus a path (default) — or `strip`, a filmstrip by time, for in-place or overlapping motion   |
-| `--from`, `--to`     | Sample only this time range, in seconds                                                                                         |
-| `--angle`            | Orbit camera: `front`, `iso`, `top`, `side`, `rear-iso`, or `yaw,pitch` in degrees                                             |
-| `--fit` / `--no-fit` | Zoom the motion to fill the diagnostic frame (default: on)                                                                      |
-| `--ghost`            | Composite the real canvas frames as translucent ghosts, older fainter, instead of bounding-box markers. Needs a `<canvas>`.     |
+| Flag                 | Description                                                                                                                   |
+| -------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| `--selector`         | Only keyframes matching this CSS selector                                                                                     |
+| `--runtime`          | Filter hint: `gsap`, `css`, `anime`, or `all`                                                                                 |
+| `--json`             | Machine-readable results                                                                                                      |
+| `--shot`             | Write an onion-skin PNG of the real element sampled over the timeline. Pair with `--selector` to focus one element.           |
+| `--samples`          | Onion samples at equal time steps (default 9)                                                                                 |
+| `--layout`           | `path` — ghosts at real positions plus a path (default) — or `strip`, a filmstrip by time, for in-place or overlapping motion |
+| `--from`, `--to`     | Sample only this time range, in seconds                                                                                       |
+| `--angle`            | Orbit camera: `front`, `iso`, `top`, `side`, `rear-iso`, or `yaw,pitch` in degrees                                            |
+| `--fit` / `--no-fit` | Zoom the motion to fill the diagnostic frame (default: on)                                                                    |
+| `--ghost`            | Composite the real canvas frames as translucent ghosts, older fainter, instead of bounding-box markers. Needs a `<canvas>`.   |
 
-Use `--ghost` for motion that happens *inside* a canvas, where the marker onion
+Use `--ghost` for motion that happens _inside_ a canvas, where the marker onion
 has nothing to draw.
 
 ### `compare` and `grade-compare`
@@ -808,16 +806,16 @@ one reference frame.
 npx hyperframes grade-compare --for frame.png --luts warm.cube,cool.cube
 ```
 
-| Flag                           | Description                                              |
-| ------------------------------ | -------------------------------------------------------- |
-| `--for`                        | Required. An image, or a video sampled at zero seconds.   |
-| `--grades`                     | JSON array of `{ label, grading }` candidates            |
-| `--luts`                       | Comma-separated `.cube` LUT files                        |
-| `--project`                    | Base directory for relative paths                        |
-| `--out`                        | Output PNG (default `<project>/grade-compare.png`)       |
-| `--baseline` / `--no-baseline` | Include the ungraded frame as an `original` cell (on)    |
-| `--timeout`                    | Render-ready timeout (default 5000 ms)                   |
-| `--json`                       | Machine-readable results                                 |
+| Flag                           | Description                                             |
+| ------------------------------ | ------------------------------------------------------- |
+| `--for`                        | Required. An image, or a video sampled at zero seconds. |
+| `--grades`                     | JSON array of `{ label, grading }` candidates           |
+| `--luts`                       | Comma-separated `.cube` LUT files                       |
+| `--project`                    | Base directory for relative paths                       |
+| `--out`                        | Output PNG (default `<project>/grade-compare.png`)      |
+| `--baseline` / `--no-baseline` | Include the ungraded frame as an `original` cell (on)   |
+| `--timeout`                    | Render-ready timeout (default 5000 ms)                  |
+| `--json`                       | Machine-readable results                                |
 
 ### Deprecated: `validate`, `inspect`, and `layout`
 
@@ -851,51 +849,51 @@ npx hyperframes render --gpu --output gpu.mp4
 
 The flags that come up most:
 
-| Flag                | Default                       | Description                                                                                                                                       |
-| ------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--output, -o`      | `renders/<name>.mp4`          | Output file path                                                                                                                                  |
-| `--composition, -c` | `index.html`                  | Render a different composition file. Sub-compositions using `<template>` wrappers must be referenced from `index.html` via `data-composition-src`. |
-| `--format`          | `mp4`                         | `mp4`, `webm`, `mov`, `gif`, or `png-sequence`. WebM and MOV carry transparency; `png-sequence` writes RGBA frames to a directory.                 |
-| `--fps, -f`         | root `data-fps`, otherwise 30 | 1–240, or an ffmpeg rational like `30000/1001` for 29.97                                                                                            |
-| `--quality, -q`     | `standard`                    | `draft`, `standard`, or `high`. Drives MP4/WebM encoder settings; MOV always uses the fixed alpha-preserving ProRes 4444 profile.                  |
+| Flag                | Default                       | Description                                                                                                                                                                           |
+| ------------------- | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--output, -o`      | `renders/<name>.mp4`          | Output file path                                                                                                                                                                      |
+| `--composition, -c` | `index.html`                  | Render a different composition file. Sub-compositions using `<template>` wrappers must be referenced from `index.html` via `data-composition-src`.                                    |
+| `--format`          | `mp4`                         | `mp4`, `webm`, `mov`, `gif`, or `png-sequence`. WebM and MOV carry transparency; `png-sequence` writes RGBA frames to a directory.                                                    |
+| `--fps, -f`         | root `data-fps`, otherwise 30 | 1–240, or an ffmpeg rational like `30000/1001` for 29.97                                                                                                                              |
+| `--quality, -q`     | `standard`                    | `draft`, `standard`, or `high`. Drives MP4/WebM encoder settings; MOV always uses the fixed alpha-preserving ProRes 4444 profile.                                                     |
 | `--resolution`      | the composition's size        | Supersample to a preset via Chrome's `deviceScaleFactor`. Aspect ratio must match and the scale must be a whole multiple. Not with `--hdr`. See [4K rendering](/guides/4k-rendering). |
-| `--docker`          | off                           | Render inside Docker for [deterministic output](/concepts/determinism)                                                                             |
-| `--variables`       | —                             | JSON object merged over the composition's `data-composition-variables` defaults                                                                    |
-| `--variables-file`  | —                             | Read those overrides from a JSON file instead                                                                                                     |
-| `--batch`           | —                             | Render one output per variables row, from a JSON array or a `{ "rows": [...] }` object                                                             |
-| `--json`            | off                           | With `--batch`, print one final JSON result document instead of progress                                                                            |
+| `--docker`          | off                           | Render inside Docker for [deterministic output](/concepts/determinism)                                                                                                                |
+| `--variables`       | —                             | JSON object merged over the composition's `data-composition-variables` defaults                                                                                                       |
+| `--variables-file`  | —                             | Read those overrides from a JSON file instead                                                                                                                                         |
+| `--batch`           | —                             | Render one output per variables row, from a JSON array or a `{ "rows": [...] }` object                                                                                                |
+| `--json`            | off                           | With `--batch`, print one final JSON result document instead of progress                                                                                                              |
 
 Quality and file size:
 
-| Flag                   | Default         | Description                                                                                              |
-| ---------------------- | --------------- | -------------------------------------------------------------------------------------------------------- |
-| `--crf`                | from `--quality`| Override MP4/WebM encoder CRF, 0–51. Lower is better quality. Not with `--video-bitrate`; rejected for MOV. |
-| `--video-bitrate`      | from `--quality`| Target MP4/WebM bitrate, e.g. `10M` or `5000k`. Not with `--crf`; rejected for MOV.                       |
-| `--vp9-cpu-used`       | encoder default | libvpx-vp9 speed/quality trade-off for WebM, -8 to 8. Env: `PRODUCER_VP9_CPU_USED`.                       |
-| `--gif-loop`           | `0`             | GIF loop count, `0` for forever. Range 0–65535, `--format gif` only.                                     |
-| `--video-frame-format` | `auto`          | How source video frames are extracted: `auto`, `jpg`, `png`. Use `png` for UI recordings, screen captures, and other colour-sensitive footage. |
-| `--hdr`                | off             | Force HDR even with no HDR sources. MP4 only. See [HDR rendering](/guides/hdr).                           |
-| `--sdr`                | off             | Force SDR even when HDR sources are detected                                                              |
+| Flag                   | Default          | Description                                                                                                                                    |
+| ---------------------- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--crf`                | from `--quality` | Override MP4/WebM encoder CRF, 0–51. Lower is better quality. Not with `--video-bitrate`; rejected for MOV.                                    |
+| `--video-bitrate`      | from `--quality` | Target MP4/WebM bitrate, e.g. `10M` or `5000k`. Not with `--crf`; rejected for MOV.                                                            |
+| `--vp9-cpu-used`       | encoder default  | libvpx-vp9 speed/quality trade-off for WebM, -8 to 8. Env: `PRODUCER_VP9_CPU_USED`.                                                            |
+| `--gif-loop`           | `0`              | GIF loop count, `0` for forever. Range 0–65535, `--format gif` only.                                                                           |
+| `--video-frame-format` | `auto`           | How source video frames are extracted: `auto`, `jpg`, `png`. Use `png` for UI recordings, screen captures, and other colour-sensitive footage. |
+| `--hdr`                | off              | Force HDR even with no HDR sources. MP4 only. See [HDR rendering](/guides/hdr).                                                                |
+| `--sdr`                | off              | Force SDR even when HDR sources are detected                                                                                                   |
 
 How it uses the machine, and when it gives up:
 
-| Flag                                                     | Default                                    | Description                                                                                                       |
-| -------------------------------------------------------- | ------------------------------------------ | ----------------------------------------------------------------------------------------------------------------- |
-| `--workers, -w`                                          | auto                                       | 1–24 workers. Each is a separate Chrome, roughly 256 MB. Auto weighs cores, memory, frame count, and cost.          |
-| `--low-memory-mode` / `--no-low-memory-mode`             | auto at 8 GB RAM or less                   | Safe profile: one worker, screenshot capture, no calibration. See the note below.                                   |
-| `--gpu`                                                  | off                                        | Hardware FFmpeg encoding (NVENC, VideoToolbox, AMF, VAAPI, QSV)                                                    |
-| `--browser-gpu` / `--no-browser-gpu`                     | auto locally, off in Docker                | Host GPU for Chrome and WebGL capture, or software rendering. Auto probes WebGL once and falls back.                |
-| `--page-side-compositing` / `--no-page-side-compositing`  | on                                         | Page-side WebGL for compatible SDR shader transitions, ~6× faster. HDR, alpha, and video disable it themselves.     |
+| Flag                                                     | Default                                    | Description                                                                                                                 |
+| -------------------------------------------------------- | ------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------- |
+| `--workers, -w`                                          | auto                                       | 1–24 workers. Each is a separate Chrome, roughly 256 MB. Auto weighs cores, memory, frame count, and cost.                  |
+| `--low-memory-mode` / `--no-low-memory-mode`             | auto at 8 GB RAM or less                   | Safe profile: one worker, screenshot capture, no calibration. See the note below.                                           |
+| `--gpu`                                                  | off                                        | Hardware FFmpeg encoding (NVENC, VideoToolbox, AMF, VAAPI, QSV)                                                             |
+| `--browser-gpu` / `--no-browser-gpu`                     | auto locally, off in Docker                | Host GPU for Chrome and WebGL capture, or software rendering. Auto probes WebGL once and falls back.                        |
+| `--page-side-compositing` / `--no-page-side-compositing` | on                                         | Page-side WebGL for compatible SDR shader transitions, ~6× faster. HDR, alpha, and video disable it themselves.             |
 | `--experimental-fast-capture`                            | on where it can engage                     | Chrome's draw-element capture, ~2× faster; falls back to screenshots on its own. Env: `PRODUCER_EXPERIMENTAL_FAST_CAPTURE`. |
-| `--frames-cache-dir`                                     | `<tmpdir>/hyperframes-extract-cache-<uid>` | Where extracted source frames cache. `off`, `none`, `false`, or `0` disables it. `doctor` reports the live value.   |
-| `--max-concurrent-renders`                               | `2`                                        | Concurrent jobs on the Producer server, 1–10                                                                       |
-| `--best-effort` / `--no-best-effort`                     | on                                         | Finish with capture-readiness warnings, or fail when media is missing or unready                                   |
-| `--strict` / `--strict-all`                              | off                                        | Fail on lint errors, or on errors and warnings                                                                     |
-| `--strict-variables`                                     | off                                        | Fail rather than warn on an undeclared or mistyped variable key                                                    |
-| `--batch-concurrency` / `--batch-fail-fast`              | `1` / off                                  | Batch rows at once, and whether the first failure stops the rest                                                   |
-| `--debug`                                                | off                                        | Keep intermediates and write diagnostics under the Producer `.debug` directory                                     |
-| `--quiet`                                                | off                                        | Less output                                                                                                        |
-| `--skill`                                                | —                                          | Record which authoring workflow started this render, in anonymous telemetry                                        |
+| `--frames-cache-dir`                                     | `<tmpdir>/hyperframes-extract-cache-<uid>` | Where extracted source frames cache. `off`, `none`, `false`, or `0` disables it. `doctor` reports the live value.           |
+| `--max-concurrent-renders`                               | `2`                                        | Concurrent jobs on the Producer server, 1–10                                                                                |
+| `--best-effort` / `--no-best-effort`                     | on                                         | Finish with capture-readiness warnings, or fail when media is missing or unready                                            |
+| `--strict` / `--strict-all`                              | off                                        | Fail on lint errors, or on errors and warnings                                                                              |
+| `--strict-variables`                                     | off                                        | Fail rather than warn on an undeclared or mistyped variable key                                                             |
+| `--batch-concurrency` / `--batch-fail-fast`              | `1` / off                                  | Batch rows at once, and whether the first failure stops the rest                                                            |
+| `--debug`                                                | off                                        | Keep intermediates and write diagnostics under the Producer `.debug` directory                                              |
+| `--quiet`                                                | off                                        | Less output                                                                                                                 |
+| `--skill`                                                | —                                          | Record which authoring workflow started this render, in anonymous telemetry                                                 |
 
 Low-memory detection reads **host** RAM, not cgroup or container limits, so
 containerised callers — including `--docker` — should set
@@ -974,9 +972,8 @@ ffmpeg -c:v libvpx-vp9 -i captions.webm -i background.mp4 \
 ```
 
 <Tip>
-  For transparency to survive, your composition's root elements need
-  `background: transparent`. WebM renders capture PNG frames rather than JPEG to
-  keep the alpha channel.
+  For transparency to survive, your composition's root elements need `background: transparent`. WebM
+  renders capture PNG frames rather than JPEG to keep the alpha channel.
 </Tip>
 
 [Rendering](/guides/rendering) covers every mode in context.
@@ -1330,34 +1327,34 @@ large media and reference it by URL.
 
 Render parameters mirror local `hyperframes render` where they overlap:
 
-| Flag                   | Default                     | Description                                                                                                                                     |
-| ---------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--fps`                | `30`                        | Integer, 1–240                                                                                                                                  |
-| `--quality`            | `standard`                  | `draft`, `standard`, or `high`                                                                                                                  |
-| `--format`             | `mp4`                       | `mp4`, `webm`, or `mov`                                                                                                                         |
-| `--resolution`         | `1080p`                     | `1080p` or `4k`. 4k bills at 1.5× and cannot combine with `webm` or `mov`.                                                                       |
+| Flag                   | Default                     | Description                                                                                                                                                                                                                                                                               |
+| ---------------------- | --------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--fps`                | `30`                        | Integer, 1–240                                                                                                                                                                                                                                                                            |
+| `--quality`            | `standard`                  | `draft`, `standard`, or `high`                                                                                                                                                                                                                                                            |
+| `--format`             | `mp4`                       | `mp4`, `webm`, or `mov`                                                                                                                                                                                                                                                                   |
+| `--resolution`         | `1080p`                     | `1080p` or `4k`. 4k bills at 1.5× and cannot combine with `webm` or `mov`.                                                                                                                                                                                                                |
 | `--aspect-ratio`       | auto                        | `16:9`, `9:16`, or `1:1`. Auto-detected from a local project's `data-width` and `data-height`, so you rarely need it. The renderer cannot reshape a composition — a value that disagrees with the authored ratio is an error. With `--asset-id` or `--url` the server defaults to `16:9`. |
-| `--composition` / `-c` | `index.html`                | Entry HTML file inside the zip                                                                                                                   |
-| `--variables`          | —                           | Inline JSON overriding `data-composition-variables`                                                                                              |
-| `--variables-file`     | —                           | Read those overrides from a JSON file                                                                                                            |
-| `--strict-variables`   | off                         | Fail when a variable is undeclared or the wrong type                                                                                             |
-| `--title`              | —                           | Free-text label echoed back in detail responses                                                                                                  |
-| `--output` / `-o`      | `renders/<render_id>.<ext>` | Where the downloaded video lands                                                                                                                 |
-| `--dry-run`            | off                         | Build and inspect the zip without authenticating, uploading, or rendering                                                                        |
+| `--composition` / `-c` | `index.html`                | Entry HTML file inside the zip                                                                                                                                                                                                                                                            |
+| `--variables`          | —                           | Inline JSON overriding `data-composition-variables`                                                                                                                                                                                                                                       |
+| `--variables-file`     | —                           | Read those overrides from a JSON file                                                                                                                                                                                                                                                     |
+| `--strict-variables`   | off                         | Fail when a variable is undeclared or the wrong type                                                                                                                                                                                                                                      |
+| `--title`              | —                           | Free-text label echoed back in detail responses                                                                                                                                                                                                                                           |
+| `--output` / `-o`      | `renders/<render_id>.<ext>` | Where the downloaded video lands                                                                                                                                                                                                                                                          |
+| `--dry-run`            | off                         | Build and inspect the zip without authenticating, uploading, or rendering                                                                                                                                                                                                                 |
 
 Lifecycle and control:
 
-| Flag                | Description                                                                                                    |
-| ------------------- | -------------------------------------------------------------------------------------------------------------- |
-| `--no-wait`         | Submit and exit immediately, printing the `render_id` to stdout                                                 |
+| Flag                | Description                                                                                                                                        |
+| ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--no-wait`         | Submit and exit immediately, printing the `render_id` to stdout                                                                                    |
 | `--callback-url`    | HTTPS webhook fired when the render terminates. It fires whether or not the CLI is still polling — pair with `--no-wait` for true fire-and-forget. |
-| `--callback-id`     | Opaque tracking ID echoed in webhook payloads                                                                   |
-| `--asset-id`        | Skip zip and upload; submit an already-uploaded composition. Mutually exclusive with the project dir and `--url`. |
-| `--url`             | Submit a public HTTPS zip URL. Same mutual exclusion as `--asset-id`.                                            |
-| `--poll-interval`   | Poll cadence in seconds (default 10)                                                                            |
-| `--max-wait`        | Maximum poll duration in minutes (default 60)                                                                   |
-| `--idempotency-key` | `Idempotency-Key` for safe retries. 1–255 characters from `[A-Za-z0-9_:.-]`.                                     |
-| `--json`            | Machine-readable JSON instead of human progress                                                                 |
+| `--callback-id`     | Opaque tracking ID echoed in webhook payloads                                                                                                      |
+| `--asset-id`        | Skip zip and upload; submit an already-uploaded composition. Mutually exclusive with the project dir and `--url`.                                  |
+| `--url`             | Submit a public HTTPS zip URL. Same mutual exclusion as `--asset-id`.                                                                              |
+| `--poll-interval`   | Poll cadence in seconds (default 10)                                                                                                               |
+| `--max-wait`        | Maximum poll duration in minutes (default 60)                                                                                                      |
+| `--idempotency-key` | `Idempotency-Key` for safe retries. 1–255 characters from `[A-Za-z0-9_:.-]`.                                                                       |
+| `--json`            | Machine-readable JSON instead of human progress                                                                                                    |
 
 ```bash
 # Pick a composition and an output path.
@@ -1454,41 +1451,41 @@ on `PATH`, and `bun` on `PATH` to build the handler ZIP.
 Flags are shared across the whole group. These identify the stack and shape the
 deploy:
 
-| Flag              | Default                              | Description                                              |
-| ----------------- | ------------------------------------ | -------------------------------------------------------- |
-| `--stack-name`    | `hyperframes-default`                | CloudFormation stack name                                |
-| `--region`        | `AWS_REGION`, else `us-east-1`       | AWS region                                               |
-| `--profile`       | `AWS_PROFILE`                        | AWS profile name                                         |
-| `--concurrency`   | `8`                                  | Lambda reserved concurrency                              |
-| `--memory`        | `10240`                              | Lambda memory in MB                                      |
-| `--chrome-source` | `sparticuz`                          | `sparticuz` or `chrome-headless-shell`                   |
-| `--skip-build`    | off                                  | Reuse the existing `handler.zip`                         |
+| Flag              | Default                        | Description                            |
+| ----------------- | ------------------------------ | -------------------------------------- |
+| `--stack-name`    | `hyperframes-default`          | CloudFormation stack name              |
+| `--region`        | `AWS_REGION`, else `us-east-1` | AWS region                             |
+| `--profile`       | `AWS_PROFILE`                  | AWS profile name                       |
+| `--concurrency`   | `8`                            | Lambda reserved concurrency            |
+| `--memory`        | `10240`                        | Lambda memory in MB                    |
+| `--chrome-source` | `sparticuz`                    | `sparticuz` or `chrome-headless-shell` |
+| `--skip-build`    | off                            | Reuse the existing `handler.zip`       |
 
 And these drive `render` and `render-batch`:
 
-| Flag                    | Default                             | Description                                                                                                       |
-| ----------------------- | ----------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| `--width`, `--height`   | required                            | Render dimensions in pixels                                                                                       |
-| `--site-id`             | content hash                        | Reuse an uploaded site instead of uploading again                                                                  |
-| `--fps`                 | `30`                                | `24`, `30`, or `60`                                                                                               |
-| `--format`              | `mp4`                               | `mp4`, `mov`, `webm`, or `png-sequence`                                                                           |
-| `--codec`               | `h264`                              | `h264` or `h265`, MP4 only                                                                                        |
-| `--quality`             | `standard`                          | `draft`, `standard`, or `high`                                                                                    |
-| `--output-resolution`   | —                                   | Supersample via Chrome `deviceScaleFactor` to a preset (`1080p`, `4k`, `uhd`, `hd`, `landscape-4k`, …) without changing layout |
-| `--chunk-size`          | `240`                               | Frames per chunk                                                                                                  |
-| `--max-parallel-chunks` | `16`                                | Concurrent chunks per render                                                                                      |
-| `--target-chunk-frames` | —                                   | Ceiling on frames per chunk. The planner adds chunks — up to `--max-parallel-chunks` — to stay under it, and short videos still collapse to fewer. Ignored when `--chunk-size` is set. |
-| `--variables`           | —                                   | JSON object reaching every chunk worker as `window.__hfVariables`                                                  |
-| `--variables-file`      | —                                   | Read those from a JSON file                                                                                       |
-| `--strict-variables`    | off                                 | Fail instead of warn on an undeclared or mistyped key                                                             |
-| `--execution-name`      | `hf-render-<uuid>`                  | Step Functions execution name                                                                                     |
-| `--output-key`          | `renders/<exec>/output.<ext>`       | Final output S3 key                                                                                               |
-| `--batch`               | —                                   | JSONL batch file for `render-batch`                                                                               |
-| `--max-concurrent`      | `50`                                | In-flight Step Functions executions for `render-batch`                                                            |
-| `--dry-run`             | off                                 | For `render-batch`: print the manifest without calling AWS                                                        |
-| `--wait`                | off                                 | Block until the render finishes, streaming per-chunk progress                                                     |
-| `--wait-interval-ms`    | `5000`                              | Poll cadence while `--wait` is set                                                                                |
-| `--json`                | off                                 | Machine-readable output                                                                                            |
+| Flag                    | Default                       | Description                                                                                                                                                                            |
+| ----------------------- | ----------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--width`, `--height`   | required                      | Render dimensions in pixels                                                                                                                                                            |
+| `--site-id`             | content hash                  | Reuse an uploaded site instead of uploading again                                                                                                                                      |
+| `--fps`                 | `30`                          | `24`, `30`, or `60`                                                                                                                                                                    |
+| `--format`              | `mp4`                         | `mp4`, `mov`, `webm`, or `png-sequence`                                                                                                                                                |
+| `--codec`               | `h264`                        | `h264` or `h265`, MP4 only                                                                                                                                                             |
+| `--quality`             | `standard`                    | `draft`, `standard`, or `high`                                                                                                                                                         |
+| `--output-resolution`   | —                             | Supersample via Chrome `deviceScaleFactor` to a preset (`1080p`, `4k`, `uhd`, `hd`, `landscape-4k`, …) without changing layout                                                         |
+| `--chunk-size`          | `240`                         | Frames per chunk                                                                                                                                                                       |
+| `--max-parallel-chunks` | `16`                          | Concurrent chunks per render                                                                                                                                                           |
+| `--target-chunk-frames` | —                             | Ceiling on frames per chunk. The planner adds chunks — up to `--max-parallel-chunks` — to stay under it, and short videos still collapse to fewer. Ignored when `--chunk-size` is set. |
+| `--variables`           | —                             | JSON object reaching every chunk worker as `window.__hfVariables`                                                                                                                      |
+| `--variables-file`      | —                             | Read those from a JSON file                                                                                                                                                            |
+| `--strict-variables`    | off                           | Fail instead of warn on an undeclared or mistyped key                                                                                                                                  |
+| `--execution-name`      | `hf-render-<uuid>`            | Step Functions execution name                                                                                                                                                          |
+| `--output-key`          | `renders/<exec>/output.<ext>` | Final output S3 key                                                                                                                                                                    |
+| `--batch`               | —                             | JSONL batch file for `render-batch`                                                                                                                                                    |
+| `--max-concurrent`      | `50`                          | In-flight Step Functions executions for `render-batch`                                                                                                                                 |
+| `--dry-run`             | off                           | For `render-batch`: print the manifest without calling AWS                                                                                                                             |
+| `--wait`                | off                           | Block until the render finishes, streaming per-chunk progress                                                                                                                          |
+| `--wait-interval-ms`    | `5000`                        | Poll cadence while `--wait` is set                                                                                                                                                     |
+| `--json`                | off                           | Machine-readable output                                                                                                                                                                |
 
 ### `lambda deploy`
 
@@ -1698,9 +1695,9 @@ delete it to fall back to the defaults.
 | Field              | Description                                                                             |
 | ------------------ | --------------------------------------------------------------------------------------- |
 | `registry`         | Base URL of the registry `add` pulls from. Defaults to the public HyperFrames registry. |
-| `paths.blocks`     | Where block `.html` files land, relative to the project root.                            |
+| `paths.blocks`     | Where block `.html` files land, relative to the project root.                           |
 | `paths.components` | Where component files land.                                                             |
-| `paths.assets`     | Where referenced assets — images, fonts — land.                                          |
+| `paths.assets`     | Where referenced assets — images, fonts — land.                                         |
 
 Anything you leave out gets the default, so the file only needs your overrides.
 

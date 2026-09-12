@@ -51,20 +51,20 @@ wreck the next.
 
 ## What each control does
 
-| Control | Use it for |
-| --- | --- |
-| Preset and strength | Pick a whole look, then dial it back |
-| Exposure, contrast, highlights, shadows, whites, blacks | Brightness and contrast, overall and per tonal range |
-| Warmth, tint, vibrance, saturation | Take out a color cast, or push color further |
-| Color wheels | Tint shadows, midtones and highlights separately |
-| RGB curves | Redraw the brightness ramp — whole image, or red, green and blue one at a time |
-| Hue curves | Pick one hue and move only it: shift, saturate or brighten |
-| HSL selections | Key a band of hue, saturation and brightness, then correct only those pixels. Up to four, in order |
-| Grain and vignette | Add texture, or darken the edges to pull the eye in |
-| Custom LUT | Load a `.cube` file that maps every color to another |
+| Control                                                 | Use it for                                                                                         |
+| ------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Preset and strength                                     | Pick a whole look, then dial it back                                                               |
+| Exposure, contrast, highlights, shadows, whites, blacks | Brightness and contrast, overall and per tonal range                                               |
+| Warmth, tint, vibrance, saturation                      | Take out a color cast, or push color further                                                       |
+| Color wheels                                            | Tint shadows, midtones and highlights separately                                                   |
+| RGB curves                                              | Redraw the brightness ramp — whole image, or red, green and blue one at a time                     |
+| Hue curves                                              | Pick one hue and move only it: shift, saturate or brighten                                         |
+| HSL selections                                          | Key a band of hue, saturation and brightness, then correct only those pixels. Up to four, in order |
+| Grain and vignette                                      | Add texture, or darken the edges to pull the eye in                                                |
+| Custom LUT                                              | Load a `.cube` file that maps every color to another                                               |
 
-{/* VISUAL NEEDED (2): color wheels, a bent RGB curve, a hue curve and one HSL
-selection, each beside the frame it produced. */}
+{/_ VISUAL NEEDED (2): color wheels, a bent RGB curve, a hue curve and one HSL
+selection, each beside the frame it produced. _/}
 
 ## Read the scopes, not your screen
 
@@ -73,16 +73,16 @@ be too bright. Studio draws four.
 
 - **Histogram** — how much of the frame is dark, mid, or bright. Piled against
   either end means detail is already gone.
-- **Waveform** — brightness across the frame left to right, so you see *which
-  part* is blown out.
+- **Waveform** — brightness across the frame left to right, so you see _which
+  part_ is blown out.
 - **RGB parade** — that waveform split into red, green and blue. One channel
   riding high is your color cast, named.
 - **Vectorscope** — a circle of hues: direction is which color, distance from the
   centre is how saturated. Skin tones land on one known line, so faces are quick
   to check.
 
-{/* VISUAL NEEDED (3): the four scopes side by side, on the same frame before
-and after a correction. */}
+{/_ VISUAL NEEDED (3): the four scopes side by side, on the same frame before
+and after a correction. _/}
 
 ## Compare candidate looks in one image
 
@@ -98,8 +98,8 @@ labelled `original` unless you pass `--no-baseline`. Up to sixteen cells land
 four to a row in `grade-compare.png`, or wherever `--out` points. Swap `--grades`
 for `--luts looks/a.cube,looks/b.cube` to compare LUT files the same way.
 
-{/* VISUAL NEEDED (4): a real grade-compare.png sheet — the labelled grid with
-`original` in the first cell. */}
+{/_ VISUAL NEEDED (4): a real grade-compare.png sheet — the labelled grid with
+`original` in the first cell. _/}
 
 ## Or describe the problem to the agent
 
@@ -143,8 +143,8 @@ and broadcast video, which is also the only color space these controls work in.
 LOG footage, shot deliberately flat and grey so it holds detail for grading,
 needs the transform its camera expects or comes out wrong rather than stylized.
 
-{/* VISUAL NEEDED (5): one frame under two or three .cube LUTs, plus the same
-LUT at partial and full intensity. */}
+{/_ VISUAL NEEDED (5): one frame under two or three .cube LUTs, plus the same
+LUT at partial and full intensity. _/}
 
 ## Where the grade is stored
 
@@ -153,7 +153,10 @@ corrections under `adjust`, grain and vignette under `details`, stylized
 treatments under `effects`.
 
 ```html
-<video src="./interview.mp4" data-color-grading='{"preset":"skin-soft","intensity":0.7,"adjust":{"exposure":0.15},"effects":{"bloom":0.4}}'></video>
+<video
+  src="./interview.mp4"
+  data-color-grading='{"preset":"skin-soft","intensity":0.7,"adjust":{"exposure":0.15},"effects":{"bloom":0.4}}'
+></video>
 ```
 
 The nesting is not optional. A flat object such as `{"exposure":0.15}` renders

@@ -14,7 +14,10 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 
 ## Install
 
-<InstallCommand command="npx hyperframes add code-particle-assemble" item="code-particle-assemble" />
+<InstallCommand
+  command="npx hyperframes add code-particle-assemble"
+  item="code-particle-assemble"
+/>
 
 That writes one file: `compositions/code-particle-assemble.html`.
 
@@ -511,7 +514,15 @@ That writes one file: `compositions/code-particle-assemble.html`.
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="code-particle-assemble" data-composition-src="compositions/code-particle-assemble.html" data-start="0" data-duration="8" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="code-particle-assemble"
+  data-composition-src="compositions/code-particle-assemble.html"
+  data-start="0"
+  data-duration="8"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

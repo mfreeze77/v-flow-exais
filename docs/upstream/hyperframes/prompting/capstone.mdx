@@ -3,7 +3,15 @@ title: Capstone — every technique, one journey
 description: "One prompt, one unbroken camera move, and every technique in this guide joined into a single 62-second film."
 ---
 
-<video controls muted loop playsinline preload="metadata" src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/capstone-timeline-default-v2.mp4#t=0.1" style={{ borderRadius: "0.5rem", marginTop: "0.75rem" }}></video>
+<video
+  controls
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/capstone-timeline-default-v2.mp4#t=0.1"
+  style={{ borderRadius: "0.5rem", marginTop: "0.75rem" }}
+></video>
 *"The Timeline" — 1920x1080, ~62 seconds, one prompt, one unbroken camera move, unedited.*
 
 One prompt made this. Nothing was cut or stitched together afterward. The prompt asked for about 60 seconds. The render came back at 1:02, because the closing lockup holds for a two-second breath.
@@ -55,6 +63,7 @@ That is the same catch-and-tighten loop [Iterating](/prompting/iterating) teache
 > **Design system: the provided `frame.md` is the single source of brand truth — read it first and obey it exactly.** It is the real HyperFrames brand (by HeyGen), dark-first: flat near-black ground (`--page-bg` `#0a0a0a`), greyscale text hierarchy (`#fafafa` / `#a1a1aa` / `#71717a`), and **mint `#3CE6AC` used sparingly as the single accent — mint means go / primary / active**. The mint→cyan gradient (`#3CE6AC → #00E3FF`) appears in exactly one place in the whole film: the final CTA lockup. Typography from the file: **ABC Solar Display 700** for the display lockups ("WRITE HTML." / "WRITE HTML. RENDER VIDEO."), **TT Norms Pro** for everything else, **TT Norms Pro Mono** for all machine-flavored text (code, commands, timecodes, counts, region labels) with `tabular-nums`. Sentence case everywhere except small uppercase letter-spaced eyebrows. Glass surfaces use the file's `--glass-*` tokens with real backdrop blur. Radii, borders, shadows, and easing curves come from the file's tokens (`--ease-out-quint` entrances, `--ease-spring` count-bumps). Font files are provided as woff2 assets — bundle them, don't fetch from the network.
 >
 > **Cinematography contract (the most important section — this is what the film lives or dies on):**
+>
 > - ONE continuous camera journey with a dwell-and-sweep rhythm. The whole film is a single wide world (one large scene space) that the camera dollies across — left to right, with occasional push-ins and one descent — in one unbroken move with NO hard cuts anywhere except inside the two sanctioned seam moments named below. The rhythm: the camera SWEEPS between regions, then eases to a genuine REST at each region's hero moment — a full stop of roughly 1.5–2.5 seconds while the main point lands (the hero count completing, the kicker stamping, the spoken caption line, the check completing) — then accelerates away. The dwell is what gives the sweep meaning: without the rest, emphasis dies mid-motion. During a dwell the WORLD keeps resolving (counters tick, labels stamp, secondary motion continues) — the camera rests, the film never freezes.
 > - Scene changes happen by ARRIVING, not cutting. The next region is already visible at the edge of frame before the camera reaches it; the previous region exits by parallax, not by fade-out.
 > - NO slideshow tells: no element cluster that fades in centered, sits, and fades out; no region that reads as a static slide while the camera happens to pass; no motion that is just shaking or idling in place. Motion = the camera's travel + elements entering along the direction of travel + elements the camera hands off between regions.
@@ -66,6 +75,7 @@ That is the same catch-and-tighten loop [Iterating](/prompting/iterating) teache
 > **Message, stated once:** "Write HTML. Render video." — opening hook and closing lockup. Arc: Type → Mount → Measure → Everywhere → Material → Surface → Rhythm → Depth → Render. Audience: developers evaluating a programmable video tool. Mood: focused build-up that keeps accelerating, resolving confident and warm at the render.
 >
 > **Direction (every region obeys it):**
+>
 > - Brand restraint per `frame.md`: the world is greyscale-on-near-black; `ground` `#0a0a0a` and mint `ink` `#3CE6AC` are declared as the two composition variables. The wire, the playhead, active chips, and each region's single hero accent are mint; everything else is the greyscale text/border hierarchy. No other hue anywhere — except cyan `#00E3FF`, which exists only inside the one sanctioned mint→cyan gradient on the final CTA.
 > - VO-paced reveals: each region's elements land on their spoken cues as the camera arrives; secondary elements keep resolving while the camera is present; the region is complete just as the camera accelerates away.
 > - Permanent chrome: the ruler (persistent element 2) plus a faint ink grid at ~8% opacity over the ground, everywhere in the world.
@@ -107,17 +117,17 @@ That is the same catch-and-tighten loop [Iterating](/prompting/iterating) teache
 
 ## Which chapter taught which region
 
-| Region | What it demonstrates | Chapter that teaches it |
-| --- | --- | --- |
-| Type (0:00–0:07) | Per-character code typing. The underline that becomes the wire. | [Code animations](/prompting/code-blocks), [Prompt anatomy](/prompting/anatomy) |
-| Mount (0:07–0:14) | The timeline's own vocabulary: tracks, clips, `data-*` labels | [Prompt anatomy](/prompting/anatomy) |
-| Measure (0:14–0:21) | The `data-chart` block. The wire as a chart baseline, by matched motion. | [Data and maps](/prompting/data-and-maps), [Transitions](/prompting/transitions) |
-| Everywhere (0:21–0:28) | The `world-map` block. Real Lambda and Cloud Run regions. | [Data and maps](/prompting/data-and-maps), [Rendering and output](/prompting/rendering-and-output) |
-| Material (0:28–0:39) | The footage pipeline, in order. Generated clip, HEVC proxy, background removed *before* the speech, the speaker's own keywords slamming in behind the cutout, lower third behind the subject. | [Media and audio](/prompting/media-and-audio), [Caption styles](/prompting/captions-catalog), [Overlays and lower thirds](/prompting/overlays-and-lower-thirds) |
-| Surface (0:39–0:45) | The `sdf-iris` shader lens, frosted glass, a palette-neutral generated mural. | [Transitions](/prompting/transitions), [VFX and liquid glass](/prompting/vfx-and-liquid-glass), [When to generate artwork](/prompting/generated-artwork) |
-| Rhythm (0:45–0:52) | Cuts on a real analyzed beat grid from `hyperframes beats`. | [Music videos and slideshows](/prompting/music-and-slideshows) |
-| Depth (0:52–0:56) | Real Three.js via the frame adapter. The wire as a 3D coil, with the chip threading the loops and passing behind the form. | [Runtimes and 3D](/prompting/runtimes-and-3d) |
-| Render (0:56–1:02) | Seeded confetti, two-frame holds. Determinism as the punchline. | [Motion that reads premium](/prompting/motion) (rule 8) |
+| Region                 | What it demonstrates                                                                                                                                                                          | Chapter that teaches it                                                                                                                                         |
+| ---------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Type (0:00–0:07)       | Per-character code typing. The underline that becomes the wire.                                                                                                                               | [Code animations](/prompting/code-blocks), [Prompt anatomy](/prompting/anatomy)                                                                                 |
+| Mount (0:07–0:14)      | The timeline's own vocabulary: tracks, clips, `data-*` labels                                                                                                                                 | [Prompt anatomy](/prompting/anatomy)                                                                                                                            |
+| Measure (0:14–0:21)    | The `data-chart` block. The wire as a chart baseline, by matched motion.                                                                                                                      | [Data and maps](/prompting/data-and-maps), [Transitions](/prompting/transitions)                                                                                |
+| Everywhere (0:21–0:28) | The `world-map` block. Real Lambda and Cloud Run regions.                                                                                                                                     | [Data and maps](/prompting/data-and-maps), [Rendering and output](/prompting/rendering-and-output)                                                              |
+| Material (0:28–0:39)   | The footage pipeline, in order. Generated clip, HEVC proxy, background removed _before_ the speech, the speaker's own keywords slamming in behind the cutout, lower third behind the subject. | [Media and audio](/prompting/media-and-audio), [Caption styles](/prompting/captions-catalog), [Overlays and lower thirds](/prompting/overlays-and-lower-thirds) |
+| Surface (0:39–0:45)    | The `sdf-iris` shader lens, frosted glass, a palette-neutral generated mural.                                                                                                                 | [Transitions](/prompting/transitions), [VFX and liquid glass](/prompting/vfx-and-liquid-glass), [When to generate artwork](/prompting/generated-artwork)        |
+| Rhythm (0:45–0:52)     | Cuts on a real analyzed beat grid from `hyperframes beats`.                                                                                                                                   | [Music videos and slideshows](/prompting/music-and-slideshows)                                                                                                  |
+| Depth (0:52–0:56)      | Real Three.js via the frame adapter. The wire as a 3D coil, with the chip threading the loops and passing behind the form.                                                                    | [Runtimes and 3D](/prompting/runtimes-and-3d)                                                                                                                   |
+| Render (0:56–1:02)     | Seeded confetti, two-frame holds. Determinism as the punchline.                                                                                                                               | [Motion that reads premium](/prompting/motion) (rule 8)                                                                                                         |
 
 Three more chapters run through the whole film instead of one region.
 
@@ -139,8 +149,17 @@ The new wrinkle is the world. It is one wide scene space that a camera transform
 hyperframes render --variables '{"ground":"#0d1420","ink":"#c8ff3d"}' --strict-variables
 ```
 
-<video controls muted loop playsinline preload="metadata" src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/capstone-timeline-reskin-v2.mp4#t=0.1" style={{ borderRadius: "0.5rem", marginTop: "0.75rem" }}></video>
-*The same composition, navy and acid green — the wire, ruler, chart, map, glass, and even the generated mural all follow the override.*
+<video
+  controls
+  muted
+  loop
+  playsinline
+  preload="metadata"
+  src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/capstone-timeline-reskin-v2.mp4#t=0.1"
+  style={{ borderRadius: "0.5rem", marginTop: "0.75rem" }}
+></video>
+*The same composition, navy and acid green — the wire, ruler, chart, map, glass, and even the
+generated mural all follow the override.*
 
 The mural trick from the previous capstone carries over. The artwork is generated in grayscale, then duotoned live by CSS layers driven by the `ground` and `ink` variables. Even the raster re-skins. Keep color in CSS and shapes in the raster whenever a template frame needs to survive a re-skin.
 
@@ -151,14 +170,14 @@ Read the prompt again with the guide behind you and it stops looking like one en
 What is new is the connective tissue, and that is where most of the prompt's words go.
 
 - **The cinematography contract** fuses nine demos into one space. Remove it and you get a playlist of chapter examples. Keep it and the same nine pieces are a film.
-- **The persistent elements do the handoffs.** The wire is the trick that makes each region *become* the next. The same line is the typed underline, the chart baseline, the map arc, the waveform, and the 3D coil. The chip is a callback threaded through all nine techniques. The ruler makes the film's own medium visible.
+- **The persistent elements do the handoffs.** The wire is the trick that makes each region _become_ the next. The same line is the typed underline, the chart baseline, the map arc, the waveform, and the 3D coil. The chip is a callback threaded through all nine techniques. The ruler makes the film's own medium visible.
 - **One brand file governs every region.** Nine techniques drawn from a dozen chapters land looking like one designer made them.
 - **One variable scope re-skins all of it.** The chart, the map, the glass, the mural, and the confetti all answer to the same two variables.
 - **One soundtrack paces all of it** ([Media and audio](/prompting/media-and-audio)). The narration cues every region's reveals. The same BGM that beds the narration feeds the Rhythm region's beat analysis. One SFX plan rides the visual hits: keystrokes at the open, a whoosh per handoff, ticks on counters and beats, one riser into the render.
 
 That is the method this guide has been building toward. Learn each technique on its own. Then write the prompt whose job is not to invent the pieces but to bind them: shared space, shared spine, shared brand, shared variables, shared clock.
 
-*Next: [Rules and anti-patterns](/prompting/rules-and-anti-patterns) — keep this cheat sheet open while you build.*
+_Next: [Rules and anti-patterns](/prompting/rules-and-anti-patterns) — keep this cheat sheet open while you build._
 
 ## Related topics
 

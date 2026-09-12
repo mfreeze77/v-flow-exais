@@ -19,7 +19,9 @@ For a gentler explanation, start with [Compositions](/concepts/compositions) and
     <meta name="viewport" content="width=1920, height=1080" />
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
     <style>
-      body { margin: 0; }
+      body {
+        margin: 0;
+      }
       #root {
         position: relative;
         width: 1920px;
@@ -43,13 +45,7 @@ For a gentler explanation, start with [Compositions](/concepts/compositions) and
       data-width="1920"
       data-height="1080"
     >
-      <section
-        id="title-card"
-        class="clip"
-        data-start="0"
-        data-duration="5"
-        data-track-index="1"
-      >
+      <section id="title-card" class="clip" data-start="0" data-duration="5" data-track-index="1">
         <h1 id="title">Hello HyperFrames</h1>
       </section>
     </div>
@@ -74,13 +70,13 @@ timeline registry key.
 
 ## Composition root
 
-| Attribute | Required | Meaning |
-| --- | --- | --- |
-| `data-composition-id` | Yes | Unique composition ID |
-| `data-start="0"` | Yes on the top-level root | Start of the composition |
-| `data-width` and `data-height` | Yes | Authored frame dimensions in pixels |
-| `data-duration` | Usually | Total render duration in seconds |
-| `data-no-timeline` | Only for a timeline-free composition | Tells the runtime not to wait for a timeline |
+| Attribute                      | Required                             | Meaning                                      |
+| ------------------------------ | ------------------------------------ | -------------------------------------------- |
+| `data-composition-id`          | Yes                                  | Unique composition ID                        |
+| `data-start="0"`               | Yes on the top-level root            | Start of the composition                     |
+| `data-width` and `data-height` | Yes                                  | Authored frame dimensions in pixels          |
+| `data-duration`                | Usually                              | Total render duration in seconds             |
+| `data-no-timeline`             | Only for a timeline-free composition | Tells the runtime not to wait for a timeline |
 
 An explicit root `data-duration` is the render length. The compiler reads it
 before composition scripts run, so a script or variable override cannot change
@@ -92,13 +88,13 @@ unbounded animation, and timeline-free compositions need an explicit duration.
 
 ## Timed clips
 
-| Attribute | Required | Meaning |
-| --- | --- | --- |
-| `id` | Yes | Stable identifier for timing, editing, and animation |
-| `data-start` | Yes | Start in seconds or a relative timing expression |
-| `data-duration` | Yes for DOM, image, and nested-composition clips | Visible slot length in seconds |
-| `data-track-index` | No | Studio timeline lane, display only. The render never reads it and it does not prevent overlap |
-| `class="clip"` | Recommended for authored timed DOM and image elements | Layout and tooling convention. Visibility is keyed off `data-start`, but the shared `.clip` rule supplies the full-frame box |
+| Attribute          | Required                                              | Meaning                                                                                                                      |
+| ------------------ | ----------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| `id`               | Yes                                                   | Stable identifier for timing, editing, and animation                                                                         |
+| `data-start`       | Yes                                                   | Start in seconds or a relative timing expression                                                                             |
+| `data-duration`    | Yes for DOM, image, and nested-composition clips      | Visible slot length in seconds                                                                                               |
+| `data-track-index` | No                                                    | Studio timeline lane, display only. The render never reads it and it does not prevent overlap                                |
+| `class="clip"`     | Recommended for authored timed DOM and image elements | Layout and tooling convention. Visibility is keyed off `data-start`, but the shared `.clip` rule supplies the full-frame box |
 
 `data-track-index` does not control paint order. Use CSS `z-index` for
 front-to-back layering. Two clips on the same track may overlap in time; the
@@ -121,12 +117,12 @@ Audio has no visual lifecycle.
 ></video>
 ```
 
-| Attribute | Applies to | Meaning |
-| --- | --- | --- |
+| Attribute                                  | Applies to                       | Meaning                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| ------------------------------------------ | -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
 | `data-media-start` / `data-playback-start` | Video, audio, nested composition | Offset into the source file, used by trim and split. Two groups of readers disagree, so the right name depends on the element. **Read only `data-media-start`:** the timing compiler, the HTML parser, `hyperframes validate` (which only inspects `<audio>`), and the engine's audio mixer (which feeds ffmpeg `-ss`). **Read `data-playback-start` first, falling back to `data-media-start`:** the runtime player, Studio (which also writes it), and `hyperframes snapshot`. Because the audio mixer reads only `data-media-start`, a `<video>` authored with just `data-playback-start` renders a trimmed picture over untrimmed audio. Set the name by kind: **`<video>` / `<audio>` → `data-media-start`**; **nested composition → `data-playback-start`** — composition hosts are inspected only by the playback-start-first readers (the media-start-only ones are all `<video>`/`<audio>`-scoped). `data-media-start` still works there as a fallback, but `data-playback-start` is the canonical name Studio writes and normalises to for new composition hosts, so the other name works until an edit rewrites it (it is the [child-timeline offset](/concepts/compositions)). |
-| `data-playback-rate` | Video, audio, nested composition | Playback multiplier from `0.1` to `5` |
-| `data-volume` | Video and audio | Static gain. `1` is 0 dB, `0` is silence, and values above `1` boost up to `3.98` (+12 dB) |
-| `data-has-audio="true"` | Video | Declares that the video contributes audio |
+| `data-playback-rate`                       | Video, audio, nested composition | Playback multiplier from `0.1` to `5`                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| `data-volume`                              | Video and audio                  | Static gain. `1` is 0 dB, `0` is silence, and values above `1` boost up to `3.98` (+12 dB)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
+| `data-has-audio="true"`                    | Video                            | Declares that the video contributes audio                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 Video and audio may omit `data-duration` when their intrinsic duration is known
 and the whole remaining source should play.
@@ -185,13 +181,7 @@ composition:
   playsinline
 ></video>
 
-<section
-  id="result"
-  class="clip"
-  data-start="intro + 0.5"
-  data-duration="3"
-  data-track-index="0"
->
+<section id="result" class="clip" data-start="intro + 0.5" data-duration="3" data-track-index="0">
   Result
 </section>
 ```
@@ -235,12 +225,7 @@ Styles and scripts needed by that composition must be inside the template:
     }
   </style>
 
-  <div
-    id="root"
-    data-composition-id="pricing"
-    data-width="1920"
-    data-height="1080"
-  >
+  <div id="root" data-composition-id="pricing" data-width="1920" data-height="1080">
     <!-- scene content -->
   </div>
 
@@ -266,7 +251,7 @@ render or a nested host:
   data-composition-variables='[
     {"id":"title","type":"string","label":"Title","default":"Hello"}
   ]'
->
+></html>
 ```
 
 ```html

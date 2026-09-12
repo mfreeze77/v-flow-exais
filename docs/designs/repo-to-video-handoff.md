@@ -53,15 +53,15 @@ cuts. A fractional-FPS recovery file was separately probed and inspected.
 
 The complete 134-ticket contract is not closed. In particular:
 
-| Area | Remaining acceptance |
-|---|---|
-| Foundation / distribution | AFM-007/008/010/012–016; repair inherited diagram package command paths and prove a complete clean build. Root full-suite success is not claimed. |
-| Project contracts | Full schema migrations, exact-byte legacy backups, override/rebase rules, GC and all crash/fault phases. |
-| Geometry / motion | Immutable upstream golden comparisons and exhaustive routing/group/label/readability coverage for all five families; numeric seam evidence currently covers the demonstrated films. |
-| Studio | Direct manipulation, full native/diagram capability parity, advanced history/regeneration and composition editing beyond the implemented source/scene controls. |
-| Source / proposals | Before/head PR reviews, configured-provider host integration and useful story planning remain open. Typed command/claim/diff review, revision/rejection/acceptance now have CLI and browser evidence; see `proposal-review.md`. AFM-098 is still in progress. |
-| Production | Narration, captions, audio mixing and broader style/output presets. Current videos are silent. |
-| Privacy / lifecycle | Complete E12 baseline, active native HTML policy, bounded Git clone storage, receipt/runtime/font pinning, user-facing retention cleanup and crash tests at every producer stage. The inherited font compiler can fetch Google Fonts during compilation. |
+| Area                      | Remaining acceptance                                                                                                                                                                                                                                          |
+| ------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Foundation / distribution | AFM-007/008/010/012–016; repair inherited diagram package command paths and prove a complete clean build. Root full-suite success is not claimed.                                                                                                             |
+| Project contracts         | Full schema migrations, exact-byte legacy backups, override/rebase rules, GC and all crash/fault phases.                                                                                                                                                      |
+| Geometry / motion         | Immutable upstream golden comparisons and exhaustive routing/group/label/readability coverage for all five families; numeric seam evidence currently covers the demonstrated films.                                                                           |
+| Studio                    | Direct manipulation, full native/diagram capability parity, advanced history/regeneration and composition editing beyond the implemented source/scene controls.                                                                                               |
+| Source / proposals        | Before/head PR reviews, configured-provider host integration and useful story planning remain open. Typed command/claim/diff review, revision/rejection/acceptance now have CLI and browser evidence; see `proposal-review.md`. AFM-098 is still in progress. |
+| Production                | Narration, captions, audio mixing and broader style/output presets. Current videos are silent.                                                                                                                                                                |
+| Privacy / lifecycle       | Complete E12 baseline, active native HTML policy, bounded Git clone storage, receipt/runtime/font pinning, user-facing retention cleanup and crash tests at every producer stage. The inherited font compiler can fetch Google Fonts during compilation.      |
 
 G0/G1 and final capability gates remain unpassed. Keep the seven historical
 verified tickets separate from the newly exercised implementation slice.

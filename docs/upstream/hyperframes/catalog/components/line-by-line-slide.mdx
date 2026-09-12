@@ -134,12 +134,12 @@ That writes one file: `compositions/components/line-by-line-slide.html`.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `size` | `standard` | `compact`, `standard`, `display` | Type size of the whole stack. |
-| `tone` | `ink` | `ink`, `paper`, `accent` | Line colour: ink for light frames, paper for dark ones, accent rides the brand token. |
-| `density` | `standard` | `fine`, `standard`, `coarse` | The gap between lines, from a tight block to an airy stack. |
-| `direction` | `left` | `left`, `right` | Which side the lines slide in from as the timeline drives the offset. |
+| Variable    | Default    | Accepts                          | What it does                                                                          |
+| ----------- | ---------- | -------------------------------- | ------------------------------------------------------------------------------------- |
+| `size`      | `standard` | `compact`, `standard`, `display` | Type size of the whole stack.                                                         |
+| `tone`      | `ink`      | `ink`, `paper`, `accent`         | Line colour: ink for light frames, paper for dark ones, accent rides the brand token. |
+| `density`   | `standard` | `fine`, `standard`, `coarse`     | The gap between lines, from a tight block to an airy stack.                           |
+| `direction` | `left`     | `left`, `right`                  | Which side the lines slide in from as the timeline drives the offset.                 |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

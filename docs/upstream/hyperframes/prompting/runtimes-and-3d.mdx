@@ -54,7 +54,8 @@ only exists where there's an actual camera:
   src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/camera-orbit.mp4#t=0.1"
   loop
 />
-*A seek-driven Three.js drone orbit. The camera sweeps a continuous arc, which CSS transforms cannot do.*
+*A seek-driven Three.js drone orbit. The camera sweeps a continuous arc, which CSS transforms cannot
+do.*
 
 - ❌ `a drone-orbit camera move around the logo` with no runtime named — CSS has no camera to orbit
 - ✅ `orbit the camera around the logo — Three.js via the adapter`
@@ -91,7 +92,7 @@ gotchas worth knowing before you ask for one.
 
 ## Scene-to-scene → shader transitions
 
-Motion *within* a scene is one thing. The handoff *between* scenes is another.
+Motion _within_ a scene is one thing. The handoff _between_ scenes is another.
 For a designed transition — a wipe, a glitch, a liquid dissolve — ask for a
 shader transition at that specific moment:
 
@@ -120,17 +121,17 @@ Unseeded randomness renders differently each frame and breaks reproducibility:
 - ❌ `scatter 200 particles randomly`
 - ✅ `scatter 200 particles from a seeded random layout` — say **seeded** and the positions stay stable across frames and re-renders
 
-The rule of thumb: anything the video needs to *know* must be present before
+The rule of thumb: anything the video needs to _know_ must be present before
 rendering starts, baked in or passed as a
 [variable](/prompting/variables-and-templating). Anything random must be seeded.
 
 ## The capstone thread
 
 <Note>
-**Capstone thread** — the [Level 7 film](/prompting/capstone)'s Depth region is
-real Three.js through the frame adapter. The timeline wire coils around a rim-lit
-faceted form, and the protagonist chip threads the coil's loops and passes behind
-the form with true depth occlusion (cut from the film, below).
+  **Capstone thread** — the [Level 7 film](/prompting/capstone)'s Depth region is real Three.js
+  through the frame adapter. The timeline wire coils around a rim-lit faceted form, and the
+  protagonist chip threads the coil's loops and passes behind the form with true depth occlusion
+  (cut from the film, below).
 </Note>
 
 This is the clause in the [full capstone
@@ -146,8 +147,8 @@ prompt language you can lift for your own video:
 />
 *That clause, rendered — the region cut from the finished film.*
 
-*Next: [Media and audio](/prompting/media-and-audio) — precise phrasing for
-voiceover, music, sound, and assets, instead of motion and rendering.*
+_Next: [Media and audio](/prompting/media-and-audio) — precise phrasing for
+voiceover, music, sound, and assets, instead of motion and rendering._
 
 ## Related topics
 

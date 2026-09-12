@@ -409,14 +409,14 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `prefix` | `Ship` | string | Fixed sentence text before the rolling word slot. |
-| `options` | `faster,smarter,together` | string | Comma-separated words shown in the rolling slot. |
-| `suffix` | `` | string | Fixed sentence text after the rolling word slot. |
-| `cues` | `` | string | Comma-separated seconds (from mount start) for each word swap. Empty keeps the authored even spread. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color used by the rolling word slot. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the sentence holds until the frame cuts. |
+| Variable  | Default                   | Accepts                   | What it does                                                                                         |
+| --------- | ------------------------- | ------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `prefix`  | `Ship`                    | string                    | Fixed sentence text before the rolling word slot.                                                    |
+| `options` | `faster,smarter,together` | string                    | Comma-separated words shown in the rolling slot.                                                     |
+| `suffix`  | ``                        | string                    | Fixed sentence text after the rolling word slot.                                                     |
+| `cues`    | ``                        | string                    | Comma-separated seconds (from mount start) for each word swap. Empty keeps the authored even spread. |
+| `accent`  | `green`                   | `green`, `blue`, `violet` | Color used by the rolling word slot.                                                                 |
+| `exit`    | `none`                    | `none`, `fade`, `up`      | Optional departure. Default none: the sentence holds until the frame cuts.                           |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

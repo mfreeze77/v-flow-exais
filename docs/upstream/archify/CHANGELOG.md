@@ -7,6 +7,7 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 > Development identity: `v2.17.0-dev.1`. Not a stable release.
 
 ### Fixed
+
 - **DSH plugin refresh.** Adapter 0.2.0 pins the current Archify development snapshot, includes the newer runtime and CLI fixes, and targets DSH 0.1.2-rc.1. Release metadata replaces the frozen 0.1.0 packaging source; the tarball uses the canonical clean-Skill stager and documents independent plugin upgrades.
 - **Machine-readable CLI argument failures (#330).** `validate --json` and `deliver --json` now keep invalid or missing option values, unknown options and diagram types, unsupported option combinations, and usage errors inside one versioned failure receipt on stdout. These failures use the `arguments` stage, stable diagnostic codes, and exit status 2, while human-mode stderr behavior remains unchanged.
 - **Complete artifact-check receipts (#311).** The checker now lets stdout drain before exiting, so large JSON receipts remain complete through pipes. Validation, delivery, and architecture comparison retain their original success/failure status without truncated-JSON errors.
@@ -19,28 +20,34 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 ## [2.16.0] — 2026-08-30
 
 ### Added
+
 - **Constraint-driven Workflow Compiler (#126).** Workflow schema v2 adds the `readable-v2` contract: columns `0..5` remain logical ranks while one measured scene owns node placement, phase/group frames, routes, semantic labels, content bounds, diagnostics, and SVG serialization. Valid schema v1 workflows stay on byte-stable `fixed-v1` geometry, `validate workflow ... --layout-json` exposes a stable author-facing compiler receipt, and `migrate workflow <source> <destination> --to-schema 2 --json` maps absolute coordinates non-destructively before writing only a fully checked destination. Adjacent-column capacity failures now report one causal diagnosis instead of cascading through short-edge, endpoint-direction, and label-overlap symptoms.
 - **Bounded Viewer localization.** All five renderers accept the optional `meta.locale` values `en` and `zh-CN`, localizing renderer-owned Viewer UI, accessibility copy, default legends, document titles, and language metadata without translating authored content. Omitted locale remains backward-compatible English, while unsupported authored languages retain their requested authored copy with an explicitly disclosed English Viewer fallback.
 - **Optional embedded Skill update awareness.** The packaged Skill can perform a cached, notification-only stable-release check with a fixed trusted manifest URL, strict identity and response bounds, SemVer downgrade protection, per-installed-version state, two-stage visible-notice acknowledgement, and a one-second fail-silent timeout. It never downloads, installs, executes, or overwrites an update; the user remains the sole update decision owner. Release identity, final ZIP contents, stable tag/tree/archive digests, and cross-platform packaged execution are gated in tests and release automation.
 
 ### Changed
+
 - Workflow authoring now preserves semantic edge labels and repairs measured spacing or route constraints rather than treating label deletion as a geometry workaround. Documentation also makes `--repo-root` architecture-only, defines lifecycle event/terminal column `N` as aligned with main column `N + 2`, and warns that `visual-check` after failed delivery would inspect the preserved previous artifact.
 
 ### Fixed
+
 - Skill packaging now stages only tracked regular files through one symlink-safe path shared by the release ZIP and DeepSeek Harness bundle, while preserving legitimate nested runtime test directories and rejecting stale or dependency-bearing artifacts.
 - Update checks use generation-fenced atomic cache snapshots, unconditional bounded requests without persistent server validators, and a Release-first publication gate that verifies the published archive digest and tagged Skill tree before a gated GitHub Pages deployment can expose a stable manifest.
 
 ## [2.15.0] — 2026-08-17
 
 ### Added
+
 - **Authored brand identity.** All five diagram types accept an optional explicit `brand` on their primary nodes. Archify ships 107 provenance-backed vector marks, exposes `archify brands` discovery, and renders a compact upper-right badge without replacing the upper-left semantic sigil, node type, label, or topology. Unknown official URLs use an explicit digest-pinned capture command; render, validate, and deliver re-fetch bounded PNG/JPEG/WebP/ICO bytes, verify the authored SHA-256, embed the result into the standalone HTML, and fail closed on drift, malformed content, unsafe destinations, or a diagram-wide timeout. Remote SVG is rejected and ordinary diagrams remain unchanged.
 - **Sequence column fitting.** Sequence diagrams may opt into `meta.column_fit: "spread"` to use a wide authored viewBox while the existing fixed-width layout remains the default.
 - **DeepSeek Harness distribution.** The isolated `@tt-a1i/archify-dsh` Skill-only bundle adds explicit DSH installation without adding a DSH dependency, automatic probing, telemetry, or behavior changes for non-DSH users. Packaging and acceptance checks cover macOS, Linux, and Windows command resolution.
 
 ### Changed
+
 - README and integration documentation now include a direct DeepSeek Harness quick start while keeping the canonical Archify Skill as the shared runtime.
 
 ### Fixed
+
 - The CLI rejects `--quality` when no value follows instead of silently accepting an incomplete command.
 - Shared overlap checks ignore non-finite rectangles after the existing geometry diagnostics report them, avoiding duplicate pairwise noise.
 - The DeepSeek Harness tarball now excludes the brand catalogue generator, preserving byte-equivalent clean Skill contents with `archify.zip`.
@@ -48,13 +55,16 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 ## [2.14.0] — 2026-08-11
 
 ### Added
+
 - **Bounded visual evidence checks.** `archify visual-check <output.html> --json` now measures first-screen containment at 1440×900, 1600×1000, 1920×1080, and 2048×1320, captures light/dark evidence at the two endpoint sizes, and writes a relative-path contact sheet plus a machine receipt that remains explicitly `visualReview: "pending"`. Chrome absence is reported as `skipped` rather than a false pass, and the zero-install Node 18 runtime remains dependency-free.
 
 ### Changed
+
 - **Safer diagram authoring defaults.** Generated copy follows the user's conversation language while preserving technical names; titles stay compact and omit redundant subtitles; relationship labels are treated as semantic data and may be removed only as an auditable last resort; and `deployment-ownership` is reserved for explicit deployment or ownership reviews rather than inferred from ordinary security boundaries.
 - **More compact viewer chrome.** The default remains Classic in both themes, the toolbar and single-column Export menu use quieter sizing and hierarchy, generated promotional footers are removed, and the diagram view dock now shows only the current percentage at rest while retaining PATH, MAP, LENS, search, help, zoom, and touch-safe mobile controls.
 
 ### Fixed
+
 - Wide desktop diagrams now use the available viewport height without forcing unnecessary page scrolling or leaving a conspicuous empty lower band.
 - Near-aligned architecture relationships keep a straight axis when only one endpoint needs automatic port spreading, while fan-out separation, two-ended bridges, obstacle avoidance, and explicit route controls remain authoritative.
 - Long component sublabels and tags use shared measured fitting across all five renderers instead of overflowing their nodes.
@@ -62,6 +72,7 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 ## [2.13.0] — 2026-08-03
 
 ### Added
+
 - **Truthful configurable legends.** All five typed renderers now resolve a strict additive `meta.legend` contract with `auto`, `all`, and `hidden` modes plus renderer-owned label and visibility overrides. The default legend names only semantic kinds present in typed IR; Lifecycle covers every valid state type, while Sequence/Dataflow message and flow keys remain visual-only unless exact node facts exist. Shared Unicode-aware measured rows keep labels aligned and bounded, custom wording reaches accessible Semantic Legend names without changing stable kinds or topology, and Architecture Delta classifies legend edits as presentation-only changes.
 - **Exact-ID Architecture Delta Review Navigator.** Every validated Architecture Delta proof now keeps a compact Overview / Previous / Review / Next strip above the unchanged three-state canvas and turns its deterministic authored-change list into native exact-ID controls. Selecting a component, relationship, or boundary highlights only matching `data-node-id`, `data-edge-id`, or derived boundary identity; one deliberate Review activation advances through the same stable order once at 1400ms per change, never loops, and yields to manual navigation, view changes, page hiding, print, or dynamic reduced motion. Generation and runtime validators require one unambiguous primary identity with the receipt's exact state and classification, otherwise the navigator fails closed while the static Before / Delta / After proof remains usable. Roving keyboard navigation, Overview/Escape cleanup, dark/light and all three presets add no URL, history, storage, schema, comparator inference, dependency, GitHub integration, risk claim, or mobile product surface.
 - **Architecture Delta / PR Proof.** The zero-dependency CLI now exposes `archify compare architecture <base.json> <head.json> [output.html] --json`: it validates both snapshots independently, pairs components and relationships only by authored stable IDs, classifies semantic, evidence, scope, topology, geometry, provenance, and presentation changes separately, and emits deterministic Before / Delta / After HTML plus a complete machine receipt. Removed nodes and relationships retain baseline geometry, moved nodes keep a `MOVE FROM` phantom, endpoint changes show old and new routes, and `+ / ~ / − / ↔` plus line patterns keep meaning independent of color or motion. Formatting, object-key, entity-order, `wraps`, and `sources` set changes preserve the semantic hash and artifact bytes; failures preserve the previous artifact. Repository mismatches, zero shared component IDs, missing relationship IDs, and ambiguous boundary keys fail closed. The proof says `AUTHORED SNAPSHOTS` or, after both repository-evidence gates pass, `REVISION-PINNED INPUTS`; it never claims risk, blast radius, safety, mergeability, or verified PR impact. No sixth diagram type, GitHub API, Git ref parser, LLM, Graphviz, hosted service, dependency, telemetry, or mobile product surface was added.
@@ -74,6 +85,7 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 - **Revision-verified Repository Evidence Passport.** Architecture diagrams can opt into public GitHub source links by declaring a repository URL, a full commit SHA, and one to three repo-relative sources per component, then passing `--repo-root` to `render`, `deliver`, `preview`, or `validate`. Archify verifies the local origin, commit, blobs, and optional line ranges before publishing; verified links appear in Semantic Passport and Node Finder while staying outside the canonical SVG and every visual export. Plain diagrams remain the default, other diagram modes reject the option, and private or unpinned evidence is deliberately out of scope.
 
 ### Fixed
+
 - Architecture Delta now preflights the HTML and receipt destinations as one pair, backs up both existing regular files, and restores the pair if either commit fails. A blocked receipt target can no longer report failure after silently replacing the previous trusted HTML.
 - The landing Live Proof now runs in a least-privilege script-only sandbox and starts its bounded chapter in the artifact's first load. This removes parent/child DOM reach-through and avoids a browser-visible `MutationObserver.observe(null)` injection race while preserving one-shot and reduced-motion behavior.
 - Existing custom templates remain compatible when repository evidence is unused; only the opt-in evidence path requires the new HTML payload slot. Evidence paths reject control characters, and line verification no longer treats a trailing newline as an extra source line.
@@ -81,6 +93,7 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 ## [2.12.0] — 2026-07-23
 
 ### Added
+
 - **Real-repository proof.** A source-backed MCO runtime case now maps the public `mco-org/mco` repository at commit `9f1a1cf` into a validated, interactive architecture artifact with three guided views and a checked 1200×630 Share Card. Every README links the exact typed source and live GitHub Pages artifact so the core promise is demonstrated on code rather than a prompt-only mockup.
 - **Last-Good Live Preview.** The zero-dependency CLI now exposes `archify preview <type> <input.json> [output.html]` for an explicit desktop authoring loop. A random `127.0.0.1` status shell watches one named JSON source with content-digest polling plus bounded event debounce, snapshots each stable generation's exact bytes, runs that immutable input through the existing renderer, composition gates, artifact checker, and SHA-256 receipt, then rechecks the named source digest at the atomic commit point so only the latest passing artifact can reload. Invalid, deleted, half-written, failed, or superseded candidates keep the prior verified diagram visible and byte-identical while reporting the real generation and failure stage; repairs recover automatically, identical source bytes do not rebuild, and identical artifact bytes do not reload. The server rejects external Host values, arbitrary paths, and write methods; canonical future-path checks prevent input/output aliasing; `--no-open` supports tests or manual URL handoff; SIGINT/SIGTERM allow a bounded graceful drain, terminate a stuck delivery, and then remove the loopback server and private same-directory staging directory. All five renderers and an installed ZIP without `node_modules` are covered. Preview state never enters the self-contained HTML or any canonical export, and no schema, renderer, layout, viewer runtime, dependency, hosted network, storage, or mobile product surface changed.
 - **Route Share Card export.** A resolved Route Probe now reveals one contextual **Export → Route Share Card** item that downloads the exact shortest authored path as a 1200×630 PNG while retaining the complete diagram as dimmed context. The exporter consumes Route Probe's ordered node list and stable edge keys directly, applies only static `data-share-route-*` decoration to a finite canonical clone, and never re-runs pathfinding or carries Journey position, motion overlay, camera, Focus, Lens, or Story state. Clear, unreachable, stale, duplicate, and conflicting snapshots fail closed; five-renderer and parallel-edge browser smoke prove exact route identity, full-context retention, PNG pixels, and Journey-state invariance. The receipt remains `format=share-card`, adds `variant=route`, reports `canonical=false` plus `route-state-clean=true`, and the next ordinary export clears the variant. The first slice is download-only and adds no format, schema, layout, dependency, URL, storage, or mobile product surface.
@@ -145,6 +158,7 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 - **Generated Proof Lab.** `node scripts/build-gallery.mjs` now regenerates 11 live scenario proofs across all five diagram modes, their exact JSON sources, 77 artifact checks, composition receipts, byte sizes, SHA-256 digests, and three-step reader stories. A dedicated test fails when any recipe lacks a proof or any checked-in artifact drifts.
 
 ### Changed
+
 - Architecture `auto` routing now preserves its existing H-V-H dogleg when safe, but deterministically tries the complementary in-bounds V-H-V dogleg when the first candidate would cross an unrelated component. Explicit `via`, `straight`, `orthogonal-h`, and `orthogonal-v` choices remain authoritative; if both bounded candidates are blocked, Clean Flow still fails closed with the existing actionable error.
 - The Skill delivery loop now treats a successful render as a candidate: after deterministic validation it requires a final browser/raster readback when available, allows at most two focused correction rounds, and reports explicit `validation`, `visual_review`, and `correction_rounds` evidence. Environments without an image reader must say the review was skipped instead of claiming visual approval.
 - Embedded artifacts now pause ambient trace loops by default. The landing-page Live Proof Stage opts into one named chapter at a time, gallery cards stay static and cheap, direct proof actions open a self-playing Presentation Stage, and the README reel captures the same bounded chapter contract.
@@ -155,6 +169,7 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 - Generated diagrams support `?embed=1`, a chrome-free read-only surface used by the live gallery previews.
 
 ### Fixed
+
 - The Skill frontmatter description now stays within the 1024-character metadata limit used by GitHub Copilot and other Agent Skill runtimes, while retaining all five diagram-mode and Mermaid discovery triggers. A regression test protects both the portable size budget and searchable trigger vocabulary.
 - Clean Flow is now a universal semantic correctness invariant instead of an opt-in composition gate. Profile-less default rendering rejects a relationship whose routed geometry passes through an unrelated opaque node, including the real auto-route regression from #24, while explicit waypoints around the obstacle remain valid. `standard` and `showcase` still control only the stricter composition budgets.
 - East Asian text measurement now includes wide vertical punctuation and supplementary script blocks while keeping halfwidth Katakana at one unit. Regression coverage preserves Hiragana, Katakana, Bopomofo, Hangul compatibility letters, fullwidth forms, emoji, and supplementary CJK behavior.
@@ -167,18 +182,22 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 ## [2.11.0] — 2026-07-16
 
 ### Added
+
 - **Zero-install schema validation.** All five JSON Schemas are compiled at development time into committed standalone ESM validators. Installed skills now enforce the full schema contract without `npm install`, `node_modules`, or a network connection; CI verifies the packaged ZIP rejects invalid input in this dependency-free state.
 - **First-run CLI commands.** `archify doctor` checks the installed runtime surface, and `archify demo [output-directory]` generates a ready-to-open example plus the next render command.
 
 ### Changed
+
 - **60-second quick start.** README and GitHub Pages now lead with `npx skills add tt-a1i/archify -g`, a temporary `skills use` path, and three copy-ready prompts before the manual ZIP instructions.
 
 ### Fixed
+
 - **Packaged CLI and validation hardening ([#21](https://github.com/tt-a1i/archify/pull/21)).** Installed ZIPs now keep `archify examples` on the packaged path, enforce standalone schema validation without development dependencies, and cover the clean-consumer CLI flow in CI. Thanks to [@ShiroKSH](https://github.com/ShiroKSH).
 
 ## [2.10.0] — 2026-07-05
 
 ### Added
+
 - **Actionable validator hints (#7).** Architecture layout errors now include concrete `Suggested fix` coordinates (`labelAt`, `labelDy`, nudged `pos`) so agents can patch JSON in one pass.
 - **Architecture grid placement (#8).** Optional `layout.mode: "grid"` with `row`/`col` per component; explicit `pos` still overrides a cell. Example: `examples/archify-repo-grid.architecture.json`.
 - **Layout inspect (#9).** `archify inspect architecture <file.json>` (alias: `validate --layout-json`) prints computed component rects, boundaries, connection paths, and label boxes as JSON.
@@ -186,34 +205,40 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 ## [2.9.0] — 2026-07-05
 
 ### Added
+
 - **Unified CLI entrypoint.** Added `bin/archify.mjs` with `render`, `validate`, `check`, and `examples` commands so renderer-backed workflows have a single product-facing command surface.
 - **Architecture examples.** Added self-diagram (`examples/archify-repo.*`) and a third-party sample (`examples/maka-architecture.*`) demonstrating clean main-path layout on real repos.
 
 ## [2.8.0] — 2026-07-03
 
 ### Added
+
 - **Opt-in trace animation.** Renderer-backed diagrams can set `meta.animation: "trace"` to animate marked arrows and nodes inside the generated HTML/SVG. The default output remains static, and the CSS respects `prefers-reduced-motion`.
 - **Workflow route guard.** Workflow rendering now rejects edges that cross through non-endpoint nodes, so crowded or long return routes fail with an actionable routing hint instead of producing confusing line artifacts.
 
 ## [2.7.0] — 2026-07-03
 
 ### Added
+
 - **Post-render artifact checker.** Added `scripts/check-render-output.mjs`, a zero-dependency final HTML/SVG gate that checks for a single SVG block, non-finite SVG values, accidental two-point diagonal arrows, and arrows crossing the legend.
 - **Workflow phase headers, groups, and exception lanes.** Workflow JSON now supports `phases`, `groups`, and `lane.variant: "exception"` so diagrams can make story beats, branch areas, and human/policy stop paths explicit.
 - **Workflow `mainPath` lint.** The workflow renderer can validate that happy-path node ids are linked in order and do not accidentally move backward.
 - **Artifact-check tests.** `test/render-output-checks.test.mjs` covers the new checker, including the legend-collision case that visual review exposed.
 
 ### Changed
+
 - The renderer loop in `SKILL.md` and the workflow README now includes the post-render artifact checker as a standard delivery step.
 - The workflow example was regenerated to demonstrate phases, groups, an exception lane, and clearer return/trace paths.
 
 ### Fixed
+
 - **Same-lane offset routing.** Default same-lane workflow edges with different `yOffset` values now route orthogonally instead of drawing a two-point diagonal.
 - **Legend collision in generated workflow previews.** The generated Archify renderer-pipeline preview now routes the compare path through a lane gap instead of crossing the legend.
 
 ## [2.6.0] — 2026-06-12
 
 ### Added
+
 - **Architecture renderer.** The default, highest-traffic mode now has a constrained renderer (`renderers/architecture/render-architecture.mjs`) and JSON Schema (`schemas/architecture.schema.json`), bringing it to validation parity with the four typed modes — without auto-layout. Claude still picks all coordinates (`pos`/`size`); the renderer handles the mechanical work: the two-rect `c-mask` pattern, arrows-before-boxes z-order, an auto-built legend, and an auto-fitted `viewBox`.
 - **Boundaries from `wraps`.** A `region` or `security-group` boundary lists the component ids it encloses; the renderer computes the box with correct 30/50 padding automatically, eliminating the hand-arithmetic that caused the v2.2.1 padding bug.
 - **Architecture example.** Added `archify/examples/web-app.architecture.json` rendered to `examples/web-app-rendered.html`, wired into the golden suite (5th entry).
@@ -222,15 +247,18 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 - **Degraded-mode fuzz net.** `archify/test/degraded.test.mjs` asserts that type-wrong-but-JSON-legal input always fails friendly (non-zero exit, no `TypeError`, no `NaN`/`undefined` written) and that valid order-shuffles always render.
 
 ### Changed
+
 - `npm test` now runs the golden suite plus `node --test test/*.test.mjs` (geometry, layout-rules, degraded). The `architecture` schema is registered in `validator.mjs` and covered by `render:examples`.
 - `textUnits` now counts supplementary-plane CJK and emoji as double-width (added the `u` flag and astral ranges).
 
 ### Fixed
+
 - **Degraded-mode robustness (no ajv).** A type-wrong top-level field (e.g. `nodes: "oops"`) or a missing coordinate field (e.g. a node with no `col`) previously threw a raw `TypeError` before the friendly checks ran, or exited 0 while writing `<rect x="NaN">` into the HTML. Renderers now coerce non-array fields via `asArray`, guard non-finite coordinates with `isFinitePoint`, and validate `cards`/`messages`/`segments`/`activations` are arrays — so malformed input always produces an actionable message instead of a crash or silent corruption.
 
 ## [2.5.0] — 2026-06-11
 
 ### Added
+
 - **Workflow diagram mode.** Archify now includes a renderer-backed workflow diagram type for technical flows, approval chains, tool calls, CI/CD paths, runbooks, and process ownership diagrams. Workflow diagrams use a JSON IR with lanes, nodes, routed edges, and summary cards, then render into the same standalone HTML shell with theme toggle and export menu.
 - **Workflow JSON Schema.** Added `archify/schemas/workflow.schema.json` to document and validate the workflow IR shape.
 - **Workflow example.** Added a rendered agent tool-call workflow example at `examples/workflow-agent-tool-call-rendered.html`.
@@ -261,6 +289,7 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 - **`--text-faint` UI variable.** Menu hints and the footer now meet contrast standards; the SVG `t-dim` color is unchanged.
 
 ### Changed
+
 - **Template responsive polish.** The shared HTML template now handles narrow viewports better: the toolbar no longer overlaps the title, diagrams can scale down to the available width, and cards stack cleanly on mobile.
 - **Subtle swimlane styling.** Added `c-lane` for workflow/process swimlanes so workflow boundaries do not visually overpower the main path.
 - **Lifecycle diagram reworked as a phase map.** The lifecycle visual model was redesigned across several composition passes: phase bands, decluttered middle lanes, and refined transition labels.
@@ -274,9 +303,10 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 - **Exported SVG embeds only SVG-relevant CSS.** ~9 KB of toolbar/cards/print rules are stripped from `.svg` downloads.
 - **Download filename cleanup.** The redundant `-diagram` suffix is stripped from export filenames.
 - **Docs images consolidated under `docs/assets/`.** `examples/images/` is removed, the orphaned `archify-print.png` deleted, and `archify-lifecycle.png` regenerated with the new band titles.
-- **Docs accuracy.** README's "~3 KB embedded JS" corrected to ~19 KB; "4× export" is now documented as *up to* 4× (oversized diagrams automatically step down to 3×/2× via `pickSafeScale`); and "zero dependencies" is scoped to the generated HTML only — the renderers need `npm install` for ajv.
+- **Docs accuracy.** README's "~3 KB embedded JS" corrected to ~19 KB; "4× export" is now documented as _up to_ 4× (oversized diagrams automatically step down to 3×/2× via `pickSafeScale`); and "zero dependencies" is scoped to the generated HTML only — the renderers need `npm install` for ajv.
 
 ### Fixed
+
 - **`applyTemplate` slot corruption.** Slot replacement now uses a function replacer, so `$&`, `$'`, `` $` ``, and `$$` in titles or labels no longer corrupt the output.
 - **Lifecycle overlap detection across lanes.** Overlap checks now compare all state pairs across lanes — previously, identical coordinates in different lanes produced zero errors.
 - **Sequence vertical-spacing false positives.** The spacing check now only fires for messages whose horizontal spans actually overlap, eliminating false reports on parallel messages.
@@ -292,50 +322,60 @@ All notable changes are documented here. Format loosely follows [Keep a Changelo
 ## [2.4.0] — 2026-04-18
 
 ### Changed
+
 - **Download SVG is now dual-theme self-contained.** The exported `.svg` ships with BOTH dark and light CSS variable sets plus a `@media (prefers-color-scheme: light)` rule. Embedding the file via `<img src="x.svg">` in a GitHub README (or any host that exposes a color scheme) makes it follow the reader's dark/light preference automatically — no more shipping two PNGs wrapped in `<picture>`. The root `<svg>` no longer carries a `data-theme` attribute, so the media query can actually take effect; downstream consumers can still force a theme via `svg[data-theme="light"]` / `svg[data-theme="dark"]`.
 - **`serializeSvg(scale, opts)`** grew a second argument: `opts.autoTheme: true` switches on the new dual-theme path. The raster pipeline (PNG / JPEG / WebP / Copy to clipboard) explicitly does NOT set it, so those paths keep locking colors to the viewer's current theme — canvas rasterization needs deterministic output and a raster can't react to `prefers-color-scheme` after encoding.
 - **Background rect in auto-theme mode** now carries `class="c-bg-rect"` + `rect.c-bg-rect { fill: var(--bg); }` instead of a baked-in color, so the backdrop swaps along with the variables.
 
 ### Why
+
 The v2.0 SVG export was good, but single-theme — users who wanted README embedding still had to export one PNG per theme and wrap them in `<picture><source media="(prefers-color-scheme: dark)">`. A single SVG that already knows both themes cuts that down to `![](archify.svg)`.
 
 ## [2.3.1] — 2026-04-15
 
 ### Fixed
+
 - **Stale docs referencing the removed scale selector.** `SKILL.md` frontmatter version bumped `2.0` → `2.3`; the two "2x retina" bullets (lines 18, 233) rewritten to describe the current 4× native pipeline + clipboard copy. `README.md` cleaned up in four places: intro paragraph, "What's new" table (now includes v2.2 column), "Export menu" description (no more "scale selector"), and technical-details section (accurate 4× native-rasterization description, not `Image + 2x canvas`).
 - **Canvas-size clamp for large diagrams.** `rasterize()` now picks the largest integer scale in `{4,3,2,1}` whose `viewBox × scale × scale` fits under a 16 Mpx cap — enough to cover older iOS Safari's silent "blank canvas" ceiling. Default diagrams (viewBox ≈ 1000×680) stay at 4×; only unusually large viewBoxes (say, 1600×1200) step down to 3× automatically.
 - **`?openExport=1` race with font loading.** Replaced the 60 ms `setTimeout(open)` with `document.fonts.ready.then(open)` (+ double `requestAnimationFrame` to let layout settle). Slow connections no longer get a flashed / mispositioned menu on first paint.
 
 ### Added
-- **Export menu visual grouping.** Two `<hr role="separator">` dividers split the menu into three sections: *Copy to clipboard*, *Download raster (PNG / JPEG / WebP)*, *Download vector (SVG)*. Makes scanning faster and disambiguates "Copy PNG" vs "Download PNG" at a glance.
+
+- **Export menu visual grouping.** Two `<hr role="separator">` dividers split the menu into three sections: _Copy to clipboard_, _Download raster (PNG / JPEG / WebP)_, _Download vector (SVG)_. Makes scanning faster and disambiguates "Copy PNG" vs "Download PNG" at a glance.
 - **Renamed "Copy PNG" → "Copy to clipboard"** with `PNG` moved to the hint badge on the right. The destination ("clipboard") is now in the primary label instead of inferred from context.
 - **Print stylesheet polish.** Added `@page { size: landscape; margin: 1.5cm; }`, expanded container width in print, switched the summary-card grid to two columns in print so the third card doesn't orphan onto a second page, and added `page-break-inside: avoid` for older browsers that don't understand `break-inside`.
 
 ## [2.3.0] — 2026-04-15
 
 ### Fixed
+
 - **Raster exports are now genuinely sharp.** Previously the browser rasterized the serialized SVG at its natural `viewBox` dimensions (e.g., 1000×680), and then `ctx.drawImage(img, 0, 0, width*scale, height*scale)` bitmap-upsampled that raster onto the canvas — which just blew up the pixels and produced a soft image. The new flow sets the serialized SVG's `width`/`height` to `4 × viewBox` so the browser rasterizes the vectors at target resolution natively; the canvas then draws at the image's natural size with no scaling. Result: text edges, arrow heads, and stroke details that are actually crisp at 4×.
 
 ### Removed
+
 - **Scale selector (1× / 2× / 4×).** The selector introduced in 2.1 encouraged picking a low scale to "save file size", which (combined with the upsampling bug above) always produced the softest output. Replaced with a single hardcoded 4× render on every raster export. PNG file sizes grow ~3–4× but the output is visibly sharper. A typical diagram exports to 4000×2720 (~300–700 KB PNG).
 - `Left` / `Right` arrow key binding (used by the selector) removed from the menu keyboard nav. Up/Down/Home/End/Esc/Tab all preserved.
 - `archify-export-scale` localStorage key is no longer read or written (old values are harmless leftovers).
 
 ### Changed
+
 - Toast no longer includes the scale suffix — now just "Copied PNG to clipboard" since the scale is always 4×.
 - JPEG/WebP quality bumped from 0.92 to 0.95 (file-size delta is tiny at 4× but the encoded edges look cleaner).
 
 ## [2.2.1] — 2026-04-15
 
 ### Fixed
+
 - **Security group label crowding.** The `sg-name :port` label on the dashed rose boundary sat only ~1px above the Load Balancer box inside it (boundary `y=265 h=80`, inner box `y=280`, label baseline `y=279`). Bumped the boundary to `y=250 h=100` and moved the label to `y=268`, giving ~12px clear gap between the label baseline and the inner component. Same pattern documented in `SKILL.md` so Claude stops generating crowded boundaries.
 
 ### Changed
+
 - `SKILL.md`: new **Security Group & Region Boundary Padding** section with the 30/50 offset rule (boundary `y = inner.y - 30`, `h = inner.h + 50`, label baseline 18px below boundary top) and a concrete code example.
 
 ## [2.2.0] — 2026-04-15
 
 ### Added
+
 - **Print stylesheet.** <kbd>Cmd</kbd>+<kbd>P</kbd> (or browser print) now produces a clean, print-ready page: toolbar and toasts hidden, dark background replaced with white, grid removed, card/container borders switched to light gray, `break-inside: avoid` on diagram + cards so nothing splits mid-element. Works regardless of current theme.
 - **Font fallback improvement for exported images.** The serialized SVG now includes a `local()`-only `@font-face` block for JetBrains Mono at weights 400/500/600/700 so that raster exports can pick up a locally-installed JetBrains Mono (common on developer machines) and fall through cleanly to `ui-monospace` / Menlo otherwise. Previously the sandboxed image-rendering context couldn't reach the Google Fonts URL in the `<link>`, resulting in plain monospace even when users had the font installed.
 - `archify-print.png` screenshot wired into the README preview section.
@@ -343,6 +383,7 @@ The v2.0 SVG export was good, but single-theme — users who wanted README embed
 ## [2.1.0] — 2026-04-15
 
 ### Added
+
 - **Copy PNG to clipboard.** New menu action writes the diagram straight to the system clipboard via `ClipboardItem` / `navigator.clipboard.write` so it can be pasted into Slack, Notion, GitHub, Figma, Keynote, etc. Item is dimmed on browsers that don't support clipboard image writes.
 - **Export scale selector (1× / 2× / 4×)** at the top of the Export menu. Raster downloads and Copy use the selected scale. Selection persists in `localStorage`. Keyboard: <kbd>←</kbd> / <kbd>→</kbd> switch scale.
 - **Toast feedback** — brief "Copied PNG to clipboard (2×)" confirmation after successful copy.
@@ -350,6 +391,7 @@ The v2.0 SVG export was good, but single-theme — users who wanted README embed
 - Screenshot showing the Export menu open (`examples/images/archify-menu.png`) wired into the README preview section.
 
 ### Changed
+
 - Export menu items renamed from `PNG / JPEG / WebP / SVG` to `Download PNG / JPEG / WebP / SVG` to disambiguate from the new `Copy PNG` action above.
 - `SCALE` constant replaced by `getScale()` reading from the radiogroup; scale flows through `rasterize()` and clipboard copy alike.
 
@@ -360,6 +402,7 @@ First Archify release. Fork / rewrite of
 v1.0 (MIT).
 
 ### Added
+
 - **Dark / Light theme toggle** on every generated diagram. Persists in `localStorage`, respects `prefers-color-scheme` on first visit, overridable per-page via `?theme=dark|light` URL parameter.
 - **Client-side export menu**: PNG, JPEG, WebP (all 2× retina) and SVG (vector, styles inlined).
 - **Keyboard shortcuts**: <kbd>T</kbd> toggles theme, <kbd>E</kbd> opens the Export menu. Menu supports <kbd>Arrow</kbd> / <kbd>Home</kbd> / <kbd>End</kbd> / <kbd>Esc</kbd> / <kbd>Tab</kbd>.
@@ -371,19 +414,23 @@ v1.0 (MIT).
 - `CHANGELOG.md` (this file).
 
 ### Changed
+
 - `SKILL.md` rewritten to steer Claude toward the class-based, themeable system. Contains an explicit "Cardinal Rule: Use CSS Classes, Not Inline Colors" section and a full class reference.
 - `README.md` rewritten around the new feature set; adds an Attribution section linking the original project.
 - Example page (`examples/web-app.html`) regenerated using the v2 template so the live demo actually exhibits the theme toggle and export menu.
 
 ### Removed
+
 - Hardcoded `fill` / `stroke` attributes on SVG components — they broke theme switching and are banned by the new `SKILL.md`.
 - v1.0 example HTMLs (dark-only, no toolbar) to avoid showing stale output.
 
 ### Fixed
-- **Light-mode exports rendered in dark mode.** The serialized SVG injected the resolved theme variables *before* the host stylesheet, which placed the `:root, [data-theme="dark"] { ... }` rule later in the cascade and overrode the chosen theme. The export pipeline now appends the resolved `:root, svg { ... }` variable block *after* the host CSS so it wins cascade order.
+
+- **Light-mode exports rendered in dark mode.** The serialized SVG injected the resolved theme variables _before_ the host stylesheet, which placed the `:root, [data-theme="dark"] { ... }` rule later in the cascade and overrode the chosen theme. The export pipeline now appends the resolved `:root, svg { ... }` variable block _after_ the host CSS so it wins cascade order.
 - Filename sanitizer now strips leading and trailing hyphens (previously left artifacts like `-project-name-.png` when the title still contained placeholder brackets).
 
 ### Known limitations
+
 - Exported raster images render text in the system monospace fallback (`ui-monospace` / Menlo / Consolas), not JetBrains Mono. The browser's sandboxed image-rendering context can't fetch Google Fonts. Install JetBrains Mono locally for pixel-perfect exports.
 
 ---

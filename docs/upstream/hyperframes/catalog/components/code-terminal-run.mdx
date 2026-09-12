@@ -596,13 +596,13 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `prompt_glyph` | `$` | string | Leading glyph before the command and the trailing prompt. Empty string hides it. |
-| `cadence` | `human` | `uniform`, `human` | Keystroke rhythm: uniform fixed steps or seeded human chunks. |
-| `cues` | `` | string | Comma-separated seconds relative to mount start; cue N sets when output line N prints. Empty uses the authored rhythm. |
-| `accent` | `green` | `green`, `blue`, `violet` | Color of the prompt glyph and caret. |
-| `exit` | `none` | `none`, `fade`, `up` | Outgoing transition. Frame roots own transitions; none holds the end frame. |
+| Variable       | Default | Accepts                   | What it does                                                                                                           |
+| -------------- | ------- | ------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| `prompt_glyph` | `$`     | string                    | Leading glyph before the command and the trailing prompt. Empty string hides it.                                       |
+| `cadence`      | `human` | `uniform`, `human`        | Keystroke rhythm: uniform fixed steps or seeded human chunks.                                                          |
+| `cues`         | ``      | string                    | Comma-separated seconds relative to mount start; cue N sets when output line N prints. Empty uses the authored rhythm. |
+| `accent`       | `green` | `green`, `blue`, `violet` | Color of the prompt glyph and caret.                                                                                   |
+| `exit`         | `none`  | `none`, `fade`, `up`      | Outgoing transition. Frame roots own transitions; none holds the end frame.                                            |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

@@ -68,7 +68,7 @@ The user's workflow:
 2. **Save to disk** — Open Design writes the project into
    `.od/projects/<id>/` (real `cwd`, agent-ready)
 3. **Any AI coding agent** (Claude Code, Codex, Cursor, …) — `npx hyperframes
-   lint`, `npx hyperframes preview`, then iterate timing, eases, shader
+lint`, `npx hyperframes preview`, then iterate timing, eases, shader
    choices, pacing
 
 Your output must be a **valid starting point a coding agent can open and
@@ -110,7 +110,7 @@ five-dimensional self-critique gate must verify all of them before emission.
      `1080` for 16:9, `1080` × `1080` for square)
    - `data-duration="<total-seconds>"` matching the sum of scene durations
 3. **Scenes are children of `#stage`.** Each scene is `<div class="scene
-   clip">` with:
+clip">` with:
    - `data-start="<seconds-from-zero>"`
    - `data-duration="<scene-seconds>"`
    - `data-track-index="0"` (HyperFrames uses tracks for layering; visual
@@ -171,12 +171,12 @@ Inputs in order of reliability:
 **Gate:** A working `index.html` exists with the active DS's palette and
 typography on `:root`. The preview renders even if scenes are empty.
 
-| Type                      | Aspect | Duration  | Scenes |
-| ------------------------- | ------ | --------- | ------ |
-| Social reel               | 9:16   | 10–15s    | 5–7    |
-| Launch teaser             | 16:9   | 15–25s    | 7–10   |
-| Product explainer         | 16:9   | 30–60s    | 10–18  |
-| Cinematic title           | 16:9   | 45–90s    | 7–12   |
+| Type              | Aspect | Duration | Scenes |
+| ----------------- | ------ | -------- | ------ |
+| Social reel       | 9:16   | 10–15s   | 5–7    |
+| Launch teaser     | 16:9   | 15–25s   | 7–10   |
+| Product explainer | 16:9   | 30–60s   | 10–18  |
+| Cinematic title   | 16:9   | 45–90s   | 7–12   |
 
 Bind `:root` from the active `DESIGN.md`:
 
@@ -220,35 +220,39 @@ the table, and mid-scene activity. No scene is a static slide.
 ```js
 // === SCENE 3 (data-start=10.0) ===
 tl.from("#s3-title", { y: 40, autoAlpha: 0, duration: 0.6, ease: "power3.out" }, 10.3);
-tl.from("#s3-sub",   { y: 20, autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 10.7);
-tl.from("#s3-bar-chart", { scaleY: 0, transformOrigin: "bottom", duration: 0.8, ease: "expo.out" }, 11.0);
+tl.from("#s3-sub", { y: 20, autoAlpha: 0, duration: 0.5, ease: "power2.out" }, 10.7);
+tl.from(
+  "#s3-bar-chart",
+  { scaleY: 0, transformOrigin: "bottom", duration: 0.8, ease: "expo.out" },
+  11.0,
+);
 ```
 
 ### 3c. Mid-scene activity (this is what separates video from slides)
 
-| Element            | Mid-scene motion                         | Pattern                                                                 |
-| ------------------ | ---------------------------------------- | ----------------------------------------------------------------------- |
-| Stat / number      | Counter from 0 → target                  | `tl.to({n:0}, { n: target, duration, onUpdate: …, ease: "power2.out" })` |
-| SVG line / path    | Draws itself in real time                | `strokeDashoffset` from `pathLength → 0`                                 |
-| Title / wordmark   | Characters enter one by one              | `tl.from(chars, { autoAlpha: 0, y: 8, stagger: 0.04 })`                  |
-| Logo / lockup      | Subtle vertical drift                    | `tl.to(el, { y: -6, duration: sceneLength, ease: "sine.inOut" })`        |
-| Chart / bars       | Bars fill sequentially                   | `tl.from(bars, { scaleY: 0, transformOrigin: "bottom", stagger: 0.08 })` |
-| Image / screenshot | Slow zoom: `scale: 1 → 1.03`             | Ken Burns — `tl.to(img, { scale: 1.03, duration: sceneLength, ease: "none" })` |
-| Background glow    | Opacity pulse                            | `tl.to(".glow", { opacity: 0.6, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 1 })` |
+| Element            | Mid-scene motion             | Pattern                                                                                      |
+| ------------------ | ---------------------------- | -------------------------------------------------------------------------------------------- |
+| Stat / number      | Counter from 0 → target      | `tl.to({n:0}, { n: target, duration, onUpdate: …, ease: "power2.out" })`                     |
+| SVG line / path    | Draws itself in real time    | `strokeDashoffset` from `pathLength → 0`                                                     |
+| Title / wordmark   | Characters enter one by one  | `tl.from(chars, { autoAlpha: 0, y: 8, stagger: 0.04 })`                                      |
+| Logo / lockup      | Subtle vertical drift        | `tl.to(el, { y: -6, duration: sceneLength, ease: "sine.inOut" })`                            |
+| Chart / bars       | Bars fill sequentially       | `tl.from(bars, { scaleY: 0, transformOrigin: "bottom", stagger: 0.08 })`                     |
+| Image / screenshot | Slow zoom: `scale: 1 → 1.03` | Ken Burns — `tl.to(img, { scale: 1.03, duration: sceneLength, ease: "none" })`               |
+| Background glow    | Opacity pulse                | `tl.to(".glow", { opacity: 0.6, duration: 1.5, ease: "sine.inOut", yoyo: true, repeat: 1 })` |
 
 **Minimum per scene:** entrance tweens + at least one continuous motion
 (float, counter, zoom, or glow).
 
 ### 3d. Adjust scene duration by reading time
 
-| Display text                | Min duration |
-| --------------------------- | ------------ |
-| No text (hero, icon)        | 1.5–2s       |
-| 1–3 words                   | 2–3s         |
-| 4–10 words                  | 3–4s         |
-| 11–20 words                 | 4–6s         |
-| 21–35 words                 | 6–8s         |
-| 35+ words                   | Split scenes |
+| Display text         | Min duration |
+| -------------------- | ------------ |
+| No text (hero, icon) | 1.5–2s       |
+| 1–3 words            | 2–3s         |
+| 4–10 words           | 3–4s         |
+| 11–20 words          | 4–6s         |
+| 21–35 words          | 6–8s         |
+| 35+ words            | Split scenes |
 
 **Hard ceiling: 5s per scene** unless you name a specific reason (hero hold,
 cinematic push, long counter animation).
@@ -270,17 +274,17 @@ Use at least 3 different eases across the timeline. Don't default to
 
 Use HyperFrames' built-in shader blocks at scene boundaries. Pick by mood:
 
-| Shader                     | Mood                                  |
-| -------------------------- | ------------------------------------- |
-| `flash-through-white`      | Energetic, optimistic, pop            |
-| `whip-pan`                 | High-energy, sports/news cut          |
-| `cinematic-zoom`           | Reveal, magnification, "let me show you" |
-| `glitch`                   | Tech, edgy, glitch-pop                |
-| `ripple-waves`             | Soft, organic, lifestyle              |
-| `light-leak`               | Warm, nostalgic, film-like            |
-| `cross-warp-morph`         | Smooth scene-to-scene continuity      |
-| `chromatic-radial-split`   | Retro tech, VHS aesthetic             |
-| `swirl-vortex`             | Disorienting, dream sequence          |
+| Shader                   | Mood                                     |
+| ------------------------ | ---------------------------------------- |
+| `flash-through-white`    | Energetic, optimistic, pop               |
+| `whip-pan`               | High-energy, sports/news cut             |
+| `cinematic-zoom`         | Reveal, magnification, "let me show you" |
+| `glitch`                 | Tech, edgy, glitch-pop                   |
+| `ripple-waves`           | Soft, organic, lifestyle                 |
+| `light-leak`             | Warm, nostalgic, film-like               |
+| `cross-warp-morph`       | Smooth scene-to-scene continuity         |
+| `chromatic-radial-split` | Retro tech, VHS aesthetic                |
+| `swirl-vortex`           | Disorienting, dream sequence             |
 
 Hard cuts everywhere else. A good rule: shader at the beginning, shader at
 the climax, shader at the end. Anything more is over-decorated.
@@ -315,42 +319,82 @@ Emit exactly two files inside `<artifact>`:
 ```html
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <title><!-- from brief --></title>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <style>
-    :root { /* bound from active DESIGN.md */ }
-    html, body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-body); }
-    #stage { position: relative; width: 100vw; aspect-ratio: 16/9; overflow: hidden; }
-    .scene { position: absolute; inset: 0; opacity: 0; }
-    .scene.clip { /* HyperFrames toggles visibility per playhead */ }
-    .scene-content { position: absolute; inset: 0; display: grid; place-items: center; padding: 6vmin; }
-    /* + per-scene overrides */
-  </style>
-</head>
-<body>
-  <div id="stage" data-composition-id="my-video" data-start="0" data-width="1920" data-height="1080" data-duration="20">
-    <div class="scene clip" data-start="0"   data-duration="3" data-track-index="0">
-      <div class="scene-content"><!-- scene 1 content --></div>
+  <head>
+    <meta charset="utf-8" />
+    <title><!-- from brief --></title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+    <style>
+      :root {
+        /* bound from active DESIGN.md */
+      }
+      html,
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: var(--font-body);
+      }
+      #stage {
+        position: relative;
+        width: 100vw;
+        aspect-ratio: 16/9;
+        overflow: hidden;
+      }
+      .scene {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+      }
+      .scene.clip {
+        /* HyperFrames toggles visibility per playhead */
+      }
+      .scene-content {
+        position: absolute;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        padding: 6vmin;
+      }
+      /* + per-scene overrides */
+    </style>
+  </head>
+  <body>
+    <div
+      id="stage"
+      data-composition-id="my-video"
+      data-start="0"
+      data-width="1920"
+      data-height="1080"
+      data-duration="20"
+    >
+      <div class="scene clip" data-start="0" data-duration="3" data-track-index="0">
+        <div class="scene-content"><!-- scene 1 content --></div>
+      </div>
+      <div class="scene clip" data-start="3" data-duration="4" data-track-index="0">
+        <div class="scene-content"><!-- scene 2 content --></div>
+      </div>
+      <!-- ... -->
     </div>
-    <div class="scene clip" data-start="3"   data-duration="4" data-track-index="0">
-      <div class="scene-content"><!-- scene 2 content --></div>
-    </div>
-    <!-- ... -->
-  </div>
 
-  <script>
-    const tl = gsap.timeline({ paused: true });
-    // === SCENE 1 ===
-    tl.from(".scene[data-start='0'] .scene-content > *", { y: 30, autoAlpha: 0, duration: 0.6, ease: "power3.out", stagger: 0.08 }, 0.2);
-    // === SCENE 2 ===
-    tl.from(".scene[data-start='3'] .scene-content > *", { y: 30, autoAlpha: 0, duration: 0.6, ease: "power3.out", stagger: 0.08 }, 3.2);
-    // ...
-    window.__timelines = window.__timelines || {};
-    window.__timelines["my-video"] = tl;
-  </script>
-</body>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      // === SCENE 1 ===
+      tl.from(
+        ".scene[data-start='0'] .scene-content > *",
+        { y: 30, autoAlpha: 0, duration: 0.6, ease: "power3.out", stagger: 0.08 },
+        0.2,
+      );
+      // === SCENE 2 ===
+      tl.from(
+        ".scene[data-start='3'] .scene-content > *",
+        { y: 30, autoAlpha: 0, duration: 0.6, ease: "power3.out", stagger: 0.08 },
+        3.2,
+      );
+      // ...
+      window.__timelines = window.__timelines || {};
+      window.__timelines["my-video"] = tl;
+    </script>
+  </body>
 </html>
 ```
 
@@ -358,18 +402,35 @@ Emit exactly two files inside `<artifact>`:
 
 ```html
 <!doctype html>
-<html><head><title>Preview</title>
-<style>html,body{margin:0;background:#111;color:#eee;font:14px ui-sans-serif} iframe{border:0;width:100vw;height:100vh}</style>
-</head><body>
-<iframe id="f" src="index.html"></iframe>
-<script>
-  const f = document.getElementById('f');
-  // Forward HyperFrames preview tokens (frame=, paused=, …) into the iframe
-  const u = new URL('index.html', location.href);
-  for (const [k,v] of new URL(location.href).searchParams) u.searchParams.set(k, v);
-  f.src = u.toString();
-</script>
-</body></html>
+<html>
+  <head>
+    <title>Preview</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        background: #111;
+        color: #eee;
+        font: 14px ui-sans-serif;
+      }
+      iframe {
+        border: 0;
+        width: 100vw;
+        height: 100vh;
+      }
+    </style>
+  </head>
+  <body>
+    <iframe id="f" src="index.html"></iframe>
+    <script>
+      const f = document.getElementById("f");
+      // Forward HyperFrames preview tokens (frame=, paused=, …) into the iframe
+      const u = new URL("index.html", location.href);
+      for (const [k, v] of new URL(location.href).searchParams) u.searchParams.set(k, v);
+      f.src = u.toString();
+    </script>
+  </body>
+</html>
 ```
 
 Save both files into the project's `cwd` (Open Design has already set this

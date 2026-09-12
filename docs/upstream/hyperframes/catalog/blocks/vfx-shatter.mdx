@@ -5,7 +5,15 @@ description: "VFX composition block"
 
 import { InstallCommand } from "/snippets/install-command.jsx";
 
-<video className="w-full aspect-video rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800" src="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-shatter.mp4" poster="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-shatter.png" autoPlay muted loop playsInline />
+<video
+  className="w-full aspect-video rounded-xl object-cover bg-zinc-100 dark:bg-zinc-800"
+  src="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-shatter.mp4"
+  poster="https://static.heygen.ai/hyperframes-oss/docs/images/catalog/blocks/vfx-shatter.png"
+  autoPlay
+  muted
+  loop
+  playsInline
+/>
 
 ## Install
 
@@ -14,9 +22,9 @@ import { InstallCommand } from "/snippets/install-command.jsx";
 That writes one file: `compositions/vfx-shatter.html`.
 
 <Danger>
-  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on.
-  Without it this item's screen renders black. Rendering from the CLI switches
-  it on for you. [How it works](/guides/html-in-canvas)
+  Live preview needs the `chrome://flags/#canvas-draw-element` flag switched on. Without it this
+  item's screen renders black. Rendering from the CLI switches it on for you. [How it
+  works](/guides/html-in-canvas)
 </Danger>
 
 ## Source
@@ -1189,7 +1197,15 @@ That writes one file: `compositions/vfx-shatter.html`.
 After installing, add the block to your host composition:
 
 ```html
-<div data-composition-id="vfx-shatter" data-composition-src="compositions/vfx-shatter.html" data-start="0" data-duration="12" data-track-index="1" data-width="1920" data-height="1080"></div>
+<div
+  data-composition-id="vfx-shatter"
+  data-composition-src="compositions/vfx-shatter.html"
+  data-start="0"
+  data-duration="12"
+  data-track-index="1"
+  data-width="1920"
+  data-height="1080"
+></div>
 ```
 
 {/* hf:generated-footer */}

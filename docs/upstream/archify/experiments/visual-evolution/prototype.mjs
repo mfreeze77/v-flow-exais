@@ -3,43 +3,42 @@
 // PROTOTYPE — three visual directions for one real workflow artifact,
 // switchable with ?variant=signal|blueprint|ember and a floating bottom bar.
 
-import { spawnSync } from 'node:child_process';
-import fs from 'node:fs';
-import os from 'node:os';
-import path from 'node:path';
-import { fileURLToPath } from 'node:url';
+import { spawnSync } from "node:child_process";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(here, '../..');
-const skillRoot = path.join(repoRoot, 'archify');
-const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'archify-visual-prototype-'));
-const input = path.join(tmp, 'workflow.json');
-const rendered = path.join(tmp, 'workflow.html');
-const output = path.join(here, 'prototype.html');
+const repoRoot = path.resolve(here, "../..");
+const skillRoot = path.join(repoRoot, "archify");
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-visual-prototype-"));
+const input = path.join(tmp, "workflow.json");
+const rendered = path.join(tmp, "workflow.html");
+const output = path.join(here, "prototype.html");
 
 try {
-  const source = JSON.parse(fs.readFileSync(
-    path.join(skillRoot, 'examples/agent-tool-call.workflow.json'),
-    'utf8',
-  ));
+  const source = JSON.parse(
+    fs.readFileSync(path.join(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
+  );
   // Keep the three experimental treatments isolated from the production
   // preset now carried by the bundled workflow example.
-  source.meta = { ...source.meta, animation: 'trace', visual_preset: 'classic' };
+  source.meta = { ...source.meta, animation: "trace", visual_preset: "classic" };
   delete source.meta.output;
   fs.writeFileSync(input, `${JSON.stringify(source, null, 2)}\n`);
 
-  const result = spawnSync(process.execPath, [
-    path.join(skillRoot, 'renderers/workflow/render-workflow.mjs'),
-    input,
-    rendered,
-  ], { encoding: 'utf8' });
+  const result = spawnSync(
+    process.execPath,
+    [path.join(skillRoot, "renderers/workflow/render-workflow.mjs"), input, rendered],
+    { encoding: "utf8" },
+  );
   if (result.status !== 0) {
-    throw new Error(result.stderr || result.stdout || 'workflow render failed');
+    throw new Error(result.stderr || result.stdout || "workflow render failed");
   }
 
-  let html = fs.readFileSync(rendered, 'utf8');
-  html = html.replace('</head>', `${prototypeStyle()}\n</head>`);
-  html = html.replace('</body>', `${prototypeSwitcher()}\n${prototypeScript()}\n</body>`);
+  let html = fs.readFileSync(rendered, "utf8");
+  html = html.replace("</head>", `${prototypeStyle()}\n</head>`);
+  html = html.replace("</body>", `${prototypeSwitcher()}\n${prototypeScript()}\n</body>`);
   fs.writeFileSync(output, html);
   console.log(output);
 } finally {

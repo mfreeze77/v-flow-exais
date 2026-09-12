@@ -27,27 +27,37 @@ interface PersistAdapter {
 ```
 
 <ParamField path="read" type="(path: string) => Promise<string | undefined>">
-  Returns the stored content for `path`, or `undefined` for a path that has never been written. Never throws for a missing path.
+  Returns the stored content for `path`, or `undefined` for a path that has never been written.
+  Never throws for a missing path.
 </ParamField>
 
 <ParamField path="write" type="(path: string, content: string) => Promise<void>">
-  Persists `content` at `path`. Idempotent — a second call with the same path overwrites the prior value. Write failures must not propagate as thrown exceptions; fire `persist:error` instead.
+  Persists `content` at `path`. Idempotent — a second call with the same path overwrites the prior
+  value. Write failures must not propagate as thrown exceptions; fire `persist:error` instead.
 </ParamField>
 
 <ParamField path="flush" type="() => Promise<void>">
-  Forces any queued or in-flight writes to commit before resolving. Call before process exit or navigation to prevent data loss.
+  Forces any queued or in-flight writes to commit before resolving. Call before process exit or
+  navigation to prevent data loss.
 </ParamField>
 
 <ParamField path="listVersions" type="(path: string) => Promise<PersistVersionEntry[]>">
-  Returns the version history for `path` ordered newest-first. Returns an empty array when no versions exist. See `PersistVersionEntry` below.
+  Returns the version history for `path` ordered newest-first. Returns an empty array when no
+  versions exist. See `PersistVersionEntry` below.
 </ParamField>
 
-<ParamField path="loadFrom" type="(path: string, versionKey: string) => Promise<string | undefined>">
-  Returns the HTML content for a specific version identified by `versionKey`. Returns `undefined` when the key does not exist.
+<ParamField
+  path="loadFrom"
+  type="(path: string, versionKey: string) => Promise<string | undefined>"
+>
+  Returns the HTML content for a specific version identified by `versionKey`. Returns `undefined`
+  when the key does not exist.
 </ParamField>
 
 <ParamField path="on" type='(event: "persist:error", handler) => () => void'>
-  Subscribes to write failures. Returns an unsubscribe function. Adapters must emit this event — not throw — when a write fails, so the session continues running even when storage is temporarily unavailable.
+  Subscribes to write failures. Returns an unsubscribe function. Adapters must emit this event — not
+  throw — when a write fails, so the session continues running even when storage is temporarily
+  unavailable.
 </ParamField>
 
 ### Contract summary
@@ -98,37 +108,50 @@ interface PreviewAdapter {
 ```
 
 <ParamField path="elementAtPoint" type="(x, y, opts?) => ElementAtPointResult | null">
-  Synchronous hit-test at composition coordinates `(x, y)`. Returns the nearest `[data-hf-id]` element under the point, or `null` for a transparent hit (the composition root, an opacity-0 element, or nothing at all). Requires a same-origin iframe — cross-origin access throws a DOMException. The `atTime` option reflects GSAP state at the current playhead; seeking to a speculative time is not supported.
+  Synchronous hit-test at composition coordinates `(x, y)`. Returns the nearest `[data-hf-id]`
+  element under the point, or `null` for a transparent hit (the composition root, an opacity-0
+  element, or nothing at all). Requires a same-origin iframe — cross-origin access throws a
+  DOMException. The `atTime` option reflects GSAP state at the current playhead; seeking to a
+  speculative time is not supported.
 </ParamField>
 
 <ParamField path="isProvablyEmptyAt" type="(x, y, opts?) => boolean">
   Optional. Is `(x, y)` provably free of ink — is it safe to let a click pass through to whatever sits beneath? This is the question a host has to answer before a transparent composition layered over other content swallows a click: is the user pointing **at** artwork, or through an empty gap? Geometry alone cannot tell — a composition is mostly full-bleed wrapper `<div>`s that cover every pixel of the frame without painting anything.
 
-  **True only when the composition was readable and nothing painted there.** Ink present, a document still loading or unreadable, and an adapter that doesn't implement the method (`preview.isProvablyEmptyAt?.(x, y)` → `undefined` → falsy) all come back falsy. That polarity is deliberate: it puts the burden of proof on passing the click through, so every way of failing keeps the composition clickable rather than making it vanish from under the cursor. The obvious call site is safe by construction:
+**True only when the composition was readable and nothing painted there.** Ink present, a document still loading or unreadable, and an adapter that doesn't implement the method (`preview.isProvablyEmptyAt?.(x, y)` → `undefined` → falsy) all come back falsy. That polarity is deliberate: it puts the burden of proof on passing the click through, so every way of failing keeps the composition clickable rather than making it vanish from under the cursor. The obvious call site is safe by construction:
 
-  ```typescript
-  if (preview.isProvablyEmptyAt?.(x, y)) passThrough();
-  ```
+```typescript
+if (preview.isProvablyEmptyAt?.(x, y)) passThrough();
+```
 
-  Ink is a computed-style test — background colour, background image, visible border, the element's own text, or intrinsic media — with one exception: `<img>` (and the `<img>` inside a `<picture>`) routes through per-pixel alpha, so a transparent PNG paints only where its pixels do. A pixel-verified hit is never discounted by `fullBleedFraction`: box area is not ink area, so a full-frame transparent overlay stays clickable where it is actually opaque.
+Ink is a computed-style test — background colour, background image, visible border, the element's own text, or intrinsic media — with one exception: `<img>` (and the `<img>` inside a `<picture>`) routes through per-pixel alpha, so a transparent PNG paints only where its pixels do. A pixel-verified hit is never discounted by `fullBleedFraction`: box area is not ink area, so a full-frame transparent overlay stays clickable where it is actually opaque.
 
-  **Known over-counts** (report ink that isn't there, so a click selects the composition): a `background-image` that is itself mostly transparent reads as painting across its whole box; `<video>`, `<svg>` and `<canvas>` are unconditionally opaque; and an image whose pixels cannot be read — cross-origin without CORS, still loading, rotated, or above the sampler's size budget — falls back to opaque.
+**Known over-counts** (report ink that isn't there, so a click selects the composition): a `background-image` that is itself mostly transparent reads as painting across its whole box; `<video>`, `<svg>` and `<canvas>` are unconditionally opaque; and an image whose pixels cannot be read — cross-origin without CORS, still loading, rotated, or above the sampler's size budget — falls back to opaque.
 
-  **Known under-counts** (miss ink that is there, so a click may pass through): `::before` / `::after` generated content, `box-shadow`, `outline` and `text-decoration` are not tested, and the first three paint outside the border box, so the element is not even a candidate. Content the SDK never stamped is invisible under the default `addressableOnly` — see below.
+**Known under-counts** (miss ink that is there, so a click may pass through): `::before` / `::after` generated content, `box-shadow`, `outline` and `text-decoration` are not tested, and the first three paint outside the border box, so the element is not even a candidate. Content the SDK never stamped is invisible under the default `addressableOnly` — see below.
 
-  The walk is **geometric**, not `elementsFromPoint`-based, and is blind to `pointer-events` and `z-index` by design: a decorative overlay carrying `pointer-events: none` still paints, and a z-stack query would report no ink over visible artwork.
+The walk is **geometric**, not `elementsFromPoint`-based, and is blind to `pointer-events` and `z-index` by design: a decorative overlay carrying `pointer-events: none` still paints, and a z-stack query would report no ink over visible artwork.
+
 </ParamField>
 
 <ParamField path="applyDraft" type="(id: string, props: DraftProps) => void">
-  Visually translates the preview element at 60fps during a drag: sets the element's CSS `translate` to its pre-drag value composed with the accumulated delta. Works on GSAP-animated elements (a `translate` set after GSAP's first parse composes with the animated transform). The **SDK is not called here** — this is a direct write to the preview surface by your pointer-move handler. Switching `id` mid-drag reverts the previous element's draft first.
+  Visually translates the preview element at 60fps during a drag: sets the element's CSS `translate`
+  to its pre-drag value composed with the accumulated delta. Works on GSAP-animated elements (a
+  `translate` set after GSAP's first parse composes with the animated transform). The **SDK is not
+  called here** — this is a direct write to the preview surface by your pointer-move handler.
+  Switching `id` mid-drag reverts the previous element's draft first.
 </ParamField>
 
 <ParamField path="commitPreview" type="() => void">
-  Called once on pointer-up. Reads the accumulated draft delta, derives a `moveElement` op from it, dispatches it into the SDK, emits a patch event, and mirrors the committed position onto the live element (so it holds without a reload). This is the only moment the SDK becomes aware of a drag. If dispatch throws, the draft translate is reverted and the error propagates.
+  Called once on pointer-up. Reads the accumulated draft delta, derives a `moveElement` op from it,
+  dispatches it into the SDK, emits a patch event, and mirrors the committed position onto the live
+  element (so it holds without a reload). This is the only moment the SDK becomes aware of a drag.
+  If dispatch throws, the draft translate is reverted and the error propagates.
 </ParamField>
 
 <ParamField path="cancelPreview" type="() => void">
-  Restores the element's pre-drag `translate` without dispatching any op. The model is never changed. Call this on `Escape` keydown or when a drag is aborted.
+  Restores the element's pre-drag `translate` without dispatching any op. The model is never
+  changed. Call this on `Escape` keydown or when a drag is aborted.
 </ParamField>
 
 <ParamField path="select" type="(ids: string[], opts?: { additive?: boolean }) => void">
@@ -136,22 +159,25 @@ interface PreviewAdapter {
 </ParamField>
 
 <ParamField path="on" type='(event: "selection", handler: (ids: string[]) => void) => () => void'>
-  Fired when the preview host changes the selection (for example, the user clicks an element). Returns an unsubscribe function. In the current release, callers listen to the session's own `selectionchange` event instead — this hook is wired in a future stage.
+  Fired when the preview host changes the selection (for example, the user clicks an element).
+  Returns an unsubscribe function. In the current release, callers listen to the session's own
+  `selectionchange` event instead — this hook is wired in a future stage.
 </ParamField>
 
 <ParamField path="attachSync" type="(comp: Composition) => () => void">
   Mirrors a composition's edits onto the adapter's own live document: an immediate full sync of the composition's current overrides, then a subscription that replays every future `patch` event — including undo/redo, since both fire through the same event with forward or inverse patches. Calling `attachSync` again while already attached detaches the previous subscription first. The full-override sync also re-runs on every iframe `load`, so a `srcdoc` navigation that races the attach (or drops patches committed during the load window) converges once the new document arrives. Returns an unsubscribe function.
 
-  Script-tag patches (`/script/gsap` and any future `/script/*` path) are never mirrored — rewriting a live `<script>` tag's content doesn't re-execute it, and re-running GSAP setup from scratch would conflict with running timeline state. Every other patch kind (style, text, attribute, timing, hold, element add/remove, stylesheet, variable value, variable declaration) mirrors as-is.
+Script-tag patches (`/script/gsap` and any future `/script/*` path) are never mirrored — rewriting a live `<script>` tag's content doesn't re-execute it, and re-running GSAP setup from scratch would conflict with running timeline state. Every other patch kind (style, text, attribute, timing, hold, element add/remove, stylesheet, variable value, variable declaration) mirrors as-is.
 
-  ```typescript
-  const adapter = createIframePreviewAdapter(iframe, dispatch);
-  const comp = await openComposition(html, { preview: adapter });
-  const detach = adapter.attachSync(comp);
+```typescript
+const adapter = createIframePreviewAdapter(iframe, dispatch);
+const comp = await openComposition(html, { preview: adapter });
+const detach = adapter.attachSync(comp);
 
-  // later, if the host tears down the preview:
-  detach();
-  ```
+// later, if the host tears down the preview:
+detach();
+```
+
 </ParamField>
 
 ### ElementAtPointResult
@@ -188,17 +214,26 @@ interface PaintQueryOptions {
 ```
 
 <ParamField path="fullBleedFraction" type="number" default="0">
-  A hit whose smallest painting box covers at least this fraction of the composition frame reads as background rather than ink. This is host policy, not a fact about the composition: an editor that treats "you clicked a layer covering the whole frame" as "you clicked the background" passes `0.9`, while a caller asking the literal ink question leaves it at `0`. Nested sub-compositions carry `data-composition-id` too, so the reference frame is the innermost composition root containing the point.
+  A hit whose smallest painting box covers at least this fraction of the composition frame reads as
+  background rather than ink. This is host policy, not a fact about the composition: an editor that
+  treats "you clicked a layer covering the whole frame" as "you clicked the background" passes
+  `0.9`, while a caller asking the literal ink question leaves it at `0`. Nested sub-compositions
+  carry `data-composition-id` too, so the reference frame is the innermost composition root
+  containing the point.
 </ParamField>
 
 <ParamField path="addressableOnly" type="boolean" default="true">
   Consider only model-addressable elements (`[data-hf-id]`). Stamping happens once, on the document `openComposition` was given, so anything the runtime creates or fetches afterwards is invisible to the default walk: split-text word and character spans (splitting also empties the stamped parent's own text nodes, so the parent stops counting too), cloned nodes, and whole sub-composition scenes mounted from `data-composition-src`. Kinetic typography and registry-mounted lower-thirds — both canonical transparent-overlay content — therefore read as no-ink by default.
 
-  Set `false` to widen the walk to every element, which sees that content at the cost of a larger candidate set.
+Set `false` to widen the walk to every element, which sees that content at the cost of a larger candidate set.
+
 </ParamField>
 
 <Note>
-  `ElementAtPointResult` and `DraftProps` are the structural shapes a `PreviewAdapter` produces and consumes. They are **not** re-exported from the `@hyperframes/sdk` barrel — you implement against these shapes rather than importing them. `PaintQueryOptions` **is** re-exported, since callers pass it rather than implement it.
+  `ElementAtPointResult` and `DraftProps` are the structural shapes a `PreviewAdapter` produces and
+  consumes. They are **not** re-exported from the `@hyperframes/sdk` barrel — you implement against
+  these shapes rather than importing them. `PaintQueryOptions` **is** re-exported, since callers
+  pass it rather than implement it.
 </Note>
 
 ---
@@ -228,7 +263,8 @@ const saved = await persist.read("composition.html");
 ```
 
 <Note>
-  `createMemoryAdapter()` is best suited for tests, demos, and ephemeral in-process sessions. For local development, use `createFsAdapter()` so edits survive restarts.
+  `createMemoryAdapter()` is best suited for tests, demos, and ephemeral in-process sessions. For
+  local development, use `createFsAdapter()` so edits survive restarts.
 </Note>
 
 ---
@@ -255,11 +291,13 @@ interface FsAdapterOptions {
 ```
 
 <ParamField path="root" type="string" required>
-  Absolute or relative path to the directory where composition files are written. Created with `mkdir -p` on first write.
+  Absolute or relative path to the directory where composition files are written. Created with
+  `mkdir -p` on first write.
 </ParamField>
 
 <ParamField path="maxVersions" type="number">
-  Maximum number of historical versions retained per file. Oldest versions are pruned automatically when the limit is exceeded. Defaults to `20`.
+  Maximum number of historical versions retained per file. Oldest versions are pruned automatically
+  when the limit is exceeded. Defaults to `20`.
 </ParamField>
 
 The adapter writes the current composition at `{root}/{path}` and stores version snapshots in `{root}/.hf-versions/{path}/`. Version keys encode `Date.now()` and a monotonic counter (`"1750000000000-0001"`), so `listVersions()` returns them newest-first by lexicographic descending sort.
@@ -283,7 +321,8 @@ const previous = await adapter.loadFrom("index.html", versions[1].key);
 ```
 
 <Warning>
-  `createFsAdapter` uses Node.js `fs/promises`. Do not import it in browser or edge environments — import from `@hyperframes/sdk/adapters/fs` (the subpath) so bundlers can tree-shake it.
+  `createFsAdapter` uses Node.js `fs/promises`. Do not import it in browser or edge environments —
+  import from `@hyperframes/sdk/adapters/fs` (the subpath) so bundlers can tree-shake it.
 </Warning>
 
 ---
@@ -332,6 +371,7 @@ function createIframePreviewAdapter(
 Returns a `PreviewAdapter` that bridges the SDK to a same-origin `<iframe>` containing the composition. Provides real hit-testing via `elementsFromPoint` (z-stack aware), draft drag support, and selection management.
 
 **Requirements:**
+
 - The iframe must be same-origin (e.g. a `srcdoc` or `blob:` URL). Cross-origin access to `contentDocument` throws a `DOMException`.
 - Pass your session's `dispatch` callback to enable `commitPreview()` — without it, pointer-up is a no-op on the model.
 
@@ -375,15 +415,15 @@ if (hit) {
 
 ## Export Map
 
-| Symbol | Imported from |
-|--------|---------------|
-| `PersistAdapter`, `PreviewAdapter`, `PersistVersionEntry` | `@hyperframes/sdk` (types only) |
-| `createMemoryAdapter` | `@hyperframes/sdk` |
-| `createHeadlessAdapter` | `@hyperframes/sdk` |
-| `createIframePreviewAdapter`, `resolveNearestHfElement` | `@hyperframes/sdk` |
-| `PaintQueryOptions` | `@hyperframes/sdk` (type only) |
+| Symbol                                                                                                                           | Imported from                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| `PersistAdapter`, `PreviewAdapter`, `PersistVersionEntry`                                                                        | `@hyperframes/sdk` (types only)    |
+| `createMemoryAdapter`                                                                                                            | `@hyperframes/sdk`                 |
+| `createHeadlessAdapter`                                                                                                          | `@hyperframes/sdk`                 |
+| `createIframePreviewAdapter`, `resolveNearestHfElement`                                                                          | `@hyperframes/sdk`                 |
+| `PaintQueryOptions`                                                                                                              | `@hyperframes/sdk` (type only)     |
 | `elementPaintsInk`, `compositionPaintsAt`, `imageAlphaOpaqueAt`, `alphaIsOpaque`, `mapPointToImagePixel`, `INTRINSIC_PAINT_TAGS` | `@hyperframes/sdk/adapters/iframe` |
-| `createFsAdapter`, `FsAdapterOptions` | `@hyperframes/sdk/adapters/fs` |
+| `createFsAdapter`, `FsAdapterOptions`                                                                                            | `@hyperframes/sdk/adapters/fs`     |
 
 <CardGroup cols={2}>
   <Card title="Persistence Guide" icon="floppy-disk" href="/sdk/guides/persistence">

@@ -18,6 +18,7 @@ You can also load the browser global build directly:
 ## When to Use
 
 **Use `@hyperframes/shader-transitions` when you need to:**
+
 - Add shader-based scene transitions such as domain warp, whip pan, glitch, iris, light leak, or thermal distortion
 - Attach GPU transitions to an existing GSAP timeline
 - Build a transition picker or validation UI around the available shader registry
@@ -25,19 +26,20 @@ You can also load the browser global build directly:
 - Use the producer's deterministic page-side compositor for render-mode captures
 
 **Use a different package if you want to:**
+
 - Render the finished composition to video - use the [CLI](/packages/cli) or [producer](/packages/producer)
 - Edit composition structure programmatically - use [sdk](/packages/sdk)
 - Build a visual editor surface - use [studio](/packages/studio)
 
 ## Package Exports
 
-| Import | Description |
-|--------|-------------|
-| `init()` | Creates or augments a GSAP timeline with shader transitions |
-| `SHADER_NAMES` | Array of supported shader names for validation and UI pickers |
-| `isHtmlInCanvasCaptureSupported()` | Feature-detects Chrome's native HTML-in-canvas capture path |
-| `installPageSideCompositor()` | Installs the render-mode compositor used by the producer path |
-| `isPageSideCompositingSupported()` | Checks whether page-side shader compositing is available |
+| Import                             | Description                                                   |
+| ---------------------------------- | ------------------------------------------------------------- |
+| `init()`                           | Creates or augments a GSAP timeline with shader transitions   |
+| `SHADER_NAMES`                     | Array of supported shader names for validation and UI pickers |
+| `isHtmlInCanvasCaptureSupported()` | Feature-detects Chrome's native HTML-in-canvas capture path   |
+| `installPageSideCompositor()`      | Installs the render-mode compositor used by the producer path |
+| `isPageSideCompositingSupported()` | Checks whether page-side shader compositing is available      |
 
 ## Quick Start
 
@@ -79,22 +81,22 @@ If WebGL is unavailable, the package falls back to normal timeline playback with
 
 ## Available Shaders
 
-| Shader | Description |
-|--------|-------------|
-| `domain-warp` | Organic noise-based warp with a glowing edge |
-| `ridged-burn` | Ridged noise burn with sparks and heat glow |
-| `whip-pan` | Horizontal motion blur simulating a fast camera pan |
-| `sdf-iris` | Circular iris wipe with a glowing ring edge |
-| `ripple-waves` | Concentric ripple distortion radiating from center |
-| `gravitational-lens` | Warping gravity well with chromatic aberration |
-| `cinematic-zoom` | Radial zoom blur with chromatic fringing |
-| `chromatic-split` | RGB channel separation expanding from center |
-| `glitch` | Digital glitch with block displacement and scanlines |
-| `swirl-vortex` | Spiral rotation with noise-based warping |
-| `thermal-distortion` | Heat shimmer rising from the bottom |
-| `flash-through-white` | Flash to white, then reveal the next scene |
-| `cross-warp-morph` | Noise-driven morph blending both scenes |
-| `light-leak` | Warm cinematic light leak with lens flare |
+| Shader                | Description                                          |
+| --------------------- | ---------------------------------------------------- |
+| `domain-warp`         | Organic noise-based warp with a glowing edge         |
+| `ridged-burn`         | Ridged noise burn with sparks and heat glow          |
+| `whip-pan`            | Horizontal motion blur simulating a fast camera pan  |
+| `sdf-iris`            | Circular iris wipe with a glowing ring edge          |
+| `ripple-waves`        | Concentric ripple distortion radiating from center   |
+| `gravitational-lens`  | Warping gravity well with chromatic aberration       |
+| `cinematic-zoom`      | Radial zoom blur with chromatic fringing             |
+| `chromatic-split`     | RGB channel separation expanding from center         |
+| `glitch`              | Digital glitch with block displacement and scanlines |
+| `swirl-vortex`        | Spiral rotation with noise-based warping             |
+| `thermal-distortion`  | Heat shimmer rising from the bottom                  |
+| `flash-through-white` | Flash to white, then reveal the next scene           |
+| `cross-warp-morph`    | Noise-driven morph blending both scenes              |
+| `light-leak`          | Warm cinematic light leak with lens flare            |
 
 Use `SHADER_NAMES` when you need a typed list:
 

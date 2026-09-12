@@ -368,13 +368,13 @@ you paste it into.
 Every one of these has a default, so the piece works untouched. Set the ones you
 want to change on the element:
 
-| Variable | Default | Accepts | What it does |
-| --- | --- | --- | --- |
-| `axis` | `rows` | `rows`, `cols` | rows smears arrival across horizontal slices; cols across vertical slices. |
-| `spread` | `0.45` | number | Maximum sampling offset in seconds across the frame; larger smears further through time. |
-| `resolve_at` | `2.2` | number | Seconds from mount start when the offsets start collapsing to zero. Clamped so the collapse and any exit stay inside the clip. |
-| `accent` | `green` | `green`, `blue`, `violet` | Subject ring and orbit color: green rides --brand, blue rides --accent, violet rides --accent-2. |
-| `exit` | `none` | `none`, `fade`, `up` | Optional departure. Default none: the resolved mark holds until the frame cuts. |
+| Variable     | Default | Accepts                   | What it does                                                                                                                   |
+| ------------ | ------- | ------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| `axis`       | `rows`  | `rows`, `cols`            | rows smears arrival across horizontal slices; cols across vertical slices.                                                     |
+| `spread`     | `0.45`  | number                    | Maximum sampling offset in seconds across the frame; larger smears further through time.                                       |
+| `resolve_at` | `2.2`   | number                    | Seconds from mount start when the offsets start collapsing to zero. Clamped so the collapse and any exit stay inside the clip. |
+| `accent`     | `green` | `green`, `blue`, `violet` | Subject ring and orbit color: green rides --brand, blue rides --accent, violet rides --accent-2.                               |
+| `exit`       | `none`  | `none`, `fade`, `up`      | Optional departure. Default none: the resolved mark holds until the frame cuts.                                                |
 
 Set them with `data-variable-values` on the element that mounts it. These are the
 defaults, so this behaves exactly like the preview above until you change one:

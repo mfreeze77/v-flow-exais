@@ -27,6 +27,7 @@ Signing in is the same OAuth step as creating an account — new users land on t
     npx hyperframes auth login --api-key            # hidden-input prompt
     echo "$HEYGEN_API_KEY" | npx hyperframes auth login --api-key   # from stdin
     ```
+
   </Step>
   <Step title="Confirm what's configured">
     ```bash
@@ -34,15 +35,15 @@ Signing in is the same OAuth step as creating an account — new users land on t
     ```
 
     Shows the active credential's source and verified identity, and — when you're signed out — which local engines voice and music will use. Add `--json` for `{ configured, recommended_action, offline_engines }` in scripts.
+
   </Step>
 </Steps>
 
 The credential lives in `~/.heygen/credentials` (mode `0600`) — no per-repo `.env` to manage. Browser OAuth is a `hyperframes auth login` feature. The separate [`heygen` CLI](https://github.com/heygen-com/heygen-cli) (its own install — there's no `npx heygen`) is API-key-only, so `heygen auth login` just stores a key you paste. Both read the same `~/.heygen/credentials`, so signing in with one carries to the other.
 
 <Tip>
-  No account is needed to try HyperFrames locally. With no credential, voice can
-  use **Kokoro** and music can use **MusicGen** — see [Working
-  offline](#working-offline).
+  No account is needed to try HyperFrames locally. With no credential, voice can use **Kokoro** and
+  music can use **MusicGen** — see [Working offline](#working-offline).
 </Tip>
 
 ## How the HeyGen credential resolves
@@ -63,21 +64,20 @@ available provider in its order. Voice, music, and sound have offline
 fallbacks; capture descriptions are optional and are skipped when no supported
 vision key is available.
 
-| Capability | Provider order | Key(s) — first match wins | Local dependency |
-|------------|----------------|---------------------------|------------------|
-| **Voice (TTS)** | HeyGen → ElevenLabs → Kokoro | `HEYGEN_API_KEY` → `HYPERFRAMES_API_KEY` → `~/.heygen` · then `ELEVENLABS_API_KEY` | Kokoro: `pip install kokoro-onnx soundfile` |
-| **Music (BGM)** | HeyGen library → Lyria → MusicGen | HeyGen credential (above) · then `GEMINI_API_KEY` → `GOOGLE_API_KEY` | MusicGen: `pip install transformers torch soundfile numpy` |
-| **Sound effects** | HeyGen library → bundled library | HeyGen credential (above) | bundled — no deps |
-| **Capture descriptions** | OpenRouter → Gemini | `OPENROUTER_API_KEY` → `GEMINI_API_KEY` | None; optional for [website capture](/guides/product-launch-video) |
+| Capability               | Provider order                    | Key(s) — first match wins                                                          | Local dependency                                                   |
+| ------------------------ | --------------------------------- | ---------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| **Voice (TTS)**          | HeyGen → ElevenLabs → Kokoro      | `HEYGEN_API_KEY` → `HYPERFRAMES_API_KEY` → `~/.heygen` · then `ELEVENLABS_API_KEY` | Kokoro: `pip install kokoro-onnx soundfile`                        |
+| **Music (BGM)**          | HeyGen library → Lyria → MusicGen | HeyGen credential (above) · then `GEMINI_API_KEY` → `GOOGLE_API_KEY`               | MusicGen: `pip install transformers torch soundfile numpy`         |
+| **Sound effects**        | HeyGen library → bundled library  | HeyGen credential (above)                                                          | bundled — no deps                                                  |
+| **Capture descriptions** | OpenRouter → Gemini               | `OPENROUTER_API_KEY` → `GEMINI_API_KEY`                                            | None; optional for [website capture](/guides/product-launch-video) |
 
 Run `npx hyperframes doctor` to check which local dependencies are installed.
 The media workflows run `hyperframes auth status` before generation and tell
 you which path they will use.
 
 <Note>
-  `npx hyperframes tts` itself is the local Kokoro CLI. Hosted HeyGen and
-  ElevenLabs voices are selected by the bundled media workflow helpers, not by
-  that command.
+  `npx hyperframes tts` itself is the local Kokoro CLI. Hosted HeyGen and ElevenLabs voices are
+  selected by the bundled media workflow helpers, not by that command.
 </Note>
 
 ## Working offline
@@ -105,15 +105,15 @@ to a shared space with `--space`.
 
 ## Environment variables
 
-| Variable | Used for |
-|----------|----------|
-| `HEYGEN_API_KEY` | HeyGen credential — voice + music/SFX retrieval. Highest priority. |
-| `HYPERFRAMES_API_KEY` | Alias for `HEYGEN_API_KEY`. |
-| `HEYGEN_API_URL` | API base URL (default `https://api.heygen.com`). |
-| `HEYGEN_CONFIG_DIR` | Credentials directory (default `~/.heygen`). |
-| `ELEVENLABS_API_KEY` | ElevenLabs TTS, used when no HeyGen credential is present. |
-| `GEMINI_API_KEY` / `GOOGLE_API_KEY` | Lyria music generation (and capture descriptions). |
-| `OPENROUTER_API_KEY` | Capture descriptions; takes priority over Gemini for that step. |
+| Variable                            | Used for                                                           |
+| ----------------------------------- | ------------------------------------------------------------------ |
+| `HEYGEN_API_KEY`                    | HeyGen credential — voice + music/SFX retrieval. Highest priority. |
+| `HYPERFRAMES_API_KEY`               | Alias for `HEYGEN_API_KEY`.                                        |
+| `HEYGEN_API_URL`                    | API base URL (default `https://api.heygen.com`).                   |
+| `HEYGEN_CONFIG_DIR`                 | Credentials directory (default `~/.heygen`).                       |
+| `ELEVENLABS_API_KEY`                | ElevenLabs TTS, used when no HeyGen credential is present.         |
+| `GEMINI_API_KEY` / `GOOGLE_API_KEY` | Lyria music generation (and capture descriptions).                 |
+| `OPENROUTER_API_KEY`                | Capture descriptions; takes priority over Gemini for that step.    |
 
 ## Related topics
 

@@ -7,7 +7,7 @@ import { DocsVideo } from "/snippets/docs-video.jsx";
 
 Your video moves and reads right. This level gives it a voice.
 
-HyperFrames owns media *playback*. A sibling media pipeline resolves everything
+HyperFrames owns media _playback_. A sibling media pipeline resolves everything
 else: voice, music, sound effects, images, icons, logos, captions, and
 background removal. You describe what the composition needs. The agent resolves
 each need to a frozen local file.
@@ -40,7 +40,7 @@ agent choose.
 
 ## Background music
 
-Music resolves from a large catalog by mood. It should almost always sit *under*
+Music resolves from a large catalog by mood. It should almost always sit _under_
 the narration rather than compete with it.
 
 Give the mood **and** a loudness target. The pipeline can duck and normalize to
@@ -54,9 +54,9 @@ a level, so an explicit target lands a mix instead of a guess.
 - ✅ `subtle background music, ducked ~12 dB under the voice` — a mix instruction the pipeline can execute
 
 <Tip>
-  A stated loudness target ("under −18 dB," "ducked under the voice") is the
-  difference between music that supports the piece and music that buries it.
-  When there's narration, always say the bed goes under it.
+  A stated loudness target ("under −18 dB," "ducked under the voice") is the difference between
+  music that supports the piece and music that buries it. When there's narration, always say the bed
+  goes under it.
 </Tip>
 
 ## Sound effects
@@ -104,7 +104,7 @@ project from a source video can generate captions from its audio directly.
 
 > Generate captions from `assets/interview.mp4` and style them hype, scale-pop.
 
-Caption *look* is its own vocabulary — tone, size, per-word emphasis. See the
+Caption _look_ is its own vocabulary — tone, size, per-word emphasis. See the
 [Captions catalog](/prompting/captions-catalog) for the styles. This page is
 about producing the timed text. That page is about styling it.
 
@@ -139,20 +139,21 @@ for you. Naming the layout you want still helps.
 
 > Put the transparent presenter cutout in the bottom-right, over the chart scene.
 
-> Layer the headline *behind* the presenter so their silhouette occludes the text.
+> Layer the headline _behind_ the presenter so their silhouette occludes the text.
 
 <Note>
   Two mechanics the workflow skills handle automatically, from the [Remove
   background guide](/guides/remove-background#compositing-patterns-and-pitfalls):
 
-  - A cutout that reveals into view goes inside a non-timed `<div>`, and the
-    *wrapper* is what gets animated. HyperFrames owns clip visibility, so
-    animating the media element directly fights the clip lifecycle.
-  - The base video and the cutout both mount at `data-start="0"`, so their
-    decoders stay in sync at the cut.
+- A cutout that reveals into view goes inside a non-timed `<div>`, and the
+  _wrapper_ is what gets animated. HyperFrames owns clip visibility, so
+  animating the media element directly fights the clip lifecycle.
+- The base video and the cutout both mount at `data-start="0"`, so their
+  decoders stay in sync at the cut.
 
-  You rarely need to say either one. They're why "late-mounting" a PiP clip can
-  land a frame off.
+You rarely need to say either one. They're why "late-mounting" a PiP clip can
+land a frame off.
+
 </Note>
 
 ## Bring any footage
@@ -186,9 +187,8 @@ other supplied asset, and describe the composition you want built from it.
   src="https://static.heygen.ai/hyperframes-oss/docs/images/prompting/proxy-footage.mp4#t=0.1"
   loop
 />
-*Rendered from the prompt above, unedited. The source clip is a plain H.265/HEVC
-file. The render decoded it directly via FFmpeg. Preview would have used the
-automatic H.264 proxy.*
+*Rendered from the prompt above, unedited. The source clip is a plain H.265/HEVC file. The render
+decoded it directly via FFmpeg. Preview would have used the automatic H.264 proxy.*
 
 See the [Rendering guide](/guides/rendering#input-video-codecs) for the
 mechanics — proxy generation, caching, and which codecs it covers.
@@ -196,13 +196,13 @@ mechanics — proxy generation, caching, and which codecs it covers.
 ## The supplied-assets rule
 
 For any asset you already have, an explicit path removes the most ambiguity. The
-agent will search when you only describe an asset. A path settles *which* file.
+agent will search when you only describe an asset. A path settles _which_ file.
 
 - ❌ `use my logo`
 - ✅ `use assets/logo.svg`
 
 This matters even when a search would have worked. Brand and entity assets
-should point at *your* file, not a resolved lookalike.
+should point at _your_ file, not a resolved lookalike.
 
 Third-party logos are a separate case. The pipeline pulls official marks from a
 logo cascade and never redraws them by hand. So "add the LinkedIn logo" is fine.
@@ -223,11 +223,10 @@ the gap explicitly, because the engine acts on the literal words.
 ## The capstone thread
 
 <Note>
-**Capstone thread** — the [Level 7 film](/prompting/capstone)'s Material region
-runs this chapter's entire pipeline on one clip: generated footage → HEVC
-auto-proxy → background removal mid-scene → word-synced captions from the clip's
-own transcription, with the clip's audio ducking the BGM (cut from the film,
-below).
+  **Capstone thread** — the [Level 7 film](/prompting/capstone)'s Material region runs this
+  chapter's entire pipeline on one clip: generated footage → HEVC auto-proxy → background removal
+  mid-scene → word-synced captions from the clip's own transcription, with the clip's audio ducking
+  the BGM (cut from the film, below).
 </Note>
 
 This is the clause in the [full capstone
@@ -243,8 +242,8 @@ prompt language you can lift for your own video:
 />
 *That clause, rendered — the region cut from the finished film.*
 
-*Next: [Audio effects and mixing](/prompting/audio-effects) — making the voice,
-music, and effects you just placed sit together.*
+_Next: [Audio effects and mixing](/prompting/audio-effects) — making the voice,
+music, and effects you just placed sit together._
 
 ## Related topics
 

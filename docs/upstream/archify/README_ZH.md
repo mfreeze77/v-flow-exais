@@ -26,6 +26,7 @@ Archify 是一套基于 Node.js 的渲染与校验系统，并以 Agent Skill �
 ```bash
 npx skills add tt-a1i/archify -g
 ```
+
 使用 Cursor？打开[可切换 Agent 的快速开始页](https://tt-a1i.github.io/archify/start.html?agent=cursor&type=architecture)，即可获得准确的全局或当前仓库安装命令。
 
 **不需要绑定代码库：**在任意 Agent 对话里描述系统即可。
@@ -44,10 +45,10 @@ npx skills add tt-a1i/archify -g
   <sub><strong>三个真实生成、校验通过的成品。</strong> Signal Flow · Blueprint · Classic · <a href="https://tt-a1i.github.io/archify/gallery.html">打开可交互验证作品集 ↗</a></sub>
 </p>
 
-| 引导故事 | 路径探查 | 语义角色对比 |
-|---|---|---|
+| 引导故事                                                                                                                                                                                                | 路径探查                                                                                                                                                                                          | 语义角色对比                                                                                                                                                                                                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [![Agent 工作流正在播放一个作者章节](docs/assets/archify-demo-story.png)](https://tt-a1i.github.io/archify/gallery/artifacts/agent-tool-call.workflow.html?theme=dark&present=1&play=1#view=happy-path) | [![缓存未命中时从 Web App 到 Postgres 的路径](docs/assets/archify-demo-route.png)](https://tt-a1i.github.io/archify/gallery/artifacts/cache-miss.sequence.html?theme=dark&present=1#route=web~db) | [![生产架构中后端与数据库角色的真实关系](docs/assets/archify-demo-lens.png)](https://tt-a1i.github.io/archify/gallery/artifacts/production-deployment.architecture.html?theme=dark&present=1#lens=backend~database) |
-| 播放一次有限的命名章节。 | 检查最短的作者有向路径。 | 对比语义角色之间的真实流量。 |
+| 播放一次有限的命名章节。                                                                                                                                                                                | 检查最短的作者有向路径。                                                                                                                                                                          | 对比语义角色之间的真实流量。                                                                                                                                                                                        |
 
 [Proof Lab](https://tt-a1i.github.io/archify/gallery.html) 收录全部 11 个仓库内场景、JSON 源、命名视图和校验回执。
 
@@ -61,8 +62,8 @@ Archify 追踪 [`mco-org/mco`](https://github.com/mco-org/mco) 的 `9f1a1cf` 版
 
 同一张图，两套主题，一键切换：
 
-| 深色 | 浅色 |
-|---|---|
+| 深色                                      | 浅色                                       |
+| ----------------------------------------- | ------------------------------------------ |
 | ![深色主题](docs/assets/archify-dark.png) | ![浅色主题](docs/assets/archify-light.png) |
 
 Export 菜单支持复制 PNG，并下载静态或动态格式：
@@ -125,13 +126,13 @@ DeepSeek Harness（社区集成、显式启用）：运行 `dsh plugin --profile
 
 ## 选择合适的图表
 
-| 类型 | 最适合 | Prompt 中应包含 |
-|---|---|---|
-| **Architecture** | 组件、服务、存储和系统边界 | 范围、核心组件、主要路径 |
-| **Workflow** | CI/CD、审批、工具调用、Runbook | 参与者、顺序、分支、异常 |
-| **Sequence** | API 调用、缓存回源、鉴权、异步链路 | 调用方、被调用方、返回、时序 |
-| **Data Flow** | 数据管线、血缘、PII、下游消费者 | 来源、转换、存储、边界 |
-| **Lifecycle** | 状态、重试、等待、终态 | 状态、事件、重试与取消路径 |
+| 类型             | 最适合                             | Prompt 中应包含              |
+| ---------------- | ---------------------------------- | ---------------------------- |
+| **Architecture** | 组件、服务、存储和系统边界         | 范围、核心组件、主要路径     |
+| **Workflow**     | CI/CD、审批、工具调用、Runbook     | 参与者、顺序、分支、异常     |
+| **Sequence**     | API 调用、缓存回源、鉴权、异步链路 | 调用方、被调用方、返回、时序 |
+| **Data Flow**    | 数据管线、血缘、PII、下游消费者    | 来源、转换、存储、边界       |
+| **Lifecycle**    | 状态、重试、等待、终态             | 状态、事件、重试与取消路径   |
 
 做生产部署评审时，Architecture 可以按需启用 `deployment-ownership`
 工程画像：负责人、单一区域归属、数据库私有边界或边界穿越机制缺失时会直接阻断。
@@ -184,13 +185,13 @@ Archify 不是通用绘图编辑器，也不是 Mermaid 主题；它负责把技
 
 ## 工作原理
 
-| 步骤 | 发生什么 |
-|---|---|
-| **生成** | Agent 根据描述创建 Typed JSON IR。 |
-| **校验** | 内置 Validator 和布局规则检查源文件；失败时用机器可读 JSON 指出准确的局部修复。 |
-| **预览（可选）** | 仅 loopback 的桌面会话监听一个源文件，只刷新验证版本；失败时保留最后好图。 |
-| **交付** | 在目标同目录生成并检查候选；只有通过门禁的结果才原子替换目标文件，随后可选用 `--open` 打开这个确切成品。 |
-| **迭代** | Agent 修改源文件，不干扰无关结构。 |
+| 步骤             | 发生什么                                                                                                 |
+| ---------------- | -------------------------------------------------------------------------------------------------------- |
+| **生成**         | Agent 根据描述创建 Typed JSON IR。                                                                       |
+| **校验**         | 内置 Validator 和布局规则检查源文件；失败时用机器可读 JSON 指出准确的局部修复。                          |
+| **预览（可选）** | 仅 loopback 的桌面会话监听一个源文件，只刷新验证版本；失败时保留最后好图。                               |
+| **交付**         | 在目标同目录生成并检查候选；只有通过门禁的结果才原子替换目标文件，随后可选用 `--open` 打开这个确切成品。 |
+| **迭代**         | Agent 修改源文件，不干扰无关结构。                                                                       |
 
 仓库常用命令：
 
@@ -226,18 +227,18 @@ node bin/archify.mjs deliver workflow examples/agent-tool-call.workflow.json /tm
 
 ## 探索与分享
 
-| 操作 | 控制方式 |
-|---|---|
-| 打开事实型 Diagram Guide | <kbd>?</kbd> |
-| 查找并聚焦语义节点 | <kbd>/</kbd> |
-| 追踪作者定义的上游 / 下游可达范围 | 聚焦节点 → `Upstream` / `Downstream` |
-| 探查有向路径并逐站检查 | <kbd>R</kbd> 或“路径” |
-| 对比一种或两种语义角色 | <kbd>L</kbd> 或“透镜” |
-| 打开实时全局雷达 | <kbd>M</kbd> 或“地图” |
-| 播放故事 / 切换章节 | <kbd>P</kbd> / <kbd>[</kbd> <kbd>]</kbd> |
-| 进入 Presentation Stage | <kbd>F</kbd> |
+| 操作                                                      | 控制方式                                   |
+| --------------------------------------------------------- | ------------------------------------------ |
+| 打开事实型 Diagram Guide                                  | <kbd>?</kbd>                               |
+| 查找并聚焦语义节点                                        | <kbd>/</kbd>                               |
+| 追踪作者定义的上游 / 下游可达范围                         | 聚焦节点 → `Upstream` / `Downstream`       |
+| 探查有向路径并逐站检查                                    | <kbd>R</kbd> 或“路径”                      |
+| 对比一种或两种语义角色                                    | <kbd>L</kbd> 或“透镜”                      |
+| 打开实时全局雷达                                          | <kbd>M</kbd> 或“地图”                      |
+| 播放故事 / 切换章节                                       | <kbd>P</kbd> / <kbd>[</kbd> <kbd>]</kbd>   |
+| 进入 Presentation Stage                                   | <kbd>F</kbd>                               |
 | 选择视觉风格（<kbd>S</kbd> 循环）/ 切换主题 / 打开 Export | <kbd>S</kbd> / <kbd>T</kbd> / <kbd>E</kbd> |
-| 缩放或复位 | <kbd>+</kbd> / <kbd>-</kbd> / <kbd>0</kbd> |
+| 缩放或复位                                                | <kbd>+</kbd> / <kbd>-</kbd> / <kbd>0</kbd> |
 
 稳定链接可以恢复 `#focus=<id>`、`#focus=<id>&reach=upstream|downstream`、`#relation=<id>`、`#route=<source>~<target>`、`#lens=<kind>~<kind>` 和 `#view=<view-id>`。读者触发的动态有限运行、遵守 `prefers-reduced-motion`，并且不会进入标准导出。
 
@@ -245,15 +246,15 @@ node bin/archify.mjs deliver workflow examples/agent-tool-call.workflow.json /tm
 
 ## 安装方式
 
-| 使用位置 | 安装位置或方法 | 能力 |
-|---|---|---|
-| **Raven** | ZIP 手动安装：将 `archify.zip` 解压到 `~/.raven/workspace/skills`，解压后会得到 `~/.raven/workspace/skills/archify` | 完整 Renderer + Validation 工作流 |
-| **Claude Code** | `~/.claude/skills/` 或 `.claude/skills/` | 完整 Renderer + Validation 工作流 |
-| **Codex CLI** | `~/.agents/skills/` 或 `.agents/skills/` | 完整 Renderer + Validation 工作流 |
-| **opencode** | `~/.config/opencode/skills/`、`.opencode/skills/` 或 `.agents/skills/` | 完整 Renderer + Validation 工作流 |
-| **Claude.ai** | Settings → Capabilities → Skills 中上传 `archify.zip` | 取决于沙箱是否提供 Node.js |
-| **Project Knowledge** | 把 `archify.zip` 上传到项目 | Prompt 驱动的 Architecture Fallback |
-| **DeepSeek Harness** | 显式启用：`dsh plugin --profile web add @tt-a1i/archify-dsh@0.1.0`；调用：`Use the archify skill to map this repository's runtime architecture.`；卸载：`dsh plugin --profile web remove @tt-a1i/archify-dsh`。 | 面向开发者预览版 `@deepseek-ai/dsh@0.1.0-rc.6` 的社区集成；Node `^22.19.0 \|\| >=24.0.0`；不是 DeepSeek 官方产品。没有遥测；shell 文件不会自动进入 Web Produced Files，请返回精确工作区路径。[详情](integrations/deepseek-harness/README.md)。 |
+| 使用位置              | 安装位置或方法                                                                                                                                                                                                  | 能力                                                                                                                                                                                                                                           |
+| --------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Raven**             | ZIP 手动安装：将 `archify.zip` 解压到 `~/.raven/workspace/skills`，解压后会得到 `~/.raven/workspace/skills/archify`                                                                                             | 完整 Renderer + Validation 工作流                                                                                                                                                                                                              |
+| **Claude Code**       | `~/.claude/skills/` 或 `.claude/skills/`                                                                                                                                                                        | 完整 Renderer + Validation 工作流                                                                                                                                                                                                              |
+| **Codex CLI**         | `~/.agents/skills/` 或 `.agents/skills/`                                                                                                                                                                        | 完整 Renderer + Validation 工作流                                                                                                                                                                                                              |
+| **opencode**          | `~/.config/opencode/skills/`、`.opencode/skills/` 或 `.agents/skills/`                                                                                                                                          | 完整 Renderer + Validation 工作流                                                                                                                                                                                                              |
+| **Claude.ai**         | Settings → Capabilities → Skills 中上传 `archify.zip`                                                                                                                                                           | 取决于沙箱是否提供 Node.js                                                                                                                                                                                                                     |
+| **Project Knowledge** | 把 `archify.zip` 上传到项目                                                                                                                                                                                     | Prompt 驱动的 Architecture Fallback                                                                                                                                                                                                            |
+| **DeepSeek Harness**  | 显式启用：`dsh plugin --profile web add @tt-a1i/archify-dsh@0.1.0`；调用：`Use the archify skill to map this repository's runtime architecture.`；卸载：`dsh plugin --profile web remove @tt-a1i/archify-dsh`。 | 面向开发者预览版 `@deepseek-ai/dsh@0.1.0-rc.6` 的社区集成；Node `^22.19.0 \|\| >=24.0.0`；不是 DeepSeek 官方产品。没有遥测；shell 文件不会自动进入 Web Produced Files，请返回精确工作区路径。[详情](integrations/deepseek-harness/README.md)。 |
 
 Claude.ai 中的上传入口：
 

@@ -12,17 +12,22 @@ npm install @hyperframes/lint
 ## When to Use
 
 <Tip>
-  This package is the payoff of running validation **as a library** instead of shelling out to the CLI. A Node app (an agent harness, a CI step, an editor plugin) can `import { lintProject } from '@hyperframes/lint'` and lint a composition directory directly — no `npx hyperframes lint` subprocess, no stdout parsing.
+  This package is the payoff of running validation **as a library** instead of shelling out to the
+  CLI. A Node app (an agent harness, a CI step, an editor plugin) can `import {lintProject} from
+  '@hyperframes/lint'` and lint a composition directory directly — no `npx hyperframes lint`
+  subprocess, no stdout parsing.
 </Tip>
 
 **Use `@hyperframes/lint` when you need to:**
+
 - Lint a composition project (an index + sub-compositions) from Node
 - Lint a single HTML string programmatically
 - Gate a render on lint findings (`shouldBlockRender`)
 - Surface lint findings in your own UI or CI annotations
 
 <Info>
-  `@hyperframes/core/lint` still resolves (via a back-compat re-export stub), so existing imports keep working. New code should import from `@hyperframes/lint` directly.
+  `@hyperframes/core/lint` still resolves (via a back-compat re-export stub), so existing imports
+  keep working. New code should import from `@hyperframes/lint` directly.
 </Info>
 
 ## Package Exports
@@ -35,22 +40,22 @@ import {
   lintMediaUrls,
   lintProject,
   shouldBlockRender,
-} from '@hyperframes/lint';
+} from "@hyperframes/lint";
 import type {
   HyperframeLintResult,
   HyperframeLintFinding,
-  HyperframeLintSeverity,   // "error" | "warning" | "info"
+  HyperframeLintSeverity, // "error" | "warning" | "info"
   HyperframeLinterOptions,
   ProjectLintResult,
-} from '@hyperframes/lint';
+} from "@hyperframes/lint";
 ```
 
 ## Linting a Single Composition
 
 ```typescript
-import { lintHyperframeHtml, lintMediaUrls } from '@hyperframes/lint';
+import { lintHyperframeHtml, lintMediaUrls } from "@hyperframes/lint";
 
-const result = await lintHyperframeHtml(html, { filePath: 'index.html' });
+const result = await lintHyperframeHtml(html, { filePath: "index.html" });
 // result.ok, result.errorCount, result.warningCount, result.findings
 
 for (const finding of result.findings) {
@@ -67,10 +72,10 @@ const mediaFindings = await lintMediaUrls(html);
 `lintProject` walks a composition directory — the index plus any sub-compositions — and returns aggregated findings. It takes a **directory path string**, so it's callable from any Node context with nothing but a path:
 
 ```typescript
-import { lintProject, shouldBlockRender } from '@hyperframes/lint';
-import type { ProjectLintResult } from '@hyperframes/lint';
+import { lintProject, shouldBlockRender } from "@hyperframes/lint";
+import type { ProjectLintResult } from "@hyperframes/lint";
 
-const result: ProjectLintResult = await lintProject('./my-composition');
+const result: ProjectLintResult = await lintProject("./my-composition");
 // result.totalErrors, result.totalWarnings, result.results[]
 //   each result entry: { file, result: HyperframeLintResult }
 
@@ -84,9 +89,9 @@ if (shouldBlockRender(true, false, result.totalErrors, result.totalWarnings)) {
 The rule engine runs **fully client-side** — no Node.js, no filesystem, no server round-trip. Import from the `@hyperframes/lint/browser` entry to validate composition HTML directly in a browser-only editor or tool:
 
 ```typescript
-import { lintHyperframeHtml, shouldBlockRender } from '@hyperframes/lint/browser';
+import { lintHyperframeHtml, shouldBlockRender } from "@hyperframes/lint/browser";
 
-const result = await lintHyperframeHtml(htmlString, { filePath: 'index.html' });
+const result = await lintHyperframeHtml(htmlString, { filePath: "index.html" });
 if (!result.ok) {
   for (const f of result.findings) console.warn(f.code, f.message);
 }
@@ -95,7 +100,8 @@ if (!result.ok) {
 The browser entry exposes `lintHyperframeHtml`, `lintMediaUrls`, and `shouldBlockRender` — everything that operates on an HTML string. It is built with a browser target and contains **zero `node:` builtins**, so it bundles cleanly for the client (verified at build time).
 
 <Info>
-  `lintProject` (which walks a project **directory**) is filesystem-based and is **not** part of the browser entry — import it from the main `@hyperframes/lint` entry in Node.
+  `lintProject` (which walks a project **directory**) is filesystem-based and is **not** part of the
+  browser entry — import it from the main `@hyperframes/lint` entry in Node.
 </Info>
 
 ## What the Linter Catches
@@ -122,9 +128,7 @@ Detected issues include:
   initial-state hides via `tl.set(..., 0)` that never render on frame 0
   (`gsap_timeline_set_initial_hide`)
 
-<Info>
-  For common failures and fixes, see [Troubleshooting](/guides/troubleshooting).
-</Info>
+<Info>For common failures and fixes, see [Troubleshooting](/guides/troubleshooting).</Info>
 
 ## Related topics
 
