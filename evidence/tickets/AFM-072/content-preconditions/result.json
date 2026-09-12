@@ -1,0 +1,61 @@
+{
+  "ticketId": "AFM-072",
+  "scope": "Honor managed writer content preconditions before native-editor integration",
+  "status": "implemented_pending_pinned_verification",
+  "baseCommit": "2ff9d034006e279447f869dbfb6aa791b33df35c",
+  "sourceFiles": {
+    "packages/studio/src/project/commandWriter.preconditions.test.ts": {
+      "gitBlobSha": "367582ad0abccfc0346b204b2d291a56c92e9856",
+      "sha256": "ce953064e3c3ef47ea26df9cf14671a58cb7d88127f5e8eb7eab50ff09c7ea60"
+    },
+    "packages/studio/src/project/commandWriter.ts": {
+      "gitBlobSha": "32ae2465841bf8f6f95f8c7500daa40d00c8c021",
+      "sha256": "e5ea910378c1f47896c3aa72e25cb14274ff1ccf0b2b5c1d96398f298f14d409"
+    }
+  },
+  "verification": {
+    "node": "v22.16.0",
+    "typescript": "5.8.3",
+    "scope": "Exact production adapter transpiled to ES2022. Same new test file transpiled with only the runner import changed from Vitest to node:test; project-model imports are type-only. Injected transport, not real project journal, browser, Bun or Docker evidence.",
+    "outputs": [
+      {
+        "variant": "base",
+        "exitCode": 1,
+        "command": [
+          "node",
+          "--test",
+          "work/base/tests.mjs"
+        ],
+        "tests": 30,
+        "passed": 10,
+        "failed": 20,
+        "skipped": 0
+      },
+      {
+        "variant": "files",
+        "exitCode": 0,
+        "command": [
+          "node",
+          "--test",
+          "work/files/tests.mjs"
+        ],
+        "tests": 30,
+        "passed": 30,
+        "failed": 0,
+        "skipped": 0
+      }
+    ]
+  },
+  "notRun": [
+    "Pinned Bun/Vitest executions, including original commandWriter.test.ts and AFM-078 journey",
+    "Actual project journal, SDK publication and browser journey",
+    "Full workspace/package typecheck",
+    "Repository oxlint and oxfmt"
+  ],
+  "knownLimits": [
+    "Omitting expectedContent retains unconditional-replacement behavior; draft editors must pass their authoring baseline.",
+    "No changes to durable regeneration-conflict storage or UI.",
+    "No claim that managed and native Studio surfaces are unified."
+  ],
+  "remote": "Proposed on a dedicated feature branch; no main update or automatic merge."
+}
