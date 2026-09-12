@@ -34,7 +34,7 @@ export type ProjectFileWriter = (
 
 export interface CommandWriterOptions {
   projectId: string;
-  /** Reads the current snapshot, so a write always commits against a live revision. */
+  /** Reads committed state; supplied content preconditions are checked against this snapshot. */
   readSnapshot: () => Promise<ProjectSnapshot>;
   /** Posts a command; rejects on a revision conflict, as the service does. */
   sendCommand: (command: {
@@ -55,6 +55,87 @@ export class ProjectWriteRejected extends Error {
     super(message);
     this.name = "ProjectWriteRejected";
   }
+}
+
+/** A draft was derived from content that is no longer the committed document. */
+export class ProjectContentConflict extends ProjectWriteRejected {
+  readonly code = "project/content-conflict";
+
+  constructor(path: string) {
+    super(
+      path,
+      "The authoring document changed since this edit was prepared. " +
+        "Keep the draft and reload or reconcile it before saving; nothing was submitted.",
+    );
+    this.name = "ProjectContentConflict";
+  }
+}
+
+/**
+ * Diagram sources are JSON objects, not retained text files. Compare JSON values
+ * without treating indentation or object-key order as a semantic edit. Array
+ * order remains significant (including authored sequence and relationship order).
+ * An explicit stack avoids recursion limits for an externally supplied baseline.
+ */
+function equalJsonValue(left: unknown, right: unknown): boolean {
+  const pending: [unknown, unknown][] = [[left, right]];
+  while (pending.length > 0) {
+    const [a, b] = pending.pop()!;
+    if (a === b) continue;
+    if (a === null || b === null || typeof a !== "object" || typeof b !== "object") return false;
+    if (Array.isArray(a) !== Array.isArray(b)) return false;
+    const first = a as Record<string, unknown>;
+    const second = b as Record<string, unknown>;
+    const keys = Object.keys(first);
+    if (keys.length !== Object.keys(second).length) return false;
+    for (const key of keys) {
+      if (!Object.hasOwn(second, key)) return false;
+      pending.push([first[key], second[key]]);
+    }
+  }
+  return true;
+}
+
+function isJsonObject(value: unknown): value is Record<string, unknown> {
+  return value !== null && typeof value === "object" && !Array.isArray(value);
+}
+
+function checkContentPrecondition(
+  snapshot: ProjectSnapshot,
+  operation: ReturnType<typeof operationForWrite>,
+  path: string,
+  expectedContent: string | undefined,
+): void {
+  const native = operation.type === "replace-native-source";
+  const current = snapshot.sources[operation.documentId];
+  if (
+    !Object.hasOwn(snapshot.sources, operation.documentId) ||
+    (native ? typeof current !== "string" : !isJsonObject(current))
+  ) {
+    throw new ProjectWriteRejected(path, "The committed authoring source is missing or invalid.");
+  }
+  // Undefined alone means an unconditional replacement was requested. An empty
+  // string is a real expected native document, never an omitted precondition.
+  if (expectedContent === undefined) return;
+  if (typeof expectedContent !== "string")
+    throw new ProjectWriteRejected(path, "Expected authoring content must be text.");
+
+  if (native) {
+    // HTML whitespace and line endings can be authored content. Do not trim,
+    // normalize, serialize through a DOM, or compare with generated preview HTML.
+    if (current !== expectedContent) throw new ProjectContentConflict(path);
+    return;
+  }
+
+  let expected: unknown;
+  try {
+    expected = JSON.parse(expectedContent);
+  } catch {
+    throw new ProjectWriteRejected(path, "Expected diagram content must be a JSON object.");
+  }
+  if (!isJsonObject(expected))
+    throw new ProjectWriteRejected(path, "Expected diagram content must be a JSON object.");
+  if (!equalJsonValue(current, expected)) throw new ProjectContentConflict(path);
 }
 
 /** Authoring paths are portable and forward-slashed; a writer may pass either form. */
@@ -108,17 +189,29 @@ export function operationForWrite(
 /**
  * A writer that commits through the project command path.
  *
- * The expected revision is read immediately before sending, so a concurrent
- * commit surfaces as the service's own revision conflict rather than being
- * silently overwritten. That is the behaviour the file writer's
- * `expectedContent` check was approximating, now enforced by the project.
+ * Two checks protect different windows: expectedContent detects an edit that
+ * committed before this snapshot was read; expectedRevision lets the service
+ * reject a race after the read. Fetching a fresh revision must never silently
+ * rebase a stale whole-document edit onto newer content.
+ *
+ * Callers omitting expectedContent retain the existing unconditional-replacement
+ * behavior against the fetched revision. Draft-based editors must supply their
+ * original authoring content; this adapter cannot reconstruct an omitted base.
+ * No automatic retry with a newer revision or fallback file write occurs here.
  */
 export function createManagedProjectWriter(options: CommandWriterOptions): ProjectFileWriter {
   const newCommandId = options.newCommandId ?? (() => crypto.randomUUID());
 
-  return async function writeThroughCommand(path, content) {
+  return async function writeThroughCommand(path, content, expectedContent) {
     const snapshot = await options.readSnapshot();
+    if (snapshot.manifest.id !== options.projectId) {
+      throw new ProjectWriteRejected(path, "The committed snapshot belongs to another project.");
+    }
+    if (!Number.isSafeInteger(snapshot.manifest.revision) || snapshot.manifest.revision < 0) {
+      throw new ProjectWriteRejected(path, "The committed snapshot has an invalid revision.");
+    }
     const operation = operationForWrite(snapshot, path, content);
+    checkContentPrecondition(snapshot, operation, path, expectedContent);
 
     await options.sendCommand({
       commandId: newCommandId(),
