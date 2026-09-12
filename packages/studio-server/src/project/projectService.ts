@@ -2,10 +2,13 @@ import { existsSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from 
 import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { compileProject } from "@hyperframes/diagram-motion";
+import { findFfBinary } from "@hyperframes/parsers/ff-binaries";
+import { readProjectAssetBytes, stageProjectAsset, verifyProjectAssets } from "./projectAssets";
 import {
   assertCommand,
   assertProject,
   migrateRelationshipIds,
+  RevisionConflict,
   type ProjectSnapshot,
   type DiagramKind,
 } from "@hyperframes/project-model";
@@ -110,10 +113,46 @@ export class UnifiedProjectService {
       throw new Error("Command project ID differs from the requested project.");
     const root = this.root(id);
     const result = await executeProjectCommand(root, command, async (snapshot) => {
+      verifyProjectAssets(root, snapshot.manifest.assets);
       await compileProject(snapshot);
     });
     // Return this command's own committed snapshot, even if another client committed meanwhile.
     return { ...result, snapshot: readRevision(root, result.pointer).snapshot };
+  }
+  /**
+   * Trusted in-process local import. Do not expose inputPath as an HTTP field.
+   * Upload UI/CLI adapters should supply an authorized local staging file.
+   * Publication uses the same revision journal as semantic and native edits.
+   */
+  async attachAsset(id: string, inputPath: string, options: { expectedRevision?: number } = {}) {
+    const root = this.root(id);
+    const before = readCommittedProject(root);
+    const expectedRevision = options.expectedRevision ?? before.pointer.revision;
+    if (expectedRevision !== before.pointer.revision)
+      throw new RevisionConflict(expectedRevision, before.pointer.revision);
+    const ffprobePath = findFfBinary("ffprobe", { configuredMustExist: true }) ?? "";
+    const asset = await stageProjectAsset(root, inputPath, ffprobePath);
+    const current = readCommittedProject(root);
+    if (expectedRevision !== current.pointer.revision)
+      throw new RevisionConflict(expectedRevision, current.pointer.revision);
+    const existing = current.snapshot.manifest.assets?.find((item) => item.id === asset.id);
+    if (existing) {
+      readProjectAssetBytes(root, existing);
+      return {
+        asset: existing,
+        pointer: current.pointer,
+        replayed: true,
+        snapshot: current.snapshot,
+      };
+    }
+    const result = await this.command(id, {
+      commandId: randomUUID(),
+      origin: "cli",
+      projectId: id,
+      expectedRevision,
+      operations: [{ type: "register-asset", asset }],
+    });
+    return { ...result, asset };
   }
   async build(id: string): Promise<PinnedBuild> {
     return buildCommittedProject(this.root(id));
@@ -177,6 +216,7 @@ export class UnifiedProjectService {
     await compileProject(snapshot);
     const root = contained(this.projectsDir, snapshot.manifest.id);
     mkdirSync(root, { recursive: true });
+    verifyProjectAssets(root, snapshot.manifest.assets);
     await initializeProject(root, snapshot);
     if (evidence) atomicJson(join(root, ".vflow/source-evidence.json"), evidence);
     return snapshot.manifest.id;

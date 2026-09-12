@@ -1,5 +1,7 @@
 import Ajv from "ajv";
 import schema from "../schemas/project.schema.json";
+import assetSchema from "../schemas/asset.schema.json";
+import { projectAssetRegistryProblems, type ProjectAsset } from "./assets";
 import type { DiagramKind } from "./index";
 import { problem, ProjectValidationError, type ProjectDiagnostic } from "./diagnostics";
 
@@ -31,6 +33,8 @@ export interface ProjectManifest {
   revision: number;
   documents: DocumentReference[];
   scenes: ProjectScene[];
+  /** Optional for existing v1 projects; added only by an asset-registration command. */
+  assets?: ProjectAsset[];
   output: { width: number; height: number; fps: { numerator: number; denominator: number } };
   policy: { sourceSharing: "private" | "approved-public"; htmlTrust: "blocked" | "trusted-local" };
 }
@@ -53,7 +57,9 @@ export const RELATIONSHIP_COLLECTIONS: Record<DiagramKind, string> = {
   dataflow: "flows",
   lifecycle: "transitions",
 };
-const validateSchema = new Ajv({ allErrors: true, strict: true }).compile(schema);
+const validateSchema = new Ajv({ allErrors: true, strict: true })
+  .addSchema(assetSchema)
+  .compile(schema);
 const isRecord = (value: unknown): value is Record<string, unknown> =>
   !!value && typeof value === "object" && !Array.isArray(value);
 
@@ -262,7 +268,11 @@ export function validateProject(snapshot: unknown): ProjectDiagnostic[] {
       problem("project/schema", error.instancePath, error.message ?? "Invalid project field."),
     );
   const project = snapshot as unknown as ProjectSnapshot;
-  return [...documentProblems(project), ...sceneProblems(project)];
+  const assetDiagnostics = projectAssetRegistryProblems(
+    project.manifest.assets,
+    project.manifest.documents.map((document) => document.path),
+  ).map((message) => problem("asset/invalid", "/assets", message));
+  return [...documentProblems(project), ...sceneProblems(project), ...assetDiagnostics];
 }
 
 export function assertProject(snapshot: unknown): asserts snapshot is ProjectSnapshot {

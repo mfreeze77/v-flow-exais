@@ -7,10 +7,12 @@ import {
   type ScenePresentation,
 } from "./project";
 import { problem, ProjectValidationError } from "./diagnostics";
+import { projectAssetProblems, type ProjectAsset } from "./assets";
 
 export type ProjectOperation =
   | { type: "undo" }
   | { type: "redo" }
+  | { type: "register-asset"; asset: ProjectAsset }
   | { type: "rename-object"; documentId: string; objectId: string; label: string }
   | { type: "replace-diagram-source"; documentId: string; source: DiagramSource }
   | { type: "replace-native-source"; documentId: string; html: string }
@@ -39,6 +41,7 @@ function assertOperation(value: unknown, pointer: string): asserts value is Proj
   const allowed: Record<string, string[]> = {
     undo: ["type"],
     redo: ["type"],
+    "register-asset": ["type", "asset"],
     "rename-object": ["type", "documentId", "objectId", "label"],
     "replace-diagram-source": ["type", "documentId", "source"],
     "replace-native-source": ["type", "documentId", "html"],
@@ -53,6 +56,10 @@ function assertOperation(value: unknown, pointer: string): asserts value is Proj
     keys.some((key) => !Object.hasOwn(value, key))
   )
     invalid(pointer, "Unknown operation or fields.");
+  if (value.type === "register-asset") {
+    const issues = projectAssetProblems(value.asset);
+    if (issues.length) invalid(`${pointer}/asset`, issues.join(" "));
+  }
   if ("documentId" in value && !text(value.documentId, 128))
     invalid(`${pointer}/documentId`, "Document ID is required.");
   if ("sceneId" in value && !text(value.sceneId, 128))
@@ -127,7 +134,12 @@ export function applyProjectCommand(current: ProjectSnapshot, command: unknown):
     const at = `/operations/${index}`;
     if (operation.type === "undo" || operation.type === "redo")
       invalid(at, "History commands require the committed project journal.");
-    if (operation.type === "set-project-title") {
+    if (operation.type === "register-asset") {
+      const assets = next.manifest.assets ?? [];
+      if (assets.some((asset) => asset.id === operation.asset.id))
+        invalid(`${at}/asset`, "Asset is already registered; use its existing identity.");
+      next.manifest.assets = [...assets, structuredClone(operation.asset)];
+    } else if (operation.type === "set-project-title") {
       next.manifest.title = operation.title;
     } else if (
       operation.type === "set-scene-presentation" ||

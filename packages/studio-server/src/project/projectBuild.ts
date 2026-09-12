@@ -4,6 +4,7 @@ import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "
 import { dirname, join } from "node:path";
 import { compileProject } from "@hyperframes/diagram-motion";
 import type { ProjectSnapshot } from "@hyperframes/project-model";
+import { projectAssetBuildFiles } from "./projectAssets";
 import {
   assertContainedPath,
   canonicalJson,
@@ -50,8 +51,16 @@ async function buildSnapshot(root: string, snapshot: ProjectSnapshot): Promise<P
     require.resolve("gsap/dist/gsap.min.js"),
     "utf8",
   );
+  // Capture verified asset bytes before publishing the build. Each build owns
+  // copies, not symlinks to uploads or to the project's retained asset blobs.
+  const assetFiles = projectAssetBuildFiles(root, snapshot.manifest.assets);
+  for (const path of Object.keys(assetFiles)) {
+    if (Object.hasOwn(compilation.files, path))
+      throw new Error(`Asset path collides with a compiled file: ${path}.`);
+  }
+  const buildFiles: Record<string, string | Buffer> = { ...compilation.files, ...assetFiles };
   const files = Object.fromEntries(
-    Object.entries(compilation.files).map(([name, bytes]) => [name, sha256(bytes)]),
+    Object.entries(buildFiles).map(([name, bytes]) => [name, sha256(bytes)]),
   );
   const body = { ...compilation.receipt, authoringHash: sha256(canonicalJson(snapshot)), files };
   const hash = sha256(canonicalJson(body));
@@ -60,7 +69,7 @@ async function buildSnapshot(root: string, snapshot: ProjectSnapshot): Promise<P
   assertContainedPath(root, dir);
   if (!existsSync(dir)) {
     const staging = join(root, ".vflow/builds", `pending-${randomUUID()}`);
-    for (const [name, bytes] of Object.entries(compilation.files)) {
+    for (const [name, bytes] of Object.entries(buildFiles)) {
       const path = join(staging, name);
       mkdirSync(dirname(path), { recursive: true });
       writeFileSync(path, bytes, { flag: "wx", mode: 0o600 });

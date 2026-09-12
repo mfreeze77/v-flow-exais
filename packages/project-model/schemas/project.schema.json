@@ -74,6 +74,11 @@
         }
       }
     },
+    "assets": {
+      "type": "array",
+      "maxItems": 128,
+      "items": { "$ref": "https://v-flow.local/schemas/asset-v1.json" }
+    },
     "output": {
       "type": "object",
       "additionalProperties": false,
