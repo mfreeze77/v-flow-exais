@@ -263,3 +263,23 @@ Two other ledger files are absent by intent and are now declared in
 workspace) and `scripts/publish-workflow.test.mjs` (asserted on CI this
 repository deliberately does not have), plus the nine
 `packages/core/src/studio-api/` forwarding shims removed in AFM-012.
+
+## Known pre-existing failure: propertyPanelInputCoverage timeouts
+
+`packages/studio/src/components/editor/propertyPanelInputCoverage.test.tsx` has
+two cases that exceed vitest's 5s default:
+
+    emits only named, known-section events across body inputs and header/footer chrome
+    emits only named flat events from known sections for every visible layout input
+
+They are timeouts, not assertion failures — `Test timed out in 5000ms` — and
+they are order-dependent: two fail when the file runs alone, one when the whole
+studio suite runs. Both `PropertyPanel.tsx` and the test are byte-identical to
+`2ff9d03`, and the failure reproduces on a clean checkout with every in-flight
+change stashed, so it predates the AFM-023/048/059/061/072/073 work.
+
+Not fixed here. Raising the timeout would make it green without establishing
+whether the panel genuinely got slower or the container is simply slow for a
+DOM-heavy coverage sweep, and a coverage test that enumerates every visible
+input is exactly where a real regression would first show up as latency. It
+wants measuring before it wants a larger number.
