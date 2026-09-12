@@ -7,24 +7,8 @@ import { ProjectWorkspace } from "./ProjectWorkspace";
 import { projectApi } from "./api";
 import "./project.css";
 
-/**
- * The managed project this session is editing, or null for a native project.
- *
- * Module state rather than context because the Studio's write path is resolved
- * once per session and read from a hook that must not force every editing
- * system to be wrapped in a provider. It is set by the router, which is the
- * only place that knows whether the opened project is managed.
- */
-let managedProjectId: string | null = null;
-
-export function activeManagedProjectId(): string | null {
-  return managedProjectId;
-}
-
-/** Exported for tests; production sets this only from the router. */
-export function setActiveManagedProjectId(id: string | null): void {
-  managedProjectId = id;
-}
+import { setActiveManagedProjectId } from "./projectOwnership";
+export { activeManagedProjectId, setActiveManagedProjectId } from "./projectOwnership";
 
 function SelectedProject({ id }: { id: string }) {
   const [managed, setManaged] = useState<boolean | null>(null);

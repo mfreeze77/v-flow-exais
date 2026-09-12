@@ -1,3 +1,4 @@
+import { useProjectReadClient } from "../project/useProjectReadClient";
 import { buildProjectApiPath } from "../utils/projectRouting";
 import { useState, useCallback, useEffect, useMemo } from "react";
 import { FONT_EXT } from "../utils/mediaTypes";
@@ -10,6 +11,7 @@ interface UseFileTreeOptions {
 }
 
 export function useFileTree({ projectId, projectIdRef }: UseFileTreeOptions) {
+  const reader = useProjectReadClient(projectId);
   const [projectDir, setProjectDir] = useState<string | null>(null);
   const [fileTree, setFileTree] = useState<string[]>([]);
   const [compositionPaths, setCompositionPaths] = useState<string[]>([]);
@@ -17,13 +19,14 @@ export function useFileTree({ projectId, projectIdRef }: UseFileTreeOptions) {
 
   // eslint-disable-next-line no-restricted-syntax
   useEffect(() => {
-    if (!projectId) {
+    if (!projectId || !reader) {
       setFileTreeLoaded(false);
       return;
     }
     let cancelled = false;
     setFileTreeLoaded(false);
-    fetch(buildProjectApiPath(projectId))
+    reader
+      .fetchListing()
       .then((r) => r.json())
       .then((data: { files?: string[]; dir?: string; compositions?: string[] }) => {
         if (cancelled) return;
@@ -43,15 +46,16 @@ export function useFileTree({ projectId, projectIdRef }: UseFileTreeOptions) {
     return () => {
       cancelled = true;
     };
-  }, [projectId]);
+  }, [projectId, reader]);
 
   const refreshFileTree = useCallback(async () => {
     const pid = projectIdRef.current;
-    if (!pid) return;
-    const res = await fetch(buildProjectApiPath(pid));
+    if (!pid || pid !== projectId || !reader) return;
+    const res = await reader.fetchListing();
     const data = await res.json();
     if (data.files) setFileTree(data.files);
-  }, [projectIdRef]);
+    if (data.compositions) setCompositionPaths(data.compositions);
+  }, [projectIdRef, projectId, reader]);
 
   const compositions = compositionPaths;
 

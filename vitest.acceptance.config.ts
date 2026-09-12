@@ -1,4 +1,16 @@
+import { createRequire } from "node:module";
+
 import { defineConfig } from "vitest/config";
+
+/**
+ * `hono` is a dependency of studio-server, not of the repository root, so an
+ * acceptance test at tests/ cannot resolve it by walking up. Resolving it the
+ * way studio-server does keeps the server's own copy authoritative and avoids
+ * adding a root dependency — and a lockfile change — for a test-only import.
+ */
+const fromStudioServer = createRequire(
+  new URL("./packages/studio-server/package.json", import.meta.url),
+);
 
 /**
  * Ticket acceptance suite (tests/acceptance/AFM-###.test.ts).
@@ -11,7 +23,14 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   // Acceptance runs the Bun workspace's source exports. Packed Node exports
   // are exercised separately by the package-isolation test.
-  resolve: { conditions: ["bun", "module", "node", "development|production"] },
+  resolve: {
+    conditions: ["bun", "module", "node", "development|production"],
+    // Exact match only. A string alias is a PREFIX rule in Vite, so aliasing
+    // "hono" also rewrites "hono/body-limit" — which studio-server's own routes
+    // import, and which resolved correctly all along from their location. Four
+    // acceptance files stopped loading before this was narrowed.
+    alias: [{ find: /^hono$/, replacement: fromStudioServer.resolve("hono") }],
+  },
   ssr: {
     resolve: {
       conditions: ["bun", "module", "node", "development|production"],

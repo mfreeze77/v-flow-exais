@@ -1,3 +1,4 @@
+import { useProjectReadClient } from "../project/useProjectReadClient";
 import { useState, useCallback, useMemo, useRef } from "react";
 import type { EditingFile } from "../utils/studioHelpers";
 import { FONT_EXT, isMediaFile } from "../utils/mediaTypes";
@@ -40,6 +41,7 @@ export function useFileManager({
   domEditSaveTimestampRef,
   setRefreshKey,
 }: UseFileManagerOptions) {
+  const reader = useProjectReadClient(projectId);
   // ── Shared refs ──
 
   const [editingFile, setEditingFile] = useState<EditingFile | null>(null);
@@ -81,17 +83,15 @@ export function useFileManager({
 
   const readProjectFile = useCallback(
     async (path: string): Promise<string> => {
-      if (!projectId) throw new Error("No active project");
-      const response = await fetch(
-        `/api/projects/${encodeURIComponent(projectId)}/files/${encodeURIComponent(path)}`,
-      );
+      if (!projectId || !reader) throw new Error("No active project");
+      const response = await reader.fetchFile(path);
       if (!response.ok) throw new Error(`Failed to read ${path}`);
       const data = (await response.json()) as { content?: string; version?: string };
       if (typeof data.content !== "string") throw new Error(`Missing file contents for ${path}`);
       fileVersions.set(path, data.version ?? response.headers.get("etag"));
       return data.content;
     },
-    [fileVersions, projectId],
+    [fileVersions, projectId, reader],
   );
 
   const writeProjectFile = useCallback(
@@ -178,16 +178,14 @@ export function useFileManager({
 
   const readOptionalProjectFile = useCallback(
     async (path: string): Promise<string> => {
-      if (!projectId) throw new Error("No active project");
-      const response = await fetch(
-        `/api/projects/${encodeURIComponent(projectId)}/files/${encodeURIComponent(path)}?optional=1`,
-      );
+      if (!projectId || !reader) throw new Error("No active project");
+      const response = await reader.fetchFile(path, { optional: true });
       if (!response.ok) throw new Error(`Failed to read ${path}`);
       const data = (await response.json()) as { content?: string; version?: string };
       fileVersions.set(path, data.version ?? response.headers.get("etag"));
       return typeof data.content === "string" ? data.content : "";
     },
-    [fileVersions, projectId],
+    [fileVersions, projectId, reader],
   );
 
   // ── Editor save (debounced content change) ──
@@ -229,21 +227,23 @@ export function useFileManager({
   const handleFileSelect = useCallback(
     (path: string) => {
       const pid = projectIdRef.current;
-      if (!pid) return;
+      if (!pid || pid !== projectId || !reader) return;
       revealAbortRef.current?.abort();
       revealAbortRef.current = null;
-      revealRequestIdRef.current++;
+      const requestId = ++revealRequestIdRef.current;
       // Skip fetching binary content for media files — just set the path for preview
       if (isMediaFile(path)) {
         setEditingFile({ path, content: null });
         return;
       }
-      fetch(`/api/projects/${encodeURIComponent(pid)}/files/${encodeURIComponent(path)}`)
+      reader
+        .fetchFile(path)
         .then((r) => {
           if (!r.ok) throw new Error(`Failed to load ${path} (${r.status})`);
           return r.json();
         })
         .then((data: { content?: string; version?: string }) => {
+          if (projectIdRef.current !== pid || requestId !== revealRequestIdRef.current) return;
           if (data.content != null) {
             fileVersions.set(path, data.version ?? null);
             setEditingFile({ path, content: data.content });
@@ -253,7 +253,7 @@ export function useFileManager({
           showToast(err instanceof Error ? err.message : `Failed to load ${path}`, "error");
         });
     },
-    [fileVersions, showToast],
+    [fileVersions, showToast, projectId, reader],
   );
 
   // ── Click-to-source ──
@@ -261,7 +261,7 @@ export function useFileManager({
   const openSourceForSelection = useCallback(
     (sourceFile: string, target: PatchTarget) => {
       const pid = projectIdRef.current;
-      if (!pid || !sourceFile) return;
+      if (!pid || pid !== projectId || !sourceFile || !reader) return;
       revealAbortRef.current?.abort();
       revealAbortRef.current = null;
       if (editingPathRef.current === sourceFile && editingFile?.content != null) {
@@ -272,12 +272,11 @@ export function useFileManager({
       const requestId = ++revealRequestIdRef.current;
       const controller = new AbortController();
       revealAbortRef.current = controller;
-      fetch(`/api/projects/${encodeURIComponent(pid)}/files/${encodeURIComponent(sourceFile)}`, {
-        signal: controller.signal,
-      })
+      reader
+        .fetchFile(sourceFile, { signal: controller.signal })
         .then((r) => r.json())
         .then((data: { content?: string; version?: string }) => {
-          if (requestId !== revealRequestIdRef.current) return;
+          if (projectIdRef.current !== pid || requestId !== revealRequestIdRef.current) return;
           if (data.content != null) {
             fileVersions.set(sourceFile, data.version ?? null);
             setEditingFile({ path: sourceFile, content: data.content });
@@ -287,7 +286,7 @@ export function useFileManager({
         })
         .catch(() => {});
     },
-    [editingFile?.content, fileVersions],
+    [editingFile?.content, fileVersions, projectId, reader],
   );
 
   // ── Upload ──

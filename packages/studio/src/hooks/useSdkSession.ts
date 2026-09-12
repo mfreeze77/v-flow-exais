@@ -1,4 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from "react";
+import { createProjectReadClient, type ProjectReadOwnership } from "../project/editorReadClient";
+import { activeManagedProjectId } from "../project/projectOwnership";
 import { openComposition } from "@hyperframes/sdk";
 import type { Composition } from "@hyperframes/sdk";
 import { readStudioFileChangePath } from "../components/editor/manualEdits";
@@ -15,15 +17,16 @@ import { addExternalFileReloadListener } from "./externalFileReloadBus";
 async function readProjectFileOptional(
   projectId: string,
   path: string,
+  ownership: ProjectReadOwnership,
 ): Promise<string | undefined> {
   // Reject traversal / NUL before building the request URL — `path` is a
   // user-influenced composition path (mirrors the guard in timelineEditingHelpers,
   // and closes the CodeQL client-side-request-forgery flag). encodeURIComponent
   // already confines both values to single segments of this same-origin URL.
   if (path.includes("\0") || path.includes("..")) return undefined;
-  const res = await fetch(
-    `/api/projects/${encodeURIComponent(projectId)}/files/${encodeURIComponent(path)}?optional=1`,
-  );
+  const res = await createProjectReadClient(projectId, ownership).fetchFile(path, {
+    optional: true,
+  });
   if (!res.ok) return undefined;
   const data = (await res.json()) as { content?: string };
   return typeof data.content === "string" ? data.content : undefined;
@@ -142,6 +145,8 @@ export function useSdkSession(
   projectId: string | null,
   activeCompPath: string | null,
 ): SdkSessionHandle {
+  const ownership: ProjectReadOwnership =
+    projectId !== null && activeManagedProjectId() === projectId ? "managed" : "native";
   const [ownedSession, setOwnedSession] = useState<OwnedSdkSession | null>(null);
   const ownedSessionRef = useRef<OwnedSdkSession | null>(null);
   const sessionOwnersRef = useRef(new WeakMap<Composition, SdkSessionOwner>());
@@ -187,7 +192,7 @@ export function useSdkSession(
       generation,
     };
 
-    readProjectFileOptional(projectId, activeCompPath)
+    readProjectFileOptional(projectId, activeCompPath, ownership)
       .then(async (content) => {
         if (cancelled || typeof content !== "string") return;
         // No persist queue: Studio's writeProjectFile (via sdkCutover's
@@ -237,7 +242,7 @@ export function useSdkSession(
         disposeSdkSession(owned.session);
       }
     };
-  }, [projectId, activeCompPath, reloadToken]);
+  }, [projectId, activeCompPath, reloadToken, ownership]);
 
   const forceReload = useCallback(() => setReloadToken((t) => t + 1), []);
   const publish = useCallback<PublishSdkSession>(({ candidate, expectedSession, targetPath }) => {
