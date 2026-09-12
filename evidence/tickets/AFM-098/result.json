@@ -41,11 +41,7 @@
   "testSummary": {
     "acceptanceTests": 7,
     "testFiles": 2,
-    "typecheckedPackages": [
-      "studio-server",
-      "studio",
-      "cli"
-    ],
+    "typecheckedPackages": ["studio-server", "studio", "cli"],
     "lint": "0 warnings and 0 errors across 18 changed application files",
     "format": "21 files passed",
     "browser": "Real source-context/propose/review CLI calls; pinned Chromium rejection, typed JSON revision to version 2, source and before/after review, acceptance at project revision 1, undo at revision 2, all authoring documents restored, historical accepted review valid, no page errors."

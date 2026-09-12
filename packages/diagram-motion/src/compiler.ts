@@ -4,12 +4,17 @@ import {
   type DiagramArtifact,
   type DiagramSource,
 } from "@hyperframes/diagram-engine";
-import { assertProject, type ProjectSnapshot, type ProjectScene } from "@hyperframes/project-model";
+import {
+  assertProject,
+  compileSceneBindings,
+  type ProjectSnapshot,
+  type ProjectScene,
+} from "@hyperframes/project-model";
 import { scopeCssToComposition, validateHyperframeHtmlContract } from "@hyperframes/core/compiler";
 import { namespaceSvg } from "./namespaceSvg";
 import { frameDiagram } from "./camera";
 
-export const MOTION_VERSION = "1.0.0";
+export const MOTION_VERSION = "1.1.0";
 const esc = (value: string) =>
   value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 const js = (value: unknown) => JSON.stringify(value).replace(/</g, "\\u003c");
@@ -133,11 +138,13 @@ export async function compileProject(snapshot: ProjectSnapshot): Promise<Composi
     fps: manifest.output.fps.numerator / manifest.output.fps.denominator,
     seams: [],
   };
+  const sceneBindings = compileSceneBindings(snapshot);
   const wrappers: string[] = [];
   const motion: string[] = [];
   for (const [index, scene] of manifest.scenes.entries()) {
-    const id = `scene-${index}-${scene.id.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
-    const file = `${id}.html`;
+    const binding = sceneBindings[index]!;
+    const id = binding.renderId;
+    const file = binding.outputPath;
     if (scene.kind === "diagram")
       files[file] = sceneHtml(scene, artifacts[scene.documentId]!, manifest.output, id);
     else {
@@ -151,7 +158,7 @@ export async function compileProject(snapshot: ProjectSnapshot): Promise<Composi
         );
     }
     wrappers.push(
-      `<div id="el-${index}" data-composition-id="slot-${index}" data-composition-src="${file}" data-start="${second(scene.startFrame)}" data-duration="${second(scene.durationFrames)}" data-track-index="${index % 2}" style="position:absolute;inset:0"></div>`,
+      `<div id="el-${index}" data-composition-id="slot-${index}" data-composition-src="${file}" data-start="${second(scene.startFrame)}" data-duration="${second(scene.durationFrames)}" data-track-index="${index % 2}" data-vflow-scene-id="${esc(scene.id)}" data-vflow-document-id="${esc(scene.documentId)}" data-vflow-edit-owner="${binding.editOwner}" style="position:absolute;inset:0"></div>`,
     );
     motion.push(`gsap.set("#el-${index}", {autoAlpha:${index ? 0 : 1}, xPercent:0});`);
     if (index > 0) {
@@ -194,6 +201,7 @@ window.__timelines=window.__timelines||{};window.__timelines["main"]=tl;
         ]),
       ),
       sceneIds: manifest.scenes.map((scene) => scene.id),
+      sceneBindings,
     },
   };
 }

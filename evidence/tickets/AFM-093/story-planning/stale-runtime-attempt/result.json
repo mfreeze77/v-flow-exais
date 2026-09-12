@@ -19,9 +19,7 @@
           "visual": "title",
           "heading": "Which parts does connectionCandidate rely on?",
           "script": "Which parts does connectionCandidate rely on? We will use storyCandidates.ts to answer it.",
-          "sourceIds": [
-            "source-065651b56e5335db17afed7b"
-          ],
+          "sourceIds": ["source-065651b56e5335db17afed7b"],
           "relationshipIds": [],
           "id": "beat-0",
           "durationFrames": 90
@@ -49,9 +47,7 @@
           "visual": "source",
           "heading": "Read connectionCandidate",
           "script": "function connectionCandidate. The highlighted source is storyCandidates.ts, beginning at line 24.",
-          "sourceIds": [
-            "source-065651b56e5335db17afed7b"
-          ],
+          "sourceIds": ["source-065651b56e5335db17afed7b"],
           "relationshipIds": [],
           "id": "beat-2",
           "durationFrames": 193
@@ -61,9 +57,7 @@
           "visual": "source",
           "heading": "Read neighborhood",
           "script": "function neighborhood. The highlighted source is storyCandidates.ts, beginning at line 11.",
-          "sourceIds": [
-            "source-ef0e8d5229e07e03253b497b"
-          ],
+          "sourceIds": ["source-ef0e8d5229e07e03253b497b"],
           "relationshipIds": [],
           "id": "beat-3",
           "durationFrames": 193
@@ -73,9 +67,7 @@
           "visual": "takeaway",
           "heading": "Your next step",
           "script": "Use these captured connections to navigate outward from connectionCandidate. Confirm runtime behavior separately before relying on it.",
-          "sourceIds": [
-            "source-065651b56e5335db17afed7b"
-          ],
+          "sourceIds": ["source-065651b56e5335db17afed7b"],
           "relationshipIds": [
             "source-ff4283f1b08d8eb7cb13ac1a",
             "source-621b1d24970010c2beffcd4e",
@@ -97,9 +89,7 @@
           "visual": "title",
           "heading": "What information does StoryPlan carry?",
           "script": "What information does StoryPlan carry? We will use storyTypes.ts to answer it.",
-          "sourceIds": [
-            "source-0cd860fce41539ca5fd2a07c"
-          ],
+          "sourceIds": ["source-0cd860fce41539ca5fd2a07c"],
           "relationshipIds": [],
           "id": "beat-0",
           "durationFrames": 122
@@ -109,9 +99,7 @@
           "visual": "model",
           "heading": "StoryPlan: the declared fields",
           "script": "Data type StoryPlan exported as StoryPlan; fields: version, family, title, question, reason, audience, purpose, targetDurationSeconds, fps, beats, scriptStatus, limitations.",
-          "sourceIds": [
-            "source-0cd860fce41539ca5fd2a07c"
-          ],
+          "sourceIds": ["source-0cd860fce41539ca5fd2a07c"],
           "relationshipIds": [],
           "id": "beat-1",
           "durationFrames": 183
@@ -121,9 +109,7 @@
           "visual": "source",
           "heading": "Read StoryPlan",
           "script": "Data type StoryPlan exported as StoryPlan; fields: version, family, title, question, reason, audience, purpose, targetDurationSeconds, fps, beats, scriptStatus, limitations. The highlighted source is storyTypes.ts, beginning at line 37.",
-          "sourceIds": [
-            "source-0cd860fce41539ca5fd2a07c"
-          ],
+          "sourceIds": ["source-0cd860fce41539ca5fd2a07c"],
           "relationshipIds": [],
           "id": "beat-2",
           "durationFrames": 260
@@ -133,9 +119,7 @@
           "visual": "takeaway",
           "heading": "Your next step",
           "script": "Start with StoryPlan when reading this data contract. Confirm runtime behavior separately before relying on it.",
-          "sourceIds": [
-            "source-0cd860fce41539ca5fd2a07c"
-          ],
+          "sourceIds": ["source-0cd860fce41539ca5fd2a07c"],
           "relationshipIds": [],
           "id": "beat-3",
           "durationFrames": 185
@@ -153,9 +137,7 @@
           "visual": "title",
           "heading": "Which parts does createRepositoryIntake rely on?",
           "script": "Which parts does createRepositoryIntake rely on? We will use repositoryIntake.ts to answer it.",
-          "sourceIds": [
-            "source-105fa3dd896da95347cc4218"
-          ],
+          "sourceIds": ["source-105fa3dd896da95347cc4218"],
           "relationshipIds": [],
           "id": "beat-0",
           "durationFrames": 90
@@ -184,9 +166,7 @@
           "visual": "source",
           "heading": "Read createRepositoryIntake",
           "script": "function createRepositoryIntake exported as createRepositoryIntake. The highlighted source is repositoryIntake.ts, beginning at line 325.",
-          "sourceIds": [
-            "source-105fa3dd896da95347cc4218"
-          ],
+          "sourceIds": ["source-105fa3dd896da95347cc4218"],
           "relationshipIds": [],
           "id": "beat-2",
           "durationFrames": 193
@@ -196,9 +176,7 @@
           "visual": "source",
           "heading": "Read contained",
           "script": "function contained exported as contained. The highlighted source is repositoryIntake.ts, beginning at line 112.",
-          "sourceIds": [
-            "source-03ad6bb3ebe91cd3d75aa811"
-          ],
+          "sourceIds": ["source-03ad6bb3ebe91cd3d75aa811"],
           "relationshipIds": [],
           "id": "beat-3",
           "durationFrames": 193
@@ -208,9 +186,7 @@
           "visual": "takeaway",
           "heading": "Your next step",
           "script": "Use these captured connections to navigate outward from createRepositoryIntake. Confirm runtime behavior separately before relying on it.",
-          "sourceIds": [
-            "source-105fa3dd896da95347cc4218"
-          ],
+          "sourceIds": ["source-105fa3dd896da95347cc4218"],
           "relationshipIds": [
             "source-8d682406b463d96fcaa3466f",
             "source-162d2748ea81ea472fa1ca0f",
@@ -258,13 +234,7 @@
                 "artifactHash": "b99c55b0aa5bce3e8a2de4d0be2b1b7219179a077d54b4da8fbf495cb25def93"
               }
             },
-            "sceneIds": [
-              "beat-0",
-              "beat-1",
-              "beat-2",
-              "beat-3",
-              "beat-4"
-            ],
+            "sceneIds": ["beat-0", "beat-1", "beat-2", "beat-3", "beat-4"],
             "authoringHash": "d6faa4401479ed6409dc0192c6b6fbe1355750e1dccad0a20f91491ac1c3d7a9",
             "files": {
               "scene-0-beat-0.html": "9e7f1f8cef6ba38ad2169582cbd41aa9d216eca0084f31a73893df45fa91ffa8",
@@ -340,12 +310,7 @@
             "engineVersion": "2.17.0-dev.1+afm027.1",
             "motionVersion": "1.0.0",
             "sources": {},
-            "sceneIds": [
-              "beat-0",
-              "beat-1",
-              "beat-2",
-              "beat-3"
-            ],
+            "sceneIds": ["beat-0", "beat-1", "beat-2", "beat-3"],
             "authoringHash": "2e0a145bdd89e0b18a91f57c1d0468579ef7b758bd79cb75cd222f182ee7e341",
             "files": {
               "scene-0-beat-0.html": "2b5f38dd3dcfb39f27e9ee8bbe52d50371e77b77e7eac557ed4bf557313f36bd",
@@ -421,13 +386,7 @@
                 "artifactHash": "60b483ffe0f687ce031c8d10d2f862e1da02633688bbc539ada8f8049ef33222"
               }
             },
-            "sceneIds": [
-              "beat-0",
-              "beat-1",
-              "beat-2",
-              "beat-3",
-              "beat-4"
-            ],
+            "sceneIds": ["beat-0", "beat-1", "beat-2", "beat-3", "beat-4"],
             "authoringHash": "b823cb05e108975773e7a0451a14c264380867d3c89afd18173afc8bb08d69cb",
             "files": {
               "scene-0-beat-0.html": "74a0ac3d5038c0564b002f67806193ea74f2a602a3810a324f675f3e386e0b3d",

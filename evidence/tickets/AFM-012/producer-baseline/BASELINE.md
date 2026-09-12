@@ -9,12 +9,12 @@ could not prevent learning anything about the others.
 
 Logs in `final/`.
 
-| Partition | Exit | Files | Cases passed | Cases failed | Unlaunched |
-|---|---|---|---|---|---|
-| unit / bun | **0** | 42/42 | 660 | 0 | none |
-| unit / vitest | **0** | 42/42 | 666 | 0 | none |
-| integration / bun | **0** | 10/10 | 175 | 0 | none |
-| integration / vitest | **0** | 9/9 | 77 | 0 | none |
+| Partition            | Exit  | Files | Cases passed | Cases failed | Unlaunched |
+| -------------------- | ----- | ----- | ------------ | ------------ | ---------- |
+| unit / bun           | **0** | 42/42 | 660          | 0            | none       |
+| unit / vitest        | **0** | 42/42 | 666          | 0            | none       |
+| integration / bun    | **0** | 10/10 | 175          | 0            | none       |
+| integration / vitest | **0** | 9/9   | 77           | 0            | none       |
 
 **103 of 103 selected files launched and passed. 1,578 test cases.**
 
@@ -43,18 +43,18 @@ expected r_frame_rate "30/1", received "30000/1001"
 
 The concat list was written as bare `file '<path>'` lines with **no `duration`
 directives**, so the demuxer positioned each next input using the container's
-*rounded* duration: a 5-frame 30fps chunk reports `0.167000`, not `0.166667`.
+_rounded_ duration: a 5-frame 30fps chunk reports `0.167000`, not `0.166667`.
 Chunk 2 therefore started 5 ticks late at time base 1/15360, and the irregular
 gap made ffmpeg derive `30000/1001`.
 
 Measured here on our own ffmpeg 5.1.9:
 
-| variant | final `r_frame_rate` | packet 6 PTS |
-|---|---|---|
-| original | `30000/1001` | 0.166992 |
-| output-`r`-only | `30000/1001` | 0.166992 |
-| **frame-derived duration** | **`30/1`** | **0.166667** |
-| rounded-duration control | `30000/1001` | 0.166992 |
+| variant                    | final `r_frame_rate` | packet 6 PTS |
+| -------------------------- | -------------------- | ------------ |
+| original                   | `30000/1001`         | 0.166992     |
+| output-`r`-only            | `30000/1001`         | 0.166992     |
+| **frame-derived duration** | **`30/1`**           | **0.166667** |
+| rounded-duration control   | `30000/1001`         | 0.166992     |
 
 At 24000/1001 the original degrades further, to `287/12`.
 
@@ -86,11 +86,11 @@ It does not: AAC encoding adds a level-dependent overshoot.
 
 Measured on ffmpeg 5.1.9:
 
-| pass | attenuation | integrated LUFS | true peak dBFS |
-|---|---|---|---|
-| 0 (trimmed) | 0.0 dB | 1.7 | **+1.4** |
-| 1 | −2.4 dB | −0.7 | **+2.3** ← peak *rose* |
-| 2 | −5.7 dB | −4.0 | −4.4 |
+| pass        | attenuation | integrated LUFS | true peak dBFS         |
+| ----------- | ----------- | --------------- | ---------------------- |
+| 0 (trimmed) | 0.0 dB      | 1.7             | **+1.4**               |
+| 1           | −2.4 dB     | −0.7            | **+2.3** ← peak _rose_ |
+| 2           | −5.7 dB     | −4.0            | −4.4                   |
 
 Attenuating by 2.4 dB moved the measured peak **up**. The next pass compounded
 to −5.7 dB and undershot the ceiling by 3.4 dB, taking loudness with it.
@@ -122,7 +122,7 @@ Two reporting errors of mine, both caught in external review:
    title rather than reading which assertion failed.
 
 The 7 files were run independently at the time, and now launch in the normal
-partition because the fail-fast *cause* is gone. The runner was never modified
+partition because the fail-fast _cause_ is gone. The runner was never modified
 to make a report look complete.
 
 ## Known coverage gaps — passing is not always covering
@@ -135,7 +135,7 @@ to make a report look complete.
 - **`alimiter` is a dynamics processor.** It changes audio character, not only
   level. Both assertions hold, but nothing here evaluates perceptual quality;
   that warrants a human listen before shipping.
-- **Attribution.** Byte-identical source establishes that *those files* were not
+- **Attribution.** Byte-identical source establishes that _those files_ were not
   edited — not that every effect of the fork is excluded. Dependencies, helpers,
   export resolution, configuration and native tool builds can all still differ.
 

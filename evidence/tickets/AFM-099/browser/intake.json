@@ -262,13 +262,7 @@
         "name": "@hyperframes/diagram-engine",
         "path": "packages/diagram-engine/package.json",
         "description": "Owned diagram compilation engine: typed JSON-IR renderers for architecture, workflow, sequence, dataflow and lifecycle diagrams.",
-        "dependencies": [
-          "@hyperframes/diagram-viewer",
-          "ajv",
-          "parse5",
-          "saxes",
-          "simple-icons"
-        ],
+        "dependencies": ["@hyperframes/diagram-viewer", "ajv", "parse5", "saxes", "simple-icons"],
         "scripts": [
           "build:gallery",
           "build:guide",
@@ -301,11 +295,7 @@
           "@hyperframes/project-model",
           "saxes"
         ],
-        "scripts": [
-          "build",
-          "test",
-          "typecheck"
-        ],
+        "scripts": ["build", "test", "typecheck"],
         "citation": {
           "path": "packages/diagram-motion/package.json",
           "sha256": "698719d5f720419a2e78299e990c76624834fdd011fa1b67151ae6c41960ebd0",
@@ -317,9 +307,7 @@
         "path": "packages/diagram-viewer/package.json",
         "description": "Standalone diagram viewer shell: the HTML template and viewer assets that wrap a compiled diagram artifact.",
         "dependencies": [],
-        "scripts": [
-          "test"
-        ],
+        "scripts": ["test"],
         "citation": {
           "path": "packages/diagram-viewer/package.json",
           "sha256": "d1843847a350c8334eaa04cc1ee5ed2dd3c00544f65b2ca82420111f72f6d0b9",
@@ -343,11 +331,7 @@
           "typescript",
           "vitest"
         ],
-        "scripts": [
-          "build",
-          "test",
-          "typecheck"
-        ],
+        "scripts": ["build", "test", "typecheck"],
         "citation": {
           "path": "packages/engine/package.json",
           "sha256": "23bd17ec7d500bb70a4751f8be95e2f3f0cad98e405339b411777515ea68dbc5",
@@ -373,13 +357,7 @@
           "typescript",
           "yaml"
         ],
-        "scripts": [
-          "build",
-          "start",
-          "test",
-          "test:dockerfile-workspaces",
-          "typecheck"
-        ],
+        "scripts": ["build", "start", "test", "test:dockerfile-workspaces", "typecheck"],
         "citation": {
           "path": "packages/gcp-cloud-run/package.json",
           "sha256": "6ab9c4452647ccc12becd03d1cbb27ebba14ba754ec8318a3bcd1c8f1781098b",
@@ -402,13 +380,7 @@
           "typescript",
           "vitest"
         ],
-        "scripts": [
-          "build",
-          "prepublishOnly",
-          "test",
-          "test:watch",
-          "typecheck"
-        ],
+        "scripts": ["build", "prepublishOnly", "test", "test:watch", "typecheck"],
         "citation": {
           "path": "packages/lint/package.json",
           "sha256": "5cd1b6bda2b0c28d016a5195bd5c72ab487c4bcc3f38f0c4a1f20909ac3756f5",
@@ -433,13 +405,7 @@
           "typescript",
           "vitest"
         ],
-        "scripts": [
-          "build",
-          "prepublishOnly",
-          "test",
-          "test:watch",
-          "typecheck"
-        ],
+        "scripts": ["build", "prepublishOnly", "test", "test:watch", "typecheck"],
         "citation": {
           "path": "packages/parsers/package.json",
           "sha256": "5d872e6c906d53e506b4389b69a3ca29a080f65f22e06978bc74a4273ae81da8",
@@ -459,13 +425,7 @@
           "typescript",
           "vitest"
         ],
-        "scripts": [
-          "build",
-          "perf",
-          "test",
-          "test:browser-security",
-          "typecheck"
-        ],
+        "scripts": ["build", "perf", "test", "test:browser-security", "typecheck"],
         "citation": {
           "path": "packages/player/package.json",
           "sha256": "6649f84b72e906bef539df27efb3f078b1f960b2d450e680755ab898f67b3508",
@@ -559,14 +519,8 @@
         "name": "@hyperframes/project-model",
         "path": "packages/project-model/package.json",
         "description": "Shared project envelope, document kinds, stable identities, command validation and atomic revision history (contracts C01, C03, C04, C05).",
-        "dependencies": [
-          "ajv"
-        ],
-        "scripts": [
-          "build",
-          "test",
-          "typecheck"
-        ],
+        "dependencies": ["ajv"],
+        "scripts": ["build", "test", "typecheck"],
         "citation": {
           "path": "packages/project-model/package.json",
           "sha256": "36594eec33b66edc2c676e99f75b72f27681db61186c32f3698cd72135b41b4f",
@@ -586,12 +540,7 @@
           "vite",
           "vitest"
         ],
-        "scripts": [
-          "build",
-          "dev",
-          "test",
-          "typecheck"
-        ],
+        "scripts": ["build", "dev", "test", "typecheck"],
         "citation": {
           "path": "packages/sdk-playground/package.json",
           "sha256": "95e8f661b25c744909e4beade9b3f6e54df0c4552bef2a17685f8d264031c5e8",
@@ -611,13 +560,7 @@
           "typescript",
           "vitest"
         ],
-        "scripts": [
-          "build",
-          "test",
-          "test:watch",
-          "typecheck",
-          "typecheck:examples"
-        ],
+        "scripts": ["build", "test", "test:watch", "typecheck", "typecheck:examples"],
         "citation": {
           "path": "packages/sdk/package.json",
           "sha256": "df4e45ae2121d8c9122219478c575177e6a44ae3327a5b7477e04a994d48dbfc",
@@ -628,17 +571,8 @@
         "name": "@hyperframes/shader-transitions",
         "path": "packages/shader-transitions/package.json",
         "description": "WebGL shader transitions for HyperFrames compositions",
-        "dependencies": [
-          "html2canvas",
-          "tsup",
-          "typescript",
-          "vitest"
-        ],
-        "scripts": [
-          "build",
-          "test",
-          "typecheck"
-        ],
+        "dependencies": ["html2canvas", "tsup", "typescript", "vitest"],
+        "scripts": ["build", "test", "typecheck"],
         "citation": {
           "path": "packages/shader-transitions/package.json",
           "sha256": "49663b23dbd4853c9be8e04f0c95d92111d3e5c3870c6480df44fd945f4fac97",
@@ -1527,10 +1461,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Source inventory",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -1540,79 +1471,43 @@
                 "id": "object-0",
                 "type": "backend",
                 "label": "aws-lambda",
-                "pos": [
-                  60,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "cli",
-                "pos": [
-                  340,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [340, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "core",
-                "pos": [
-                  620,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [620, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "diagram-engine",
-                "pos": [
-                  60,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 290],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "diagram-motion",
-                "pos": [
-                  340,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [340, 290],
+                "size": [230, 70]
               },
               {
                 "id": "object-5",
                 "type": "backend",
                 "label": "diagram-viewer",
-                "pos": [
-                  620,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [620, 290],
+                "size": [230, 70]
               }
             ],
             "connections": [],
@@ -1623,10 +1518,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Source inventory",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -1636,79 +1528,43 @@
                 "id": "object-0",
                 "type": "backend",
                 "label": "engine",
-                "pos": [
-                  60,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "gcp-cloud-run",
-                "pos": [
-                  340,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [340, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "lint",
-                "pos": [
-                  620,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [620, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "parsers",
-                "pos": [
-                  60,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 290],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "player",
-                "pos": [
-                  340,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [340, 290],
+                "size": [230, 70]
               },
               {
                 "id": "object-5",
                 "type": "backend",
                 "label": "producer",
-                "pos": [
-                  620,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [620, 290],
+                "size": [230, 70]
               }
             ],
             "connections": [],
@@ -1719,10 +1575,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Source inventory",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -1732,79 +1585,43 @@
                 "id": "object-0",
                 "type": "backend",
                 "label": "project-model",
-                "pos": [
-                  60,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "sdk-playground",
-                "pos": [
-                  340,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [340, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "sdk",
-                "pos": [
-                  620,
-                  100
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [620, 100],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "shader-transitions",
-                "pos": [
-                  60,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 290],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "studio-server",
-                "pos": [
-                  340,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [340, 290],
+                "size": [230, 70]
               },
               {
                 "id": "object-5",
                 "type": "backend",
                 "label": "studio",
-                "pos": [
-                  620,
-                  290
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [620, 290],
+                "size": [230, 70]
               }
             ],
             "connections": [],
@@ -1889,13 +1706,7 @@
               "presentation": {
                 "title": "cli / dependencies",
                 "subtitle": "Declared dependencies in package.json. Arrows mean “depends on”; they do not imply live traffic.",
-                "focusObjectIds": [
-                  "object-0",
-                  "object-1",
-                  "object-2",
-                  "object-3",
-                  "object-4"
-                ],
+                "focusObjectIds": ["object-0", "object-1", "object-2", "object-3", "object-4"],
                 "relationshipIds": [
                   "relationship-9aae9c87-45e9-4b1f-b11c-f7a8b934551e",
                   "relationship-8d0732a2-286d-4279-b290-20c9c4617349",
@@ -1913,13 +1724,7 @@
               "presentation": {
                 "title": "studio / dependencies",
                 "subtitle": "Declared dependencies in package.json. Arrows mean “depends on”; they do not imply live traffic.",
-                "focusObjectIds": [
-                  "object-0",
-                  "object-1",
-                  "object-2",
-                  "object-3",
-                  "object-4"
-                ],
+                "focusObjectIds": ["object-0", "object-1", "object-2", "object-3", "object-4"],
                 "relationshipIds": [
                   "relationship-99e127ab-715f-40ab-b6cf-b4b7830b526c",
                   "relationship-e4bac135-54c6-4873-b2ce-1e443ff1eb9f",
@@ -1937,13 +1742,7 @@
               "presentation": {
                 "title": "producer / dependencies",
                 "subtitle": "Declared dependencies in package.json. Arrows mean “depends on”; they do not imply live traffic.",
-                "focusObjectIds": [
-                  "object-0",
-                  "object-1",
-                  "object-2",
-                  "object-3",
-                  "object-4"
-                ],
+                "focusObjectIds": ["object-0", "object-1", "object-2", "object-3", "object-4"],
                 "relationshipIds": [
                   "relationship-ac874bd1-9b32-407c-a3c7-c31d84d2ceee",
                   "relationship-e81a79eb-a1ee-483e-96f1-ef3aad84e735",
@@ -1973,10 +1772,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Declared dependencies",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -1986,66 +1782,36 @@
                 "id": "object-0",
                 "type": "frontend",
                 "label": "cli",
-                "pos": [
-                  60,
-                  240
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 240],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "aws-lambda",
-                "pos": [
-                  540,
-                  40
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 40],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "core",
-                "pos": [
-                  540,
-                  175
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 175],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "engine",
-                "pos": [
-                  540,
-                  310
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 310],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "gcp-cloud-run",
-                "pos": [
-                  540,
-                  445
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 445],
+                "size": [230, 70]
               }
             ],
             "connections": [
@@ -2081,10 +1847,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Declared dependencies",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -2094,66 +1857,36 @@
                 "id": "object-0",
                 "type": "frontend",
                 "label": "studio",
-                "pos": [
-                  60,
-                  240
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 240],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "core",
-                "pos": [
-                  540,
-                  40
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 40],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "parsers",
-                "pos": [
-                  540,
-                  175
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 175],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "player",
-                "pos": [
-                  540,
-                  310
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 310],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "producer",
-                "pos": [
-                  540,
-                  445
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 445],
+                "size": [230, 70]
               }
             ],
             "connections": [
@@ -2189,10 +1922,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Declared dependencies",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -2202,66 +1932,36 @@
                 "id": "object-0",
                 "type": "frontend",
                 "label": "producer",
-                "pos": [
-                  60,
-                  240
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 240],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "aws-lambda",
-                "pos": [
-                  540,
-                  40
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 40],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "core",
-                "pos": [
-                  540,
-                  175
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 175],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "engine",
-                "pos": [
-                  540,
-                  310
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 310],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "lint",
-                "pos": [
-                  540,
-                  445
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 445],
+                "size": [230, 70]
               }
             ],
             "connections": [
@@ -2371,13 +2071,7 @@
               "presentation": {
                 "title": "v-flow-exais / available commands",
                 "subtitle": "Script names declared in package.json. Source inspection does not execute them.",
-                "focusObjectIds": [
-                  "object-0",
-                  "object-1",
-                  "object-2",
-                  "object-3",
-                  "object-4"
-                ],
+                "focusObjectIds": ["object-0", "object-1", "object-2", "object-3", "object-4"],
                 "relationshipIds": [
                   "relationship-16fc8356-ff73-4dbe-b1da-bbd00e3e6677",
                   "relationship-40dc2e28-9932-459d-9c01-09536639d272",
@@ -2395,13 +2089,7 @@
               "presentation": {
                 "title": "producer / available commands",
                 "subtitle": "Script names declared in packages/producer/package.json. Source inspection does not execute them.",
-                "focusObjectIds": [
-                  "object-0",
-                  "object-1",
-                  "object-2",
-                  "object-3",
-                  "object-4"
-                ],
+                "focusObjectIds": ["object-0", "object-1", "object-2", "object-3", "object-4"],
                 "relationshipIds": [
                   "relationship-5152020b-639c-4b68-b96f-e35382693ede",
                   "relationship-b330966b-9683-4f84-afad-92cbc756b7a0",
@@ -2419,13 +2107,7 @@
               "presentation": {
                 "title": "core / available commands",
                 "subtitle": "Script names declared in packages/core/package.json. Source inspection does not execute them.",
-                "focusObjectIds": [
-                  "object-0",
-                  "object-1",
-                  "object-2",
-                  "object-3",
-                  "object-4"
-                ],
+                "focusObjectIds": ["object-0", "object-1", "object-2", "object-3", "object-4"],
                 "relationshipIds": [
                   "relationship-baab5840-11c6-44b5-9f0e-4d9cfc7ca566",
                   "relationship-1bb948f8-0078-4429-87c8-e0708d4a020f",
@@ -2455,10 +2137,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Declared scripts",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -2468,66 +2147,36 @@
                 "id": "object-0",
                 "type": "frontend",
                 "label": "v-flow-exais",
-                "pos": [
-                  60,
-                  240
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 240],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "build",
-                "pos": [
-                  540,
-                  40
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 40],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "build:hyperframes-runtime",
-                "pos": [
-                  540,
-                  175
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 175],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "build:hyperframes-runtime:",
-                "pos": [
-                  540,
-                  310
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 310],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "build:owned-runtimes",
-                "pos": [
-                  540,
-                  445
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 445],
+                "size": [230, 70]
               }
             ],
             "connections": [
@@ -2563,10 +2212,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Declared scripts",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -2576,66 +2222,36 @@
                 "id": "object-0",
                 "type": "frontend",
                 "label": "producer",
-                "pos": [
-                  60,
-                  240
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 240],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "build",
-                "pos": [
-                  540,
-                  40
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 40],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "build:fonts",
-                "pos": [
-                  540,
-                  175
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 175],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "build:hf-early-stub",
-                "pos": [
-                  540,
-                  310
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 310],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "test",
-                "pos": [
-                  540,
-                  445
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 445],
+                "size": [230, 70]
               }
             ],
             "connections": [
@@ -2671,10 +2287,7 @@
             "diagram_type": "architecture",
             "meta": {
               "title": "Declared scripts",
-              "viewBox": [
-                900,
-                570
-              ],
+              "viewBox": [900, 570],
               "legend": {
                 "mode": "hidden"
               }
@@ -2684,66 +2297,36 @@
                 "id": "object-0",
                 "type": "frontend",
                 "label": "core",
-                "pos": [
-                  60,
-                  240
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [60, 240],
+                "size": [230, 70]
               },
               {
                 "id": "object-1",
                 "type": "backend",
                 "label": "build",
-                "pos": [
-                  540,
-                  40
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 40],
+                "size": [230, 70]
               },
               {
                 "id": "object-2",
                 "type": "backend",
                 "label": "build:audio-fx-runtime",
-                "pos": [
-                  540,
-                  175
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 175],
+                "size": [230, 70]
               },
               {
                 "id": "object-3",
                 "type": "backend",
                 "label": "build:hyperframe-runtime",
-                "pos": [
-                  540,
-                  310
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 310],
+                "size": [230, 70]
               },
               {
                 "id": "object-4",
                 "type": "backend",
                 "label": "build:hyperframes-runtime",
-                "pos": [
-                  540,
-                  445
-                ],
-                "size": [
-                  230,
-                  70
-                ]
+                "pos": [540, 445],
+                "size": [230, 70]
               }
             ],
             "connections": [

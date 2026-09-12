@@ -3,7 +3,12 @@ import { randomUUID } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, writeFileSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { compileProject } from "@hyperframes/diagram-motion";
-import type { ProjectSnapshot } from "@hyperframes/project-model";
+import {
+  assertEditorRevision,
+  EditorPreviewError,
+  type EditorRevision,
+  type ProjectSnapshot,
+} from "@hyperframes/project-model";
 import { projectAssetBuildFiles } from "./projectAssets";
 import {
   assertContainedPath,
@@ -44,7 +49,11 @@ export function verifyBuild(build: PinnedBuild): void {
   }
 }
 
-async function buildSnapshot(root: string, snapshot: ProjectSnapshot): Promise<PinnedBuild> {
+async function buildSnapshot(
+  root: string,
+  snapshot: ProjectSnapshot,
+  revisionHash: string,
+): Promise<PinnedBuild> {
   const compilation = await compileProject(snapshot);
   // GSAP is an installed workspace asset. No CDN request enters a render.
   compilation.files["assets/gsap.min.js"] = readFileSync(
@@ -62,7 +71,12 @@ async function buildSnapshot(root: string, snapshot: ProjectSnapshot): Promise<P
   const files = Object.fromEntries(
     Object.entries(buildFiles).map(([name, bytes]) => [name, sha256(bytes)]),
   );
-  const body = { ...compilation.receipt, authoringHash: sha256(canonicalJson(snapshot)), files };
+  const body = {
+    ...compilation.receipt,
+    revisionHash,
+    authoringHash: sha256(canonicalJson(snapshot)),
+    files,
+  };
   const hash = sha256(canonicalJson(body));
   const receipt = { ...body, buildHash: hash };
   const dir = join(root, ".vflow/builds", hash);
@@ -101,12 +115,28 @@ async function buildSnapshot(root: string, snapshot: ProjectSnapshot): Promise<P
   return build;
 }
 
-export async function buildCommittedProject(root: string): Promise<PinnedBuild> {
+export async function buildCommittedProject(
+  root: string,
+  expected?: EditorRevision,
+): Promise<PinnedBuild> {
   const current = readCommittedProject(root);
+  if (expected) {
+    assertEditorRevision(expected);
+    if (
+      expected.projectId !== current.snapshot.manifest.id ||
+      expected.revision !== current.pointer.revision ||
+      expected.revisionHash !== current.pointer.sha256
+    )
+      throw new EditorPreviewError(
+        "editor/stale-preview-request",
+        "Reload the authoring view before preparing this preview.",
+        409,
+      );
+  }
   const key = `${root}:${current.pointer.sha256}`;
   const pending = inFlight.get(key);
   if (pending) return pending;
-  const promise = buildSnapshot(root, current.snapshot);
+  const promise = buildSnapshot(root, current.snapshot, current.pointer.sha256);
   inFlight.set(key, promise);
   try {
     return await promise;

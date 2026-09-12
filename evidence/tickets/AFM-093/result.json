@@ -60,10 +60,7 @@
     "focusedTests": 16,
     "inheritedTests": 42,
     "inheritedSkipped": 0,
-    "packageTypechecks": [
-      "studio-server",
-      "cli"
-    ],
+    "packageTypechecks": ["studio-server", "cli"],
     "lint": "0 warnings, 0 errors",
     "formatFiles": 16
   },

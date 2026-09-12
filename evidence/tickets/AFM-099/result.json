@@ -85,13 +85,7 @@
     "projectModel": 30,
     "diagramMotion": 10,
     "totalDistinctFocusedTests": 72,
-    "typecheckedPackages": [
-      "project-model",
-      "diagram-motion",
-      "studio-server",
-      "studio",
-      "cli"
-    ],
+    "typecheckedPackages": ["project-model", "diagram-motion", "studio-server", "studio", "cli"],
     "seamChecks": 45
   },
   "acceptanceResults": [

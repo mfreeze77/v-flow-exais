@@ -1,6 +1,13 @@
 import { createElement, useRef, useState } from "react";
 import "@hyperframes/player";
-import type { ProjectSnapshot, ProjectOperation } from "@hyperframes/project-model";
+import {
+  editorPreviewUrl,
+  type EditorPreviewSession,
+  type ProjectSnapshot,
+  type ProjectOperation,
+} from "@hyperframes/project-model";
+import { createManagedEditorReader } from "./editorReadClient";
+import { createEditorPreviewClient, createPreviewPublicationGate } from "./editorPreviewClient";
 import { useMountEffect } from "../hooks/useMountEffect";
 import { SourceEditor } from "../components/editor/SourceEditor";
 import { projectApi } from "./api";
@@ -37,15 +44,13 @@ const edgeCollections: Record<string, string> = {
 };
 
 function Preview({
-  id,
-  revision,
+  src,
   width,
   height,
   onTime,
   initialTime,
 }: {
-  id: string;
-  revision: number;
+  src: string;
   width: number;
   height: number;
   onTime: (time: number) => void;
@@ -67,7 +72,7 @@ function Preview({
   });
   return createElement("hyperframes-player", {
     ref: player,
-    src: `/api/vflow/projects/${id}/preview?revision=${revision}`,
+    src,
     "runtime-src": "/api/runtime.js",
     controls: "",
     width,
@@ -83,19 +88,43 @@ export function ProjectWorkspace({ id }: { id: string }) {
   const [error, setError] = useState("");
   const [busy, setBusy] = useState("");
   const [time, setTime] = useState(0);
-  const [previewRevision, setPreviewRevision] = useState<number | null>(null);
+  const [previewSession, setPreviewSession] = useState<EditorPreviewSession | null>(null);
+  const publicationGate = useRef(createPreviewPublicationGate());
+  const mounted = useRef(true);
   const [batchId, setBatchId] = useState<string | null>(null);
   const [reviewOpen, setReviewOpen] = useState(false);
   const [drafts, setDrafts] = useState<Record<string, { text: string; revision: number }>>({});
   const canvas = useRef<HTMLDivElement | null>(null);
   const load = async () => {
-    const result = await projectApi<ProjectState>(`/projects/${id}`);
-    setData(result);
-    await projectApi(`/projects/${id}/build`, {});
-    setPreviewRevision(result.snapshot.manifest.revision);
+    const gate = publicationGate.current;
+    const epoch = gate.begin();
+    try {
+      const result = await projectApi<ProjectState>(`/projects/${id}`);
+      if (!gate.isCurrent(epoch)) return;
+      setData(result);
+      // Never label a newer build with the revision of an earlier GET.
+      const view = await createManagedEditorReader(id).view();
+      if (!gate.isCurrent(epoch)) return;
+      if (view.revision !== result.snapshot.manifest.revision)
+        throw new Error(
+          "Project changed while loading. Reload; the last valid preview is retained.",
+        );
+      const session = await createEditorPreviewClient(id).prepare(view);
+      if (gate.isCurrent(epoch)) setPreviewSession(session);
+    } catch (error) {
+      if (gate.isCurrent(epoch)) throw error;
+    }
   };
   useMountEffect(() => {
-    void load().catch((reason) => setError(reason.message));
+    mounted.current = true;
+    publicationGate.current = createPreviewPublicationGate();
+    void load().catch((reason) => {
+      if (mounted.current) setError(reason.message);
+    });
+    return () => {
+      mounted.current = false;
+      publicationGate.current.dispose();
+    };
   });
   async function commit(
     operations: ProjectOperation[],
@@ -103,6 +132,7 @@ export function ProjectWorkspace({ id }: { id: string }) {
   ) {
     setBusy("Saving…");
     setError("");
+    let committed = false;
     try {
       await projectApi(`/projects/${id}/commands`, {
         commandId: crypto.randomUUID(),
@@ -111,10 +141,13 @@ export function ProjectWorkspace({ id }: { id: string }) {
         expectedRevision,
         operations,
       });
+      committed = true;
       await load();
     } catch (reason) {
-      setError((reason as Error).message);
-      throw reason;
+      const message = reason instanceof Error ? reason.message : String(reason);
+      setError(committed ? `Edit saved; preview refresh failed: ${message}` : message);
+      // A preview failure must not turn a confirmed commit into a reported failed write.
+      if (!committed) throw reason;
     } finally {
       setBusy("");
     }
@@ -245,19 +278,28 @@ export function ProjectWorkspace({ id }: { id: string }) {
             </span>
             <span>
               {busy ||
-                (previewRevision === manifest.revision
+                (previewSession?.revision === manifest.revision
                   ? "Preview up to date"
                   : "Showing last valid preview")}
             </span>
           </div>
+          {previewSession && previewSession.scenes.some((item) => item.sceneId === scene.id) && (
+            <a
+              href={editorPreviewUrl(previewSession, scene.id)}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={`Open pinned preview for ${scene.presentation.title}`}
+            >
+              Open selected scene preview · revision {previewSession.revision}
+            </a>
+          )}
           <div className="vf-canvas" ref={canvas}>
-            {previewRevision !== null && (
+            {previewSession !== null && (
               <Preview
-                key={previewRevision}
-                id={id}
-                revision={previewRevision}
-                width={manifest.output.width}
-                height={manifest.output.height}
+                key={previewSession.buildHash}
+                src={editorPreviewUrl(previewSession)}
+                width={previewSession.output.width}
+                height={previewSession.output.height}
                 onTime={setTime}
                 initialTime={time}
               />

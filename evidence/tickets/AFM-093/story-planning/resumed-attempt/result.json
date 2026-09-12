@@ -19,9 +19,7 @@
           "visual": "title",
           "heading": "Which parts does createRepositoryIntake rely on?",
           "script": "Which parts does createRepositoryIntake rely on? We will use repositoryIntake.ts to answer it.",
-          "sourceIds": [
-            "source-105fa3dd896da95347cc4218"
-          ],
+          "sourceIds": ["source-105fa3dd896da95347cc4218"],
           "relationshipIds": [],
           "id": "beat-0",
           "durationFrames": 90
@@ -50,13 +48,8 @@
           "visual": "source",
           "heading": "The reference to contained",
           "script": "createRepositoryIntake contains a call to contained; this is not an execution trace.",
-          "sourceIds": [
-            "source-105fa3dd896da95347cc4218",
-            "source-03ad6bb3ebe91cd3d75aa811"
-          ],
-          "relationshipIds": [
-            "source-8d682406b463d96fcaa3466f"
-          ],
+          "sourceIds": ["source-105fa3dd896da95347cc4218", "source-03ad6bb3ebe91cd3d75aa811"],
+          "relationshipIds": ["source-8d682406b463d96fcaa3466f"],
           "id": "beat-2",
           "durationFrames": 193
         },
@@ -65,13 +58,8 @@
           "visual": "source",
           "heading": "The reference to inspectRepository",
           "script": "createRepositoryIntake contains a call to inspectRepository; this is not an execution trace.",
-          "sourceIds": [
-            "source-105fa3dd896da95347cc4218",
-            "source-9ffa3f79d1e103ec2191bf4a"
-          ],
-          "relationshipIds": [
-            "source-162d2748ea81ea472fa1ca0f"
-          ],
+          "sourceIds": ["source-105fa3dd896da95347cc4218", "source-9ffa3f79d1e103ec2191bf4a"],
+          "relationshipIds": ["source-162d2748ea81ea472fa1ca0f"],
           "id": "beat-3",
           "durationFrames": 193
         },
@@ -80,9 +68,7 @@
           "visual": "takeaway",
           "heading": "Your next step",
           "script": "Use these captured connections to navigate outward from createRepositoryIntake. Confirm runtime behavior separately before relying on it.",
-          "sourceIds": [
-            "source-105fa3dd896da95347cc4218"
-          ],
+          "sourceIds": ["source-105fa3dd896da95347cc4218"],
           "relationshipIds": [
             "source-8d682406b463d96fcaa3466f",
             "source-162d2748ea81ea472fa1ca0f",
@@ -104,9 +90,7 @@
           "visual": "title",
           "heading": "Which parts does understandRepository rely on?",
           "script": "Which parts does understandRepository rely on? We will use repositoryUnderstanding.ts to answer it.",
-          "sourceIds": [
-            "source-774abb70c4f4436b2f6d887b"
-          ],
+          "sourceIds": ["source-774abb70c4f4436b2f6d887b"],
           "relationshipIds": [],
           "id": "beat-0",
           "durationFrames": 90
@@ -134,13 +118,8 @@
           "visual": "source",
           "heading": "The reference to sourceExcerpt",
           "script": "understandRepository contains a call to sourceExcerpt; this is not an execution trace.",
-          "sourceIds": [
-            "source-774abb70c4f4436b2f6d887b",
-            "source-18ab345ffde0e02623a6fbe2"
-          ],
-          "relationshipIds": [
-            "source-df8699fbab0a8c64e7663d22"
-          ],
+          "sourceIds": ["source-774abb70c4f4436b2f6d887b", "source-18ab345ffde0e02623a6fbe2"],
+          "relationshipIds": ["source-df8699fbab0a8c64e7663d22"],
           "id": "beat-2",
           "durationFrames": 193
         },
@@ -149,13 +128,8 @@
           "visual": "source",
           "heading": "The reference to identity",
           "script": "understandRepository contains a call to identity; this is not an execution trace.",
-          "sourceIds": [
-            "source-774abb70c4f4436b2f6d887b",
-            "source-6a1b6d91969236ca0a565a22"
-          ],
-          "relationshipIds": [
-            "source-9a2d76674ef87b74dbfadee2"
-          ],
+          "sourceIds": ["source-774abb70c4f4436b2f6d887b", "source-6a1b6d91969236ca0a565a22"],
+          "relationshipIds": ["source-9a2d76674ef87b74dbfadee2"],
           "id": "beat-3",
           "durationFrames": 193
         },
@@ -164,9 +138,7 @@
           "visual": "takeaway",
           "heading": "Your next step",
           "script": "Use these captured connections to navigate outward from understandRepository. Confirm runtime behavior separately before relying on it.",
-          "sourceIds": [
-            "source-774abb70c4f4436b2f6d887b"
-          ],
+          "sourceIds": ["source-774abb70c4f4436b2f6d887b"],
           "relationshipIds": [
             "source-df8699fbab0a8c64e7663d22",
             "source-9a2d76674ef87b74dbfadee2",
@@ -188,9 +160,7 @@
           "visual": "title",
           "heading": "Which parts does storySceneHtml rely on?",
           "script": "Which parts does storySceneHtml rely on? We will use storySceneHtml.ts to answer it.",
-          "sourceIds": [
-            "source-a83836f4f3b80d4347ece5b2"
-          ],
+          "sourceIds": ["source-a83836f4f3b80d4347ece5b2"],
           "relationshipIds": [],
           "id": "beat-0",
           "durationFrames": 90
@@ -218,13 +188,8 @@
           "visual": "source",
           "heading": "The reference to sceneBody",
           "script": "storySceneHtml contains a call to sceneBody; this is not an execution trace.",
-          "sourceIds": [
-            "source-a83836f4f3b80d4347ece5b2",
-            "source-ef5c59aab772e1e0e03bc596"
-          ],
-          "relationshipIds": [
-            "source-6c2f64971c3eed6eb4144391"
-          ],
+          "sourceIds": ["source-a83836f4f3b80d4347ece5b2", "source-ef5c59aab772e1e0e03bc596"],
+          "relationshipIds": ["source-6c2f64971c3eed6eb4144391"],
           "id": "beat-2",
           "durationFrames": 193
         },
@@ -233,13 +198,8 @@
           "visual": "source",
           "heading": "The reference to esc",
           "script": "storySceneHtml contains a call to esc; this is not an execution trace.",
-          "sourceIds": [
-            "source-a83836f4f3b80d4347ece5b2",
-            "source-e4c02058ccbb3a1f75c452c0"
-          ],
-          "relationshipIds": [
-            "source-29deca6819c2552fb63b6b4d"
-          ],
+          "sourceIds": ["source-a83836f4f3b80d4347ece5b2", "source-e4c02058ccbb3a1f75c452c0"],
+          "relationshipIds": ["source-29deca6819c2552fb63b6b4d"],
           "id": "beat-3",
           "durationFrames": 193
         },
@@ -248,9 +208,7 @@
           "visual": "takeaway",
           "heading": "Your next step",
           "script": "Use these captured connections to navigate outward from storySceneHtml. Confirm runtime behavior separately before relying on it.",
-          "sourceIds": [
-            "source-a83836f4f3b80d4347ece5b2"
-          ],
+          "sourceIds": ["source-a83836f4f3b80d4347ece5b2"],
           "relationshipIds": [
             "source-6c2f64971c3eed6eb4144391",
             "source-29deca6819c2552fb63b6b4d",
@@ -298,13 +256,7 @@
                 "artifactHash": "60b483ffe0f687ce031c8d10d2f862e1da02633688bbc539ada8f8049ef33222"
               }
             },
-            "sceneIds": [
-              "beat-0",
-              "beat-1",
-              "beat-2",
-              "beat-3",
-              "beat-4"
-            ],
+            "sceneIds": ["beat-0", "beat-1", "beat-2", "beat-3", "beat-4"],
             "authoringHash": "03090d5424939a4a10d4fee7f7b87226aac842bf9f2cee060f39a32f726adfe3",
             "files": {
               "scene-0-beat-0.html": "5f0826261fc6282b97f50dd3d30e577b4e3d535485e10d97b6c0f5a7111823e0",
@@ -385,13 +337,7 @@
                 "artifactHash": "821e8e0b45343c4aa9008d3bcfa333e7546b2b4c8941204a940be1ba1b58a764"
               }
             },
-            "sceneIds": [
-              "beat-0",
-              "beat-1",
-              "beat-2",
-              "beat-3",
-              "beat-4"
-            ],
+            "sceneIds": ["beat-0", "beat-1", "beat-2", "beat-3", "beat-4"],
             "authoringHash": "bd1070898bb14b007c7b508174776f8204a551c0338bdfb168ef35db8d24d150",
             "files": {
               "scene-0-beat-0.html": "0998df8cc0305d80757523e9434821126c5aabea2f3c917621fb27ff4e5c15c6",
@@ -472,13 +418,7 @@
                 "artifactHash": "16f3b576db7eafac740072ae004d60865b0933384183180ba8646b0145eceae7"
               }
             },
-            "sceneIds": [
-              "beat-0",
-              "beat-1",
-              "beat-2",
-              "beat-3",
-              "beat-4"
-            ],
+            "sceneIds": ["beat-0", "beat-1", "beat-2", "beat-3", "beat-4"],
             "authoringHash": "95a8d40a84f5f773c0e2e29b9169138d3bdb4aa2de23459dd9f9657636b8e67d",
             "files": {
               "scene-0-beat-0.html": "e71f440cb82d56e44c5e05d7a50ed52280573675241c0940b8e1024a613b7ed2",

@@ -47,13 +47,13 @@ understanding limits are in `docs/designs/source-understanding.md`.
 
 ## Counts
 
-| State | Count | Tickets |
-|---|---|---|
-| verified | 7 | AFM-001–006, AFM-009 |
-| in_progress | 31 | AFM-017–022, AFM-024–029, AFM-037, AFM-039–043, AFM-049, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-083, AFM-093, AFM-095–096, AFM-098–099 |
-| implemented_unverified | 0 | — |
-| blocked | 1 | AFM-011 — package isolation and integration now pass; clean workspace build prerequisite remains |
-| untouched | 95 | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates |
+| State                  | Count | Tickets                                                                                                                                              |
+| ---------------------- | ----- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| verified               | 7     | AFM-001–006, AFM-009                                                                                                                                 |
+| in_progress            | 31    | AFM-017–022, AFM-024–029, AFM-037, AFM-039–043, AFM-049, AFM-051, AFM-054–055, AFM-057, AFM-059, AFM-063, AFM-083, AFM-093, AFM-095–096, AFM-098–099 |
+| implemented_unverified | 0     | —                                                                                                                                                    |
+| blocked                | 1     | AFM-011 — package isolation and integration now pass; clean workspace build prerequisite remains                                                     |
+| untouched              | 95    | Remaining tickets, including AFM-007–008, AFM-010, AFM-012–016 and the gates                                                                         |
 
 This checkpoint delivers a working source-to-three-videos path, not closure of
 every contributing ticket. Per-ticket receipts distinguish the verified slice
@@ -62,15 +62,15 @@ from unmet criteria. Code commit and artifact hashes are in
 
 ## Verified
 
-| Ticket | Commit | Evidence | Result |
-|---|---|---|---|
-| AFM-001 | `a3feeb1` | `evidence/tickets/AFM-001/` | 31 tests; both sources reproduce the pinned baseline tree digests |
-| AFM-002 | `25d8bf8` | `evidence/tickets/AFM-002/` | 22 tests; 7786 entries, 0 ledger problems, 0 duplicate targets |
-| AFM-003 | `8bae64a` | `evidence/tickets/AFM-003/` | 21 tests; 7784 files imported and hash-verified, 0 conflicts |
+| Ticket  | Commit    | Evidence                    | Result                                                                                |
+| ------- | --------- | --------------------------- | ------------------------------------------------------------------------------------- |
+| AFM-001 | `a3feeb1` | `evidence/tickets/AFM-001/` | 31 tests; both sources reproduce the pinned baseline tree digests                     |
+| AFM-002 | `25d8bf8` | `evidence/tickets/AFM-002/` | 22 tests; 7786 entries, 0 ledger problems, 0 duplicate targets                        |
+| AFM-003 | `8bae64a` | `evidence/tickets/AFM-003/` | 21 tests; 7784 files imported and hash-verified, 0 conflicts                          |
 | AFM-004 | `42a02c1` | `evidence/tickets/AFM-004/` | 16 tests; 4/4 license records, 0 font binaries in evidence, 4 explained modifications |
-| AFM-005 | `4bc67ba` | `evidence/tickets/AFM-005/` | 13 tests; automation audit 0 blocked, hooks neutralized |
-| AFM-006 | `4bc67ba` | `evidence/tickets/AFM-006/` | 21 tests; all 7786 target paths cross-platform safe, no raw-checkout reach-back |
-| AFM-009 | `dab0132` | `evidence/tickets/AFM-009/` | 18 packages register, 0 workspace problems, nested npm root removed |
+| AFM-005 | `4bc67ba` | `evidence/tickets/AFM-005/` | 13 tests; automation audit 0 blocked, hooks neutralized                               |
+| AFM-006 | `4bc67ba` | `evidence/tickets/AFM-006/` | 21 tests; all 7786 target paths cross-platform safe, no raw-checkout reach-back       |
+| AFM-009 | `dab0132` | `evidence/tickets/AFM-009/` | 18 packages register, 0 workspace problems, nested npm root removed                   |
 
 Historical acceptance run at `dab0132`: **153 passing across 8 files**.
 That count does not prove the inherited package suites, actual archive installs,
@@ -93,13 +93,13 @@ installation contract and the full clean workspace build remain unverified.
 
 All five diagram families compile to standalone HTML from the owned monorepo:
 
-| Family | Bytes | Example |
-|---|---|---|
+| Family       | Bytes   | Example              |
+| ------------ | ------- | -------------------- |
 | architecture | 821,349 | brand-aware-delivery |
-| workflow | 817,897 | agent-tool-call |
-| sequence | 812,111 | async-job-roundtrip |
-| dataflow | 819,318 | event-stream |
-| lifecycle | 808,440 | agent-run |
+| workflow     | 817,897 | agent-tool-call      |
+| sequence     | 812,111 | async-job-roundtrip  |
+| dataflow     | 819,318 | event-stream         |
+| lifecycle    | 808,440 | agent-run            |
 
 **The source-to-video path now runs.** Public GitHub URL and local project
 intake produce three reviewed, editable projects. The shared path is
@@ -149,26 +149,26 @@ Complete per-family contract/golden coverage remains separate acceptance work.
 
 ## Source baseline
 
-| Repository | Entries | Tree digest | Status |
-|---|---|---|---|
-| archify | 483 | `f2b43966…d21bcb` | matches baseline |
-| hyperframes | 7303 | `78d8162e…9c7a2c9` | matches baseline |
+| Repository  | Entries | Tree digest        | Status           |
+| ----------- | ------- | ------------------ | ---------------- |
+| archify     | 483     | `f2b43966…d21bcb`  | matches baseline |
+| hyperframes | 7303    | `78d8162e…9c7a2c9` | matches baseline |
 
 Archive comment revision candidates remain **unverified** — the inputs carry no
 upstream Git history.
 
 ## Findings carried forward
 
-| ID | Status | Summary |
-|---|---|---|
-| AFM-001-F1 | resolved | Windows extraction destroyed the one upstream symlink. All extraction now happens in-container. |
-| AFM-001-F2 | resolved | In-place build conflicts with the "no root inside destination" rule; resolved by a declared, recorded quarantine exemption. |
-| AFM-003-F1 | resolved | Unanchored `.gitignore` rules silently dropped 48 imported files, including 16 Studio source files. Rules anchored; reconciliation now asserted. |
-| AFM-003-F2 | resolved | Windows git dropped all 28 executable bits and refused the symlink. Both now driven from the ledger, not the filesystem. |
-| AFM-003-F3 | resolved | `lefthook`'s own postinstall installed git hooks despite the `prepare` script being removed. `core.hooksPath` redirected. |
+| ID         | Status   | Summary                                                                                                                                                                                 |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| AFM-001-F1 | resolved | Windows extraction destroyed the one upstream symlink. All extraction now happens in-container.                                                                                         |
+| AFM-001-F2 | resolved | In-place build conflicts with the "no root inside destination" rule; resolved by a declared, recorded quarantine exemption.                                                             |
+| AFM-003-F1 | resolved | Unanchored `.gitignore` rules silently dropped 48 imported files, including 16 Studio source files. Rules anchored; reconciliation now asserted.                                        |
+| AFM-003-F2 | resolved | Windows git dropped all 28 executable bits and refused the symlink. Both now driven from the ledger, not the filesystem.                                                                |
+| AFM-003-F3 | resolved | `lefthook`'s own postinstall installed git hooks despite the `prepare` script being removed. `core.hooksPath` redirected.                                                               |
 | AFM-011-F1 | resolved | The engine/viewer split broke Archify asset resolution; every renderer failed with ENOENT. Replaced with `src/resolveAssets.mjs`, resolving from `import.meta.url` and package exports. |
-| AFM-011-F2 | resolved | Inherited bin was named `archify`, colliding with a globally installed upstream CLI. Renamed `archframe-diagram`. |
-| AFM-009-F1 | resolved | `packages/diagram-engine/package-lock.json` was a second package-manager root inside a bun workspace member. Relocated to `docs/upstream/archify/`. |
+| AFM-011-F2 | resolved | Inherited bin was named `archify`, colliding with a globally installed upstream CLI. Renamed `archframe-diagram`.                                                                       |
+| AFM-009-F1 | resolved | `packages/diagram-engine/package-lock.json` was a second package-manager root inside a bun workspace member. Relocated to `docs/upstream/archify/`.                                     |
 
 ## Standing constraints
 
@@ -264,7 +264,7 @@ workspace) and `scripts/publish-workflow.test.mjs` (asserted on CI this
 repository deliberately does not have), plus the nine
 `packages/core/src/studio-api/` forwarding shims removed in AFM-012.
 
-## Known pre-existing failure: propertyPanelInputCoverage timeouts
+## Known pre-existing failures: load-dependent studio timeouts
 
 `packages/studio/src/components/editor/propertyPanelInputCoverage.test.tsx` has
 two cases that exceed vitest's 5s default:
@@ -283,3 +283,17 @@ whether the panel genuinely got slower or the container is simply slow for a
 DOM-heavy coverage sweep, and a coverage test that enumerates every visible
 input is exactly where a real regression would first show up as latency. It
 wants measuring before it wants a larger number.
+
+**Correction (wider than first recorded).** The full `packages/studio` suite
+fails **11** cases, not two, across two files: `propertyPanelInputCoverage`
+(2) and `player/components/Timeline.virtualization` (9). Both files pass
+completely when run on their own — 27/27 together — and the same 11 fail on a
+clean checkout with every in-flight change stashed. The Timeline failures read
+as assertions (`expected 0 to be greater than 0`, `expected null not to be
+null`) rather than timeouts, which is what layout-measuring virtualization tests
+do when they are starved rather than broken; one is an outright 30s timeout.
+
+Measured baseline: clean main 11 failed / 4942; with the pinned-preview work
+11 failed / 4955 — thirteen more tests, all passing, and no new failure. The
+count is a property of running ~4,950 DOM tests in parallel in this container,
+so quote it against a stated suite scope rather than as a bare number.

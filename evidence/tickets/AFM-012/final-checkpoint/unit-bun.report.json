@@ -105,13 +105,8 @@
     "undispatchedFiles": [],
     "invocations": [
       {
-        "args": [
-          "test",
-          "./src/plan-parity-analysis.test.ts"
-        ],
-        "files": [
-          "src/plan-parity-analysis.test.ts"
-        ],
+        "args": ["test", "./src/plan-parity-analysis.test.ts"],
+        "files": ["src/plan-parity-analysis.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -120,13 +115,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/plan-parity-contract.test.ts"
-        ],
-        "files": [
-          "src/plan-parity-contract.test.ts"
-        ],
+        "args": ["test", "./src/plan-parity-contract.test.ts"],
+        "files": ["src/plan-parity-contract.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -135,13 +125,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/plan-parity-fixture.test.ts"
-        ],
-        "files": [
-          "src/plan-parity-fixture.test.ts"
-        ],
+        "args": ["test", "./src/plan-parity-fixture.test.ts"],
+        "files": ["src/plan-parity-fixture.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -150,13 +135,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/plan-parity-harness.test.ts"
-        ],
-        "files": [
-          "src/plan-parity-harness.test.ts"
-        ],
+        "args": ["test", "./src/plan-parity-harness.test.ts"],
+        "files": ["src/plan-parity-harness.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -165,13 +145,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/regression-harness-distributed.test.ts"
-        ],
-        "files": [
-          "src/regression-harness-distributed.test.ts"
-        ],
+        "args": ["test", "./src/regression-harness-distributed.test.ts"],
+        "files": ["src/regression-harness-distributed.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -180,13 +155,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/regression-harness-parse.test.ts"
-        ],
-        "files": [
-          "src/regression-harness-parse.test.ts"
-        ],
+        "args": ["test", "./src/regression-harness-parse.test.ts"],
+        "files": ["src/regression-harness-parse.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -195,13 +165,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/regression-shard-plan.test.ts"
-        ],
-        "files": [
-          "src/regression-shard-plan.test.ts"
-        ],
+        "args": ["test", "./src/regression-shard-plan.test.ts"],
+        "files": ["src/regression-shard-plan.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -210,13 +175,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/server.test.ts"
-        ],
-        "files": [
-          "src/server.test.ts"
-        ],
+        "args": ["test", "./src/server.test.ts"],
+        "files": ["src/server.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -225,13 +185,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/animatedGifPrep.test.ts"
-        ],
-        "files": [
-          "src/services/animatedGifPrep.test.ts"
-        ],
+        "args": ["test", "./src/services/animatedGifPrep.test.ts"],
+        "files": ["src/services/animatedGifPrep.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -240,13 +195,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/deterministicFonts-aliasSupplement.test.ts"
-        ],
-        "files": [
-          "src/services/deterministicFonts-aliasSupplement.test.ts"
-        ],
+        "args": ["test", "./src/services/deterministicFonts-aliasSupplement.test.ts"],
+        "files": ["src/services/deterministicFonts-aliasSupplement.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -255,13 +205,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/deterministicFonts-bundledSubset.test.ts"
-        ],
-        "files": [
-          "src/services/deterministicFonts-bundledSubset.test.ts"
-        ],
+        "args": ["test", "./src/services/deterministicFonts-bundledSubset.test.ts"],
+        "files": ["src/services/deterministicFonts-bundledSubset.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -270,13 +215,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/deterministicFonts-failClosed.test.ts"
-        ],
-        "files": [
-          "src/services/deterministicFonts-failClosed.test.ts"
-        ],
+        "args": ["test", "./src/services/deterministicFonts-failClosed.test.ts"],
+        "files": ["src/services/deterministicFonts-failClosed.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -285,13 +225,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/deterministicFonts-googleSubsets.test.ts"
-        ],
-        "files": [
-          "src/services/deterministicFonts-googleSubsets.test.ts"
-        ],
+        "args": ["test", "./src/services/deterministicFonts-googleSubsets.test.ts"],
+        "files": ["src/services/deterministicFonts-googleSubsets.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -300,13 +235,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/deterministicFonts-retries.test.ts"
-        ],
-        "files": [
-          "src/services/deterministicFonts-retries.test.ts"
-        ],
+        "args": ["test", "./src/services/deterministicFonts-retries.test.ts"],
+        "files": ["src/services/deterministicFonts-retries.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -315,13 +245,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/deterministicFonts-textSubset.test.ts"
-        ],
-        "files": [
-          "src/services/deterministicFonts-textSubset.test.ts"
-        ],
+        "args": ["test", "./src/services/deterministicFonts-textSubset.test.ts"],
+        "files": ["src/services/deterministicFonts-textSubset.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -330,13 +255,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/deterministicFonts.test.ts"
-        ],
-        "files": [
-          "src/services/deterministicFonts.test.ts"
-        ],
+        "args": ["test", "./src/services/deterministicFonts.test.ts"],
+        "files": ["src/services/deterministicFonts.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -345,13 +265,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/planFormatBanlist.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/planFormatBanlist.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/planFormatBanlist.test.ts"],
+        "files": ["src/services/distributed/planFormatBanlist.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -360,13 +275,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/planProtocol.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/planProtocol.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/planProtocol.test.ts"],
+        "files": ["src/services/distributed/planProtocol.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -375,13 +285,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/planV2.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/planV2.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/planV2.test.ts"],
+        "files": ["src/services/distributed/planV2.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -390,13 +295,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/publicExports.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/publicExports.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/publicExports.test.ts"],
+        "files": ["src/services/distributed/publicExports.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -405,13 +305,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/rebuildExtractedFrames.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/rebuildExtractedFrames.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/rebuildExtractedFrames.test.ts"],
+        "files": ["src/services/distributed/rebuildExtractedFrames.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -420,13 +315,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/renderChunkFallback.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/renderChunkFallback.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/renderChunkFallback.test.ts"],
+        "files": ["src/services/distributed/renderChunkFallback.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -435,13 +325,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/renderChunkVideoMetadata.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/renderChunkVideoMetadata.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/renderChunkVideoMetadata.test.ts"],
+        "files": ["src/services/distributed/renderChunkVideoMetadata.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -450,13 +335,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/distributed/videoMetadata.test.ts"
-        ],
-        "files": [
-          "src/services/distributed/videoMetadata.test.ts"
-        ],
+        "args": ["test", "./src/services/distributed/videoMetadata.test.ts"],
+        "files": ["src/services/distributed/videoMetadata.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -465,13 +345,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/fileServer-seededRandom.test.ts"
-        ],
-        "files": [
-          "src/services/fileServer-seededRandom.test.ts"
-        ],
+        "args": ["test", "./src/services/fileServer-seededRandom.test.ts"],
+        "files": ["src/services/fileServer-seededRandom.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -480,13 +355,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/fontCompression.test.ts"
-        ],
-        "files": [
-          "src/services/fontCompression.test.ts"
-        ],
+        "args": ["test", "./src/services/fontCompression.test.ts"],
+        "files": ["src/services/fontCompression.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -495,13 +365,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/frameDirCache.test.ts"
-        ],
-        "files": [
-          "src/services/frameDirCache.test.ts"
-        ],
+        "args": ["test", "./src/services/frameDirCache.test.ts"],
+        "files": ["src/services/frameDirCache.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -510,13 +375,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/hdrImageTransferCache.test.ts"
-        ],
-        "files": [
-          "src/services/hdrImageTransferCache.test.ts"
-        ],
+        "args": ["test", "./src/services/hdrImageTransferCache.test.ts"],
+        "files": ["src/services/hdrImageTransferCache.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -525,13 +385,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/htmlCompiler.animatedGif.test.ts"
-        ],
-        "files": [
-          "src/services/htmlCompiler.animatedGif.test.ts"
-        ],
+        "args": ["test", "./src/services/htmlCompiler.animatedGif.test.ts"],
+        "files": ["src/services/htmlCompiler.animatedGif.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -540,13 +395,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/htmlCompiler.test.ts"
-        ],
-        "files": [
-          "src/services/htmlCompiler.test.ts"
-        ],
+        "args": ["test", "./src/services/htmlCompiler.test.ts"],
+        "files": ["src/services/htmlCompiler.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -555,13 +405,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/audioPadTrim.test.ts"
-        ],
-        "files": [
-          "src/services/render/audioPadTrim.test.ts"
-        ],
+        "args": ["test", "./src/services/render/audioPadTrim.test.ts"],
+        "files": ["src/services/render/audioPadTrim.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -570,13 +415,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/planValidation.test.ts"
-        ],
-        "files": [
-          "src/services/render/planValidation.test.ts"
-        ],
+        "args": ["test", "./src/services/render/planValidation.test.ts"],
+        "files": ["src/services/render/planValidation.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -585,13 +425,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/renderFormat.test.ts"
-        ],
-        "files": [
-          "src/services/render/renderFormat.test.ts"
-        ],
+        "args": ["test", "./src/services/render/renderFormat.test.ts"],
+        "files": ["src/services/render/renderFormat.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -600,13 +435,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/runtimeEnvSnapshot.test.ts"
-        ],
-        "files": [
-          "src/services/render/runtimeEnvSnapshot.test.ts"
-        ],
+        "args": ["test", "./src/services/render/runtimeEnvSnapshot.test.ts"],
+        "files": ["src/services/render/runtimeEnvSnapshot.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -615,13 +445,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/shared.test.ts"
-        ],
-        "files": [
-          "src/services/render/shared.test.ts"
-        ],
+        "args": ["test", "./src/services/render/shared.test.ts"],
+        "files": ["src/services/render/shared.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -630,13 +455,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/stages/captureStreamingStage.test.ts"
-        ],
-        "files": [
-          "src/services/render/stages/captureStreamingStage.test.ts"
-        ],
+        "args": ["test", "./src/services/render/stages/captureStreamingStage.test.ts"],
+        "files": ["src/services/render/stages/captureStreamingStage.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -645,13 +465,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/stages/encodeStage.test.ts"
-        ],
-        "files": [
-          "src/services/render/stages/encodeStage.test.ts"
-        ],
+        "args": ["test", "./src/services/render/stages/encodeStage.test.ts"],
+        "files": ["src/services/render/stages/encodeStage.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -660,13 +475,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/stages/mutedParity.test.ts"
-        ],
-        "files": [
-          "src/services/render/stages/mutedParity.test.ts"
-        ],
+        "args": ["test", "./src/services/render/stages/mutedParity.test.ts"],
+        "files": ["src/services/render/stages/mutedParity.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -675,13 +485,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/stages/planHash.test.ts"
-        ],
-        "files": [
-          "src/services/render/stages/planHash.test.ts"
-        ],
+        "args": ["test", "./src/services/render/stages/planHash.test.ts"],
+        "files": ["src/services/render/stages/planHash.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -690,13 +495,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/stages/probeFailures.test.ts"
-        ],
-        "files": [
-          "src/services/render/stages/probeFailures.test.ts"
-        ],
+        "args": ["test", "./src/services/render/stages/probeFailures.test.ts"],
+        "files": ["src/services/render/stages/probeFailures.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -705,13 +505,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/render/stages/probeStage.test.ts"
-        ],
-        "files": [
-          "src/services/render/stages/probeStage.test.ts"
-        ],
+        "args": ["test", "./src/services/render/stages/probeStage.test.ts"],
+        "files": ["src/services/render/stages/probeStage.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,
@@ -720,13 +515,8 @@
         "error": null
       },
       {
-        "args": [
-          "test",
-          "./src/services/renderMediaCollector.test.ts"
-        ],
-        "files": [
-          "src/services/renderMediaCollector.test.ts"
-        ],
+        "args": ["test", "./src/services/renderMediaCollector.test.ts"],
+        "files": ["src/services/renderMediaCollector.test.ts"],
         "dispatch": "completed",
         "exitCode": 0,
         "signal": null,

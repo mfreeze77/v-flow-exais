@@ -5,9 +5,7 @@
   "status": "in_progress",
   "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
   "implemented": "Existing CLI registers project commands that use the same authoring and render services as Studio.",
-  "remainingAcceptance": [
-    "Remaining command families and distribution acceptance are not closed."
-  ],
+  "remainingAcceptance": ["Remaining command families and distribution acceptance are not closed."],
   "commands": [
     {
       "invocation": "docker-compose run --rm --no-deps -T workspace bun run --cwd packages/cli typecheck",

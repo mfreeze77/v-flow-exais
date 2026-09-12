@@ -91,13 +91,7 @@
     "parser": 8,
     "renderCancellation": 1,
     "fontRetries": 19,
-    "typecheckedPackages": [
-      "parsers",
-      "studio-server",
-      "studio",
-      "cli",
-      "producer"
-    ],
+    "typecheckedPackages": ["parsers", "studio-server", "studio", "cli", "producer"],
     "changedFileLint": "23 files, 0 warnings/errors",
     "format": "35 files checked",
     "cli": "Seven real commands, including rejected stale acceptance, then accepted project and actual build"
@@ -116,11 +110,7 @@
       "Read the StoryPlan contract / reviewed",
       "What storySceneHtml delegates"
     ],
-    "families": [
-      "architecture",
-      "data-model",
-      "architecture"
-    ],
+    "families": ["architecture", "data-model", "architecture"],
     "noPageErrors": true,
     "mobileOverflow": false,
     "preservedOtherDraft": true,

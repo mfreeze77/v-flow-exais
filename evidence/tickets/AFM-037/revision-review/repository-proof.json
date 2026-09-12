@@ -32,9 +32,7 @@
         "bytes": 7315,
         "path": "docs/designs/product-completion.md"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "docs/designs/story-planning.md",
@@ -46,9 +44,7 @@
         "bytes": 5106,
         "path": "docs/designs/story-planning.md"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "evidence/LEDGER.md",
@@ -67,9 +63,7 @@
         "bytes": 11122,
         "path": "evidence/LEDGER.md"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/cli/src/commands/project.ts",
@@ -88,9 +82,7 @@
         "bytes": 9445,
         "path": "packages/cli/src/commands/project.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/cli/src/commands/projectProposal.ts",
@@ -109,9 +101,7 @@
         "bytes": 2453,
         "path": "packages/cli/src/commands/projectProposal.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/parsers/src/repositorySyntax.ts",
@@ -130,9 +120,7 @@
         "bytes": 12400,
         "path": "packages/parsers/src/repositorySyntax.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/producer/src/services/deterministicFonts-retries.test.ts",
@@ -151,9 +139,7 @@
         "bytes": 14016,
         "path": "packages/producer/src/services/deterministicFonts-retries.test.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/producer/src/services/deterministicFonts.ts",
@@ -172,9 +158,7 @@
         "bytes": 52318,
         "path": "packages/producer/src/services/deterministicFonts.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/producer/src/services/htmlCompiler.ts",
@@ -193,9 +177,7 @@
         "bytes": 109780,
         "path": "packages/producer/src/services/htmlCompiler.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/producer/src/services/renderOrchestrator.ts",
@@ -214,9 +196,7 @@
         "bytes": 190599,
         "path": "packages/producer/src/services/renderOrchestrator.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/index.ts",
@@ -235,9 +215,7 @@
         "bytes": 2195,
         "path": "packages/studio-server/src/index.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/projectBatch.ts",
@@ -256,9 +234,7 @@
         "bytes": 11073,
         "path": "packages/studio-server/src/project/projectBatch.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/projectService.ts",
@@ -277,9 +253,7 @@
         "bytes": 8318,
         "path": "packages/studio-server/src/project/projectService.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/repositoryIntake.ts",
@@ -298,9 +272,7 @@
         "bytes": 12456,
         "path": "packages/studio-server/src/project/repositoryIntake.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/repositoryUnderstanding.ts",
@@ -319,9 +291,7 @@
         "bytes": 12730,
         "path": "packages/studio-server/src/project/repositoryUnderstanding.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/storyCandidates.ts",
@@ -333,9 +303,7 @@
         "bytes": 5206,
         "path": "packages/studio-server/src/project/storyCandidates.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/storyIntake.ts",
@@ -347,9 +315,7 @@
         "bytes": 4018,
         "path": "packages/studio-server/src/project/storyIntake.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/storyPlanning.ts",
@@ -361,9 +327,7 @@
         "bytes": 6747,
         "path": "packages/studio-server/src/project/storyPlanning.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/storyProject.ts",
@@ -375,9 +339,7 @@
         "bytes": 3758,
         "path": "packages/studio-server/src/project/storyProject.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/storySceneHtml.ts",
@@ -389,9 +351,7 @@
         "bytes": 7437,
         "path": "packages/studio-server/src/project/storySceneHtml.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/storyTypes.ts",
@@ -403,9 +363,7 @@
         "bytes": 2584,
         "path": "packages/studio-server/src/project/storyTypes.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/storyValidation.ts",
@@ -417,9 +375,7 @@
         "bytes": 3758,
         "path": "packages/studio-server/src/project/storyValidation.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/project/videoProposals.ts",
@@ -438,9 +394,7 @@
         "bytes": 2309,
         "path": "packages/studio-server/src/project/videoProposals.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio-server/src/routes/projectCommands.ts",
@@ -459,9 +413,7 @@
         "bytes": 5538,
         "path": "packages/studio-server/src/routes/projectCommands.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio/src/project/ProjectLauncher.tsx",
@@ -480,9 +432,7 @@
         "bytes": 9735,
         "path": "packages/studio/src/project/ProjectLauncher.tsx"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio/src/project/StoryPlanReview.css",
@@ -494,9 +444,7 @@
         "bytes": 1375,
         "path": "packages/studio/src/project/StoryPlanReview.css"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio/src/project/StoryPlanReview.tsx",
@@ -508,9 +456,7 @@
         "bytes": 7655,
         "path": "packages/studio/src/project/StoryPlanReview.tsx"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "packages/studio/src/project/StorySettings.tsx",
@@ -522,9 +468,7 @@
         "bytes": 1934,
         "path": "packages/studio/src/project/StorySettings.tsx"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tests/acceptance/AFM-054.compile-cancel.test.ts",
@@ -536,9 +480,7 @@
         "bytes": 1765,
         "path": "tests/acceptance/AFM-054.compile-cancel.test.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tests/acceptance/AFM-093.stories.test.ts",
@@ -550,9 +492,7 @@
         "bytes": 9616,
         "path": "tests/acceptance/AFM-093.stories.test.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tests/acceptance/AFM-098.test.ts",
@@ -571,9 +511,7 @@
         "bytes": 15352,
         "path": "tests/acceptance/AFM-098.test.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tests/acceptance/AFM-099.source.test.ts",
@@ -592,9 +530,7 @@
         "bytes": 7627,
         "path": "tests/acceptance/AFM-099.source.test.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tools/vflow/collect-story-renders.ts",
@@ -606,9 +542,7 @@
         "bytes": 3190,
         "path": "tools/vflow/collect-story-renders.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tools/vflow/verify-proposal-review.ts",
@@ -627,9 +561,7 @@
         "bytes": 9648,
         "path": "tools/vflow/verify-proposal-review.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tools/vflow/verify-story-cancellation.ts",
@@ -641,9 +573,7 @@
         "bytes": 2679,
         "path": "tools/vflow/verify-story-cancellation.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tools/vflow/verify-story-cli.ts",
@@ -655,9 +585,7 @@
         "bytes": 2830,
         "path": "tools/vflow/verify-story-cli.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tools/vflow/verify-story-planning.ts",
@@ -669,9 +597,7 @@
         "bytes": 10149,
         "path": "tools/vflow/verify-story-planning.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     },
     {
       "path": "tools/vflow/verify-story-seams.ts",
@@ -683,9 +609,7 @@
         "bytes": 1937,
         "path": "tools/vflow/verify-story-seams.ts"
       },
-      "classifications": [
-        "content"
-      ]
+      "classifications": ["content"]
     }
   ],
   "limitations": [

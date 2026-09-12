@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { registerProjectEditorPreviewRoutes } from "./routes/projectEditorPreview";
 import { registerProjectEditorRoutes } from "./routes/projectEditor";
 import { projectApiError } from "./project/projectApiError";
 import { registerProjectCommandRoutes } from "./routes/projectCommands";
@@ -33,6 +34,7 @@ export function createStudioApi(adapter: StudioApiAdapter): Hono {
   });
   installLocalApiPolicy(api, adapter);
   registerProjectCommandRoutes(api, adapter);
+  registerProjectEditorPreviewRoutes(api, adapter);
   if (adapter.projectService) registerProjectEditorRoutes(api, adapter.projectService);
 
   registerProjectRoutes(api, adapter);

@@ -42,11 +42,7 @@
     "parser": 8,
     "lint": "0 warnings and 0 errors",
     "acceptance": 3,
-    "typecheckedPackages": [
-      "parsers",
-      "studio-server",
-      "studio"
-    ],
+    "typecheckedPackages": ["parsers", "studio-server", "studio"],
     "browser": "Actual pinned Chromium, desktop 1440x1100 and mobile 390x844; source filtering, selection and matching route excerpt; no page errors or mobile overflow."
   },
   "browserEvidence": {
@@ -91,10 +87,7 @@
   },
   "visualInspection": {
     "inspected": true,
-    "artifacts": [
-      "source-understanding/desktop.png",
-      "source-understanding/mobile.png"
-    ],
+    "artifacts": ["source-understanding/desktop.png", "source-understanding/mobile.png"],
     "findings": "Readable source review and selected route excerpts at both widths. Long code lines scroll inside the excerpt; page does not overflow."
   },
   "broaderAudit": {

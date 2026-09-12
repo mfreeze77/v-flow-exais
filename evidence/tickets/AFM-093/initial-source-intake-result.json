@@ -5,9 +5,7 @@
   "status": "in_progress",
   "commit": "7d581e1ca273d6fa731bd20d8784948129157559",
   "implemented": "Local/public GitHub source snapshot intake with declared relationships, revision context and hashed citations.",
-  "remainingAcceptance": [
-    "Before/head and PR-delta review is not implemented."
-  ],
+  "remainingAcceptance": ["Before/head and PR-delta review is not implemented."],
   "commands": [
     {
       "invocation": "docker-compose run --rm --no-deps -T workspace bun run test:acceptance tests/acceptance/AFM-099.source.test.ts",
