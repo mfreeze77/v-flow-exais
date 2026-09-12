@@ -263,19 +263,61 @@ describe("AFM-078 — every edit reaches its document through the shared command
     expect(JSON.stringify(snapshot.sources[diagramDoc.id])).toBe(before);
   });
 
-  it("has no direct file-write path that bypasses the command journal", async () => {
-    // AFM-072. The native Studio currently mutates through
-    // fileManager.writeProjectFile, which produces no command and no revision.
-    // While that path exists for authored documents, "one history" is a claim
-    // about one surface rather than about the product.
-    const studioApp = await import("node:fs").then((fs) =>
-      fs.readFileSync("packages/studio/src/App.tsx", "utf8"),
+  it("hands its editing systems one writer, never the raw file writer", async () => {
+    // AFM-072. App.tsx passed fileManager.writeProjectFile into six editing
+    // systems — preview persistence, timeline editing, block handlers, the
+    // clipboard and two more — none of which produced a command or a revision.
+    //
+    // The assertion is on the direct writer specifically, not on the string
+    // "writeProjectFile": that is still the prop name those systems expect, and
+    // a check that merely banned the word could be satisfied by renaming it.
+    // What must not exist is App handing them the file writer.
+    const { readFileSync } = await import("node:fs");
+    // Comments are stripped first: the assertion is about what App.tsx wires,
+    // and prose explaining the old bypass would otherwise fail it.
+    const app = readFileSync("packages/studio/src/App.tsx", "utf8")
+      .replace(/\/\*[\s\S]*?\*\//g, "")
+      .replace(/\/\/[^\n]*/g, "");
+
+    // Handing the file writer INTO the resolver is correct: that is the
+    // unmanaged-project fallback, and having it at one visible place is the
+    // point. What must not happen is an editing system receiving it directly.
+    const wiredToEditors = [...app.matchAll(/writeProjectFile:\s*([A-Za-z_.$]+)/g)].map(
+      (match) => match[1],
     );
-    const bypasses = studioApp.includes("writeProjectFile");
+
     expect(
-      bypasses,
-      "packages/studio/src/App.tsx still writes project files directly; edits must go through applyProjectCommand",
-    ).toBe(false);
+      wiredToEditors.length,
+      "App.tsx wires a writer into its editing systems",
+    ).toBeGreaterThan(0);
+    expect(
+      wiredToEditors.filter((target) => target !== "writeAuthoredDocument"),
+      "every editing system must receive the resolved project writer",
+    ).toEqual([]);
+    expect(
+      app.includes("useProjectDocumentWriter("),
+      "App.tsx must resolve its write path once, through the project writer",
+    ).toBe(true);
+  });
+
+  it("turns a managed-project write into a command against the owning document", async () => {
+    // The behaviour behind the assertion above: routing a write through the
+    // adapter must produce a real operation on the authoritative document, and
+    // refuse a path no document claims rather than falling back to a file write.
+    const { service, id, nativeDoc } = await mixedProject();
+    const { operationForWrite, ProjectWriteRejected } =
+      await import("../../packages/studio/src/project/commandWriter");
+    const snapshot = service.get(id).snapshot as ProjectSnapshot;
+
+    const operation = operationForWrite(snapshot, nativeDoc.path, "<div>edited</div>");
+    expect(operation).toMatchObject({
+      type: "replace-native-source",
+      documentId: nativeDoc.id,
+    });
+
+    expect(() => operationForWrite(snapshot, "src/not-a-document.tsx", "x")).toThrow(
+      ProjectWriteRejected,
+    );
   });
 });
 

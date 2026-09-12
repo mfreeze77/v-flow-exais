@@ -279,3 +279,75 @@ export function assertProject(snapshot: unknown): asserts snapshot is ProjectSna
   const diagnostics = validateProject(snapshot);
   if (diagnostics.length) throw new ProjectValidationError(diagnostics);
 }
+
+/**
+ * A presentation target that a regeneration left pointing at nothing.
+ *
+ * Deleting an object or relationship that a scene animates is a legitimate
+ * authoring act, but the intent attached to it cannot survive and must not be
+ * guessed at. `validateProject` already detects this precisely — including the
+ * refusal to infer a replacement — but as a hard error, so the whole edit was
+ * rejected. That preserves the last valid state only by refusing to let the
+ * user delete anything an override referenced.
+ */
+export interface RegenerationConflict {
+  kind: "orphaned-target";
+  sceneId: string;
+  /** The object or relationship the presentation referred to. */
+  targetId: string;
+  field: "focusObjectIds" | "relationshipIds";
+  detail: string;
+}
+
+/**
+ * Removes presentation targets the authored source no longer contains, and
+ * reports each one.
+ *
+ * The target is dropped rather than reassigned. Moving an override to a
+ * neighbouring edge would keep the project valid and silently animate a
+ * relationship the author never wrote, which is the failure mode contract C07
+ * and the "never animate a relationship that isn't in the authored model" rule
+ * both exist to prevent. The prior revision still holds the original intent, so
+ * the conflict is recoverable by undo; what is not acceptable is resolving it
+ * invisibly.
+ */
+export function quarantineOrphanedTargets(snapshot: ProjectSnapshot): RegenerationConflict[] {
+  const conflicts: RegenerationConflict[] = [];
+  for (const scene of snapshot.manifest.scenes) {
+    const doc = snapshot.manifest.documents.find((candidate) => candidate.id === scene.documentId);
+    if (!doc || doc.kind === "native") continue;
+    const source = snapshot.sources[doc.id];
+    if (!isRecord(source)) continue;
+
+    const present = {
+      focusObjectIds: new Set(
+        collection(source, OBJECT_COLLECTIONS[doc.kind]).map((node) => node.id),
+      ),
+      relationshipIds: new Set(
+        collection(source, RELATIONSHIP_COLLECTIONS[doc.kind]).map((edge) => edge.id),
+      ),
+    } as const;
+
+    for (const field of ["focusObjectIds", "relationshipIds"] as const) {
+      const kept: string[] = [];
+      for (const id of scene.presentation[field]) {
+        if (present[field].has(id)) {
+          kept.push(id);
+          continue;
+        }
+        conflicts.push({
+          kind: "orphaned-target",
+          sceneId: scene.id,
+          targetId: id,
+          field,
+          detail:
+            field === "relationshipIds"
+              ? "The animated relationship was removed from the authored source. No replacement was inferred."
+              : "The focused object was removed from the authored source. The focus was not reassigned.",
+        });
+      }
+      scene.presentation[field] = kept;
+    }
+  }
+  return conflicts;
+}

@@ -18,7 +18,7 @@ import {
   RevisionConflict,
   type ProjectCommand,
 } from "../commands";
-import { assertProject, type ProjectSnapshot } from "../project";
+import { assertProject, type ProjectSnapshot, type RegenerationConflict } from "../project";
 import {
   assertContainedPath,
   canonicalJson,
@@ -249,6 +249,15 @@ export async function executeProjectCommand(
   projectRoot: string,
   command: ProjectCommand,
   validate?: (snapshot: ProjectSnapshot) => void | Promise<void>,
+  /**
+   * Optional collector for intent this execution orphaned.
+   *
+   * An opt-in parameter rather than a field on CommitResult, so a replayed
+   * command still returns a byte-identical result — replaying applies nothing,
+   * and reporting an empty conflict list for it would misstate what happened.
+   * Conflicts describe this execution, not the command's history.
+   */
+  conflicts?: RegenerationConflict[],
 ): Promise<CommitResult> {
   assertCommand(command);
   const current = readCommittedProject(projectRoot);
@@ -272,7 +281,7 @@ export async function executeProjectCommand(
     if (!pointer) throw new Error(`Nothing to ${historyAction}.`);
     snapshot = readRevision(projectRoot, pointer).snapshot;
     snapshot.manifest.revision = current.pointer.revision + 1;
-  } else snapshot = applyProjectCommand(current.snapshot, command);
+  } else snapshot = applyProjectCommand(current.snapshot, command, conflicts);
   await validate?.(snapshot);
   return runLockedWorker(projectRoot, {
     snapshot,

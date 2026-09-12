@@ -5,12 +5,13 @@ import { compileProject } from "@hyperframes/diagram-motion";
 import { findFfBinary } from "@hyperframes/parsers/ff-binaries";
 import { readProjectAssetBytes, stageProjectAsset, verifyProjectAssets } from "./projectAssets";
 import {
+  RevisionConflict,
   assertCommand,
   assertProject,
   migrateRelationshipIds,
-  RevisionConflict,
-  type ProjectSnapshot,
   type DiagramKind,
+  type ProjectSnapshot,
+  type RegenerationConflict,
 } from "@hyperframes/project-model";
 import { initializeProject, executeProjectCommand } from "@hyperframes/project-model/storage";
 import { readCommittedProject, readRevision } from "@hyperframes/project-model/revisions";
@@ -112,12 +113,20 @@ export class UnifiedProjectService {
     if (id !== command.projectId)
       throw new Error("Command project ID differs from the requested project.");
     const root = this.root(id);
-    const result = await executeProjectCommand(root, command, async (snapshot) => {
-      verifyProjectAssets(root, snapshot.manifest.assets);
-      await compileProject(snapshot);
-    });
+    // Surfaced to the caller: an edit that orphaned an override succeeded, and
+    // the UI has to be able to say what it cost rather than losing it quietly.
+    const conflicts: RegenerationConflict[] = [];
+    const result = await executeProjectCommand(
+      root,
+      command,
+      async (snapshot) => {
+        verifyProjectAssets(root, snapshot.manifest.assets);
+        await compileProject(snapshot);
+      },
+      conflicts,
+    );
     // Return this command's own committed snapshot, even if another client committed meanwhile.
-    return { ...result, snapshot: readRevision(root, result.pointer).snapshot };
+    return { ...result, conflicts, snapshot: readRevision(root, result.pointer).snapshot };
   }
   /**
    * Trusted in-process local import. Do not expose inputPath as an HTTP field.

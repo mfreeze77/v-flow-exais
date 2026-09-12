@@ -2,8 +2,10 @@ import { describe, expect, it } from "vitest";
 import {
   assertProject,
   OBJECT_COLLECTIONS,
+  quarantineOrphanedTargets,
   RELATIONSHIP_COLLECTIONS,
   validateProject,
+  type RegenerationConflict,
   type ProjectSnapshot,
 } from "./project";
 import { migrateRelationshipIds } from "./identity";
@@ -187,5 +189,89 @@ describe("AFM-019 and AFM-025: validated semantic commands", () => {
       "scene/orphaned-relationship",
     );
     expect(JSON.stringify(project)).not.toContain('"from":"api_a"');
+  });
+});
+
+describe("AFM-048: regeneration reports orphaned intent instead of refusing or guessing", () => {
+  /** Deletes one relationship from the fixture's authored source. */
+  function withoutEdge(snapshot: ReturnType<typeof projectFixture>, edgeId: string) {
+    const next = structuredClone(snapshot);
+    const source = next.sources["diagram-one"] as any;
+    source.connections = source.connections.filter((edge: any) => edge.id !== edgeId);
+    return next;
+  }
+
+  it("removes an animated target the source no longer contains and reports it", () => {
+    const before = projectFixture();
+    const conflicts = quarantineOrphanedTargets(withoutEdge(before, "edge-b"));
+
+    expect(conflicts.length).toBe(1);
+    expect(conflicts[0]).toEqual({
+      kind: "orphaned-target",
+      sceneId: "scene-one",
+      targetId: "edge-b",
+      field: "relationshipIds",
+      detail:
+        "The animated relationship was removed from the authored source. No replacement was inferred.",
+    });
+  });
+
+  it("never reassigns the override to a surviving relationship", () => {
+    // The failure this exists to prevent: keeping the project valid by moving
+    // the intent to a neighbouring edge, animating a relationship nobody wrote.
+    const next = withoutEdge(projectFixture(), "edge-b");
+    quarantineOrphanedTargets(next);
+
+    expect(next.manifest.scenes[0].presentation.relationshipIds).toEqual(["edge-a"]);
+  });
+
+  it("reports an orphaned focus object separately from a relationship", () => {
+    const next = structuredClone(projectFixture());
+    const source = next.sources["diagram-one"] as any;
+    source.components = source.components.filter((node: any) => node.id !== "api_b");
+    source.connections = source.connections.filter((edge: any) => edge.to !== "api_b");
+
+    const conflicts = quarantineOrphanedTargets(next);
+    const fields = conflicts.map((conflict) => conflict.field).sort();
+
+    expect(fields).toEqual(["focusObjectIds", "relationshipIds"]);
+    expect(!next.manifest.scenes[0].presentation.focusObjectIds.includes("api_b")).toBe(true);
+  });
+
+  it("reports nothing when every target still exists", () => {
+    expect(quarantineOrphanedTargets(projectFixture())).toEqual([]);
+  });
+
+  it("leaves the project valid after quarantine, so the edit can commit", () => {
+    // Before this, validateProject rejected the snapshot outright and the whole
+    // command failed — the only way to preserve the last valid state was to
+    // refuse any deletion an override referenced.
+    const next = withoutEdge(projectFixture(), "edge-b");
+    quarantineOrphanedTargets(next);
+
+    expect(validateProject(next)).toEqual([]);
+  });
+
+  it("surfaces the conflict through applyProjectCommand rather than throwing", () => {
+    const before = projectFixture();
+    const source = structuredClone(before.sources["diagram-one"]) as any;
+    source.connections = source.connections.filter((edge: any) => edge.id !== "edge-b");
+
+    const conflicts: RegenerationConflict[] = [];
+    const next = applyProjectCommand(
+      before,
+      {
+        commandId: "regenerate-one",
+        origin: "ui",
+        projectId: "project-test",
+        expectedRevision: 0,
+        operations: [{ type: "replace-diagram-source", documentId: "diagram-one", source }],
+      },
+      conflicts,
+    );
+
+    expect(next.manifest.revision).toBe(1);
+    expect(conflicts.length).toBe(1);
+    expect(conflicts[0].targetId).toBe("edge-b");
   });
 });

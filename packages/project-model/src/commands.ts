@@ -1,9 +1,11 @@
 import {
+  OBJECT_COLLECTIONS,
   assertProject,
   collection,
-  OBJECT_COLLECTIONS,
+  quarantineOrphanedTargets,
   type DiagramSource,
   type ProjectSnapshot,
+  type RegenerationConflict,
   type ScenePresentation,
 } from "./project";
 import { problem, ProjectValidationError } from "./diagnostics";
@@ -122,7 +124,19 @@ export class RevisionConflict extends Error {
 }
 
 /** Pure preparation. Persistence validates again under its cross-process lock. */
-export function applyProjectCommand(current: ProjectSnapshot, command: unknown): ProjectSnapshot {
+/**
+ * Applies a command, quarantining presentation targets the edit orphaned.
+ *
+ * `conflicts` is an optional collector rather than a changed return type, so
+ * existing callers keep working and a caller that wants to surface conflicts
+ * opts in. Without it the behaviour is unchanged for every edit that orphans
+ * nothing.
+ */
+export function applyProjectCommand(
+  current: ProjectSnapshot,
+  command: unknown,
+  conflicts?: RegenerationConflict[],
+): ProjectSnapshot {
   assertCommand(command);
   assertProject(current);
   if (command.projectId !== current.manifest.id)
@@ -182,6 +196,11 @@ export function applyProjectCommand(current: ProjectSnapshot, command: unknown):
     }
   }
   next.manifest.revision++;
+  // Orphaned intent is removed and reported before validation, so deleting an
+  // object or relationship an override referenced is an edit with a conflict
+  // rather than an edit that is refused outright. Nothing is reassigned.
+  const orphaned = quarantineOrphanedTargets(next);
+  conflicts?.push(...orphaned);
   assertProject(next);
   return next;
 }

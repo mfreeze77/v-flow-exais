@@ -4,6 +4,7 @@ import type { ProjectSnapshot, ProjectOperation } from "@hyperframes/project-mod
 import { useMountEffect } from "../hooks/useMountEffect";
 import { SourceEditor } from "../components/editor/SourceEditor";
 import { projectApi } from "./api";
+import { operationForWrite } from "./commandWriter";
 import { BatchPanel } from "./BatchPanel";
 import { ProposalReview } from "./ProposalReview";
 import { ProjectAgentTools } from "./ProjectAgentTools";
@@ -324,14 +325,14 @@ export function ProjectWorkspace({ id }: { id: string }) {
                 disabled={!draft || !!busy}
                 onClick={() => {
                   try {
-                    const operation: ProjectOperation =
-                      doc.kind === "native"
-                        ? { type: "replace-native-source", documentId: doc.id, html: text }
-                        : {
-                            type: "replace-diagram-source",
-                            documentId: doc.id,
-                            source: JSON.parse(text),
-                          };
+                    // One translation from document to operation, shared with
+                    // the Studio's managed write path. Two copies would let the
+                    // two surfaces disagree about what editing a document means.
+                    const operation = operationForWrite(
+                      data.snapshot,
+                      doc.path,
+                      text,
+                    ) as ProjectOperation;
                     run(
                       commit([operation], draft!.revision).then(() =>
                         setDrafts((current) => {

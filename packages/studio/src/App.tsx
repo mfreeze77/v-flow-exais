@@ -11,6 +11,7 @@ import { useCaptionSync } from "./captions/hooks/useCaptionSync";
 import { usePersistentEditHistory } from "./hooks/usePersistentEditHistory";
 import { usePanelLayout } from "./hooks/usePanelLayout";
 import { useFileManager } from "./hooks/useFileManager";
+import { useProjectDocumentWriter } from "./project/useProjectDocumentWriter";
 import { usePreviewPersistence } from "./hooks/usePreviewPersistence";
 import { usePreviewDocumentVersion } from "./hooks/usePreviewDocumentVersion";
 import { useTimelineEditing } from "./hooks/useTimelineEditing";
@@ -116,6 +117,18 @@ export function StudioApp() {
     domEditSaveTimestampRef,
     setRefreshKey,
   });
+  /**
+   * AFM-072: the single write path for this Studio session.
+   *
+   * For a managed project this commits through the project command journal, so
+   * a canvas, timeline or block edit produces a revision exactly as an edit made
+   * from the project workspace does. For an unmanaged native project it is the
+   * file writer, which is still the authority there. Editing systems below
+   * receive this and never `fileManager.writeProjectFile`, so there is no second
+   * mutation path to fall back into.
+   */
+  const writeAuthoredDocument = useProjectDocumentWriter(fileManager.writeProjectFile);
+
   const masterCompPath = useMemo(
     () => resolveMasterCompositionPath(fileManager.fileTree),
     [fileManager.fileTree],
@@ -136,7 +149,7 @@ export function StudioApp() {
   const previewPersistence = usePreviewPersistence({
     showToast,
     readOptionalProjectFile: fileManager.readOptionalProjectFile,
-    writeProjectFile: fileManager.writeProjectFile,
+    writeProjectFile: writeAuthoredDocument,
     recordEdit: editHistory.recordEdit,
     previewIframeRef,
     activeCompPathRef,
@@ -158,7 +171,7 @@ export function StudioApp() {
     activeCompPath,
     timelineElements,
     showToast,
-    writeProjectFile: fileManager.writeProjectFile,
+    writeProjectFile: writeAuthoredDocument,
     observeProjectFileVersion: fileManager.observeProjectFileVersion,
     recordEdit: editHistory.recordEdit,
     domEditSaveTimestampRef,
@@ -200,7 +213,7 @@ export function StudioApp() {
       activeCompPath,
       timelineElements,
       readProjectFile: fileManager.readProjectFile,
-      writeProjectFile: fileManager.writeProjectFile,
+      writeProjectFile: writeAuthoredDocument,
       recordEdit: editHistory.recordEdit,
       refreshFileTree: fileManager.refreshFileTree,
       reloadPreview,
@@ -222,7 +235,7 @@ export function StudioApp() {
     activeCompPath,
     domEditSelectionRef: domEditSelectionBridgeRef,
     showToast,
-    writeProjectFile: fileManager.writeProjectFile,
+    writeProjectFile: writeAuthoredDocument,
     recordEdit: editHistory.recordEdit,
     domEditSaveTimestampRef,
     reloadPreview,
@@ -239,7 +252,7 @@ export function StudioApp() {
     editHistory,
     readOptionalProjectFile: fileManager.readOptionalProjectFile,
     readProjectFile: fileManager.readProjectFile,
-    writeProjectFile: fileManager.writeProjectFile,
+    writeProjectFile: writeAuthoredDocument,
     domEditSaveTimestampRef,
     showToast,
     syncHistoryPreviewAfterApply: previewPersistence.syncHistoryPreviewAfterApply,
@@ -279,7 +292,7 @@ export function StudioApp() {
     refreshPreviewDocumentVersion,
     queueDomEditSave: previewPersistence.queueDomEditSave,
     readProjectFile: fileManager.readProjectFile,
-    writeProjectFile: fileManager.writeProjectFile,
+    writeProjectFile: writeAuthoredDocument,
     updateEditingFileContent: fileManager.updateEditingFileContent,
     domEditSaveTimestampRef,
     editHistory: { recordEdit: editHistory.recordEdit },
