@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import {
+  bindingsFromProjectSnapshot,
   createSelectionResolver,
   resolveSelection,
   selectionFromAttributes,
@@ -84,5 +85,41 @@ describe("managed diagram selection identity", () => {
     expect(selectionFromAttributes({ sceneId: "diagram-scene" })).toBeNull();
     expect(resolveSelection({ sceneId: "", renderId: "gateway" })).toBeNull();
     expect(resolveSelection({ sceneId: "diagram-scene", renderId: "" })).toBeNull();
+  });
+
+  it("derives authoritative bindings from the committed mixed project snapshot", () => {
+    const bindings = bindingsFromProjectSnapshot({
+      manifest: {
+        revision: 9,
+        documents: [
+          { id: "title", kind: "native" },
+          { id: "arch", kind: "architecture" },
+        ],
+        scenes: [
+          { id: "title-scene", kind: "native", documentId: "title" },
+          { id: "overview", kind: "diagram", documentId: "arch" },
+        ],
+      },
+      sources: {
+        title: "<html></html>",
+        arch: {
+          components: [{ id: "gateway" }, { id: "api" }],
+          connections: [{ id: "edge-a", from: "gateway", to: "api" }],
+        },
+      },
+    });
+
+    expect(bindings).toEqual([
+      {
+        sceneId: "overview",
+        documentId: "arch",
+        revision: 9,
+        objectIds: ["gateway", "api"],
+        relationshipIds: ["edge-a"],
+      },
+    ]);
+    const resolve = createSelectionResolver(bindings);
+    expect(resolve({ sceneId: "overview", renderId: "gateway" })?.documentId).toBe("arch");
+    expect(resolve({ sceneId: "overview", renderId: "missing" })).toBeNull();
   });
 });
