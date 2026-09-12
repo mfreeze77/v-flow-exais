@@ -51,6 +51,32 @@ export interface SelectionAttributes {
   revision?: string | number | null;
 }
 
+/** Minimal structural project shape needed to derive managed-scene bindings. */
+export interface SelectionProjectSnapshot {
+  manifest: {
+    revision: number;
+    documents: Array<{ id: string; kind: string }>;
+    scenes: Array<{ id: string; kind: string; documentId: string }>;
+  };
+  sources: Record<string, unknown>;
+}
+
+const OBJECT_COLLECTIONS: Record<string, string> = {
+  architecture: "components",
+  workflow: "nodes",
+  sequence: "participants",
+  dataflow: "nodes",
+  lifecycle: "states",
+};
+
+const RELATIONSHIP_COLLECTIONS: Record<string, string> = {
+  architecture: "connections",
+  workflow: "edges",
+  sequence: "messages",
+  dataflow: "flows",
+  lifecycle: "transitions",
+};
+
 const boundedId = (value: unknown): value is string =>
   typeof value === "string" && value.length > 0 && value.length <= 128;
 
@@ -177,6 +203,45 @@ export function selectionFromElement(
     { sceneId, documentId, nodeId, relationshipId, revision },
     options,
   );
+}
+
+function idsFromCollection(source: unknown, collection: string | undefined): string[] {
+  if (!collection || !source || typeof source !== "object" || Array.isArray(source)) return [];
+  const value = (source as Record<string, unknown>)[collection];
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((item) =>
+      item && typeof item === "object" && !Array.isArray(item)
+        ? (item as Record<string, unknown>).id
+        : null,
+    )
+    .filter((id): id is string => boundedId(id));
+}
+
+/**
+ * Build authoritative per-scene bindings from one committed project snapshot.
+ * Native scenes are intentionally omitted: this bridge owns managed semantic
+ * diagram selection, while native layers keep the retained Studio identity path.
+ */
+export function bindingsFromProjectSnapshot(
+  snapshot: SelectionProjectSnapshot,
+): SceneSelectionBinding[] {
+  const documents = new Map(snapshot.manifest.documents.map((doc) => [doc.id, doc]));
+  return snapshot.manifest.scenes.flatMap((scene) => {
+    if (scene.kind !== "diagram") return [];
+    const doc = documents.get(scene.documentId);
+    if (!doc || doc.kind === "native") return [];
+    const source = snapshot.sources[doc.id];
+    return [
+      {
+        sceneId: scene.id,
+        documentId: doc.id,
+        revision: snapshot.manifest.revision,
+        objectIds: idsFromCollection(source, OBJECT_COLLECTIONS[doc.kind]),
+        relationshipIds: idsFromCollection(source, RELATIONSHIP_COLLECTIONS[doc.kind]),
+      },
+    ];
+  });
 }
 
 /** Build the strict resolver used by the managed editor for one committed revision. */
