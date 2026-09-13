@@ -2,7 +2,7 @@
   "ticketId": "AFM-059",
   "scope": "guarded managed Studio pilot (opt-in #project/<id>?editor=studio)",
   "status": "blocked",
-  "verdict": "not accepted — the contributed browser harness does not pass",
+  "verdict": "not accepted \u2014 the contributed browser harness does not pass",
   "environment": {
     "execution": "docker compose run --rm workspace / docker compose up -d studio",
     "image": "v-flow-exais:dev",
@@ -23,10 +23,25 @@
     ]
   },
   "blocker": {
-    "harness": "packages/studio/tests/e2e/managed-studio.mjs",
-    "failsAt": "after the timeline clip double-click, waiting 60s for [aria-label=\"Authoring target\"] option[value]:not([value=\"\"])",
-    "meaning": "the drill-down does not populate the managed inspector's authoring target, so steps 3-7 of the required journey (canvas selection, native text save, diagram label save, undo/redo, reopen, legacy-mutation refusal) were never reached",
-    "notDiagnosed": "whether this is a product gap or a harness-timing issue is NOT established. Two earlier diagnoses this session were wrong — 'the preview endpoint hangs' (it returns 200 in 13.4s; repeated aborted requests had wedged the server) and 'no iframe exists' (it is in a shadow root). A third guess is not recorded as a finding."
+    "harness": "packages/studio/tests/e2e/managed-studio.mjs (corrected, phase-accounted)",
+    "failsAt": "phase `managed-route-mounted`",
+    "clientAlert": "The displayed preview does not match this navigation request.",
+    "raisedBy": "assertDisplayedPreview in packages/studio/src/project/managedPreviewNavigation.ts, rejecting with stale-navigation",
+    "observedState": {
+      "clips": 0,
+      "timelineOverlay": "timeline-loading-disabled-overlay \u2014 'Loading composition\u2026'",
+      "inspectorPresent": true,
+      "inspectorSelectPresent": false,
+      "previewIframeLoaded": true,
+      "pageErrors": 0
+    },
+    "establishedByMeasurement": [
+      "the served preview stamps all three identity attributes the client checks: data-vflow-project-id, data-vflow-build-hash, data-vflow-revision-hash",
+      "the stamped build hash equals the build the client requested",
+      "the stamped revision hash equals the current editor view's revisionHash exactly (revision 0, fe339a10...)",
+      "therefore the rejection is not a server identity mismatch: the client rejects a preview whose identity is provably correct"
+    ],
+    "stillUnknown": "why the client-side assertion fails against a correct preview \u2014 most likely reading the frame root before it is available, but that is NOT established and is deliberately not recorded as a finding. Two diagnoses earlier in this integration were wrong; a third guess is not evidence."
   },
   "fixedDuringIntegration": [
     "packages/project-model editorPreview emitted hostId as a bare DOM id (el-0) while the player keys timeline clips as sourceFile#domId (index.html#el-0), so no timeline clip could ever match an emitted scene identity. Added hostKey alongside hostId; hostId is still required by editorPreviewHtml's getElementById. Confirmed by the harness advancing past that assertion.",
@@ -38,5 +53,11 @@
     "AFM-059, AFM-060, AFM-072 and AFM-078 are not complete",
     "no video export, visual sign-off, or rendered-video parity for this pilot",
     "ProjectRouter's default surface choice is unchanged; the pilot is opt-in only"
-  ]
+  ],
+  "harnessCorrection": {
+    "source": "contributed as v-flow-drilldown-diagnostics-d2c397c",
+    "value": "phase accounting moved the failure from an opaque 60s inspector timeout to a named phase with a client alert and a DOM/identity probe. That is what allowed the server identity to be ruled out.",
+    "note": "the contributor reproduced an overlay-intercepted-click defect in their own harness and explicitly did not claim it caused the recorded failure. It did not: the corrected harness stops earlier, before any click.",
+    "productCodeChanged": false
+  }
 }
