@@ -280,7 +280,11 @@ export default defineConfig({
     external: ["recast", "@babel/parser", "ast-types"],
   },
   test: {
-    exclude: ["data/**", "node_modules/**"],
+    // tests/e2e holds the browser harness and its node:test diagnostics, run by
+    // `node --test` or directly against a served Studio. Vitest collected
+    // managed-studio-diagnostics.test.mjs and failed it with "No test suite
+    // found", because its cases register with node:test rather than vitest.
+    exclude: ["data/**", "node_modules/**", "tests/e2e/**"],
     setupFiles: ["src/test-setup.ts"],
   },
 });

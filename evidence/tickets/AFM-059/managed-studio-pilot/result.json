@@ -23,25 +23,17 @@
     ]
   },
   "blocker": {
-    "harness": "packages/studio/tests/e2e/managed-studio.mjs (corrected, phase-accounted)",
+    "harness": "packages/studio/tests/e2e/managed-studio.mjs (unchanged by the lifecycle fix)",
     "failsAt": "phase `managed-route-mounted`",
-    "clientAlert": "The displayed preview does not match this navigation request.",
-    "raisedBy": "assertDisplayedPreview in packages/studio/src/project/managedPreviewNavigation.ts, rejecting with stale-navigation",
     "observedState": {
+      "alerts": [],
       "clips": 0,
       "timelineOverlay": "timeline-loading-disabled-overlay \u2014 'Loading composition\u2026'",
-      "inspectorPresent": true,
       "inspectorSelectPresent": false,
-      "previewIframeLoaded": true,
       "pageErrors": 0
     },
-    "establishedByMeasurement": [
-      "the served preview stamps all three identity attributes the client checks: data-vflow-project-id, data-vflow-build-hash, data-vflow-revision-hash",
-      "the stamped build hash equals the build the client requested",
-      "the stamped revision hash equals the current editor view's revisionHash exactly (revision 0, fe339a10...)",
-      "therefore the rejection is not a server identity mismatch: the client rejects a preview whose identity is provably correct"
-    ],
-    "stillUnknown": "why the client-side assertion fails against a correct preview \u2014 most likely reading the frame root before it is available, but that is NOT established and is deliberately not recorded as a finding. Two diagnoses earlier in this integration were wrong; a third guess is not evidence."
+    "resolvedSincePreviousRun": "the stale-navigation alert is gone. An unassigned about:blank bootstrap document was reaching assertDisplayedPreview before the custom player assigned its source; the correctly stamped preview then loaded and passed, but the earlier false rejection stayed on screen. Confirmed removed by measurement: the same harness against the same server now records alerts: [].",
+    "stillUnknown": "the timeline remains at 'Loading composition\u2026' with zero clips and no alert, so the preview now loads without objection but the timeline never receives its composition. Cause NOT established and deliberately not guessed."
   },
   "fixedDuringIntegration": [
     "packages/project-model editorPreview emitted hostId as a bare DOM id (el-0) while the player keys timeline clips as sourceFile#domId (index.html#el-0), so no timeline clip could ever match an emitted scene identity. Added hostKey alongside hostId; hostId is still required by editorPreviewHtml's getElementById. Confirmed by the harness advancing past that assertion.",

@@ -1,5 +1,6 @@
 import { buildProjectApiPath } from "../../utils/projectRouting";
-import { forwardRef, useEffect, useRef, useState } from "react";
+import { forwardRef, useEffect, useLayoutEffect, useRef, useState } from "react";
+import { isInitialBlankPreviewLoad } from "./previewLoadLifecycle";
 import { isLottieAnimationLoaded } from "@hyperframes/core/runtime/lottie-readiness";
 import { useMountEffect } from "../../hooks/useMountEffect";
 import { applyPreviewVariablesToUrl } from "../../hooks/previewVariablesStore";
@@ -11,7 +12,7 @@ import { HyperframesLoader } from "../../components/ui";
 interface PlayerProps {
   projectId?: string;
   directUrl?: string;
-  onLoad: () => void;
+  onLoad: (iframe: HTMLIFrameElement) => void;
   onCompositionLoadingChange?: (loading: boolean) => void;
   portrait?: boolean;
   style?: React.CSSProperties;
@@ -128,6 +129,13 @@ export const Player = forwardRef<HTMLIFrameElement, PlayerProps>(
     ref,
   ) => {
     const containerRef = useRef<HTMLDivElement>(null);
+    // The player/listeners live for this mount; the owner's expected view can
+    // change meanwhile. Read the latest committed callback, not the callback
+    // captured when the custom element was first created.
+    const onLoadRef = useRef(onLoad);
+    useLayoutEffect(() => {
+      onLoadRef.current = onLoad;
+    }, [onLoad]);
     const loadCountRef = useRef(0);
     const assetPollRef = useRef<ReturnType<typeof setInterval> | null>(null);
     const assetFadeRef = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -199,6 +207,11 @@ export const Player = forwardRef<HTMLIFrameElement, PlayerProps>(
           setCompositionLoading(false);
         };
         const handleLoad = () => {
+          // Connecting a shadow-root iframe can synchronously dispatch its
+          // initial about:blank load BEFORE connectedCallback assigns src.
+          // It is not the requested preview and must not reach its identity
+          // guard, consume first-load state, or initialize the timeline.
+          if (canceled || isInitialBlankPreviewLoad(iframe)) return;
           loadCountRef.current++;
           setPreviewError(null);
           setShaderTransitionLoading(false);
@@ -211,7 +224,7 @@ export const Player = forwardRef<HTMLIFrameElement, PlayerProps>(
             const onEnd = () => container.classList.remove("preview-revealing");
             container.addEventListener("animationend", onEnd, { once: true });
           }
-          onLoad();
+          onLoadRef.current(iframe);
 
           // Show a loading overlay until every `<video>`/`<audio>` and Lottie
           // asset is ready. Without this users can click play before audio has

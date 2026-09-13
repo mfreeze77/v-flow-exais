@@ -33,7 +33,7 @@ export interface NLEContextValue {
   togglePlay: () => void;
   seek: (time: number, options?: { keepPlaying?: boolean }) => boolean;
   refreshPlayer: () => void;
-  onIframeLoad: () => void;
+  onIframeLoad: (iframe?: HTMLIFrameElement) => void;
   // composition stack (from useCompositionStack)
   compositionStack: CompositionLevel[];
   updateCompositionStack: React.Dispatch<React.SetStateAction<CompositionLevel[]>>;
@@ -141,33 +141,39 @@ export function NLEProvider({
     managedNavigation,
   });
   const [managedLoadedView, setManagedLoadedView] = useState<string | null>(null);
-  const onIframeLoad = useCallback(() => {
-    if (managedNavigation !== undefined) {
-      try {
-        if (!managedState?.token) return;
-        const iframe = iframeRef.current;
-        assertDisplayedManagedView(
-          iframe?.contentDocument?.documentElement ?? null,
-          managedState.token,
-          iframe?.src ?? "",
-          managedState.levels.at(-1)?.previewUrl ?? "",
-        );
-        setManagedLoadedView(managedState.viewKey);
-      } catch (error) {
-        managedNavigation.onError?.(error instanceof Error ? error : new Error(String(error)));
-        return;
+  const onIframeLoad = useCallback(
+    (loadedIframe?: HTMLIFrameElement) => {
+      // Load delivery names its emitting frame. A late event from an outgoing
+      // Player cannot validate the newer frame now held by the shared ref.
+      if (loadedIframe && loadedIframe !== iframeRef.current) return;
+      if (managedNavigation !== undefined) {
+        try {
+          if (!managedState?.token) return;
+          const iframe = loadedIframe ?? iframeRef.current;
+          assertDisplayedManagedView(
+            iframe?.contentDocument?.documentElement ?? null,
+            managedState.token,
+            iframe?.src ?? "",
+            managedState.levels.at(-1)?.previewUrl ?? "",
+          );
+          setManagedLoadedView(managedState.viewKey);
+        } catch (error) {
+          managedNavigation.onError?.(error instanceof Error ? error : new Error(String(error)));
+          return;
+        }
       }
-    }
-    baseOnIframeLoad();
-    if (managedNavigation !== undefined && managedState?.session) {
-      // Overrides a pending seek belonging to an outgoing composition. If the
-      // adapter is not ready yet, the retained player queues this target itself.
-      seek(previewSecondsFromFrame(managedState.session, managedState.frame));
-    }
-    // Managed preview dependencies come from its pinned build, not a live CDN fallback.
-    if (managedNavigation === undefined) ensureMotionPathPluginLoaded(iframeRef.current);
-    onIframeRef?.(iframeRef.current);
-  }, [baseOnIframeLoad, iframeRef, onIframeRef, managedNavigation, managedState, seek]);
+      baseOnIframeLoad();
+      if (managedNavigation !== undefined && managedState?.session) {
+        // Overrides a pending seek belonging to an outgoing composition. If the
+        // adapter is not ready yet, the retained player queues this target itself.
+        seek(previewSecondsFromFrame(managedState.session, managedState.frame));
+      }
+      // Managed preview dependencies come from its pinned build, not a live CDN fallback.
+      if (managedNavigation === undefined) ensureMotionPathPluginLoaded(iframeRef.current);
+      onIframeRef?.(iframeRef.current);
+    },
+    [baseOnIframeLoad, iframeRef, onIframeRef, managedNavigation, managedState, seek],
+  );
 
   // Wrap handleDrillDown to also scan the iframe DOM for data-composition-src
   const iframeRef_ = iframeRef;

@@ -15,7 +15,7 @@ import { readStudioUiPreferences, writeStudioUiPreferences } from "../../utils/s
 interface NLEPreviewProps {
   projectId: string;
   iframeRef: RefObject<HTMLIFrameElement | null>;
-  onIframeLoad: () => void;
+  onIframeLoad: (iframe?: HTMLIFrameElement) => void;
   onCompositionLoadingChange?: (loading: boolean) => void;
   portrait?: boolean;
   directUrl?: string;
@@ -469,9 +469,13 @@ export const NLEPreview = memo(function NLEPreview({
               ref={setPreviewIframeRef}
               projectId={directUrl ? undefined : projectId}
               directUrl={directUrl}
-              onLoad={() => {
+              onLoad={(loadedIframe) => {
+                // A retiring Player must not initialize or resize the newer
+                // view through a shared ref. Keep the event's frame identity.
+                if (loadedIframe !== previewIframeRef.current || loadedIframe !== iframeRef.current)
+                  return;
                 updateCompositionSizeFromPreview();
-                onIframeLoad();
+                onIframeLoad(loadedIframe);
                 applyInitialZoom();
               }}
               onCompositionLoadingChange={onCompositionLoadingChange}

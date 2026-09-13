@@ -1,0 +1,92 @@
+{
+  "run": "managed-preview-lifecycle-223935Z",
+  "status": "failed",
+  "projectId": "video-d4bb9502-c461-4e4b-a061-ac022852d414",
+  "phases": [
+    {
+      "name": "fixture-created",
+      "status": "passed",
+      "startedAt": 1789339186872,
+      "finishedAt": 1789339190659
+    },
+    {
+      "name": "managed-route-mounted",
+      "status": "failed",
+      "startedAt": 1789339190691,
+      "error": "Waiting failed: 60000ms exceeded",
+      "finishedAt": 1789339250880
+    },
+    {
+      "name": "native-clip-resolved",
+      "status": "not-run"
+    },
+    {
+      "name": "native-clip-interactable",
+      "status": "not-run"
+    },
+    {
+      "name": "native-double-click-delivered",
+      "status": "not-run"
+    },
+    {
+      "name": "native-scene-loaded",
+      "status": "not-run"
+    },
+    {
+      "name": "native-authoring-targets",
+      "status": "not-run"
+    },
+    {
+      "name": "canvas-heading-selected",
+      "status": "not-run"
+    },
+    {
+      "name": "native-text-saved",
+      "status": "not-run"
+    },
+    {
+      "name": "diagram-label-saved",
+      "status": "not-run"
+    },
+    {
+      "name": "journal-undo-redo",
+      "status": "not-run"
+    },
+    {
+      "name": "reopened",
+      "status": "not-run"
+    },
+    {
+      "name": "legacy-mutation-refused",
+      "status": "not-run"
+    }
+  ],
+  "alerts": [],
+  "clips": [],
+  "overlays": [
+    {
+      "tag": "div",
+      "id": null,
+      "clipId": null,
+      "testId": "timeline-loading-disabled-overlay",
+      "label": null,
+      "text": "Loading composition\u2026"
+    }
+  ],
+  "inspector": {
+    "present": true,
+    "text": "Authoring inspectorOpen a scene from the timeline or scene list to edit its authored content.One save is one project-journal transaction. Generated SVG, arbitrary attributes, media, keyframes and lifecycle edits are not enabled here.Seek to scene start",
+    "selectPresent": false,
+    "selectDisabled": null,
+    "selected": null,
+    "targets": []
+  },
+  "ready": {
+    "clip-interactable": false,
+    "double-click-delivered": false,
+    "scene-loaded": false,
+    "authoring-targets": false
+  },
+  "pageErrors": [],
+  "changeFromPreviousRun": "alerts is now empty. The previous run recorded 'The displayed preview does not match this navigation request.' from assertDisplayedPreview. The about:blank bootstrap load no longer reaches the guard."
+}
