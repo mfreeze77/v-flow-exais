@@ -1,4 +1,5 @@
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import type { JournalHistoryDelegate, JournalHistoryState } from "../project/journalHistoryTypes";
+import { useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import {
   buildEditHistoryEntry,
   createEmptyEditHistory,
@@ -37,6 +38,7 @@ interface UsePersistentEditHistoryOptions {
   projectId: string | null;
   storage?: EditHistoryStorageAdapter;
   now?: () => number;
+  journal?: JournalHistoryDelegate;
 }
 
 /**
@@ -297,10 +299,24 @@ export async function createPersistentEditHistoryController({
   return store;
 }
 
+const noJournalSubscription = (_listener: () => void) => () => {};
+const noJournalSnapshot = () => null;
+const noLocalHistory = createEmptyEditHistory();
+Object.freeze(noLocalHistory.undo);
+Object.freeze(noLocalHistory.redo);
+Object.freeze(noLocalHistory);
+
 export function usePersistentEditHistory(options: UsePersistentEditHistoryOptions) {
+  const journal = options.journal;
+  const journalState = useSyncExternalStore<JournalHistoryState | null>(
+    journal?.subscribe ?? noJournalSubscription,
+    journal?.getSnapshot ?? noJournalSnapshot,
+    journal?.getSnapshot ?? noJournalSnapshot,
+  );
+  const delegated = journal !== undefined;
   const storage = useMemo(
-    () => options.storage ?? createIndexedDbEditHistoryStorage(),
-    [options.storage],
+    () => (delegated ? null : (options.storage ?? createIndexedDbEditHistoryStorage())),
+    [delegated, options.storage],
   );
   const now = options.now ?? Date.now;
   const [state, setState] = useState<EditHistoryState>(() => createEmptyEditHistory());
@@ -318,7 +334,7 @@ export function usePersistentEditHistory(options: UsePersistentEditHistoryOption
     storeProjectIdRef.current = null;
     setState(emptyState);
     setLoaded(false);
-    if (!projectId) {
+    if (delegated || !storage || !projectId) {
       setLoaded(true);
       return;
     }
@@ -355,10 +371,14 @@ export function usePersistentEditHistory(options: UsePersistentEditHistoryOption
     return () => {
       cancelled = true;
     };
-  }, [now, projectId, storage]);
+  }, [delegated, now, projectId, storage]);
 
   const recordEdit = useCallback(
     async (input: RecordEditInput) => {
+      if (journal) {
+        if (journal.projectId !== projectId) throw new Error("journal/project-mismatch");
+        return journal.recordEdit(input);
+      }
       if (!projectId) return;
       if (activeProjectIdRef.current !== projectId) {
         throw new Error(`Cannot record an edit for inactive project ${projectId}`);
@@ -370,11 +390,15 @@ export function usePersistentEditHistory(options: UsePersistentEditHistoryOption
       }
       await store.recordEdit(input);
     },
-    [projectId],
+    [journal, projectId],
   );
 
   const undo = useCallback(
     async (callbacks: ApplyCallbacks): Promise<ApplyResult> => {
+      if (journal) {
+        if (journal.projectId !== projectId) throw new Error("journal/project-mismatch");
+        return journal.undo();
+      }
       if (
         !projectId ||
         activeProjectIdRef.current !== projectId ||
@@ -384,11 +408,15 @@ export function usePersistentEditHistory(options: UsePersistentEditHistoryOption
       }
       return storeRef.current?.undo(callbacks) ?? { ok: false, reason: "empty" };
     },
-    [projectId],
+    [journal, projectId],
   );
 
   const redo = useCallback(
     async (callbacks: ApplyCallbacks): Promise<ApplyResult> => {
+      if (journal) {
+        if (journal.projectId !== projectId) throw new Error("journal/project-mismatch");
+        return journal.redo();
+      }
       if (
         !projectId ||
         activeProjectIdRef.current !== projectId ||
@@ -398,10 +426,30 @@ export function usePersistentEditHistory(options: UsePersistentEditHistoryOption
       }
       return storeRef.current?.redo(callbacks) ?? { ok: false, reason: "empty" };
     },
-    [projectId],
+    [journal, projectId],
   );
 
+  if (journal) {
+    const matches = journal.projectId === projectId;
+    return {
+      owner: "project-journal" as const,
+      loaded: matches && !!journalState?.loaded,
+      canUndo: matches && !!journalState?.loaded && !journalState.busy && journalState.canUndo,
+      canRedo: matches && !!journalState?.loaded && !journalState.busy && journalState.canRedo,
+      undoLabel: journalState?.canUndo ? "project change" : null,
+      redoLabel: journalState?.canRedo ? "project change" : null,
+      undoPaths: [] as string[],
+      redoPaths: [] as string[],
+      state: noLocalHistory,
+      journalState,
+      recordEdit,
+      undo,
+      redo,
+    };
+  }
   return {
+    owner: "native-files" as const,
+    journalState: null,
     loaded,
     ...snapshotEditHistoryState(state),
     recordEdit,

@@ -1,3 +1,4 @@
+import { journalForWriter } from "../project/projectJournalProtocol";
 import { buildProjectApiPath } from "./projectRouting";
 import type { MutableRefObject } from "react";
 import type { EditHistoryKind } from "./editHistory";
@@ -50,6 +51,8 @@ interface SaveProjectFilesWithHistoryInput {
    * Undo still restores `before`; this only says what to expect on disk.
    */
   diskContent?: Record<string, string>;
+  /** Explicit draft baseline for managed raw-source saves; never refreshed implicitly. */
+  expectedContent?: Record<string, string>;
 }
 
 export async function readProjectFileContent(pid: string, path: string): Promise<string> {
@@ -65,6 +68,7 @@ export async function readProjectFileContent(pid: string, path: string): Promise
 }
 
 export async function saveProjectFilesWithHistory({
+  projectId,
   label,
   kind,
   coalesceKey,
@@ -74,11 +78,27 @@ export async function saveProjectFilesWithHistory({
   writeFile,
   recordEdit,
   diskContent,
+  expectedContent,
 }: SaveProjectFilesWithHistoryInput): Promise<string[]> {
+  const journal = journalForWriter(writeFile);
+  if (journal && journal.projectId !== projectId) throw new Error("journal/project-mismatch");
+  if (journal && diskContent !== undefined)
+    throw new Error(
+      "journal/partial-server-edit: prior filesystem mutations cannot join the transaction.",
+    );
+  if (
+    journal &&
+    kind === "source" &&
+    (!expectedContent ||
+      Object.keys(files).some((path) => typeof expectedContent[path] !== "string"))
+  )
+    throw new Error(
+      "journal/draft-baseline-required: raw source editing must capture its baseline when the draft opens.",
+    );
   return serializeStudioFileMutations(writeFile, Object.keys(files), async () => {
     const snapshots: Record<string, { before: string; after: string }> = {};
     for (const [path, after] of Object.entries(files)) {
-      const before = await readFile(path);
+      const before = journal && expectedContent ? expectedContent[path] : await readFile(path);
       if (before !== after) {
         snapshots[path] = { before, after };
       }
@@ -86,6 +106,8 @@ export async function saveProjectFilesWithHistory({
 
     const changedPaths = Object.keys(snapshots);
     if (changedPaths.length === 0) return [];
+
+    if (journal) return journal.commitEdit({ label, kind, files: snapshots });
 
     const writtenPaths: string[] = [];
     try {

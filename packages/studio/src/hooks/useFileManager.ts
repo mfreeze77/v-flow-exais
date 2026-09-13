@@ -1,3 +1,4 @@
+import type { JournalWriter } from "../project/projectJournalProtocol";
 import { useProjectReadClient } from "../project/useProjectReadClient";
 import { useState, useCallback, useMemo, useRef } from "react";
 import type { EditingFile } from "../utils/studioHelpers";
@@ -25,6 +26,7 @@ interface RecordEditInput {
 }
 
 interface UseFileManagerOptions {
+  journalWriter?: JournalWriter;
   projectId: string | null;
   showToast: (message: string, tone?: "error" | "info") => void;
   recordEdit: (input: RecordEditInput) => Promise<void>;
@@ -35,6 +37,7 @@ interface UseFileManagerOptions {
 // ── Hook ──
 
 export function useFileManager({
+  journalWriter,
   projectId,
   showToast,
   recordEdit,
@@ -94,8 +97,9 @@ export function useFileManager({
     [fileVersions, projectId, reader],
   );
 
-  const writeProjectFile = useCallback(
+  const writeNativeProjectFile = useCallback(
     async (path: string, content: string, expectedContent?: string): Promise<void> => {
+      if (journalWriter) throw new Error("journal/native-writer-blocked");
       if (!projectId) throw new Error("No active project");
       const writeProjectId = projectId;
       let expectedVersion = await studioExpectedFileVersion(fileVersions, path, expectedContent);
@@ -167,8 +171,16 @@ export function useFileManager({
         setEditingFile({ path, content });
       }
     },
-    [fileVersions, projectId],
+    [fileVersions, projectId, journalWriter],
   );
+
+  const writeProjectFile = journalWriter ?? writeNativeProjectFile;
+  const rejectUnadaptedMutation = useCallback(() => {
+    if (journalWriter)
+      throw new Error(
+        "journal/unsupported-operation: managed file creation, upload, rename and deletion require project commands.",
+      );
+  }, [journalWriter]);
 
   const updateEditingFileContent = useCallback((path: string, content: string) => {
     if (editingPathRef.current === path) {
@@ -293,6 +305,7 @@ export function useFileManager({
 
   const uploadProjectFiles = useCallback(
     async (files: Iterable<File>, dir?: string): Promise<string[]> => {
+      rejectUnadaptedMutation();
       const pid = projectIdRef.current;
       const fileList = Array.from(files);
       if (!pid || fileList.length === 0) return [];
@@ -330,13 +343,14 @@ export function useFileManager({
       }
       return [];
     },
-    [refreshFileTree, setRefreshKey, showToast],
+    [refreshFileTree, setRefreshKey, showToast, rejectUnadaptedMutation],
   );
 
   // ── File CRUD ──
 
   const handleCreateFile = useCallback(
     async (path: string) => {
+      rejectUnadaptedMutation();
       const pid = projectIdRef.current;
       if (!pid) return;
       let content = "";
@@ -361,11 +375,12 @@ export function useFileManager({
         showToast(`Couldn't create ${path}: ${err.error}`, "error");
       }
     },
-    [refreshFileTree, handleFileSelect, showToast],
+    [refreshFileTree, handleFileSelect, showToast, rejectUnadaptedMutation],
   );
 
   const handleCreateFolder = useCallback(
     async (path: string) => {
+      rejectUnadaptedMutation();
       const pid = projectIdRef.current;
       if (!pid) return;
       const res = await fetch(
@@ -384,11 +399,12 @@ export function useFileManager({
         showToast(`Couldn't create folder ${path}: ${err.error}`, "error");
       }
     },
-    [refreshFileTree, showToast],
+    [refreshFileTree, showToast, rejectUnadaptedMutation],
   );
 
   const handleDeleteFile = useCallback(
     async (path: string) => {
+      rejectUnadaptedMutation();
       const pid = projectIdRef.current;
       if (!pid) return;
       const res = await fetch(
@@ -406,11 +422,12 @@ export function useFileManager({
         showToast(`Couldn't delete ${path}: ${err.error}`, "error");
       }
     },
-    [refreshFileTree, showToast],
+    [refreshFileTree, showToast, rejectUnadaptedMutation],
   );
 
   const handleRenameFile = useCallback(
     async (oldPath: string, newPath: string) => {
+      rejectUnadaptedMutation();
       const pid = projectIdRef.current;
       if (!pid) return;
       const res = await fetch(
@@ -433,11 +450,12 @@ export function useFileManager({
         showToast(`Couldn't rename ${oldPath}: ${err.error}`, "error");
       }
     },
-    [refreshFileTree, handleFileSelect, setRefreshKey, showToast],
+    [refreshFileTree, handleFileSelect, setRefreshKey, showToast, rejectUnadaptedMutation],
   );
 
   const handleDuplicateFile = useCallback(
     async (path: string) => {
+      rejectUnadaptedMutation();
       const pid = projectIdRef.current;
       if (!pid) return;
       const res = await fetch(`/api/projects/${encodeURIComponent(pid)}/duplicate-file`, {
@@ -455,7 +473,7 @@ export function useFileManager({
         showToast(`Couldn't duplicate ${path}: ${err.error}`, "error");
       }
     },
-    [refreshFileTree, handleFileSelect, showToast],
+    [refreshFileTree, handleFileSelect, showToast, rejectUnadaptedMutation],
   );
 
   const handleMoveFile = handleRenameFile;

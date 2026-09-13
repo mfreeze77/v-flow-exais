@@ -13,8 +13,17 @@ export interface StudioShellValue {
   editHistory: {
     canUndo: boolean;
     canRedo: boolean;
-    undoLabel: string | undefined;
-    redoLabel: string | undefined;
+    /**
+     * Null when there is nothing to undo, or when the entry carries no label.
+     *
+     * Both history implementations already produced null — the native hook via
+     * `undoEntry?.label ?? null` — and every consumer tests it for truthiness.
+     * The declaration said `string | undefined`, and the parameter feeding it
+     * said plain `string`, so the narrowest of the three was the one nothing
+     * actually satisfied.
+     */
+    undoLabel: string | null;
+    redoLabel: string | null;
   };
   /**
    * Why a composition write would be refused right now, or null when writes

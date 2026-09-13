@@ -17,7 +17,7 @@ interface StudioContextInput {
   setRefreshKey: React.Dispatch<React.SetStateAction<number>>;
   timelineElements: StudioContextValue["timelineElements"];
   isPlaying: boolean;
-  editHistory: { canUndo: boolean; canRedo: boolean; undoLabel: string; redoLabel: string };
+  editHistory: StudioContextValue["editHistory"];
   handleUndo: StudioContextValue["handleUndo"];
   handleRedo: StudioContextValue["handleRedo"];
   // Was a second copy of the same shape, which meant every field added to the

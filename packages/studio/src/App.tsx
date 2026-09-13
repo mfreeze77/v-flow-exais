@@ -1,3 +1,5 @@
+import { useManagedJournalAuthority } from "./project/useManagedJournalAuthority";
+import { JournalStatusBanner } from "./project/JournalStatusBanner";
 import { buildProjectApiPath } from "./utils/projectRouting";
 import { useState, useCallback, useRef, useMemo, useLayoutEffect } from "react";
 import type { LeftSidebarHandle, SidebarTab } from "./components/sidebar/LeftSidebar";
@@ -104,13 +106,15 @@ export function StudioApp() {
     rightCollapsed: initialUrlStateRef.current.rightCollapsed,
     rightPanelTab: initialUrlStateRef.current.rightPanelTab,
   });
-  const editHistory = usePersistentEditHistory({ projectId });
+  const journalAuthority = useManagedJournalAuthority(projectId);
+  const editHistory = usePersistentEditHistory({ projectId, journal: journalAuthority });
   const domEditSaveTimestampRef = useRef(0);
   const handleDomZIndexReorderCommitRef = useRef<TimelineZIndexReorderCommit | null>(null);
   const pendingTimelineEditPathRef = useRef(new Set<string>());
   const isGestureRecordingRef = useRef(false);
   const reloadPreview = useCallback(() => setRefreshKey((k) => k + 1), []);
   const fileManager = useFileManager({
+    journalWriter: journalAuthority?.writer,
     projectId,
     showToast,
     recordEdit: editHistory.recordEdit,
@@ -127,7 +131,10 @@ export function StudioApp() {
    * receive this and never `fileManager.writeProjectFile`, so there is no second
    * mutation path to fall back into.
    */
-  const writeAuthoredDocument = useProjectDocumentWriter(fileManager.writeProjectFile);
+  const writeAuthoredDocument = useProjectDocumentWriter(
+    fileManager.writeProjectFile,
+    journalAuthority?.writer,
+  );
 
   const masterCompPath = useMemo(
     () => resolveMasterCompositionPath(fileManager.fileTree),
@@ -494,6 +501,15 @@ export function StudioApp() {
                       })();
                     }}
                   />
+                  {journalAuthority && (
+                    <JournalStatusBanner
+                      authority={journalAuthority}
+                      onCommitted={() => {
+                        sdkHandle.forceReload();
+                        reloadPreview();
+                      }}
+                    />
+                  )}
                   {previewPersistence.domEditSaveQueuePaused && !externalFileChanges.blocked && (
                     <SaveQueuePausedBanner
                       message={previewPersistence.domEditSaveQueuePaused}

@@ -16,7 +16,8 @@
 import { useMemo } from "react";
 
 import { projectApi } from "./api";
-import { activeManagedProjectId } from "./ProjectRouter";
+import { activeManagedProjectId } from "./projectOwnership";
+import { journalForWriter } from "./projectJournalProtocol";
 import { createManagedProjectWriter, type ProjectFileWriter } from "./commandWriter";
 
 /**
@@ -24,11 +25,23 @@ import { createManagedProjectWriter, type ProjectFileWriter } from "./commandWri
  * active. Passing it in keeps this hook free of the file-manager's dependencies
  * and makes both paths visible at the single call site.
  */
-export function useProjectDocumentWriter(writeFile: ProjectFileWriter): ProjectFileWriter {
+export function useProjectDocumentWriter(
+  writeFile: ProjectFileWriter,
+  journalWriter?: ProjectFileWriter,
+): ProjectFileWriter {
   const managedId = activeManagedProjectId();
 
   return useMemo(() => {
     if (!managedId) return writeFile;
+    if (journalWriter) {
+      const capability = journalForWriter(journalWriter);
+      if (!capability || capability.projectId !== managedId) {
+        return async () => {
+          throw new Error("journal/project-mismatch: no native fallback.");
+        };
+      }
+      return journalWriter;
+    }
 
     return createManagedProjectWriter({
       projectId: managedId,
@@ -38,5 +51,5 @@ export function useProjectDocumentWriter(writeFile: ProjectFileWriter): ProjectF
       },
       sendCommand: (command) => projectApi(`/projects/${managedId}/commands`, command),
     });
-  }, [managedId, writeFile]);
+  }, [managedId, writeFile, journalWriter]);
 }

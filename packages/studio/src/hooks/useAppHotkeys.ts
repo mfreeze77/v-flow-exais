@@ -97,6 +97,7 @@ interface HistoryFileCallbacks {
   serialize?: <T>(paths: readonly string[], task: () => Promise<T>) => Promise<T>;
 }
 interface EditHistoryHandle {
+  owner?: "native-files" | "project-journal";
   undo: (cb: HistoryFileCallbacks) => Promise<HistoryResult>;
   redo: (cb: HistoryFileCallbacks) => Promise<HistoryResult>;
   state: {
@@ -418,6 +419,35 @@ export function useAppHotkeys({
 
   const applyHistory = useCallback(
     async (direction: "undo" | "redo") => {
+      if (editHistory.owner === "project-journal") {
+        let committed = false;
+        try {
+          await waitForPendingDomEditSaves();
+          const result = await editHistory[direction]({
+            readFile: async () => {
+              throw new Error("journal/legacy-history-read");
+            },
+            writeFile: async () => {
+              throw new Error("journal/legacy-history-write");
+            },
+          });
+          if (!result.ok) return;
+          committed = true;
+          onAfterUndoRedo?.();
+          forceReloadSdkSession?.();
+          // Missing files deliberately selects the full-preview reload path.
+          // Manifest/timing/conflict changes are not source patches to soft-apply.
+          await syncHistoryPreviewAfterApply({});
+          showToast(`${direction === "undo" ? "Undid" : "Redid"} project change`, "info");
+        } catch (error) {
+          const detail = error instanceof Error ? error.message : String(error);
+          showToast(
+            committed ? `History saved; preview refresh failed: ${detail}` : detail,
+            "error",
+          );
+        }
+        return;
+      }
       // Caption edits live in their own in-memory stack. While caption edit
       // mode is active, ⌘Z must revert the caption edit — not an unrelated
       // earlier file edit (which would ALSO leave the caption change intact).

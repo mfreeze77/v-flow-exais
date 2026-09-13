@@ -100,7 +100,7 @@ function isJsonObject(value: unknown): value is Record<string, unknown> {
   return value !== null && typeof value === "object" && !Array.isArray(value);
 }
 
-function checkContentPrecondition(
+export function checkContentPrecondition(
   snapshot: ProjectSnapshot,
   operation: ReturnType<typeof operationForWrite>,
   path: string,

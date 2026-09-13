@@ -1,3 +1,4 @@
+import { journalForWriter } from "../project/projectJournalProtocol";
 import type { MutableRefObject } from "react";
 import { openComposition, type Composition } from "@hyperframes/sdk";
 import type { EditHistoryKind } from "./editHistory";
@@ -172,6 +173,21 @@ async function writeAndRecord(
   deps: CutoverDeps,
   options?: CutoverOptions,
 ): Promise<Error | null> {
+  const journal = journalForWriter(deps.writeProjectFile);
+  if (journal) {
+    try {
+      await journal.commitEdit({
+        label: options?.label ?? "Edit layer",
+        kind: "manual",
+        files: { [targetPath]: { before: originalContent, after } },
+      });
+      // The journal already committed both source and history. No second record,
+      // filesystem echo registration, or compensating whole-file rollback.
+      return null;
+    } catch (error) {
+      return asCutoverError(error);
+    }
+  }
   deps.domEditSaveTimestampRef.current = Date.now();
   markSelfWrite(targetPath, after);
   try {
