@@ -1,0 +1,32 @@
+{
+  "run": "managed-studio-20260913T072907Z",
+  "status": "failed",
+  "projectId": "video-99cfd949-c9ae-4292-bdf4-0ea4e9d301b2",
+  "error": "TimeoutError: Waiting failed: 60000ms exceeded\n    at new WaitTask (file:///workspace/node_modules/.bun/puppeteer-core@25.8.0/node_modules/puppeteer-core/lib/puppeteer/common/WaitTask.js:46:34)\n    at IsolatedWorld.waitForFunction (file:///workspace/node_modules/.bun/puppeteer-core@25.8.0/node_modules/puppeteer-core/lib/puppeteer/api/Realm.js:49:26)\n    at CdpFrame.waitForFunction (file:///workspa",
+  "stepsPassed": 0,
+  "requestCount": 954,
+  "pageErrors": [],
+  "blockedExternal": [],
+  "fencedRequests": [
+    {
+      "method": "GET",
+      "path": "/api/projects/video-99cfd949-c9ae-4292-bdf4-0ea4e9d301b2/renders",
+      "status": 409
+    },
+    {
+      "method": "PUT",
+      "path": "/api/projects/video-99cfd949-c9ae-4292-bdf4-0ea4e9d301b2/selection",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/projects/video-99cfd949-c9ae-4292-bdf4-0ea4e9d301b2/gsap-animations/index.html",
+      "status": 409
+    },
+    {
+      "method": "GET",
+      "path": "/api/projects/video-99cfd949-c9ae-4292-bdf4-0ea4e9d301b2/lint",
+      "status": 409
+    }
+  ]
+}

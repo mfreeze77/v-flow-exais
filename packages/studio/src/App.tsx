@@ -1,3 +1,10 @@
+import { useManagedStudioSurface } from "./project/useManagedStudioSurface";
+import {
+  ManagedStudioHeader,
+  ManagedSceneSidebar,
+  ManagedAuthoringInspector,
+} from "./project/ManagedStudioPanels";
+import { readOnlyManagedDomSession } from "./project/managedStudioPolicy";
 import { useManagedJournalAuthority } from "./project/useManagedJournalAuthority";
 import { JournalStatusBanner } from "./project/JournalStatusBanner";
 import { buildProjectApiPath } from "./utils/projectRouting";
@@ -108,13 +115,20 @@ export function StudioApp() {
   });
   const journalAuthority = useManagedJournalAuthority(projectId);
   const editHistory = usePersistentEditHistory({ projectId, journal: journalAuthority });
+  const managedSurface = useManagedStudioSurface(projectId, journalAuthority, refreshKey);
+  const reportManagedBlocked = useCallback(() => {
+    showToast(
+      "This operation is not enabled in the managed Studio preview. Use the managed authoring inspector.",
+      "info",
+    );
+  }, [showToast]);
   const domEditSaveTimestampRef = useRef(0);
   const handleDomZIndexReorderCommitRef = useRef<TimelineZIndexReorderCommit | null>(null);
   const pendingTimelineEditPathRef = useRef(new Set<string>());
   const isGestureRecordingRef = useRef(false);
   const reloadPreview = useCallback(() => setRefreshKey((k) => k + 1), []);
   const fileManager = useFileManager({
-    journalWriter: journalAuthority?.writer,
+    journalWriter: managedSurface.blockedWriter,
     projectId,
     showToast,
     recordEdit: editHistory.recordEdit,
@@ -133,15 +147,15 @@ export function StudioApp() {
    */
   const writeAuthoredDocument = useProjectDocumentWriter(
     fileManager.writeProjectFile,
-    journalAuthority?.writer,
+    managedSurface.blockedWriter,
   );
 
   const masterCompPath = useMemo(
-    () => resolveMasterCompositionPath(fileManager.fileTree),
-    [fileManager.fileTree],
+    () => (managedSurface.enabled ? null : resolveMasterCompositionPath(fileManager.fileTree)),
+    [fileManager.fileTree, managedSurface.enabled],
   );
   const { sdkHandle, editFlowSdkSession } = useStudioSdkSessions(
-    projectId,
+    managedSurface.enabled ? null : projectId,
     activeCompPath,
     masterCompPath,
   );
@@ -281,7 +295,7 @@ export function StudioApp() {
     select: (t: SidebarTab) => leftSidebarRef.current?.selectTab(t),
     get: () => leftSidebarRef.current?.getTab() ?? "compositions",
   });
-  const domEditSession = useDomEditSession({
+  const originalDomEditSession = useDomEditSession({
     projectId,
     activeCompPath,
     compIdToSrc,
@@ -322,6 +336,13 @@ export function StudioApp() {
     publishSdkSession: sdkHandle.publish,
     forceReloadSdkSession: sdkHandle.forceReload,
   });
+  const domEditSession = useMemo(
+    () =>
+      managedSurface.enabled
+        ? readOnlyManagedDomSession(originalDomEditSession, reportManagedBlocked)
+        : originalDomEditSession,
+    [managedSurface.enabled, originalDomEditSession, reportManagedBlocked],
+  );
   domEditSelectionBridgeRef.current = domEditSession.domEditSelection;
   handleDomZIndexReorderCommitRef.current = domEditSession.handleDomZIndexReorderCommit;
   clearDomSelectionRef.current = domEditSession.clearDomSelection;
@@ -379,7 +400,9 @@ export function StudioApp() {
     showToast,
     isGestureRecordingRef,
   });
-  handleToggleRecordingRef.current = handleToggleRecording;
+  handleToggleRecordingRef.current = managedSurface.enabled
+    ? reportManagedBlocked
+    : handleToggleRecording;
   const canvasRectRef = useRef<DOMRect | null>(null);
   useLayoutEffect(() => {
     if (gestureState !== "recording" || !previewIframe) {
@@ -420,7 +443,8 @@ export function StudioApp() {
     gestureState === "recording",
   );
   useStudioUrlState({
-    projectId,
+    // Preserve the explicit managed entry URL; native URL state has no scene-instance field.
+    projectId: managedSurface.enabled ? null : projectId,
     activeCompPath,
     duration: effectiveTimelineDuration,
     isPlaying,
@@ -461,6 +485,9 @@ export function StudioApp() {
     handlePreviewIframeRef,
     refreshPreviewDocumentVersion,
   });
+  if (managedSurface.enabled)
+    studioCtxValue.writeBlockedReason =
+      "Inherited mutations are disabled; use the managed inspector.";
   const timelineToolbar = useMemo(
     () => (
       <TimelineToolbar
@@ -486,21 +513,25 @@ export function StudioApp() {
                   onDragLeave={dragOverlay.onDragLeave}
                   onDrop={dragOverlay.onDrop}
                 >
-                  <StudioHeader
-                    captureFrameHref={frameCapture.captureFrameHref}
-                    captureFrameFilename={frameCapture.captureFrameFilename}
-                    handleCaptureFrameClick={frameCapture.handleCaptureFrameClick}
-                    refreshCaptureFrameTime={frameCapture.refreshCaptureFrameTime}
-                    capturing={frameCapture.capturing}
-                    inspectorButtonActive={inspectorButtonActive}
-                    inspectorPanelActive={inspectorPanelActive}
-                    onExport={() => {
-                      void (async () => {
-                        await previewPersistence.waitForPendingDomEditSaves();
-                        await renderQueue.startRender(undefined);
-                      })();
-                    }}
-                  />
+                  {managedSurface.enabled ? (
+                    <ManagedStudioHeader surface={managedSurface} />
+                  ) : (
+                    <StudioHeader
+                      captureFrameHref={frameCapture.captureFrameHref}
+                      captureFrameFilename={frameCapture.captureFrameFilename}
+                      handleCaptureFrameClick={frameCapture.handleCaptureFrameClick}
+                      refreshCaptureFrameTime={frameCapture.refreshCaptureFrameTime}
+                      capturing={frameCapture.capturing}
+                      inspectorButtonActive={inspectorButtonActive}
+                      inspectorPanelActive={inspectorPanelActive}
+                      onExport={() => {
+                        void (async () => {
+                          await previewPersistence.waitForPendingDomEditSaves();
+                          await renderQueue.startRender(undefined);
+                        })();
+                      }}
+                    />
+                  )}
                   {journalAuthority && (
                     <JournalStatusBanner
                       authority={journalAuthority}
@@ -517,30 +548,38 @@ export function StudioApp() {
                     />
                   )}
                   <ExternalFileConflictBanner coordinator={externalFileChanges} />
-                  {viewModeValue.viewMode === "storyboard" && (
+                  {!managedSurface.enabled && viewModeValue.viewMode === "storyboard" && (
                     <StoryboardView
                       projectId={projectId}
                       onSelectComposition={handleSelectComposition}
                     />
                   )}
                   <EditorShell
-                    hidden={viewModeValue.viewMode === "storyboard"}
+                    managedNavigation={managedSurface.navigation}
+                    readOnlyTimeline={managedSurface.enabled}
+                    hidden={!managedSurface.enabled && viewModeValue.viewMode === "storyboard"}
                     left={
-                      <StudioLeftSidebar
-                        leftSidebarRef={leftSidebarRef}
-                        onSelectComposition={handleSelectComposition}
-                        onAddBlock={handleAddBlock}
-                        onPreviewBlock={setBlockPreview}
-                        onLint={handleLint}
-                        linting={linting}
-                        lintFindingCount={lintModal?.length ?? findingsByFile.size}
-                        lintFindingsByFile={findingsByFile}
-                        onAddAssetToTimeline={handleAddAssetAtPlayhead}
-                        onAddCompositionToTimeline={handleAddCompositionAtPlayhead}
-                      />
+                      managedSurface.enabled ? (
+                        <ManagedSceneSidebar surface={managedSurface} />
+                      ) : (
+                        <StudioLeftSidebar
+                          leftSidebarRef={leftSidebarRef}
+                          onSelectComposition={handleSelectComposition}
+                          onAddBlock={handleAddBlock}
+                          onPreviewBlock={setBlockPreview}
+                          onLint={handleLint}
+                          linting={linting}
+                          lintFindingCount={lintModal?.length ?? findingsByFile.size}
+                          lintFindingsByFile={findingsByFile}
+                          onAddAssetToTimeline={handleAddAssetAtPlayhead}
+                          onAddCompositionToTimeline={handleAddCompositionAtPlayhead}
+                        />
+                      )
                     }
                     right={
-                      panelLayout.effectiveRightCollapsed ? null : (
+                      managedSurface.enabled ? (
+                        <ManagedAuthoringInspector surface={managedSurface} />
+                      ) : panelLayout.effectiveRightCollapsed ? null : (
                         <StudioRightPanel
                           designPanelActive={designPanelActive}
                           activeBlockParams={activeBlockParams}
@@ -550,7 +589,9 @@ export function StudioApp() {
                           }}
                           recordingState={gestureState}
                           recordingDuration={gestureRecording.recordingDuration}
-                          onToggleRecording={handleToggleRecording}
+                          onToggleRecording={
+                            managedSurface.enabled ? reportManagedBlocked : handleToggleRecording
+                          }
                           sdkSession={sdkHandle.session}
                           publishSdkSession={sdkHandle.publish}
                           forceReloadSdkSession={sdkHandle.forceReload}
@@ -563,7 +604,16 @@ export function StudioApp() {
                         />
                       )
                     }
-                    timelineToolbar={timelineToolbar}
+                    timelineToolbar={
+                      managedSurface.enabled ? (
+                        <span>
+                          Managed timeline — selection and playback. Use the authoring inspector to
+                          save.
+                        </span>
+                      ) : (
+                        timelineToolbar
+                      )
+                    }
                     renderClipContent={renderClipContent}
                     handleTimelineElementDelete={timelineEditing.handleTimelineElementDelete}
                     handleTimelineAssetDrop={timelineEditing.handleTimelineAssetDrop}
@@ -585,11 +635,13 @@ export function StudioApp() {
                     handleRazorSplitAll={timelineEditing.handleRazorSplitAll}
                     setCompIdToSrc={setCompIdToSrc}
                     setCompositionLoading={setCompositionLoading}
-                    shouldShowMotionPath={shouldShowMotionPath}
+                    shouldShowMotionPath={!managedSurface.enabled && shouldShowMotionPath}
                     shouldShowSelectedDomBounds={shouldShowSelectedDomBounds}
                     isGestureRecording={gestureState === "recording"}
                     recordingState={gestureState}
-                    onToggleRecording={handleToggleRecording}
+                    onToggleRecording={
+                      managedSurface.enabled ? reportManagedBlocked : handleToggleRecording
+                    }
                     blockPreview={blockPreview}
                     gestureOverlay={
                       gestureState === "recording" && previewIframe ? (

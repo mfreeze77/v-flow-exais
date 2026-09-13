@@ -1,0 +1,42 @@
+{
+  "ticketId": "AFM-059",
+  "scope": "guarded managed Studio pilot (opt-in #project/<id>?editor=studio)",
+  "status": "blocked",
+  "verdict": "not accepted — the contributed browser harness does not pass",
+  "environment": {
+    "execution": "docker compose run --rm workspace / docker compose up -d studio",
+    "image": "v-flow-exais:dev",
+    "node": "v22.23.2",
+    "headlessShell": "148.0.7778.167",
+    "puppeteerCore": "25.8.0"
+  },
+  "passing": {
+    "acceptance": "26/26 files, 305/305, including AFM-059.managed-studio 13/13",
+    "studioSuite": "fixed 4 workers; zero new failure identities against the same-worker baseline",
+    "static": "lint, format:check, typecheck project-model/studio-server/studio all exit 0",
+    "observedInBrowser": [
+      "the managed route mounts: Managed Studio header, managed scenes, composition preview and canvas, managed authoring inspector",
+      "the timeline renders correctly labelled tracks (Slot 0 0.0-2.5s, Title 0.0-2.5s, Slot 1 2.5-10.5s)",
+      "the preview iframe loads the pinned build URL (in a shadow root)",
+      "the native fence holds: /renders, /selection, /lint, /gsap-animations, /thumbnail all 409; managed endpoints 200",
+      "no page errors and no external browser requests"
+    ]
+  },
+  "blocker": {
+    "harness": "packages/studio/tests/e2e/managed-studio.mjs",
+    "failsAt": "after the timeline clip double-click, waiting 60s for [aria-label=\"Authoring target\"] option[value]:not([value=\"\"])",
+    "meaning": "the drill-down does not populate the managed inspector's authoring target, so steps 3-7 of the required journey (canvas selection, native text save, diagram label save, undo/redo, reopen, legacy-mutation refusal) were never reached",
+    "notDiagnosed": "whether this is a product gap or a harness-timing issue is NOT established. Two earlier diagnoses this session were wrong — 'the preview endpoint hangs' (it returns 200 in 13.4s; repeated aborted requests had wedged the server) and 'no iframe exists' (it is in a shadow root). A third guess is not recorded as a finding."
+  },
+  "fixedDuringIntegration": [
+    "packages/project-model editorPreview emitted hostId as a bare DOM id (el-0) while the player keys timeline clips as sourceFile#domId (index.html#el-0), so no timeline clip could ever match an emitted scene identity. Added hostKey alongside hostId; hostId is still required by editorPreviewHtml's getElementById. Confirmed by the harness advancing past that assertion.",
+    "packages/studio failed to typecheck: the test's JournalHistoryDelegate mock omitted six members and activate(), and the navigation memo narrowed to a one-parameter onSceneChange while the contract and its real caller pass (sceneId, sourcePath).",
+    "tests/acceptance/AFM-059.managed-studio.test.ts could not load: linkedom is not hoisted to the root, and @hyperframes/sdk was imported by bare name when only @hyperframes/player is linked there.",
+    "the same file asserted a single block code for six paths. localApiPolicy runs before the fence and refuses any non-GET legacy route with project/managed-output, but exempts /render, which only the fence covers, so the code legitimately differs per path. Widened to accept either managed-block code; 409, zero native handler resolutions and an unchanged revision remain fully asserted. The middleware order was deliberately NOT changed: localApiPolicy also performs loopback, origin and size checks that must run first."
+  ],
+  "notClaimed": [
+    "AFM-059, AFM-060, AFM-072 and AFM-078 are not complete",
+    "no video export, visual sign-off, or rendered-video parity for this pilot",
+    "ProjectRouter's default surface choice is unchanged; the pilot is opt-in only"
+  ]
+}

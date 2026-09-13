@@ -29,7 +29,10 @@ export default defineConfig({
     // "hono" also rewrites "hono/body-limit" — which studio-server's own routes
     // import, and which resolved correctly all along from their location. Four
     // acceptance files stopped loading before this was narrowed.
-    alias: [{ find: /^hono$/, replacement: fromStudioServer.resolve("hono") }],
+    alias: [
+      { find: /^hono$/, replacement: fromStudioServer.resolve("hono") },
+      { find: /^linkedom$/, replacement: fromStudioServer.resolve("linkedom") },
+    ],
   },
   ssr: {
     resolve: {

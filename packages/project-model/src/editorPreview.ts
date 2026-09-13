@@ -14,6 +14,8 @@ export interface CompiledSceneBinding {
   outputPath: string;
   renderId: string;
   hostId: string;
+  /** Player/timeline key for the same element: `index.html#<hostId>`. */
+  hostKey: string;
   hostCompositionId: string;
   editOwner: "diagram-command" | "native-document";
 }
@@ -57,10 +59,19 @@ function fail(message: string): never {
 export function sceneEmissionAddress(sceneId: string, index: number) {
   if (!id(sceneId) || !integer(index, 0, 99)) fail("Invalid scene emission identity.");
   const renderId = `scene-${index}-${sceneId.replace(/[^a-zA-Z0-9_-]/g, "-")}`;
+  const hostId = `el-${index}`;
   return {
     renderId,
     outputPath: `${renderId}.html`,
-    hostId: `el-${index}`,
+    hostId,
+    // The same host element in the two identifier spaces this build uses.
+    // `hostId` is the DOM id, which is what editorPreviewHtml passes to
+    // getElementById. The player keys a timeline element as
+    // `sourceFile#domId` (buildTimelineElementKey), scoped because two
+    // compositions may each contain `el-0`. Emitting only the bare id left no
+    // identity a timeline clip could ever match: the host lives in the master
+    // composition, so its key is `index.html#el-N`.
+    hostKey: `index.html#${hostId}`,
     hostCompositionId: `slot-${index}`,
   };
 }
@@ -232,9 +243,13 @@ export function resolvePreviewScene(
       (target.sceneId === undefined || scene.sceneId === target.sceneId) &&
       (target.sourcePath === undefined || scene.sourcePath === target.sourcePath) &&
       (target.renderToken === undefined ||
-        [scene.renderId, scene.hostId, scene.hostCompositionId, scene.outputPath].includes(
-          target.renderToken,
-        )),
+        [
+          scene.renderId,
+          scene.hostId,
+          scene.hostKey,
+          scene.hostCompositionId,
+          scene.outputPath,
+        ].includes(target.renderToken)),
   );
   if (matches.length !== 1)
     throw new EditorPreviewError(

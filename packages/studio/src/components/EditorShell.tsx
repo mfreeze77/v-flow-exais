@@ -23,12 +23,15 @@ type RenderClipContent = (
   style: { clip: string; label: string },
 ) => ReactNode;
 type TimelineDropPlacement = Pick<TimelineElement, "start" | "track">;
+const READ_ONLY_TIMELINE = Object.freeze({});
 
 // The seven move/resize/split/razor handlers come from TimelineEditCallbackDeps
 // (shared with useTimelineEditCallbacks); the rest are drop + wiring props.
 export interface EditorShellProps extends TimelineEditCallbackDeps {
   /** Managed playback navigation only; this does not grant native write capabilities. */
   managedNavigation?: ManagedCompositionNavigationOptions;
+  /** Initial managed surface permits timeline selection/playback, not legacy mutation handlers. */
+  readOnlyTimeline?: boolean;
   /** Left sidebar (media/library), rendered in the top row. */
   left: ReactNode;
   /** Right panel (inspector/design) or null when collapsed, in the top row. */
@@ -74,6 +77,7 @@ export interface EditorShellProps extends TimelineEditCallbackDeps {
 // composition-stack state via NLEProvider so both rows share one player.
 export function EditorShell({
   managedNavigation,
+  readOnlyTimeline = false,
   left,
   right,
   hidden,
@@ -137,6 +141,9 @@ export function EditorShell({
     onSelectionNotFound: reportTimelineSelectionNotFound,
   });
 
+  const blockedMutation = useCallback(() => {
+    showToast("Timeline mutations are not enabled in this managed Studio preview.", "info");
+  }, [showToast]);
   const timelineEditCallbacks = useTimelineEditCallbacks({
     handleTimelineElementMove,
     handleTimelineElementsMove,
@@ -154,7 +161,7 @@ export function EditorShell({
 
   return (
     <div className={`flex flex-col flex-1 min-h-0${hidden ? " hidden" : ""}`}>
-      <TimelineEditProvider value={timelineEditCallbacks}>
+      <TimelineEditProvider value={readOnlyTimeline ? READ_ONLY_TIMELINE : timelineEditCallbacks}>
         <NLEProvider
           projectId={projectId}
           managedNavigation={managedNavigation}
@@ -178,14 +185,14 @@ export function EditorShell({
             right={right}
             captionEditMode={captionEditMode}
             onSelectTimelineElement={handleTimelineElementSelect}
-            onPreviewBlockDrop={handlePreviewBlockDrop}
+            onPreviewBlockDrop={readOnlyTimeline ? blockedMutation : handlePreviewBlockDrop}
             timelineToolbar={timelineToolbar}
             renderClipContent={renderClipContent}
-            onFileDrop={handleTimelineFileDrop}
-            onAssetDrop={handleTimelineAssetDrop}
-            onBlockDrop={handleTimelineBlockDrop}
-            onCompositionDrop={handleTimelineCompositionDrop}
-            onDeleteElement={handleTimelineElementDelete}
+            onFileDrop={readOnlyTimeline ? blockedMutation : handleTimelineFileDrop}
+            onAssetDrop={readOnlyTimeline ? blockedMutation : handleTimelineAssetDrop}
+            onBlockDrop={readOnlyTimeline ? blockedMutation : handleTimelineBlockDrop}
+            onCompositionDrop={readOnlyTimeline ? blockedMutation : handleTimelineCompositionDrop}
+            onDeleteElement={readOnlyTimeline ? blockedMutation : handleTimelineElementDelete}
             previewOverlay={
               <PreviewOverlays
                 shouldShowMotionPath={shouldShowMotionPath}

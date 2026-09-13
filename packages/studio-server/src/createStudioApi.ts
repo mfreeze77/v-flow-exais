@@ -1,3 +1,4 @@
+import { installManagedNativeFence } from "./project/managedNativeFence";
 import { Hono } from "hono";
 import { registerProjectEditorPreviewRoutes } from "./routes/projectEditorPreview";
 import { registerProjectEditorRoutes } from "./routes/projectEditor";
@@ -36,6 +37,8 @@ export function createStudioApi(adapter: StudioApiAdapter): Hono {
   registerProjectCommandRoutes(api, adapter);
   registerProjectEditorPreviewRoutes(api, adapter);
   if (adapter.projectService) registerProjectEditorRoutes(api, adapter.projectService);
+
+  if (adapter.projectService) installManagedNativeFence(api, adapter.projectService);
 
   registerProjectRoutes(api, adapter);
   registerStoryboardRoutes(api, adapter);

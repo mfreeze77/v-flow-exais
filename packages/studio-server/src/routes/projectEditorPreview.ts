@@ -1,3 +1,4 @@
+import { ensureHfIds } from "@hyperframes/parsers/hf-ids";
 /** Explicit preview preparation; all subsequent reads address an immutable build. */
 import type { Hono } from "hono";
 import {
@@ -102,7 +103,15 @@ export function registerProjectEditorPreviewRoutes(api: Hono, adapter: StudioApi
         );
       verifyBuild(pinned);
       let html = scene
-        ? buildSubCompositionHtml(pinned.dir, scene.outputPath, adapter.runtimeUrl)
+        ? buildSubCompositionHtml(
+            pinned.dir,
+            scene.outputPath,
+            adapter.runtimeUrl,
+            undefined,
+            scene.kind === "native"
+              ? ensureHfIds(readPinnedPreviewFile(pinned, scene.outputPath).toString("utf8"))
+              : undefined,
+          )
         : await adapter.bundle(pinned.dir);
       if (!html)
         throw new EditorPreviewError(
@@ -116,7 +125,7 @@ export function registerProjectEditorPreviewRoutes(api: Hono, adapter: StudioApi
           project: { id, dir: pinned.dir },
           activeCompositionPath: scene?.outputPath ?? "index.html",
         });
-      // Verify again across the asynchronous compiler boundary. No stamp/persist helper is used.
+      // Verify again across the asynchronous compiler boundary. Derived native IDs were stamped in memory only; no source or build file is written.
       verifyBuild(pinned);
       return new Response(decorateEditorPreview(html, pinned.session, scene), {
         headers: {

@@ -1,3 +1,5 @@
+import { ManagedStudioEntry } from "./ManagedStudioEntry";
+import { wantsManagedStudio, managedStudioHash } from "./managedStudioAccess";
 import { useState } from "react";
 import { StudioApp } from "../App";
 import { useMountEffect } from "../hooks/useMountEffect";
@@ -10,7 +12,7 @@ import "./project.css";
 import { setActiveManagedProjectId } from "./projectOwnership";
 export { activeManagedProjectId, setActiveManagedProjectId } from "./projectOwnership";
 
-function SelectedProject({ id }: { id: string }) {
+function SelectedProject({ id, studio }: { id: string; studio: boolean }) {
   const [managed, setManaged] = useState<boolean | null>(null);
   const [error, setError] = useState("");
   useMountEffect(() => {
@@ -37,18 +39,43 @@ function SelectedProject({ id }: { id: string }) {
   // Recorded before either surface mounts, so the Studio's write path is
   // decided by what the project is rather than by which component rendered.
   setActiveManagedProjectId(managed ? id : null);
-  // Managed projects mount the shared command editor. No autonomous SDK history
-  // or persist queue is created for compiler-owned output. Native projects keep
-  // the retained full Studio editing surface.
-  return managed ? <ProjectWorkspace id={id} /> : <StudioApp />;
+  // The default workspace stays available. The opt-in Studio entry verifies the
+  // server fence before mounting the same retained App with managed capabilities.
+  return managed ? (
+    studio ? (
+      <ManagedStudioEntry id={id} />
+    ) : (
+      <>
+        <a
+          className="fixed bottom-3 right-3 z-50 rounded bg-teal-900 p-2 text-white"
+          href={managedStudioHash(id, true)}
+        >
+          Open managed Studio preview
+        </a>
+        <ProjectWorkspace id={id} />
+      </>
+    )
+  ) : (
+    <StudioApp />
+  );
 }
 
 export function ProjectRouter() {
-  const [id, setId] = useState(() => parseProjectIdFromHash(window.location.hash));
+  const [hash, setHash] = useState(() => window.location.hash);
+  const id = parseProjectIdFromHash(hash);
+  const studio = wantsManagedStudio(hash);
   useMountEffect(() => {
-    const changed = () => setId(parseProjectIdFromHash(window.location.hash));
+    const changed = () => {
+      const next = window.location.hash;
+      if (!parseProjectIdFromHash(next)) setActiveManagedProjectId(null);
+      setHash(next);
+    };
     window.addEventListener("hashchange", changed);
     return () => window.removeEventListener("hashchange", changed);
   });
-  return id ? <SelectedProject key={id} id={id} /> : <ProjectLauncher />;
+  return id ? (
+    <SelectedProject key={`${id}:${studio}`} id={id} studio={studio} />
+  ) : (
+    <ProjectLauncher />
+  );
 }
