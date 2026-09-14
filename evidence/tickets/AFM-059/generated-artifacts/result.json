@@ -1,0 +1,29 @@
+{
+  "change": "Restore two diagram-engine generated artifacts to their generators' own output and stop formatting them",
+  "cause": {
+    "what": "My own earlier blanket `oxfmt packages/` run reformatted generated files. I repaired packages/core/src/generated at the time and did not check for others.",
+    "effect": "check:brand-marks and check:validators regenerate and compare byte-for-byte, so a formatted copy fails permanently. diagram-engine's `test` script stopped at its FIRST check, which hid every later step in that package."
+  },
+  "verifiedDataUnchanged": [
+    { "file": "renderers/shared/generated-brand-marks.mjs", "method": "imported both modules and compared BRAND_MARKS", "result": "107 marks both sides, JSON deep-equal TRUE" },
+    { "file": "renderers/shared/generated-validators.mjs", "method": "imported both modules, ran all 5 exported validators over every examples/*.json", "result": "same 5 exports; 70 outcomes compared, 70 agree" }
+  ],
+  "measured": [
+    { "check": "check:brand-marks", "before": 1, "after": 0 },
+    { "check": "check:validators", "before": "not reached", "after": 0 },
+    { "check": "bun run lint", "after": 0 },
+    { "check": "bun run format:check", "after": 0 }
+  ],
+  "deliberatelyNotDone": {
+    "check:artifact-styles": "Regenerating packages/diagram-engine/src/styles.mjs is NOT formatting-only. I imported both and compared the exported string: regenerated 863552 chars against committed 112766, a 7.6x increase because the generator inlines a font payload the committed file does not carry. That is a real change to rendered diagram styling and needs review, not a drive-by regeneration. Left untouched and still failing."
+  },
+  "newlyVisible": {
+    "note": "Fixing the first two checks let diagram-engine's later steps run for the first time. They fail on unfinished Archify path rebasing - the same class as docs/catalog and docs/snippets.",
+    "findings": [
+      "check:release-identity runs ../scripts/check-release-identity.mjs, resolving to packages/scripts/. The file is at tools/upstream-archify/check-release-identity.mjs.",
+      "test/golden.mjs reads ../examples/, resolving to packages/examples/. The examples are at packages/diagram-engine/examples/ - one level below, not above.",
+      "About ten diagram-engine test files reference ../scripts/ or ../examples/ and likely share the defect."
+    ],
+    "status": "NOT fixed here. diagram-engine still exits 1."
+  }
+}
