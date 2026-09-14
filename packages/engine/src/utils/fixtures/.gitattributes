@@ -1,0 +1,2 @@
+# This tiny engine contract fixture must remain actual PNG bytes, not an LFS pointer.
+hdr-pq-metadata.png -filter -diff -merge -text

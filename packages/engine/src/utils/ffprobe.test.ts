@@ -12,6 +12,9 @@ import {
   pixelFormatHasAlpha,
 } from "./ffprobe.js";
 
+// Engine metadata tests must not depend on a producer LFS pointer or visual golden.
+const HDR_PQ_FIXTURE = resolve(__dirname, "fixtures/hdr-pq-metadata.png");
+
 function crc32(buf: Buffer): number {
   let crc = 0xffffffff;
   for (let i = 0; i < buf.length; i++) {
@@ -62,10 +65,7 @@ function buildMinimalPng(options?: {
 
 describe("extractMediaMetadata", () => {
   it("reads HDR PNG cICP metadata when ffprobe color fields are absent", async () => {
-    const fixturePath = resolve(
-      __dirname,
-      "../../../producer/tests/hdr-regression/src/hdr-photo-pq.png",
-    );
+    const fixturePath = HDR_PQ_FIXTURE;
 
     const metadata = await extractMediaMetadata(fixturePath);
 
@@ -110,9 +110,7 @@ describe("extractPngMetadataFromBuffer", () => {
   });
 
   it("continues to parse the checked-in HDR PNG fixture", () => {
-    const fixture = readFileSync(
-      resolve(__dirname, "../../../producer/tests/hdr-regression/src/hdr-photo-pq.png"),
-    );
+    const fixture = readFileSync(HDR_PQ_FIXTURE);
     expect(extractPngMetadataFromBuffer(fixture)?.colorSpace?.colorTransfer).toBe("smpte2084");
   });
 
@@ -170,10 +168,7 @@ describe("probeMediaProfile", () => {
     vi.doMock("child_process", () => ({ spawn }));
     const { probeMediaProfile } = await import("./ffprobe.js");
 
-    const validPngPath = resolve(
-      __dirname,
-      "../../../producer/tests/hdr-regression/src/hdr-photo-pq.png",
-    );
+    const validPngPath = HDR_PQ_FIXTURE;
     await expect(probeMediaProfile(validPngPath)).resolves.toEqual({
       hasVideoStream: true,
       hasAudioStream: false,
@@ -624,10 +619,7 @@ describe("ffprobe missing-binary fallback", () => {
     vi.doMock("child_process", () => ({ spawn }));
 
     const { extractMediaMetadata: extractMediaMetadataMocked } = await import("./ffprobe.js");
-    const fixture = resolve(
-      __dirname,
-      "../../../producer/tests/hdr-regression/src/hdr-photo-pq.png",
-    );
+    const fixture = HDR_PQ_FIXTURE;
     const meta = await extractMediaMetadataMocked(fixture);
 
     expect(calls.length).toBe(1);

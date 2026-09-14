@@ -1,0 +1,39 @@
+{
+  "change": "Engine media repair: unreferenced LFS-pointer fixture, and WAVE_FORMAT_EXTENSIBLE support",
+  "baseCommit": "a00fc69d6fd118468824e8c8f6e441444058a7d9",
+  "status": "engine suite green",
+  "problem1": {
+    "what": "packages/producer/tests/hdr-regression/src/hdr-photo-pq.png is a 129-byte Git LFS pointer, not PNG data.",
+    "verifiedIndependently": "Read the file: 'version https://git-lfs.github.com/spec/v1', oid sha256 ba30a9ccd79bd7f283c9d3d7ec273513e95dc45bf3b9660c0a4f8463d6b523fa, size 3026. The PNG parsers were correctly rejecting pointer text.",
+    "recoveryAttempted": "The real 3026-byte object is NOT recoverable locally. .git/lfs holds zero objects, and the frozen provenance baseline at _sources/hyperframes-main/... contains the SAME 129-byte pointer (sha256 3b88d391262a2bdf845a01c9cdd74ae2c99ae726c56ef5f66f46da879b64ecf2). The photograph was never imported, so an engine-owned fixture is the only option here.",
+    "fix": "Engine tests now use packages/engine/src/utils/fixtures/hdr-pq-metadata.png - a real 110-byte RGB16/PQ PNG (signature 89 50 4e 47, sha256 a378739e60368f245e7f046cabe38e9cd9399ab883a9b2973be57af88fb3c665), with a fixture-local .gitattributes so it cannot become another pointer.",
+    "scope": "The producer photograph is untouched and is NOT recovered. After this change no .ts/.mjs/.json under packages/ references hdr-photo-pq by name."
+  },
+  "problem2": {
+    "what": "Both audio readers rejected WAVE_FORMAT_EXTENSIBLE (0xfffe / 65534), which FFmpeg 5.1 writes for sample widths above 16 bits, including pcm_f32le.",
+    "symptom": "AudioFxRenderError: Unsupported WAV format 65534/32-bit; the envelope baker returned false.",
+    "fix": "packages/engine/src/services/wavFormat.ts parses the extension properly: it requires a complete fmt chunk (size >= 40), a bounded cbSize (>= 22 and within the chunk), wValidBitsPerSample equal to the container width, and a full 16-byte subtype GUID compared byte-for-byte against KSDATAFORMAT_SUBTYPE_PCM / IEEE_FLOAT. Unknown GUIDs, truncated extensions and unsupported widths stay rejected. It does not infer float from a partial GUID match.",
+    "reviewNote": "I checked the little-endian subtype constants by hand against the documented GUIDs; both are correct."
+  },
+  "measured": [
+    { "what": "packages/engine bun run test, BEFORE (main a00fc69)", "result": "3 files failed, 7 tests failed, 1717 passed", "exitCode": 1 },
+    { "what": "packages/engine bun run test, AFTER", "result": "77 files passed, 1 skipped; 1783 tests passed, 3 skipped, 0 failed", "exitCode": 0 },
+    { "what": "bun run lint", "exitCode": 0 },
+    { "what": "bun run format:check", "exitCode": 0, "note": "after formatting the six affected files individually; scoped to avoid the generated-file damage a blanket oxfmt caused earlier" },
+    { "what": "packages/engine typecheck (tsc --noEmit)", "exitCode": 0 },
+    { "what": "files changed", "result": "exactly 13 - 4 modifications, 9 additions; nothing outside packages/engine and docs/development" }
+  ],
+  "rootGateStillRed": {
+    "exitCode": 1,
+    "remaining": [
+      "@hyperframes/core - src/registry/catalogGeneratorInstructions.test.ts fails to LOAD: ENOENT scandir /workspace/docs/catalog/blocks. Pre-existing and unrelated: docs/catalog does not exist on origin/main either and is not gitignored, so this test has never been able to load. NOT introduced by this change.",
+      "@hyperframes/studio - 2 PropertyPanel-family failures, reproduced identically on main in isolation.",
+      "@hyperframes/studio - 9 Timeline.virtualization failures that appear only under full test:unit load and pass in isolation; the contention pattern already recorded in evidence/LEDGER.md."
+    ]
+  },
+  "notEstablished": [
+    "The engine suite was run with the pinned image's FFmpeg 5.1.9; the contributor's own run used FFmpeg 7.1.5. The pinned run is the authoritative one and it passed.",
+    "Producer HDR-photo recovery. The original 3026-byte image is still missing and cannot be restored from anything in this repo.",
+    "Root test:unit is not green, for the three unrelated reasons above."
+  ]
+}

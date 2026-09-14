@@ -22,6 +22,7 @@ import { serializeAutomation, type HfAutomation } from "@hyperframes/core/audio-
 import { acquireBrowser } from "./browserManager.js";
 import { createEnvelopeWalker } from "./audioVolumeEnvelope.js";
 import { riffChunks } from "./wavChunks.js";
+import { readSupportedWavFormat, type SupportedWavFormat } from "./wavFormat.js";
 import type { AudioVolumeKeyframe } from "./audioMixer.types.js";
 
 export class AudioFxRenderError extends Error {
@@ -45,46 +46,43 @@ interface WavData {
  * and 32-bit float, the two formats the trim/extract steps emit; anything else
  * is refused rather than silently misread as noise.
  */
-/** Walk the chunks for the format and the payload, in whatever order they sit. */
+/** Walk metadata headers, not sample bytes. data may precede fmt. */
 function readWavChunks(buf: Buffer): {
-  format: number;
-  channels: number;
-  sampleRate: number;
-  bits: number;
+  fmt: SupportedWavFormat | null;
   data?: Buffer;
 } {
-  const head = { format: 1, channels: 1, sampleRate: 48000, bits: 16 };
+  let fmt: SupportedWavFormat | null = null;
   let data: Buffer | undefined;
   for (const { id, body, size } of riffChunks(buf)) {
     if (id === "fmt ") {
-      head.format = buf.readUInt16LE(body);
-      head.channels = buf.readUInt16LE(body + 2);
-      head.sampleRate = buf.readUInt32LE(body + 4);
-      head.bits = buf.readUInt16LE(body + 14);
+      fmt = readSupportedWavFormat(buf, body, size);
+      if (!fmt) return { fmt, data };
     } else if (id === "data") {
       data = buf.subarray(body, Math.min(buf.length, body + size));
-      // The payload is the rest of the file for anything the mixer writes, and
-      // reading past it buys nothing: `fmt ` precedes `data` in every WAV these
-      // steps produce, and the alternative is walking a several-hundred-megabyte
-      // tail chunk by chunk.
-      break;
     }
+    // Both are known; do not inspect an arbitrary tail after a large payload.
+    if (fmt && data) break;
   }
-  return { ...head, data };
+  return { fmt, data };
 }
 
 export function readWav(path: string): WavData {
   const buf = readFileSync(path);
-  if (buf.length < 44 || buf.toString("ascii", 0, 4) !== "RIFF") {
+  if (
+    buf.length < 44 ||
+    buf.toString("ascii", 0, 4) !== "RIFF" ||
+    buf.toString("ascii", 8, 12) !== "WAVE"
+  ) {
     throw new AudioFxRenderError(`Not a WAV file: ${path}`);
   }
-  const { format, channels, sampleRate, bits, data } = readWavChunks(buf);
+  const { fmt, data } = readWavChunks(buf);
+  if (!fmt) throw new AudioFxRenderError(`Unsupported or incomplete WAV format: ${path}`);
   if (!data) throw new AudioFxRenderError(`WAV has no data chunk: ${path}`);
   return {
-    samples: decodeSamples(data, format, bits, path),
-    sampleRate,
-    channels,
-    float: format === 3 && bits === 32,
+    samples: decodeSamples(data, fmt.format, fmt.bits, path),
+    sampleRate: fmt.sampleRate,
+    channels: fmt.channels,
+    float: fmt.float,
   };
 }
 

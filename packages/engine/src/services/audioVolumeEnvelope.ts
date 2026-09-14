@@ -10,8 +10,8 @@
  * sample, and keeps the downstream ffmpeg `amix`/AAC encode untouched — so the
  * output (and the golden baselines) only change where a fade is actually applied.
  *
- * The prepared tracks are always `pcm_s16le`, 48 kHz, stereo (see
- * `prepareAudioTrack` / `extractAudioFromVideo`). Anything else is rejected so
+ * Prepared tracks use PCM16 and group buses use float32. Both may be wrapped
+ * in a WAVE_FORMAT_EXTENSIBLE header. Unsupported encodings remain rejected so
  * the caller can fall back to the expression path rather than corrupting audio.
  */
 
@@ -21,8 +21,7 @@ import type { AudioVolumeKeyframe } from "./audioMixer.types.js";
 import { normaliseEnvelope } from "@hyperframes/core/media-volume-envelope";
 import { riffChunks } from "./wavChunks.js";
 
-const PCM_FORMAT = 1; // WAVE_FORMAT_PCM
-const FLOAT_FORMAT = 3; // WAVE_FORMAT_IEEE_FLOAT
+import { readSupportedWavFormat } from "./wavFormat.js";
 
 interface WavLayout {
   numChannels: number;
@@ -50,16 +49,10 @@ interface WavFmt {
   float: boolean;
 }
 
-/** The `fmt ` chunk, or null for a format this cannot safely edit in place. */
-function readFmtChunk(buffer: Buffer, body: number): WavFmt | null {
-  const format = buffer.readUInt16LE(body);
-  const bits = buffer.readUInt16LE(body + 14);
-  const float = format === FLOAT_FORMAT;
-  if (!float && format !== PCM_FORMAT) return null;
-  if (bits !== (float ? 32 : 16)) return null;
-  const numChannels = buffer.readUInt16LE(body + 2);
-  if (numChannels < 1) return null;
-  return { numChannels, sampleRate: buffer.readUInt32LE(body + 4), float };
+/** Use the same bounded sample-format interpretation as the FX reader. */
+function readFmtChunk(buffer: Buffer, body: number, size: number): WavFmt | null {
+  const fmt = readSupportedWavFormat(buffer, body, size);
+  return fmt ? { numChannels: fmt.channels, sampleRate: fmt.sampleRate, float: fmt.float } : null;
 }
 
 function isRiffWave(buffer: Buffer): boolean {
@@ -77,8 +70,8 @@ function parseWavLayout(buffer: Buffer): WavLayout | null {
   let data: { offset: number; size: number } | null = null;
 
   for (const { id, body, size } of riffChunks(buffer)) {
-    if (id === "fmt " && body + 16 <= buffer.length) {
-      fmt = readFmtChunk(buffer, body);
+    if (id === "fmt ") {
+      fmt = readFmtChunk(buffer, body, size);
     } else if (id === "data") {
       data = { offset: body, size: Math.min(size, buffer.length - body) };
     }
