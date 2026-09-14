@@ -7,6 +7,7 @@ import { watch } from "chokidar";
 import { createProjectSignatureCache, createViteAdapter } from "./vite.adapter";
 import { previewConfigPayload } from "./vite.preview-config";
 import { loadStudioServerDevModule } from "./vite.studio-server-module";
+import { createRuntimeSourceResolver, runtimeSourceWarning } from "./vite.runtime-source";
 
 async function loadRuntimeSourceForDev(
   server: import("vite").ViteDevServer,
@@ -137,14 +138,22 @@ function devProjectApi(): Plugin {
         res.end(JSON.stringify(payload));
       });
 
-      // Runtime endpoint — prefer source build over dist artifact
+      // Runtime endpoint — prefer source build over dist artifact, but never
+      // wait on it without a bound. An unbounded await here produced no
+      // response at all in a captured AFM-059 startup failure, which left the
+      // preview iframe at "load-pending" for the whole mount wait and wedged
+      // the endpoint until the server was restarted.
+      const resolveRuntimeSource = createRuntimeSourceResolver({
+        loadSource: () => loadRuntimeSourceForDev(server),
+        readDist: () => (existsSync(runtimePath) ? readFileSync(runtimePath, "utf-8") : null),
+      });
       server.middlewares.use((req, res, next) => {
         if (req.url !== "/api/runtime.js") return next();
         const serve = async () => {
-          let runtimeSource = await loadRuntimeSourceForDev(server);
-          if (!runtimeSource && existsSync(runtimePath)) {
-            runtimeSource = readFileSync(runtimePath, "utf-8");
-          }
+          const outcome = await resolveRuntimeSource();
+          const warning = runtimeSourceWarning(outcome);
+          if (warning) console.warn(warning);
+          const runtimeSource = outcome.source;
           if (!runtimeSource) {
             res.writeHead(404);
             res.end("runtime not available — build packages/core or load runtime source");

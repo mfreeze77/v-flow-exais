@@ -1,0 +1,37 @@
+{
+  "ticket": "AFM-059",
+  "change": "Bound the dev /api/runtime.js source load and reach the existing dist fallback",
+  "status": "defect-fixed; AFM-059 NOT closed",
+  "defect": {
+    "file": "packages/studio/vite.config.ts",
+    "was": "The middleware awaited loadRuntimeSourceForDev (server.ssrLoadModule) with no bound. The dist fallback was guarded by `if (!runtimeSource ...)`, which is only reachable when the load RETURNS nothing - never when it fails to return at all.",
+    "consequence": "A stalled load produced no HTTP response. The preview iframe never fired load, so the editor sat at timelinePhase 'load-pending' for the whole 60s mount wait, and the endpoint stayed wedged for every later request until the server was restarted."
+  },
+  "fix": {
+    "module": "packages/studio/vite.runtime-source.ts",
+    "behaviour": [
+      "Source is still preferred and still re-read per request, so runtime edits remain visible; Vite's module graph stays the only cache.",
+      "A single request waits at most RUNTIME_SOURCE_TIMEOUT_MS (10000) for the source build, then serves packages/core/dist/hyperframe.runtime.iife.js and logs why.",
+      "Concurrent requests share one in-flight build instead of each starting another stuck load.",
+      "A rejected build is not remembered, so one transient failure is not replayed to later requests.",
+      "A stalled build that later settles is used again from then on."
+    ]
+  },
+  "verified": [
+    { "what": "packages/studio/vite.runtime-source.test.ts", "result": "15 passed, 0 failed" },
+    { "what": "studio package unit suite (vitest --maxWorkers=4)", "result": "470 files passed, 1 skipped; 5266 tests passed, 0 failed, 18 todo" },
+    { "what": "e2e node suites (freshness + startup + delivery + diagnostics)", "result": "186 passed, 0 failed, 0 skipped" },
+    { "what": "bun run lint", "exitCode": 0 },
+    { "what": "bun run format:check", "exitCode": 0 },
+    { "what": "packages/studio typecheck (tsc --noEmit)", "exitCode": 0 },
+    { "what": "live server, GET /api/runtime.js after the fix", "result": "200 in 6.398s then 1.251s, 401730 bytes - the SOURCE size, not the 401731-byte dist, so the normal path is unchanged" },
+    { "what": "live harness, reused fixture after the fix", "result": "mount passed in 1086ms, timelinePhase 'ready', 3 clips, observedReady true" },
+    { "what": "studio log fallback warnings during the healthy run", "result": "0 - the fallback did not engage" }
+  ],
+  "notEstablished": [
+    "The trigger for the original stall. Two attempts to reproduce it deliberately both PASSED: a cold-restarted server with a reused fixture (1957ms) and a cleared Vite dep-optimizer cache (1860ms). The captured failure's app shell was in fact FASTER than the passing runs', so contention and cold-cache cost are both ruled out as the explanation.",
+    "That this fix eliminates the AFM-059 startup failure. It removes the unbounded hang and guarantees a response; it does not explain why ssrLoadModule stalled.",
+    "Whether a dist fallback served during a real stall would be stale enough to change preview behaviour."
+  ],
+  "acceptance": { "editing": "not-run", "export": "not-run", "visualReview": "not-performed" }
+}
