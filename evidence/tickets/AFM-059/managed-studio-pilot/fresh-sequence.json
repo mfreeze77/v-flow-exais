@@ -1,0 +1,48 @@
+{
+  "ticket": "AFM-059",
+  "experiment": "original-fresh-sequence",
+  "commit": "fb5fd5486f2c37d59fb3b9e17e9aec8f21334e3d",
+  "tree": "740e38c361ecb22a9f57055fb092c7a34b49968a",
+  "status": "blocker-localized",
+  "comparisonVerdict": {
+    "interpretation": "invalid-comparison",
+    "exitCode": 1,
+    "stoppedAt": "01-r1-none-fresh",
+    "reason": "Child SIGKILLed at the worker's 180000ms timeout during teardown, after the mount had already failed. The eight-trial plan never completed; one of four authorized fixtures was created.",
+    "outputDir": "out/managed-freshness-20260914-095028"
+  },
+  "reproduced": {
+    "claim": "The startup failure reproduced on the FIRST fresh trial through the original harness executable.",
+    "mount": "failed",
+    "elapsedMs": 60176,
+    "timelinePhase": "load-pending",
+    "renderedClipCount": 0,
+    "pageErrors": [],
+    "blockedExternal": [],
+    "projectId": "video-092ff8c1-ff82-4a90-8c73-dc6dd0dc2ff1"
+  },
+  "localization": {
+    "outstandingRequestAtFailure": "GET /api/runtime.js",
+    "state": "pending",
+    "status": null,
+    "note": "The pinned preview view request (GET /api/vflow/projects/<id>/editor/previews/<buildHash>/view) had already returned 200. The iframe's blocking runtime script never received a response, so its load event never fired, which is exactly what timelinePhase 'load-pending' reports.",
+    "handler": "packages/studio/vite.config.ts:141-165",
+    "mechanism": "loadRuntimeSourceForDev (vite.config.ts:11-24) calls server.ssrLoadModule() on EVERY request with no caching or single-flight guard. The first, cold SSR transform of packages/core/src/inline-scripts/hyperframe.ts competes with the ~900 concurrent client-module transforms the cold dev server is performing for the app shell.",
+    "mechanismStatus": "NOT PROVEN. Consistent with every measurement below, but the starvation/deadlock internals were not instrumented."
+  },
+  "measurements": [
+    { "what": "GET /api/runtime.js, freshly restarted idle server, first request", "http": 200, "seconds": 5.210348, "bytes": 401730 },
+    { "what": "GET /api/runtime.js, same server, second request", "http": 200, "seconds": 0.674562, "bytes": 401730 },
+    { "what": "GET /api/runtime.js, immediately after the failed trial aborted its in-flight request", "http": null, "seconds": 180.000891, "bytes": 0, "note": "No response. Repeated once with the same result; recovered only by restarting the server." }
+  ],
+  "rulesOut": {
+    "fixtureFreshness": "Test A ran a COLD-restarted server against the REUSED fixture video-092ff8c1-ff82-4a90-8c73-dc6dd0dc2ff1: mount passed in 1957ms, timelinePhase 'ready', 3 clips, observedReady true. Fixture freshness is not the variable.",
+    "priorCorrection": "The earlier claim that fixture reuse was the leading remaining difference was wrong on its own terms: managed-startup-trial.mjs:145 also performs a /api/vflow/projects/<id>/editor GET before its page.goto at :200, which managed-studio.mjs does not. Two constants differed, not one."
+  },
+  "notEstablished": [
+    "Whether the 180s non-response is caused by the aborted request poisoning a pending Vite SSR module promise, or by something else.",
+    "A second independent reproduction from a genuinely cold container cache.",
+    "Whether this is the only cause of the AFM-059 startup failure."
+  ],
+  "acceptance": { "editing": "not-run", "export": "not-run", "visualReview": "not-performed" }
+}
