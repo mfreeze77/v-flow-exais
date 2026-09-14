@@ -2,7 +2,23 @@
 
 import React, { act } from "react";
 import { createRoot } from "react-dom/client";
-import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { afterAll, afterEach, beforeAll, beforeEach, describe, expect, it, vi } from "vitest";
+import { Timeline } from "./Timeline";
+import { usePlayerStore } from "../store/playerStore";
+import { getTimelineCanvasHeight, TRACK_H } from "./timelineLayout";
+import { TIMELINE_VIEWPORT_BUDGETS } from "../lib/timelineViewportBudgets";
+import { timelineClipFocusId } from "./timelineNavigationIdentity";
+
+// The real flag's env parsing has its own test. These layout tests exercise both
+// branches with ONE module/store generation; resetting modules was rebuilding the
+// whole editor graph inside test deadlines and made failed-case cleanup fragile.
+const mode = vi.hoisted(() => ({ virtualized: true }));
+vi.mock("./timelineRowVirtualizationFlag", () => ({
+  get STUDIO_TIMELINE_ROW_VIRTUALIZATION_ENABLED() {
+    return mode.virtualized;
+  },
+}));
+const mounted = new Map<ReturnType<typeof createRoot>, HTMLElement>();
 
 (globalThis as { IS_REACT_ACT_ENVIRONMENT?: boolean }).IS_REACT_ACT_ENVIRONMENT = true;
 
@@ -30,7 +46,6 @@ let clientWidth = 900;
 let clientHeight = 240;
 
 beforeAll(() => {
-  vi.stubEnv("VITE_STUDIO_TIMELINE_ROW_VIRTUALIZATION_ENABLED", "1");
   globalThis.ResizeObserver = MockResizeObserver as unknown as typeof ResizeObserver;
   Object.defineProperty(HTMLElement.prototype, "clientWidth", {
     configurable: true,
@@ -45,36 +60,84 @@ beforeAll(() => {
 beforeEach(() => {
   clientWidth = 900;
   clientHeight = 240;
+  mode.virtualized = true;
+  usePlayerStore.getState().reset();
+  // Geometry is already controlled by MockResizeObserver. Drive the browser
+  // scheduler explicitly too: these assert layout/state, not machine throughput.
+  vi.useFakeTimers({
+    toFake: [
+      "setTimeout",
+      "clearTimeout",
+      "setInterval",
+      "clearInterval",
+      "requestAnimationFrame",
+      "cancelAnimationFrame",
+      "Date",
+      "performance",
+    ],
+  });
+});
+
+function unmount(root: ReturnType<typeof createRoot>) {
+  const host = mounted.get(root);
+  if (!host) return;
+  try {
+    act(() => root.unmount());
+  } finally {
+    mounted.delete(root);
+    host.remove();
+  }
+}
+
+afterEach(() => {
+  const failures: unknown[] = [];
+  for (const root of [...mounted.keys()]) {
+    try {
+      unmount(root);
+    } catch (error) {
+      failures.push(error);
+    }
+  }
+  try {
+    usePlayerStore.getState().reset();
+  } finally {
+    vi.clearAllTimers();
+    vi.useRealTimers();
+    mode.virtualized = true;
+    document.body.innerHTML = "";
+  }
+  if (failures.length) throw new AggregateError(failures, "Timeline cleanup failed");
 });
 
 afterAll(() => {
-  vi.unstubAllEnvs();
   globalThis.ResizeObserver = originalResizeObserver;
   if (originalClientWidth)
     Object.defineProperty(HTMLElement.prototype, "clientWidth", originalClientWidth);
+  else Reflect.deleteProperty(HTMLElement.prototype, "clientWidth");
   if (originalClientHeight)
     Object.defineProperty(HTMLElement.prototype, "clientHeight", originalClientHeight);
+  else Reflect.deleteProperty(HTMLElement.prototype, "clientHeight");
   document.body.innerHTML = "";
 });
 
 /**
  * The virtualized list only mounts rows/clips after its ResizeObserver and the
  * follow-up layout effect have both flushed, which is more than one React tick.
- * A fixed number of flushes is a coin flip once the rest of the suite is
- * competing for workers, so wait for the DOM the assertions actually need.
+ * Drive the configured fake clock until the actual DOM predicate holds. An
+ * exhausted frame budget fails here instead of silently returning a false-ready
+ * state and contaminating every later case. The wall-clock test timeout is unchanged.
  */
 async function settleUntil(predicate: () => boolean, tries = 60): Promise<void> {
   for (let attempt = 0; attempt < tries; attempt++) {
     if (predicate()) return;
-    await act(async () => {
-      await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
-    });
+    await advanceFrame();
   }
+  expect(predicate(), `Timeline readiness did not settle within ${tries} driven frames`).toBe(true);
 }
 
 async function advanceFrame(): Promise<void> {
   await act(async () => {
-    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    await vi.advanceTimersByTimeAsync(17);
   });
 }
 
@@ -82,6 +145,7 @@ async function mountTimeline(element: React.ReactElement) {
   const host = document.createElement("div");
   document.body.append(host);
   const root = createRoot(host);
+  mounted.set(root, host);
   await act(async () => root.render(element));
   await act(async () => {});
   return { host, root };
@@ -90,7 +154,7 @@ async function mountTimeline(element: React.ReactElement) {
 async function dispatchScroll(scroller: HTMLElement): Promise<void> {
   await act(async () => {
     scroller.dispatchEvent(new Event("scroll"));
-    await new Promise<void>((resolve) => requestAnimationFrame(() => resolve()));
+    await vi.advanceTimersByTimeAsync(17);
   });
 }
 
@@ -113,17 +177,13 @@ async function scrollTimelineHorizontally(
   await dispatchScroll(scroller);
 }
 
-// These tests mount 500-10,000 timeline elements and settle the virtualizer,
-// which lands right on the 5s default once the rest of the suite is competing
-// for workers. The generous ceiling is a flake guard, not an expected runtime.
+// Retain the existing wall-clock ceiling. Fake time drives only scheduled UI
+// work; rows, clip identities, geometry, selection, focus and DOM mutations still
+// come from the actual Timeline. Browser performance is measured by its e2e suite.
 describe("Timeline row virtualization", { timeout: 30_000 }, () => {
   it("keeps a zero-size first render bounded while the feature flag is enabled", async () => {
     clientWidth = 0;
     clientHeight = 0;
-    const [{ Timeline }, { usePlayerStore }] = await Promise.all([
-      import("./Timeline"),
-      import("../store/playerStore"),
-    ]);
     usePlayerStore.setState({
       duration: 60,
       timelineReady: true,
@@ -136,15 +196,11 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
     expect(rows.length).toBeGreaterThan(0);
     expect(rows.length).toBeLessThanOrEqual(16);
 
-    act(() => root.unmount());
+    unmount(root);
     usePlayerStore.getState().reset();
   });
 
   it("defers rich clip content while scrolling without replacing the clip shell", async () => {
-    const [{ Timeline }, { usePlayerStore }] = await Promise.all([
-      import("./Timeline"),
-      import("../store/playerStore"),
-    ]);
     usePlayerStore.setState({
       duration: 60,
       timelineReady: true,
@@ -159,7 +215,7 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
     );
     try {
       await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 110));
+        await vi.advanceTimersByTimeAsync(110);
       });
 
       const scroller = host.querySelector<HTMLElement>("[data-timeline-scroll-viewport]");
@@ -174,23 +230,17 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
       expect(host.querySelector("[data-rich-content]")).toBeNull();
 
       await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 110));
+        await vi.advanceTimersByTimeAsync(110);
       });
       expect(host.querySelector('[data-el-id="clip-0"]')).toBe(clip);
       expect(host.querySelector("[data-rich-content]")).not.toBeNull();
     } finally {
-      act(() => root.unmount());
+      unmount(root);
       usePlayerStore.getState().reset();
     }
   });
 
   it("mounts a bounded list range over the full geometry height", async () => {
-    const [{ Timeline }, { usePlayerStore }, { getTimelineCanvasHeight, TRACK_H }] =
-      await Promise.all([
-        import("./Timeline"),
-        import("../store/playerStore"),
-        import("./timelineLayout"),
-      ]);
     usePlayerStore.setState({
       duration: 60,
       timelineReady: true,
@@ -230,15 +280,11 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
     expect(treegrid?.querySelector('[data-timeline-row-key="0"]')).not.toBeNull();
     expect(document.activeElement).toBe(focusedControl);
 
-    act(() => root.unmount());
+    unmount(root);
     usePlayerStore.getState().reset();
   });
 
   it("keeps focus pinning active after the scroll viewport remounts", async () => {
-    const [{ Timeline }, { usePlayerStore }] = await Promise.all([
-      import("./Timeline"),
-      import("../store/playerStore"),
-    ]);
     usePlayerStore.setState({
       duration: 60,
       timelineReady: true,
@@ -267,16 +313,11 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
     expect(host.querySelector('[data-timeline-row-key="0"]')).not.toBeNull();
     expect(document.activeElement).toBe(focusedControl);
 
-    act(() => root.unmount());
+    unmount(root);
     usePlayerStore.getState().reset();
   });
 
   it("windows clips and ruler cells while retaining an off-window selected clip", async () => {
-    const [{ Timeline }, { usePlayerStore }, { TIMELINE_VIEWPORT_BUDGETS }] = await Promise.all([
-      import("./Timeline"),
-      import("../store/playerStore"),
-      import("../lib/timelineViewportBudgets"),
-    ]);
     usePlayerStore.setState({
       duration: 1_000,
       timelineReady: true,
@@ -297,11 +338,7 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
       })),
     });
 
-    const host = document.createElement("div");
-    document.body.append(host);
-    const root = createRoot(host);
-    await act(async () => root.render(React.createElement(Timeline, { sessionEpoch: 4 })));
-    await act(async () => {});
+    const { host, root } = await mountTimeline(React.createElement(Timeline, { sessionEpoch: 4 }));
 
     await settleUntil(() => host.querySelectorAll("[data-clip]").length > 1);
     const initialClips = [...host.querySelectorAll<HTMLElement>("[data-clip]")];
@@ -326,7 +363,6 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
     expect(host.querySelector('[data-el-id="clip-490"]')).not.toBeNull();
     expect(host.querySelectorAll("[data-timeline-grid-cell]").length).toBeLessThan(100);
 
-    const { timelineClipFocusId } = await import("./timelineNavigationIdentity");
     await act(async () =>
       usePlayerStore.getState().requestTimelineFocus(timelineClipFocusId("clip-300")),
     );
@@ -344,7 +380,7 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
     expect(host.querySelector('[data-el-id="clip-300"]')).toBe(focusedClip);
     expect(document.activeElement).toBe(focusedClip);
 
-    act(() => root.unmount());
+    unmount(root);
     usePlayerStore.getState().reset();
   });
 });
@@ -356,12 +392,7 @@ describe("Timeline row virtualization", { timeout: 30_000 }, () => {
  */
 describe("Timeline without row virtualization", { timeout: 30_000 }, () => {
   async function renderUnvirtualizedTimeline() {
-    vi.stubEnv("VITE_STUDIO_TIMELINE_ROW_VIRTUALIZATION_ENABLED", "0");
-    vi.resetModules();
-    const [{ Timeline }, { usePlayerStore }] = await Promise.all([
-      import("./Timeline"),
-      import("../store/playerStore"),
-    ]);
+    mode.virtualized = false;
     usePlayerStore.setState({
       duration: 60,
       timelineReady: true,
@@ -377,10 +408,9 @@ describe("Timeline without row virtualization", { timeout: 30_000 }, () => {
     return {
       host,
       dispose: () => {
-        act(() => root.unmount());
+        unmount(root);
         usePlayerStore.getState().reset();
-        vi.stubEnv("VITE_STUDIO_TIMELINE_ROW_VIRTUALIZATION_ENABLED", "1");
-        vi.resetModules();
+        mode.virtualized = true;
       },
     };
   }
@@ -417,7 +447,7 @@ describe("Timeline without row virtualization", { timeout: 30_000 }, () => {
       const clip = host.querySelector<HTMLElement>('[data-el-id="clip-0"]');
       if (scroller) await dispatchScroll(scroller);
       await act(async () => {
-        await new Promise((resolve) => setTimeout(resolve, 150));
+        await vi.advanceTimersByTimeAsync(150);
       });
 
       expect(host.querySelector('[data-el-id="clip-0"]')).toBe(clip);

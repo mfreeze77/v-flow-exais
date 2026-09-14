@@ -17,19 +17,20 @@ describe("catalog generator texture instructions", () => {
   });
 });
 
-// docs/AGENTS.md requires every Catalog page to end with `## Related topics`.
-// The generator emits it (see RELATED_TOPICS); this asserts the committed output
-// still honours the rule, so a regeneration that drops it fails CI here.
+// The import retained the upstream docs site under docs/upstream/hyperframes,
+// not docs/catalog. Check those actual committed pages without regenerating them
+// or reaching into the frozen _sources checkout. Every retained page must still
+// end with the generator's required reader continuation (see RELATED_TOPICS).
 describe("catalog pages keep the required reader continuation", () => {
-  const catalogDir = join(repoRoot, "docs/catalog");
+  const catalogDir = join(repoRoot, "docs/upstream/hyperframes/catalog");
   const pages = (["blocks", "components"] as const).flatMap((sub) =>
     readdirSync(join(catalogDir, sub))
       .filter((f) => f.endsWith(".mdx"))
       .map((f) => ({ sub, file: f, path: join(catalogDir, sub, f) })),
   );
 
-  it("generates at least one page in each catalog subdirectory", () => {
-    expect(pages.length).toBeGreaterThan(0);
+  it.each(["blocks", "components"] as const)("retains at least one page in %s", (sub) => {
+    expect(pages.filter((page) => page.sub === sub).length).toBeGreaterThan(0);
   });
 
   it.each(pages)("$sub/$file ends with a Related topics section", ({ path }) => {
