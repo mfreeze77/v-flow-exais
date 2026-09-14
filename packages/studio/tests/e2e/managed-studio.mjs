@@ -20,6 +20,18 @@ import {
 } from "./managed-studio-diagnostics.mjs";
 
 const args = process.argv.slice(2);
+// The normal editing journey does not load the diagnostic-only module.
+const freshness = args.some((value) =>
+  ["--startup-only", "--reuse-project", "--startup-editor-preflight", "--startup-run-id"].includes(
+    value,
+  ),
+)
+  ? await import("./managed-freshness-mode.mjs")
+  : null;
+const freshnessMode = freshness?.parseFreshnessMode(args) ?? {
+  enabled: false,
+  reuseProjectId: null,
+};
 function arg(name) {
   const i = args.indexOf(name);
   return i < 0 ? undefined : args[i + 1];
@@ -31,7 +43,7 @@ if (
   origin.pathname !== "/"
 )
   throw new Error("Use an HTTP loopback origin for the local verification server.");
-if (!args.includes("--allow-create-test-project"))
+if (!freshnessMode.reuseProjectId && !args.includes("--allow-create-test-project"))
   throw new Error(
     "Pass --allow-create-test-project to create a disposable fixture. No existing project is touched.",
   );
@@ -48,14 +60,17 @@ if (!shell)
 const evidence = {
   verificationEnvironment: { node: process.version, browser: null },
   harnessSourceHashes: Object.fromEntries(
-    ["managed-studio.mjs", "managed-studio-probe.mjs", "managed-studio-diagnostics.mjs"].map(
-      (name) => [
-        name,
-        createHash("sha256")
-          .update(readFileSync(new URL(name, import.meta.url)))
-          .digest("hex"),
-      ],
-    ),
+    [
+      "managed-studio.mjs",
+      "managed-studio-probe.mjs",
+      "managed-studio-diagnostics.mjs",
+      ...(freshnessMode.enabled ? ["managed-freshness-mode.mjs", "managed-startup-probe.mjs"] : []),
+    ].map((name) => [
+      name,
+      createHash("sha256")
+        .update(readFileSync(new URL(name, import.meta.url)))
+        .digest("hex"),
+    ]),
   ),
   status: "running",
   steps: [],
@@ -68,13 +83,14 @@ const ledger = createPhaseLedger();
 evidence.phases = ledger.phases;
 evidence.diagnosticScope =
   "Real managed Studio harness; a passed phase is not full-pilot or export acceptance.";
+if (freshnessMode.enabled) freshness.beginFreshnessEvidence(evidence, freshnessMode, ledger);
 let browser;
 let page;
 let probeRequest = {};
 let pendingRequests = () => [];
 const save = () =>
   writeFileSync(join(output, "result.json"), JSON.stringify(evidence, null, 2) + "\n");
-try {
+async function runJourney() {
   browser = await puppeteer.launch({
     executablePath: shell,
     headless: true,
@@ -129,32 +145,40 @@ try {
   });
   page.on("pageerror", (error) => evidence.pageErrors.push(String(error)));
   await page.goto(origin.href, { waitUntil: "domcontentloaded" });
-  const imported = await phase("fixture-created", () =>
-    page.evaluate(async () => {
-      const response = await fetch("/api/vflow/import-diagram", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          schema_version: 1,
-          diagram_type: "architecture",
-          meta: {
-            title: "Managed Studio browser fixture",
-            viewBox: [900, 570],
-            legend: { mode: "hidden" },
-          },
-          components: [
-            { id: "gateway", type: "backend", label: "Gateway", pos: [60, 80], size: [180, 70] },
-            { id: "api", type: "backend", label: "API", pos: [320, 80], size: [180, 70] },
-          ],
-          connections: [{ id: "edge-a", from: "gateway", to: "api" }],
-          cards: [],
+  const imported = freshnessMode.reuseProjectId
+    ? await phase("fixture-reused", async () => ({ id: freshnessMode.reuseProjectId }))
+    : await phase("fixture-created", () =>
+        page.evaluate(async () => {
+          const response = await fetch("/api/vflow/import-diagram", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              schema_version: 1,
+              diagram_type: "architecture",
+              meta: {
+                title: "Managed Studio browser fixture",
+                viewBox: [900, 570],
+                legend: { mode: "hidden" },
+              },
+              components: [
+                {
+                  id: "gateway",
+                  type: "backend",
+                  label: "Gateway",
+                  pos: [60, 80],
+                  size: [180, 70],
+                },
+                { id: "api", type: "backend", label: "API", pos: [320, 80], size: [180, 70] },
+              ],
+              connections: [{ id: "edge-a", from: "gateway", to: "api" }],
+              cards: [],
+            }),
+          });
+          const body = await response.json();
+          if (!response.ok) throw new Error(JSON.stringify(body));
+          return body;
         }),
-      });
-      const body = await response.json();
-      if (!response.ok) throw new Error(JSON.stringify(body));
-      return body;
-    }),
-  );
+      );
   assert.equal(typeof imported.id, "string");
   const id = imported.id;
   evidence.projectId = id;
@@ -167,6 +191,13 @@ try {
     }, id);
   const initial = await get();
   assert.equal(initial.snapshot.manifest.revision, 0);
+  if (freshnessMode.enabled) {
+    freshness.captureFreshnessBaseline(evidence, initial, id);
+    if (freshnessMode.editorPreflight) {
+      await freshness.primeFreshnessEditor(page, evidence, freshnessMode);
+      save();
+    }
+  }
   await phase("managed-route-mounted", async () => {
     await page.goto(`${origin.origin}/#project/${encodeURIComponent(id)}?editor=studio`, {
       waitUntil: "domcontentloaded",
@@ -177,6 +208,10 @@ try {
       { timeout: 60000 },
     );
   });
+  if (freshnessMode.enabled) {
+    process.exitCode = await freshness.finishFreshnessEvidence(page, evidence);
+    return;
+  }
   const preview = await page.evaluate(async (id) => {
     const view = await (await fetch(`/api/vflow/projects/${id}/editor`)).json();
     const r = await fetch(`/api/vflow/projects/${id}/editor/previews`, {
@@ -392,12 +427,26 @@ try {
     "Fixture project is deliberately retained; remove only its recorded ID through an authorized cleanup workflow.",
     "The timeline is read-only; drill-down, selection and journal inspector edits are covered.",
   ];
+}
+try {
+  await runJourney();
 } catch (error) {
   evidence.status = "failed";
   evidence.error = error instanceof Error ? error.stack : String(error);
   evidence.failedPhase = ledger.phases.find((phase) => phase.status === "failed")?.name ?? null;
   evidence.pendingAtFailure = pendingRequests();
   process.exitCode = 1;
+  if (freshnessMode.enabled) {
+    evidence.status = "diagnostic-only";
+    if (page && !evidence.startup.finalizationAttempted) {
+      try {
+        process.exitCode = await freshness.finishFreshnessEvidence(page, evidence);
+      } catch (diagnosticError) {
+        evidence.startup.valid = false;
+        evidence.startup.error = String(diagnosticError);
+      }
+    }
+  }
   if (page) {
     try {
       evidence.failureCapture = await captureManagedFailure(page, output, probeRequest);
@@ -412,7 +461,10 @@ try {
       await browser.close();
     } catch (closeError) {
       evidence.closeError = String(closeError);
-      evidence.status = "failed";
+      if (freshnessMode.enabled) {
+        evidence.status = "diagnostic-only";
+        evidence.startup.valid = false;
+      } else evidence.status = "failed";
       process.exitCode = 1;
     }
   }
