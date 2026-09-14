@@ -3,6 +3,8 @@
 import React, { act, type ReactElement } from "react";
 import { createRoot, type Root } from "react-dom/client";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
+import { PropertyPanel } from "./PropertyPanel";
+import { usePlayerStore } from "../../player/store/playerStore";
 import { DesignPanelInputProvider } from "../../contexts/DesignPanelInputContext";
 import { __resetDesignInputThrottle } from "../../utils/designInputTracking";
 import type { PropertyPanelProps } from "./propertyPanelHelpers";
@@ -25,7 +27,22 @@ import {
 } from "./propertyPanelPrimitives";
 import { TextAreaField } from "./propertyPanelSections";
 
+// Only the selected inspector mode changes between cases. Reimporting the entire
+// editor after resetModules put cold graph evaluation inside the 5s interaction
+// test and left already-imported primitives on a different module generation.
+// Keep one real panel/context/store graph; test the env resolver in its own suite.
+const panelMode = vi.hoisted(() => ({ flat: false }));
 const trackStudioEvent = vi.hoisted(() => vi.fn());
+
+vi.mock("./manualEditingAvailability", async (importOriginal) => {
+  const actual = await importOriginal<typeof import("./manualEditingAvailability")>();
+  return {
+    ...actual,
+    get STUDIO_FLAT_INSPECTOR_ENABLED() {
+      return panelMode.flat;
+    },
+  };
+});
 
 vi.mock("../../utils/studioTelemetry", () => ({
   trackStudioEvent: (...args: unknown[]) => trackStudioEvent(...args),
@@ -43,6 +60,8 @@ vi.mock("../../contexts/StudioContext", async () => {
 let roots: Root[] = [];
 
 beforeEach(() => {
+  panelMode.flat = false;
+  usePlayerStore.getState().reset();
   trackStudioEvent.mockReset();
   __resetDesignInputThrottle();
   vi.stubGlobal(
@@ -52,13 +71,23 @@ beforeEach(() => {
 });
 
 afterEach(() => {
-  for (const root of roots) act(() => root.unmount());
-  roots = [];
-  document.body.innerHTML = "";
-  vi.useRealTimers();
-  vi.doUnmock("./manualEditingAvailability");
-  vi.resetModules();
-  vi.unstubAllGlobals();
+  const failures: unknown[] = [];
+  for (const root of roots.splice(0)) {
+    try {
+      act(() => root.unmount());
+    } catch (error) {
+      failures.push(error);
+    }
+  }
+  try {
+    usePlayerStore.getState().reset();
+  } finally {
+    document.body.innerHTML = "";
+    vi.useRealTimers();
+    panelMode.flat = false;
+    vi.unstubAllGlobals();
+  }
+  if (failures.length) throw new AggregateError(failures, "PropertyPanel cleanup failed");
 });
 
 function render(ui: ReactElement): HTMLElement {
@@ -458,14 +487,7 @@ function representativeElement() {
 
 describe("classic PropertyPanel input coverage", () => {
   it("emits only named, known-section events across body inputs and header/footer chrome", async () => {
-    vi.resetModules();
-    vi.doMock("./manualEditingAvailability", async () => {
-      const actual = await vi.importActual<typeof import("./manualEditingAvailability")>(
-        "./manualEditingAvailability",
-      );
-      return { ...actual, STUDIO_FLAT_INSPECTOR_ENABLED: false };
-    });
-    const { PropertyPanel } = await import("./PropertyPanel");
+    panelMode.flat = false;
     const host = render(
       <PropertyPanel
         {...({
@@ -529,14 +551,7 @@ describe("classic PropertyPanel input coverage", () => {
 
 describe("flat PropertyPanel input coverage", () => {
   it("emits only named flat events from known sections for every visible layout input", async () => {
-    vi.resetModules();
-    vi.doMock("./manualEditingAvailability", async () => {
-      const actual = await vi.importActual<typeof import("./manualEditingAvailability")>(
-        "./manualEditingAvailability",
-      );
-      return { ...actual, STUDIO_FLAT_INSPECTOR_ENABLED: true };
-    });
-    const { PropertyPanel } = await import("./PropertyPanel");
+    panelMode.flat = true;
     const host = render(
       <PropertyPanel
         {...({
