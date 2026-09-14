@@ -309,9 +309,10 @@ describe("applyVolumeEnvelopeToWav", () => {
 
     /**
      * The fixtures above are hand-built canonical 44-byte headers, which is NOT
-     * what the group sub-mix actually hands this function: ffmpeg's `pcm_f32le`
-     * writes an 18-byte `fmt ` chunk plus a `fact` chunk, putting `data` at
-     * offset 92. Every assertion above would still pass if this function could
+     * what the group sub-mix actually hands this function: FFmpeg may write
+     * an 18-byte classic `fmt ` chunk or a 40-byte WAVE_FORMAT_EXTENSIBLE
+     * chunk, with additional fact/LIST metadata. Every assertion above would
+     * still pass if this function could
      * not read a real one — and an unreadable file returns false, which the
      * caller reads as "no automation here" and drops the group's envelope.
      */
@@ -338,11 +339,19 @@ describe("applyVolumeEnvelopeToWav", () => {
       expect(made.status).toBe(0);
 
       const before = readFileSync(path);
-      // The format tag is the load-bearing part; the chunk LAYOUT is this
-      // build's quirk, so it is logged as context rather than required — a
-      // build emitting a canonical 16-byte fmt with data at 44 is legal and
-      // handled, and pinning 18/92 would fail on the good case.
-      expect(before.readUInt16LE(20)).toBe(3); // WAVE_FORMAT_IEEE_FLOAT
+      // Both classic IEEE_FLOAT and extensible IEEE_FLOAT describe these samples.
+      // Validate the complete subtype when the container uses the extension;
+      // accepting tag 0xfffe alone would also admit compressed/non-float data.
+      const format = before.readUInt16LE(20);
+      if (format === 0xfffe) {
+        expect(before.readUInt32LE(16)).toBeGreaterThanOrEqual(40);
+        expect(before.readUInt16LE(36)).toBeGreaterThanOrEqual(22);
+        expect(before.readUInt16LE(38)).toBe(32);
+        expect(before.subarray(44, 60).toString("hex")).toBe("0300000000001000800000aa00389b71");
+      } else {
+        expect(format).toBe(3);
+      }
+      expect(before.readUInt16LE(34)).toBe(32);
 
       expect(
         applyVolumeEnvelopeToWav(
