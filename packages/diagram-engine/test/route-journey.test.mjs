@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -8,7 +9,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const template = fs.readFileSync(path.join(skillRoot, "assets", "template.html"), "utf8");
+const template = fs.readFileSync(ownedSkillPath(skillRoot, "assets", "template.html"), "utf8");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-route-journey-"));
 
 const CASES = {
@@ -20,11 +21,11 @@ const CASES = {
 };
 
 function render(mode, example) {
-  const input = path.join(skillRoot, "examples", example);
+  const input = ownedSkillPath(skillRoot, "examples", example);
   const output = path.join(tmp, `${mode}.html`);
   const result = spawnSync(
     process.execPath,
-    [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
+    [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
     { encoding: "utf8" },
   );
   return { result, html: fs.existsSync(output) ? fs.readFileSync(output, "utf8") : "" };

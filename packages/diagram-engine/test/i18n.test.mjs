@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -17,8 +18,8 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const cli = path.join(skillRoot, "bin/archify.mjs");
-const templatePath = path.join(skillRoot, "assets/template.html");
+const cli = ownedSkillPath(skillRoot, "bin/archify.mjs");
+const templatePath = ownedSkillPath(skillRoot, "assets/template.html");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-i18n-"));
 const chromePath = process.env.ARCHIFY_CHROME ? findChrome() : null;
 let sequence = 0;
@@ -32,7 +33,7 @@ const EXAMPLES = {
 };
 
 function example(type) {
-  return JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES[type]), "utf8"));
+  return JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES[type]), "utf8"));
 }
 
 const AUTHORED_TEXT_KEYS = new Set([

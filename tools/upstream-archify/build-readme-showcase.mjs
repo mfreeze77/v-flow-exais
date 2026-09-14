@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { ownedArchifyPath, ownedWorkspaceRoot } from "./owned-layout.mjs";
 
 import crypto from "node:crypto";
 import fs from "node:fs";
@@ -8,8 +9,8 @@ import { spawn, spawnSync } from "node:child_process";
 import { fileURLToPath, pathToFileURL } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "..");
-const assetsRoot = path.join(repoRoot, "docs", "assets");
+const repoRoot = ownedWorkspaceRoot;
+const assetsRoot = ownedArchifyPath(repoRoot, "docs", "assets");
 const outputPath = path.resolve(process.argv[2] || path.join(assetsRoot, "archify-live-proof.gif"));
 const receiptPath = outputPath.replace(/\.gif$/i, ".json");
 const width = 960;
@@ -106,7 +107,7 @@ function esc(value) {
 }
 
 function wrapperHtml(scene, index) {
-  const artifact = path.join(repoRoot, scene.artifact);
+  const artifact = ownedArchifyPath(repoRoot, scene.artifact);
   const artifactUrl = `${pathToFileURL(artifact).href}?embed=1&play=1&theme=dark#view=${encodeURIComponent(scene.view)}`;
   return `<!doctype html>
 <html lang="en" style="--accent:${esc(scene.accent)};--fade:1">
@@ -394,7 +395,7 @@ function buildGif(ffmpeg, framesRoot) {
 
 async function main() {
   for (const scene of scenes) {
-    const artifact = path.join(repoRoot, scene.artifact);
+    const artifact = ownedArchifyPath(repoRoot, scene.artifact);
     if (!fs.existsSync(artifact))
       throw new Error(`${scene.id}: missing ${scene.artifact}; run node scripts/build-gallery.mjs`);
   }
@@ -420,7 +421,7 @@ async function main() {
       scenes: scenes.map((scene) => ({
         id: scene.id,
         artifact: scene.artifact,
-        artifactSha256: sha256(path.join(repoRoot, scene.artifact)),
+        artifactSha256: sha256(ownedArchifyPath(repoRoot, scene.artifact)),
         view: scene.view,
         eyebrow: scene.eyebrow,
         title: scene.title,

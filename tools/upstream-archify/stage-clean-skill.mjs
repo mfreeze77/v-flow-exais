@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { ownedArchifyPath, ownedWorkspaceRoot } from "./owned-layout.mjs";
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -7,7 +8,7 @@ import { fileURLToPath } from "node:url";
 
 import { assertThirdPartyNotices } from "./third-party-notices-contract.mjs";
 
-const scriptRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const scriptRoot = ownedWorkspaceRoot;
 const REQUIRED_INPUTS = new Set([
   "archify/LICENSE",
   "archify/THIRD_PARTY_NOTICES.md",
@@ -200,7 +201,7 @@ function validateThirdPartyNoticeInputs(repoRoot, packageEntries) {
     throw new Error("required package input is missing: archify/THIRD_PARTY_NOTICES.md");
   }
 
-  const repositoryPath = path.join(repoRoot, "THIRD_PARTY_NOTICES.md");
+  const repositoryPath = ownedArchifyPath(repoRoot, "THIRD_PARTY_NOTICES.md");
   let repositoryNotices;
   try {
     const metadata = fs.lstatSync(repositoryPath);
@@ -230,7 +231,7 @@ function validateThirdPartyNoticeInputs(repoRoot, packageEntries) {
 }
 
 export function stageCleanSkill({ repoRoot = scriptRoot, destination }) {
-  const resolvedRoot = fs.realpathSync(path.resolve(repoRoot));
+  const resolvedRoot = fs.realpathSync(ownedArchifyPath(repoRoot));
   if (!destination) throw new Error("clean Skill staging requires a destination");
   const resolvedDestination = path.resolve(destination);
   if (fs.existsSync(resolvedDestination)) {

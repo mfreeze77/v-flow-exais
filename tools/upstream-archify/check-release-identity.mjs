@@ -1,8 +1,8 @@
 #!/usr/bin/env node
+import { ownedArchifyPath, ownedWorkspaceRoot } from "./owned-layout.mjs";
 
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
 import {
   compareSemver,
@@ -10,9 +10,9 @@ import {
   parseSemver,
   validateLocalRelease,
   validateStableUpdateManifest,
-} from "../archify/scripts/update-contract.mjs";
+} from "../../packages/diagram-engine/scripts/update-contract.mjs";
 
-const scriptRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const scriptRoot = ownedWorkspaceRoot;
 const rootFlag = process.argv.indexOf("--root");
 const repoRoot = rootFlag === -1 ? scriptRoot : path.resolve(process.argv[rootFlag + 1] || "");
 const failures = [];
@@ -23,7 +23,7 @@ function fail(message) {
 
 function read(relativePath) {
   try {
-    return fs.readFileSync(path.join(repoRoot, relativePath), "utf8");
+    return fs.readFileSync(ownedArchifyPath(repoRoot, relativePath), "utf8");
   } catch {
     fail(`${relativePath} is missing or unreadable.`);
     return "";

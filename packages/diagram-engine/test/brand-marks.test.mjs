@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import { spawn, spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -15,11 +16,11 @@ import {
 import {
   THIRD_PARTY_NOTICE_DISCLOSURE_COUNT,
   validateThirdPartyNotices,
-} from "../../scripts/third-party-notices-contract.mjs";
+} from "../../../tools/upstream-archify/third-party-notices-contract.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const cli = path.join(skillRoot, "bin", "archify.mjs");
+const cli = ownedSkillPath(skillRoot, "bin", "archify.mjs");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-brand-marks-"));
 const cases = {
   architecture: ["web-app.architecture.json", "components"],
@@ -30,7 +31,7 @@ const cases = {
 };
 
 test("third-party notices cover every recorded individual mark license", () => {
-  const notices = fs.readFileSync(path.join(skillRoot, "THIRD_PARTY_NOTICES.md"), "utf8");
+  const notices = fs.readFileSync(ownedSkillPath(skillRoot, "THIRD_PARTY_NOTICES.md"), "utf8");
   const licensedMarks = BRAND_MARKS.filter((mark) => mark.provenance?.license);
 
   assert.equal(THIRD_PARTY_NOTICE_DISCLOSURE_COUNT, 39, "notice contract changed without review");
@@ -56,7 +57,7 @@ test("third-party notices cover every recorded individual mark license", () => {
 
 function writeFixture(type, name, brand, customize) {
   const [example, collection] = cases[type];
-  const value = JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", example), "utf8"));
+  const value = JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "examples", example), "utf8"));
   value[collection][0].brand = brand;
   customize?.(value, value[collection][0]);
   const file = path.join(tmp, `${name}.${type}.json`);
@@ -68,7 +69,7 @@ function renderSync(type, input, name, env = {}) {
   const output = path.join(tmp, `${name}.html`);
   const result = spawnSync(
     process.execPath,
-    [path.join(skillRoot, `renderers/${type}/render-${type}.mjs`), input, output],
+    [ownedSkillPath(skillRoot, `renderers/${type}/render-${type}.mjs`), input, output],
     {
       cwd: skillRoot,
       encoding: "utf8",
@@ -83,7 +84,7 @@ function renderAsync(type, input, name, env = {}) {
   return new Promise((resolve) => {
     const child = spawn(
       process.execPath,
-      [path.join(skillRoot, `renderers/${type}/render-${type}.mjs`), input, output],
+      [ownedSkillPath(skillRoot, `renderers/${type}/render-${type}.mjs`), input, output],
       {
         cwd: skillRoot,
         env: { ...process.env, ...env },
@@ -783,7 +784,7 @@ test("unknown preset names fail with a repairable public CLI diagnostic", () => 
 });
 
 test("viewer exposes brand identity to Passport and Finder while keeping source beacons clear", () => {
-  const template = fs.readFileSync(path.join(skillRoot, "assets", "template.html"), "utf8");
+  const template = fs.readFileSync(ownedSkillPath(skillRoot, "assets", "template.html"), "utf8");
   assert.match(template, /id="focus-brand" data-passport="brand" hidden/);
   assert.match(template, /node\.getAttribute\('data-node-brand'\)/);
   assert.match(template, /brandOffset = node\.hasAttribute\('data-node-brand'\) \? 24 : 0/);

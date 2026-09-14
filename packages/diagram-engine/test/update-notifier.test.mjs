@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import crypto from "node:crypto";
 import fs from "node:fs";
@@ -13,8 +14,8 @@ import { DEFAULT_MANIFEST_URL, compareSemver, parseSemver } from "../scripts/upd
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const checkerPath = path.join(skillRoot, "scripts", "check-update.mjs");
-const contractPath = path.join(skillRoot, "scripts", "update-contract.mjs");
+const checkerPath = ownedSkillPath(skillRoot, "scripts", "check-update.mjs");
+const contractPath = ownedSkillPath(skillRoot, "scripts", "update-contract.mjs");
 const expectedRepository = "https://github.com/tt-a1i/archify";
 const expectedManifestUrl = "https://tt-a1i.github.io/archify/skill-updates/archify/stable.json";
 const baseTime = Date.parse("2026-08-28T08:00:00Z");
@@ -457,7 +458,9 @@ function assertUnsafeCacheStateIsIgnored(testFixture) {
 
 test("production manifest URL is a fixed trusted GitHub Pages resource", () => {
   assert.equal(DEFAULT_MANIFEST_URL, expectedManifestUrl);
-  const local = JSON.parse(fs.readFileSync(path.join(skillRoot, "skill-release.json"), "utf8"));
+  const local = JSON.parse(
+    fs.readFileSync(ownedSkillPath(skillRoot, "skill-release.json"), "utf8"),
+  );
   assert.equal(local.updateManifestUrl, expectedManifestUrl);
   assert.equal(local.source.repository, expectedRepository);
 });
@@ -3513,7 +3516,7 @@ test("CLI acknowledgement emits the documented one-line success schema", async (
       : process.platform === "darwin"
         ? path.join(home, "Library", "Caches", "archify-skill")
         : path.join(xdg, "archify-skill");
-  const releasePath = path.join(skillRoot, "skill-release.json");
+  const releasePath = ownedSkillPath(skillRoot, "skill-release.json");
   const installedRelease = JSON.parse(fs.readFileSync(releasePath, "utf8"));
   const [major, minor, patch] = parseSemver(installedRelease.version).core;
   const candidateVersion = `${major}.${minor}.${BigInt(patch) + 1n}`;

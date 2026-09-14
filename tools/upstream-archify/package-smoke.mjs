@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { ownedArchifyPath, ownedSkillPath, ownedWorkspaceRoot } from "./owned-layout.mjs";
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -9,21 +10,21 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 import { assertThirdPartyNotices } from "./third-party-notices-contract.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "..");
+const repoRoot = ownedWorkspaceRoot;
 const noticeComparisonRoot = path.resolve(
   process.env.ARCHIFY_PACKAGE_SMOKE_NOTICE_ROOT || repoRoot,
 );
 const defaultPackageRoot = process.env.RUNNER_TEMP
   ? path.join(process.env.RUNNER_TEMP, "archify-package", "archify")
-  : path.join(repoRoot, "archify");
+  : ownedArchifyPath(repoRoot, "archify");
 const skillRoot = path.resolve(process.argv[2] || defaultPackageRoot);
-const cli = path.join(skillRoot, "bin", "archify.mjs");
-const updateChecker = path.join(skillRoot, "scripts", "check-update.mjs");
-const updateContract = path.join(skillRoot, "scripts", "update-contract.mjs");
+const cli = ownedSkillPath(skillRoot, "bin", "archify.mjs");
+const updateChecker = ownedSkillPath(skillRoot, "scripts", "check-update.mjs");
+const updateContract = ownedSkillPath(skillRoot, "scripts", "update-contract.mjs");
 const scratch = fs.mkdtempSync(path.join(os.tmpdir(), "archify-package-smoke-"));
 
 function requireAbsent(relative) {
-  if (fs.existsSync(path.join(skillRoot, relative))) {
+  if (fs.existsSync(ownedSkillPath(skillRoot, relative))) {
     throw new Error(`packaged skill must not contain ${relative}`);
   }
 }
@@ -64,7 +65,7 @@ try {
   requireAbsent(".hive");
   requireAbsent(".workbuddy");
 
-  const packageLicensePath = path.join(skillRoot, "LICENSE");
+  const packageLicensePath = ownedSkillPath(skillRoot, "LICENSE");
   if (!fs.existsSync(packageLicensePath)) {
     throw new Error("packaged skill is missing LICENSE");
   }
@@ -73,7 +74,7 @@ try {
   if (!packageLicenseLines.includes("Copyright (c) 2025 Cocoon AI")) {
     throw new Error("packaged LICENSE is missing the exact Cocoon AI copyright line");
   }
-  const repositoryLicense = fs.readFileSync(path.join(repoRoot, "LICENSE"), "utf8");
+  const repositoryLicense = fs.readFileSync(ownedArchifyPath(repoRoot, "LICENSE"), "utf8");
   if (packageLicense !== repositoryLicense) {
     throw new Error("packaged LICENSE must byte-match the repository LICENSE");
   }
@@ -85,7 +86,7 @@ try {
     throw new Error("packaged LICENSE is missing the MIT notice-preservation terms");
   }
 
-  const packageNoticesPath = path.join(skillRoot, "THIRD_PARTY_NOTICES.md");
+  const packageNoticesPath = ownedSkillPath(skillRoot, "THIRD_PARTY_NOTICES.md");
   if (!fs.existsSync(packageNoticesPath)) {
     throw new Error("packaged skill is missing THIRD_PARTY_NOTICES.md");
   }
@@ -95,9 +96,9 @@ try {
     "utf8",
   );
   const embeddedFonts = /data:font\/woff2/.test(
-    fs.readFileSync(path.join(skillRoot, "assets/template.html"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "assets/template.html"), "utf8"),
   );
-  if (embeddedFonts && !fs.existsSync(path.join(skillRoot, "assets/JetBrainsMono-OFL.txt"))) {
+  if (embeddedFonts && !fs.existsSync(ownedSkillPath(skillRoot, "assets/JetBrainsMono-OFL.txt"))) {
     throw new Error("embedded viewer font requires assets/JetBrainsMono-OFL.txt");
   }
   assertThirdPartyNotices(repositoryNotices, "repository THIRD_PARTY_NOTICES.md", {
@@ -115,7 +116,9 @@ try {
     throw new Error(`packaged update contract not found at ${updateContract}`);
   }
 
-  const packageJson = JSON.parse(fs.readFileSync(path.join(skillRoot, "package.json"), "utf8"));
+  const packageJson = JSON.parse(
+    fs.readFileSync(ownedSkillPath(skillRoot, "package.json"), "utf8"),
+  );
   const dependencyFields = [
     "dependencies",
     "devDependencies",
@@ -134,7 +137,7 @@ try {
   }
 
   const skillRelease = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "skill-release.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "skill-release.json"), "utf8"),
   );
   const contract = await import(pathToFileURL(updateContract).href);
   let validatedRelease;
@@ -205,7 +208,7 @@ try {
     );
   }
   const notifierAcknowledgement = await checker.acknowledgeUpdate({
-    releasePath: path.join(skillRoot, "skill-release.json"),
+    releasePath: ownedSkillPath(skillRoot, "skill-release.json"),
     cacheDirectory: notifierCache,
     eventKey: notifierReceipt.eventKey,
     now: () => Date.parse("2026-08-28T00:00:01Z"),
@@ -214,7 +217,7 @@ try {
     throw new Error("packaged update checker did not persist a visible-notice acknowledgement");
   }
 
-  const skill = fs.readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+  const skill = fs.readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
   const skillReferences = [
     ...skill.matchAll(
       /`((?:assets|bin|examples|recipes|references|renderers|schemas|scripts)\/[^`\s]+)`/g,
@@ -226,7 +229,7 @@ try {
     throw new Error("packaged SKILL.md did not expose any literal package paths");
   }
   for (const reference of new Set(skillReferences)) {
-    if (!fs.existsSync(path.join(skillRoot, reference))) {
+    if (!fs.existsSync(ownedSkillPath(skillRoot, reference))) {
       throw new Error(`packaged SKILL.md references missing path ${reference}`);
     }
   }
@@ -255,7 +258,7 @@ try {
   ];
   for (const [mode, fixture] of fixtures) {
     const receipt = JSON.parse(
-      run(["validate", mode, path.join(skillRoot, "examples", fixture), "--json"]),
+      run(["validate", mode, ownedSkillPath(skillRoot, "examples", fixture), "--json"]),
     );
     if (!receipt.ok || receipt.type !== mode) {
       throw new Error(`${mode} package validation returned an invalid receipt`);
@@ -269,7 +272,7 @@ try {
     run([
       "validate",
       "workflow",
-      path.join(skillRoot, "examples", fixtures[1][1]),
+      ownedSkillPath(skillRoot, "examples", fixtures[1][1]),
       "--layout-json",
       "--quality",
       "showcase",
@@ -340,15 +343,20 @@ try {
   }
 
   const deployment = path.join(scratch, "deployment.html");
-  run(["render", "architecture", path.join(skillRoot, "examples", fixtures[0][1]), deployment]);
+  run([
+    "render",
+    "architecture",
+    ownedSkillPath(skillRoot, "examples", fixtures[0][1]),
+    deployment,
+  ]);
   run(["check", deployment]);
 
   const compareReceipt = JSON.parse(
     run([
       "compare",
       "architecture",
-      path.join(skillRoot, "examples", "checkout-platform.base.architecture.json"),
-      path.join(skillRoot, "examples", "checkout-platform.head.architecture.json"),
+      ownedSkillPath(skillRoot, "examples", "checkout-platform.base.architecture.json"),
+      ownedSkillPath(skillRoot, "examples", "checkout-platform.head.architecture.json"),
       path.join(scratch, "architecture-delta.html"),
       "--json",
     ]),
@@ -365,7 +373,7 @@ try {
     run([
       "deliver",
       "workflow",
-      path.join(skillRoot, "examples", fixtures[1][1]),
+      ownedSkillPath(skillRoot, "examples", fixtures[1][1]),
       path.join(scratch, "workflow-delivered.html"),
       "--quality",
       "showcase",
@@ -401,7 +409,7 @@ try {
       [
         "deliver",
         "workflow",
-        path.join(skillRoot, "examples", fixtures[1][1]),
+        ownedSkillPath(skillRoot, "examples", fixtures[1][1]),
         path.join(scratch, "workflow-open-fallback.html"),
         "--open",
         "--json",
@@ -414,7 +422,7 @@ try {
   }
 
   const invalidWorkflow = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", fixtures[1][1]), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", fixtures[1][1]), "utf8"),
   );
   invalidWorkflow.nodes[0].colour = "cyan";
   const invalidPath = path.join(scratch, "invalid-workflow.json");

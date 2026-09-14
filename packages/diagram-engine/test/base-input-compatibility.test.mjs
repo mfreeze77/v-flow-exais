@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -11,11 +12,11 @@ const skillRoot = path.resolve(here, "..");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-base-input-compatibility-"));
 
 function renderBaseFixture(type, name) {
-  const input = path.join(skillRoot, "test", "fixtures", "v1-baseline", name);
+  const input = ownedSkillPath(skillRoot, "test", "fixtures", "v1-baseline", name);
   const output = path.join(tmp, `${name}.html`);
   return spawnSync(
     process.execPath,
-    [path.join(skillRoot, "bin", "archify.mjs"), "render", type, input, output],
+    [ownedSkillPath(skillRoot, "bin", "archify.mjs"), "render", type, input, output],
     {
       cwd: skillRoot,
       encoding: "utf8",

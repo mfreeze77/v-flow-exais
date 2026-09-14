@@ -1,3 +1,7 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -7,8 +11,7 @@ import { fileURLToPath } from "node:url";
 import { extractSvgs, parseXml } from "./helpers/xml.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
+const repoRoot = ownedWorkspaceRoot;
 const artifactRoots = ["archify/examples", "docs", "examples", "experiments"];
 
 function trackedHtmlArtifacts() {
@@ -51,7 +54,7 @@ test("tracked browsable HTML embeds well-formed XML SVG", () => {
   let checkoutSvgs;
 
   for (const relative of artifacts) {
-    const html = fs.readFileSync(path.join(repoRoot, relative), "utf8");
+    const html = fs.readFileSync(ownedArchifyPath(repoRoot, relative), "utf8");
     const extracted = extractSvgs(html);
     if (relative === checkoutArtifact) checkoutSvgs = extracted;
     const svgs = [...extracted.direct, ...extracted.embedded];
@@ -77,7 +80,7 @@ test("legacy example URLs redirect to the current canonical artifacts", () => {
     ["examples/workflow-agent-tool-call.html", "workflow-agent-tool-call-rendered.html"],
     ["examples/sequence-cache-miss.html", "sequence-cache-miss-request.html"],
   ]) {
-    const html = fs.readFileSync(path.join(repoRoot, legacy), "utf8");
+    const html = fs.readFileSync(ownedArchifyPath(repoRoot, legacy), "utf8");
     assert.match(html, new RegExp(`<link rel="canonical" href="${canonical}">`));
     assert.match(
       html,
@@ -86,6 +89,6 @@ test("legacy example URLs redirect to the current canonical artifacts", () => {
       ),
       `${legacy} must preserve query parameters and deep-link fragments`,
     );
-    assert.equal(fs.existsSync(path.join(repoRoot, "examples", canonical)), true);
+    assert.equal(fs.existsSync(ownedArchifyPath(repoRoot, "examples", canonical)), true);
   }
 });

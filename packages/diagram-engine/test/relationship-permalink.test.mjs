@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -19,7 +20,9 @@ const CASES = {
 };
 
 function fixture(mode) {
-  return JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", CASES[mode].example), "utf8"));
+  return JSON.parse(
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", CASES[mode].example), "utf8"),
+  );
 }
 
 function run(mode, doc, suffix) {
@@ -28,7 +31,7 @@ function run(mode, doc, suffix) {
   fs.writeFileSync(input, JSON.stringify(doc));
   const result = spawnSync(
     process.execPath,
-    [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
+    [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
     { encoding: "utf8" },
   );
   return { result, html: fs.existsSync(output) ? fs.readFileSync(output, "utf8") : "" };

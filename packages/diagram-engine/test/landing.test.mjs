@@ -1,3 +1,7 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -5,9 +9,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
-const docsRoot = path.join(repoRoot, "docs");
+const repoRoot = ownedWorkspaceRoot;
+const docsRoot = ownedArchifyPath(repoRoot, "docs");
 const landing = fs.readFileSync(path.join(docsRoot, "index.html"), "utf8");
 const manifest = JSON.parse(
   fs.readFileSync(path.join(docsRoot, "gallery", "manifest.json"), "utf8"),

@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -74,7 +75,7 @@ function render(input, output, quality = "standard") {
   execFileSync(
     process.execPath,
     [
-      path.join(skillRoot, "bin/archify.mjs"),
+      ownedSkillPath(skillRoot, "bin/archify.mjs"),
       "render",
       "architecture",
       input,
@@ -126,9 +127,13 @@ test(
     ];
     try {
       for (const [name, source, quality] of fixtures)
-        render(path.join(skillRoot, "examples", source), path.join(tmp, `${name}.html`), quality);
+        render(
+          ownedSkillPath(skillRoot, "examples", source),
+          path.join(tmp, `${name}.html`),
+          quality,
+        );
       const mixed = JSON.parse(
-        fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json")),
+        fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json")),
       );
       mixed.meta.title = "Fonts A Ā Ѡ Ж Ω ắ 中文";
       fs.writeFileSync(path.join(tmp, "mixed.json"), JSON.stringify(mixed));
@@ -137,11 +142,11 @@ test(
       execFileSync(
         process.execPath,
         [
-          path.join(skillRoot, "bin/archify.mjs"),
+          ownedSkillPath(skillRoot, "bin/archify.mjs"),
           "compare",
           "architecture",
-          path.join(skillRoot, "examples/checkout-platform.base.architecture.json"),
-          path.join(skillRoot, "examples/checkout-platform.head.architecture.json"),
+          ownedSkillPath(skillRoot, "examples/checkout-platform.base.architecture.json"),
+          ownedSkillPath(skillRoot, "examples/checkout-platform.head.architecture.json"),
           compare,
         ],
         { stdio: "pipe" },
@@ -219,7 +224,7 @@ test(
     try {
       const requests = await prepare(browser, true);
       const artifact = path.join(tmp, "web.html");
-      render(path.join(skillRoot, "examples/web-app.architecture.json"), artifact);
+      render(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), artifact);
       await browser.inspect({ artifactPath: artifact, width: 1440, height: 900, theme: "light" });
       await evaluate(browser, exportCapture);
       const svg = await exported(browser, "svg");
@@ -284,7 +289,7 @@ for (const format of ["png", "share-card"])
       try {
         const requests = await prepare(browser, true);
         const artifact = path.join(tmp, "early.html");
-        render(path.join(skillRoot, "examples/web-app.architecture.json"), artifact);
+        render(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), artifact);
         const session = await browser.sessionPromise;
         await browser.cdp.send(
           "Page.addScriptToEvaluateOnNewDocument",

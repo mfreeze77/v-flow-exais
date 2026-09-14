@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import fs from "node:fs";
@@ -6,12 +7,12 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const skill = fs.readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+const skill = fs.readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
 const authoringContract = fs.readFileSync(
-  path.join(skillRoot, "references", "authoring-contract.md"),
+  ownedSkillPath(skillRoot, "references", "authoring-contract.md"),
   "utf8",
 );
-const schemaReadme = fs.readFileSync(path.join(skillRoot, "schemas", "README.md"), "utf8");
+const schemaReadme = fs.readFileSync(ownedSkillPath(skillRoot, "schemas", "README.md"), "utf8");
 
 test("semantic relationship labels are preserved and deletion is not a geometry repair", () => {
   for (const [name, source] of [
@@ -46,7 +47,7 @@ test("deployment ownership stays explicit, fact-backed, and cannot be removed to
 
 test("visual-check stays a pending sidecar receipt instead of a polish claim", () => {
   const deliveryContract = fs.readFileSync(
-    path.join(skillRoot, "references", "delivery-contract.md"),
+    ownedSkillPath(skillRoot, "references", "delivery-contract.md"),
     "utf8",
   );
   assert.match(skill, /visual-check <output\.html> --json/);

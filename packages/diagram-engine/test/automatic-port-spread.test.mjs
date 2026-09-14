@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -17,7 +22,7 @@ function render(mode, doc) {
   try {
     execFileSync(
       "node",
-      [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
+      [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
       { stdio: ["ignore", "ignore", "pipe"] },
     );
     return fs.readFileSync(output, "utf8");
@@ -449,7 +454,7 @@ test("lifecycle: same-band port spread remains orthogonal", () => {
 });
 
 test("skill and READMEs describe automatic port spread as bounded default behavior", () => {
-  const skill = fs.readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+  const skill = fs.readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
   assert.match(skill, /Automatic Port Spread is a default renderer behavior/);
   assert.match(skill, /single relationship|single relationships/);
   assert.match(skill, /explicit `via`.*`channelX`.*`channelY`.*`labelAt`/);
@@ -459,7 +464,7 @@ test("skill and READMEs describe automatic port spread as bounded default behavi
   );
 
   const authoringContract = fs.readFileSync(
-    path.join(skillRoot, "references/authoring-contract.md"),
+    ownedSkillPath(skillRoot, "references/authoring-contract.md"),
     "utf8",
   );
   assert.match(
@@ -467,15 +472,15 @@ test("skill and READMEs describe automatic port spread as bounded default behavi
     /unobstructed facing ports.*may share one horizontal or vertical axis/,
   );
 
-  const repoRoot = path.resolve(skillRoot, "..");
+  const repoRoot = ownedWorkspaceRoot;
   for (const file of ["README.md", "README_EN.md"]) {
     assert.match(
-      fs.readFileSync(path.join(repoRoot, file), "utf8"),
+      fs.readFileSync(ownedArchifyPath(repoRoot, file), "utf8"),
       /shared automatic endpoints spread deterministically/,
     );
   }
   assert.match(
-    fs.readFileSync(path.join(repoRoot, "README_ZH.md"), "utf8"),
+    fs.readFileSync(ownedArchifyPath(repoRoot, "README_ZH.md"), "utf8"),
     /共享的自动端点会确定性展开/,
   );
 });

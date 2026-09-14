@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -6,15 +11,15 @@ import assert from "node:assert/strict";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const repoRoot = path.resolve(skillRoot, "..");
-const _skill = fs.readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+const repoRoot = ownedWorkspaceRoot;
+const _skill = fs.readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
 const delivery = fs.readFileSync(
-  path.join(skillRoot, "references", "delivery-contract.md"),
+  ownedSkillPath(skillRoot, "references", "delivery-contract.md"),
   "utf8",
 );
-const readme = fs.readFileSync(path.join(repoRoot, "README.md"), "utf8");
-const english = fs.readFileSync(path.join(repoRoot, "README_EN.md"), "utf8");
-const chinese = fs.readFileSync(path.join(repoRoot, "README_ZH.md"), "utf8");
+const readme = fs.readFileSync(ownedArchifyPath(repoRoot, "README.md"), "utf8");
+const english = fs.readFileSync(ownedArchifyPath(repoRoot, "README_EN.md"), "utf8");
+const chinese = fs.readFileSync(ownedArchifyPath(repoRoot, "README_ZH.md"), "utf8");
 
 test("preview contract: the skill keeps live preview explicit, desktop-only, and last-good", () => {
   assert.match(delivery, /archify\.mjs preview <type> <input>\.json <output>\.html/);

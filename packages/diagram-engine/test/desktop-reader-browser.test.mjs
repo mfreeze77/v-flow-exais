@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -16,7 +17,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
 const chromePath = process.env.ARCHIFY_CHROME ? findChrome() : null;
 const packagedHtmlExamples = fs
-  .readdirSync(path.join(skillRoot, "examples"))
+  .readdirSync(ownedSkillPath(skillRoot, "examples"))
   .filter((name) => name.endsWith(".html") && !name.endsWith(".visual-check.html"))
   .sort();
 
@@ -31,7 +32,7 @@ test(
       assert.ok(packagedHtmlExamples.length > 0, "expected at least one packaged HTML example");
       for (const name of packagedHtmlExamples) {
         const artifact = path.join(tmp, name);
-        fs.copyFileSync(path.join(skillRoot, "examples", name), artifact);
+        fs.copyFileSync(ownedSkillPath(skillRoot, "examples", name), artifact);
         const result = await runVisualCheck({ artifactPath: artifact, chromePath });
         assert.equal(result.exitCode, 0, `${name}: ${JSON.stringify(result.receipt, null, 2)}`);
         assert.equal(result.receipt.containment.status, "pass", name);
@@ -59,10 +60,10 @@ test(
       execFileSync(
         process.execPath,
         [
-          path.join(skillRoot, "bin", "archify.mjs"),
+          ownedSkillPath(skillRoot, "bin", "archify.mjs"),
           "render",
           "architecture",
-          path.join(skillRoot, "examples", "production-deployment.architecture.json"),
+          ownedSkillPath(skillRoot, "examples", "production-deployment.architecture.json"),
           artifact,
           "--quality",
           "showcase",

@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -8,7 +13,7 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const repoRoot = path.resolve(skillRoot, "..");
+const repoRoot = ownedWorkspaceRoot;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-share-card-"));
 
 const CASES = {
@@ -22,8 +27,8 @@ const CASES = {
 function render(mode) {
   const output = path.join(tmp, `${mode}.html`);
   execFileSync(process.execPath, [
-    path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
-    path.join(skillRoot, "examples", CASES[mode]),
+    ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
+    ownedSkillPath(skillRoot, "examples", CASES[mode]),
     output,
   ]);
   return fs.readFileSync(output, "utf8");
@@ -145,14 +150,17 @@ test("Share Card stays viewer-only and reuses export cleanup instead of source s
 });
 
 test("the skill and every README make the optional Share Card discoverable", () => {
-  const viewer = fs.readFileSync(path.join(skillRoot, "references", "viewer-runtime.md"), "utf8");
+  const viewer = fs.readFileSync(
+    ownedSkillPath(skillRoot, "references", "viewer-runtime.md"),
+    "utf8",
+  );
   assert.match(viewer, /optional 1200(?:×|x)630 Share Card PNG/i);
   assert.match(viewer, /current theme and visual preset/i);
   assert.match(viewer, /never claim(?:s|ing)? validation/i);
   assert.match(viewer, /Copy Share Card/i);
 
   for (const readme of ["README.md", "README_EN.md", "README_ZH.md"]) {
-    const text = fs.readFileSync(path.join(repoRoot, readme), "utf8");
+    const text = fs.readFileSync(ownedArchifyPath(repoRoot, readme), "utf8");
     assert.match(text, /Share Card/i, readme);
     assert.match(text, /1200(?:×|x)630/, readme);
     assert.match(text, /copy|复制/i, readme);

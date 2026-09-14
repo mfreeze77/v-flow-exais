@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import { execFileSync, spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -10,7 +11,7 @@ import { ChromeVisualBrowser, findChrome } from "../bin/visual-check.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const cli = path.join(skillRoot, "bin", "archify.mjs");
+const cli = ownedSkillPath(skillRoot, "bin", "archify.mjs");
 
 function git(repo, ...args) {
   return execFileSync("git", ["-C", repo, ...args], { encoding: "utf8" }).trim();
@@ -33,7 +34,7 @@ function fixture() {
   const revision = git(root, "rev-parse", "HEAD");
 
   const diagram = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", "web-app.architecture.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", "web-app.architecture.json"), "utf8"),
   );
   diagram.meta.repository = {
     url: "https://github.com/example/evidence-repo",
@@ -633,7 +634,7 @@ test("repository evidence is opt-in and never appears in ordinary artifacts", ()
     fs.mkdtempSync(path.join(os.tmpdir(), "archify-no-evidence-")),
     "plain.html",
   );
-  const input = path.join(skillRoot, "examples", "web-app.architecture.json");
+  const input = ownedSkillPath(skillRoot, "examples", "web-app.architecture.json");
   const result = run(["render", "architecture", input, output]);
   assert.equal(result.status, 0, result.stderr);
   const html = fs.readFileSync(output, "utf8");
@@ -855,7 +856,7 @@ test("--repo-root stays bounded to architecture and schema limits evidence shape
   let result = run([
     "render",
     "workflow",
-    path.join(skillRoot, "examples", "agent-tool-call.workflow.json"),
+    ownedSkillPath(skillRoot, "examples", "agent-tool-call.workflow.json"),
     "--repo-root",
     data.root,
   ]);

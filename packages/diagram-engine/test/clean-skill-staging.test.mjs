@@ -6,14 +6,17 @@ import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
 
-import { stageCleanSkill } from "../../scripts/stage-clean-skill.mjs";
+import { stageCleanSkill } from "../../../tools/upstream-archify/stage-clean-skill.mjs";
 
 const stagerPath = path.resolve(
   path.dirname(fileURLToPath(import.meta.url)),
-  "../../scripts/stage-clean-skill.mjs",
+  "../../../tools/upstream-archify/stage-clean-skill.mjs",
 );
 const canonicalNotices = fs.readFileSync(
-  path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../../THIRD_PARTY_NOTICES.md"),
+  path.resolve(
+    path.dirname(fileURLToPath(import.meta.url)),
+    "../../../licenses/archify-THIRD_PARTY_NOTICES.md",
+  ),
   "utf8",
 );
 

@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -25,10 +26,10 @@ const CASES = {
 function render(mode, example) {
   const output = path.join(tmp, `${mode}.html`);
   execFileSync(process.execPath, [
-    path.join(skillRoot, "bin", "archify.mjs"),
+    ownedSkillPath(skillRoot, "bin", "archify.mjs"),
     "render",
     mode,
-    path.join(skillRoot, "examples", example),
+    ownedSkillPath(skillRoot, "examples", example),
     output,
   ]);
   return output;
@@ -36,14 +37,14 @@ function render(mode, example) {
 
 function renderWithoutLegend() {
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", CASES.architecture), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", CASES.architecture), "utf8"),
   );
   source.meta = { ...source.meta, legend: { mode: "hidden" } };
   const input = path.join(tmp, "architecture-no-legend.json");
   const output = path.join(tmp, "architecture-no-legend.html");
   fs.writeFileSync(input, `${JSON.stringify(source, null, 2)}\n`);
   execFileSync(process.execPath, [
-    path.join(skillRoot, "bin", "archify.mjs"),
+    ownedSkillPath(skillRoot, "bin", "archify.mjs"),
     "render",
     "architecture",
     input,
@@ -296,7 +297,11 @@ test("the public CLI gives all typed renderers one final Viewer contract", () =>
       /nav-safe-rail|archify-nav-reserve|viewerChromeLayout/,
       mode,
     );
-    execFileSync(process.execPath, [path.join(skillRoot, "bin", "archify.mjs"), "check", output]);
+    execFileSync(process.execPath, [
+      ownedSkillPath(skillRoot, "bin", "archify.mjs"),
+      "check",
+      output,
+    ]);
   }
 });
 
@@ -424,10 +429,10 @@ test(
   async () => {
     const output = path.join(tmp, "maka-architecture.html");
     execFileSync(process.execPath, [
-      path.join(skillRoot, "bin", "archify.mjs"),
+      ownedSkillPath(skillRoot, "bin", "archify.mjs"),
       "render",
       "architecture",
-      path.resolve(skillRoot, "..", "examples", "maka-architecture.architecture.json"),
+      ownedSkillPath(skillRoot, "..", "examples", "maka-architecture.architecture.json"),
       output,
     ]);
     const browser = new ChromeVisualBrowser(chromePath);

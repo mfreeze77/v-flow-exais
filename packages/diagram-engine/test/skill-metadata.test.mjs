@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -6,9 +7,9 @@ import assert from "node:assert/strict";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.join(here, "..");
-const skill = readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+const skill = readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
 const authoringContract = readFileSync(
-  path.join(skillRoot, "references", "authoring-contract.md"),
+  ownedSkillPath(skillRoot, "references", "authoring-contract.md"),
   "utf8",
 );
 const frontmatter = skill.match(/^---\n([\s\S]*?)\n---/);
@@ -56,7 +57,7 @@ test("literal packaged-skill path references resolve inside the installed skill 
   assert.ok(references.length > 0, "expected literal packaged-skill references");
   for (const reference of new Set(references)) {
     assert.equal(
-      existsSync(path.join(skillRoot, reference)),
+      existsSync(ownedSkillPath(skillRoot, reference)),
       true,
       `SKILL.md references missing packaged path ${reference}`,
     );
@@ -76,7 +77,7 @@ test("main skill stays a bounded authoring router with progressive references", 
   ]) {
     assert.match(skill, new RegExp(reference.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
     assert.equal(
-      existsSync(path.join(skillRoot, reference)),
+      existsSync(ownedSkillPath(skillRoot, reference)),
       true,
       `${reference} must ship with the skill`,
     );

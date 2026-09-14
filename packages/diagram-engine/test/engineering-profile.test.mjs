@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -14,8 +15,12 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const cli = path.join(skillRoot, "bin", "archify.mjs");
-const examplePath = path.join(skillRoot, "examples", "production-deployment.architecture.json");
+const cli = ownedSkillPath(skillRoot, "bin", "archify.mjs");
+const examplePath = ownedSkillPath(
+  skillRoot,
+  "examples",
+  "production-deployment.architecture.json",
+);
 const example = JSON.parse(fs.readFileSync(examplePath, "utf8"));
 
 function clone(value) {
@@ -167,7 +172,7 @@ test("other diagram modes reject the architecture-only engineering profile", () 
   try {
     for (const [mode, fixture] of fixtures) {
       const candidate = JSON.parse(
-        fs.readFileSync(path.join(skillRoot, "examples", fixture), "utf8"),
+        fs.readFileSync(ownedSkillPath(skillRoot, "examples", fixture), "utf8"),
       );
       candidate.meta.engineering_profile = "deployment-ownership";
       const input = path.join(tmp, `${mode}.json`);
@@ -261,7 +266,7 @@ test("validate and deliver expose one truthful engineering-profile receipt", () 
       crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
     assert.equal(digest(output), digest(secondOutput));
 
-    const ordinaryInput = path.join(skillRoot, "examples", "web-app.architecture.json");
+    const ordinaryInput = ownedSkillPath(skillRoot, "examples", "web-app.architecture.json");
     const ordinaryOutput = path.join(tmp, "ordinary.html");
     const ordinary = spawnSync(
       process.execPath,

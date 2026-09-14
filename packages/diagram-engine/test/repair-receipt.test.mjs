@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -8,7 +9,7 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const cli = path.join(skillRoot, "bin/archify.mjs");
+const cli = ownedSkillPath(skillRoot, "bin/archify.mjs");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-repair-receipt-"));
 
 function run(args) {
@@ -62,7 +63,9 @@ test("repair receipt: all five modes identify schema subjects and supported fixe
   };
 
   for (const [type, [example, collection]] of Object.entries(cases)) {
-    const source = JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", example), "utf8"));
+    const source = JSON.parse(
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples", example), "utf8"),
+    );
     source[collection][0].unexpected = true;
     const identity = source[collection][0].id;
     const input = writeFixture(`schema-${type}.json`, source);
@@ -87,7 +90,7 @@ test("repair receipt: all five modes identify schema subjects and supported fixe
 
 test("repair receipt: human validation formats the same rule without a stack", () => {
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
   );
   source.nodes[0].unexpected = true;
   const input = writeFixture("human-schema.workflow.json", source);
@@ -102,7 +105,7 @@ test("repair receipt: human validation formats the same rule without a stack", (
 
 test("repair receipt: validate and deliver share exact Clean Flow evidence while delivery preserves the trusted artifact", () => {
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
   );
   source.connections[0] = {
     ...source.connections[0],
@@ -156,7 +159,7 @@ test("repair receipt: validate and deliver share exact Clean Flow evidence while
 
 test("repair receipt: repository evidence failures retain a stable rule and exact repair", () => {
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
   );
   source.meta.repository = {
     url: "https://github.com/example/repository",

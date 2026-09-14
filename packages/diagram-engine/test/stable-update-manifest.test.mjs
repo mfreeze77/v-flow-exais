@@ -1,3 +1,7 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import crypto from "node:crypto";
 import { spawnSync } from "node:child_process";
@@ -5,11 +9,9 @@ import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
 import test from "node:test";
-import { fileURLToPath } from "node:url";
 
-const here = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(here, "..", "..");
-const checker = path.join(repoRoot, "scripts", "check-stable-update-manifest.mjs");
+const repoRoot = ownedWorkspaceRoot;
+const checker = ownedArchifyPath(repoRoot, "scripts", "check-stable-update-manifest.mjs");
 
 function git(root, args) {
   return spawnSync("git", args, { cwd: root, encoding: "utf8" });

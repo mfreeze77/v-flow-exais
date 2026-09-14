@@ -1,13 +1,13 @@
 #!/usr/bin/env node
+import { ownedArchifyPath, ownedSkillPath, ownedWorkspaceRoot } from "./owned-layout.mjs";
 
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const skillRoot = path.join(repoRoot, "archify");
-const testRoot = path.join(skillRoot, "test");
+const repoRoot = ownedWorkspaceRoot;
+const skillRoot = ownedArchifyPath(repoRoot, "archify");
+const testRoot = ownedSkillPath(skillRoot, "test");
 const testFiles = fs
   .readdirSync(testRoot)
   .filter((entry) => entry.endsWith(".test.mjs"))

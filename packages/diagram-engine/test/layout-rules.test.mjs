@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 // Per-rule coverage for the renderers' layout validators. The golden suite's
 // negative cases mostly trip ajv SCHEMA rules; this file targets the hand-
 // written LAYOUT rules (the `problems.push(...)` checks) — the layer that has
@@ -31,7 +32,7 @@ const EXAMPLES = {
 };
 
 function load(mode) {
-  return JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES[mode]), "utf8"));
+  return JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES[mode]), "utf8"));
 }
 
 // Returns { code, stderr }. Never throws on non-zero exit.
@@ -42,7 +43,7 @@ function render(mode, doc) {
   try {
     execFileSync(
       "node",
-      [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, outPath],
+      [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, outPath],
       { stdio: ["ignore", "ignore", "pipe"] },
     );
     return { code: 0, stderr: "", outPath };
@@ -58,7 +59,7 @@ function validateCli(mode, doc, quality = "showcase") {
     const stdout = execFileSync(
       "node",
       [
-        path.join(skillRoot, "bin", "archify.mjs"),
+        ownedSkillPath(skillRoot, "bin", "archify.mjs"),
         "validate",
         mode,
         input,
@@ -627,7 +628,7 @@ test("architecture: profile-less v1 keeps legacy boundary geometry at the top ed
 test("architecture: deployment ownership requires nested membership geometry to agree", () => {
   const d = JSON.parse(
     fs.readFileSync(
-      path.join(skillRoot, "examples/production-deployment.architecture.json"),
+      ownedSkillPath(skillRoot, "examples/production-deployment.architecture.json"),
       "utf8",
     ),
   );
@@ -729,7 +730,7 @@ test("architecture: boundary labels and their masks paint above relationship rou
 test("architecture: nested boundary title rails stay inside frames and avoid labels and nodes", () => {
   const d = JSON.parse(
     fs.readFileSync(
-      path.join(skillRoot, "examples/production-deployment.architecture.json"),
+      ownedSkillPath(skillRoot, "examples/production-deployment.architecture.json"),
       "utf8",
     ),
   );
@@ -979,7 +980,10 @@ test("workflow: same-lane offset auto edge stays orthogonal", () => {
 test("workflow: automatic routing uses one bend and avoids every node border", () => {
   const d = JSON.parse(
     fs.readFileSync(
-      path.join(skillRoot, "test/fixtures/automatic-routing-node-border-clearance.workflow.json"),
+      ownedSkillPath(
+        skillRoot,
+        "test/fixtures/automatic-routing-node-border-clearance.workflow.json",
+      ),
       "utf8",
     ),
   );
@@ -1254,7 +1258,10 @@ for (const qualityProfile of ["standard", "showcase"]) {
 test("workflow: explicit labelAt remains authoritative on an automatic one-bend edge", () => {
   const d = JSON.parse(
     fs.readFileSync(
-      path.join(skillRoot, "test/fixtures/automatic-routing-node-border-clearance.workflow.json"),
+      ownedSkillPath(
+        skillRoot,
+        "test/fixtures/automatic-routing-node-border-clearance.workflow.json",
+      ),
       "utf8",
     ),
   );
@@ -1318,7 +1325,7 @@ test("architecture: Clean Flow Gate rejects a connection through a component", (
 
 test("dataflow: showcase rejects a relationship label that hides another route", () => {
   const d = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", "event-stream.dataflow.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", "event-stream.dataflow.json"), "utf8"),
   );
   const approvedReplay = d.flows.find((flow) => flow.label === "approved replay");
   delete approvedReplay.labelAt;

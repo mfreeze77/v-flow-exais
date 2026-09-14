@@ -1,3 +1,7 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -8,10 +12,9 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
-const assetPath = path.join(repoRoot, "docs", "assets", "archify-live-proof.gif");
-const receiptPath = path.join(repoRoot, "docs", "assets", "archify-live-proof.json");
+const repoRoot = ownedWorkspaceRoot;
+const assetPath = ownedArchifyPath(repoRoot, "docs", "assets", "archify-live-proof.gif");
+const receiptPath = ownedArchifyPath(repoRoot, "docs", "assets", "archify-live-proof.json");
 
 function sha256(file) {
   return crypto.createHash("sha256").update(fs.readFileSync(file)).digest("hex");
@@ -96,7 +99,7 @@ function inspectGif(buffer) {
 
 test("README motion proof is compact, looping, and backed by current gallery artifacts", () => {
   const builder = fs.readFileSync(
-    path.join(repoRoot, "scripts", "build-readme-showcase.mjs"),
+    ownedArchifyPath(repoRoot, "scripts", "build-readme-showcase.mjs"),
     "utf8",
   );
   assert.match(builder, /\?embed=1&play=1&theme=dark#view=/);
@@ -124,7 +127,7 @@ test("README motion proof is compact, looping, and backed by current gallery art
     ["signal-flow", "blueprint", "classic"],
   );
   for (const scene of receipt.scenes) {
-    const artifact = path.join(repoRoot, scene.artifact);
+    const artifact = ownedArchifyPath(repoRoot, scene.artifact);
     assert.ok(fs.existsSync(artifact), `${scene.id}: source artifact missing`);
     assert.equal(
       scene.artifactSha256,
@@ -137,7 +140,7 @@ test("README motion proof is compact, looping, and backed by current gallery art
 
 test("all README languages keep the product hero and retain the verified animated proof", () => {
   for (const filename of ["README.md", "README_EN.md", "README_ZH.md"]) {
-    const readme = fs.readFileSync(path.join(repoRoot, filename), "utf8");
+    const readme = fs.readFileSync(ownedArchifyPath(repoRoot, filename), "utf8");
     const heroIndex = readme.indexOf("docs/assets/archify-readme-hero.png");
     const titleIndex = readme.indexOf("# Archify");
     const proofIndex = readme.indexOf("docs/assets/archify-live-proof.gif");
@@ -154,15 +157,15 @@ test("all README languages keep the product hero and retain the verified animate
     assert.match(readme, /https:\/\/tt-a1i\.github\.io\/archify\/gallery\.html/);
   }
   assert.equal(
-    fs.readFileSync(path.join(repoRoot, "README.md"), "utf8"),
-    fs.readFileSync(path.join(repoRoot, "README_EN.md"), "utf8"),
+    fs.readFileSync(ownedArchifyPath(repoRoot, "README.md"), "utf8"),
+    fs.readFileSync(ownedArchifyPath(repoRoot, "README_EN.md"), "utf8"),
     "README.md and README_EN.md must stay synchronized",
   );
 });
 
 test("README installation tables contain a complete DeepSeek Harness row", () => {
   for (const filename of ["README.md", "README_EN.md", "README_ZH.md"]) {
-    const readme = fs.readFileSync(path.join(repoRoot, filename), "utf8");
+    const readme = fs.readFileSync(ownedArchifyPath(repoRoot, filename), "utf8");
     const row = readme.split("\n").find((line) => line.startsWith("| **DeepSeek Harness** |"));
     assert.ok(row, `${filename}: DeepSeek Harness must be an installation table row`);
     assert.equal(
@@ -198,7 +201,7 @@ test("README demos use checked-in captures and live deep links below the existin
   ];
 
   for (const demo of demos) {
-    const buffer = fs.readFileSync(path.join(repoRoot, "docs", "assets", demo.asset));
+    const buffer = fs.readFileSync(ownedArchifyPath(repoRoot, "docs", "assets", demo.asset));
     assert.equal(
       buffer.subarray(1, 4).toString("ascii"),
       "PNG",
@@ -210,7 +213,7 @@ test("README demos use checked-in captures and live deep links below the existin
   }
 
   for (const filename of ["README.md", "README_EN.md", "README_ZH.md"]) {
-    const readme = fs.readFileSync(path.join(repoRoot, filename), "utf8");
+    const readme = fs.readFileSync(ownedArchifyPath(repoRoot, filename), "utf8");
     const heroIndex = readme.indexOf("docs/assets/archify-readme-hero.png");
     const proofIndex = readme.indexOf("docs/assets/archify-live-proof.gif");
     const previewIndex = Math.max(readme.indexOf("## Preview"), readme.indexOf("## 预览"));
@@ -256,7 +259,7 @@ test("README stays scannable without deleting the visual proof set", () => {
   ];
 
   for (const filename of ["README.md", "README_EN.md", "README_ZH.md"]) {
-    const readme = fs.readFileSync(path.join(repoRoot, filename), "utf8");
+    const readme = fs.readFileSync(ownedArchifyPath(repoRoot, filename), "utf8");
     assert.ok(
       readme.split("\n").length <= 295,
       `${filename}: README grew beyond the scannable line budget`,
@@ -273,7 +276,7 @@ test("README stays scannable without deleting the visual proof set", () => {
     }
   }
 
-  const english = fs.readFileSync(path.join(repoRoot, "README.md"), "utf8");
+  const english = fs.readFileSync(ownedArchifyPath(repoRoot, "README.md"), "utf8");
   const wordCount = english.trim().split(/\s+/).length;
   const intro = english.slice(0, english.indexOf("![License]"));
   const introBullets = intro.match(/^- \*\*/gm) || [];
@@ -283,7 +286,7 @@ test("README stays scannable without deleting the visual proof set", () => {
     `README.md has too many top-level capability bullets (${introBullets.length})`,
   );
 
-  const chinese = fs.readFileSync(path.join(repoRoot, "README_ZH.md"), "utf8");
+  const chinese = fs.readFileSync(ownedArchifyPath(repoRoot, "README_ZH.md"), "utf8");
   assert.ok(
     chinese.includes("docs/assets/claude-skills-settings.png"),
     "README_ZH.md lost the Claude Skills setup image",
@@ -296,12 +299,12 @@ test("all README languages end with the self-hosted star history chart", () => {
   const darkChart =
     "https://raw.githubusercontent.com/tt-a1i/archify/star-history/assets/star-history-dark.svg";
   const workflow = fs.readFileSync(
-    path.join(repoRoot, ".github", "workflows", "star-history.yml"),
+    ownedArchifyPath(repoRoot, ".github", "workflows", "star-history.yml"),
     "utf8",
   );
 
   for (const filename of ["README.md", "README_EN.md", "README_ZH.md"]) {
-    const readme = fs.readFileSync(path.join(repoRoot, filename), "utf8");
+    const readme = fs.readFileSync(ownedArchifyPath(repoRoot, filename), "utf8");
     const sectionIndex = readme.lastIndexOf("## Star History");
     const contributingIndex = Math.max(
       readme.indexOf("## Contributing"),
@@ -340,7 +343,7 @@ test("Star History publishing advances the data branch without a force push", ()
   const remote = path.join(fixture, "remote.git");
   const firstCheckout = path.join(fixture, "first");
   const secondCheckout = path.join(fixture, "second");
-  const publisher = path.join(repoRoot, "scripts", "publish-star-history.sh");
+  const publisher = ownedArchifyPath(repoRoot, "scripts", "publish-star-history.sh");
 
   try {
     git(fixture, "init", "--bare", remote);

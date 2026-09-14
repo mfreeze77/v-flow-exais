@@ -3,7 +3,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const sourceRoot = path.resolve(__dirname, "../docs/assets");
+const sourceRoot = path.resolve(__dirname, "../../docs/upstream/archify/docs/assets");
 const SITE_ASSETS = Object.freeze(["site-language.js", "site-navigation.css"]);
 
 export function copySiteAssets(outputHtmlPath) {
