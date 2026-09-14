@@ -50,8 +50,28 @@ export function useManagedCompositionStack(options: {
       error instanceof Error ? error : new Error(String(error)),
     );
   }, []);
+  const announced = useRef<{
+    navigation: typeof navigation;
+    viewKey: string;
+    buildHash: string;
+    sourcePath: string | null;
+  } | null>(null);
   const announce = useCallback(() => {
     const current = navigation.snapshot();
+    if (!current.session || !current.token) return;
+    if (
+      announced.current?.navigation === navigation &&
+      announced.current.viewKey === current.viewKey &&
+      (current.scene?.sourcePath ?? null) === (callbacks.current.activeCompositionPath ?? null)
+    )
+      return;
+    // Record before callbacks; a parent render must not announce this visit twice.
+    announced.current = {
+      navigation,
+      viewKey: current.viewKey,
+      buildHash: current.session.buildHash,
+      sourcePath: current.scene?.sourcePath ?? null,
+    };
     callbacks.current.onCompositionChange?.(current.scene?.sourcePath ?? null);
     callbacks.current.managedNavigation?.onSceneChange?.(
       current.scene?.sceneId ?? null,
@@ -77,7 +97,22 @@ export function useManagedCompositionStack(options: {
     const { state: live, managedNavigation: nav } = latest.current;
     if (!nav || !live.session || !live.token) return;
     const current = navigation.snapshot();
-    if ((current.scene?.sourcePath ?? null) === (activeCompositionPath ?? null)) return;
+    const prior = announced.current;
+    // A parent path echoed from our last announcement is not a new request.
+    // After regeneration, preserve the identity-based reconciliation result;
+    // never reopen another appearance merely because its source path matches.
+    if (
+      prior?.navigation === navigation &&
+      prior.buildHash !== current.session?.buildHash &&
+      prior.sourcePath === (activeCompositionPath ?? null)
+    ) {
+      announce();
+      return;
+    }
+    if ((current.scene?.sourcePath ?? null) === (activeCompositionPath ?? null)) {
+      announce();
+      return;
+    }
     try {
       if (!activeCompositionPath) navigation.master(current.token!);
       else
@@ -89,9 +124,12 @@ export function useManagedCompositionStack(options: {
     } catch (error) {
       report(error);
     }
+    // Announce the actual retained view even when an external request was rejected.
+    // The inspector must not retain a deleted/repointed scene after a new build.
+    announce();
     // A repeated source path is deliberately not guessed. Scene-click
     // navigation below retains a specific appearance before announcing its path.
-  }, [activeCompositionPath, state.session?.buildHash, navigation, isManaged, report]);
+  }, [activeCompositionPath, state.session?.buildHash, navigation, isManaged, report, announce]);
 
   const handleNavigateComposition = useCallback(
     (index: number) => {

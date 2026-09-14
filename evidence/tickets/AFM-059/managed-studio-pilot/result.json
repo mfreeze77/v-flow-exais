@@ -23,17 +23,25 @@
     ]
   },
   "blocker": {
-    "harness": "packages/studio/tests/e2e/managed-studio.mjs (unchanged by the lifecycle fix)",
-    "failsAt": "phase `managed-route-mounted`",
+    "harness": "packages/studio/tests/e2e/managed-studio.mjs",
+    "failsAt": "phase `managed-route-mounted`, 60s waiting for a timeline clip",
     "observedState": {
       "alerts": [],
       "clips": 0,
-      "timelineOverlay": "timeline-loading-disabled-overlay \u2014 'Loading composition\u2026'",
-      "inspectorSelectPresent": false,
-      "pageErrors": 0
+      "pageErrors": 0,
+      "blockedExternal": 0,
+      "failedOrPendingRequests": 0,
+      "overlay": "timeline-loading-disabled-overlay \u2014 'Loading composition\u2026'"
     },
-    "resolvedSincePreviousRun": "the stale-navigation alert is gone. An unassigned about:blank bootstrap document was reaching assertDisplayedPreview before the custom player assigned its source; the correctly stamped preview then loaded and passed, but the earlier false rejection stayed on screen. Confirmed removed by measurement: the same harness against the same server now records alerts: [].",
-    "stillUnknown": "the timeline remains at 'Loading composition\u2026' with zero clips and no alert, so the preview now loads without objection but the timeline never receives its composition. Cause NOT established and deliberately not guessed."
+    "contradiction": "the same application, same server and same fixture path hydrates in ~5s under direct measurement, so the product path demonstrably works and something about the harness environment prevents it.",
+    "ruledOutByMeasurement": [
+      "cold start / first build \u2014 a newly imported project is ready in 5s",
+      "navigation style \u2014 direct hash load and hash change both reach ready in 5s",
+      "request interception as such \u2014 interception with continue-all reaches ready in 5s",
+      "the stale-navigation alert \u2014 alerts is empty since the preview-lifecycle fix",
+      "page errors, blocked external requests, failed or pending requests \u2014 all zero"
+    ],
+    "stillUnknown": "what in the harness's own request handler or instrumentation prevents hydration. Its handler aborts any non-loopback origin, but blockedExternal is 0, so no abort was recorded. NOT diagnosed further and deliberately not guessed: four hypotheses were tested and rejected here, and three earlier diagnoses in this integration were wrong."
   },
   "fixedDuringIntegration": [
     "packages/project-model editorPreview emitted hostId as a bare DOM id (el-0) while the player keys timeline clips as sourceFile#domId (index.html#el-0), so no timeline clip could ever match an emitted scene identity. Added hostKey alongside hostId; hostId is still required by editorPreviewHtml's getElementById. Confirmed by the harness advancing past that assertion.",
@@ -51,5 +59,15 @@
     "value": "phase accounting moved the failure from an opaque 60s inspector timeout to a named phase with a client alert and a DOM/identity probe. That is what allowed the server identity to be ruled out.",
     "note": "the contributor reproduced an overlay-intercepted-click defect in their own harness and explicitly did not claim it caused the recorded failure. It did not: the corrected harness stops earlier, before any click.",
     "productCodeChanged": false
+  },
+  "runtimeToEditorRepair": {
+    "measuredWorking": "In direct browser measurement against the real server, a managed project reaches timeline phase 'ready' with 3 clips in about 5 seconds \u2014 including a brand-new project created through /api/vflow/import-diagram in the same run, which is the harness's own fixture path.",
+    "conditionsTried": [
+      "cold, newly imported project: ready in 5s",
+      "hash URL as the first navigation: ready in 5s",
+      "hash change from '/': ready in 5s",
+      "request interception enabled with continue-all (960 requests): ready in 5s"
+    ],
+    "diagnosticUsed": "data-vflow-timeline-phase on the preview pane, added by this package: load-pending / runtime-pending / timeline-pending / ready"
   }
 }

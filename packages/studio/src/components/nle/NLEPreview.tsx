@@ -16,6 +16,7 @@ interface NLEPreviewProps {
   projectId: string;
   iframeRef: RefObject<HTMLIFrameElement | null>;
   onIframeLoad: (iframe?: HTMLIFrameElement) => void;
+  onIframeReady?: (iframe: HTMLIFrameElement) => void;
   onCompositionLoadingChange?: (loading: boolean) => void;
   portrait?: boolean;
   directUrl?: string;
@@ -120,6 +121,7 @@ export const NLEPreview = memo(function NLEPreview({
   projectId,
   iframeRef,
   onIframeLoad,
+  onIframeReady,
   onCompositionLoadingChange,
   portrait,
   directUrl,
@@ -478,6 +480,19 @@ export const NLEPreview = memo(function NLEPreview({
                 onIframeLoad(loadedIframe);
                 applyInitialZoom();
               }}
+              onReady={
+                onIframeReady
+                  ? (readyIframe) => {
+                      if (
+                        readyIframe !== previewIframeRef.current ||
+                        readyIframe !== iframeRef.current
+                      )
+                        return;
+                      updateCompositionSizeFromPreview();
+                      onIframeReady(readyIframe);
+                    }
+                  : undefined
+              }
               onCompositionLoadingChange={onCompositionLoadingChange}
               portrait={portrait}
               suppressLoadingOverlay={suppressLoadingOverlay}

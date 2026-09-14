@@ -13,6 +13,8 @@ interface PlayerProps {
   projectId?: string;
   directUrl?: string;
   onLoad: (iframe: HTMLIFrameElement) => void;
+  /** Runtime readiness is distinct from document load; carries the emitting frame. */
+  onReady?: (iframe: HTMLIFrameElement) => void;
   onCompositionLoadingChange?: (loading: boolean) => void;
   portrait?: boolean;
   style?: React.CSSProperties;
@@ -121,6 +123,7 @@ export const Player = forwardRef<HTMLIFrameElement, PlayerProps>(
       projectId,
       directUrl,
       onLoad,
+      onReady,
       onCompositionLoadingChange,
       portrait,
       style,
@@ -132,6 +135,10 @@ export const Player = forwardRef<HTMLIFrameElement, PlayerProps>(
     // The player/listeners live for this mount; the owner's expected view can
     // change meanwhile. Read the latest committed callback, not the callback
     // captured when the custom element was first created.
+    const onReadyRef = useRef(onReady);
+    useLayoutEffect(() => {
+      onReadyRef.current = onReady;
+    }, [onReady]);
     const onLoadRef = useRef(onLoad);
     useLayoutEffect(() => {
       onLoadRef.current = onLoad;
@@ -199,8 +206,13 @@ export const Player = forwardRef<HTMLIFrameElement, PlayerProps>(
           if (loading !== null) setShaderTransitionLoading(loading);
         };
         const handleReady = () => {
+          if (canceled) return;
           setPreviewError(null);
           setCompositionLoading(false);
+          // A valid HTML load does not imply an initialized playback adapter.
+          // Forward the later runtime-ready rendezvous, without reconnecting the
+          // custom element or manufacturing a second load notification.
+          onReadyRef.current?.(iframe);
         };
         const handleError = (event: Event) => {
           setPreviewError(readPreviewErrorMessage(event));

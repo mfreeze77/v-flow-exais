@@ -8,7 +8,8 @@
  *  - onIframeLoad             — orchestrates initializeAdapter with a message-based fallback
  */
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useLayoutEffect, useRef } from "react";
+import { watchPreviewHydration } from "./previewHydrationRendezvous";
 import { liveTime, usePlayerStore } from "../store/playerStore";
 import type { TimelineElement } from "../store/playerStore";
 import type { PlaybackAdapter, IframeWindow } from "../lib/playbackTypes";
@@ -235,47 +236,53 @@ export function useTimelineSyncCallbacks({
     pendingSeekRef,
   ]);
 
+  const hydrationCleanup = useRef<(() => void) | null>(null);
   const onIframeLoad = useCallback(() => {
+    hydrationCleanup.current?.();
+    hydrationCleanup.current = null;
     applyPreviewAudioState();
     if (probeIntervalRef.current) clearInterval(probeIntervalRef.current);
-
-    // Fast path: adapter already available (in-place reloads, cached compositions)
-    if (initializeAdapter()) return;
-
-    // The runtime posts "state" or "timeline" messages once ready.
-    // Listen for those instead of polling.
     const iframe = iframeRef.current;
-    let settled = false;
-
-    const trySettle = () => {
-      if (settled) return;
-      if (initializeAdapter()) {
-        settled = true;
-        window.removeEventListener("message", onMessage);
-        if (probeIntervalRef.current) clearInterval(probeIntervalRef.current);
-      }
-    };
-
-    const onMessage = (e: MessageEvent) => {
-      if (isPreviewReadinessMessage(e, iframe)) trySettle();
-    };
-    window.addEventListener("message", onMessage);
-
-    // Safety net: if no message arrives within 5s, try one last time then give up.
-    probeIntervalRef.current = setTimeout(() => {
-      if (!settled) {
-        trySettle();
-      }
-      window.removeEventListener("message", onMessage);
-      // Never leave the preview stuck invisible if the runtime never settled
-      // (initializeAdapter reveals on success; this covers the give-up case).
-      revealIframe(iframeRef.current);
-    }, 5000) as unknown as ReturnType<typeof setInterval>;
+    const document = safeContentDocument(iframe);
+    if (!iframe || !document) return;
+    hydrationCleanup.current = watchPreviewHydration({
+      isCurrent: () => iframeRef.current === iframe && safeContentDocument(iframe) === document,
+      initialize: initializeAdapter,
+      subscribe: (notify) => {
+        const onMessage = (event: MessageEvent) => {
+          if (isPreviewReadinessMessage(event, iframe)) notify();
+        };
+        window.addEventListener("message", onMessage);
+        return () => window.removeEventListener("message", onMessage);
+      },
+      // Preserve the existing five-second last-attempt bound. A later Player
+      // ready event gets its own explicit rendezvous through NLEProvider.
+      schedule: (notify) => {
+        const timer = setTimeout(notify, 5000);
+        probeIntervalRef.current = timer as unknown as ReturnType<typeof setInterval>;
+        return () => {
+          clearTimeout(timer);
+          if (probeIntervalRef.current === timer) probeIntervalRef.current = undefined;
+        };
+      },
+      onTimeout: () => revealIframe(iframe),
+    });
   }, [initializeAdapter, iframeRef, probeIntervalRef, applyPreviewAudioState]);
+  useEffect(
+    () => () => {
+      hydrationCleanup.current?.();
+      hydrationCleanup.current = null;
+    },
+    [],
+  );
 
   // Stable refs so mount-effect closures always call the latest version
-  const processTimelineMessageRef = { current: processTimelineMessage };
-  const enrichMissingCompositionsRef = { current: enrichMissingCompositions };
+  const processTimelineMessageRef = useRef(processTimelineMessage);
+  const enrichMissingCompositionsRef = useRef(enrichMissingCompositions);
+  useLayoutEffect(() => {
+    processTimelineMessageRef.current = processTimelineMessage;
+    enrichMissingCompositionsRef.current = enrichMissingCompositions;
+  }, [processTimelineMessage, enrichMissingCompositions]);
 
   return {
     processTimelineMessage,

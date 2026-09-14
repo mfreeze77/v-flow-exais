@@ -28,12 +28,15 @@ export interface NLEContextValue {
   projectId: string;
   previewMode?: "native" | "managed";
   managedPreviewWaiting?: boolean;
+  /** Observable state, not permission to skip any runtime or identity guard. */
+  managedTimelinePhase?: "load-pending" | "runtime-pending" | "timeline-pending" | "ready";
   // player (from useTimelinePlayer — single instance for the whole shell)
   iframeRef: React.MutableRefObject<HTMLIFrameElement | null>;
   togglePlay: () => void;
   seek: (time: number, options?: { keepPlaying?: boolean }) => boolean;
   refreshPlayer: () => void;
   onIframeLoad: (iframe?: HTMLIFrameElement) => void;
+  onIframeReady?: (iframe: HTMLIFrameElement) => void;
   // composition stack (from useCompositionStack)
   compositionStack: CompositionLevel[];
   updateCompositionStack: React.Dispatch<React.SetStateAction<CompositionLevel[]>>;
@@ -173,6 +176,35 @@ export function NLEProvider({
       onIframeRef?.(iframeRef.current);
     },
     [baseOnIframeLoad, iframeRef, onIframeRef, managedNavigation, managedState, seek],
+  );
+
+  const onIframeReady = useCallback(
+    (readyIframe: HTMLIFrameElement) => {
+      if (managedNavigation === undefined || !managedState?.token) return;
+      if (readyIframe !== iframeRef.current) return;
+      try {
+        assertDisplayedManagedView(
+          readyIframe.contentDocument?.documentElement ?? null,
+          managedState.token,
+          readyIframe.src,
+          managedState.levels.at(-1)?.previewUrl ?? "",
+        );
+        setManagedLoadedView(managedState.viewKey);
+        const live = usePlayerStore.getState();
+        // The load callback may already have hydrated a warm runtime. Do not
+        // pause/reseek a playing composition for its duplicate ready message.
+        // Otherwise use the retained adapter/manifest/DOM discovery path. Never
+        // set timelineReady or invent clips from a successful HTTP response.
+        if (live.timelineReady && live.elements.length > 0) return;
+        baseOnIframeLoad();
+        if (managedState.session)
+          seek(previewSecondsFromFrame(managedState.session, managedState.frame));
+        onIframeRef?.(readyIframe);
+      } catch (error) {
+        managedNavigation.onError?.(error instanceof Error ? error : new Error(String(error)));
+      }
+    },
+    [baseOnIframeLoad, iframeRef, managedNavigation, managedState, onIframeRef, seek],
   );
 
   // Wrap handleDrillDown to also scan the iframe DOM for data-composition-src
@@ -372,6 +404,7 @@ export function NLEProvider({
     setCompositionLoadingRaw(loading);
   }, []);
   const runtimeTimelineReady = usePlayerStore((state) => state.timelineReady);
+  const runtimeClipCount = usePlayerStore((state) => state.elements.length);
   const timelineDisabled =
     managedNavigation === undefined
       ? shouldDisableTimelineWhileCompositionLoading(compositionLoading)
@@ -394,11 +427,22 @@ export function NLEProvider({
     projectId,
     previewMode: managedNavigation === undefined ? "native" : "managed",
     managedPreviewWaiting: managedNavigation !== undefined && !managedState?.session,
+    managedTimelinePhase:
+      managedNavigation === undefined
+        ? undefined
+        : !managedState?.session || managedLoadedView !== managedState.viewKey
+          ? "load-pending"
+          : !runtimeTimelineReady
+            ? "runtime-pending"
+            : runtimeClipCount === 0
+              ? "timeline-pending"
+              : "ready",
     iframeRef,
     togglePlay,
     seek,
     refreshPlayer,
     onIframeLoad,
+    onIframeReady: managedNavigation === undefined ? undefined : onIframeReady,
     compositionStack,
     updateCompositionStack,
     handleNavigateComposition,

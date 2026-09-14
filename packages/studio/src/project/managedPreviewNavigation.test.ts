@@ -278,8 +278,17 @@ describe("AFM-059/060: managed navigation is pinned playback, never a writer", (
   });
   it("a source-map consumer cannot mutate the controller's data", () => {
     const { nav, session } = ready();
+    // Measured rather than hard-coded: the count is the number of identity
+    // aliases per native scene, which changed when hostKey was added. The
+    // property under test is that clearing a returned map cannot empty the
+    // next one — a literal makes that assertion fail for the wrong reason
+    // whenever an alias is added.
+    const before = managedNativeSourceMap(session).size;
+    assert.ok(before > 0, "the fixture should expose native source aliases");
+
     managedNativeSourceMap(session).clear();
-    assert.equal(managedNativeSourceMap(nav.snapshot().session!).size, 8);
+
+    assert.equal(managedNativeSourceMap(nav.snapshot().session!).size, before);
   });
   it("converts exact fractional frame boundaries round-trip", () => {
     const { session } = ready();

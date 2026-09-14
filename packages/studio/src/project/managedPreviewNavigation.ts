@@ -96,7 +96,13 @@ export function managedNativeSourceMap(session: EditorPreviewSession): Map<strin
   const result = new Map<string, string>();
   for (const scene of session.scenes) {
     if (scene.editOwner !== "native-document") continue;
-    for (const key of [scene.renderId, scene.hostId, scene.hostCompositionId, scene.outputPath])
+    for (const key of [
+      scene.renderId,
+      scene.hostId,
+      scene.hostKey,
+      scene.hostCompositionId,
+      scene.outputPath,
+    ])
       result.set(key, scene.sourcePath);
   }
   return result;

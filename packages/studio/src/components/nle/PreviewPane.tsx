@@ -57,10 +57,12 @@ export function PreviewPane({
     projectId,
     previewMode,
     managedPreviewWaiting,
+    managedTimelinePhase,
     iframeRef,
     togglePlay,
     seek,
     onIframeLoad,
+    onIframeReady,
     compositionStack,
     handleNavigateComposition,
     setCompositionLoading,
@@ -116,6 +118,7 @@ export function PreviewPane({
         isFullscreen ? "" : "rounded-lg border border-neutral-800/50"
       }`}
       data-studio-fullscreen-target=""
+      data-vflow-timeline-phase={managedTimelinePhase}
     >
       <div
         className="flex-1 min-h-0 relative overflow-hidden"
@@ -136,6 +139,7 @@ export function PreviewPane({
               projectId={projectId}
               iframeRef={iframeRef}
               onIframeLoad={onIframeLoad}
+              onIframeReady={onIframeReady}
               onCompositionLoadingChange={setCompositionLoading}
               portrait={portrait}
               directUrl={directUrl}
