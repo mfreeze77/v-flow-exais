@@ -4,7 +4,10 @@ import fs from "node:fs";
 import { parse } from "parse5";
 
 const FONT_LICENSE = fs
-  .readFileSync(new URL("../../assets/JetBrainsMono-OFL.txt", import.meta.url), "utf8")
+  .readFileSync(
+    new URL("../../../diagram-viewer/assets/JetBrainsMono-OFL.txt", import.meta.url),
+    "utf8",
+  )
   .trim();
 
 // Pinned Google Fonts v24 bytes and coverage, independent of CSS formatting.

@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import { execFileSync, spawn } from "node:child_process";
 import { once } from "node:events";
@@ -57,7 +58,7 @@ assert.ok(
 assert.ok(ffmpeg, "ffmpeg is required for the WebM artifact smoke test (or set ARCHIFY_FFMPEG)");
 
 const source = JSON.parse(
-  fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+  fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
 );
 source.meta.animation = "trace";
 source.meta.visual_preset = "signal-flow";
@@ -67,7 +68,7 @@ const output = path.join(tmp, "motion.html");
 fs.writeFileSync(input, JSON.stringify(source));
 execFileSync(
   process.execPath,
-  [path.join(skillRoot, "renderers/architecture/render-architecture.mjs"), input, output],
+  [ownedSkillPath(skillRoot, "renderers/architecture/render-architecture.mjs"), input, output],
   { stdio: ["ignore", "ignore", "pipe"] },
 );
 
@@ -75,8 +76,8 @@ const sequenceOutput = path.join(tmp, "sequence.html");
 execFileSync(
   process.execPath,
   [
-    path.join(skillRoot, "renderers/sequence/render-sequence.mjs"),
-    path.join(skillRoot, "examples/cache-miss-request.sequence.json"),
+    ownedSkillPath(skillRoot, "renderers/sequence/render-sequence.mjs"),
+    ownedSkillPath(skillRoot, "examples/cache-miss-request.sequence.json"),
     sequenceOutput,
   ],
   { stdio: ["ignore", "ignore", "pipe"] },
@@ -95,8 +96,8 @@ for (const [mode, example] of Object.entries({
   execFileSync(
     process.execPath,
     [
-      path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
-      path.join(skillRoot, "examples", example),
+      ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
+      ownedSkillPath(skillRoot, "examples", example),
       rendered,
     ],
     { stdio: ["ignore", "ignore", "pipe"] },
@@ -110,7 +111,7 @@ function renderLegendFixture(mode, name, document) {
   fs.writeFileSync(inputPath, JSON.stringify(document));
   execFileSync(
     process.execPath,
-    [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), inputPath, outputPath],
+    [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), inputPath, outputPath],
     { stdio: ["ignore", "ignore", "pipe"] },
   );
   return outputPath;
@@ -194,7 +195,7 @@ fs.writeFileSync(parallelInput, JSON.stringify(parallelSource));
 execFileSync(
   process.execPath,
   [
-    path.join(skillRoot, "renderers/architecture/render-architecture.mjs"),
+    ownedSkillPath(skillRoot, "renderers/architecture/render-architecture.mjs"),
     parallelInput,
     parallelOutput,
   ],
@@ -243,7 +244,7 @@ fs.writeFileSync(specialRouteInput, JSON.stringify(specialRouteSource));
 execFileSync(
   process.execPath,
   [
-    path.join(skillRoot, "renderers/architecture/render-architecture.mjs"),
+    ownedSkillPath(skillRoot, "renderers/architecture/render-architecture.mjs"),
     specialRouteInput,
     specialRouteOutput,
   ],
@@ -2319,10 +2320,10 @@ try {
 
   await verifyResolvedLegendContract(legendOutputs);
   await verifySemanticPassportDismissal(
-    path.resolve(skillRoot, "../docs/gallery/artifacts/production-deployment.architecture.html"),
+    ownedSkillPath(skillRoot, "../docs/gallery/artifacts/production-deployment.architecture.html"),
   );
   await verifyArchitectureDeltaNavigator(
-    path.resolve(skillRoot, "../examples/checkout-platform-delta.html"),
+    ownedSkillPath(skillRoot, "../examples/checkout-platform-delta.html"),
   );
   await captureShareCard(output, "architecture-wide");
   await captureShareCard(sequenceOutput, "sequence-tall");

@@ -1,14 +1,14 @@
 #!/usr/bin/env node
+import { ownedArchifyPath, ownedWorkspaceRoot } from "./owned-layout.mjs";
 
 import crypto from "node:crypto";
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-import { validateStableUpdateManifest } from "../archify/scripts/update-contract.mjs";
+import { validateStableUpdateManifest } from "../../packages/diagram-engine/scripts/update-contract.mjs";
 
-const scriptRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
+const scriptRoot = ownedWorkspaceRoot;
 
 function argument(name, fallback = null) {
   const index = process.argv.indexOf(name);
@@ -27,7 +27,7 @@ function fail(message) {
 
 function readJson(relativePath) {
   try {
-    return JSON.parse(fs.readFileSync(path.join(repoRoot, relativePath), "utf8"));
+    return JSON.parse(fs.readFileSync(ownedArchifyPath(repoRoot, relativePath), "utf8"));
   } catch {
     fail(`${relativePath} is missing or invalid JSON.`);
     return {};

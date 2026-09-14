@@ -5,7 +5,10 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const template = fs.readFileSync(path.resolve(__dirname, "../assets/template.html"), "utf8");
+const template = fs.readFileSync(
+  path.resolve(__dirname, "../../diagram-viewer/assets/template.html"),
+  "utf8",
+);
 
 test("toolbar keeps four independent controls with explicit open states", () => {
   assert.match(

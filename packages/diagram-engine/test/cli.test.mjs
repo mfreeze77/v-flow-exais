@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawn, spawnSync } from "node:child_process";
@@ -11,7 +12,7 @@ import { extractSvgs, parseXml } from "./helpers/xml.mjs";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-cli-"));
-const cli = path.join(skillRoot, "bin/archify.mjs");
+const cli = ownedSkillPath(skillRoot, "bin/archify.mjs");
 
 function run(args, options = {}) {
   return spawnSync(process.execPath, [cli, ...args], {
@@ -247,7 +248,7 @@ test("cli: demo defaults to the current directory", () => {
 
 test("cli: render writes a diagram html file", () => {
   const out = path.join(tmp, "workflow.html");
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   const result = run(["render", "workflow", input, out]);
   assert.equal(result.status, 0, result.stderr);
   assert.equal(fs.existsSync(out), true);
@@ -296,7 +297,7 @@ test("cli: visual-check keeps automated and perceptual claims separate on input 
 
 test("cli: deliver atomically writes a checked artifact and structured receipt", () => {
   const out = path.join(tmp, "delivered-workflow.html");
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   const result = run(["deliver", "workflow", input, out, "--quality", "showcase", "--json"]);
 
   assert.equal(result.status, 0, result.stderr);
@@ -336,7 +337,7 @@ test(
   () => {
     const fake = makeFakeOpeners("successful-open");
     const out = path.join(tmp, `-复杂 path 'quoted'`, "verified diagram.html");
-    const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+    const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
     const result = run(["deliver", "workflow", input, out, "--open", "--json"], { env: fake.env });
 
     assert.equal(result.status, 0, result.stderr);
@@ -363,7 +364,7 @@ test(
   () => {
     const fake = makeFakeOpeners("failed-open", { exitCode: 17 });
     const out = path.join(tmp, "open-failure-preserves-delivery.html");
-    const input = path.join(skillRoot, "examples/web-app.architecture.json");
+    const input = ownedSkillPath(skillRoot, "examples/web-app.architecture.json");
     const result = run(["deliver", "architecture", input, out, "--open", "--json"], {
       env: fake.env,
     });
@@ -436,7 +437,7 @@ test("cli: deliver preserves the renderer default output contract", () => {
   fs.mkdirSync(workingDirectory, { recursive: true });
   const input = path.join(workingDirectory, "source.architecture.json");
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
   );
   source.meta.output = "verified-default.html";
   fs.writeFileSync(input, JSON.stringify(source));
@@ -623,7 +624,7 @@ test("cli: deliver preserves the previous artifact when the final check fails", 
 test("cli: deliver reports renderer failure as json and preserves the previous artifact", () => {
   const input = path.join(tmp, "invalid-delivery.workflow.json");
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
   );
   source.nodes[0].unexpected = true;
   fs.writeFileSync(input, JSON.stringify(source));
@@ -662,7 +663,7 @@ test("cli: invalid source output metadata still fails inside the renderer", () =
   fs.mkdirSync(workingDirectory, { recursive: true });
   const input = path.join(workingDirectory, "source.architecture.json");
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
   );
   source.meta.output = 17;
   fs.writeFileSync(input, JSON.stringify(source));
@@ -679,7 +680,7 @@ test("cli: invalid source output metadata still fails inside the renderer", () =
 });
 
 test("cli: deliver reports commit failure without a false success receipt", () => {
-  const input = path.join(skillRoot, "examples/web-app.architecture.json");
+  const input = ownedSkillPath(skillRoot, "examples/web-app.architecture.json");
   const outputDirectory = path.join(tmp, "commit-target-is-a-directory.html");
   fs.mkdirSync(outputDirectory, { recursive: true });
 
@@ -694,7 +695,7 @@ test("cli: deliver reports commit failure without a false success receipt", () =
 });
 
 test("cli: deliver reports preparation failure as json without touching the blocker", () => {
-  const input = path.join(skillRoot, "examples/web-app.architecture.json");
+  const input = ownedSkillPath(skillRoot, "examples/web-app.architecture.json");
   const blockingFile = path.join(tmp, "delivery-parent-is-a-file");
   fs.writeFileSync(blockingFile, "do not replace me");
   const out = path.join(blockingFile, "cannot-write.html");
@@ -710,7 +711,7 @@ test("cli: deliver reports preparation failure as json without touching the bloc
 
 test("cli: check validates rendered html", () => {
   const out = path.join(tmp, "workflow-check.html");
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   assert.equal(run(["render", "workflow", input, out]).status, 0);
 
   const result = run(["check", out]);
@@ -719,7 +720,7 @@ test("cli: check validates rendered html", () => {
 });
 
 test("cli: validate emits structured json without keeping html output", () => {
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   const before = new Set(fs.readdirSync(tmp));
   const result = run(["validate", "workflow", input, "--json"]);
   assert.equal(result.status, 0, result.stderr);
@@ -798,7 +799,7 @@ test("cli: validate JSON exposes only the primary v1 column-capacity diagnostic"
 });
 
 test("cli: --quality overrides the source profile for render, validate, and deliver", () => {
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   const out = path.join(tmp, "workflow-standard.html");
   const rendered = run(["render", "workflow", input, out, "--quality", "standard"]);
   assert.equal(rendered.status, 0, rendered.stderr);
@@ -822,14 +823,14 @@ test("cli: --quality overrides the source profile for render, validate, and deli
 });
 
 test("cli: rejects an unknown quality profile", () => {
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   const result = run(["validate", "workflow", input, "--quality", "hero"]);
   assert.equal(result.status, 2);
   assert.match(result.stderr, /Expected standard or showcase/);
 });
 
 test("cli: rejects a quality flag without a value", () => {
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   for (const args of [
     ["validate", "workflow", input, "--quality"],
     ["deliver", "workflow", input, "--quality="],
@@ -842,7 +843,7 @@ test("cli: rejects a quality flag without a value", () => {
 });
 
 test("cli: validate rejects unknown flags, layout-json assignment typos, and extra positionals", () => {
-  const input = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
   const cases = [
     {
       args: ["validate", "workflow", input, "--layout-json", "--bogus"],
@@ -867,8 +868,8 @@ test("cli: validate rejects unknown flags, layout-json assignment typos, and ext
 });
 
 test("cli: validate and deliver keep argument failures machine-readable with --json", () => {
-  const workflow = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
-  const sequence = path.join(skillRoot, "examples/cache-miss-request.sequence.json");
+  const workflow = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
+  const sequence = ownedSkillPath(skillRoot, "examples/cache-miss-request.sequence.json");
   const cases = [
     {
       args: ["validate", "--json"],
@@ -986,7 +987,7 @@ test("cli: validate and deliver keep argument failures machine-readable with --j
 });
 
 test("cli: inspect emits architecture layout json", () => {
-  const input = path.resolve(skillRoot, "../examples/archify-repo-grid.architecture.json");
+  const input = ownedSkillPath(skillRoot, "../examples/archify-repo-grid.architecture.json");
   const result = run(["inspect", "architecture", input]);
   assert.equal(result.status, 0, result.stderr);
   const parsed = JSON.parse(result.stdout);
@@ -998,7 +999,7 @@ test("cli: inspect emits architecture layout json", () => {
 });
 
 test("cli: inspect remains architecture-only while workflow uses validate --layout-json", () => {
-  const input = path.join(skillRoot, "examples", "agent-tool-call.workflow.json");
+  const input = ownedSkillPath(skillRoot, "examples", "agent-tool-call.workflow.json");
   const result = run(["inspect", "workflow", input]);
   assert.equal(result.status, 2);
   assert.match(result.stderr, /inspect is currently supported for architecture diagrams only/);
@@ -1009,7 +1010,7 @@ test("cli: validate returns renderer errors for bad input", () => {
   const input = path.join(tmp, "bad.workflow.json");
   const validateTmp = path.join(tmp, "validate-failure-tmp");
   const doc = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
   );
   doc.edges[0].to = "ghost";
   fs.writeFileSync(input, JSON.stringify(doc));
@@ -1046,7 +1047,7 @@ process.on("exit", () => fs.rmSync(tmp, { recursive: true, force: true }));
 test("render rejects a mistyped option instead of writing a file named after it", () => {
   const dir = fs.mkdtempSync(path.join(tmp, "render-guard-"));
   const spec = path.join(dir, "spec.json");
-  fs.copyFileSync(path.join(skillRoot, "../examples/archify-repo.architecture.json"), spec);
+  fs.copyFileSync(ownedSkillPath(skillRoot, "../examples/archify-repo.architecture.json"), spec);
 
   // Without the guard this wrote a 600KB file literally named `--json` and
   // never wrote out.html, exiting 0.
@@ -1060,7 +1061,7 @@ test("render rejects a mistyped option instead of writing a file named after it"
 test("render rejects an extra positional argument", () => {
   const dir = fs.mkdtempSync(path.join(tmp, "render-arity-"));
   const spec = path.join(dir, "spec.json");
-  fs.copyFileSync(path.join(skillRoot, "../examples/archify-repo.architecture.json"), spec);
+  fs.copyFileSync(ownedSkillPath(skillRoot, "../examples/archify-repo.architecture.json"), spec);
 
   const result = run(["render", "architecture", spec, "out.html", "extra.html"], { cwd: dir });
 

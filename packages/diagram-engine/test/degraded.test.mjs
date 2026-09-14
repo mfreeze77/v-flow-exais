@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 // Installation contract: the shipped skill performs full JSON Schema
 // validation without node_modules. AJV is a build-time dependency only; its
 // standalone validators are committed and included in the distribution.
@@ -92,7 +93,7 @@ for (const [mode, fields] of Object.entries(ARRAY_FIELDS)) {
   for (const field of fields) {
     test(`${mode}: ${field} as a string fails friendly`, () => {
       const doc = JSON.parse(
-        fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
+        fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
       );
       if (!(field in doc)) return; // optional field absent in this example
       doc[field] = "oops";
@@ -101,7 +102,7 @@ for (const [mode, fields] of Object.entries(ARRAY_FIELDS)) {
   }
   test(`${mode}: scalar meta fails friendly`, () => {
     const doc = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
     );
     doc.meta = 42;
     assertFriendlyFailure(mode, doc, `${mode}.meta`);
@@ -111,14 +112,14 @@ for (const [mode, fields] of Object.entries(ARRAY_FIELDS)) {
 // ---- missing-coordinate fields must not yield NaN coordinates ----
 test("workflow: node missing col never writes NaN", () => {
   const doc = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES.workflow), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES.workflow), "utf8"),
   );
   delete doc.nodes[0].col;
   assertFriendlyFailure("workflow", doc, "workflow node no col");
 });
 test("lifecycle: state missing col never writes NaN", () => {
   const doc = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES.lifecycle), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES.lifecycle), "utf8"),
   );
   delete doc.states[0].col;
   assertFriendlyFailure("lifecycle", doc, "lifecycle state no col");
@@ -141,7 +142,7 @@ test("property: shuffling node/state order still renders (order-independence)", 
     const arrKey = mode === "lifecycle" ? "states" : "nodes";
     for (let seed = 1; seed <= 8; seed += 1) {
       const doc = JSON.parse(
-        fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
+        fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
       );
       const rng = mulberry32(seed);
       // Fisher–Yates with the seeded PRNG.
@@ -159,7 +160,7 @@ test("property: shuffling node/state order still renders (order-independence)", 
 
 test("installed skill rejects unknown fields without node_modules", () => {
   const doc = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES.workflow), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES.workflow), "utf8"),
   );
   doc.nodes[0].colour = "cyan";
   const { code, stderr } = render("workflow", doc);
@@ -173,7 +174,7 @@ test("installed skill rejects unknown fields without node_modules", () => {
 for (const mode of Object.keys(EXAMPLES)) {
   test(`installed skill retains full ${mode} schema without node_modules`, () => {
     const doc = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples", EXAMPLES[mode]), "utf8"),
     );
     doc.unknownField = true;
     const { code, stderr } = render(mode, doc);

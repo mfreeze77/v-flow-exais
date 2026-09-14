@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+import { ownedArchifyPath, ownedSkillPath, ownedWorkspaceRoot } from "./owned-layout.mjs";
 
 import { execFileSync } from "node:child_process";
 import crypto from "node:crypto";
@@ -9,13 +10,13 @@ import { copySiteAssets } from "./copy-site-assets.mjs";
 import { DIAGRAM_TYPE_LABELS, diagramTypeCopyReplacements } from "./site-copy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "..");
-const skillRoot = path.join(repoRoot, "archify");
-const outputRoot = path.resolve(process.argv[2] || path.join(repoRoot, "docs"));
+const repoRoot = ownedWorkspaceRoot;
+const skillRoot = ownedArchifyPath(repoRoot, "archify");
+const outputRoot = path.resolve(process.argv[2] || ownedArchifyPath(repoRoot, "docs"));
 const artifactsRoot = path.join(outputRoot, "gallery", "artifacts");
 const sourcesRoot = path.join(outputRoot, "gallery", "sources");
 const templatePath = path.join(__dirname, "gallery-template.html");
-const packageJson = JSON.parse(fs.readFileSync(path.join(skillRoot, "package.json"), "utf8"));
+const packageJson = JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "package.json"), "utf8"));
 
 const CASES = [
   {
@@ -267,7 +268,7 @@ fs.mkdirSync(sourcesRoot, { recursive: true });
 
 const entries = [];
 for (const item of CASES) {
-  const inputPath = path.join(skillRoot, "examples", item.input);
+  const inputPath = ownedSkillPath(skillRoot, "examples", item.input);
   const sourceBuffer = fs.readFileSync(inputPath);
   const source = JSON.parse(sourceBuffer.toString("utf8"));
   const artifactPath = path.join(artifactsRoot, item.output);
@@ -276,7 +277,7 @@ for (const item of CASES) {
   execFileSync(
     process.execPath,
     [
-      path.join(skillRoot, "renderers", item.type, `render-${item.type}.mjs`),
+      ownedSkillPath(skillRoot, "renderers", item.type, `render-${item.type}.mjs`),
       inputPath,
       artifactPath,
     ],
@@ -286,7 +287,7 @@ for (const item of CASES) {
 
   const checkOutput = execFileSync(
     process.execPath,
-    [path.join(skillRoot, "scripts", "check-render-output.mjs"), artifactPath],
+    [ownedSkillPath(skillRoot, "scripts", "check-render-output.mjs"), artifactPath],
     { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] },
   );
   const validation = JSON.parse(checkOutput);

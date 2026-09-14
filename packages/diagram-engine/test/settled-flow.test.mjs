@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -9,7 +10,7 @@ import { animateAttr } from "../renderers/shared/cli.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const template = fs.readFileSync(path.join(skillRoot, "assets", "template.html"), "utf8");
+const template = fs.readFileSync(ownedSkillPath(skillRoot, "assets", "template.html"), "utf8");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-settled-flow-"));
 
 const CASES = {
@@ -21,14 +22,14 @@ const CASES = {
 };
 
 function render(mode, example) {
-  const doc = JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", example), "utf8"));
+  const doc = JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "examples", example), "utf8"));
   doc.meta = { ...doc.meta, animation: "trace" };
   const input = path.join(tmp, `${mode}.json`);
   const output = path.join(tmp, `${mode}.html`);
   fs.writeFileSync(input, JSON.stringify(doc));
   execFileSync(
     "node",
-    [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
+    [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
     {
       stdio: ["ignore", "ignore", "pipe"],
     },

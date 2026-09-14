@@ -1,10 +1,9 @@
+import { ownedWorkspaceRoot } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
-import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "../..");
+const repoRoot = ownedWorkspaceRoot;
 
 function linguistGenerated(relativePath) {
   const output = execFileSync("git", ["check-attr", "linguist-generated", "--", relativePath], {

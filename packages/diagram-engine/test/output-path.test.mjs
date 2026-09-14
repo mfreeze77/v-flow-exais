@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { spawn, spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -11,10 +12,10 @@ import { pathsAlias } from "../renderers/shared/output-path.mjs";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const cli = path.join(skillRoot, "bin/archify.mjs");
-const workflowFixture = path.join(skillRoot, "examples/agent-tool-call.workflow.json");
-const baseFixture = path.join(skillRoot, "examples/checkout-platform.base.architecture.json");
-const headFixture = path.join(skillRoot, "examples/checkout-platform.head.architecture.json");
+const cli = ownedSkillPath(skillRoot, "bin/archify.mjs");
+const workflowFixture = ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json");
+const baseFixture = ownedSkillPath(skillRoot, "examples/checkout-platform.base.architecture.json");
+const headFixture = ownedSkillPath(skillRoot, "examples/checkout-platform.head.architecture.json");
 
 function run(args, cwd) {
   return spawnSync(process.execPath, [cli, ...args], {
@@ -117,7 +118,7 @@ test("render reports an output symlink cycle as a structured output diagnostic",
 
   const result = spawnSync(
     process.execPath,
-    [path.join(skillRoot, "renderers/workflow/render-workflow.mjs"), input, output],
+    [ownedSkillPath(skillRoot, "renderers/workflow/render-workflow.mjs"), input, output],
     {
       cwd,
       encoding: "utf8",
@@ -283,7 +284,7 @@ test(
     fs.mkdirSync(installedScripts, { recursive: true });
     fs.copyFileSync(cli, path.join(installedBin, "archify.mjs"));
     fs.copyFileSync(
-      path.join(skillRoot, "renderers/shared/output-path.mjs"),
+      ownedSkillPath(skillRoot, "renderers/shared/output-path.mjs"),
       path.join(installedShared, "output-path.mjs"),
     );
     fs.writeFileSync(
@@ -474,7 +475,7 @@ test("the shared renderer rechecks its guarded output immediately before writing
   fs.writeFileSync(input, source);
 
   const loaded = loadDiagram({
-    rendererDir: path.join(skillRoot, "renderers/workflow"),
+    rendererDir: ownedSkillPath(skillRoot, "renderers/workflow"),
     diagramType: "workflow",
     defaultExample: "agent-tool-call.workflow.json",
     argv: ["node", "render-workflow.mjs", input, output],
@@ -519,7 +520,7 @@ test(
     }
     fs.copyFileSync(cli, path.join(installedBin, "archify.mjs"));
     fs.copyFileSync(
-      path.join(skillRoot, "renderers/shared/output-path.mjs"),
+      ownedSkillPath(skillRoot, "renderers/shared/output-path.mjs"),
       path.join(installedShared, "output-path.mjs"),
     );
     fs.writeFileSync(

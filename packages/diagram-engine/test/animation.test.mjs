@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -27,7 +28,7 @@ const NODE_COLLECTION = {
 };
 
 function render(mode, example, animation = "trace", visualPreset) {
-  const doc = JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", example), "utf8"));
+  const doc = JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "examples", example), "utf8"));
   if (animation) doc.meta = { ...doc.meta, animation };
   else delete doc.meta.animation;
   if (visualPreset) doc.meta.visual_preset = visualPreset;
@@ -38,7 +39,7 @@ function render(mode, example, animation = "trace", visualPreset) {
   fs.writeFileSync(input, JSON.stringify(doc));
   execFileSync(
     "node",
-    [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
+    [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
     {
       stdio: ["ignore", "ignore", "pipe"],
     },
@@ -138,7 +139,9 @@ test("editorial preset reaches every visual surface and all five typed renderers
 
 test("all five renderers add one geometry-neutral semantic sigil per primary node", () => {
   for (const [mode, example] of Object.entries(CASES)) {
-    const source = JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", example), "utf8"));
+    const source = JSON.parse(
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples", example), "utf8"),
+    );
     const expected = source[NODE_COLLECTION[mode]].length;
     const staticHtml = render(mode, example, null, "classic");
     const traceHtml = render(mode, example, "trace", "classic");

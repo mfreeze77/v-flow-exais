@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -18,7 +19,7 @@ function renderOutcome(doc) {
   try {
     execFileSync(
       "node",
-      [path.join(skillRoot, "renderers/sequence/render-sequence.mjs"), input, output],
+      [ownedSkillPath(skillRoot, "renderers/sequence/render-sequence.mjs"), input, output],
       { stdio: ["ignore", "ignore", "pipe"] },
     );
     return { code: 0, stderr: "", html: fs.readFileSync(output, "utf8") };
@@ -139,12 +140,12 @@ test("the sublabel diagnostic reports the width in force, not the historical con
 
 test("the fast authoring path explains when to opt into spread", () => {
   const schema = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "schemas/sequence.schema.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "schemas/sequence.schema.json"), "utf8"),
   );
   const description = schema.properties.meta.properties.column_fit.description;
-  const skill = fs.readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+  const skill = fs.readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
   const rendererReadme = fs.readFileSync(
-    path.join(skillRoot, "renderers/sequence/README.md"),
+    ownedSkillPath(skillRoot, "renderers/sequence/README.md"),
     "utf8",
   );
 

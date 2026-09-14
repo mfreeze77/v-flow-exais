@@ -1,14 +1,15 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import fs from "node:fs";
-import path from "node:path";
 import test from "node:test";
-import { fileURLToPath } from "node:url";
 
-const here = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(here, "../..");
+const repoRoot = ownedWorkspaceRoot;
 
 function read(relativePath) {
-  return fs.readFileSync(path.join(repoRoot, relativePath), "utf8");
+  return fs.readFileSync(ownedArchifyPath(repoRoot, relativePath), "utf8");
 }
 
 test("showcase intake requires reproducible proof, redaction, and explicit publication permission", () => {

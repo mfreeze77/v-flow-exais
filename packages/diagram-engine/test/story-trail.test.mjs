@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -23,8 +24,8 @@ function render(mode, example) {
   const result = spawnSync(
     process.execPath,
     [
-      path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
-      path.join(skillRoot, "examples", example),
+      ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
+      ownedSkillPath(skillRoot, "examples", example),
       output,
     ],
     { encoding: "utf8" },
@@ -73,7 +74,7 @@ for (const [mode, example] of Object.entries(CASES)) {
 }
 
 test("Story Trail state is removed from every export clone", () => {
-  const template = fs.readFileSync(path.join(skillRoot, "assets", "template.html"), "utf8");
+  const template = fs.readFileSync(ownedSkillPath(skillRoot, "assets", "template.html"), "utf8");
   assert.match(template, /clone\.removeAttribute\('data-story-active'\)/);
   assert.match(template, /clone\.removeAttribute\('data-story-playing'\)/);
   assert.match(template, /clone\.removeAttribute\('data-story-beat'\)/);

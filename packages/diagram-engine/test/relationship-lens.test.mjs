@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -21,8 +22,8 @@ const CASES = {
 function render(mode, example) {
   const output = path.join(tmp, `${mode}.html`);
   execFileSync(process.execPath, [
-    path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
-    path.join(skillRoot, "examples", example),
+    ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
+    ownedSkillPath(skillRoot, "examples", example),
     output,
   ]);
   return fs.readFileSync(output, "utf8");
@@ -45,7 +46,7 @@ test("all typed renderers expose named, stable relationships without changing ge
   for (const [mode, config] of Object.entries(CASES)) {
     const html = render(mode, config.example);
     const source = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples", config.example), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples", config.example), "utf8"),
     );
     const relationships = source[config.collection];
     const diagram = svg(html);

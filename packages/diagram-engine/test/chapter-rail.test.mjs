@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -21,8 +22,8 @@ const CASES = {
 function render(mode) {
   const output = path.join(tmp, `${mode}.html`);
   execFileSync(process.execPath, [
-    path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
-    path.join(skillRoot, "examples", CASES[mode]),
+    ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
+    ownedSkillPath(skillRoot, "examples", CASES[mode]),
     output,
   ]);
   return fs.readFileSync(output, "utf8");

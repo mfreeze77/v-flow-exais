@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import { createHash } from "node:crypto";
@@ -8,8 +9,8 @@ import { after, test } from "node:test";
 import { fileURLToPath } from "node:url";
 
 const skillRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const checker = path.join(skillRoot, "scripts/check-render-output.mjs");
-const cli = path.join(skillRoot, "bin/archify.mjs");
+const checker = ownedSkillPath(skillRoot, "scripts/check-render-output.mjs");
+const cli = ownedSkillPath(skillRoot, "bin/archify.mjs");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-receipt-flush-"));
 after(() => fs.rmSync(tmp, { recursive: true, force: true }));
 

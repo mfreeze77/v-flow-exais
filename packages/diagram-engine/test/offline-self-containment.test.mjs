@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -12,9 +17,9 @@ import {
 } from "./helpers/offline-fonts.mjs";
 
 const skillRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
-const repoRoot = path.resolve(skillRoot, "..");
-const cli = path.join(skillRoot, "bin/archify.mjs");
-const template = fs.readFileSync(path.join(skillRoot, "assets/template.html"), "utf8");
+const repoRoot = ownedWorkspaceRoot;
+const cli = ownedSkillPath(skillRoot, "bin/archify.mjs");
+const template = fs.readFileSync(ownedSkillPath(skillRoot, "assets/template.html"), "utf8");
 const DIAGRAMS = [
   ["architecture", "web-app.architecture.json", "web-app-rendered.html"],
   ["workflow", "agent-tool-call.workflow.json", "workflow-agent-tool-call-rendered.html"],
@@ -26,13 +31,13 @@ const DIAGRAMS = [
 test("the viewer template carries its own font and readable provenance", () => {
   assertOfflineArtifact(template, "template");
   const license = fs
-    .readFileSync(path.join(skillRoot, "assets/JetBrainsMono-OFL.txt"), "utf8")
+    .readFileSync(ownedSkillPath(skillRoot, "assets/JetBrainsMono-OFL.txt"), "utf8")
     .trim();
   assert.ok(
     inspectDocuments(template)[0].styles.some((css) => css.includes(license)),
     "standalone font CSS must carry the full license",
   );
-  const notices = fs.readFileSync(path.join(skillRoot, "THIRD_PARTY_NOTICES.md"), "utf8");
+  const notices = fs.readFileSync(ownedSkillPath(skillRoot, "THIRD_PARTY_NOTICES.md"), "utf8");
   assert.match(notices, /## JetBrains Mono/);
   assert.match(notices, /assets\/JetBrainsMono-OFL\.txt/);
 });
@@ -91,7 +96,7 @@ test("a freshly delivered artifact of every type reaches no external origin", ()
           cli,
           "deliver",
           type,
-          path.join(skillRoot, "examples", input),
+          ownedSkillPath(skillRoot, "examples", input),
           output,
           "--quality",
           "showcase",
@@ -109,8 +114,8 @@ test("a freshly delivered artifact of every type reaches no external origin", ()
         cli,
         "compare",
         "architecture",
-        path.join(skillRoot, "examples/checkout-platform.base.architecture.json"),
-        path.join(skillRoot, "examples/checkout-platform.head.architecture.json"),
+        ownedSkillPath(skillRoot, "examples/checkout-platform.base.architecture.json"),
+        ownedSkillPath(skillRoot, "examples/checkout-platform.head.architecture.json"),
         output,
         "--json",
       ],
@@ -135,7 +140,7 @@ test("every checked-in viewer artifact carries its font and reaches no external 
     .split("\0")
     .filter((entry) => entry.endsWith(".html"))
     .filter((entry) =>
-      /Archify\.readerLayout/.test(fs.readFileSync(path.join(repoRoot, entry), "utf8")),
+      /Archify\.readerLayout/.test(fs.readFileSync(ownedArchifyPath(repoRoot, entry), "utf8")),
     );
   for (const required of [
     "examples/checkout-platform-delta.html",
@@ -144,5 +149,5 @@ test("every checked-in viewer artifact carries its font and reaches no external 
     assert.ok(artifacts.includes(required), `missing delivery-chain artifact: ${required}`);
   }
   for (const relative of artifacts)
-    assertOfflineArtifact(fs.readFileSync(path.join(repoRoot, relative), "utf8"), relative);
+    assertOfflineArtifact(fs.readFileSync(ownedArchifyPath(repoRoot, relative), "utf8"), relative);
 });

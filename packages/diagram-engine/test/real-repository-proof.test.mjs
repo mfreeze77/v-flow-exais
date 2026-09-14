@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync, spawnSync } from "node:child_process";
@@ -9,23 +14,23 @@ import { verifyRepositoryEvidence } from "../renderers/shared/repository-evidenc
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
-const sourcePath = path.join(repoRoot, "docs", "cases", "mco-runtime.architecture.json");
-const artifactPath = path.join(repoRoot, "docs", "cases", "mco-runtime.architecture.html");
-const shareCardPath = path.join(repoRoot, "docs", "assets", "mco-runtime-share-card.png");
-const experimentSourcePath = path.join(
+const repoRoot = ownedWorkspaceRoot;
+const sourcePath = ownedArchifyPath(repoRoot, "docs", "cases", "mco-runtime.architecture.json");
+const artifactPath = ownedArchifyPath(repoRoot, "docs", "cases", "mco-runtime.architecture.html");
+const shareCardPath = ownedArchifyPath(repoRoot, "docs", "assets", "mco-runtime-share-card.png");
+const experimentSourcePath = ownedArchifyPath(
   repoRoot,
   "experiments",
   "mco-showcase",
   "mco-runtime.architecture.json",
 );
-const experimentArtifactPath = path.join(
+const experimentArtifactPath = ownedArchifyPath(
   repoRoot,
   "experiments",
   "mco-showcase",
   "mco-runtime.html",
 );
-const cli = path.join(skillRoot, "bin", "archify.mjs");
+const cli = ownedSkillPath(skillRoot, "bin", "archify.mjs");
 const pinnedSource = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
 const pinnedRepository = pinnedSource.meta.repository;
 
@@ -48,7 +53,7 @@ function connectionLabelGeometry(html) {
 }
 
 function automaticMcoRoot() {
-  const candidate = path.resolve(repoRoot, "..", "mco");
+  const candidate = ownedArchifyPath(repoRoot, "..", "mco");
   if (!fs.existsSync(path.join(candidate, ".git"))) return null;
   try {
     verifyRepositoryEvidence("architecture", pinnedSource, candidate);
@@ -232,7 +237,7 @@ test("MCO public proof is source-backed, valid, and linked from every README", (
   const repositorySlug = new URL(source.meta.repository.url).pathname.replace(/^\/|\/$/g, "");
   const shortRevision = source.meta.repository.revision.slice(0, 7);
   for (const filename of ["README.md", "README_EN.md", "README_ZH.md"]) {
-    const readme = fs.readFileSync(path.join(repoRoot, filename), "utf8");
+    const readme = fs.readFileSync(ownedArchifyPath(repoRoot, filename), "utf8");
     assert.match(readme, /docs\/assets\/mco-runtime-share-card\.png/);
     assert.match(
       readme,

@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -10,7 +15,7 @@ import { SCENARIO_RECIPES, startPromptsFor } from "../recipes/scenarios.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
+const repoRoot = ownedWorkspaceRoot;
 
 class FakeElement {
   constructor({ id = "", textContent = "", dataset = {} } = {}) {
@@ -178,10 +183,13 @@ test("start page: checked-in HTML is reproducible from canonical scenario recipe
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-start-page-"));
   const generated = path.join(tmp, "start.html");
   try {
-    execFileSync(process.execPath, [path.join(repoRoot, "scripts/build-start.mjs"), generated]);
+    execFileSync(process.execPath, [
+      ownedArchifyPath(repoRoot, "scripts/build-start.mjs"),
+      generated,
+    ]);
     assert.equal(
       fs.readFileSync(generated, "utf8"),
-      fs.readFileSync(path.join(repoRoot, "docs/start.html"), "utf8"),
+      fs.readFileSync(ownedArchifyPath(repoRoot, "docs/start.html"), "utf8"),
     );
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
@@ -189,7 +197,7 @@ test("start page: checked-in HTML is reproducible from canonical scenario recipe
 });
 
 test("start page: offers five bounded bilingual starts without ingesting source content", () => {
-  const html = fs.readFileSync(path.join(repoRoot, "docs/start.html"), "utf8");
+  const html = fs.readFileSync(ownedArchifyPath(repoRoot, "docs/start.html"), "utf8");
   assert.doesNotMatch(html, /\[\[[A-Z0-9_]+\]\]/);
   assert.match(
     html,
@@ -283,7 +291,7 @@ test("start page: canonical recipes own description and repository prompt varian
 });
 
 test("start page: input mode drives rendered prompt, copy, keyboard, and URL without changing event schema", async () => {
-  const html = fs.readFileSync(path.join(repoRoot, "docs/start.html"), "utf8");
+  const html = fs.readFileSync(ownedArchifyPath(repoRoot, "docs/start.html"), "utf8");
   const page = executeStartPage(html);
   const descriptionPrompt = page.data.architecture.en.descriptionPrompt;
   const repositoryPrompt = page.data.architecture.en.repositoryPrompt;
@@ -349,8 +357,8 @@ test("generated artifacts omit the promotional footer and shortcut manual", () =
     for (const [type, input] of Object.entries(examples)) {
       const out = path.join(tmp, `${type}.html`);
       execFileSync(process.execPath, [
-        path.join(skillRoot, `renderers/${type}/render-${type}.mjs`),
-        path.join(skillRoot, "examples", input),
+        ownedSkillPath(skillRoot, `renderers/${type}/render-${type}.mjs`),
+        ownedSkillPath(skillRoot, "examples", input),
         out,
       ]);
       const html = fs.readFileSync(out, "utf8");
@@ -370,21 +378,21 @@ test("generated artifacts omit the promotional footer and shortcut manual", () =
 });
 
 test("viewer gives wide screens a larger canvas without forcing a subtitle row", () => {
-  const template = fs.readFileSync(path.join(skillRoot, "assets", "template.html"), "utf8");
+  const template = fs.readFileSync(ownedSkillPath(skillRoot, "assets", "template.html"), "utf8");
   assert.match(template, /max-width: var\(--archify-reader-width, 1440px\)/);
   assert.match(template, /Archify\.readerLayout = \(function \(\)/);
 
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-title-hierarchy-"));
   try {
     const input = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples", "web-app.architecture.json"), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples", "web-app.architecture.json"), "utf8"),
     );
     delete input.meta.subtitle;
     const source = path.join(tmp, "without-subtitle.architecture.json");
     const output = path.join(tmp, "without-subtitle.html");
     fs.writeFileSync(source, `${JSON.stringify(input, null, 2)}\n`);
     execFileSync(process.execPath, [
-      path.join(skillRoot, "renderers", "architecture", "render-architecture.mjs"),
+      ownedSkillPath(skillRoot, "renderers", "architecture", "render-architecture.mjs"),
       source,
       output,
     ]);
@@ -396,7 +404,7 @@ test("viewer gives wide screens a larger canvas without forcing a subtitle row",
 
 test("artifact-to-install measurement plan separates observable funnel steps from first-diagram success", () => {
   const plan = fs.readFileSync(
-    path.join(repoRoot, "docs/artifact-install-v2-measurement.md"),
+    ownedArchifyPath(repoRoot, "docs/artifact-install-v2-measurement.md"),
     "utf8",
   );
 

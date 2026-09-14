@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 // Golden-file harness for the archify renderers. No test framework needed:
 // renderers are deterministic, so fresh renders must match both checked-in
 // development and packaged example HTML aside from platform checkout line endings. Also covers schema enforcement (negative cases),
@@ -13,7 +18,7 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
+const repoRoot = ownedWorkspaceRoot;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-test-"));
 
 let failures = 0;
@@ -30,7 +35,7 @@ function check(name, ok, detail) {
 function render(mode, inputPath, outPath) {
   execFileSync(
     "node",
-    [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), inputPath, outPath],
+    [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), inputPath, outPath],
     { stdio: ["ignore", "ignore", "pipe"] },
   );
 }
@@ -88,10 +93,10 @@ const GOLDEN = [
 for (const [mode, input, golden] of GOLDEN) {
   const out = path.join(tmp, golden);
   try {
-    render(mode, path.join(skillRoot, "examples", input), out);
+    render(mode, ownedSkillPath(skillRoot, "examples", input), out);
     const fresh = fs.readFileSync(out, "utf8");
-    const checked = fs.readFileSync(path.join(repoRoot, "examples", golden), "utf8");
-    const packaged = fs.readFileSync(path.join(skillRoot, "examples", golden), "utf8");
+    const checked = fs.readFileSync(ownedArchifyPath(repoRoot, "examples", golden), "utf8");
+    const packaged = fs.readFileSync(ownedSkillPath(skillRoot, "examples", golden), "utf8");
     check(
       `${mode}: ${golden}`,
       normalizeNewlines(fresh) === normalizeNewlines(checked),
@@ -112,7 +117,10 @@ console.log("schema enforcement (invalid JSON must fail with a path-prefixed mes
 
 function expectFailure(name, mode, mutate, expectInMessage) {
   const base = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples", GOLDEN.find(([m]) => m === mode)[1]), "utf8"),
+    fs.readFileSync(
+      ownedSkillPath(skillRoot, "examples", GOLDEN.find(([m]) => m === mode)[1]),
+      "utf8",
+    ),
   );
   mutate(base);
   const input = path.join(tmp, `neg-${name.replace(/[^a-z0-9]+/gi, "-")}.json`);
@@ -214,8 +222,8 @@ function blocks(html, tag) {
   return html.match(re) || [];
 }
 
-const template = fs.readFileSync(path.join(skillRoot, "assets/template.html"), "utf8");
-const webApp = fs.readFileSync(path.join(repoRoot, "examples/web-app.html"), "utf8");
+const template = fs.readFileSync(ownedSkillPath(skillRoot, "assets/template.html"), "utf8");
+const webApp = fs.readFileSync(ownedArchifyPath(repoRoot, "examples/web-app.html"), "utf8");
 // <style> and <script> blocks pass through applyTemplate untouched, so the
 // architecture-mode example must contain them verbatim or it has drifted.
 for (const tag of ["style", "script"]) {
@@ -236,21 +244,21 @@ for (const tag of ["style", "script"]) {
 // ---------------------------------------------------------------------------
 console.log("version sync");
 
-const pkg = JSON.parse(fs.readFileSync(path.join(skillRoot, "package.json"), "utf8"));
+const pkg = JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "package.json"), "utf8"));
 check(
   "template generator meta matches package.json version",
   template.includes(`<meta name="generator" content="archify ${pkg.version}">`),
   `package.json says ${pkg.version}`,
 );
 
-const lock = JSON.parse(fs.readFileSync(path.join(skillRoot, "package-lock.json"), "utf8"));
+const lock = JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "package-lock.json"), "utf8"));
 check(
   "package-lock.json version matches package.json",
   lock.version === pkg.version && lock.packages?.[""]?.version === pkg.version,
   `lockfile says ${lock.version} — run npm install and rebuild the zip`,
 );
 
-const skillMd = fs.readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+const skillMd = fs.readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
 const skillVersion = (skillMd.match(/^\s*version:\s*"([^"]+)"/m) || [])[1];
 const packageMajorMinor = pkg.version.match(/^(\d+\.\d+)\./)?.[1];
 check(
@@ -260,7 +268,7 @@ check(
 );
 
 for (const readmeName of ["README.md", "README_EN.md", "README_ZH.md"]) {
-  const readme = fs.readFileSync(path.join(repoRoot, readmeName), "utf8");
+  const readme = fs.readFileSync(ownedArchifyPath(repoRoot, readmeName), "utf8");
   const badgeVersions = shieldsBadgeMessages(readme, "version");
   check(
     `${readmeName} badge matches package.json version`,
@@ -269,7 +277,7 @@ for (const readmeName of ["README.md", "README_EN.md", "README_ZH.md"]) {
   );
 }
 
-const landingPage = fs.readFileSync(path.join(repoRoot, "docs/index.html"), "utf8");
+const landingPage = fs.readFileSync(ownedArchifyPath(repoRoot, "docs/index.html"), "utf8");
 const landingVersions = [
   ...landingPage.matchAll(/\bv\d+\.\d+\.\d+(?:-[0-9A-Za-z-]+(?:\.[0-9A-Za-z-]+)*)?\b/g),
 ].map((match) => match[0]);

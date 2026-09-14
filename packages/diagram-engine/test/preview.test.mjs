@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { createHash } from "node:crypto";
 import { EventEmitter } from "node:events";
 import fs from "node:fs";
@@ -112,7 +113,7 @@ test(
     const input = path.join(tmp, "diagram.architecture.json");
     const output = path.join(tmp, "diagram.html");
     const source = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
     );
     source.meta.title = "Last Good One";
     fs.writeFileSync(input, JSON.stringify(source));
@@ -230,7 +231,7 @@ test(
     const input = path.join(tmp, "diagram.workflow.json");
     const output = path.join(tmp, "diagram.html");
     const source = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples/agent-tool-call.workflow.json"), "utf8"),
     );
     const original = JSON.stringify(source);
     fs.writeFileSync(input, original);
@@ -657,7 +658,7 @@ test(
       const tmp = fs.mkdtempSync(path.join(os.tmpdir(), `archify-preview-${type}-`));
       const input = path.join(tmp, example);
       const output = path.join(tmp, `${type}.html`);
-      fs.copyFileSync(path.join(skillRoot, "examples", example), input);
+      fs.copyFileSync(ownedSkillPath(skillRoot, "examples", example), input);
       const preview = await startPreview({
         type,
         input,
@@ -691,7 +692,7 @@ test(
     const input = path.join(tmp, "diagram.architecture.json");
     const output = path.join(tmp, "diagram.html");
     const source = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
     );
     fs.writeFileSync(input, JSON.stringify(source));
 

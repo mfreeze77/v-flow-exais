@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -9,7 +10,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-output-checks-"));
-const checker = path.join(skillRoot, "scripts/check-render-output.mjs");
+const checker = ownedSkillPath(skillRoot, "scripts/check-render-output.mjs");
 
 function checkHtml(name, svgBody, profile = "standard", viewBox = "0 0 240 160") {
   const htmlPath = path.join(tmp, `${name}.html`);

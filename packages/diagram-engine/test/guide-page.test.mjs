@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -9,16 +14,19 @@ import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
+const repoRoot = ownedWorkspaceRoot;
 
 test("guide page: checked-in HTML is reproducible from the shared recipe source", () => {
   const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-guide-page-"));
   const generated = path.join(tmp, "guide.html");
   try {
-    execFileSync(process.execPath, [path.join(repoRoot, "scripts/build-guide.mjs"), generated]);
+    execFileSync(process.execPath, [
+      ownedArchifyPath(repoRoot, "scripts/build-guide.mjs"),
+      generated,
+    ]);
     assert.equal(
       fs.readFileSync(generated, "utf8"),
-      fs.readFileSync(path.join(repoRoot, "docs/guide.html"), "utf8"),
+      fs.readFileSync(ownedArchifyPath(repoRoot, "docs/guide.html"), "utf8"),
     );
   } finally {
     fs.rmSync(tmp, { recursive: true, force: true });
@@ -26,9 +34,9 @@ test("guide page: checked-in HTML is reproducible from the shared recipe source"
 });
 
 test("guide page: ships bilingual recipes and syntactically valid interaction code", () => {
-  const html = fs.readFileSync(path.join(repoRoot, "docs/guide.html"), "utf8");
+  const html = fs.readFileSync(ownedArchifyPath(repoRoot, "docs/guide.html"), "utf8");
   const packageVersion = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "package.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "package.json"), "utf8"),
   ).version;
   const releaseIdentity = packageVersion.includes("-") ? "development" : "stable";
   const staticVersionLabel = html.match(/<span data-i18n="versionLabel">([^<]+)<\/span>/);

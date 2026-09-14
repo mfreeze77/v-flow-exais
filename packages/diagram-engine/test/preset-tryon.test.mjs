@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -19,7 +20,9 @@ const CASES = {
 };
 
 function render(mode, preset) {
-  const source = JSON.parse(fs.readFileSync(path.join(skillRoot, "examples", CASES[mode]), "utf8"));
+  const source = JSON.parse(
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples", CASES[mode]), "utf8"),
+  );
   if (preset === undefined) delete source.meta.visual_preset;
   else source.meta.visual_preset = preset;
   source.meta.animation = "none";
@@ -28,7 +31,7 @@ function render(mode, preset) {
   const output = path.join(tmp, `${mode}-${fixtureName}.html`);
   fs.writeFileSync(input, JSON.stringify(source));
   execFileSync(process.execPath, [
-    path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
+    ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`),
     input,
     output,
   ]);

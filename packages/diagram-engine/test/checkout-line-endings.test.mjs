@@ -1,12 +1,15 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
 
-const repoRoot = fileURLToPath(new URL("../../", import.meta.url));
+const repoRoot = ownedWorkspaceRoot;
 
 for (const autocrlf of ["true", "input", "false"]) {
   test(`Git checkout preserves committed text and binary bytes with core.autocrlf=${autocrlf}`, () => {
@@ -39,7 +42,7 @@ for (const autocrlf of ["true", "input", "false"]) {
       runGit(source, ["config", "user.name", "Archify Test"]);
       runGit(source, ["config", "user.email", "archify@example.invalid"]);
       const files = new Map([
-        [".gitattributes", fs.readFileSync(path.join(repoRoot, ".gitattributes"))],
+        [".gitattributes", fs.readFileSync(ownedArchifyPath(repoRoot, ".gitattributes"))],
         ["README.md", Buffer.from("# Checkout proof\n文本 stays LF.\n")],
         ["archify/bin/example.mjs", Buffer.from("export const value = 1;\n")],
         ["examples/proof.html", Buffer.from("<!doctype html>\n<p>diagram</p>\n")],

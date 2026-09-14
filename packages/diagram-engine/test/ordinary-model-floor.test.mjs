@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
 import fs from "node:fs";
@@ -8,8 +13,8 @@ import { fileURLToPath } from "node:url";
 
 const here = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(here, "..");
-const repoRoot = path.resolve(skillRoot, "..");
-const benchmark = path.join(repoRoot, "benchmarks/ordinary-model-floor/benchmark.mjs");
+const repoRoot = ownedWorkspaceRoot;
+const benchmark = ownedArchifyPath(repoRoot, "benchmarks/ordinary-model-floor/benchmark.mjs");
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-ordinary-model-floor-"));
 
 function writeJson(name, value) {
@@ -80,7 +85,7 @@ test("benchmark verifies one first-pass architecture candidate through semantic,
       defects: [],
     },
   });
-  const candidate = path.join(skillRoot, "examples/web-app.architecture.json");
+  const candidate = ownedSkillPath(skillRoot, "examples/web-app.architecture.json");
 
   const result = run(["verify", "--case", caseFile, "--candidate", candidate, "--run", runFile]);
 
@@ -111,7 +116,7 @@ test("benchmark verifies one first-pass architecture candidate through semantic,
 
 test("benchmark rejects a renderer-valid candidate that changes required technical roles or relationship labels", () => {
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
   );
   source.components.find((component) => component.id === "cache").type = "frontend";
   source.connections.find(
@@ -190,7 +195,7 @@ test("benchmark never accepts a visual pass without an identified reviewer", () 
       defects: [],
     },
   });
-  const candidate = path.join(skillRoot, "examples/web-app.architecture.json");
+  const candidate = ownedSkillPath(skillRoot, "examples/web-app.architecture.json");
 
   const result = run(["verify", "--case", caseFile, "--candidate", candidate, "--run", runFile]);
 
@@ -272,7 +277,7 @@ test("benchmark applies the same semantic and delivery seam to workflow, sequenc
         defects: [],
       },
     });
-    const candidate = path.join(skillRoot, "examples", item.example);
+    const candidate = ownedSkillPath(skillRoot, "examples", item.example);
 
     const result = run(["verify", "--case", caseFile, "--candidate", candidate, "--run", runFile]);
 
@@ -432,7 +437,7 @@ test("benchmark records a timeout without a candidate as a complete first-pass f
 
 test("benchmark semantic requirements bind by accepted technical labels instead of forcing model-authored internal IDs", () => {
   const source = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/web-app.architecture.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/web-app.architecture.json"), "utf8"),
   );
   source.components.find((component) => component.id === "users").label = "Browser Users";
   const rename = new Map([
@@ -497,7 +502,7 @@ test("benchmark semantic requirements bind by accepted technical labels instead 
 });
 
 test("checked-in cases accept equivalent ordinary-model vocabulary without weakening required topology", () => {
-  const suiteRoot = path.join(repoRoot, "benchmarks/ordinary-model-floor");
+  const suiteRoot = ownedArchifyPath(repoRoot, "benchmarks/ordinary-model-floor");
   const fixtures = [
     {
       type: "architecture",
@@ -627,7 +632,7 @@ test("checked-in cases accept equivalent ordinary-model vocabulary without weake
 
   for (const fixture of fixtures) {
     const source = JSON.parse(
-      fs.readFileSync(path.join(skillRoot, "examples", fixture.example), "utf8"),
+      fs.readFileSync(ownedSkillPath(skillRoot, "examples", fixture.example), "utf8"),
     );
     const candidate = renameCandidateIds(source, fixture.mapping);
     fixture.mutate(candidate);
@@ -700,7 +705,7 @@ test("checked-in cases accept equivalent ordinary-model vocabulary without weake
 });
 
 test("checked-in benchmark suite covers all five diagram types without presenting reference fixtures as model evidence", () => {
-  const manifest = path.join(repoRoot, "benchmarks/ordinary-model-floor/manifest.json");
+  const manifest = ownedArchifyPath(repoRoot, "benchmarks/ordinary-model-floor/manifest.json");
 
   const result = run(["check", "--manifest", manifest]);
 
@@ -729,7 +734,7 @@ test("checked-in benchmark suite covers all five diagram types without presentin
 });
 
 test("checked-in prompts permit bundled CLI repair while retaining external validation authority", () => {
-  const suiteRoot = path.join(repoRoot, "benchmarks/ordinary-model-floor");
+  const suiteRoot = ownedArchifyPath(repoRoot, "benchmarks/ordinary-model-floor");
   const manifest = JSON.parse(fs.readFileSync(path.join(suiteRoot, "manifest.json"), "utf8"));
 
   for (const entry of manifest.cases) {
@@ -748,7 +753,7 @@ test("checked-in prompts permit bundled CLI repair while retaining external vali
 });
 
 test("suite integrity rejects a long prompt that omits the attempt-1 file contract", () => {
-  const sourceSuite = path.join(repoRoot, "benchmarks/ordinary-model-floor");
+  const sourceSuite = ownedArchifyPath(repoRoot, "benchmarks/ordinary-model-floor");
   const incompletePrompt = path.join(tmp, "incomplete-benchmark-prompt.md");
   fs.writeFileSync(
     incompletePrompt,
@@ -781,7 +786,7 @@ test("benchmark fails closed with machine-readable errors for malformed JSON and
     diagram_type: "architecture",
     requirements: { node_ids: ["api"] },
   });
-  const candidate = path.join(skillRoot, "examples/web-app.architecture.json");
+  const candidate = ownedSkillPath(skillRoot, "examples/web-app.architecture.json");
   const mismatchedRun = writeJson("identity.run.json", {
     schema_version: 1,
     case_id: "different-case",
@@ -842,7 +847,7 @@ test("benchmark fails closed with machine-readable errors for malformed JSON and
 });
 
 test("benchmark report marks only a complete first-pass matrix as evidence and rejects duplicate runs", () => {
-  const manifestFile = path.join(repoRoot, "benchmarks/ordinary-model-floor/manifest.json");
+  const manifestFile = ownedArchifyPath(repoRoot, "benchmarks/ordinary-model-floor/manifest.json");
   const manifest = JSON.parse(fs.readFileSync(manifestFile, "utf8"));
   const rows = manifest.cases.map((entry) => {
     const benchmarkCase = JSON.parse(
@@ -897,7 +902,7 @@ test("benchmark report marks only a complete first-pass matrix as evidence and r
 
 test("benchmark documentation locks the fair-run and truthful-evidence contract", () => {
   const readme = fs.readFileSync(
-    path.join(repoRoot, "benchmarks/ordinary-model-floor/README.md"),
+    ownedArchifyPath(repoRoot, "benchmarks/ordinary-model-floor/README.md"),
     "utf8",
   );
 
@@ -928,12 +933,15 @@ test("benchmark documentation locks the fair-run and truthful-evidence contract"
 });
 
 test("packaged skill puts a bounded ordinary-model path before progressive feature references", () => {
-  const skill = fs.readFileSync(path.join(skillRoot, "SKILL.md"), "utf8");
+  const skill = fs.readFileSync(ownedSkillPath(skillRoot, "SKILL.md"), "utf8");
   const authoring = fs.readFileSync(
-    path.join(skillRoot, "references", "authoring-contract.md"),
+    ownedSkillPath(skillRoot, "references", "authoring-contract.md"),
     "utf8",
   );
-  const viewer = fs.readFileSync(path.join(skillRoot, "references", "viewer-runtime.md"), "utf8");
+  const viewer = fs.readFileSync(
+    ownedSkillPath(skillRoot, "references", "viewer-runtime.md"),
+    "utf8",
+  );
   const fastPath = skill.indexOf("## Fast authoring path");
   const progressiveReferences = skill.indexOf("references/authoring-contract.md");
 
@@ -984,7 +992,7 @@ test("packaged skill puts a bounded ordinary-model path before progressive featu
 test("dated three-model evidence retains every frozen attempt-1 candidate and truthful gate result", () => {
   const evidence = JSON.parse(
     fs.readFileSync(
-      path.join(
+      ownedArchifyPath(
         repoRoot,
         "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models.json",
       ),
@@ -1023,7 +1031,7 @@ test("dated three-model evidence retains every frozen attempt-1 candidate and tr
 test("post-fix evidence keeps the complete matrix and reports the no-uplift comparison truthfully", () => {
   const evidence = JSON.parse(
     fs.readFileSync(
-      path.join(
+      ownedArchifyPath(
         repoRoot,
         "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models-postfix.json",
       ),
@@ -1084,7 +1092,7 @@ test("post-fix evidence keeps the complete matrix and reports the no-uplift comp
 test("quality-first evidence preserves the complete matrix and the measured lifecycle gain without overstating uplift", () => {
   const evidence = JSON.parse(
     fs.readFileSync(
-      path.join(
+      ownedArchifyPath(
         repoRoot,
         "benchmarks/ordinary-model-floor/results/2026-07-26-pi-three-models-quality-first.json",
       ),

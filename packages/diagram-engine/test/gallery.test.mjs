@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -10,7 +15,7 @@ import { SCENARIO_RECIPES } from "../recipes/scenarios.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
+const repoRoot = ownedWorkspaceRoot;
 const tmp = fs.mkdtempSync(path.join(os.tmpdir(), "archify-gallery-"));
 const generatedRoot = path.join(tmp, "docs");
 
@@ -25,7 +30,7 @@ function normalize(text) {
 test("generated proof gallery matches its sources, receipts, and checked-in artifacts", () => {
   const output = execFileSync(
     process.execPath,
-    [path.join(repoRoot, "scripts", "build-gallery.mjs"), generatedRoot],
+    [ownedArchifyPath(repoRoot, "scripts", "build-gallery.mjs"), generatedRoot],
     { encoding: "utf8" },
   );
   assert.match(output, /gallery 11 artifacts \/ 99 checks/);
@@ -35,7 +40,7 @@ test("generated proof gallery matches its sources, receipts, and checked-in arti
   assert.equal(manifest.schemaVersion, 1);
   assert.equal(
     manifest.archifyVersion,
-    JSON.parse(fs.readFileSync(path.join(skillRoot, "package.json"))).version,
+    JSON.parse(fs.readFileSync(ownedSkillPath(skillRoot, "package.json"))).version,
   );
   assert.equal(manifest.entryCount, 11);
   assert.equal(manifest.checkCount, 99);
@@ -175,7 +180,7 @@ test("generated proof gallery matches its sources, receipts, and checked-in arti
     ...manifest.entries.flatMap((entry) => [entry.artifact, entry.input]),
   ]) {
     const fresh = path.join(generatedRoot, relative);
-    const checked = path.join(repoRoot, "docs", relative);
+    const checked = ownedArchifyPath(repoRoot, "docs", relative);
     assert.ok(fs.existsSync(checked), `${relative}: checked-in gallery output missing`);
     assert.equal(
       normalize(fs.readFileSync(fresh, "utf8")),

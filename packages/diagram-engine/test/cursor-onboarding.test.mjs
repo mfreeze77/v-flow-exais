@@ -1,3 +1,7 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -7,17 +11,16 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const skillRoot = path.resolve(__dirname, "..");
-const repoRoot = path.resolve(skillRoot, "..");
+const repoRoot = ownedWorkspaceRoot;
 const cursorCommand =
   "npx -y skills add tt-a1i/archify --skill archify --agent cursor --global --copy --yes";
 
 test("Cursor onboarding stays explicit, bilingual, and backed by the same Skill", () => {
-  const english = fs.readFileSync(path.join(repoRoot, "README.md"), "utf8");
-  const englishMirror = fs.readFileSync(path.join(repoRoot, "README_EN.md"), "utf8");
-  const chinese = fs.readFileSync(path.join(repoRoot, "README_ZH.md"), "utf8");
-  const start = fs.readFileSync(path.join(repoRoot, "docs", "start.html"), "utf8");
-  const landing = fs.readFileSync(path.join(repoRoot, "docs", "index.html"), "utf8");
+  const english = fs.readFileSync(ownedArchifyPath(repoRoot, "README.md"), "utf8");
+  const englishMirror = fs.readFileSync(ownedArchifyPath(repoRoot, "README_EN.md"), "utf8");
+  const chinese = fs.readFileSync(ownedArchifyPath(repoRoot, "README_ZH.md"), "utf8");
+  const start = fs.readFileSync(ownedArchifyPath(repoRoot, "docs", "start.html"), "utf8");
+  const landing = fs.readFileSync(ownedArchifyPath(repoRoot, "docs", "index.html"), "utf8");
 
   assert.equal(english, englishMirror, "English README mirrors must stay synchronized");
   assert.match(english, /Cursor, Claude Code, Codex CLI, and OpenCode/);
@@ -44,7 +47,7 @@ test("the zero-dependency archive works from the canonical Cursor-visible agent 
   const agentSkills = path.join(tmp, ".agents", "skills");
   try {
     fs.mkdirSync(agentSkills, { recursive: true });
-    execFileSync("unzip", ["-q", path.join(repoRoot, "archify.zip"), "-d", agentSkills]);
+    execFileSync("unzip", ["-q", ownedArchifyPath(repoRoot, "archify.zip"), "-d", agentSkills]);
     const installed = path.join(agentSkills, "archify");
     const cli = path.join(installed, "bin", "archify.mjs");
     const doctor = execFileSync(process.execPath, [cli, "doctor"], { encoding: "utf8" });

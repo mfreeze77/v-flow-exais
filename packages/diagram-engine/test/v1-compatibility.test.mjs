@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -17,7 +18,7 @@ function render(mode, doc) {
   try {
     execFileSync(
       "node",
-      [path.join(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
+      [ownedSkillPath(skillRoot, `renderers/${mode}/render-${mode}.mjs`), input, output],
       { stdio: ["ignore", "ignore", "pipe"] },
     );
     return { code: 0, stderr: "", output };
@@ -32,7 +33,7 @@ function validate(mode, doc) {
   try {
     execFileSync(
       "node",
-      [path.join(skillRoot, "bin/archify.mjs"), "validate", mode, input, "--json"],
+      [ownedSkillPath(skillRoot, "bin/archify.mjs"), "validate", mode, input, "--json"],
       { stdio: ["ignore", "ignore", "pipe"] },
     );
     return { code: 0, stderr: "" };
@@ -44,7 +45,7 @@ function validate(mode, doc) {
 function check(output) {
   const stdout = execFileSync(
     "node",
-    [path.join(skillRoot, "scripts/check-render-output.mjs"), output],
+    [ownedSkillPath(skillRoot, "scripts/check-render-output.mjs"), output],
     { encoding: "utf8" },
   );
   return JSON.parse(stdout);
@@ -102,7 +103,7 @@ for (const [mode, filename] of Object.entries(OFFICIAL_V1_EXAMPLES)) {
 
 test("quality-profile lifecycle keeps the checked-in authored via authoritative", () => {
   const doc = JSON.parse(
-    fs.readFileSync(path.join(skillRoot, "examples/agent-run.lifecycle.json"), "utf8"),
+    fs.readFileSync(ownedSkillPath(skillRoot, "examples/agent-run.lifecycle.json"), "utf8"),
   );
   const transition = doc.transitions.find(({ id }) => id === "approval-cancelled");
   assert.deepEqual(transition.via, [

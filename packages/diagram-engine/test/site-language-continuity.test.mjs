@@ -1,3 +1,7 @@
+import {
+  ownedArchifyPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { execFileSync } from "node:child_process";
@@ -9,12 +13,12 @@ import vm from "node:vm";
 import { fileURLToPath } from "node:url";
 
 import { ChromeVisualBrowser, findChrome } from "../bin/visual-check.mjs";
-import { DIAGRAM_TYPES, DIAGRAM_TYPE_LABELS } from "../../scripts/site-copy.mjs";
+import { DIAGRAM_TYPES, DIAGRAM_TYPE_LABELS } from "../../../tools/upstream-archify/site-copy.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "../..");
-const runtimePath = path.join(repoRoot, "docs/assets/site-language.js");
-const navigationPath = path.join(repoRoot, "docs/assets/site-navigation.css");
+const repoRoot = ownedWorkspaceRoot;
+const runtimePath = ownedArchifyPath(repoRoot, "docs/assets/site-language.js");
+const navigationPath = ownedArchifyPath(repoRoot, "docs/assets/site-navigation.css");
 const integrationEnabled = process.env.ARCHIFY_SITE_INTEGRATION === "1";
 const chromePath = integrationEnabled && process.env.ARCHIFY_CHROME ? findChrome() : null;
 
@@ -250,12 +254,12 @@ test(
 
       for (const build of builds) {
         execFileSync(process.execPath, [
-          path.join(repoRoot, "scripts", build.script),
+          ownedArchifyPath(repoRoot, "scripts", build.script),
           ...build.args,
         ]);
         for (const asset of ["site-language.js", "site-navigation.css"]) {
           const emitted = path.join(tmp, build.root, "assets", asset);
-          const canonicalAsset = path.join(repoRoot, "docs/assets", asset);
+          const canonicalAsset = ownedArchifyPath(repoRoot, "docs/assets", asset);
           assert.ok(fs.existsSync(emitted), `${build.script}: ${asset} missing from custom output`);
           assert.equal(fs.readFileSync(emitted, "utf8"), fs.readFileSync(canonicalAsset, "utf8"));
         }
@@ -336,7 +340,7 @@ test("all site pages consume one language runtime and one navigation contract", 
   ];
 
   for (const relative of pages) {
-    const html = fs.readFileSync(path.join(repoRoot, relative), "utf8");
+    const html = fs.readFileSync(ownedArchifyPath(repoRoot, relative), "utf8");
     assert.match(
       html,
       /<script src="assets\/site-language\.js"><\/script>/,
@@ -398,7 +402,7 @@ test("site page identity paths localize with the selected language", () => {
 
   for (const page of pages) {
     for (const relative of page.paths) {
-      const html = fs.readFileSync(path.join(repoRoot, relative), "utf8");
+      const html = fs.readFileSync(ownedArchifyPath(repoRoot, relative), "utf8");
       assert.ok(
         html.includes(
           `<span class="nav-logo-path" data-en="${page.en}" data-zh="${page.zh}">${page.en}</span>`,
@@ -421,7 +425,10 @@ test("proof gallery type filters localize with the selected language", () => {
     zh: DIAGRAM_TYPE_LABELS.zh[type],
   }));
 
-  const template = fs.readFileSync(path.join(repoRoot, "scripts/gallery-template.html"), "utf8");
+  const template = fs.readFileSync(
+    ownedArchifyPath(repoRoot, "scripts/gallery-template.html"),
+    "utf8",
+  );
   for (const filter of filters) {
     const placeholder = filter.type.toUpperCase();
     assert.ok(
@@ -433,7 +440,7 @@ test("proof gallery type filters localize with the selected language", () => {
   }
 
   for (const relative of ["docs/gallery.html"]) {
-    const html = fs.readFileSync(path.join(repoRoot, relative), "utf8");
+    const html = fs.readFileSync(ownedArchifyPath(repoRoot, relative), "utf8");
     assert.match(
       html,
       /<button(?=[^>]*data-filter="all")(?=[^>]*data-en="All \/ [^"]+")(?=[^>]*data-zh="全部配方 \/ [^"]+")[^>]*>All \/ [^<]+<\/button>/,
@@ -458,11 +465,14 @@ test("proof gallery type filters localize with the selected language", () => {
 });
 
 test("scenario guide type filters use consistent Chinese diagram names", () => {
-  const template = fs.readFileSync(path.join(repoRoot, "scripts/guide-template.html"), "utf8");
+  const template = fs.readFileSync(
+    ownedArchifyPath(repoRoot, "scripts/guide-template.html"),
+    "utf8",
+  );
   assert.match(template, /var types = \[\[DIAGRAM_TYPES_JSON\]\];/);
   assert.match(template, /var labels = \[\[DIAGRAM_TYPE_LABELS_JSON\]\];/);
 
-  const html = fs.readFileSync(path.join(repoRoot, "docs/guide.html"), "utf8");
+  const html = fs.readFileSync(ownedArchifyPath(repoRoot, "docs/guide.html"), "utf8");
   assert.ok(
     html.includes(`var labels = ${JSON.stringify(DIAGRAM_TYPE_LABELS)};`),
     "docs/guide.html: Guide filters must use the shared Chinese diagram names",
@@ -476,7 +486,7 @@ test(
     timeout: 60000,
   },
   async () => {
-    const docsRoot = path.join(repoRoot, "docs");
+    const docsRoot = ownedArchifyPath(repoRoot, "docs");
     const server = startStaticServer(docsRoot);
     await new Promise((resolve) => server.listen(0, "127.0.0.1", resolve));
     const address = server.address();

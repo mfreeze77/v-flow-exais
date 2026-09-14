@@ -1,3 +1,8 @@
+import {
+  ownedArchifyPath,
+  ownedSkillPath,
+  ownedWorkspaceRoot,
+} from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -6,10 +11,10 @@ import os from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { stageCleanSkill } from "../../scripts/stage-clean-skill.mjs";
+import { stageCleanSkill } from "../../../tools/upstream-archify/stage-clean-skill.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const repoRoot = path.resolve(__dirname, "..", "..");
+const repoRoot = ownedWorkspaceRoot;
 const canonicalZipNodeMajor = 22;
 const currentNodeMajor = Number(process.versions.node.split(".")[0]);
 const canonicalZipTest = (name, fn) =>
@@ -25,7 +30,7 @@ const canonicalZipTest = (name, fn) =>
   );
 
 function spawnBuildZip(outputPath, options = {}) {
-  const script = path.join(repoRoot, "scripts", "build-zip.sh");
+  const script = ownedArchifyPath(repoRoot, "scripts", "build-zip.sh");
   const { cwd = repoRoot, ...rest } = options;
   if (process.platform === "win32") {
     const bashCandidates = [
@@ -60,7 +65,7 @@ function workflowJob(workflow, name) {
 
 test("release prevents manifest preannouncement and smokes the exact archive before upload", () => {
   const workflow = fs.readFileSync(
-    path.join(repoRoot, ".github", "workflows", "release.yml"),
+    ownedArchifyPath(repoRoot, ".github", "workflows", "release.yml"),
     "utf8",
   );
   const tagFetch = workflowStep(workflow, "Fetch exact tag object");
@@ -180,7 +185,10 @@ test("an exact tag fetch restores an annotated object after a SHA-only checkout"
 });
 
 test("CI binds a public notifier manifest to the Release asset, tagged archive, and tag tree build", () => {
-  const workflow = fs.readFileSync(path.join(repoRoot, ".github", "workflows", "ci.yml"), "utf8");
+  const workflow = fs.readFileSync(
+    ownedArchifyPath(repoRoot, ".github", "workflows", "ci.yml"),
+    "utf8",
+  );
   const job = workflowJob(workflow, "published-update-manifest");
   assert.match(job, /validateStableUpdateManifest/);
   assert.match(job, /releases\/latest/);
@@ -206,7 +214,7 @@ test("CI binds a public notifier manifest to the Release asset, tagged archive, 
 
 test("release docs disclose that mutable Release assets are verified only at deployment time", () => {
   const design = fs.readFileSync(
-    path.join(repoRoot, "docs", "skill-embedded-optional-update-notifier-design.md"),
+    ownedArchifyPath(repoRoot, "docs", "skill-embedded-optional-update-notifier-design.md"),
     "utf8",
   );
   assert.match(design, /部署时点/);
@@ -216,7 +224,10 @@ test("release docs disclose that mutable Release assets are verified only at dep
 });
 
 test("GitHub Pages deploys docs only after every repository gate succeeds", () => {
-  const workflow = fs.readFileSync(path.join(repoRoot, ".github", "workflows", "ci.yml"), "utf8");
+  const workflow = fs.readFileSync(
+    ownedArchifyPath(repoRoot, ".github", "workflows", "ci.yml"),
+    "utf8",
+  );
   const job = workflowJob(workflow, "deploy-pages");
   assert.match(job, /if: github\.event_name == 'push' && github\.ref == 'refs\/heads\/main'/);
   assert.match(
@@ -238,7 +249,7 @@ test("GitHub Pages deploys docs only after every repository gate succeeds", () =
 
 test("release tags with a SemVer prerelease are marked prerelease and never become latest", () => {
   const workflow = fs.readFileSync(
-    path.join(repoRoot, ".github", "workflows", "release.yml"),
+    ownedArchifyPath(repoRoot, ".github", "workflows", "release.yml"),
     "utf8",
   );
   const classifier = workflowStep(workflow, "Classify stable and prerelease tags");
@@ -262,7 +273,7 @@ test("release tags with a SemVer prerelease are marked prerelease and never beco
 });
 
 test("package smoke rejects every dependency or repository-only artifact", () => {
-  const packageSmoke = path.join(repoRoot, "scripts", "package-smoke.mjs");
+  const packageSmoke = ownedArchifyPath(repoRoot, "scripts", "package-smoke.mjs");
   const forbidden = [
     { relative: "node_modules", kind: "directory" },
     { relative: "package-lock.json", kind: "file" },
@@ -300,7 +311,10 @@ test("package smoke rejects every dependency or repository-only artifact", () =>
 });
 
 test("package smoke verifies the embedded notifier identity and local disable switch", () => {
-  const source = fs.readFileSync(path.join(repoRoot, "scripts", "package-smoke.mjs"), "utf8");
+  const source = fs.readFileSync(
+    ownedArchifyPath(repoRoot, "scripts", "package-smoke.mjs"),
+    "utf8",
+  );
   assert.match(source, /scripts', 'check-update\.mjs/);
   assert.match(source, /scripts', 'update-contract\.mjs/);
   assert.match(source, /skill-release\.json/);
@@ -309,7 +323,7 @@ test("package smoke verifies the embedded notifier identity and local disable sw
 });
 
 test("package smoke rejects a missing or modified distribution license", () => {
-  const packageSmoke = path.join(repoRoot, "scripts", "package-smoke.mjs");
+  const packageSmoke = ownedArchifyPath(repoRoot, "scripts", "package-smoke.mjs");
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "archify-package-license-gate-"));
   try {
     const staged = path.join(fixture, "archify");
@@ -321,7 +335,7 @@ test("package smoke rejects a missing or modified distribution license", () => {
     assert.notEqual(result.status, 0, "missing LICENSE must fail package smoke");
     assert.match(`${result.stdout}\n${result.stderr}`, /packaged skill is missing LICENSE/);
 
-    const repositoryLicense = fs.readFileSync(path.join(repoRoot, "LICENSE"), "utf8");
+    const repositoryLicense = fs.readFileSync(ownedArchifyPath(repoRoot, "LICENSE"), "utf8");
     fs.writeFileSync(
       licensePath,
       repositoryLicense.replace(
@@ -346,7 +360,7 @@ test("package smoke rejects a missing or modified distribution license", () => {
 });
 
 test("package smoke rejects missing, modified, or incomplete third-party notices", () => {
-  const packageSmoke = path.join(repoRoot, "scripts", "package-smoke.mjs");
+  const packageSmoke = ownedArchifyPath(repoRoot, "scripts", "package-smoke.mjs");
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "archify-package-notices-gate-"));
   try {
     const staged = path.join(fixture, "archify");
@@ -359,7 +373,7 @@ test("package smoke rejects missing, modified, or incomplete third-party notices
     assert.match(`${result.stdout}\n${result.stderr}`, /missing THIRD_PARTY_NOTICES\.md/);
 
     const repositoryNotices = fs.readFileSync(
-      path.join(repoRoot, "THIRD_PARTY_NOTICES.md"),
+      ownedArchifyPath(repoRoot, "THIRD_PARTY_NOTICES.md"),
       "utf8",
     );
     fs.writeFileSync(
@@ -380,7 +394,7 @@ test("package smoke rejects missing, modified, or incomplete third-party notices
 
     const comparisonRoot = path.join(fixture, "comparison-root");
     fs.mkdirSync(comparisonRoot);
-    fs.copyFileSync(path.join(repoRoot, "LICENSE"), path.join(comparisonRoot, "LICENSE"));
+    fs.copyFileSync(ownedArchifyPath(repoRoot, "LICENSE"), path.join(comparisonRoot, "LICENSE"));
     const synchronizedIncomplete = repositoryNotices.replace(
       /## OpenAI mark[\s\S]*?## No additional rights granted/,
       "## No additional rights granted",
@@ -409,8 +423,8 @@ test("package smoke increments an arbitrary-precision SemVer patch without Numbe
   const skillRoot = path.join(scratch, "archify");
   try {
     stageCleanSkill({ repoRoot, destination: skillRoot });
-    const packagePath = path.join(skillRoot, "package.json");
-    const releasePath = path.join(skillRoot, "skill-release.json");
+    const packagePath = ownedSkillPath(skillRoot, "package.json");
+    const releasePath = ownedSkillPath(skillRoot, "skill-release.json");
     const packageJson = JSON.parse(fs.readFileSync(packagePath, "utf8"));
     const release = JSON.parse(fs.readFileSync(releasePath, "utf8"));
     const version = "2.16.9007199254740993";
@@ -422,7 +436,7 @@ test("package smoke increments an arbitrary-precision SemVer patch without Numbe
 
     const smoke = spawnSync(
       process.execPath,
-      [path.join(repoRoot, "scripts/package-smoke.mjs"), skillRoot],
+      [ownedArchifyPath(repoRoot, "scripts/package-smoke.mjs"), skillRoot],
       {
         cwd: repoRoot,
         encoding: "utf8",
@@ -435,9 +449,12 @@ test("package smoke increments an arbitrary-precision SemVer patch without Numbe
 });
 
 test("archive build refuses to silently omit required release files", () => {
-  const buildSource = fs.readFileSync(path.join(repoRoot, "scripts", "build-zip.sh"), "utf8");
+  const buildSource = fs.readFileSync(
+    ownedArchifyPath(repoRoot, "scripts", "build-zip.sh"),
+    "utf8",
+  );
   const stageSource = fs.readFileSync(
-    path.join(repoRoot, "scripts", "stage-clean-skill.mjs"),
+    ownedArchifyPath(repoRoot, "scripts", "stage-clean-skill.mjs"),
     "utf8",
   );
   assert.match(buildSource, /stage-clean-skill\.mjs/);
@@ -482,7 +499,7 @@ canonicalZipTest("package smoke rejects every dependency metadata field in a bui
 
       const result = spawnSync(
         process.execPath,
-        [path.join(repoRoot, "scripts", "package-smoke.mjs"), caseRoot],
+        [ownedArchifyPath(repoRoot, "scripts", "package-smoke.mjs"), caseRoot],
         {
           encoding: "utf8",
         },
@@ -502,7 +519,7 @@ canonicalZipTest("built archives contain the embedded notifier runtime", () => {
   const fixture = fs.mkdtempSync(path.join(os.tmpdir(), "archify-notifier-package-gate-"));
   try {
     const archive = path.join(fixture, "archify.zip");
-    const build = spawnSync(path.join(repoRoot, "scripts", "build-zip.sh"), [archive], {
+    const build = spawnSync(ownedArchifyPath(repoRoot, "scripts", "build-zip.sh"), [archive], {
       cwd: repoRoot,
       encoding: "utf8",
     });
@@ -523,10 +540,10 @@ canonicalZipTest(
   "archive build excludes untracked files and external symlinks from the live working tree",
   () => {
     const marker = `.package-negative-${process.pid}-${Date.now()}`;
-    const untracked = path.join(repoRoot, "archify", `${marker}.txt`);
+    const untracked = ownedArchifyPath(repoRoot, "archify", `${marker}.txt`);
     const externalRoot = fs.mkdtempSync(path.join(os.tmpdir(), "archify-package-external-"));
     const externalTarget = path.join(externalRoot, "secret.txt");
-    const externalLink = path.join(repoRoot, "archify", `${marker}.link`);
+    const externalLink = ownedArchifyPath(repoRoot, "archify", `${marker}.link`);
     const outputRoot = fs.mkdtempSync(path.join(os.tmpdir(), "archify-package-negative-"));
     const archive = path.join(outputRoot, "archify.zip");
 
@@ -575,19 +592,19 @@ canonicalZipTest(
       fs.mkdirSync(path.join(skill, "scripts"), { recursive: true });
       fs.mkdirSync(scripts);
       fs.copyFileSync(
-        path.join(repoRoot, "scripts", "build-zip.sh"),
+        ownedArchifyPath(repoRoot, "scripts", "build-zip.sh"),
         path.join(scripts, "build-zip.sh"),
       );
       fs.copyFileSync(
-        path.join(repoRoot, "scripts", "write-deterministic-zip.mjs"),
+        ownedArchifyPath(repoRoot, "scripts", "write-deterministic-zip.mjs"),
         path.join(scripts, "write-deterministic-zip.mjs"),
       );
       fs.copyFileSync(
-        path.join(repoRoot, "scripts", "stage-clean-skill.mjs"),
+        ownedArchifyPath(repoRoot, "scripts", "stage-clean-skill.mjs"),
         path.join(scripts, "stage-clean-skill.mjs"),
       );
       fs.copyFileSync(
-        path.join(repoRoot, "scripts", "third-party-notices-contract.mjs"),
+        ownedArchifyPath(repoRoot, "scripts", "third-party-notices-contract.mjs"),
         path.join(scripts, "third-party-notices-contract.mjs"),
       );
       fs.writeFileSync(
@@ -682,7 +699,9 @@ canonicalZipTest(
         "identical tracked inputs must produce identical archive bytes",
       );
       assert.ok(
-        fs.readFileSync(utcArchive).equals(fs.readFileSync(path.join(repoRoot, "archify.zip"))),
+        fs
+          .readFileSync(utcArchive)
+          .equals(fs.readFileSync(ownedArchifyPath(repoRoot, "archify.zip"))),
         "the canonical archive toolchain must reproduce the committed archive bytes",
       );
       assert.deepEqual(
@@ -698,11 +717,14 @@ canonicalZipTest(
 
 test("CI tests the declared Node floor plus every maintained current lane", () => {
   const packageJson = JSON.parse(
-    fs.readFileSync(path.join(repoRoot, "archify", "package.json"), "utf8"),
+    fs.readFileSync(ownedArchifyPath(repoRoot, "archify", "package.json"), "utf8"),
   );
   assert.equal(packageJson.engines?.node, ">=18");
 
-  const workflow = fs.readFileSync(path.join(repoRoot, ".github", "workflows", "ci.yml"), "utf8");
+  const workflow = fs.readFileSync(
+    ownedArchifyPath(repoRoot, ".github", "workflows", "ci.yml"),
+    "utf8",
+  );
   const testJob = workflowJob(workflow, "test");
   const versions = testJob
     .match(/node-version:\s*\[([^\]]+)\]/)?.[1]

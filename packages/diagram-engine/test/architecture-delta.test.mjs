@@ -1,3 +1,4 @@
+import { ownedSkillPath } from "../../../tools/upstream-archify/owned-layout.mjs";
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import { spawnSync } from "node:child_process";
@@ -15,14 +16,14 @@ import {
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const skillRoot = path.resolve(__dirname, "..");
-const cli = path.join(skillRoot, "bin/archify.mjs");
-const baseFixture = path.join(skillRoot, "examples/checkout-platform.base.architecture.json");
-const headFixture = path.join(skillRoot, "examples/checkout-platform.head.architecture.json");
-const checkedArtifact = path.resolve(
+const cli = ownedSkillPath(skillRoot, "bin/archify.mjs");
+const baseFixture = ownedSkillPath(skillRoot, "examples/checkout-platform.base.architecture.json");
+const headFixture = ownedSkillPath(skillRoot, "examples/checkout-platform.head.architecture.json");
+const checkedArtifact = ownedSkillPath(
   skillRoot,
   "../../examples/upstream-archify/checkout-platform-delta.html",
 );
-const checkedReceipt = path.resolve(
+const checkedReceipt = ownedSkillPath(
   skillRoot,
   "../../examples/upstream-archify/checkout-platform-delta.receipt.json",
 );
@@ -185,7 +186,10 @@ test("evidence-only component changes keep an enabled exact review contract", ()
   assert.equal(receipt.changes.components.length, 1);
   assert.equal(receipt.changes.components[0].status, "evidence-changed");
   assert.deepEqual(receipt.changes.components[0].classifications, ["evidence"]);
-  const runtime = fs.readFileSync(path.join(skillRoot, "delta/architecture-delta.mjs"), "utf8");
+  const runtime = fs.readFileSync(
+    ownedSkillPath(skillRoot, "delta/architecture-delta.mjs"),
+    "utf8",
+  );
   assert.match(runtime, /statuses: \['added', 'changed', 'evidence-changed', 'removed', 'moved'\]/);
 });
 
