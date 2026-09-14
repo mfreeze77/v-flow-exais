@@ -1,0 +1,72 @@
+{
+  "run": "managed-startup-isolation-134323Z",
+  "status": "diagnostic-only",
+  "interpretation": "baseline-failure-not-reproduced",
+  "exitCode": 2,
+  "meaning": "The fully instrumented control mounted successfully, so no variant result is informative. Per the runner's own contract this is inconclusive, not a fix.",
+  "established": "Instrumentation is not the cause. All six profiles, in both orders, mounted in 788-1878ms \u2014 including both full-instrumentation controls with network diagnostics, console observer, response summary and checkpoint writes all enabled.",
+  "constantDifference": "This runner reuses an existing fixture; the failing editing harness imports a new one each run. That difference was held constant across all twelve trials and is now the leading candidate \u2014 but it is not established, because a direct probe that also imported a fresh project reached ready in about 5s.",
+  "nextExperiment": "Vary fixture freshness rather than instrumentation: run the same paired comparison with a new import per trial. Neither instrumentation alone nor fresh import alone has reproduced the failure.",
+  "trials": [
+    {
+      "trial": "01-full",
+      "mount": "ready",
+      "mountMs": 1878
+    },
+    {
+      "trial": "02-without-network-diagnostics",
+      "mount": "ready",
+      "mountMs": 969
+    },
+    {
+      "trial": "03-without-console-diagnostics",
+      "mount": "ready",
+      "mountMs": 1024
+    },
+    {
+      "trial": "04-without-response-summary",
+      "mount": "ready",
+      "mountMs": 961
+    },
+    {
+      "trial": "05-without-checkpoint-writes",
+      "mount": "ready",
+      "mountMs": 869
+    },
+    {
+      "trial": "06-interval-polling",
+      "mount": "ready",
+      "mountMs": 860
+    },
+    {
+      "trial": "07-interval-polling",
+      "mount": "ready",
+      "mountMs": 859
+    },
+    {
+      "trial": "08-without-checkpoint-writes",
+      "mount": "ready",
+      "mountMs": 816
+    },
+    {
+      "trial": "09-without-response-summary",
+      "mount": "ready",
+      "mountMs": 789
+    },
+    {
+      "trial": "10-without-console-diagnostics",
+      "mount": "ready",
+      "mountMs": 824
+    },
+    {
+      "trial": "11-without-network-diagnostics",
+      "mount": "ready",
+      "mountMs": 855
+    },
+    {
+      "trial": "12-full",
+      "mount": "ready",
+      "mountMs": 788
+    }
+  ]
+}
